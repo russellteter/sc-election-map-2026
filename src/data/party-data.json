@@ -1,0 +1,20 @@
+{
+  "candidates": {
+    "JA Moore": { "party": "Democratic", "verified": true, "district": "House 15" },
+    "T. Spann-Wilder": { "party": "Democratic", "verified": true, "district": "House 109" },
+    "Wendell Gilliard": { "party": "Democratic", "verified": true, "district": "House 111" },
+    "Courtney Waters": { "party": "Democratic", "verified": true, "district": "House 113" },
+    "Spencer Wetmore": { "party": "Democratic", "verified": true, "district": "House 115" },
+    "Leon Stavrinakis": { "party": "Democratic", "verified": true, "district": "House 119" },
+    "Kathy Landing": { "party": "Republican", "verified": true, "district": "House 80" },
+    "Gil Gatch": { "party": "Republican", "verified": true, "district": "House 94" },
+    "Mark Smith": { "party": "Republican", "verified": true, "district": "House 99" },
+    "Lee Hewitt": { "party": "Republican", "verified": true, "district": "House 108" },
+    "Tom Hartnett": { "party": "Republican", "verified": true, "district": "House 110" },
+    "Joe Bustos": { "party": "Republican", "verified": true, "district": "House 112" },
+    "Gary Brewer": { "party": "Republican", "verified": true, "district": "House 114" },
+    "James Teeple": { "party": "Republican", "verified": true, "district": "House 116" }
+  },
+  "lastUpdated": "2026-01-12",
+  "source": "Charleston Elections 2026 document"
+}
