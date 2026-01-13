@@ -87,6 +87,28 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
+      {/* Skip link for keyboard users */}
+      <a
+        href="#map-container"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-blue-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg"
+      >
+        Skip to map
+      </a>
+
+      {/* Live region for screen reader announcements */}
+      <div
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        {selectedDistrict
+          ? `Selected ${chamber === 'house' ? 'House' : 'Senate'} District ${selectedDistrict}`
+          : hoveredDistrict
+          ? `Hovering over ${chamber === 'house' ? 'House' : 'Senate'} District ${hoveredDistrict}`
+          : ''}
+      </div>
+
       {/* Header */}
       <header className="bg-white border-b shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-4">
@@ -111,7 +133,7 @@ export default function Home() {
           {/* Stats bar */}
           {stats && (
             <div className="bg-white rounded-lg shadow-sm p-4 mb-4">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 text-center">
                 <div>
                   <div className="text-2xl font-bold text-blue-600">{stats.democrats}</div>
                   <div className="text-sm text-gray-600">Democrats</div>
@@ -121,19 +143,40 @@ export default function Home() {
                   <div className="text-sm text-gray-600">Republicans</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-gray-600">{stats.unknown}</div>
+                  <div className="text-2xl font-bold text-amber-500">{stats.unknown}</div>
                   <div className="text-sm text-gray-600">Unknown Party</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-gray-400">{stats.empty}</div>
                   <div className="text-sm text-gray-600">No Candidates</div>
                 </div>
+                <div>
+                  <div className="text-2xl font-bold text-purple-600">{stats.enrichmentPercent}%</div>
+                  <div className="text-sm text-gray-600">Party Data</div>
+                  <div className="mt-1 w-full bg-gray-200 rounded-full h-1.5">
+                    <div
+                      className={`h-1.5 rounded-full transition-all duration-500 ${
+                        stats.enrichmentPercent >= 70
+                          ? 'bg-green-500'
+                          : stats.enrichmentPercent >= 40
+                          ? 'bg-amber-500'
+                          : 'bg-red-500'
+                      }`}
+                      style={{ width: `${stats.enrichmentPercent}%` }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           )}
 
           {/* Map container */}
-          <div className="flex-1 bg-white rounded-lg shadow-sm p-4 min-h-[400px]">
+          <div
+            id="map-container"
+            className="flex-1 bg-white rounded-lg shadow-sm p-4 min-h-[400px]"
+            role="region"
+            aria-label="Interactive district map"
+          >
             <DistrictMap
               chamber={chamber}
               candidatesData={candidatesData}
@@ -202,6 +245,8 @@ function calculateStats(data: CandidatesData, chamber: 'house' | 'senate') {
   let republicans = 0;
   let unknown = 0;
   let empty = 0;
+  let totalCandidates = 0;
+  let enrichedCandidates = 0;
 
   const districts = data[chamber];
   for (const district of Object.values(districts)) {
@@ -218,8 +263,20 @@ function calculateStats(data: CandidatesData, chamber: 'house' | 'senate') {
       if (hasDem) democrats++;
       if (hasRep) republicans++;
       if (!hasDem && !hasRep) unknown++;
+
+      // Count individual candidates for enrichment stats
+      for (const candidate of district.candidates) {
+        totalCandidates++;
+        if (candidate.party) {
+          enrichedCandidates++;
+        }
+      }
     }
   }
 
-  return { democrats, republicans, unknown, empty };
+  const enrichmentPercent = totalCandidates > 0
+    ? Math.round((enrichedCandidates / totalCandidates) * 100)
+    : 0;
+
+  return { democrats, republicans, unknown, empty, totalCandidates, enrichedCandidates, enrichmentPercent };
 }

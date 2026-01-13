@@ -54,8 +54,14 @@ def load_party_data() -> dict:
     return {"candidates": {}}
 
 
-def find_party(name: str, party_data: dict) -> str | None:
-    """Look up party affiliation for a candidate."""
+def find_party(name: str, party_data: dict, chamber: str = None, district_num: int = None) -> str | None:
+    """Look up party affiliation for a candidate.
+
+    Checks in this order:
+    1. Direct candidate matches in candidates section
+    2. Incumbent data if chamber and district are provided
+    3. Partial name matching
+    """
     candidates = party_data.get("candidates", {})
 
     # Try exact match first
@@ -68,13 +74,28 @@ def find_party(name: str, party_data: dict) -> str | None:
         if normalize_name(stored_name) == normalized:
             return info.get("party")
 
-    # Try partial matching (last name)
+    # Try partial matching (last name) with candidates
     name_parts = normalized.lower().split()
     for stored_name, info in candidates.items():
         stored_parts = normalize_name(stored_name).lower().split()
         # Match if last names are the same
         if name_parts and stored_parts and name_parts[-1] == stored_parts[-1]:
             return info.get("party")
+
+    # Check incumbent data for the district
+    if chamber and district_num:
+        incumbents = party_data.get("incumbents", {}).get(chamber, {})
+        district_key = str(district_num)
+        if district_key in incumbents:
+            incumbent = incumbents[district_key]
+            incumbent_name = incumbent.get("name", "").lower()
+            # Check if the candidate name matches the incumbent
+            if name.lower() in incumbent_name or incumbent_name in name.lower():
+                return incumbent.get("party")
+            # Check last name match
+            incumbent_parts = incumbent_name.split()
+            if name_parts and incumbent_parts and name_parts[-1] == incumbent_parts[-1]:
+                return incumbent.get("party")
 
     return None
 
@@ -133,7 +154,7 @@ def process_ethics_data(ethics_file: str) -> dict:
         seen_candidates.add(candidate_key)
 
         # Look up party affiliation
-        party = find_party(candidate_name, party_data)
+        party = find_party(candidate_name, party_data, chamber, district_num)
 
         # Create candidate entry
         candidate_entry = {

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-13T03:07:37.416941Z",
+  "lastUpdated": "2026-01-13T05:19:32.941954Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -10,7 +10,7 @@
       "candidates": [
         {
           "name": "Duncan, Adam L",
-          "party": null,
+          "party": "Republican",
           "status": "filed",
           "filedDate": "2025-07-24",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=51353&seiId=56206&officeId=75313&reportId=407262",
@@ -24,7 +24,7 @@
       "candidates": [
         {
           "name": "Linvill, Claiborne",
-          "party": null,
+          "party": "Republican",
           "status": "filed",
           "filedDate": "2026-01-02",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56074&seiId=53477&officeId=78727&reportId=416493",
@@ -116,7 +116,7 @@
       "candidates": [
         {
           "name": "Rankin, Luke",
-          "party": null,
+          "party": "Republican",
           "status": "filed",
           "filedDate": "2025-10-04",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=50394&seiId=51214&officeId=74850&reportId=410801",
@@ -164,7 +164,7 @@
       "candidates": [
         {
           "name": "Mitchell, Dianne K",
-          "party": null,
+          "party": "Republican",
           "status": "filed",
           "filedDate": "2025-12-05",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55899&seiId=57596&officeId=78616&reportId=414869",
@@ -349,7 +349,7 @@
       "candidates": [
         {
           "name": "Scott, Keishan M",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-10-15",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55572&seiId=54847&officeId=78351&reportId=412258",
@@ -367,7 +367,7 @@
       "candidates": [
         {
           "name": "Johnson, Jermaine L",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-04-10",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=54015&seiId=39097&officeId=77359&reportId=402648",
@@ -385,7 +385,7 @@
       "candidates": [
         {
           "name": "Quick, Betty J",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-04-10",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=51430&seiId=51705&officeId=75369&reportId=402696",
@@ -590,7 +590,7 @@
       "candidates": [
         {
           "name": "Lastinger, John",
-          "party": null,
+          "party": "Republican",
           "status": "filed",
           "filedDate": "2025-12-01",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55872&seiId=51266&officeId=78596&reportId=414884",
@@ -621,7 +621,7 @@
       "candidates": [
         {
           "name": "Morgan, Tyler A",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2026-01-06",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55826&seiId=57496&officeId=78561&reportId=417093",
@@ -1029,7 +1029,7 @@
       "candidates": [
         {
           "name": "Sutton, Edward C II",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-07-07",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=50034&seiId=49527&officeId=74658&reportId=406244",

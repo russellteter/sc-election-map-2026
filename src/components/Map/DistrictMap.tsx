@@ -65,11 +65,13 @@ export default function DistrictMap({
     const svg = doc.querySelector('svg');
     if (!svg) return rawSvgContent;
 
-    // Make SVG responsive
+    // Make SVG responsive and accessible
     svg.setAttribute('width', '100%');
     svg.setAttribute('height', '100%');
     svg.style.maxWidth = '100%';
     svg.style.height = 'auto';
+    svg.setAttribute('role', 'application');
+    svg.setAttribute('aria-label', `${chamber === 'house' ? 'SC House' : 'SC Senate'} District Map. Use Tab to navigate districts, Enter to select.`);
 
     // Process all district paths
     const paths = svg.querySelectorAll('path[id]');
@@ -83,6 +85,7 @@ export default function DistrictMap({
       const districtNum = parseInt(match[1], 10);
       const districtData = candidatesData[chamber][String(districtNum)];
       const color = getDistrictColor(districtData);
+      const statusLabel = getDistrictStatusLabel(districtData);
 
       // Apply fill color directly to SVG string
       path.setAttribute('fill', color);
@@ -90,6 +93,15 @@ export default function DistrictMap({
       path.setAttribute('stroke-width', '0.5');
       path.setAttribute('cursor', 'pointer');
       path.setAttribute('data-district', String(districtNum));
+
+      // Accessibility attributes
+      path.setAttribute('tabindex', '0');
+      path.setAttribute('role', 'button');
+      path.setAttribute('aria-label', `${chamber === 'house' ? 'House' : 'Senate'} District ${districtNum}: ${statusLabel}`);
+      path.setAttribute('aria-pressed', selectedDistrict === districtNum ? 'true' : 'false');
+
+      // Focus styles via CSS class
+      path.setAttribute('class', 'district-path');
 
       // Apply selected state
       if (selectedDistrict === districtNum) {
@@ -112,6 +124,35 @@ export default function DistrictMap({
       }
     }
   }, [onDistrictClick]);
+
+  // Handle keyboard events for accessibility
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    const target = e.target as Element;
+    const path = target.closest('path[data-district]');
+    if (path && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      const districtNum = parseInt(path.getAttribute('data-district') || '0', 10);
+      if (districtNum > 0) {
+        onDistrictClick(districtNum);
+      }
+    }
+  }, [onDistrictClick]);
+
+  // Handle focus events for screen reader feedback
+  const handleFocus = useCallback((e: React.FocusEvent) => {
+    const target = e.target as Element;
+    const path = target.closest('path[data-district]');
+    if (path) {
+      const districtNum = parseInt(path.getAttribute('data-district') || '0', 10);
+      if (districtNum > 0) {
+        onDistrictHover(districtNum);
+      }
+    }
+  }, [onDistrictHover]);
+
+  const handleBlur = useCallback(() => {
+    onDistrictHover(null);
+  }, [onDistrictHover]);
 
   // Handle hover events via event delegation
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
@@ -152,6 +193,9 @@ export default function DistrictMap({
       ref={containerRef}
       className="w-full h-full"
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onMouseOut={handleMouseOver}
@@ -160,9 +204,19 @@ export default function DistrictMap({
   );
 }
 
+/**
+ * Get the fill color for a district based on candidate data.
+ *
+ * Color scheme:
+ * - Gray (#e5e7eb) - No candidates filed (vacant)
+ * - Amber (#fbbf24) - Candidates filed but party unknown (needs enrichment)
+ * - Blue (#3b82f6) - Democrat(s) only
+ * - Red (#ef4444) - Republican(s) only
+ * - Purple (#a855f7) - Both parties (contested)
+ */
 function getDistrictColor(district: District | undefined): string {
   if (!district || district.candidates.length === 0) {
-    return '#f3f4f6'; // gray-100 - no candidates
+    return '#e5e7eb'; // gray-200 - no candidates (vacant)
   }
 
   // Check if any Democrat is running
@@ -182,6 +236,36 @@ function getDistrictColor(district: District | undefined): string {
   } else if (hasRepublican) {
     return '#ef4444'; // red-500 - Republican only
   } else {
-    return '#9ca3af'; // gray-400 - unknown party
+    return '#fbbf24'; // amber-400 - candidates with unknown party
+  }
+}
+
+/**
+ * Get an accessible status label for a district.
+ * Used for screen reader announcements.
+ */
+function getDistrictStatusLabel(district: District | undefined): string {
+  if (!district || district.candidates.length === 0) {
+    return 'No candidates filed';
+  }
+
+  const hasDemocrat = district.candidates.some(
+    (c) => c.party?.toLowerCase() === 'democratic'
+  );
+  const hasRepublican = district.candidates.some(
+    (c) => c.party?.toLowerCase() === 'republican'
+  );
+
+  const candidateCount = district.candidates.length;
+  const candidateText = candidateCount === 1 ? '1 candidate' : `${candidateCount} candidates`;
+
+  if (hasDemocrat && hasRepublican) {
+    return `Contested race with ${candidateText}, both Democratic and Republican`;
+  } else if (hasDemocrat) {
+    return `${candidateText}, Democratic`;
+  } else if (hasRepublican) {
+    return `${candidateText}, Republican`;
+  } else {
+    return `${candidateText} filed, party unknown`;
   }
 }

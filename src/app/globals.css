@@ -29,17 +29,38 @@ body {
 /* NOTE: Do NOT set fill here - JavaScript sets fill colors dynamically */
 /* CSS fill would override JavaScript setAttribute('fill', color) */
 svg path[id^="house-"],
-svg path[id^="senate-"] {
+svg path[id^="senate-"],
+.district-path {
   /* fill is set by JavaScript in DistrictMap.tsx based on candidate data */
   stroke: #374151; /* gray-700 - border color */
   stroke-width: 0.5;
   cursor: pointer;
-  transition: opacity 0.15s ease-in-out;
+  transition: opacity 0.15s ease-in-out, outline-offset 0.15s ease-in-out;
+  outline: none;
 }
 
 svg path[id^="house-"]:hover,
-svg path[id^="senate-"]:hover {
+svg path[id^="senate-"]:hover,
+.district-path:hover {
   opacity: 0.8;
+}
+
+/* Keyboard focus styles for accessibility */
+.district-path:focus {
+  outline: 3px solid #1e3a8a; /* blue-900 - high contrast focus ring */
+  outline-offset: 2px;
+  opacity: 0.9;
+}
+
+.district-path:focus-visible {
+  outline: 3px solid #1e3a8a;
+  outline-offset: 2px;
+  opacity: 0.9;
+}
+
+/* Ensure visible focus for keyboard users, hide for mouse */
+.district-path:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* ================================================
