@@ -22,6 +22,20 @@ export default function DistrictMap({
 }: DistrictMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [rawSvgContent, setRawSvgContent] = useState<string>('');
+  const [justSelected, setJustSelected] = useState<number | null>(null);
+  const prevSelectedRef = useRef<number | null>(null);
+
+  // Track selection changes to trigger animation
+  useEffect(() => {
+    if (selectedDistrict !== null && selectedDistrict !== prevSelectedRef.current) {
+      setJustSelected(selectedDistrict);
+      // Remove animation class after animation completes
+      const timer = setTimeout(() => setJustSelected(null), 400);
+      prevSelectedRef.current = selectedDistrict;
+      return () => clearTimeout(timer);
+    }
+    prevSelectedRef.current = selectedDistrict;
+  }, [selectedDistrict]);
 
   // Load SVG
   useEffect(() => {
@@ -71,10 +85,26 @@ export default function DistrictMap({
 
       // Apply fill color directly to SVG string
       path.setAttribute('fill', color);
-      path.setAttribute('stroke', '#374151');
-      path.setAttribute('stroke-width', '0.5');
-      path.setAttribute('cursor', 'pointer');
       path.setAttribute('data-district', String(districtNum));
+
+      // Build CSS class list
+      const classes = ['district-path'];
+      if (selectedDistrict === districtNum) {
+        classes.push('selected');
+      }
+      if (justSelected === districtNum) {
+        classes.push('just-selected');
+      }
+      path.setAttribute('class', classes.join(' '));
+
+      // Apply stroke based on selection
+      if (selectedDistrict === districtNum) {
+        path.setAttribute('stroke', 'var(--class-purple, #4739E7)');
+        path.setAttribute('stroke-width', '2.5');
+      } else {
+        path.setAttribute('stroke', 'var(--map-stroke, #374151)');
+        path.setAttribute('stroke-width', '0.5');
+      }
 
       // Accessibility attributes
       path.setAttribute('tabindex', '0');
@@ -82,24 +112,15 @@ export default function DistrictMap({
       path.setAttribute('aria-label', `${chamber === 'house' ? 'House' : 'Senate'} District ${districtNum}: ${statusLabel}`);
       path.setAttribute('aria-pressed', selectedDistrict === districtNum ? 'true' : 'false');
 
-      // Focus styles via CSS class
-      path.setAttribute('class', 'district-path');
-
-      // Apply selected state
-      if (selectedDistrict === districtNum) {
-        path.setAttribute('stroke', '#1e3a8a');
-        path.setAttribute('stroke-width', '2');
-      }
-
       // Apply filtered state (reduce opacity for districts not in filter)
       if (filteredDistricts && !filteredDistricts.has(districtNum)) {
-        path.setAttribute('opacity', '0.25');
-        path.setAttribute('filter', 'grayscale(0.5)');
+        path.setAttribute('opacity', '0.2');
+        path.setAttribute('style', 'filter: grayscale(0.7);');
       }
     });
 
     return new XMLSerializer().serializeToString(svg);
-  }, [rawSvgContent, chamber, candidatesData, selectedDistrict, filteredDistricts]);
+  }, [rawSvgContent, chamber, candidatesData, selectedDistrict, filteredDistricts, justSelected]);
 
   // Handle click events via event delegation (more efficient than per-path listeners)
   const handleClick = useCallback((e: React.MouseEvent) => {
@@ -150,43 +171,24 @@ export default function DistrictMap({
       const districtNum = parseInt(path.getAttribute('data-district') || '0', 10);
       if (districtNum > 0) {
         onDistrictHover(districtNum);
-        path.setAttribute('opacity', '0.8');
       }
     }
   }, [onDistrictHover]);
 
-  const handleMouseLeave = useCallback((e: React.MouseEvent) => {
-    // Reset opacity on all paths when leaving
-    const container = e.currentTarget as Element;
-    const paths = container.querySelectorAll('path[data-district]');
-    paths.forEach(p => p.setAttribute('opacity', '1'));
+  const handleMouseLeave = useCallback(() => {
     onDistrictHover(null);
   }, [onDistrictHover]);
-
-  // Reset opacity when mouse leaves a path but stays in container
-  const handleMouseOver = useCallback((e: React.MouseEvent) => {
-    const target = e.target as Element;
-    const relatedTarget = e.relatedTarget as Element | null;
-
-    // If we left a path, reset its opacity
-    if (relatedTarget?.closest('path[data-district]') &&
-        !target.closest('path[data-district]')) {
-      const paths = containerRef.current?.querySelectorAll('path[data-district]');
-      paths?.forEach(p => p.setAttribute('opacity', '1'));
-    }
-  }, []);
 
   return (
     <div
       ref={containerRef}
-      className="w-full h-full"
+      className="w-full h-full transition-opacity duration-300"
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
       onBlur={handleBlur}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      onMouseOut={handleMouseOver}
       dangerouslySetInnerHTML={{ __html: processedSvgContent }}
     />
   );
@@ -194,17 +196,18 @@ export default function DistrictMap({
 
 /**
  * Get the fill color for a district based on candidate data.
+ * Uses CSS variable fallbacks for consistency with design system.
  *
  * Color scheme:
- * - Gray (#e5e7eb) - No candidates filed (vacant)
- * - Amber (#fbbf24) - Candidates filed but party unknown (needs enrichment)
- * - Blue (#3b82f6) - Democrat(s) only
- * - Red (#ef4444) - Republican(s) only
- * - Purple (#a855f7) - Both parties (contested)
+ * - Gray - No candidates filed (vacant)
+ * - Amber - Candidates filed but party unknown (needs enrichment)
+ * - Purple/Blue - Democrat(s) only
+ * - Red - Republican(s) only
+ * - Purple (bright) - Both parties (contested)
  */
 function getDistrictColor(district: District | undefined): string {
   if (!district || district.candidates.length === 0) {
-    return '#e5e7eb'; // gray-200 - no candidates (vacant)
+    return '#f3f4f6'; // gray-100 - no candidates (vacant)
   }
 
   // Check if any Democrat is running
@@ -218,13 +221,13 @@ function getDistrictColor(district: District | undefined): string {
   );
 
   if (hasDemocrat && hasRepublican) {
-    return '#a855f7'; // purple-500 - contested
+    return '#a855f7'; // purple-500 - contested (both parties)
   } else if (hasDemocrat) {
-    return '#3b82f6'; // blue-500 - Democrat only
+    return '#4739E7'; // class-purple - Democrat only
   } else if (hasRepublican) {
-    return '#ef4444'; // red-500 - Republican only
+    return '#DC2626'; // red-600 - Republican only
   } else {
-    return '#fbbf24'; // amber-400 - candidates with unknown party
+    return '#9ca3af'; // gray-400 - candidates with unknown party
   }
 }
 

@@ -1,28 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #EDECFD;
+  --foreground: #0A1849;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* SVG Map Styles */
@@ -66,7 +59,7 @@ svg path[id^="senate-"]:hover,
 /* ================================================
    GLASSMORPHIC DESIGN SYSTEM TOKENS
    SC Election Map 2026
-   Design System: /glassmorphic-dashboard
+   Design System: /glassmorphic-dashboard + /frontend-design
    ================================================ */
 
 :root {
@@ -76,8 +69,15 @@ svg path[id^="senate-"]:hover,
   --class-purple-bg: #F6F6FE;
   --glass-background: #EDECFD;
   --text-color: #0A1849;
+  --text-muted: #4A5568;
   --yellow-accent: #FFBA00;
   --card-bg: #FFFFFF;
+
+  /* ACCENT COLORS (SHARP) */
+  --accent-cyan: #06B6D4;
+  --accent-emerald: #10B981;
+  --accent-amber: #F59E0B;
+  --accent-rose: #F43F5E;
 
   /* STATUS COLORS (SEMANTIC) */
   --color-excellent: #059669;      /* Green - both parties running */
@@ -85,6 +85,12 @@ svg path[id^="senate-"]:hover,
   --color-attention: #FFBA00;      /* Yellow - party unknown */
   --color-at-risk: #DC2626;        /* Red - republican running */
   --color-empty: #DAD7FA;          /* Light purple - no candidates */
+
+  /* STATUS BACKGROUNDS */
+  --color-excellent-bg: #ECFDF5;
+  --color-healthy-bg: #F6F6FE;
+  --color-attention-bg: #FEF3C7;
+  --color-at-risk-bg: #FEF2F2;
 
   /* ELECTION MAP COLORS */
   --map-democrat: #4739E7;
@@ -94,14 +100,28 @@ svg path[id^="senate-"]:hover,
   --map-empty: #f3f4f6;
   --map-stroke: #374151;
 
+  /* GRADIENTS */
+  --gradient-primary: linear-gradient(135deg, #4739E7 0%, #7C3AED 100%);
+  --gradient-bg: linear-gradient(180deg, #F6F6FE 0%, #EDECFD 50%, #E0E7FF 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(246, 246, 254, 0.9) 100%);
+  --gradient-card-hover: linear-gradient(135deg, rgba(71, 57, 231, 0.02) 0%, rgba(71, 57, 231, 0.06) 100%);
+
+  /* GLOW & HIGHLIGHT */
+  --glow-purple: 0 0 20px rgba(71, 57, 231, 0.3);
+  --glow-purple-lg: 0 0 40px rgba(71, 57, 231, 0.2);
+  --highlight-purple: rgba(71, 57, 231, 0.08);
+
   /* TYPOGRAPHY */
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: var(--font-display), 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: var(--font-body), 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
   --font-size-lg: 1.125rem;
   --font-size-xl: 1.25rem;
   --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
 
   /* SPACING */
   --space-1: 2px;
@@ -110,21 +130,28 @@ svg path[id^="senate-"]:hover,
   --space-4: 12px;
   --space-5: 16px;
   --space-6: 20px;
+  --space-8: 32px;
 
   /* BORDER RADIUS */
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 8px;
-  --radius-pill: 12px;
+  --radius-xl: 12px;
+  --radius-pill: 9999px;
 
-  /* SHADOWS */
+  /* SHADOWS (5-LEVEL HIERARCHY) */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.03);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.10), 0 10px 10px rgba(0, 0, 0, 0.04);
+  --shadow-purple: 0 4px 14px rgba(71, 57, 231, 0.15);
 
   /* TRANSITIONS */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.25s ease;
+  --transition-slow: 0.4s ease;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* GLASSMORPHIC SURFACES */
@@ -285,4 +312,314 @@ svg path[id^="senate-"]:hover,
 @media (prefers-reduced-motion: reduce) {
   .kpi-card::before { transition: none; }
   .animate-count { animation: none; }
+  .animate-entrance { animation: none; opacity: 1; transform: none; }
+  .pulse-indicator::after { animation: none; }
+  .skeleton { animation: none; }
+}
+
+/* ================================================
+   ATMOSPHERIC BACKGROUND SYSTEM
+   Creates depth and visual interest
+   ================================================ */
+
+.atmospheric-bg {
+  background: var(--gradient-bg);
+  position: relative;
+  min-height: 100vh;
+}
+
+.atmospheric-bg::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(71, 57, 231, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 60%, rgba(168, 85, 247, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 40% 80%, rgba(6, 182, 212, 0.04) 0%, transparent 35%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.atmospheric-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================================================
+   PAGE ENTRANCE ANIMATIONS
+   Staggered reveal system
+   ================================================ */
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-entrance {
+  animation: fade-in-up 0.5s var(--ease-out-expo) backwards;
+}
+
+.animate-entrance-scale {
+  animation: fade-in-scale 0.4s var(--ease-out-expo) backwards;
+}
+
+/* Stagger delay classes */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+
+/* ================================================
+   KPI CARD ENHANCEMENTS
+   Pulsing indicators and hover effects
+   ================================================ */
+
+.pulse-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.pulse-indicator::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: inherit;
+  animation: pulse-ring 2s ease-out infinite;
+  opacity: 0;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* Enhanced KPI card hover */
+.kpi-card:hover {
+  border-color: var(--class-purple);
+  box-shadow: var(--shadow-lg), var(--glow-purple);
+  transform: translateY(-2px);
+}
+
+/* ================================================
+   SKELETON LOADING ANIMATIONS
+   ================================================ */
+
+.skeleton,
+.skeleton-base {
+  background: linear-gradient(
+    90deg,
+    var(--class-purple-bg) 0%,
+    var(--class-purple-light) 50%,
+    var(--class-purple-bg) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: var(--radius-md);
+}
+
+.skeleton-shimmer {
+  animation: skeleton-shimmer 1.5s infinite linear;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer {
+    animation: none;
+  }
+}
+
+/* ================================================
+   MAP INTERACTION ENHANCEMENTS
+   ================================================ */
+
+.district-path {
+  transition:
+    opacity 0.15s ease-in-out,
+    transform 0.15s ease-out,
+    filter 0.15s ease-out,
+    stroke-width 0.15s ease-out;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.district-path:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 0 6px rgba(71, 57, 231, 0.4));
+  stroke-width: 1;
+}
+
+.district-path.selected {
+  filter: drop-shadow(0 0 12px rgba(71, 57, 231, 0.5));
+  stroke: var(--class-purple);
+  stroke-width: 2;
+}
+
+@keyframes district-select-pulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 20px rgba(71, 57, 231, 0.5));
+  }
+  100% {
+    transform: scale(1.02);
+    filter: drop-shadow(0 0 12px rgba(71, 57, 231, 0.3));
+  }
+}
+
+.district-path.just-selected {
+  animation: district-select-pulse 0.4s ease-out;
+}
+
+/* ================================================
+   TOAST NOTIFICATIONS
+   ================================================ */
+
+.toast-container {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.toast {
+  background: var(--gradient-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--class-purple-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  pointer-events: auto;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.3s var(--ease-out-expo), opacity 0.3s ease;
+}
+
+.toast.visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast.exiting {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.toast-success { border-left: 3px solid var(--color-excellent); }
+.toast-info { border-left: 3px solid var(--class-purple); }
+.toast-warning { border-left: 3px solid var(--color-attention); }
+.toast-error { border-left: 3px solid var(--color-at-risk); }
+
+/* Toast progress bar countdown */
+@keyframes toast-countdown {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.toast-progress {
+  transform-origin: left center;
+}
+
+/* ================================================
+   TYPOGRAPHY UTILITIES
+   ================================================ */
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ================================================
+   INTERACTIVE ELEMENT ENHANCEMENTS
+   ================================================ */
+
+.interactive-lift {
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.interactive-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.interactive-lift:active {
+  transform: translateY(0);
+}
+
+/* Focus ring for accessibility */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--class-purple);
+  outline-offset: 2px;
+}
+
+/* ================================================
+   TOOLTIP ANIMATIONS
+   ================================================ */
+
+@keyframes tooltip-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-tooltip-in {
+  animation: tooltip-in 0.15s ease-out;
 }
