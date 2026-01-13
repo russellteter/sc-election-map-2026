@@ -1,0 +1,217 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { AddressInput, DistrictResults, VoterResources } from '@/components/VoterGuide';
+import { lookupAddress, GeocodingResult } from '@/lib/geocoding';
+import type { CandidatesData } from '@/types/schema';
+
+export default function VoterGuidePage() {
+  const [candidatesData, setCandidatesData] = useState<CandidatesData | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDataLoading, setIsDataLoading] = useState(true);
+  const [lookupResult, setLookupResult] = useState<GeocodingResult | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  // Load candidates data on mount
+  useEffect(() => {
+    const basePath = window.location.pathname.includes('/sc-election-map-2026')
+      ? '/sc-election-map-2026'
+      : '';
+    const cacheBuster = `v=${Date.now()}`;
+
+    fetch(`${basePath}/data/candidates.json?${cacheBuster}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCandidatesData(data);
+        setIsDataLoading(false);
+      })
+      .catch((err) => {
+        console.error('Failed to load candidates data:', err);
+        setIsDataLoading(false);
+      });
+  }, []);
+
+  const handleAddressSubmit = async (address: string) => {
+    setIsLoading(true);
+    setError(null);
+    setLookupResult(null);
+
+    try {
+      const result = await lookupAddress(address);
+
+      if (result.success) {
+        setLookupResult(result);
+      } else {
+        setError(result.error || 'Address lookup failed');
+      }
+    } catch (err) {
+      console.error('Lookup error:', err);
+      setError('An unexpected error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleReset = () => {
+    setLookupResult(null);
+    setError(null);
+  };
+
+  return (
+    <div className="atmospheric-bg min-h-screen flex flex-col">
+      {/* Header */}
+      <header
+        className="glass-surface border-b sticky top-0 z-50"
+        style={{ borderColor: 'var(--class-purple-light)' }}
+      >
+        <div className="max-w-5xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Link
+                href="/"
+                className="flex items-center gap-2 text-sm font-medium transition-colors hover:opacity-80"
+                style={{ color: 'var(--class-purple)' }}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                Back to Map
+              </Link>
+            </div>
+            <div className="text-right">
+              <h1 className="font-display font-bold text-xl" style={{ color: 'var(--text-color)' }}>
+                SC Voter Guide
+              </h1>
+              <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+                2026 Elections
+              </p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="flex-1 w-full">
+        <div className="max-w-5xl mx-auto px-4 py-8">
+          {/* Page Intro */}
+          <div className="text-center mb-8">
+            <h2
+              className="font-display font-bold text-3xl mb-2"
+              style={{ color: 'var(--text-color)' }}
+            >
+              Find Your Candidates
+            </h2>
+            <p className="text-lg" style={{ color: 'var(--text-muted)' }}>
+              Enter your address to see who&apos;s running in your SC House and Senate districts
+            </p>
+          </div>
+
+          {/* Loading State */}
+          {isDataLoading && (
+            <div className="glass-surface rounded-lg p-8 text-center">
+              <div className="animate-spin h-8 w-8 mx-auto mb-4 border-2 rounded-full" style={{ borderColor: 'var(--class-purple-light)', borderTopColor: 'var(--class-purple)' }} />
+              <p style={{ color: 'var(--text-muted)' }}>Loading candidate data...</p>
+            </div>
+          )}
+
+          {/* Main Content */}
+          {!isDataLoading && (
+            <div className="space-y-8">
+              {/* Address Input */}
+              <AddressInput
+                onSubmit={handleAddressSubmit}
+                isLoading={isLoading}
+                error={error}
+              />
+
+              {/* Results Section */}
+              {lookupResult && lookupResult.success && candidatesData && (
+                <>
+                  <div className="flex items-center justify-between">
+                    <h3
+                      className="font-display font-semibold text-lg"
+                      style={{ color: 'var(--text-color)' }}
+                    >
+                      Your Districts
+                    </h3>
+                    <button
+                      onClick={handleReset}
+                      className="text-sm font-medium transition-colors hover:opacity-80"
+                      style={{ color: 'var(--class-purple)' }}
+                    >
+                      Search another address
+                    </button>
+                  </div>
+                  <DistrictResults
+                    lookupResult={lookupResult}
+                    candidatesData={candidatesData}
+                  />
+                </>
+              )}
+
+              {/* Divider */}
+              <div
+                className="border-t"
+                style={{ borderColor: 'var(--border-subtle)' }}
+              />
+
+              {/* Voter Resources */}
+              <div>
+                <h3
+                  className="font-display font-semibold text-xl mb-4"
+                  style={{ color: 'var(--text-color)' }}
+                >
+                  Voter Information
+                </h3>
+                <VoterResources />
+              </div>
+            </div>
+          )}
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer
+        className="border-t py-6"
+        style={{ borderColor: 'var(--border-subtle)', background: 'var(--card-bg)' }}
+      >
+        <div className="max-w-5xl mx-auto px-4 text-center">
+          <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+            Data sourced from the{' '}
+            <a
+              href="https://ethicsfiling.sc.gov/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+              style={{ color: 'var(--class-purple)' }}
+            >
+              SC Ethics Commission
+            </a>
+            {' '}and{' '}
+            <a
+              href="https://scvotes.gov/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+              style={{ color: 'var(--class-purple)' }}
+            >
+              SC Election Commission
+            </a>
+            . Address lookup powered by the{' '}
+            <a
+              href="https://geocoding.geo.census.gov/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+              style={{ color: 'var(--class-purple)' }}
+            >
+              US Census Bureau
+            </a>
+            .
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}

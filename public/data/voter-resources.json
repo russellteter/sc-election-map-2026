@@ -1,0 +1,71 @@
+{
+  "lastUpdated": "2026-01-13T00:00:00Z",
+  "elections": {
+    "2026Primary": {
+      "date": "2026-06-09",
+      "name": "2026 Primary Election"
+    },
+    "2026General": {
+      "date": "2026-11-03",
+      "name": "2026 General Election"
+    }
+  },
+  "deadlines": {
+    "voterRegistration2026Primary": {
+      "date": "2026-05-10",
+      "description": "Last day to register for June 2026 Primary"
+    },
+    "voterRegistration2026General": {
+      "date": "2026-10-04",
+      "description": "Last day to register for November 2026 General Election"
+    },
+    "absenteeRequest2026Primary": {
+      "date": "2026-06-02",
+      "description": "Last day to request absentee ballot for Primary"
+    },
+    "absenteeRequest2026General": {
+      "date": "2026-10-27",
+      "description": "Last day to request absentee ballot for General"
+    }
+  },
+  "resources": {
+    "checkRegistration": {
+      "url": "https://vrems.scvotes.sc.gov/Voter/Login?PageMode=VoterInformation",
+      "label": "Check Registration Status",
+      "description": "Verify your voter registration is current"
+    },
+    "registerToVote": {
+      "url": "https://info.scvotes.sc.gov/eng/ovr/start.aspx",
+      "label": "Register to Vote",
+      "description": "Register online or update your registration"
+    },
+    "findPollingPlace": {
+      "url": "https://vrems.scvotes.sc.gov/Voter/Login?PageMode=PollingPlace",
+      "label": "Find Polling Place",
+      "description": "Locate your Election Day voting location"
+    },
+    "sampleBallot": {
+      "url": "https://vrems.scvotes.sc.gov/Voter/Login?PageMode=Sampleballot",
+      "label": "View Sample Ballot",
+      "description": "See what's on your ballot before you vote"
+    },
+    "requestAbsentee": {
+      "url": "https://info.scvotes.sc.gov/eng/voterinquiry/VoterInformationRequest.aspx?PageMode=AbsenteeRequest",
+      "label": "Request Absentee Ballot",
+      "description": "Vote by mail if you qualify"
+    },
+    "countyOffices": {
+      "url": "https://scvotes.gov/contact/county-voter-registration-election-offices/",
+      "label": "County Election Offices",
+      "description": "Find your local election office"
+    }
+  },
+  "votingInfo": {
+    "pollHours": "7:00 AM - 7:00 PM",
+    "idRequired": true,
+    "idInfo": "South Carolina requires photo ID to vote. Acceptable IDs include SC Driver's License, SC DMV ID Card, SC Voter Registration Card with Photo, Federal Military ID, or US Passport.",
+    "earlyVotingAvailable": true,
+    "earlyVotingDays": 14,
+    "earlyVotingNote": "Early voting begins 14 days before election day"
+  }
+}
