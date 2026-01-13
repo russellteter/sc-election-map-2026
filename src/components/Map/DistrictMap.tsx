@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import MapTooltip from './MapTooltip';
+import { injectPatterns } from './patterns';
 import type { CandidatesData, District, OpportunityData, DistrictOpportunity } from '@/types/schema';
 
 // Opportunity tier colors
@@ -12,6 +13,9 @@ const TIER_COLORS = {
   DEFENSIVE: '#3676eb',         // Blue - defensive seats
   NON_COMPETITIVE: '#9CA3AF',   // Gray - gray-400
 } as const;
+
+// Pattern fill for districts needing candidates
+const NEEDS_CANDIDATE_PATTERN = 'url(#needs-candidate)';
 
 interface DistrictMapProps {
   chamber: 'house' | 'senate';
@@ -80,6 +84,9 @@ export default function DistrictMap({
     const doc = parser.parseFromString(rawSvgContent, 'image/svg+xml');
     const svg = doc.querySelector('svg');
     if (!svg) return rawSvgContent;
+
+    // Inject SVG patterns for crosshatch fills
+    injectPatterns(svg);
 
     // Make SVG responsive and accessible
     svg.setAttribute('width', '100%');
@@ -246,7 +253,8 @@ export default function DistrictMap({
  * - Amber - Build (score 30-49)
  * - Blue - Defensive (Dem incumbent)
  * - Gray - Non-competitive (score <30) or no data
- * - Light gray - No candidates filed
+ * - Blue crosshatch pattern - Needs Candidate (no Dem filed)
+ * - Light gray - No candidates filed at all
  *
  * When Republican data is shown:
  * - Split coloring for contested districts
@@ -281,10 +289,15 @@ function getOpportunityColor(
       return '#a855f7'; // Purple - both parties
     }
 
-    // Republican-only districts - show red
+    // Republican-only districts - use crosshatch pattern to indicate "needs candidate"
     if (hasRepublican && !hasDemocrat) {
-      return '#DC2626'; // Red - Republican
+      return NEEDS_CANDIDATE_PATTERN; // Blue crosshatch pattern
     }
+  }
+
+  // Check if this is a "needs candidate" district (opportunity flag)
+  if (opportunity?.flags?.needsCandidate && !hasDemocrat) {
+    return NEEDS_CANDIDATE_PATTERN; // Blue crosshatch pattern
   }
 
   // If we have opportunity data, use tier colors (default behavior)
