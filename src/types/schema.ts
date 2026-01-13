@@ -80,6 +80,73 @@ export interface SearchResult {
   sublabel?: string;
 }
 
+// =============================================================================
+// Election History Types (from scripts/fetch-election-results.py)
+// =============================================================================
+
+/**
+ * Election result for a single candidate
+ */
+export interface ElectionCandidate {
+  name: string;
+  party: string;
+  votes: number;
+  percentage: number;
+}
+
+/**
+ * Single election result for a district
+ */
+export interface ElectionResult {
+  year: number;
+  totalVotes: number;
+  winner: ElectionCandidate;
+  runnerUp?: ElectionCandidate;
+  margin: number;
+  marginVotes: number;
+  uncontested?: boolean;
+}
+
+/**
+ * Competitiveness metrics for a district
+ */
+export interface Competitiveness {
+  /** Competitiveness score (0-100, higher = more competitive) */
+  score: number;
+  /** Average margin percentage over recent elections */
+  avgMargin: number;
+  /** Whether the district has changed party control */
+  hasSwung: boolean;
+  /** Number of contested races in recent elections */
+  contestedRaces: number;
+  /** Dominant party if one-sided, null if swing district */
+  dominantParty: string | null;
+}
+
+/**
+ * Historical election data for a single district
+ */
+export interface DistrictElectionHistory {
+  districtNumber: number;
+  /** Election results keyed by year string (e.g., "2024") */
+  elections: Record<string, ElectionResult>;
+  /** Competitiveness metrics */
+  competitiveness: Competitiveness;
+}
+
+/**
+ * Complete election history data from elections.json
+ */
+export interface ElectionsData {
+  lastUpdated: string;
+  house: Record<string, DistrictElectionHistory>;
+  senate: Record<string, DistrictElectionHistory>;
+}
+
+// =============================================================================
+// Chamber Statistics
+// =============================================================================
+
 /**
  * Statistics calculated for a chamber
  */
