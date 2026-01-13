@@ -501,6 +501,20 @@ export default function Home() {
                   </svg>
                   <span>Opportunities</span>
                 </Link>
+                <Link
+                  href="/voter-guide"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all hover:opacity-70 focus-ring"
+                  style={{
+                    background: 'linear-gradient(135deg, var(--class-purple-bg, #F3E8FF) 0%, #E0E7FF 100%)',
+                    color: 'var(--class-purple, #4739E7)',
+                    border: '1px solid var(--class-purple-light, #DAD7FA)',
+                  }}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Voter Guide</span>
+                </Link>
               </div>
 
               <div className="flex items-center gap-2">
