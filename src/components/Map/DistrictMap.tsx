@@ -42,11 +42,12 @@ export default function DistrictMap({
   const [svgContent, setSvgContent] = useState<string>('');
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Determine base path
-  const basePath = process.env.NODE_ENV === 'production' ? '/sc-election-map-2026' : '';
-
   // Load SVG
   useEffect(() => {
+    // Use relative path from current page
+    const basePath = window.location.pathname.includes('/sc-election-map-2026')
+      ? '/sc-election-map-2026'
+      : '';
     const svgPath = `${basePath}/maps/${chamber}-districts.svg`;
     fetch(svgPath)
       .then((res) => res.text())

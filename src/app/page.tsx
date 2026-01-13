@@ -34,11 +34,12 @@ export default function Home() {
   const [candidatesData, setCandidatesData] = useState<CandidatesData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Determine base path for data files
-  const basePath = process.env.NODE_ENV === 'production' ? '/sc-election-map-2026' : '';
-
   // Load candidates data
   useEffect(() => {
+    // Use relative path from current page
+    const basePath = window.location.pathname.includes('/sc-election-map-2026')
+      ? '/sc-election-map-2026'
+      : '';
     fetch(`${basePath}/data/candidates.json`)
       .then((res) => res.json())
       .then((data) => {
