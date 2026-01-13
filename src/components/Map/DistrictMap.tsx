@@ -88,24 +88,27 @@ export default function DistrictMap({
       // Determine color based on candidates
       const color = getDistrictColor(districtData);
 
-      // Apply base styles
-      path.setAttribute('fill', color);
-      path.setAttribute('stroke', '#374151');
-      path.setAttribute('stroke-width', '0.5');
-      path.setAttribute('cursor', 'pointer');
-      path.setAttribute('data-district', String(districtNum));
+      // Clone first to remove existing event listeners
+      const newPath = path.cloneNode(true) as Element;
+
+      // Apply styles to the CLONED element (not the original)
+      newPath.setAttribute('fill', color);
+      newPath.setAttribute('stroke', '#374151');
+      newPath.setAttribute('stroke-width', '0.5');
+      newPath.setAttribute('cursor', 'pointer');
+      newPath.setAttribute('data-district', String(districtNum));
+      newPath.setAttribute('opacity', '1');
 
       // Apply selected state
       if (selectedDistrict === districtNum) {
-        path.setAttribute('stroke', '#1e3a8a');
-        path.setAttribute('stroke-width', '2');
+        newPath.setAttribute('stroke', '#1e3a8a');
+        newPath.setAttribute('stroke-width', '2');
       }
 
-      // Remove existing event listeners by cloning
-      const newPath = path.cloneNode(true) as Element;
+      // Replace original with styled clone
       path.parentNode?.replaceChild(newPath, path);
 
-      // Add event listeners
+      // Add event listeners to the new element
       newPath.addEventListener('click', () => onDistrictClick(districtNum));
       newPath.addEventListener('mouseenter', () => {
         onDistrictHover(districtNum);

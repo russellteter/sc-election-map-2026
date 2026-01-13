@@ -24,3 +24,19 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* SVG Map Fallback Styles */
+/* Ensure district paths have default styling before JavaScript applies colors */
+svg path[id^="house-"],
+svg path[id^="senate-"] {
+  fill: #f3f4f6; /* gray-100 - default for no candidates */
+  stroke: #374151; /* gray-700 - border color */
+  stroke-width: 0.5;
+  cursor: pointer;
+  transition: opacity 0.15s ease-in-out;
+}
+
+svg path[id^="house-"]:hover,
+svg path[id^="senate-"]:hover {
+  opacity: 0.8;
+}
