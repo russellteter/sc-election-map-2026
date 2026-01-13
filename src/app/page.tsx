@@ -13,7 +13,7 @@ import { KPICard } from '@/components/Dashboard/KPICard';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 import { useToast } from '@/components/Toast';
 import { KPICardSkeleton, MapSkeleton, CandidateCardSkeleton } from '@/components/Skeleton';
-import type { CandidatesData, ChamberStats, ElectionsData, OpportunityData } from '@/types/schema';
+import type { CandidatesData, ChamberStats, ElectionsData } from '@/types/schema';
 
 export default function Home() {
   const [chamber, setChamber] = useState<'house' | 'senate'>('house');
@@ -21,7 +21,6 @@ export default function Home() {
   const [hoveredDistrict, setHoveredDistrict] = useState<number | null>(null);
   const [candidatesData, setCandidatesData] = useState<CandidatesData | null>(null);
   const [electionsData, setElectionsData] = useState<ElectionsData | null>(null);
-  const [opportunityData, setOpportunityData] = useState<OpportunityData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState<FilterState>(defaultFilters);
   const [showShortcuts, setShowShortcuts] = useState(false);
@@ -43,12 +42,10 @@ export default function Home() {
     Promise.all([
       fetch(`${basePath}/data/candidates.json?${cacheBuster}`).then((res) => res.json()),
       fetch(`${basePath}/data/elections.json?${cacheBuster}`).then((res) => res.json()),
-      fetch(`${basePath}/data/opportunity.json?${cacheBuster}`).then((res) => res.json()),
     ])
-      .then(([candidates, elections, opportunity]) => {
+      .then(([candidates, elections]) => {
         setCandidatesData(candidates);
         setElectionsData(elections);
-        setOpportunityData(opportunity);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -190,17 +187,20 @@ export default function Home() {
     enabled: !showShortcuts,
   });
 
-  // Filter districts based on current filters
+  // Filter districts based on current filters (using OBJECTIVE criteria)
   const filteredDistricts = useMemo(() => {
     if (!candidatesData) return new Set<number>();
 
     const districts = candidatesData[chamber];
-    const opportunityDistricts = opportunityData?.[chamber] || {};
+    const elections = electionsData?.[chamber] || {};
     const filtered = new Set<number>();
 
     for (const [districtNum, district] of Object.entries(districts)) {
       const num = parseInt(districtNum, 10);
       const hasCandidates = district.candidates.length > 0;
+      const hasDem = district.candidates.some((c) => c.party?.toLowerCase() === 'democratic');
+      const hasRep = district.candidates.some((c) => c.party?.toLowerCase() === 'republican');
+      const isDemIncumbent = district.incumbent?.party === 'Democratic';
 
       // Check hasCandidate filter
       if (filters.hasCandidate === 'yes' && !hasCandidates) continue;
@@ -208,10 +208,7 @@ export default function Home() {
 
       // Check contested filter (both parties running)
       if (hasCandidates) {
-        const hasDem = district.candidates.some((c) => c.party?.toLowerCase() === 'democratic');
-        const hasRep = district.candidates.some((c) => c.party?.toLowerCase() === 'republican');
         const isContested = hasDem && hasRep;
-
         if (filters.contested === 'yes' && !isContested) continue;
         if (filters.contested === 'no' && isContested) continue;
       }
@@ -229,27 +226,38 @@ export default function Home() {
         if (!matchesParty) continue;
       }
 
-      // Check opportunity filter
+      // Check opportunity filter (now using OBJECTIVE criteria)
       if (filters.opportunity.length > 0) {
-        const opportunityDistrict = opportunityDistricts[districtNum];
-        if (!opportunityDistrict) continue;
+        const electionHistory = elections[districtNum];
+        const lastElection = electionHistory?.elections?.['2024']
+          || electionHistory?.elections?.['2022']
+          || electionHistory?.elections?.['2020'];
+        const margin = lastElection?.margin ?? 100;
 
-        const matchesOpportunity = filters.opportunity.some((filterOpp) => {
-          // needsCandidate is a flag, not a tier
-          if (filterOpp === 'needsCandidate') {
-            return opportunityDistrict.flags.needsCandidate;
+        const matchesFilter = filters.opportunity.some((filterOpp) => {
+          switch (filterOpp) {
+            case 'needsCandidate':
+              // No Dem filed and close race (margin ≤15)
+              return !hasDem && !isDemIncumbent && margin <= 15;
+            case 'DEFENSIVE':
+              // Dem incumbent
+              return isDemIncumbent;
+            case 'HIGH_OPPORTUNITY':
+            case 'EMERGING':
+              // Simplified: has Dem filed (not incumbent)
+              return hasDem && !isDemIncumbent;
+            default:
+              return false;
           }
-          // Check tier match (HIGH_OPPORTUNITY, EMERGING, DEFENSIVE)
-          return opportunityDistrict.tier === filterOpp;
         });
-        if (!matchesOpportunity) continue;
+        if (!matchesFilter) continue;
       }
 
       filtered.add(num);
     }
 
     return filtered;
-  }, [candidatesData, opportunityData, chamber, filters]);
+  }, [candidatesData, electionsData, chamber, filters]);
 
   const selectedDistrictData = selectedDistrict && candidatesData
     ? candidatesData[chamber][String(selectedDistrict)]
@@ -262,26 +270,46 @@ export default function Home() {
   // Calculate statistics
   const stats = candidatesData ? calculateStats(candidatesData, chamber) : null;
 
-  // Calculate opportunity statistics
-  const opportunityStats = useMemo(() => {
-    if (!opportunityData) return null;
-    const districts = opportunityData[chamber];
-    let highOpportunity = 0;
-    let emerging = 0;
-    let needsCandidate = 0;
-    let defensive = 0;
-    let demFiled = 0;
+  // Calculate OBJECTIVE statistics (fact-based, no scores)
+  const objectiveStats = useMemo(() => {
+    if (!candidatesData || !electionsData) return null;
+    const districts = candidatesData[chamber];
+    const elections = electionsData[chamber];
 
-    for (const district of Object.values(districts)) {
-      if (district.tier === 'HIGH_OPPORTUNITY') highOpportunity++;
-      if (district.tier === 'EMERGING') emerging++;
-      if (district.tier === 'DEFENSIVE') defensive++;
-      if (district.flags.needsCandidate) needsCandidate++;
-      if (district.flags.hasDemocrat) demFiled++;
+    let demFiled = 0;
+    let demIncumbents = 0;
+    let contested = 0;
+    let closeOpportunities = 0;
+    const totalDistricts = Object.keys(districts).length;
+
+    for (const [districtNum, district] of Object.entries(districts)) {
+      const hasDem = district.candidates.some(c => c.party?.toLowerCase() === 'democratic');
+      const hasRep = district.candidates.some(c => c.party?.toLowerCase() === 'republican');
+      const isDemIncumbent = district.incumbent?.party === 'Democratic';
+
+      // Count Dem filed
+      if (hasDem || isDemIncumbent) demFiled++;
+
+      // Count Dem incumbents
+      if (isDemIncumbent) demIncumbents++;
+
+      // Count contested races (both D and R filed)
+      if (hasDem && hasRep) contested++;
+
+      // Count close opportunities (no Dem filed, margin ≤15pts)
+      if (!hasDem && !isDemIncumbent) {
+        const electionHistory = elections[districtNum];
+        const lastElection = electionHistory?.elections?.['2024']
+          || electionHistory?.elections?.['2022']
+          || electionHistory?.elections?.['2020'];
+        if (lastElection && lastElection.margin <= 15) {
+          closeOpportunities++;
+        }
+      }
     }
 
-    return { highOpportunity, emerging, needsCandidate, defensive, demFiled };
-  }, [opportunityData, chamber]);
+    return { demFiled, demIncumbents, contested, closeOpportunities, totalDistricts };
+  }, [candidatesData, electionsData, chamber]);
 
   if (isLoading) {
     return (
@@ -688,35 +716,37 @@ export default function Home() {
         {/* Map section */}
         <div className="flex-1 flex flex-col p-4">
           {/* Stats bar - Strategic Opportunity KPIs */}
-          {opportunityStats && (
+          {objectiveStats && (
             <div className="kpi-grid mb-4 animate-entrance stagger-2">
-              {/* High Opportunity */}
-              <div className="kpi-card animate-entrance" style={{ animationDelay: '0ms' }}>
-                <div className="label" style={{ color: '#059669' }}>High Opportunity</div>
-                <div className="value font-display" style={{ color: '#059669' }}>{opportunityStats.highOpportunity}</div>
-                <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Score 70+</div>
-              </div>
-
-              {/* Needs Candidate */}
-              <div className="kpi-card animate-entrance" style={{ animationDelay: '50ms' }}>
-                <div className="label" style={{ color: '#F59E0B' }}>Needs Candidate</div>
-                <div className="value font-display" style={{ color: '#F59E0B' }}>{opportunityStats.needsCandidate}</div>
-                <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Recruit now</div>
-              </div>
-
-              {/* Defensive */}
-              <div className="kpi-card animate-entrance" style={{ animationDelay: '100ms' }}>
-                <div className="label" style={{ color: '#3676eb' }}>Defensive</div>
-                <div className="value font-display" style={{ color: '#3676eb' }}>{opportunityStats.defensive}</div>
-                <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Dem incumbent</div>
-              </div>
-
               {/* Dem Filed */}
-              <div className="kpi-card animate-entrance" style={{ animationDelay: '150ms' }}>
-                <div className="label" style={{ color: 'var(--class-purple)' }}>Dem Filed</div>
-                <div className="value font-display" style={{ color: 'var(--class-purple)' }}>{opportunityStats.demFiled}</div>
+              <div className="kpi-card animate-entrance" style={{ animationDelay: '0ms' }}>
+                <div className="label" style={{ color: '#3B82F6' }}>Dem Filed</div>
+                <div className="value font-display" style={{ color: '#3B82F6' }}>{objectiveStats.demFiled}</div>
                 <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>
-                  of {chamber === 'house' ? '124' : '46'} districts
+                  of {objectiveStats.totalDistricts} districts
+                </div>
+              </div>
+
+              {/* Contested Races */}
+              <div className="kpi-card animate-entrance" style={{ animationDelay: '50ms' }}>
+                <div className="label" style={{ color: '#059669' }}>Contested</div>
+                <div className="value font-display" style={{ color: '#059669' }}>{objectiveStats.contested}</div>
+                <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Both D &amp; R filed</div>
+              </div>
+
+              {/* Dem Incumbents */}
+              <div className="kpi-card animate-entrance" style={{ animationDelay: '100ms' }}>
+                <div className="label" style={{ color: '#1E40AF' }}>Dem Incumbents</div>
+                <div className="value font-display" style={{ color: '#1E40AF' }}>{objectiveStats.demIncumbents}</div>
+                <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Current Dem seats</div>
+              </div>
+
+              {/* Close Opportunities */}
+              <div className="kpi-card animate-entrance" style={{ animationDelay: '150ms' }}>
+                <div className="label" style={{ color: '#F59E0B' }}>Close Races</div>
+                <div className="value font-display" style={{ color: '#F59E0B' }}>{objectiveStats.closeOpportunities}</div>
+                <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>
+                  No Dem, margin ≤15pts
                 </div>
               </div>
             </div>
@@ -733,17 +763,15 @@ export default function Home() {
               <DistrictMap
                 chamber={chamber}
                 candidatesData={candidatesData}
-                opportunityData={opportunityData}
+                electionsData={electionsData}
                 selectedDistrict={selectedDistrict}
                 onDistrictClick={setSelectedDistrict}
                 onDistrictHover={setHoveredDistrict}
                 filteredDistricts={filteredDistricts}
-                showRepublicanData={filters.showRepublicanData}
-                republicanDataMode={filters.republicanDataMode}
               />
             </div>
             {/* Legend - Bottom left overlay */}
-            <Legend showRepublicanData={filters.showRepublicanData} />
+            <Legend />
           </div>
 
           {/* Hover info - Glassmorphic with enhanced styling */}

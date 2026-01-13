@@ -4,65 +4,43 @@ import { useState } from 'react';
 
 interface LegendProps {
   className?: string;
-  showRepublicanData?: boolean;
 }
 
 /**
- * Legend component for opportunity tiers.
- * Positioned as bottom-left overlay with table-style layout and definitions.
- * Collapsible on mobile for space efficiency.
+ * Legend component with OBJECTIVE FACT-BASED descriptions only.
+ * No made-up scores or arbitrary tiers.
+ * Positioned as bottom-left overlay with table-style layout.
  */
-export default function Legend({ className = '', showRepublicanData = false }: LegendProps) {
+export default function Legend({ className = '' }: LegendProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
+  // Objective fact-based legend items - no scores
   const legendItems = [
     {
-      color: '#059669',
+      color: '#1E40AF',
       pattern: null,
-      label: 'High Opportunity',
-      description: 'Score 70+ with strong Dem potential',
+      label: 'Dem Incumbent',
+      description: 'Current representative is Democrat',
     },
     {
-      color: '#0891B2',
+      color: '#3B82F6',
       pattern: null,
-      label: 'Emerging',
-      description: 'Score 50-69, growing competitiveness',
-    },
-    {
-      color: '#D97706',
-      pattern: null,
-      label: 'Build',
-      description: 'Score 30-49, long-term investment',
+      label: 'Dem Challenger',
+      description: 'Democrat filed to run',
     },
     {
       color: null,
       pattern: 'needs-candidate',
-      label: 'Needs Candidate',
-      description: 'No Democrat filed - recruit opportunity',
+      label: 'Close Race',
+      description: 'No Dem filed, margin ≤15pts',
     },
     {
-      color: '#3676eb',
+      color: '#E5E7EB',
       pattern: null,
-      label: 'Defensive',
-      description: 'Democratic incumbent seat to protect',
-    },
-    {
-      color: '#9CA3AF',
-      pattern: null,
-      label: 'Non-Competitive',
-      description: 'Score below 30, safe Republican seat',
+      label: 'Safe R Seat',
+      description: 'No Dem filed, margin >15pts',
     },
   ];
-
-  // Add Republican item when toggle is enabled
-  if (showRepublicanData) {
-    legendItems.push({
-      color: '#DC2626',
-      pattern: null,
-      label: 'GOP Only',
-      description: 'Republican filed, no Democrat',
-    });
-  }
 
   return (
     <div className={`legend-overlay ${isCollapsed ? 'legend-collapsed' : ''} ${className}`}>
@@ -90,7 +68,7 @@ export default function Legend({ className = '', showRepublicanData = false }: L
       {/* Legend content */}
       {!isCollapsed && (
         <div id="legend-content" className="legend-content">
-          <table className="legend-table" role="list" aria-label="Opportunity tier legend">
+          <table className="legend-table" role="list" aria-label="District status legend">
             <tbody>
               {legendItems.map((item) => (
                 <tr key={item.label} role="listitem">
@@ -115,6 +93,9 @@ export default function Legend({ className = '', showRepublicanData = false }: L
               ))}
             </tbody>
           </table>
+          <p className="legend-footnote">
+            Margin based on most recent election (SC Election Commission)
+          </p>
         </div>
       )}
     </div>

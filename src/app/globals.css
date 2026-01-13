@@ -671,6 +671,15 @@ svg path[id^="senate-"]:hover,
   }
 }
 
+.legend-footnote {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+}
+
 /* KPI CARD STYLES */
 .kpi-grid {
   display: grid;
