@@ -24,6 +24,14 @@ export const metadata: Metadata = {
   description: "Interactive map of South Carolina 2026 election candidates by district",
 };
 
+// Viewport configuration for mobile optimization
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1.0,
+  maximumScale: 5.0,
+  userScalable: true,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{

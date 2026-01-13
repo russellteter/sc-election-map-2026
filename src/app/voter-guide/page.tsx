@@ -117,12 +117,8 @@ function VoterGuideContent() {
       setIsDataLoading(false);
     });
 
-    // Preload GeoJSON boundaries in background
-    preloadBoundaries().then((success) => {
-      if (success) {
-        console.log('[VoterGuide] District boundaries preloaded');
-      }
-    });
+    // Note: GeoJSON boundaries are now lazy-loaded on AddressAutocomplete focus
+    // This defers 2MB of data until user interaction
   }, []);
 
   // Handle URL parameter on mount (for shareable links)

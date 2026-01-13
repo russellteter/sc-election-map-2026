@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState, useCallback } from 'react';
+import { preloadBoundaries } from '@/lib/districtLookup';
 
 // Geoapify API configuration
 const GEOAPIFY_API_KEY = process.env.NEXT_PUBLIC_GEOAPIFY_KEY || '';
@@ -247,6 +248,8 @@ export default function AddressAutocomplete({
               onKeyDown={handleKeyDown}
               onFocus={() => {
                 if (suggestions.length > 0) setIsOpen(true);
+                // Lazy load GeoJSON boundaries (2MB) on first interaction
+                preloadBoundaries().catch(console.error);
               }}
               placeholder="123 Main Street, Columbia, SC 29201"
               disabled={isLoading || isGeolocating}
@@ -282,7 +285,7 @@ export default function AddressAutocomplete({
               type="button"
               onClick={onGeolocationRequest}
               disabled={isLoading || isGeolocating}
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-md transition-all hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-md transition-all hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed min-w-[44px] min-h-[44px] flex items-center justify-center"
               title="Use my current location"
               aria-label="Use my current location"
             >
@@ -313,11 +316,13 @@ export default function AddressAutocomplete({
             {isOpen && suggestions.length > 0 && (
               <div
                 ref={dropdownRef}
-                className="absolute z-50 w-full mt-1 rounded-lg shadow-lg overflow-hidden"
+                className="absolute z-50 w-full mt-1 rounded-lg shadow-lg overflow-y-auto"
                 style={{
                   background: 'var(--card-bg)',
                   border: '1px solid var(--border-subtle)',
                   backdropFilter: 'blur(12px)',
+                  maxHeight: 'min(60vh, 320px)',
+                  overscrollBehavior: 'contain',
                 }}
                 role="listbox"
               >

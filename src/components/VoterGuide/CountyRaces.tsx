@@ -39,7 +39,7 @@ export default function CountyRaces({ data, countyName }: CountyRacesProps) {
       {/* Section Header */}
       <div className="flex items-center gap-3">
         <div
-          className="w-10 h-10 rounded-lg flex items-center justify-center"
+          className="w-11 h-11 rounded-lg flex items-center justify-center"
           style={{
             background: 'linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%)',
             border: '1px solid #6EE7B7',
@@ -65,7 +65,7 @@ export default function CountyRaces({ data, countyName }: CountyRacesProps) {
 
       {/* County races or fallback message */}
       {countyData ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
           {countyData.races.map((race) => (
             <CountyRaceCard key={race.office} race={race} countyName={countyName!} />
           ))}

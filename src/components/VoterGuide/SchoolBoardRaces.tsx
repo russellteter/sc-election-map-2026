@@ -137,7 +137,7 @@ function SchoolDistrictCard({ district, isExpanded, onToggle }: SchoolDistrictCa
       >
         <div className="flex items-center gap-3">
           <div
-            className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+            className="w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0"
             style={{
               background: 'linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%)',
               border: '1px solid #C4B5FD',
@@ -275,7 +275,7 @@ function SchoolBoardCandidateCard({ candidate }: SchoolBoardCandidateCardProps) 
     >
       <div className="flex items-center gap-2">
         <div
-          className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium"
+          className="w-11 h-11 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0"
           style={{
             background: 'linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%)',
             color: '#7C3AED',

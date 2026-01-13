@@ -53,7 +53,7 @@ export default function VoterResources({ data }: VoterResourcesProps) {
       </div>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {/* Registration Check */}
         <a
           href={data.resources.voterRegistration.checkStatus}
@@ -64,7 +64,7 @@ export default function VoterResources({ data }: VoterResourcesProps) {
         >
           <div className="flex items-center gap-3">
             <div
-              className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+              className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0"
               style={{
                 background: 'linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%)',
                 border: '1px solid #93C5FD',
@@ -95,7 +95,7 @@ export default function VoterResources({ data }: VoterResourcesProps) {
         >
           <div className="flex items-center gap-3">
             <div
-              className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+              className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0"
               style={{
                 background: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)',
                 border: '1px solid #FCD34D',
@@ -127,7 +127,7 @@ export default function VoterResources({ data }: VoterResourcesProps) {
         >
           <div className="flex items-center gap-3">
             <div
-              className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+              className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0"
               style={{
                 background: 'linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%)',
                 border: '1px solid #C4B5FD',

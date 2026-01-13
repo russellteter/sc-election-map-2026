@@ -228,7 +228,7 @@ function StateMeasureCard({ measure }: StateMeasureCardProps) {
           </button>
 
           {expanded && (
-            <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3 animate-in">
+            <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 animate-in">
               {/* Pro Arguments */}
               {measure.proArguments && measure.proArguments.length > 0 && (
                 <div

@@ -12,6 +12,23 @@
   --font-display: var(--font-display);
 }
 
+/* ================================================
+   MOBILE OPTIMIZATION - XS BREAKPOINT
+   ================================================ */
+/* XS breakpoint for very small screens (iPhone SE, etc.) */
+@media (max-width: 375px) {
+  :root {
+    --space-1: 0.125rem; /* 2px - tighter spacing */
+    --space-2: 0.25rem;  /* 4px */
+    --space-3: 0.5rem;   /* 8px */
+    --space-4: 0.75rem;  /* 12px instead of 16px */
+    --space-6: 1rem;     /* 16px instead of 24px */
+    --font-size-xs: 0.6875rem; /* 11px */
+    --font-size-sm: 0.75rem;   /* 12px */
+    --font-size-base: 0.875rem; /* 14px */
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -821,6 +838,50 @@ svg path[id^="senate-"]:hover,
 }
 
 /* ================================================
+   MOBILE TOUCH TARGETS - WCAG AA COMPLIANCE
+   ================================================ */
+
+/* Minimum 44x44px touch target for interactive elements */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Touch target for icon buttons with visual size different from hit area */
+.touch-target-icon {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Avatar with proper touch target - visual 32px, hit area 44px */
+.avatar-touch {
+  width: 32px;
+  height: 32px;
+  padding: 6px; /* Expands hit area to 44px */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  /* Force minimum touch targets on mobile */
+  button:not(.no-touch-target),
+  a:not(.no-touch-target),
+  [role="button"]:not(.no-touch-target) {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* ================================================
    BACKGROUND SYSTEM - Clean Class Dashboard Style
    ================================================ */
 
@@ -1566,6 +1627,48 @@ svg path[id^="senate-"]:hover,
     margin-right: calc(-1 * var(--space-2));
     padding-left: var(--space-4);
     padding-right: var(--space-4);
+  }
+}
+
+/* ================================================
+   MOBILE GRID SYSTEM - RESPONSIVE LAYOUTS
+   ================================================ */
+
+/* Mobile grid system - force single column on small screens */
+@media (max-width: 640px) {
+  /* Override any multi-column grids on mobile */
+  .voter-mobile-stack {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Reduce card padding on mobile */
+  .voter-card,
+  .voter-glass-surface {
+    padding: var(--space-4) !important; /* 12px instead of 16px */
+  }
+
+  /* Compact section headers */
+  .section-header-accent {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra compact for very small screens */
+  .voter-card,
+  .voter-glass-surface {
+    padding: var(--space-3) !important; /* 8px */
+    border-radius: var(--radius-sm);
+  }
+
+  /* Reduce font sizes */
+  h3 {
+    font-size: 1rem !important;
+  }
+
+  h4 {
+    font-size: 0.875rem !important;
   }
 }
 
