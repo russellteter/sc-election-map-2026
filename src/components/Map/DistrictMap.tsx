@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
+import MapTooltip from './MapTooltip';
 import type { CandidatesData, District } from '@/types/schema';
 
 interface DistrictMapProps {
@@ -24,6 +25,10 @@ export default function DistrictMap({
   const [rawSvgContent, setRawSvgContent] = useState<string>('');
   const [justSelected, setJustSelected] = useState<number | null>(null);
   const prevSelectedRef = useRef<number | null>(null);
+
+  // Tooltip state
+  const [hoveredDistrict, setHoveredDistrict] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState<{ x: number; y: number } | null>(null);
 
   // Track selection changes to trigger animation
   useEffect(() => {
@@ -83,9 +88,19 @@ export default function DistrictMap({
       const color = getDistrictColor(districtData);
       const statusLabel = getDistrictStatusLabel(districtData);
 
+      // Check if district is contested (both parties running)
+      const hasDem = districtData?.candidates.some((c) => c.party?.toLowerCase() === 'democratic');
+      const hasRep = districtData?.candidates.some((c) => c.party?.toLowerCase() === 'republican');
+      const isContested = hasDem && hasRep;
+
       // Apply fill color directly to SVG string
       path.setAttribute('fill', color);
       path.setAttribute('data-district', String(districtNum));
+
+      // Add contested indicator for beacon animation
+      if (isContested) {
+        path.setAttribute('data-contested', 'true');
+      }
 
       // Build CSS class list
       const classes = ['district-path'];
@@ -167,30 +182,51 @@ export default function DistrictMap({
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     const target = e.target as Element;
     const path = target.closest('path[data-district]');
+
+    // Update mouse position for tooltip
+    setMousePosition({ x: e.clientX, y: e.clientY });
+
     if (path) {
       const districtNum = parseInt(path.getAttribute('data-district') || '0', 10);
       if (districtNum > 0) {
+        setHoveredDistrict(districtNum);
         onDistrictHover(districtNum);
       }
+    } else {
+      setHoveredDistrict(null);
     }
   }, [onDistrictHover]);
 
   const handleMouseLeave = useCallback(() => {
+    setHoveredDistrict(null);
+    setMousePosition(null);
     onDistrictHover(null);
   }, [onDistrictHover]);
 
+  // Get hovered district data for tooltip
+  const hoveredDistrictData = hoveredDistrict
+    ? candidatesData[chamber][String(hoveredDistrict)]
+    : null;
+
   return (
-    <div
-      ref={containerRef}
-      className="w-full h-full transition-opacity duration-300"
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      dangerouslySetInnerHTML={{ __html: processedSvgContent }}
-    />
+    <>
+      <div
+        ref={containerRef}
+        className="w-full h-full transition-opacity duration-300"
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        dangerouslySetInnerHTML={{ __html: processedSvgContent }}
+      />
+      <MapTooltip
+        district={hoveredDistrictData}
+        chamber={chamber}
+        mousePosition={mousePosition}
+      />
+    </>
   );
 }
 

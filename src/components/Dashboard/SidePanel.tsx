@@ -1,6 +1,7 @@
 'use client';
 
 import CandidateCard from './CandidateCard';
+import Sparkline from '@/components/Charts/Sparkline';
 import type { District, DistrictElectionHistory } from '@/types/schema';
 
 interface SidePanelProps {
@@ -54,11 +55,12 @@ export default function SidePanel({ chamber, district, electionHistory, onClose 
   const isContested = hasDem && hasRep;
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col side-panel">
       {/* Header - Glassmorphic gradient */}
       <div
-        className="p-4 border-b"
+        className="border-b side-panel-header"
         style={{
+          padding: 'var(--space-4)', /* Compact: 12px (was p-4 = 16px) */
           background: 'linear-gradient(135deg, rgba(255,255,255,0.98) 0%, var(--class-purple-bg) 100%)',
           borderColor: 'var(--class-purple-light)',
         }}
@@ -173,7 +175,7 @@ export default function SidePanel({ chamber, district, electionHistory, onClose 
               return (
                 <div
                   key={year}
-                  className="flex flex-col items-center"
+                  className="flex flex-col items-center election-history-pill"
                   title={`${year}: ${election.winner.name} (${election.winner.party})${election.uncontested ? ' - Uncontested' : ` - ${election.margin.toFixed(1)}% margin`}`}
                 >
                   {/* Election Pill */}
@@ -207,44 +209,68 @@ export default function SidePanel({ chamber, district, electionHistory, onClose 
           </div>
 
           {/* Competitiveness Badge */}
-          {electionHistory.competitiveness && (
-            <div
-              className="flex items-center gap-1 shrink-0"
-              title={`Competitiveness: ${electionHistory.competitiveness.score}/100${electionHistory.competitiveness.hasSwung ? ' - Swing District' : ''}`}
-            >
-              {electionHistory.competitiveness.hasSwung && (
+          {electionHistory.competitiveness && (() => {
+            // Extract margin values for sparkline (2020, 2022, 2024)
+            const years = ['2020', '2022', '2024'];
+            const marginValues = years
+              .map(year => electionHistory.elections[year]?.margin)
+              .filter((m): m is number => m !== undefined);
+
+            // Calculate trend percentage (first to last)
+            const trendPercent = marginValues.length >= 2
+              ? ((marginValues[marginValues.length - 1] - marginValues[0]) / Math.abs(marginValues[0] || 1)) * 100
+              : 0;
+
+            return (
+              <div
+                className="flex items-center gap-1.5 shrink-0"
+                title={`Competitiveness: ${electionHistory.competitiveness.score}/100${electionHistory.competitiveness.hasSwung ? ' - Swing District' : ''}`}
+              >
+                {electionHistory.competitiveness.hasSwung && (
+                  <span
+                    className="text-[9px] font-medium px-1 py-0.5 rounded leading-none"
+                    style={{
+                      background: 'rgba(5, 150, 105, 0.12)',
+                      color: 'var(--color-excellent)',
+                      border: '1px solid rgba(5, 150, 105, 0.3)',
+                    }}
+                  >
+                    SWING
+                  </span>
+                )}
+                {marginValues.length >= 2 && (
+                  <Sparkline
+                    values={marginValues}
+                    trendPercent={trendPercent}
+                    width={36}
+                    height={14}
+                  />
+                )}
                 <span
-                  className="text-[9px] font-medium px-1 py-0.5 rounded leading-none"
+                  className="text-[10px] font-bold leading-none"
                   style={{
-                    background: 'rgba(5, 150, 105, 0.12)',
-                    color: 'var(--color-excellent)',
-                    border: '1px solid rgba(5, 150, 105, 0.3)',
+                    color: electionHistory.competitiveness.score >= 60
+                      ? 'var(--color-excellent)'
+                      : electionHistory.competitiveness.score >= 30
+                      ? 'var(--color-attention)'
+                      : 'var(--text-muted)',
                   }}
                 >
-                  SWING
+                  {electionHistory.competitiveness.score}
                 </span>
-              )}
-              <span
-                className="text-[10px] font-bold leading-none"
-                style={{
-                  color: electionHistory.competitiveness.score >= 60
-                    ? 'var(--color-excellent)'
-                    : electionHistory.competitiveness.score >= 30
-                    ? 'var(--color-attention)'
-                    : 'var(--text-muted)',
-                }}
-              >
-                {electionHistory.competitiveness.score}
-              </span>
-            </div>
-          )}
+              </div>
+            );
+          })()}
         </div>
       )}
 
       {/* Candidates list */}
       <div
-        className="flex-1 overflow-y-auto p-4"
-        style={{ background: 'var(--glass-background)' }}
+        className="flex-1 overflow-y-auto"
+        style={{
+          padding: 'var(--space-4)', /* Compact: 12px (was p-4 = 16px) */
+          background: 'var(--glass-background)'
+        }}
       >
         {district.candidates.length === 0 ? (
           <div className="text-center py-8 animate-entrance" style={{ color: 'var(--text-muted)' }}>

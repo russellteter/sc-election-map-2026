@@ -36,10 +36,11 @@ export default function Home() {
       ? '/sc-election-map-2026'
       : '';
 
-    // Load both data files in parallel
+    // Load both data files in parallel with cache-busting
+    const cacheBuster = `v=${Date.now()}`;
     Promise.all([
-      fetch(`${basePath}/data/candidates.json`).then((res) => res.json()),
-      fetch(`${basePath}/data/elections.json`).then((res) => res.json()),
+      fetch(`${basePath}/data/candidates.json?${cacheBuster}`).then((res) => res.json()),
+      fetch(`${basePath}/data/elections.json?${cacheBuster}`).then((res) => res.json()),
     ])
       .then(([candidates, elections]) => {
         setCandidatesData(candidates);

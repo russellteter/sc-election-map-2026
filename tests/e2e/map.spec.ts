@@ -23,9 +23,9 @@ test.describe('SC Election Map', () => {
   });
 
   test('loads and displays candidates data', async ({ page }) => {
-    // Wait for stats to appear
-    await expect(page.getByText('Democrats')).toBeVisible({ timeout: 10000 });
-    await expect(page.getByText('Republicans')).toBeVisible();
+    // Wait for stats to appear - use .first() to avoid strict mode with sr-only duplicates
+    await expect(page.getByText('Democrats').first()).toBeVisible({ timeout: 10000 });
+    await expect(page.getByText('Republicans').first()).toBeVisible();
     await expect(page.getByText('Party Data')).toBeVisible();
   });
 
@@ -46,23 +46,24 @@ test.describe('SC Election Map', () => {
 test.describe('Chamber Toggle', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.waitForSelector('text=Democrats', { timeout: 10000 });
+    // Wait for KPI cards to load - use first() to avoid sr-only duplicates
+    await expect(page.getByText('Democrats').first()).toBeVisible({ timeout: 10000 });
   });
 
   test('House is selected by default', async ({ page }) => {
-    const houseButton = page.getByRole('button', { name: /House.*124/i });
-    await expect(houseButton).toHaveClass(/bg-white/);
+    const houseTab = page.getByRole('tab', { name: /House.*124/i });
+    await expect(houseTab).toHaveAttribute('aria-selected', 'true');
     await expect(page.getByText(/124 House/i)).toBeVisible();
   });
 
   test('can switch to Senate view', async ({ page }) => {
-    await page.getByRole('button', { name: /Senate.*46/i }).click();
+    await page.getByRole('tab', { name: /Senate.*46/i }).click();
     await expect(page.getByText(/46 Senate/i)).toBeVisible();
   });
 
   test('clears selection when changing chambers', async ({ page }) => {
     // This test validates the selection clearing behavior
-    await page.getByRole('button', { name: /Senate.*46/i }).click();
+    await page.getByRole('tab', { name: /Senate.*46/i }).click();
     await expect(page.getByText(/46 Senate/i)).toBeVisible();
   });
 });
@@ -70,7 +71,8 @@ test.describe('Chamber Toggle', () => {
 test.describe('Skip Link Accessibility', () => {
   test('skip link is focusable and navigates to map', async ({ page }) => {
     await page.goto('/');
-    await page.waitForSelector('text=Democrats', { timeout: 10000 });
+    // Wait for KPI cards to load - use first() to avoid sr-only duplicates
+    await expect(page.getByText('Democrats').first()).toBeVisible({ timeout: 10000 });
 
     // Focus the skip link via keyboard
     await page.keyboard.press('Tab');
@@ -90,7 +92,8 @@ test.describe('Skip Link Accessibility', () => {
 test.describe('Data Display', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.waitForSelector('text=Democrats', { timeout: 10000 });
+    // Wait for KPI cards to load - use first() to avoid sr-only duplicates
+    await expect(page.getByText('Democrats').first()).toBeVisible({ timeout: 10000 });
   });
 
   test('displays data update timestamp', async ({ page }) => {
@@ -114,7 +117,8 @@ test.describe('Responsive Design', () => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: /SC 2026 Election Map/i })).toBeVisible();
-    await expect(page.getByText('Democrats')).toBeVisible({ timeout: 10000 });
+    // Use first() to avoid sr-only duplicates
+    await expect(page.getByText('Democrats').first()).toBeVisible({ timeout: 10000 });
   });
 
   test('displays correctly on tablet viewport', async ({ page }) => {
@@ -122,6 +126,7 @@ test.describe('Responsive Design', () => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { name: /SC 2026 Election Map/i })).toBeVisible();
-    await expect(page.getByText('Democrats')).toBeVisible({ timeout: 10000 });
+    // Use first() to avoid sr-only duplicates
+    await expect(page.getByText('Democrats').first()).toBeVisible({ timeout: 10000 });
   });
 });

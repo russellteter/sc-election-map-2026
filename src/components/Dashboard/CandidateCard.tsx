@@ -31,8 +31,9 @@ export default function CandidateCard({ candidate, index = 0 }: CandidateCardPro
 
   return (
     <div
-      className="glass-surface rounded-lg p-4 interactive-lift animate-entrance"
+      className="glass-surface rounded-lg interactive-lift animate-entrance"
       style={{
+        padding: 'var(--space-4)', /* Compact: 12px (was p-4 = 16px) */
         animationDelay: `${index * 50}ms`,
         animationFillMode: 'backwards',
       }}
