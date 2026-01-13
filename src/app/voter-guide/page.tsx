@@ -226,9 +226,7 @@ function VoterGuideContent() {
       setStatusMessage(null);
 
       // Update URL with address (without triggering navigation)
-      const newUrl = new URL(window.location.href);
-      newUrl.searchParams.set('address', encodeURIComponent(displayName));
-      router.replace('?' + newUrl.search, { scroll: false });
+      router.replace(`/voter-guide?address=${encodeURIComponent(displayName)}`, { scroll: false });
 
     } catch (err) {
       console.error('Lookup error:', err);
