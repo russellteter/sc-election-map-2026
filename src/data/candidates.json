@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-13T06:35:52.875511Z",
+  "lastUpdated": "2026-01-13T07:53:01.882124Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -479,16 +479,6 @@
       "districtNumber": 44,
       "candidates": [
         {
-          "name": "McCoy, Robert B III",
-          "party": null,
-          "status": "filed",
-          "filedDate": "2026-01-09",
-          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56105&seiId=55449&officeId=78742&reportId=417649",
-          "reportId": "417649",
-          "source": "ethics",
-          "isIncumbent": false
-        },
-        {
           "name": "Crosby, Katie W",
           "party": null,
           "status": "filed",
@@ -774,7 +764,7 @@
         },
         {
           "name": "Barker, Noah L",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-07-02",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=54338&seiId=57320&officeId=77571&reportId=405717",
@@ -1017,7 +1007,7 @@
         },
         {
           "name": "Alexander, Daniel R",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-07-02",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=53922&seiId=38403&officeId=77281&reportId=405685",

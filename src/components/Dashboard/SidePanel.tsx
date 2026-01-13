@@ -126,105 +126,116 @@ export default function SidePanel({ chamber, district, electionHistory, onClose 
         </div>
       </div>
 
-      {/* Election History Section */}
+      {/* Compact Election History Section */}
       {electionHistory && Object.keys(electionHistory.elections).length > 0 && (
         <div
-          className="px-4 py-3 border-b"
+          className="px-3 py-2 border-b flex items-center gap-3"
           style={{
             background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(246,246,254,0.9) 100%)',
             borderColor: 'var(--class-purple-light)',
           }}
         >
-          <h3 className="text-xs font-semibold uppercase tracking-wide mb-2" style={{ color: 'var(--class-purple)' }}>
-            Election History
-          </h3>
+          {/* Section Label */}
+          <span
+            className="text-[10px] font-semibold uppercase tracking-wide shrink-0"
+            style={{ color: 'var(--text-muted)' }}
+          >
+            History
+          </span>
 
-          {/* Recent elections */}
-          <div className="space-y-2">
+          {/* Election Pills Container */}
+          <div className="flex items-center gap-1.5 flex-1">
             {['2024', '2022', '2020'].map((year) => {
               const election = electionHistory.elections[year];
               if (!election) return null;
 
               const winnerParty = election.winner.party.toLowerCase();
-              const partyColor = winnerParty.includes('democrat')
+              const isDem = winnerParty.includes('democrat');
+              const isRep = winnerParty.includes('republican');
+
+              const partyLetter = isDem ? 'D' : isRep ? 'R' : '?';
+              const pillBg = isDem
+                ? 'rgba(71, 57, 231, 0.12)'
+                : isRep
+                ? 'rgba(220, 38, 38, 0.12)'
+                : 'rgba(107, 114, 128, 0.12)';
+              const pillBorder = isDem
+                ? 'rgba(71, 57, 231, 0.3)'
+                : isRep
+                ? 'rgba(220, 38, 38, 0.3)'
+                : 'rgba(107, 114, 128, 0.3)';
+              const textColor = isDem
                 ? 'var(--class-purple)'
-                : winnerParty.includes('republican')
+                : isRep
                 ? 'var(--color-at-risk)'
                 : 'var(--text-muted)';
 
               return (
                 <div
                   key={year}
-                  className="flex items-center justify-between text-sm rounded-md px-2 py-1.5"
-                  style={{ background: 'rgba(71, 57, 231, 0.04)' }}
+                  className="flex flex-col items-center"
+                  title={`${year}: ${election.winner.name} (${election.winner.party})${election.uncontested ? ' - Uncontested' : ` - ${election.margin.toFixed(1)}% margin`}`}
                 >
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium" style={{ color: 'var(--text-color)' }}>{year}</span>
-                    <span style={{ color: partyColor }}>
-                      {election.winner.party.slice(0, 1)}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
+                  {/* Election Pill */}
+                  <span
+                    className="px-1.5 py-0.5 rounded text-[10px] font-semibold leading-none"
+                    style={{
+                      background: pillBg,
+                      border: `1px solid ${pillBorder}`,
+                      color: textColor,
+                    }}
+                  >
+                    {partyLetter}
                     {election.uncontested ? (
-                      <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: 'var(--class-purple-bg)', color: 'var(--text-muted)' }}>
-                        Uncontested
-                      </span>
+                      <span className="ml-0.5 opacity-60">UC</span>
                     ) : (
-                      <span
-                        className="text-xs font-medium"
-                        style={{
-                          color: election.margin <= 10
-                            ? 'var(--color-excellent)'
-                            : election.margin <= 20
-                            ? 'var(--color-attention)'
-                            : 'var(--text-muted)'
-                        }}
-                      >
-                        {election.margin > 0 ? '+' : ''}{election.margin.toFixed(1)}%
+                      <span className="ml-0.5">
+                        {election.margin > 0 ? '+' : ''}{Math.round(election.margin)}
                       </span>
                     )}
-                  </div>
+                  </span>
+                  {/* Year Label */}
+                  <span
+                    className="text-[9px] mt-0.5 leading-none"
+                    style={{ color: 'var(--text-muted)' }}
+                  >
+                    &apos;{year.slice(2)}
+                  </span>
                 </div>
               );
             })}
           </div>
 
-          {/* Competitiveness score */}
+          {/* Competitiveness Badge */}
           {electionHistory.competitiveness && (
-            <div className="mt-3 pt-2 border-t" style={{ borderColor: 'rgba(71, 57, 231, 0.1)' }}>
-              <div className="flex items-center justify-between text-xs">
-                <span style={{ color: 'var(--text-muted)' }}>Competitiveness Score</span>
+            <div
+              className="flex items-center gap-1 shrink-0"
+              title={`Competitiveness: ${electionHistory.competitiveness.score}/100${electionHistory.competitiveness.hasSwung ? ' - Swing District' : ''}`}
+            >
+              {electionHistory.competitiveness.hasSwung && (
                 <span
-                  className="font-semibold"
+                  className="text-[9px] font-medium px-1 py-0.5 rounded leading-none"
                   style={{
-                    color: electionHistory.competitiveness.score >= 60
-                      ? 'var(--color-excellent)'
-                      : electionHistory.competitiveness.score >= 30
-                      ? 'var(--color-attention)'
-                      : 'var(--text-muted)'
+                    background: 'rgba(5, 150, 105, 0.12)',
+                    color: 'var(--color-excellent)',
+                    border: '1px solid rgba(5, 150, 105, 0.3)',
                   }}
                 >
-                  {electionHistory.competitiveness.score}/100
+                  SWING
                 </span>
-              </div>
-              <div className="mt-1.5 w-full rounded-full h-1.5" style={{ background: 'var(--class-purple-light)' }}>
-                <div
-                  className="h-1.5 rounded-full transition-all duration-500"
-                  style={{
-                    width: `${electionHistory.competitiveness.score}%`,
-                    background: electionHistory.competitiveness.score >= 60
-                      ? 'var(--color-excellent)'
-                      : electionHistory.competitiveness.score >= 30
-                      ? 'var(--color-attention)'
-                      : 'var(--text-muted)'
-                  }}
-                />
-              </div>
-              {electionHistory.competitiveness.hasSwung && (
-                <p className="text-xs mt-1" style={{ color: 'var(--color-excellent)' }}>
-                  Has changed party control recently
-                </p>
               )}
+              <span
+                className="text-[10px] font-bold leading-none"
+                style={{
+                  color: electionHistory.competitiveness.score >= 60
+                    ? 'var(--color-excellent)'
+                    : electionHistory.competitiveness.score >= 30
+                    ? 'var(--color-attention)'
+                    : 'var(--text-muted)',
+                }}
+              >
+                {electionHistory.competitiveness.score}
+              </span>
             </div>
           )}
         </div>
