@@ -10,6 +10,8 @@ interface CandidateCardProps {
 export default function CandidateCard({ candidate, index = 0 }: CandidateCardProps) {
   const badgeClass = getPartyBadgeClass(candidate.party);
   const partyLabel = candidate.party || 'Unknown';
+  const isKjatwood = candidate.source === 'kjatwood';
+  const isEthics = candidate.source === 'ethics';
 
   // Format date
   const formattedDate = candidate.filedDate
@@ -18,7 +20,14 @@ export default function CandidateCard({ candidate, index = 0 }: CandidateCardPro
         day: 'numeric',
         year: 'numeric',
       })
-    : 'Unknown';
+    : null;
+
+  // Status display
+  const statusLabel = isKjatwood
+    ? 'Known to be running'
+    : isEthics
+    ? 'Filed with Ethics'
+    : candidate.status || 'Unknown';
 
   return (
     <div
@@ -60,18 +69,20 @@ export default function CandidateCard({ candidate, index = 0 }: CandidateCardPro
       </div>
 
       <div className="mt-3 text-sm space-y-1.5" style={{ color: 'var(--text-muted)' }}>
-        <div className="flex items-center gap-2">
-          <svg
-            className="w-4 h-4 flex-shrink-0"
-            style={{ color: 'var(--class-purple-light)' }}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-          <span>Filed: {formattedDate}</span>
-        </div>
+        {formattedDate && (
+          <div className="flex items-center gap-2">
+            <svg
+              className="w-4 h-4 flex-shrink-0"
+              style={{ color: 'var(--class-purple-light)' }}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span>Filed: {formattedDate}</span>
+          </div>
+        )}
         <div className="flex items-center gap-2">
           <svg
             className="w-4 h-4 flex-shrink-0"
@@ -82,8 +93,25 @@ export default function CandidateCard({ candidate, index = 0 }: CandidateCardPro
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <span>Status: {candidate.status}</span>
+          <span>{statusLabel}</span>
         </div>
+        {isKjatwood && (
+          <div className="flex items-center gap-2 mt-2">
+            <span
+              className="badge inline-flex items-center gap-1 text-[10px]"
+              style={{
+                background: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)',
+                color: '#059669',
+                border: '1px solid rgba(5, 150, 105, 0.3)',
+              }}
+            >
+              <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              Confirmed Running
+            </span>
+          </div>
+        )}
       </div>
 
       {candidate.ethicsUrl && (

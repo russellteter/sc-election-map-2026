@@ -15,6 +15,7 @@ SCRIPT_DIR = Path(__file__).parent
 PROJECT_ROOT = SCRIPT_DIR.parent
 DATA_DIR = PROJECT_ROOT / "src" / "data"
 PARTY_DATA_FILE = DATA_DIR / "party-data.json"
+KJATWOOD_FILE = DATA_DIR / "kjatwood-candidates.json"
 OUTPUT_FILE = DATA_DIR / "candidates.json"
 
 
@@ -52,6 +53,14 @@ def load_party_data() -> dict:
         with open(PARTY_DATA_FILE) as f:
             return json.load(f)
     return {"candidates": {}}
+
+
+def load_kjatwood_data() -> dict:
+    """Load kjatwood known candidates data."""
+    if KJATWOOD_FILE.exists():
+        with open(KJATWOOD_FILE) as f:
+            return json.load(f)
+    return {"house": {}, "senate": {}}
 
 
 def find_party(name: str, party_data: dict, chamber: str = None, district_num: int = None) -> str | None:
@@ -227,11 +236,72 @@ def process_ethics_data(ethics_file: str) -> dict:
         if district_key in output[chamber]:
             output[chamber][district_key]["candidates"].append(candidate_entry)
 
-    # Sort candidates by filed date (most recent first)
+    # Add kjatwood known candidates (who may not have filed Ethics reports yet)
+    kjatwood_data = load_kjatwood_data()
+
+    for chamber in ["house", "senate"]:
+        kjatwood_chamber = kjatwood_data.get(chamber, {})
+
+        for district_str, candidate_info in kjatwood_chamber.items():
+            district_num = int(district_str)
+            district_key = str(district_num)
+
+            if district_key not in output[chamber]:
+                continue
+
+            candidate_name = candidate_info.get("name")
+            if not candidate_name:
+                continue
+
+            # Check if this candidate already exists (has filed with Ethics)
+            existing_names = [
+                normalize_name(c["name"]).lower()
+                for c in output[chamber][district_key]["candidates"]
+            ]
+
+            normalized_kjatwood = normalize_name(candidate_name).lower()
+
+            # Skip if already exists
+            if normalized_kjatwood in existing_names:
+                continue
+
+            # Check by last name match (handles name variations)
+            kjatwood_parts = normalized_kjatwood.split()
+            already_exists = False
+            if kjatwood_parts:
+                kjatwood_last = kjatwood_parts[-1]
+                for existing in existing_names:
+                    existing_parts = existing.split()
+                    if existing_parts and existing_parts[-1] == kjatwood_last:
+                        already_exists = True
+                        break
+
+            if already_exists:
+                continue
+
+            # Add as known candidate (not yet filed)
+            kjatwood_entry = {
+                "name": candidate_name,
+                "party": candidate_info.get("party"),
+                "status": "known",  # Not filed yet, but known to be running
+                "filedDate": None,
+                "ethicsUrl": None,
+                "reportId": None,
+                "source": "kjatwood",
+                "isIncumbent": "Incumbent" in candidate_info.get("note", ""),
+                "note": candidate_info.get("note")
+            }
+
+            output[chamber][district_key]["candidates"].append(kjatwood_entry)
+
+    # Sort candidates by filed date (most recent first), then by source
     for chamber in ["house", "senate"]:
         for district_num, district_data in output[chamber].items():
             district_data["candidates"].sort(
-                key=lambda x: x.get("filedDate") or "",
+                key=lambda x: (
+                    x.get("source") == "ethics",  # Ethics first
+                    x.get("filedDate") or ""
+                ),
                 reverse=True
             )
 
@@ -255,6 +325,8 @@ def main():
     rep_count = 0
     unknown_count = 0
     incumbent_count = 0
+    ethics_filed = 0
+    kjatwood_known = 0
 
     for chamber in ["house", "senate"]:
         for district_data in output[chamber].values():
@@ -269,12 +341,18 @@ def main():
                     unknown_count += 1
                 if candidate.get("isIncumbent"):
                     incumbent_count += 1
+                if candidate.get("source") == "ethics":
+                    ethics_filed += 1
+                elif candidate.get("source") == "kjatwood":
+                    kjatwood_known += 1
 
     print(f"Total candidates: {total_candidates}")
     print(f"  Democrats: {dem_count}")
     print(f"  Republicans: {rep_count}")
     print(f"  Unknown: {unknown_count}")
     print(f"  Incumbents: {incumbent_count}")
+    print(f"  Filed with Ethics: {ethics_filed}")
+    print(f"  Known from kjatwood: {kjatwood_known}")
 
     # Write output
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-13T07:53:01.882124Z",
+  "lastUpdated": "2026-01-13T08:22:47.852933Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -190,7 +190,19 @@
     },
     "15": {
       "districtNumber": 15,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "JA Moore",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "JA Moore",
         "party": "Democratic"
@@ -276,7 +288,19 @@
     },
     "23": {
       "districtNumber": 23,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Chandra Dillard",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Chandra E. Dillard",
         "party": "Democratic"
@@ -292,7 +316,19 @@
     },
     "25": {
       "districtNumber": 25,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Wendell Jones",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Wendell K. Jones",
         "party": "Democratic"
@@ -340,7 +376,19 @@
     },
     "31": {
       "districtNumber": 31,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Rosalyn Henderson-Myers",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Rosalyn Henderson-Myers",
         "party": "Democratic"
@@ -442,7 +490,19 @@
     },
     "41": {
       "districtNumber": 41,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Annie McDaniel",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Annie E. McDaniel",
         "party": "Democratic"
@@ -539,7 +599,19 @@
     },
     "49": {
       "districtNumber": 49,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "John King",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "John Richard C. King",
         "party": "Democratic"
@@ -566,7 +638,19 @@
     },
     "51": {
       "districtNumber": 51,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "David Weeks",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "J. David Weeks",
         "party": "Democratic"
@@ -611,6 +695,17 @@
           "reportId": "402696",
           "source": "ethics",
           "isIncumbent": false
+        },
+        {
+          "name": "Jason Luck",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": false,
+          "note": ""
         }
       ],
       "incumbent": {
@@ -620,7 +715,19 @@
     },
     "55": {
       "districtNumber": 55,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Jackie Hayes",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Jackie Hayes",
         "party": "Democratic"
@@ -636,7 +743,19 @@
     },
     "57": {
       "districtNumber": 57,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Lucas Atkinson",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Lucas Atkinson",
         "party": "Democratic"
@@ -652,7 +771,19 @@
     },
     "59": {
       "districtNumber": 59,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Terry Alexander",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Terry Alexander",
         "party": "Democratic"
@@ -676,7 +807,19 @@
     },
     "62": {
       "districtNumber": 62,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Robert Williams",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Robert Q. Williams",
         "party": "Democratic"
@@ -771,6 +914,17 @@
           "reportId": "405717",
           "source": "ethics",
           "isIncumbent": false
+        },
+        {
+          "name": "Robert Reese",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": false,
+          "note": "Multiple candidates: Robert Reese and Noah Barker"
         }
       ],
       "incumbent": {
@@ -799,7 +953,19 @@
     },
     "72": {
       "districtNumber": 72,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Seth Rose",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Seth Rose",
         "party": "Democratic"
@@ -807,7 +973,19 @@
     },
     "73": {
       "districtNumber": 73,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Chris Hart",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Chris Hart",
         "party": "Democratic"
@@ -815,7 +993,19 @@
     },
     "74": {
       "districtNumber": 74,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Todd Rutherford",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Todd Rutherford",
         "party": "Democratic"
@@ -823,7 +1013,19 @@
     },
     "75": {
       "districtNumber": 75,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Heather Bauer",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Heather Bauer",
         "party": "Democratic"
@@ -831,7 +1033,19 @@
     },
     "76": {
       "districtNumber": 76,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Leon Howard",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Leon Howard",
         "party": "Democratic"
@@ -839,7 +1053,19 @@
     },
     "77": {
       "districtNumber": 77,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Kambrell Garvin",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Kambrell H. Garvin",
         "party": "Democratic"
@@ -847,7 +1073,19 @@
     },
     "78": {
       "districtNumber": 78,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Beth Bernstein",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Beth E. Bernstein",
         "party": "Democratic"
@@ -855,7 +1093,19 @@
     },
     "79": {
       "districtNumber": 79,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Hamilton Grant",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": false,
+          "note": ""
+        }
+      ],
       "incumbent": {
         "name": "Hamilton R. Grant",
         "party": "Democratic"
@@ -879,7 +1129,19 @@
     },
     "82": {
       "districtNumber": 82,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Bill Clyburn",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Bill Clyburn",
         "party": "Democratic"
@@ -986,7 +1248,19 @@
     },
     "90": {
       "districtNumber": 90,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Justin Bamberg",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Justin T. Bamberg",
         "party": "Democratic"
@@ -1014,6 +1288,17 @@
           "reportId": "405685",
           "source": "ethics",
           "isIncumbent": false
+        },
+        {
+          "name": "Lonnie Hosey",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
         }
       ],
       "incumbent": {
@@ -1041,6 +1326,17 @@
           "reportId": "396629",
           "source": "ethics",
           "isIncumbent": false
+        },
+        {
+          "name": "Jerry Govan",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
         }
       ],
       "incumbent": {
@@ -1058,7 +1354,19 @@
     },
     "95": {
       "districtNumber": 95,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Gilda Cobb-Hunter",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Gilda Cobb-Hunter",
         "party": "Democratic"
@@ -1145,7 +1453,19 @@
     },
     "101": {
       "districtNumber": 101,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Roger Kirby",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Roger K. Kirby",
         "party": "Democratic"
@@ -1172,7 +1492,19 @@
     },
     "103": {
       "districtNumber": 103,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Carl Anderson",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Carl L. Anderson",
         "party": "Democratic"
@@ -1269,7 +1601,19 @@
     },
     "111": {
       "districtNumber": 111,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Wendell Gilliard",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Wendell G. Gilliard",
         "party": "Democratic"
@@ -1386,6 +1730,17 @@
           "reportId": "402364",
           "source": "ethics",
           "isIncumbent": false
+        },
+        {
+          "name": "Leon Stavrinakis",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
         }
       ],
       "incumbent": {
@@ -1403,7 +1758,19 @@
     },
     "121": {
       "districtNumber": 121,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Michael Rivers",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Michael F. Rivers Sr.",
         "party": "Democratic"
