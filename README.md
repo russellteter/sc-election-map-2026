@@ -1,6 +1,10 @@
-# SC 2026 Election Map
+# SC Election Map 2026
 
-Interactive map showing South Carolina House (124 districts) and Senate (46 districts) candidates for the 2026 midterm elections. Built with Next.js, React, and TypeScript.
+Comprehensive South Carolina 2026 election resource featuring:
+- **Interactive Election Map** - Visualize all 170 legislative races by district
+- **Voter Guide** - Personalized ballot information based on your address
+
+Built with Next.js 16, React 19, TypeScript, and Tailwind CSS v4.
 
 ![SC Election Map](https://img.shields.io/badge/Districts-170_total-4739E7?style=for-the-badge) ![Build Status](https://img.shields.io/badge/Build-Passing-059669?style=for-the-badge) ![Coverage](https://img.shields.io/badge/Coverage-80%25-4739E7?style=for-the-badge)
 
@@ -59,6 +63,34 @@ Interactive map showing South Carolina House (124 districts) and Senate (46 dist
 - **2.0MB total bundle** - Fast initial load, CDN-friendly
 - **6.7s build time** - Rapid development cycle
 
+### Voter Guide Features
+
+Access your complete ballot at `/voter-guide`:
+
+#### Address-Based District Lookup
+- **Enter your SC address** to find all races on your ballot
+- **Powered by Geoapify geocoding** with 2MB GeoJSON boundary data
+- **Geolocation support** for automatic address detection
+- **Lazy-loaded boundaries** - GeoJSON only loaded when needed
+
+#### Comprehensive Ballot Information
+- **Statewide Races**: Governor, Lt. Governor, Attorney General, Secretary of State, Treasurer, Comptroller General, Superintendent of Education, Agriculture Commissioner
+- **Congressional Races**: US House district representatives
+- **State Legislative**: SC House and Senate for your specific district
+- **County Offices**: Sheriff, Treasurer, Auditor, Clerk of Court, Coroner, Probate Judge, County Council
+- **Judicial Races**: Circuit Court and Family Court judges by circuit
+- **School Board**: Local school district board members
+- **Special Districts**: Soil & Water Conservation, Hospital District, and other special district boards
+- **Ballot Measures**: Constitutional amendments and local referendums with pro/con arguments
+
+#### Performance Optimizations
+- **Progressive 3-tier data loading** - 6.5KB initial (98.7% reduction from 517KB), load more only as needed
+- **Component code splitting** - Next.js dynamic imports reduce initial JS bundle by 62%
+- **Intersection Observer lazy loading** - Deferred content loads only when scrolling into view
+- **Mobile-optimized** with WCAG AA touch targets (44x44px minimum)
+- **Responsive design** from 320px (iPhone SE) to 1920px+ (desktop)
+- See [MOBILE-OPTIMIZATION.md](./MOBILE-OPTIMIZATION.md) for complete performance details
+
 ---
 
 ## Quick Start
@@ -99,22 +131,49 @@ sc-election-map-2026/
 ├── public/
 │   ├── maps/
 │   │   ├── house-districts.svg       # 124 SC House districts
-│   │   └── senate-districts.svg      # 46 SC Senate districts
+│   │   ├── senate-districts.svg      # 46 SC Senate districts
+│   │   ├── house-districts.geojson   # 1.2MB - District boundaries
+│   │   └── senate-districts.geojson  # 837KB - District boundaries
 │   └── data/
-│       ├── candidates.json           # Enriched candidate data
+│       ├── candidates.json           # State legislative candidates (77KB)
 │       ├── elections.json            # Historical election results
-│       └── party-data.json           # kjatwood party attribution
+│       ├── statewide-races.json      # Governor, AG, etc. (2.8KB)
+│       ├── congress-candidates.json  # US House candidates (1.8KB)
+│       ├── county-races.json         # County offices (16KB)
+│       ├── judicial-races.json       # Court judges (7.2KB)
+│       ├── school-board.json         # School board races (4.2KB)
+│       ├── special-districts.json    # Special district boards (13KB)
+│       └── ballot-measures.json      # Constitutional amendments (5.5KB)
 │
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx               # Root layout with metadata
-│   │   ├── page.tsx                 # Main dashboard page
-│   │   └── globals.css              # Glassmorphic design system (924 lines)
+│   │   ├── page.tsx                 # Election map home page
+│   │   ├── voter-guide/             # Voter guide application ⭐ NEW
+│   │   │   └── page.tsx            # Address lookup & ballot display
+│   │   ├── race/[id]/              # Individual race detail pages
+│   │   ├── table/                  # Tabular data view
+│   │   ├── opportunities/          # Open race opportunities
+│   │   └── globals.css             # Glassmorphic design system + mobile (92KB)
 │   │
 │   ├── components/
 │   │   ├── Map/
 │   │   │   ├── DistrictMap.tsx      # Interactive SVG map with event delegation
 │   │   │   └── MapTooltip.tsx       # Cursor-following glassmorphic tooltip
+│   │   │
+│   │   ├── VoterGuide/              # Voter guide components (15 files) ⭐ NEW
+│   │   │   ├── AddressAutocomplete.tsx  # Address search with geocoding
+│   │   │   ├── DistrictResults.tsx      # Display found districts
+│   │   │   ├── StatewideRaces.tsx       # Governor, AG, etc.
+│   │   │   ├── CongressionalRaces.tsx   # US House races
+│   │   │   ├── CountyRaces.tsx          # Sheriff, Treasurer, etc.
+│   │   │   ├── JudicialRaces.tsx        # Court judges
+│   │   │   ├── SchoolBoardRaces.tsx     # School board elections
+│   │   │   ├── SpecialDistricts.tsx     # Special district boards
+│   │   │   ├── BallotMeasures.tsx       # Constitutional amendments
+│   │   │   ├── VoterResources.tsx       # Registration, polling info
+│   │   │   ├── SkeletonLoaders.tsx      # Loading placeholders
+│   │   │   └── index.ts                 # Dynamic imports for code splitting
 │   │   │
 │   │   ├── Dashboard/
 │   │   │   ├── SidePanel.tsx        # Candidate details with compact history
@@ -128,11 +187,18 @@ sc-election-map-2026/
 │   │       ├── Header.tsx           # Title, toggle, stats
 │   │       └── Legend.tsx           # Color-coded map legend
 │   │
-│   ├── types/
-│   │   └── schema.ts                # TypeScript interfaces (centralized)
+│   ├── lib/
+│   │   ├── dataLoader.ts            # Progressive 3-tier data loading ⭐ NEW
+│   │   ├── districtLookup.ts        # Geographic district matching ⭐ NEW
+│   │   ├── geocoding.ts             # Address → coordinates ⭐ NEW
+│   │   └── [other utilities]
 │   │
-│   └── lib/
-│       └── dataLoader.ts            # JSON data fetching with cache-busting
+│   ├── hooks/
+│   │   ├── useIntersectionObserver.ts  # Lazy loading hook ⭐ NEW
+│   │   └── useKeyboardShortcuts.ts
+│   │
+│   └── types/
+│       └── schema.ts                # TypeScript interfaces (centralized)
 │
 ├── scripts/
 │   └── process-data.py              # Data enrichment pipeline
@@ -141,12 +207,16 @@ sc-election-map-2026/
 │   └── e2e/
 │       └── map-interactions.spec.ts # Playwright E2E tests
 │
+├── docs/                            # Project documentation ⭐ NEW
+│   ├── MOBILE-OPTIMIZATION.md       # Performance optimization details
+│   └── [other docs]
+│
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml               # GitHub Pages deployment
 │
-├── next.config.mjs                  # Next.js configuration
-├── tailwind.config.ts               # Tailwind CSS setup
+├── next.config.ts                   # Next.js configuration (Turbopack)
+├── tailwind.config.ts               # Tailwind CSS v4 setup
 ├── tsconfig.json                    # TypeScript configuration
 ├── playwright.config.ts             # Playwright test configuration
 └── README.md                        # This file

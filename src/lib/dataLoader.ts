@@ -22,8 +22,8 @@ interface DataLoaderOptions {
 }
 
 class DataLoader {
-  private cache = new Map<string, any>();
-  private pendingRequests = new Map<string, Promise<any>>();
+  private cache = new Map<string, unknown>();
+  private pendingRequests = new Map<string, Promise<unknown>>();
   private basePath = typeof window !== 'undefined' && process.env.NODE_ENV === 'production'
     ? '/sc-election-map-2026'
     : '';
@@ -47,7 +47,7 @@ class DataLoader {
    * - county-races.json: County offices
    */
   async loadTier2(districts: DistrictResult) {
-    const loads: Promise<any>[] = [];
+    const loads: Promise<unknown>[] = [];
 
     if (districts.houseDistrict || districts.senateDistrict) {
       loads.push(this.fetch('/data/candidates.json', { tier: 'onDemand', cacheKey: 'candidates' }));
@@ -85,7 +85,7 @@ class DataLoader {
   /**
    * Generic fetch with caching and deduplication
    */
-  private async fetch(url: string, options: DataLoaderOptions): Promise<any> {
+  private async fetch(url: string, options: DataLoaderOptions): Promise<unknown> {
     const { cacheKey } = options;
 
     // Return cached data if available

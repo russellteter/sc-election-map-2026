@@ -500,6 +500,315 @@ interface SparklineProps {
 
 ---
 
+## VoterGuide Components
+
+### Core Components
+
+#### AddressAutocomplete
+
+**Location:** `src/components/VoterGuide/AddressAutocomplete.tsx` (17.6KB)
+
+**Purpose:** Address search with Geoapify geocoding API integration. Features debounced search, geolocation support, and lazy GeoJSON loading.
+
+**Props:**
+```typescript
+interface AddressAutocompleteProps {
+  onAddressSelect: (suggestion: GeocodeSuggestion) => void;  // Callback when address is selected
+  onGeolocationRequest: () => void;                           // Callback for geolocation button
+  isLoading: boolean;                                         // Loading state for search
+  isGeolocating: boolean;                                     // Loading state for geolocation
+}
+```
+
+**Key Features:**
+- **Debounced search** (300ms) - Reduces API calls during typing
+- **GeoJSON lazy loading on focus** - Defers 2MB boundary loading until needed
+- **Geolocation support** - Browser geolocation API integration
+- **Responsive dropdown** with max-height and proper scrolling
+- **Keyboard navigation** - Arrow keys, Enter, Escape support
+- **Touch targets** - 44x44px minimum for mobile (WCAG AA)
+
+**State:**
+```typescript
+const [query, setQuery] = useState('');
+const [suggestions, setSuggestions] = useState<GeocodeSuggestion[]>([]);
+const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+const [selectedIndex, setSelectedIndex] = useState(-1);
+```
+
+**Performance:**
+- Debounced API calls prevent request spam
+- GeoJSON preloading triggered on first focus (not on mount)
+- Dropdown virtualizes long suggestion lists
+
+---
+
+#### DistrictResults
+
+**Location:** `src/components/VoterGuide/DistrictResults.tsx` (9.7KB)
+
+**Purpose:** Display found districts after address lookup with visual district cards.
+
+**Props:**
+```typescript
+interface DistrictResultsProps {
+  houseDistrict?: number;           // SC House district number (1-124)
+  senateDistrict?: number;          // SC Senate district number (1-46)
+  congressionalDistrict?: number;   // US House district number (1-7)
+  countyName?: string;              // County name for county offices
+}
+```
+
+**Features:**
+- Glassmorphic district cards with gradient backgrounds
+- Animated entrance on mount
+- Links to detailed race pages
+- Responsive grid (1 column mobile, 2-3 columns desktop)
+
+---
+
+### Race Display Components (Lazy Loaded)
+
+#### StatewideRaces
+
+**Location:** `src/components/VoterGuide/StatewideRaces.tsx` (5.6KB)
+
+**Purpose:** Display statewide races (Governor, Lt. Governor, Attorney General, etc.)
+
+**Data Source:** `/data/statewide-races.json` (2.8KB)
+
+**Loading:** Tier 1 (immediate on page load)
+
+**Features:**
+- 8 statewide offices with candidate cards
+- Party badges with color coding
+- Incumbent indicators
+- Responsive grid (1 column → 2 columns → 3 columns)
+
+**Races Displayed:**
+- Governor
+- Lieutenant Governor
+- Attorney General
+- Secretary of State
+- State Treasurer
+- Comptroller General
+- Superintendent of Education
+- Commissioner of Agriculture
+
+---
+
+#### CongressionalRaces
+
+**Location:** `src/components/VoterGuide/CongressionalRaces.tsx` (13.6KB)
+
+**Purpose:** Display US House representative race for user's congressional district.
+
+**Data Source:** `/data/congress-candidates.json` (1.8KB)
+
+**Loading:** Tier 2 (after district lookup)
+
+**Features:**
+- Filters to show only user's district (1-7)
+- Candidate photos and bios
+- Party affiliation badges
+- Incumbent status
+- Campaign website links
+
+---
+
+#### JudicialRaces
+
+**Location:** `src/components/VoterGuide/JudicialRaces.tsx` (13.3KB)
+
+**Purpose:** Circuit Court and Family Court judge elections by circuit.
+
+**Data Source:** `/data/judicial-races.json` (7.2KB)
+
+**Loading:** Tier 3 (lazy load on scroll via Intersection Observer)
+
+**Features:**
+- Organized by judicial circuit (1-16)
+- Circuit Court and Family Court judges
+- Years of experience displayed
+- Incumbent indicators
+- Bar association ratings (if available)
+
+**Performance:**
+- Uses `useIntersectionObserver` hook
+- Loads only when scrolled into viewport (rootMargin: '500px')
+- Freezes visibility state after first load
+
+---
+
+#### SchoolBoardRaces
+
+**Location:** `src/components/VoterGuide/SchoolBoardRaces.tsx` (11.6KB)
+
+**Purpose:** Local school board elections by district.
+
+**Data Source:** `/data/school-board.json` (4.2KB)
+
+**Loading:** Tier 3 (lazy load on scroll)
+
+**Features:**
+- Major SC school districts (Greenville, Charleston, Richland, etc.)
+- Organized by school district area
+- Candidate backgrounds and education focus
+- Term lengths displayed
+- Touch-optimized cards (44x44px minimum targets)
+
+**Coverage Districts:**
+- Greenville County Schools
+- Charleston County School District
+- Richland School District One & Two
+- Lexington County Schools
+- Horry County Schools
+- And others
+
+---
+
+#### SpecialDistricts
+
+**Location:** `src/components/VoterGuide/SpecialDistricts.tsx` (16KB)
+
+**Purpose:** Special district board elections (Soil & Water, Hospital District, Fire District).
+
+**Data Source:** `/data/special-districts.json` (13KB)
+
+**Loading:** Tier 3 (lazy load on scroll)
+
+**Features:**
+- Soil & Water Conservation Districts
+- Hospital District boards
+- Fire District boards
+- Water & Sewer boards
+- Organized by county
+- Board responsibilities explained
+
+**District Types:**
+- Soil & Water Conservation (all 46 counties)
+- Regional Hospital Districts
+- Fire Protection Districts
+- Water & Sewer Authorities
+
+---
+
+#### BallotMeasures
+
+**Location:** `src/components/VoterGuide/BallotMeasures.tsx` (13.7KB)
+
+**Purpose:** Constitutional amendments and local referendums with analysis.
+
+**Data Source:** `/data/ballot-measures.json` (5.5KB)
+
+**Loading:** Tier 3 (lazy load on scroll)
+
+**Features:**
+- Plain language summaries
+- Pro/con arguments displayed side-by-side
+- Impact analysis
+- Current status (proposed, on ballot, etc.)
+- Collapsible full text
+- Mobile-responsive (stacks pro/con on mobile)
+
+**Measure Types:**
+- Constitutional Amendments
+- Local Referendums
+- Bond Issues
+- Tax Measures
+
+---
+
+#### CountyRaces
+
+**Location:** `src/components/VoterGuide/CountyRaces.tsx` (9.9KB)
+
+**Purpose:** County office races (Sheriff, Treasurer, Auditor, County Council).
+
+**Data Source:** `/data/county-races.json` (16KB)
+
+**Loading:** Tier 2 (after district lookup)
+
+**Features:**
+- Filtered by user's county
+- All county constitutional offices
+- County Council districts
+- Incumbent indicators
+- Salary information (if applicable)
+- Term lengths
+
+**Offices Covered:**
+- Sheriff
+- Treasurer
+- Auditor
+- Clerk of Court
+- Coroner
+- Probate Judge
+- County Council (by district)
+
+---
+
+#### VoterResources
+
+**Location:** `src/components/VoterGuide/VoterResources.tsx` (14KB)
+
+**Purpose:** Voter registration, polling locations, absentee voting information.
+
+**Loading:** Tier 3 (lazy load on scroll)
+
+**Features:**
+- Voter registration status check link
+- Polling location finder
+- Absentee voting instructions
+- Important election dates
+- Voter ID requirements
+- Accessibility accommodations
+
+**Resources:**
+- SC Election Commission links
+- County election office contacts
+- Voter registration forms
+- Absentee ballot request forms
+- Polling place accessibility information
+
+---
+
+### Loading States
+
+#### SkeletonLoaders
+
+**Location:** `src/components/VoterGuide/SkeletonLoaders.tsx` (6.2KB)
+
+**Purpose:** Loading placeholders for voter guide components during data fetch.
+
+**Exports:**
+```typescript
+export const RaceCardSkeleton: React.FC
+export const SectionHeaderSkeleton: React.FC
+export const StatewideRacesSkeleton: React.FC
+export const CongressionalRacesSkeleton: React.FC
+export const TimelineSkeleton: React.FC
+export const VoterResourcesSkeleton: React.FC
+export const KPISummarySkeleton: React.FC
+export const VoterGuidePageSkeleton: React.FC
+```
+
+**Features:**
+- Animated shimmer effect using CSS
+- Matches actual component dimensions
+- Used as `loading` prop in `next/dynamic` imports
+- Glassmorphic styling consistent with design system
+
+**Usage Example:**
+```typescript
+export const StatewideRaces = dynamic(() => import('./StatewideRaces'), {
+  loading: () => <StatewideRacesSkeleton />,
+  ssr: false
+});
+```
+
+---
+
 ## Props Reference
 
 ### Common Pattern: Callback Props
@@ -570,6 +879,56 @@ useEffect(() => {
   return () => clearTimeout(timer);  // Cleanup
 }, [dependencies]);
 ```
+
+### useIntersectionObserver Hook
+
+**Location:** `src/hooks/useIntersectionObserver.ts`
+
+**Purpose:** Lazy load components when they enter the viewport using Intersection Observer API.
+
+**Signature:**
+```typescript
+function useIntersectionObserver(
+  elementRef: RefObject<Element>,
+  options?: {
+    rootMargin?: string;        // Distance before element to trigger (default: '500px')
+    threshold?: number;          // % of element visible to trigger (default: 0)
+    freezeOnceVisible?: boolean; // Don't toggle back to false (default: false)
+  }
+): boolean  // Returns true when element is visible (or was visible if frozen)
+```
+
+**Usage Example:**
+```typescript
+const judicialRef = useRef<HTMLDivElement>(null);
+const isJudicialVisible = useIntersectionObserver(judicialRef, {
+  rootMargin: '500px',    // Load 500px before element enters viewport
+  freezeOnceVisible: true  // Don't unload once loaded
+});
+
+useEffect(() => {
+  if (isJudicialVisible && !data) {
+    loadJudicialData();  // Fetch data only when scrolled into view
+  }
+}, [isJudicialVisible]);
+
+return (
+  <div ref={judicialRef}>
+    {isJudicialVisible ? <JudicialRaces /> : <RaceCardSkeleton />}
+  </div>
+);
+```
+
+**Key Features:**
+- **Preloading** - `rootMargin: '500px'` triggers 500px before viewport
+- **Freeze state** - `freezeOnceVisible: true` prevents toggle back to invisible
+- **Fallback** - Returns `true` if IntersectionObserver not supported
+- **Automatic cleanup** - Observer disconnects on unmount
+
+**Performance Benefits:**
+- Reduces initial JS bundle by deferring non-critical components
+- Saves API calls by only fetching data for visible components
+- Improves Time to Interactive (TTI) by prioritizing above-the-fold content
 
 ---
 

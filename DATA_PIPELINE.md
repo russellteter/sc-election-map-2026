@@ -103,6 +103,303 @@ const candidates = {
 
 ---
 
+## Voter Guide Data Sources
+
+### 4. Ballot Measures
+
+**Source:** SC Legislature - Published constitutional amendments and referendums
+
+**File:** `src/data/ballot-measures.json`
+
+**What it provides:**
+| Field | Description |
+|-------|-------------|
+| id | Unique identifier (e.g., "amendment-2026-01") |
+| title | Short title (e.g., "Property Tax Relief Amendment") |
+| description | Full text description of the measure |
+| proArguments | Array of arguments in favor |
+| conArguments | Array of arguments against |
+| impactSummary | Plain language explanation of what passage would mean |
+| type | "constitutional-amendment" or "referendum" |
+| jurisdiction | "statewide" or county name |
+
+**Update Frequency:** As amendments are proposed (typically during legislative session)
+
+**Coverage:** All statewide ballot measures + major county referendums
+
+**Schema:**
+```typescript
+interface BallotMeasure {
+  id: string;
+  title: string;
+  description: string;
+  proArguments: string[];
+  conArguments: string[];
+  impactSummary: string;
+  type: 'constitutional-amendment' | 'referendum';
+  jurisdiction: 'statewide' | string;  // County name if local
+}
+```
+
+---
+
+### 5. Judicial Races
+
+**Source:** SC Judicial Department - Circuit and Family Court elections
+
+**File:** `src/data/judicial-races.json`
+
+**What it provides:**
+| Field | Description |
+|-------|-------------|
+| court | "Circuit Court" or "Family Court" |
+| circuit | Circuit number (1-16) |
+| seat | Seat identifier (e.g., "Seat 1") |
+| candidates | Array of judicial candidates |
+| incumbentName | Name of current judge (if applicable) |
+
+**Update Frequency:** Judicial election cycle (typically every 6 years)
+
+**Coverage:** All 16 circuits in South Carolina
+
+**Schema:**
+```typescript
+interface JudicialRace {
+  court: 'Circuit Court' | 'Family Court';
+  circuit: number;  // 1-16
+  seat: string;
+  candidates: JudicialCandidate[];
+  incumbentName?: string;
+}
+
+interface JudicialCandidate {
+  name: string;
+  incumbent: boolean;
+  experience: string;  // Years of legal practice
+  background?: string;  // Education, previous positions
+}
+```
+
+**Note:** Judicial races in SC are retention elections (judges run uncontested for retention) or contested elections when seats are vacant.
+
+---
+
+### 6. School Board Races
+
+**Source:** Local school district election commissions
+
+**File:** `src/data/school-board.json`
+
+**What it provides:**
+| Field | Description |
+|-------|-------------|
+| district | School district name |
+| county | County or counties served |
+| seats | Array of contested board seats |
+
+**Update Frequency:** School board election cycle (varies by district)
+
+**Coverage:** Major districts (Greenville, Charleston, Richland, Lexington, etc.)
+
+**Schema:**
+```typescript
+interface SchoolBoardRace {
+  district: string;  // "Greenville County Schools"
+  county: string | string[];  // Single or multiple counties
+  seats: SchoolBoardSeat[];
+}
+
+interface SchoolBoardSeat {
+  seat: string;  // "District 23" or "At-Large Seat 1"
+  candidates: SchoolBoardCandidate[];
+  incumbentName?: string;
+}
+
+interface SchoolBoardCandidate {
+  name: string;
+  incumbent: boolean;
+  background?: string;
+}
+```
+
+**Note:** School board elections are non-partisan in South Carolina.
+
+---
+
+### 7. Special Districts
+
+**Source:** County election commissions
+
+**File:** `src/data/special-districts.json`
+
+**What it provides:**
+| Field | Description |
+|-------|-------------|
+| districtType | Type of special district |
+| name | District name |
+| county | County served |
+| seats | Board seats being elected |
+
+**Update Frequency:** Special district election cycle (varies by type)
+
+**Coverage:** Major districts - Soil & Water Conservation, Hospital Districts, Fire Districts
+
+**Types of Special Districts:**
+- Soil & Water Conservation Districts
+- Hospital District boards
+- Fire District boards
+- Public Service District boards
+
+**Schema:**
+```typescript
+interface SpecialDistrict {
+  districtType: 'soil-water' | 'hospital' | 'fire' | 'public-service';
+  name: string;
+  county: string | string[];
+  seats: SpecialDistrictSeat[];
+}
+
+interface SpecialDistrictSeat {
+  seat: string;
+  candidates: SpecialDistrictCandidate[];
+  incumbentName?: string;
+}
+
+interface SpecialDistrictCandidate {
+  name: string;
+  incumbent: boolean;
+  background?: string;
+}
+```
+
+---
+
+### 8. Address Geocoding (Geoapify)
+
+**Service:** Geoapify Geocoder Autocomplete API
+
+**Purpose:** Convert user-entered SC addresses to latitude/longitude coordinates
+
+**API Endpoint:** `https://api.geoapify.com/v1/geocode/autocomplete`
+
+**Rate Limit:** 3,000 requests/day (free tier)
+
+**Usage Flow:**
+1. User types address in AddressAutocomplete component
+2. Debounced search (300ms) triggers API call
+3. API returns suggestions with coordinates
+4. User selects suggestion
+5. Coordinates passed to district lookup
+
+**Request Example:**
+```typescript
+const url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(address)}&apiKey=${API_KEY}&filter=countrycode:us&filter=circle:-80.5,34.0,100000`;
+```
+
+**Response Schema:**
+```typescript
+interface GeocodeSuggestion {
+  properties: {
+    formatted: string;        // "123 Main St, Columbia, SC 29201"
+    address_line1: string;
+    address_line2: string;
+    city: string;
+    state: string;
+    postcode: string;
+    lat: number;              // Latitude
+    lon: number;              // Longitude
+  };
+}
+```
+
+**Privacy:** No addresses are stored. Geocoding happens client-side. API calls include no user identification.
+
+**Error Handling:**
+- Rate limit exceeded: Show fallback message with geolocation option
+- Invalid address: Show "No results found" message
+- Network error: Retry with exponential backoff
+
+---
+
+### 9. District Boundaries (GeoJSON)
+
+**Source:** SC Legislature - Official district shapefiles converted to GeoJSON
+
+**Files:**
+- `public/maps/house-districts.geojson` (1.2MB) - 124 SC House districts
+- `public/maps/senate-districts.geojson` (837KB) - 46 SC Senate districts
+
+**What they provide:**
+- Precise geographic boundaries for each legislative district
+- GeoJSON Polygon/MultiPolygon geometries
+- District metadata (number, name)
+
+**Loading Strategy:** Lazy loaded on AddressAutocomplete focus (deferred 2MB)
+
+**Why Deferred:**
+- Not needed until user interacts with address search
+- Large file size impacts initial page load
+- Most users view statewide races before searching
+
+**District Matching Algorithm:**
+1. User address → Geocoding API → Coordinates (lat, lng)
+2. Load GeoJSON boundaries (if not already loaded)
+3. Use Turf.js `booleanPointInPolygon()` to test coordinates against each district polygon
+4. Return matching district number(s)
+
+**Implementation:** `src/lib/districtLookup.ts`
+
+```typescript
+import * as turf from '@turf/turf';
+
+export async function findDistrict(lat: number, lng: number): Promise<DistrictResult> {
+  // Lazy load GeoJSON (only once)
+  if (!houseBoundaries) {
+    houseBoundaries = await fetch('/maps/house-districts.geojson').then(r => r.json());
+  }
+
+  const point = turf.point([lng, lat]);
+
+  for (const feature of houseBoundaries.features) {
+    if (turf.booleanPointInPolygon(point, feature)) {
+      return {
+        houseDistrict: feature.properties.DISTRICT,
+        // ... senate and congressional lookup
+      };
+    }
+  }
+}
+```
+
+**Schema:**
+```typescript
+interface DistrictGeoJSON {
+  type: 'FeatureCollection';
+  features: DistrictFeature[];
+}
+
+interface DistrictFeature {
+  type: 'Feature';
+  properties: {
+    DISTRICT: number;      // District number
+    NAME?: string;         // Optional district name
+  };
+  geometry: {
+    type: 'Polygon' | 'MultiPolygon';
+    coordinates: number[][][] | number[][][][];
+  };
+}
+```
+
+**Performance Optimization:**
+- GeoJSON loaded only once and cached in memory
+- Point-in-polygon checks are O(n) where n = number of districts (~170)
+- Average lookup time: <50ms
+
+**Accuracy:** GeoJSON boundaries are sourced from official SC Legislature shapefiles, ensuring 100% accuracy for district matching.
+
+---
+
 ## Data Flow
 
 ```
