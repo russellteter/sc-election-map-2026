@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-15T15:22:03.433260Z",
+  "lastUpdated": "2026-01-16T15:20:58.599289Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1904,6 +1904,16 @@
     "115": {
       "districtNumber": 115,
       "candidates": [
+        {
+          "name": "Uricchio, Nick",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-01-15",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56131&seiId=57947&officeId=78752&reportId=418253",
+          "reportId": "418253",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Walker, Carlton",
           "party": null,
