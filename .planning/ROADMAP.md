@@ -1,125 +1,233 @@
-# SC Election Map 2026 - Roadmap
+# Roadmap: SC Election Map 2026 - API Integration
 
-> **Generated:** 2026-01-16 | GSD Roadmap Update
-> **Current Milestone:** 5 - API Intelligence Layer
-> **Current Phase:** 6 - Tier 1 Foundation
+## Overview
 
----
+Transform the SC Election Map from a static election visualization into a dynamic campaign intelligence platform by integrating BallotReady and TargetSmart APIs across 4 implementation tiers: Foundation (API infrastructure + quick wins), Strategic Intelligence (recruitment and mobilization), Enrichment (full data integration), and Advanced (party operations features).
 
-## Milestone Overview
+## Domain Expertise
 
-| Milestone | Goal | Status |
-|-----------|------|--------|
-| 1 - Make It Useful | Transform map from gray blob to meaningful visualization | Complete |
-| 2 - Make It Reliable | Establish quality infrastructure | Complete |
-| 3 - Make It Beautiful | Implement glassmorphic design system | Complete |
-| 4 - Make It Powerful | Add advanced features for power users | Complete |
-| **5 - API Intelligence** | Integrate BallotReady and TargetSmart APIs | **Active** |
+None (political data API integration - patterns established in PROJECT.md and API Integration Plan)
 
----
+## Milestones
 
-## Phase Definitions
+- 🚧 **v2.0 API Integration** - Phases 1-12 (in progress)
 
-### Milestone 5: API Intelligence Layer
+## Phases
 
-#### Phase 6: Tier 1 - Foundation
-**Directory:** `.planning/phases/06-tier-1-foundation/`
-**Focus:** API credentials and basic integrations
+**Phase Numbering:**
+- Integer phases (1, 2, 3): Planned milestone work
+- Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
-**Deliverables:**
-- `.env.local` with API credentials
-- BallotReady client enhanced for election timeline
-- TargetSmart client enhanced for voter queries
-- ElectionCountdown component (wired to BallotReady)
-- PollingPlaceFinder component (wired to API)
+### Tier 1: Foundation
 
-**Verification:** `claudedocs/gsd/verification/tier-1-checklist.md`
+- [ ] **Phase 1: API Integration Layer** - BallotReady + TargetSmart clients with caching and error handling
+- [ ] **Phase 2: Election Timeline** - Live dates from BallotReady, countdown timers, ICS calendar export
+- [ ] **Phase 3: Polling Place Finder** - Location lookup, early voting locations, driving directions
 
----
+### Tier 2: Strategic Intelligence
 
-#### Phase 7: Tier 2 - Strategic Intelligence
-**Directory:** `.planning/phases/07-tier-2-intelligence/`
-**Focus:** Live strategic data integration
+- [ ] **Phase 4: Recruitment Pipeline** - Empty competitive districts, filing requirements, deadline tracking
+- [ ] **Phase 5: Electorate Profiles** - Partisan composition, turnout propensity per district (aggregated)
+- [ ] **Phase 6: Mobilization Scoring** - "Sleeping giant" districts, enhanced opportunity tiers
 
-**Deliverables:**
-- RecruitmentPipeline with live vacant seat data
-- ElectorateProfile with TargetSmart demographics
-- MobilizationCard with calculated scores
-- Intelligence data integrated into opportunities
+### Tier 3: Enrichment
 
-**Dependencies:** Phase 6 complete
+- [ ] **Phase 7: Candidate Enrichment** - Photos, bios, endorsements, issue stances from BallotReady
+- [ ] **Phase 8: Turnout-Adjusted Scoring** - Predictive competitiveness combining historical + turnout models
+- [ ] **Phase 9: Endorsement Dashboard** - Track endorsements, gap analysis, endorser database
 
-**Verification:** `claudedocs/gsd/verification/tier-2-checklist.md`
+### Tier 4: Advanced
+
+- [ ] **Phase 10: Early Vote Tracking** - Real-time absentee/early vote returns by district
+- [ ] **Phase 11: Resource Optimizer** - Field staff allocation based on combined API data
+- [ ] **Phase 12: Down-Ballot Ecosystem** - Democratic strength mapping at all levels
 
 ---
 
-#### Phase 8: Tier 3 - Enrichment
-**Directory:** `.planning/phases/08-tier-3-enrichment/`
-**Focus:** Enhanced candidate and scoring data
+## Phase Details
 
-**Deliverables:**
-- Enhanced candidate profiles from BallotReady
-- Turnout-adjusted opportunity scores
-- EndorsementDashboard tracking
-- Race detail page enhancements
+### Phase 1: API Integration Layer
+**Goal**: Establish API infrastructure with BallotReady and TargetSmart clients
+**Depends on**: Nothing (first phase)
+**Research**: Likely (external APIs, authentication patterns, rate limiting)
+**Research topics**: BallotReady API structure and endpoints, TargetSmart authentication, client-side caching strategies
+**Plans**: TBD
 
-**Dependencies:** Phase 7 complete
+Key deliverables:
+- `src/lib/ballotready.ts` - BallotReady API client
+- `src/lib/targetsmart.ts` - TargetSmart API client
+- `src/types/ballotready.d.ts` - Type definitions
+- `src/types/targetsmart.d.ts` - Type definitions
+- `.env.local` configuration
 
-**Verification:** `claudedocs/gsd/verification/tier-3-checklist.md`
+### Phase 2: Election Timeline
+**Goal**: Replace static election dates with live BallotReady data + countdown UI
+**Depends on**: Phase 1
+**Research**: Likely (BallotReady /elections endpoint, ICS format)
+**Research topics**: BallotReady election date formats, ICS calendar export standards
+**Plans**: TBD
+
+Key deliverables:
+- `src/components/VoterGuide/ElectionCountdown.tsx`
+- Integration with Voter Guide page
+- ICS calendar export for key dates
+
+### Phase 3: Polling Place Finder
+**Goal**: Address-based polling place lookup with early voting and directions
+**Depends on**: Phase 1
+**Research**: Likely (BallotReady polling place endpoint)
+**Research topics**: BallotReady polling place data structure, Google Maps directions URL format
+**Plans**: TBD
+
+Key deliverables:
+- `src/components/VoterGuide/PollingPlaceFinder.tsx`
+- Early voting location display
+- Driving directions integration
+
+### Phase 4: Recruitment Pipeline
+**Goal**: Identify competitive districts without Democratic candidates + filing info
+**Depends on**: Phase 1, Phase 5
+**Research**: Likely (BallotReady /officeholders, filing requirements)
+**Research topics**: BallotReady officeholder data, filing deadline formats, eligibility requirements
+**Plans**: TBD
+
+Key deliverables:
+- "Recruit" tab on /opportunities page
+- `src/components/Intelligence/RecruitmentPipeline.tsx`
+- Filing requirements display
+
+### Phase 5: Electorate Profiles
+**Goal**: Pre-computed voter intelligence per district (privacy-safe aggregates)
+**Depends on**: Phase 1
+**Research**: Likely (TargetSmart aggregation patterns)
+**Research topics**: TargetSmart data enhancement API, privacy-safe aggregation design
+**Plans**: TBD
+
+Key deliverables:
+- `public/data/voter-intelligence/house-profiles.json`
+- `public/data/voter-intelligence/senate-profiles.json`
+- `src/components/Intelligence/ElectorateProfile.tsx`
+
+### Phase 6: Mobilization Scoring
+**Goal**: Identify "sleeping giant" districts and enhance opportunity tiers
+**Depends on**: Phase 5
+**Research**: Likely (scoring algorithm design)
+**Research topics**: TargetSmart turnout models, mobilization universe calculation
+**Plans**: TBD
+
+Key deliverables:
+- `mobilizationUniverse` metric in opportunity scoring
+- Enhanced strategic recommendations
+- `src/components/Intelligence/MobilizationCard.tsx`
+
+### Phase 7: Candidate Enrichment
+**Goal**: Enhance CandidateCard with BallotReady profile data
+**Depends on**: Phase 1
+**Research**: Likely (BallotReady candidate data structure)
+**Research topics**: BallotReady candidate photo URLs, bio formats, endorsement data
+**Plans**: TBD
+
+Key deliverables:
+- Enhanced `src/components/Dashboard/CandidateCard.tsx`
+- Photo, bio, endorsement display
+- Campaign website/social links
+
+### Phase 8: Turnout-Adjusted Scoring
+**Goal**: Predictive competitiveness combining historical margins + turnout models
+**Depends on**: Phase 5, Phase 6
+**Research**: Likely (algorithm design)
+**Research topics**: Combining TargetSmart turnout propensity with historical margins, weighting strategies
+**Plans**: TBD
+
+Key deliverables:
+- New `adjustedOpportunityScore` calculation
+- Districts ranked by predictive competitiveness
+- Updated opportunity tiers
+
+### Phase 9: Endorsement Dashboard
+**Goal**: Track candidate endorsements and identify gaps
+**Depends on**: Phase 7
+**Research**: Likely (BallotReady endorsement data)
+**Research topics**: BallotReady endorsement structure, endorser categorization
+**Plans**: TBD
+
+Key deliverables:
+- Endorsement tracking view
+- Gap analysis for candidates needing endorsements
+- Democratic-aligned endorser database
+
+### Phase 10: Early Vote Tracking
+**Goal**: Real-time absentee/early vote returns by district (election season)
+**Depends on**: Phase 1
+**Research**: Likely (TargetSmart early vote data)
+**Research topics**: TargetSmart early vote tracking API, update frequency, data availability timing
+**Plans**: TBD
+
+Key deliverables:
+- Early vote dashboard component
+- Per-district early vote metrics
+- Comparison to previous elections
+
+### Phase 11: Resource Optimizer
+**Goal**: Recommend field staff allocation based on combined API data
+**Depends on**: Phase 5, Phase 6, Phase 8
+**Research**: Likely (complex algorithm design)
+**Research topics**: Resource allocation algorithms, combining race density with voter universes
+**Plans**: TBD
+
+Key deliverables:
+- Resource allocation recommendations
+- "Where should our 10 field organizers go?" feature
+- Export for party operations
+
+### Phase 12: Down-Ballot Ecosystem
+**Goal**: Map Democratic strength at all levels (school board, city council, etc.)
+**Depends on**: Phase 1, Phase 7
+**Research**: Likely (BallotReady full position hierarchy)
+**Research topics**: BallotReady position types, local officeholder data, visualization approaches
+**Plans**: TBD
+
+Key deliverables:
+- Full down-ballot position discovery
+- Democratic strength visualization
+- Long-term pipeline identification
 
 ---
 
-#### Phase 9: Tier 4 - Advanced
-**Directory:** `.planning/phases/09-tier-4-advanced/`
-**Focus:** Election season features and optimization
+## Progress
 
-**Deliverables:**
-- Early vote tracking dashboard
-- Resource optimizer calculations
-- Down-ballot intelligence maps
-- Full system integration
+**Execution Order:**
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12
 
-**Dependencies:** Phase 8 complete
-
-**Verification:** `claudedocs/gsd/verification/tier-4-checklist.md`
-
----
-
-## Execution Flow
-
-```
-Phase 6 (Foundation) → Phase 7 (Intelligence) → Phase 8 (Enrichment) → Phase 9 (Advanced)
-     ↓                      ↓                        ↓                       ↓
-   Verify               Verify                   Verify                  Verify
-     ↓                      ↓                        ↓                       ↓
-   Deploy               Deploy                   Deploy                  Deploy
-```
-
-All phases are sequential - each depends on the previous.
+| Phase | Tier | Plans Complete | Status | Completed |
+|-------|------|----------------|--------|-----------|
+| 1. API Integration | Foundation | 0/TBD | Not started | - |
+| 2. Election Timeline | Foundation | 0/TBD | Not started | - |
+| 3. Polling Place Finder | Foundation | 0/TBD | Not started | - |
+| 4. Recruitment Pipeline | Intelligence | 0/TBD | Not started | - |
+| 5. Electorate Profiles | Intelligence | 0/TBD | Not started | - |
+| 6. Mobilization Scoring | Intelligence | 0/TBD | Not started | - |
+| 7. Candidate Enrichment | Enrichment | 0/TBD | Not started | - |
+| 8. Turnout-Adjusted Scoring | Enrichment | 0/TBD | Not started | - |
+| 9. Endorsement Dashboard | Enrichment | 0/TBD | Not started | - |
+| 10. Early Vote Tracking | Advanced | 0/TBD | Not started | - |
+| 11. Resource Optimizer | Advanced | 0/TBD | Not started | - |
+| 12. Down-Ballot Ecosystem | Advanced | 0/TBD | Not started | - |
 
 ---
 
-## Execution Protocol
+## Verification Checklists
 
-### Per Phase:
-1. **Pre-flight:** `/gsd:progress`, `npm run build`, `git status`
-2. **Plan:** `/gsd:plan-phase N`
-3. **Execute:** Ralph loop or `/gsd:execute-phase N`
-4. **Verify:** `/gsd:verify-work` + UAT checklist
-5. **Complete:** Create SUMMARY.md, commit, push
+Each tier has a verification checklist in `claudedocs/gsd/verification/`:
+- `tier-1-checklist.md` - Foundation verification
+- `tier-2-checklist.md` - Intelligence verification
+- `tier-3-checklist.md` - Enrichment verification
+- `tier-4-checklist.md` - Advanced verification
 
-### Per Tier (Ralph Loop):
-```bash
-/ralph-loop "Execute PLAN.md at .planning/phases/NN-name/NN-01-PLAN.md" \
-  --completion-promise 'Tier N complete and verified' \
-  --max-iterations 50
-```
+## Tier Prompts
 
----
-
-## Changelog
-
-| Date | Change |
-|------|--------|
-| 2026-01-16 | Added Milestone 5 (Phases 6-9) for API Intelligence |
-| 2026-01-13 | Initial roadmap with Milestones 1-4 |
+Execution prompts for each tier in `claudedocs/gsd/tier-prompts/`:
+- `tier-1-foundation.md`
+- `tier-2-intelligence.md`
+- `tier-3-enrichment.md`
+- `tier-4-advanced.md`
