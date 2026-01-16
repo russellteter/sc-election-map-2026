@@ -125,6 +125,55 @@ The current map is **functional but limited**:
 
 ---
 
+### Milestone 5: API Intelligence Layer
+**Goal:** Integrate BallotReady and TargetSmart APIs for live strategic data
+
+#### Phase 6: Tier 1 - Foundation
+- Configure API credentials
+- Enhance BallotReady client for live election timeline
+- Enhance TargetSmart client for basic voter queries
+- Create/wire ElectionCountdown component
+- Create/wire PollingPlaceFinder component
+
+**Success Criteria:**
+- [ ] .env.local created with API keys
+- [ ] Election countdown displays live dates from BallotReady
+- [ ] Polling place lookup returns results for SC addresses
+- [ ] `npm run build` passes
+- [ ] E2E tests pass
+
+#### Phase 7: Tier 2 - Strategic Intelligence
+- Recruitment pipeline with live vacant seat data
+- Electorate profiles from TargetSmart
+- Mobilization scoring integration
+
+**Success Criteria:**
+- [ ] RecruitmentPipeline component shows real data
+- [ ] ElectorateProfile displays district demographics
+- [ ] MobilizationCard calculates live scores
+
+#### Phase 8: Tier 3 - Enrichment
+- Enhanced candidate profiles from BallotReady officeholders
+- Turnout-adjusted opportunity scores
+- Endorsement tracking integration
+
+**Success Criteria:**
+- [ ] Candidate cards show enriched data
+- [ ] Opportunity scores include voter intelligence bonuses
+- [ ] EndorsementDashboard tracks endorsements
+
+#### Phase 9: Tier 4 - Advanced
+- Early vote tracking (election season only)
+- Resource optimizer calculations
+- Down-ballot intelligence maps
+
+**Success Criteria:**
+- [ ] Early vote dashboard functional
+- [ ] Resource allocation recommendations
+- [ ] Down-ballot map visualization
+
+---
+
 ## Technical Constraints
 
 | Constraint | Reason |
