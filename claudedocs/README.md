@@ -1,6 +1,7 @@
 # SC Election Map 2026 - Documentation Index
 
 ## Quick Navigation
+
 | Document | Purpose |
 |----------|---------|
 | [Project Bible](./# SC Election Map 2026 - Project Bible.md) | Complete strategic context, mission, API specs |
@@ -9,35 +10,73 @@
 | [gsd/OPERATIONS.md](./gsd/OPERATIONS.md) | All dev/deploy/test commands |
 
 ## Current State
+
 - **Working:** Map, opportunities, voter guide, race details, table, filters, KPIs
 - **Stubbed:** BallotReady API, TargetSmart API, voter intelligence features
 
-## GSD Commands
+## Hybrid Workflow: GSD + Ralph Wiggum
+
+This project uses **GSD** for structure/planning and **Ralph Wiggum** for persistent execution.
+
+### GSD Commands (Planning & Structure)
+
 ```bash
-/gsd:progress           # Check current phase status
+/gsd:new-project        # Initialize project with brief
+/gsd:create-roadmap     # Create roadmap and phases
 /gsd:plan-phase N       # Create PLAN.md for phase N
-/gsd:execute-phase N    # Execute all plans in phase N
+/gsd:progress           # Check current phase status
 /gsd:verify-work        # Run verification checklist
 /gsd:complete-milestone # Archive milestone, prepare next
 ```
 
-## Ralph Loop Commands
+### Ralph Wiggum Commands (Execution)
+
 ```bash
-/ralph-loop "prompt" --completion-promise 'PHRASE' --max-iterations 50
+# Execute a phase plan with persistent iteration
+/ralph-loop "Execute PLAN.md at .planning/phases/XX-name/XX-01-PLAN.md.
+Read @claudedocs/gsd/CONTEXT.md first. Follow task XML exactly.
+Commit after each working task." \
+  --completion-promise 'All tasks complete and verified' \
+  --max-iterations 50
+
+# Cancel an active loop
+/cancel-ralph
+
+# Show ralph-wiggum help
+/help
+```
+
+### Execution Flow
+
+```
+/gsd:plan-phase N          → Creates PLAN.md
+        ↓
+/ralph-loop "..." --completion-promise '...' --max-iterations 50
+        ↓
+(Claude iterates until promise fulfilled or max reached)
+        ↓
+/gsd:verify-work           → Manual UAT from verification checklist
+        ↓
+git push origin main       → Deploy
 ```
 
 ## Quick Start
-1. Read `gsd/CONTEXT.md` (2 min)
-2. Run `/gsd:progress` to see current state
-3. Run `/gsd:plan-phase N` for next phase
 
-## Tier Overview
-| Tier | Phase | Focus |
-|------|-------|-------|
-| 1 - Foundation | 6 | API credentials, election countdown, polling place finder |
-| 2 - Intelligence | 7 | Recruitment pipeline, electorate profiles, mobilization scores |
-| 3 - Enrichment | 8 | Enhanced candidates, turnout-adjusted scores, endorsements |
-| 4 - Advanced | 9 | Early vote tracking, resource optimizer, down-ballot maps |
+1. `/clear` - Fresh context
+2. `/gsd:new-project` - Initialize (if not done)
+3. `/gsd:create-roadmap` - Create phases
+4. `/gsd:plan-phase 1` - Plan first phase
+5. Use `/ralph-loop` with tier prompt from `gsd/tier-prompts/`
+6. `/gsd:verify-work` - Verify completion
+
+## Tier Prompts (for Ralph Loop)
+
+| Tier | Prompt File | Focus |
+|------|-------------|-------|
+| 1 | `gsd/tier-prompts/tier-1-foundation.md` | API setup, countdown, polling |
+| 2 | `gsd/tier-prompts/tier-2-intelligence.md` | Recruitment, profiles, scores |
+| 3 | `gsd/tier-prompts/tier-3-enrichment.md` | Candidates, endorsements |
+| 4 | `gsd/tier-prompts/tier-4-advanced.md` | Early vote, optimizer, maps |
 
 ## File Structure
 ```

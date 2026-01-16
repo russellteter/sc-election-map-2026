@@ -1,6 +1,48 @@
 # SC Election Map 2026 - Operations Reference
 
+## Ralph Wiggum Execution
+
+Ralph Wiggum provides persistent iteration for phase execution.
+
+### Basic Usage
+
+```bash
+# Execute a plan with completion promise
+/ralph-loop "Execute PLAN.md at .planning/phases/01-name/01-01-PLAN.md.
+Read @claudedocs/gsd/CONTEXT.md first.
+Follow task XML structure exactly.
+Commit after each working task." \
+  --completion-promise 'All tasks complete and verified' \
+  --max-iterations 50
+```
+
+### Commands
+
+| Command | Purpose |
+|---------|---------|
+| `/ralph-loop "prompt" --completion-promise 'text' --max-iterations N` | Start execution loop |
+| `/cancel-ralph` | Cancel active loop |
+| `/help` | Show ralph-wiggum documentation |
+
+### Completion Promise
+
+The loop exits when Claude outputs `<promise>YOUR_TEXT</promise>` matching your `--completion-promise`.
+
+**Example promises:**
+- `'All tasks complete and verified'`
+- `'Build passes, tests pass, feature works'`
+- `'Phase 1 complete'`
+
+### Safety Limits
+
+- `--max-iterations 50` prevents infinite loops
+- Claude should only output promise when genuinely complete
+- Use `/cancel-ralph` if stuck
+
+---
+
 ## Development
+
 ```bash
 npm install              # Install dependencies
 npm run dev              # Start dev server (http://localhost:3000)
