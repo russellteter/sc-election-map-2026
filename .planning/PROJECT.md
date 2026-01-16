@@ -1,234 +1,170 @@
 # SC Election Map 2026 - Project Definition
 
-> **Generated:** 2026-01-13 | GSD Project Initialization
-> **Repository:** https://github.com/russellteter/sc-election-map-2026
-> **Live Site:** https://russellteter.github.io/sc-election-map-2026/
+> Generated: 2026-01-16 | GSD Project Initialization
 
 ---
 
-## Vision
+## Mission
 
-An interactive map visualization of South Carolina's 2026 election races, enabling party recruiters and political organizers to quickly identify which districts have candidates, their party affiliations, and filing status.
+**Help Democrats win more elections in South Carolina.**
 
-## Problem Statement
-
-The current map is **functional but limited**:
-- **6% party enrichment** (House) and **0%** (Senate) - map appears as gray blob
-- **Zero test coverage** - regressions possible, no confidence in changes
-- **Accessibility violations** - excludes users, potential legal risk
-- **Plain design** - glassmorphic migration plan exists but not implemented
-
-## Target Users
-
-| User Type | Primary Need |
-|-----------|--------------|
-| Party Recruiters | Identify gaps where no candidate is running |
-| Campaign Staff | Track competitive districts |
-| Journalists | Visualize election landscape |
-| General Public | Understand local representation |
+Transform the SC Election Map from a static election visualization into a dynamic campaign intelligence platform that:
+1. **For Voters**: Provides comprehensive, personalized ballot information
+2. **For Party Staff**: Surfaces strategic opportunities across all 170 districts
+3. **For Candidates**: Identifies recruitment opportunities and funding sources
+4. **For Campaigns**: Enables data-driven resource allocation
 
 ---
 
-## Success Metrics
+## Strategic Context
 
-| Metric | Current | Target |
-|--------|---------|--------|
-| Party Enrichment (House) | 6% | ≥70% |
-| Party Enrichment (Senate) | 0% | ≥70% |
-| Test Coverage | 0% | ≥80% |
-| Lighthouse Accessibility | ~70 | ≥95 |
-| Lighthouse Performance | TBD | ≥90 |
-| Glassmorphic Design | 0% | 100% |
+**South Carolina 2026 Election Cycle**:
+- All 124 House seats on ballot
+- ~23 of 46 Senate seats on ballot (staggered terms)
+- Governor, Attorney General, other statewide offices
+- County offices, school boards, special districts
 
----
+**Current State**:
+- SC House: 124 seats, ~79% Republican control
+- SC Senate: 46 seats, ~80% Republican control
+- Only ~40 of 124 House districts have Democratic candidates
 
-## Roadmap
-
-### Milestone 1: Make It Useful
-**Goal:** Transform the map from gray blob to meaningful visualization
-
-#### Phase 1: Data Completeness
-- Research and populate party affiliations for House candidates
-- Research and populate party affiliations for Senate candidates
-- Improve color scheme (Gray=vacant, Yellow=unknown, Blue/Red=known)
-- Add data completeness indicator to UI
-
-**Success Criteria:**
-- [ ] House party enrichment ≥50%
-- [ ] Senate party enrichment ≥50%
-- [ ] Clear visual distinction between vacant and unknown
-- [ ] Data freshness visible in UI
-
-#### Phase 2: Accessibility Foundation
-- Add keyboard navigation to SVG map
-- Add ARIA labels to all interactive elements
-- Implement focus management
-- Ensure color is not only means of information
-
-**Success Criteria:**
-- [ ] Lighthouse Accessibility ≥95
-- [ ] Keyboard-only navigation works
-- [ ] Screen reader announces selections
-- [ ] Focus indicators visible
+**Dual-Purpose Strategy**:
+- **Public Layer**: Clean, professional, neutral-appearing voter information tool
+- **Strategic Layer**: Opportunity scoring, recruitment pipeline, mobilization targeting
 
 ---
 
-### Milestone 2: Make It Reliable
-**Goal:** Establish quality infrastructure to prevent regressions
+## Validated Capabilities (Current Foundation)
 
-#### Phase 3: Testing Infrastructure
-- Install Jest + Testing Library
-- Unit tests for utility functions (getDistrictColor, calculateStats)
-- Component tests for key components
-- E2E tests with Playwright for critical paths
+These features are **live and working** at https://russellteter.github.io/sc-election-map-2026/
 
-**Success Criteria:**
-- [ ] Jest configured and running
-- [ ] Unit test coverage ≥80%
-- [ ] E2E tests for map rendering (no black bug regression)
-- [ ] CI runs tests on every push
+| Feature | Description | Status |
+|---------|-------------|--------|
+| Interactive District Map | 170 clickable districts (124 House + 46 Senate) with color-coded party status | LIVE |
+| Voter Guide | Address-based personalized ballot lookup via Geoapify geocoding | LIVE |
+| Race Detail Pages | Historical data (2020-2024), incumbents, candidate information | LIVE |
+| Strategic Opportunities | Tier-based district classification (HIGH_OPPORTUNITY, EMERGING, BUILD, etc.) | LIVE |
+| Table View | Sortable/filterable data with CSV export | LIVE |
+| Progressive Data Loading | 3-tier system: 6.5KB critical → 95KB on-demand → 30KB deferred | LIVE |
+| Mobile Optimization | <10KB initial payload, 177 pre-rendered static pages | LIVE |
 
----
-
-### Milestone 3: Make It Beautiful
-**Goal:** Implement the glassmorphic design system
-
-#### Phase 4: Glassmorphic Migration
-- Implement design tokens from GLASSMORPHIC_MIGRATION_PLAN.md
-- Migrate KPI/stats cards to glassmorphic style
-- Migrate side panel to glassmorphic style
-- Add micro-animations (respect prefers-reduced-motion)
-- Update legend with new badge styles
-
-**Success Criteria:**
-- [ ] Design tokens in globals.css
-- [ ] KPI cards use glassmorphic styling
-- [ ] Side panel has backdrop-blur effects
-- [ ] Animations disabled for reduced-motion preference
+**Current Data Sources**:
+- SC Ethics Commission (candidate filings)
+- kjatwood SCHouseMap7.0 (Democratic candidate verification)
+- SC Election Commission (historical results 2020-2024)
+- Geoapify (address geocoding)
+- Static GeoJSON (district boundaries)
 
 ---
 
-### Milestone 4: Make It Powerful
-**Goal:** Add advanced features for power users
+## Active Requirements (API Integration)
 
-#### Phase 5: Advanced Features
-- Search by district number
-- Filter by party affiliation
-- URL-based state sharing
-- Export/share functionality
+### API Access
 
-**Success Criteria:**
-- [ ] Search finds districts quickly
-- [ ] Filters work correctly
-- [ ] URL reflects current view state
-- [ ] Share links work
+**BallotReady API** (CivicEngine):
+- Base URL: `https://api.civicengine.com`
+- Authentication: `x-api-key` header
+- Capabilities: Elections, positions, candidates, polling places, officeholders
 
----
+**TargetSmart API**:
+- Base URL: `https://api.targetsmart.com`
+- Authentication: API Key
+- Capabilities: Voter registration, voter search, data enhancement, district lookup
 
-### Milestone 5: API Intelligence Layer
-**Goal:** Integrate BallotReady and TargetSmart APIs for live strategic data
+### Feature Roadmap
 
-#### Phase 6: Tier 1 - Foundation
-- Configure API credentials
-- Enhance BallotReady client for live election timeline
-- Enhance TargetSmart client for basic voter queries
-- Create/wire ElectionCountdown component
-- Create/wire PollingPlaceFinder component
+#### Tier 1: Foundation
+1. **API Integration Layer** - BallotReady + TargetSmart clients with caching
+2. **Election Timeline Enhancement** - Live dates, countdown timers, calendar export
+3. **Polling Place Finder** - Location lookup, early voting, driving directions
 
-**Success Criteria:**
-- [ ] .env.local created with API keys
-- [ ] Election countdown displays live dates from BallotReady
-- [ ] Polling place lookup returns results for SC addresses
-- [ ] `npm run build` passes
-- [ ] E2E tests pass
+#### Tier 2: Strategic Intelligence
+4. **Candidate Recruitment Gap Finder** - Empty competitive districts + filing requirements
+5. **District Electorate Profiles** - Partisan composition, turnout propensity (aggregated)
+6. **Mobilization Opportunity Scores** - "Sleeping giant" district identification
 
-#### Phase 7: Tier 2 - Strategic Intelligence
-- Recruitment pipeline with live vacant seat data
-- Electorate profiles from TargetSmart
-- Mobilization scoring integration
+#### Tier 3: Enrichment
+7. **Candidate Profile Enrichment** - Photos, bios, endorsements, issue stances
+8. **Turnout-Adjusted Opportunity Scoring** - Predictive competitiveness models
+9. **Endorsement Dashboard** - Track endorsements, gap analysis
 
-**Success Criteria:**
-- [ ] RecruitmentPipeline component shows real data
-- [ ] ElectorateProfile displays district demographics
-- [ ] MobilizationCard calculates live scores
-
-#### Phase 8: Tier 3 - Enrichment
-- Enhanced candidate profiles from BallotReady officeholders
-- Turnout-adjusted opportunity scores
-- Endorsement tracking integration
-
-**Success Criteria:**
-- [ ] Candidate cards show enriched data
-- [ ] Opportunity scores include voter intelligence bonuses
-- [ ] EndorsementDashboard tracks endorsements
-
-#### Phase 9: Tier 4 - Advanced
-- Early vote tracking (election season only)
-- Resource optimizer calculations
-- Down-ballot intelligence maps
-
-**Success Criteria:**
-- [ ] Early vote dashboard functional
-- [ ] Resource allocation recommendations
-- [ ] Down-ballot map visualization
+#### Tier 4: Advanced (Post-Launch)
+10. **Early Vote Tracking** - Real-time absentee/early vote by district
+11. **Resource Optimizer** - Field staff allocation recommendations
+12. **Down-Ballot Ecosystem Map** - Democratic strength at all levels
 
 ---
 
 ## Technical Constraints
 
-| Constraint | Reason |
-|------------|--------|
-| Static export only | GitHub Pages hosting |
-| No server-side code | Free tier hosting requirement |
-| SVG-based maps | Already invested, works well |
-| Tailwind CSS | Existing choice, works with glassmorphic |
-| No external state management | App is simple enough for props |
-
-## Data Sources
-
-| Source | Data | Update Frequency |
-|--------|------|------------------|
-| SC Ethics Monitor | Candidate names, filing dates | Daily (automated) |
-| party-data.json | Party affiliations | Manual enrichment |
-| SC Election Commission | Official party data | March 2026 (when available) |
-
-## Risk Register
-
-| Risk | Likelihood | Impact | Mitigation |
-|------|------------|--------|------------|
-| Can't find all party affiliations | Medium | High | Use multiple sources, mark as unknown |
-| SVG accessibility complex | Medium | Medium | Follow W3C guidelines |
-| Black map bug returns | Low | Critical | E2E test specifically for this |
-| Glassmorphic scope creep | Medium | Low | Strictly follow migration plan |
+| Constraint | Requirement | Rationale |
+|------------|-------------|-----------|
+| Hosting | Static export to GitHub Pages | No server runtime available |
+| API Keys | Client-side (`NEXT_PUBLIC_*`) | Acceptable for read-only public data |
+| Performance | <10KB initial payload | Mobile-first user base |
+| Build Time | <15 seconds | Developer velocity |
+| Bundle Size | <3MB total | CDN efficiency |
+| Appearance | Neutral public UI | Builds trust, drives traffic |
+| Strategy | Hidden backend features | Opportunity scoring stays hidden |
 
 ---
 
-## Phase Execution Order
+## Success Metrics
 
-```
-Phase 1 (Data) ────┐
-                   ├──► Phase 3 (Testing) ──► Phase 4 (Design) ──► Phase 5 (Features)
-Phase 2 (A11y) ────┘
-```
-
-Phases 1 and 2 can execute in parallel. Phases 3-5 are sequential.
-
----
-
-## Files Reference
-
-| File | Purpose |
-|------|---------|
-| `.planning/PROJECT.md` | This file |
-| `.planning/codebase/*.md` | Codebase documentation |
-| `docs/GLASSMORPHIC_MIGRATION_PLAN.md` | Design system spec |
-| `src/data/party-data.json` | Party enrichment data |
-| `src/data/candidates.json` | Candidate filing data |
+| Metric | Current State | Target State |
+|--------|---------------|--------------|
+| Districts with Democratic candidates | ~40 of 124 House | 80+ of 124 House |
+| Competitive races identified | Historical margins only | Turnout-adjusted projections |
+| Down-ballot coverage | State legislature only | All elected positions |
+| Data freshness | Manual updates | Live API integration |
+| User actionability | View-only | Export, recruit, mobilize |
 
 ---
 
-## Changelog
+## Key Files
 
-| Date | Change |
-|------|--------|
-| 2026-01-13 | Initial PROJECT.md created via /sc:brainstorm analysis |
+| Purpose | Location |
+|---------|----------|
+| Type definitions | `src/types/schema.ts` |
+| Data loading | `src/lib/dataLoader.ts` |
+| District lookup | `src/lib/districtLookup.ts` |
+| Constants | `src/lib/constants.ts` |
+| Main pages | `src/app/` (page.tsx, voter-guide/, opportunities/, race/) |
+| Components | `src/components/` |
+| Static data | `public/data/*.json` |
+| GeoJSON boundaries | `public/data/*.geojson` |
+
+---
+
+## Guiding Principles
+
+**DO**:
+- Maintain professional, neutral-appearing public interface
+- Prioritize Democratic-strategic features in the background
+- Follow existing component patterns
+- Use the established type system
+- Leverage the 3-tier data loading strategy
+- Keep mobile performance optimized
+
+**DON'T**:
+- Add overt Democratic branding to public-facing UI
+- Expose opportunity scoring algorithms prominently
+- Break the existing glassmorphic design system
+- Introduce dependencies without clear justification
+- Create one-off components that don't follow patterns
+- Add features that don't serve the core mission
+
+---
+
+## Documentation References
+
+- **Project Bible**: `claudedocs/# SC Election Map 2026 - Project Bible.md`
+- **API Integration Plan**: `claudedocs/api-integration-plan.md`
+- **Codebase Mapping**: `.planning/codebase/` (7 documents)
+- **GSD Prompts**: `claudedocs/gsd/tier-prompts/`
+- **Verification Checklists**: `claudedocs/gsd/verification/`
+
+---
+
+*Every feature serves the mission: Help Democrats win more elections in South Carolina.*
