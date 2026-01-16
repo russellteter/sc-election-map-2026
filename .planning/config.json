@@ -1,0 +1,62 @@
+{
+  "project": "sc-election-map-2026",
+  "version": "1.0.0",
+  "initialized": "2026-01-16",
+
+  "mode": {
+    "approval": "YOLO",
+    "description": "Auto-approve without confirmation prompts"
+  },
+
+  "depth": {
+    "level": "comprehensive",
+    "phases": "8-12",
+    "description": "Thorough coverage across all 4 implementation tiers"
+  },
+
+  "parallelization": {
+    "enabled": true,
+    "maxConcurrentAgents": 4,
+    "description": "Run independent phases/tasks in parallel where possible"
+  },
+
+  "phases": {
+    "structure": "tiered",
+    "tiers": [
+      {
+        "id": 1,
+        "name": "Foundation",
+        "phases": ["API Integration", "Election Timeline", "Polling Place Finder"]
+      },
+      {
+        "id": 2,
+        "name": "Strategic Intelligence",
+        "phases": ["Recruitment Pipeline", "Electorate Profiles", "Mobilization Scoring"]
+      },
+      {
+        "id": 3,
+        "name": "Enrichment",
+        "phases": ["Candidate Enrichment", "Turnout-Adjusted Scoring", "Endorsement Dashboard"]
+      },
+      {
+        "id": 4,
+        "name": "Advanced",
+        "phases": ["Early Vote Tracking", "Resource Optimizer", "Down-Ballot Ecosystem"]
+      }
+    ]
+  },
+
+  "verification": {
+    "method": "manual-uat",
+    "checklists": "claudedocs/gsd/verification/"
+  },
+
+  "prompts": {
+    "tierPrompts": "claudedocs/gsd/tier-prompts/"
+  },
+
+  "git": {
+    "mainBranch": "main",
+    "branchPrefix": "gsd/"
+  }
+}
