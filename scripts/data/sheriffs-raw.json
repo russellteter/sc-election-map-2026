@@ -1,0 +1,379 @@
+{
+  "metadata": {
+    "source": "SC Sheriffs' Association",
+    "url": "https://sheriffsc.org/county_map/",
+    "scraped_date": "2026-01-17T20:22:47.212768Z",
+    "total_counties": 46,
+    "successful": 46
+  },
+  "sheriffs": {
+    "Abbeville": {
+      "county": "Abbeville",
+      "sheriff": "Ray Watson",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2317",
+      "scraped_date": "2026-01-17T20:21:51.539636Z",
+      "status": "success"
+    },
+    "Aiken": {
+      "county": "Aiken",
+      "sheriff": "Marty Sawyer",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2318",
+      "scraped_date": "2026-01-17T20:21:52.764852Z",
+      "status": "success"
+    },
+    "Allendale": {
+      "county": "Allendale",
+      "sheriff": "James Freeman",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2319",
+      "scraped_date": "2026-01-17T20:21:53.998380Z",
+      "status": "success"
+    },
+    "Anderson": {
+      "county": "Anderson",
+      "sheriff": "Chad McBride",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2320",
+      "scraped_date": "2026-01-17T20:21:55.227138Z",
+      "status": "success"
+    },
+    "Bamberg": {
+      "county": "Bamberg",
+      "sheriff": "Kenneth J. Bamberg",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2321",
+      "scraped_date": "2026-01-17T20:21:56.447864Z",
+      "status": "success"
+    },
+    "Barnwell": {
+      "county": "Barnwell",
+      "sheriff": "Steven W. Griffith",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2322",
+      "scraped_date": "2026-01-17T20:21:57.678220Z",
+      "status": "success"
+    },
+    "Beaufort": {
+      "county": "Beaufort",
+      "sheriff": "P.J. Tanner",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2323",
+      "scraped_date": "2026-01-17T20:21:58.926399Z",
+      "status": "success"
+    },
+    "Berkeley": {
+      "county": "Berkeley",
+      "sheriff": "S. Duane Lewis",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2324",
+      "scraped_date": "2026-01-17T20:22:00.160984Z",
+      "status": "success"
+    },
+    "Calhoun": {
+      "county": "Calhoun",
+      "sheriff": "Thomas Summers, Jr.",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2325",
+      "scraped_date": "2026-01-17T20:22:01.380577Z",
+      "status": "success"
+    },
+    "Charleston": {
+      "county": "Charleston",
+      "sheriff": "Carl Ritchie",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2326",
+      "scraped_date": "2026-01-17T20:22:02.566984Z",
+      "status": "success"
+    },
+    "Cherokee": {
+      "county": "Cherokee",
+      "sheriff": "Steve Mueller",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2327",
+      "scraped_date": "2026-01-17T20:22:03.827838Z",
+      "status": "success"
+    },
+    "Chester": {
+      "county": "Chester",
+      "sheriff": "Max Dorsey",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2328",
+      "scraped_date": "2026-01-17T20:22:05.182823Z",
+      "status": "success"
+    },
+    "Chesterfield": {
+      "county": "Chesterfield",
+      "sheriff": "Campbell Streater",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2329",
+      "scraped_date": "2026-01-17T20:22:06.431970Z",
+      "status": "success"
+    },
+    "Clarendon": {
+      "county": "Clarendon",
+      "sheriff": "Tim Baxley",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2330",
+      "scraped_date": "2026-01-17T20:22:07.645884Z",
+      "status": "success"
+    },
+    "Colleton": {
+      "county": "Colleton",
+      "sheriff": "G.L. Buddy Hill, Jr.",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2331",
+      "scraped_date": "2026-01-17T20:22:09.008039Z",
+      "status": "success"
+    },
+    "Darlington": {
+      "county": "Darlington",
+      "sheriff": "Michael August",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2332",
+      "scraped_date": "2026-01-17T20:22:10.241430Z",
+      "status": "success"
+    },
+    "Dillon": {
+      "county": "Dillon",
+      "sheriff": "James \"Jamie\" Hamilton",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2333",
+      "scraped_date": "2026-01-17T20:22:11.481594Z",
+      "status": "success"
+    },
+    "Dorchester": {
+      "county": "Dorchester",
+      "sheriff": "Sam Richardson",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2334",
+      "scraped_date": "2026-01-17T20:22:12.731250Z",
+      "status": "success"
+    },
+    "Edgefield": {
+      "county": "Edgefield",
+      "sheriff": "Jody P. Rowland",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2335",
+      "scraped_date": "2026-01-17T20:22:13.965514Z",
+      "status": "success"
+    },
+    "Fairfield": {
+      "county": "Fairfield",
+      "sheriff": "Will Montgomery",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2336",
+      "scraped_date": "2026-01-17T20:22:15.206969Z",
+      "status": "success"
+    },
+    "Florence": {
+      "county": "Florence",
+      "sheriff": "T.J. Joye",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2337",
+      "scraped_date": "2026-01-17T20:22:16.474686Z",
+      "status": "success"
+    },
+    "Georgetown": {
+      "county": "Georgetown",
+      "sheriff": "Carter Weaver",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2338",
+      "scraped_date": "2026-01-17T20:22:17.725355Z",
+      "status": "success"
+    },
+    "Greenville": {
+      "county": "Greenville",
+      "sheriff": "Hobart Lewis",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2339",
+      "scraped_date": "2026-01-17T20:22:18.976300Z",
+      "status": "success"
+    },
+    "Greenwood": {
+      "county": "Greenwood",
+      "sheriff": "Dennis Kelly",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2340",
+      "scraped_date": "2026-01-17T20:22:20.206260Z",
+      "status": "success"
+    },
+    "Hampton": {
+      "county": "Hampton",
+      "sheriff": "Anthony Russell",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2341",
+      "scraped_date": "2026-01-17T20:22:21.463664Z",
+      "status": "success"
+    },
+    "Horry": {
+      "county": "Horry",
+      "sheriff": "Phillip E. Thompson",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2342",
+      "scraped_date": "2026-01-17T20:22:22.704612Z",
+      "status": "success"
+    },
+    "Jasper": {
+      "county": "Jasper",
+      "sheriff": "Christopher Malphrus",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2343",
+      "scraped_date": "2026-01-17T20:22:23.968087Z",
+      "status": "success"
+    },
+    "Kershaw": {
+      "county": "Kershaw",
+      "sheriff": "Lee Boan",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2344",
+      "scraped_date": "2026-01-17T20:22:25.233413Z",
+      "status": "success"
+    },
+    "Lancaster": {
+      "county": "Lancaster",
+      "sheriff": "Barry Faile",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2345",
+      "scraped_date": "2026-01-17T20:22:26.481301Z",
+      "status": "success"
+    },
+    "Laurens": {
+      "county": "Laurens",
+      "sheriff": "Don Reynolds",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2346",
+      "scraped_date": "2026-01-17T20:22:27.702127Z",
+      "status": "success"
+    },
+    "Lee": {
+      "county": "Lee",
+      "sheriff": "Daniel Simon",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2347",
+      "scraped_date": "2026-01-17T20:22:28.922718Z",
+      "status": "success"
+    },
+    "Lexington": {
+      "county": "Lexington",
+      "sheriff": "Bryan \"Jay\" Koon",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2348",
+      "scraped_date": "2026-01-17T20:22:30.151944Z",
+      "status": "success"
+    },
+    "Marion": {
+      "county": "Marion",
+      "sheriff": "J. Brian Wallace",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2350",
+      "scraped_date": "2026-01-17T20:22:31.376434Z",
+      "status": "success"
+    },
+    "Marlboro": {
+      "county": "Marlboro",
+      "sheriff": "Larry McNeil",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2351",
+      "scraped_date": "2026-01-17T20:22:32.589215Z",
+      "status": "success"
+    },
+    "McCormick": {
+      "county": "McCormick",
+      "sheriff": "Chad Cox",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2349",
+      "scraped_date": "2026-01-17T20:22:33.796718Z",
+      "status": "success"
+    },
+    "Newberry": {
+      "county": "Newberry",
+      "sheriff": "Lee Foster",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2352",
+      "scraped_date": "2026-01-17T20:22:35.009239Z",
+      "status": "success"
+    },
+    "Oconee": {
+      "county": "Oconee",
+      "sheriff": "Mike Crenshaw",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2353",
+      "scraped_date": "2026-01-17T20:22:36.230833Z",
+      "status": "success"
+    },
+    "Orangeburg": {
+      "county": "Orangeburg",
+      "sheriff": "Leroy Ravenell",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2354",
+      "scraped_date": "2026-01-17T20:22:37.446024Z",
+      "status": "success"
+    },
+    "Pickens": {
+      "county": "Pickens",
+      "sheriff": "Tommy Blankenship",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2355",
+      "scraped_date": "2026-01-17T20:22:38.669575Z",
+      "status": "success"
+    },
+    "Richland": {
+      "county": "Richland",
+      "sheriff": "Leon Lott",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2356",
+      "scraped_date": "2026-01-17T20:22:39.878245Z",
+      "status": "success"
+    },
+    "Saluda": {
+      "county": "Saluda",
+      "sheriff": "Josh Price",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2357",
+      "scraped_date": "2026-01-17T20:22:41.079873Z",
+      "status": "success"
+    },
+    "Spartanburg": {
+      "county": "Spartanburg",
+      "sheriff": "Bill Rhyne",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2358",
+      "scraped_date": "2026-01-17T20:22:42.296527Z",
+      "status": "success"
+    },
+    "Sumter": {
+      "county": "Sumter",
+      "sheriff": "Anthony Dennis",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2359",
+      "scraped_date": "2026-01-17T20:22:43.519048Z",
+      "status": "success"
+    },
+    "Union": {
+      "county": "Union",
+      "sheriff": "Jeffrey D. Bailey",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2360",
+      "scraped_date": "2026-01-17T20:22:44.747001Z",
+      "status": "success"
+    },
+    "Williamsburg": {
+      "county": "Williamsburg",
+      "sheriff": "Clemson Wright, Jr.",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2361",
+      "scraped_date": "2026-01-17T20:22:45.979850Z",
+      "status": "success"
+    },
+    "York": {
+      "county": "York",
+      "sheriff": "Tony Breeden",
+      "source": "sheriffsc.org",
+      "url": "https://sheriffsc.org/county_map/county/2362",
+      "scraped_date": "2026-01-17T20:22:47.212394Z",
+      "status": "success"
+    }
+  }
+}
