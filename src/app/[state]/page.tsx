@@ -38,8 +38,8 @@ export default function StateDashboard() {
 
   // Load candidates and elections data
   useEffect(() => {
-    const basePath = window.location.pathname.includes('/blue-intelligence')
-      ? '/blue-intelligence'
+    const basePath = window.location.pathname.includes('/sc-election-map-2026')
+      ? '/sc-election-map-2026'
       : '';
 
     const cacheBuster = `v=${Date.now()}`;

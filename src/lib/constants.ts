@@ -8,7 +8,7 @@
 /**
  * Base path for GitHub Pages deployment
  *
- * In production (GitHub Pages), the app is served from `/blue-intelligence/`.
+ * In production (GitHub Pages), the app is served from `/sc-election-map-2026/`.
  * In development, the app is served from the root `/`.
  *
  * This constant is used for:
@@ -31,7 +31,7 @@
  */
 export const BASE_PATH =
   typeof window !== 'undefined' && process.env.NODE_ENV === 'production'
-    ? '/blue-intelligence'
+    ? '/sc-election-map-2026'
     : '';
 
 /**
@@ -115,8 +115,8 @@ export const APP_METADATA = {
   NAME: 'Blue Intelligence',
   DESCRIPTION: 'National Election Intelligence Platform - 50-state election intelligence demo for Democratic campaigns',
   VERSION: '1.0.0',
-  GITHUB_URL: 'https://github.com/russellteter/blue-intelligence',
-  LIVE_URL: 'https://russellteter.github.io/blue-intelligence/',
+  GITHUB_URL: 'https://github.com/russellteter/sc-election-map-2026',
+  LIVE_URL: 'https://russellteter.github.io/sc-election-map-2026/',
 } as const;
 
 /**

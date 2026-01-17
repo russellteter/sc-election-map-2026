@@ -66,9 +66,7 @@ export default function DistrictMap({
 
   // Load SVG - supports multi-state with state-prefixed filenames
   useEffect(() => {
-    const basePath = window.location.pathname.includes('/blue-intelligence')
-      ? '/blue-intelligence'
-      : window.location.pathname.includes('/sc-election-map-2026')
+    const basePath = window.location.pathname.includes('/sc-election-map-2026')
       ? '/sc-election-map-2026'
       : '';
     // Use state-specific map files (e.g., sc-house-districts.svg, nc-senate-districts.svg)
