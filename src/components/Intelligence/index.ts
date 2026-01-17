@@ -23,3 +23,11 @@ export const MobilizationCard = dynamic(() => import('./MobilizationCard'), {
 export const EndorsementDashboard = dynamic(() => import('./EndorsementDashboard'), {
   ssr: false,
 });
+
+export const ResourceOptimizer = dynamic(() => import('./ResourceOptimizer'), {
+  ssr: false,
+});
+
+export const EarlyVoteTracker = dynamic(() => import('./EarlyVoteTracker'), {
+  ssr: false,
+});

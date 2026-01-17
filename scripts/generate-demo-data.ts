@@ -20,6 +20,10 @@ import type {
   OpportunityScore,
   MobilizationData,
   StateConfig,
+  EndorsementData,
+  EarlyVoteData,
+  Endorsement,
+  DailyVoteCount,
 } from './lib/generators/types';
 
 // State configurations with baseline political data
@@ -461,6 +465,230 @@ function generateMobilizationData(
   };
 }
 
+// Endorsement organization templates
+const ENDORSING_ORGS = {
+  labor: [
+    'AFL-CIO State Chapter',
+    'SEIU Local',
+    'Teachers Union',
+    'Firefighters Union',
+    'Nurses Association',
+    'Building Trades Council',
+  ],
+  advocacy: [
+    'State Sierra Club',
+    'Planned Parenthood Action',
+    'Moms Demand Action',
+    'State Education Association',
+    'NAACP State Conference',
+    'League of Conservation Voters',
+  ],
+  organization: [
+    'State Democratic Party',
+    'County Democratic Committee',
+    'Progressive Democrats',
+    'Blue Dog Coalition',
+    'State Democratic Women',
+  ],
+  newspaper: [
+    'Regional Daily News',
+    'Metro Times',
+    'Capital City Tribune',
+    'State Journal Editorial Board',
+  ],
+};
+
+/**
+ * Generate endorsement data for a district
+ */
+function generateEndorsementData(
+  stateConfig: StateConfig,
+  chamber: 'house' | 'senate',
+  districtNum: number,
+  candidates: District,
+  opportunity: OpportunityScore
+): EndorsementData {
+  const rng = new SeededRandom(hashCode(`${stateConfig.code}-${chamber}-${districtNum}-endorsements`));
+
+  const endorsements: Endorsement[] = [];
+
+  // Get candidates by party
+  const demCandidates = candidates.candidates.filter(c => c.party === 'Democratic');
+  const repCandidates = candidates.candidates.filter(c => c.party === 'Republican');
+
+  // Higher opportunity districts get more endorsements
+  const endorsementMultiplier = opportunity.overallScore > 70 ? 1.5 :
+    opportunity.overallScore > 50 ? 1.2 : 1.0;
+
+  // Generate Democratic endorsements
+  if (demCandidates.length > 0) {
+    const demCandidate = demCandidates[0];
+    const baseEndorsements = Math.floor(rng.nextFloat(2, 6) * endorsementMultiplier);
+
+    for (let i = 0; i < baseEndorsements; i++) {
+      const type = rng.pick(['labor', 'advocacy', 'organization', 'newspaper'] as const);
+      const orgList = ENDORSING_ORGS[type];
+      const orgName = rng.pick(orgList);
+
+      // Avoid duplicate orgs
+      if (endorsements.some(e => e.name === orgName)) continue;
+
+      const weight = type === 'labor' ? rng.nextInt(3, 5) :
+        type === 'advocacy' ? rng.nextInt(2, 4) :
+        type === 'newspaper' ? rng.nextInt(3, 5) : rng.nextInt(2, 4);
+
+      endorsements.push({
+        name: orgName,
+        type,
+        party: type === 'newspaper' ? 'nonpartisan' : 'Democratic',
+        endorsee: demCandidate.name,
+        endorseeParty: 'Democratic',
+        date: `2025-${rng.nextInt(6, 12).toString().padStart(2, '0')}-${rng.nextInt(1, 28).toString().padStart(2, '0')}`,
+        weight,
+      });
+    }
+
+    // Add elected official endorsements in competitive races
+    if (opportunity.overallScore > 60 && rng.next() < 0.6) {
+      endorsements.push({
+        name: generateDeterministicName(stateConfig.code, chamber === 'house' ? 'senate' : 'house', rng.nextInt(1, 10), 99),
+        type: 'elected_official',
+        party: 'Democratic',
+        endorsee: demCandidate.name,
+        endorseeParty: 'Democratic',
+        date: `2025-${rng.nextInt(8, 12).toString().padStart(2, '0')}-${rng.nextInt(1, 28).toString().padStart(2, '0')}`,
+        weight: rng.nextInt(4, 5),
+      });
+    }
+  }
+
+  // Generate a few Republican endorsements for balance
+  if (repCandidates.length > 0) {
+    const repCandidate = repCandidates[0];
+    const repEndorsements = Math.floor(rng.nextFloat(1, 3));
+
+    for (let i = 0; i < repEndorsements; i++) {
+      endorsements.push({
+        name: rng.pick(['Chamber of Commerce', 'Farm Bureau', 'Business Roundtable', 'Realtors Association']),
+        type: 'organization',
+        party: 'Republican',
+        endorsee: repCandidate.name,
+        endorseeParty: 'Republican',
+        date: `2025-${rng.nextInt(7, 12).toString().padStart(2, '0')}-${rng.nextInt(1, 28).toString().padStart(2, '0')}`,
+        weight: rng.nextInt(2, 4),
+      });
+    }
+  }
+
+  // Calculate totals
+  const demEndorsements = endorsements.filter(e => e.endorseeParty === 'Democratic').length;
+  const repEndorsements = endorsements.filter(e => e.endorseeParty === 'Republican').length;
+  const highProfile = endorsements.filter(e => e.weight >= 4).length;
+
+  return {
+    districtNumber: districtNum,
+    chamber,
+    endorsements: endorsements.sort((a, b) => b.weight - a.weight),
+    totals: {
+      democratic: demEndorsements,
+      republican: repEndorsements,
+      highProfile,
+    },
+  };
+}
+
+/**
+ * Generate early vote tracking data for a district
+ */
+function generateEarlyVoteData(
+  stateConfig: StateConfig,
+  chamber: 'house' | 'senate',
+  districtNum: number,
+  voterIntel: VoterIntelligenceProfile
+): EarlyVoteData {
+  const rng = new SeededRandom(hashCode(`${stateConfig.code}-${chamber}-${districtNum}-earlyvote`));
+
+  const totalVoters = voterIntel.registeredVoters;
+  const demReg = voterIntel.registration.democratic;
+  const repReg = voterIntel.registration.republican;
+  const otherReg = voterIntel.registration.independent + voterIntel.registration.other;
+
+  // Early vote participation rates (typically 15-35% in competitive states)
+  const earlyVoteRate = rng.nextFloat(0.15, 0.35);
+  const requestedTotal = Math.round(totalVoters * earlyVoteRate);
+
+  // Party breakdown of requested ballots
+  const demRequestRate = rng.nextFloat(0.35, 0.55); // Dems typically request more mail ballots
+  const repRequestRate = rng.nextFloat(0.25, 0.40);
+  const demRequested = Math.round(requestedTotal * demRequestRate);
+  const repRequested = Math.round(requestedTotal * repRequestRate);
+  const otherRequested = requestedTotal - demRequested - repRequested;
+
+  // Return rate (typically 70-90%)
+  const returnRate = rng.nextFloat(0.70, 0.90);
+  const demReturned = Math.round(demRequested * returnRate * rng.nextFloat(0.95, 1.05));
+  const repReturned = Math.round(repRequested * returnRate * rng.nextFloat(0.90, 1.00));
+  const otherReturned = Math.round(otherRequested * returnRate * rng.nextFloat(0.85, 1.00));
+
+  // Generate daily counts for the last 30 days
+  const generateDailyCounts = (total: number): DailyVoteCount[] => {
+    const days: DailyVoteCount[] = [];
+    const baseDate = new Date('2026-10-15'); // Early voting period
+    let remaining = total;
+
+    for (let i = 0; i < 30; i++) {
+      const date = new Date(baseDate);
+      date.setDate(date.getDate() + i);
+
+      // More activity closer to election day
+      const dayWeight = 0.5 + (i / 30) * 1.5;
+      const dailyPct = (rng.nextFloat(0.02, 0.06) * dayWeight);
+      const count = Math.min(remaining, Math.round(total * dailyPct));
+
+      days.push({
+        date: date.toISOString().split('T')[0],
+        count,
+      });
+      remaining -= count;
+    }
+
+    // Distribute any remaining votes
+    if (remaining > 0 && days.length > 0) {
+      days[days.length - 1].count += remaining;
+    }
+
+    return days;
+  };
+
+  // Generate early in-person data (some states have this)
+  const hasEarlyInPerson = rng.next() < 0.7; // 70% of districts have early in-person
+  const earlyInPersonTotal = hasEarlyInPerson ? Math.round(totalVoters * rng.nextFloat(0.05, 0.15)) : 0;
+
+  return {
+    districtNumber: districtNum,
+    chamber,
+    ballotsRequested: {
+      total: requestedTotal,
+      democratic: demRequested,
+      republican: repRequested,
+      other: otherRequested,
+      byDate: generateDailyCounts(requestedTotal),
+    },
+    ballotsReturned: {
+      total: demReturned + repReturned + otherReturned,
+      democratic: demReturned,
+      republican: repReturned,
+      other: otherReturned,
+      byDate: generateDailyCounts(demReturned + repReturned + otherReturned),
+    },
+    earlyInPerson: hasEarlyInPerson ? {
+      total: earlyInPersonTotal,
+      byDate: generateDailyCounts(earlyInPersonTotal),
+    } : null,
+    lastUpdated: new Date().toISOString(),
+  };
+}
+
 /**
  * Generate all data for a state
  */
@@ -484,6 +712,8 @@ function generateStateData(stateConfig: StateConfig): void {
     const voterIntelData: Record<string, VoterIntelligenceProfile> = {};
     const opportunityData: Record<string, OpportunityScore> = {};
     const mobilizationData: Record<string, MobilizationData> = {};
+    const endorsementData: Record<string, EndorsementData> = {};
+    const earlyVoteData: Record<string, EarlyVoteData> = {};
 
     for (let i = 1; i <= districtCount; i++) {
       // Generate election history first (determines partisan baseline)
@@ -505,6 +735,14 @@ function generateStateData(stateConfig: StateConfig): void {
       // Generate mobilization data
       const mobilization = generateMobilizationData(stateConfig, chamber, i, voterIntel, opportunity);
       mobilizationData[String(i)] = mobilization;
+
+      // Generate endorsement data
+      const endorsements = generateEndorsementData(stateConfig, chamber, i, candidates, opportunity);
+      endorsementData[String(i)] = endorsements;
+
+      // Generate early vote data
+      const earlyVote = generateEarlyVoteData(stateConfig, chamber, i, voterIntel);
+      earlyVoteData[String(i)] = earlyVote;
     }
 
     // Write chamber-specific data
@@ -522,6 +760,14 @@ function generateStateData(stateConfig: StateConfig): void {
     fs.writeFileSync(
       path.join(outputDir, 'demo', `${chamberSuffix}-mobilization.json`),
       JSON.stringify(mobilizationData, null, 2)
+    );
+    fs.writeFileSync(
+      path.join(outputDir, 'demo', `${chamberSuffix}-endorsements.json`),
+      JSON.stringify(endorsementData, null, 2)
+    );
+    fs.writeFileSync(
+      path.join(outputDir, 'demo', `${chamberSuffix}-early-vote.json`),
+      JSON.stringify(earlyVoteData, null, 2)
     );
 
     // Store for combined output

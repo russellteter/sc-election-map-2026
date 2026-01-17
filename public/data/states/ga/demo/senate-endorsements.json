@@ -1,0 +1,2227 @@
+{
+  "1": {
+    "districtNumber": 1,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Building Trades Council",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Cooper, Ashley",
+        "endorseeParty": "Democratic",
+        "date": "2025-06-15",
+        "weight": 5
+      },
+      {
+        "name": "Capital City Tribune",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Cooper, Ashley",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-15",
+        "weight": 4
+      },
+      {
+        "name": "State Journal Editorial Board",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Cooper, Ashley",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-11",
+        "weight": 4
+      },
+      {
+        "name": "Regional Daily News",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Cooper, Ashley",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-01",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 4,
+      "republican": 0,
+      "highProfile": 3
+    }
+  },
+  "2": {
+    "districtNumber": 2,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "State Journal Editorial Board",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Patterson, Cynthia",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-02",
+        "weight": 5
+      },
+      {
+        "name": "State Democratic Women",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Patterson, Cynthia",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-01",
+        "weight": 4
+      },
+      {
+        "name": "SEIU Local",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Patterson, Cynthia",
+        "endorseeParty": "Democratic",
+        "date": "2025-06-13",
+        "weight": 4
+      },
+      {
+        "name": "State Democratic Party",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Patterson, Cynthia",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-27",
+        "weight": 2
+      },
+      {
+        "name": "State Sierra Club",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Patterson, Cynthia",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-16",
+        "weight": 2
+      },
+      {
+        "name": "Business Roundtable",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Payne, Charles",
+        "endorseeParty": "Republican",
+        "date": "2025-08-27",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 5,
+      "republican": 1,
+      "highProfile": 3
+    }
+  },
+  "3": {
+    "districtNumber": 3,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "SEIU Local",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Powell, Nicole",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-15",
+        "weight": 4
+      },
+      {
+        "name": "Planned Parenthood Action",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Powell, Nicole",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-15",
+        "weight": 3
+      },
+      {
+        "name": "Farm Bureau",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Martin, Gregory",
+        "endorseeParty": "Republican",
+        "date": "2025-11-04",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 2,
+      "republican": 1,
+      "highProfile": 1
+    }
+  },
+  "4": {
+    "districtNumber": 4,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "AFL-CIO State Chapter",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Martin, Andrew",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-05",
+        "weight": 5
+      },
+      {
+        "name": "Blue Dog Coalition",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Martin, Andrew",
+        "endorseeParty": "Democratic",
+        "date": "2025-06-21",
+        "weight": 4
+      },
+      {
+        "name": "State Journal Editorial Board",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Martin, Andrew",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-01",
+        "weight": 3
+      },
+      {
+        "name": "Planned Parenthood Action",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Martin, Andrew",
+        "endorseeParty": "Democratic",
+        "date": "2025-06-10",
+        "weight": 3
+      },
+      {
+        "name": "Building Trades Council",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Martin, Andrew",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-25",
+        "weight": 3
+      },
+      {
+        "name": "State Sierra Club",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Martin, Andrew",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-05",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 6,
+      "republican": 0,
+      "highProfile": 2
+    }
+  },
+  "5": {
+    "districtNumber": 5,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Nurses Association",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Stone, S., Daniel",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-13",
+        "weight": 5
+      },
+      {
+        "name": "Building Trades Council",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Stone, S., Daniel",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-23",
+        "weight": 5
+      },
+      {
+        "name": "AFL-CIO State Chapter",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Stone, S., Daniel",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-08",
+        "weight": 4
+      },
+      {
+        "name": "Blue Dog Coalition",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Stone, S., Daniel",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-23",
+        "weight": 3
+      },
+      {
+        "name": "Capital City Tribune",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Stone, S., Daniel",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-03",
+        "weight": 3
+      },
+      {
+        "name": "Moms Demand Action",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Stone, S., Daniel",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-22",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 6,
+      "republican": 0,
+      "highProfile": 3
+    }
+  },
+  "6": {
+    "districtNumber": 6,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "AFL-CIO State Chapter",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Reed, Edward",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-08",
+        "weight": 4
+      },
+      {
+        "name": "Firefighters Union",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Reed, Edward",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-27",
+        "weight": 3
+      },
+      {
+        "name": "Progressive Democrats",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Reed, Edward",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-21",
+        "weight": 3
+      },
+      {
+        "name": "State Democratic Party",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Reed, Edward",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-13",
+        "weight": 3
+      },
+      {
+        "name": "League of Conservation Voters",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Reed, Edward",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-17",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 5,
+      "republican": 0,
+      "highProfile": 1
+    }
+  },
+  "7": {
+    "districtNumber": 7,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "State Journal Editorial Board",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Lawson, Katherine",
+        "endorseeParty": "Democratic",
+        "date": "2025-06-22",
+        "weight": 5
+      },
+      {
+        "name": "Regional Daily News",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Lawson, Katherine",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-09",
+        "weight": 5
+      },
+      {
+        "name": "Teachers Union",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Lawson, Katherine",
+        "endorseeParty": "Democratic",
+        "date": "2025-06-22",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 3,
+      "republican": 0,
+      "highProfile": 2
+    }
+  },
+  "8": {
+    "districtNumber": 8,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Teachers Union",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Jenkins, Debra",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-11",
+        "weight": 5
+      },
+      {
+        "name": "State Democratic Women",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Jenkins, Debra",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-24",
+        "weight": 3
+      },
+      {
+        "name": "Nurses Association",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Jenkins, Debra",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-27",
+        "weight": 3
+      },
+      {
+        "name": "Realtors Association",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Davis, Richard",
+        "endorseeParty": "Republican",
+        "date": "2025-09-26",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 3,
+      "republican": 1,
+      "highProfile": 1
+    }
+  },
+  "9": {
+    "districtNumber": 9,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Business Roundtable",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Stone, Heather",
+        "endorseeParty": "Republican",
+        "date": "2025-07-27",
+        "weight": 4
+      },
+      {
+        "name": "Business Roundtable",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Stone, Heather",
+        "endorseeParty": "Republican",
+        "date": "2025-07-22",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 2,
+      "highProfile": 1
+    }
+  },
+  "10": {
+    "districtNumber": 10,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "State Democratic Party",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Russell, Kenneth",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-04",
+        "weight": 4
+      },
+      {
+        "name": "Moms Demand Action",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Russell, Kenneth",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-11",
+        "weight": 3
+      },
+      {
+        "name": "Metro Times",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Russell, Kenneth",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-27",
+        "weight": 3
+      },
+      {
+        "name": "Regional Daily News",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Russell, Kenneth",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-13",
+        "weight": 3
+      },
+      {
+        "name": "Farm Bureau",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Morales, Joshua",
+        "endorseeParty": "Republican",
+        "date": "2025-10-01",
+        "weight": 2
+      },
+      {
+        "name": "Chamber of Commerce",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Morales, Joshua",
+        "endorseeParty": "Republican",
+        "date": "2025-07-09",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 4,
+      "republican": 2,
+      "highProfile": 1
+    }
+  },
+  "11": {
+    "districtNumber": 11,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "State Journal Editorial Board",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "McDowell, V., Anthony",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-03",
+        "weight": 3
+      },
+      {
+        "name": "Building Trades Council",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "McDowell, V., Anthony",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-09",
+        "weight": 3
+      },
+      {
+        "name": "State Democratic Women",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "McDowell, V., Anthony",
+        "endorseeParty": "Democratic",
+        "date": "2025-06-24",
+        "weight": 3
+      },
+      {
+        "name": "Business Roundtable",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Smith, Brenda",
+        "endorseeParty": "Republican",
+        "date": "2025-12-25",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 3,
+      "republican": 1,
+      "highProfile": 0
+    }
+  },
+  "12": {
+    "districtNumber": 12,
+    "chamber": "senate",
+    "endorsements": [],
+    "totals": {
+      "democratic": 0,
+      "republican": 0,
+      "highProfile": 0
+    }
+  },
+  "13": {
+    "districtNumber": 13,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Regional Daily News",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Hall, Debra",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-15",
+        "weight": 4
+      },
+      {
+        "name": "AFL-CIO State Chapter",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Hall, Debra",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-08",
+        "weight": 4
+      }
+    ],
+    "totals": {
+      "democratic": 2,
+      "republican": 0,
+      "highProfile": 2
+    }
+  },
+  "14": {
+    "districtNumber": 14,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "AFL-CIO State Chapter",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Martinez, Nancy",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-11",
+        "weight": 4
+      },
+      {
+        "name": "League of Conservation Voters",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Martinez, Nancy",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-27",
+        "weight": 4
+      },
+      {
+        "name": "Nurses Association",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Martinez, Nancy",
+        "endorseeParty": "Democratic",
+        "date": "2025-06-15",
+        "weight": 3
+      },
+      {
+        "name": "Blue Dog Coalition",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Martinez, Nancy",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-02",
+        "weight": 3
+      },
+      {
+        "name": "Moms Demand Action",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Martinez, Nancy",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-18",
+        "weight": 3
+      },
+      {
+        "name": "Progressive Democrats",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Martinez, Nancy",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-18",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 6,
+      "republican": 0,
+      "highProfile": 2
+    }
+  },
+  "15": {
+    "districtNumber": 15,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Progressive Democrats",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Price, Z., Linda",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-05",
+        "weight": 4
+      },
+      {
+        "name": "Blue Dog Coalition",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Price, Z., Linda",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-08",
+        "weight": 2
+      },
+      {
+        "name": "Chamber of Commerce",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Kelly, Mary",
+        "endorseeParty": "Republican",
+        "date": "2025-12-26",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 2,
+      "republican": 1,
+      "highProfile": 1
+    }
+  },
+  "16": {
+    "districtNumber": 16,
+    "chamber": "senate",
+    "endorsements": [],
+    "totals": {
+      "democratic": 0,
+      "republican": 0,
+      "highProfile": 0
+    }
+  },
+  "17": {
+    "districtNumber": 17,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Blue Dog Coalition",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "McCoy, Eric",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-08",
+        "weight": 4
+      },
+      {
+        "name": "Regional Daily News",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "McCoy, Eric",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-15",
+        "weight": 4
+      },
+      {
+        "name": "League of Conservation Voters",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "McCoy, Eric",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-12",
+        "weight": 4
+      },
+      {
+        "name": "Realtors Association",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Sanchez, Anna",
+        "endorseeParty": "Republican",
+        "date": "2025-09-20",
+        "weight": 4
+      },
+      {
+        "name": "Realtors Association",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Sanchez, Anna",
+        "endorseeParty": "Republican",
+        "date": "2025-08-09",
+        "weight": 4
+      },
+      {
+        "name": "Building Trades Council",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "McCoy, Eric",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-10",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 4,
+      "republican": 2,
+      "highProfile": 5
+    }
+  },
+  "18": {
+    "districtNumber": 18,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Business Roundtable",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Morales, Rebecca",
+        "endorseeParty": "Republican",
+        "date": "2025-09-09",
+        "weight": 3
+      },
+      {
+        "name": "Realtors Association",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Morales, Rebecca",
+        "endorseeParty": "Republican",
+        "date": "2025-09-16",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 2,
+      "highProfile": 0
+    }
+  },
+  "19": {
+    "districtNumber": 19,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Teachers Union",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Washington, Raymond",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-13",
+        "weight": 4
+      },
+      {
+        "name": "Regional Daily News",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Washington, Raymond",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-14",
+        "weight": 3
+      },
+      {
+        "name": "League of Conservation Voters",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Washington, Raymond",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-05",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 3,
+      "republican": 0,
+      "highProfile": 1
+    }
+  },
+  "20": {
+    "districtNumber": 20,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Firefighters Union",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Harrison, Nicholas",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-17",
+        "weight": 5
+      },
+      {
+        "name": "AFL-CIO State Chapter",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Harrison, Nicholas",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-24",
+        "weight": 5
+      },
+      {
+        "name": "Capital City Tribune",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Harrison, Nicholas",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-06",
+        "weight": 5
+      }
+    ],
+    "totals": {
+      "democratic": 3,
+      "republican": 0,
+      "highProfile": 3
+    }
+  },
+  "21": {
+    "districtNumber": 21,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "State Education Association",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Jenkins, Janet",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-27",
+        "weight": 4
+      },
+      {
+        "name": "Teachers Union",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Jenkins, Janet",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-12",
+        "weight": 3
+      },
+      {
+        "name": "Planned Parenthood Action",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Jenkins, Janet",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-19",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 3,
+      "republican": 0,
+      "highProfile": 1
+    }
+  },
+  "22": {
+    "districtNumber": 22,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Farm Bureau",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Lawson, Jose",
+        "endorseeParty": "Republican",
+        "date": "2025-10-11",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 1,
+      "highProfile": 0
+    }
+  },
+  "23": {
+    "districtNumber": 23,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Nurses Association",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Peterson, Shirley",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-26",
+        "weight": 5
+      },
+      {
+        "name": "League of Conservation Voters",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Peterson, Shirley",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-24",
+        "weight": 4
+      },
+      {
+        "name": "Progressive Democrats",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Peterson, Shirley",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-13",
+        "weight": 4
+      },
+      {
+        "name": "Firefighters Union",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Peterson, Shirley",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-09",
+        "weight": 4
+      },
+      {
+        "name": "Moms Demand Action",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Peterson, Shirley",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-27",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 5,
+      "republican": 0,
+      "highProfile": 4
+    }
+  },
+  "24": {
+    "districtNumber": 24,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Mary Green",
+        "type": "elected_official",
+        "party": "Democratic",
+        "endorsee": "McAllister, Kenneth",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-27",
+        "weight": 5
+      },
+      {
+        "name": "State Education Association",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "McAllister, Kenneth",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-22",
+        "weight": 4
+      },
+      {
+        "name": "AFL-CIO State Chapter",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "McAllister, Kenneth",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-12",
+        "weight": 3
+      },
+      {
+        "name": "State Sierra Club",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "McAllister, Kenneth",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-18",
+        "weight": 3
+      },
+      {
+        "name": "State Journal Editorial Board",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "McAllister, Kenneth",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-10",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 5,
+      "republican": 0,
+      "highProfile": 2
+    }
+  },
+  "25": {
+    "districtNumber": 25,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Farm Bureau",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Turner, Melissa",
+        "endorseeParty": "Republican",
+        "date": "2025-11-21",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 1,
+      "highProfile": 0
+    }
+  },
+  "26": {
+    "districtNumber": 26,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Farm Bureau",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Campbell, Susan",
+        "endorseeParty": "Republican",
+        "date": "2025-10-09",
+        "weight": 3
+      },
+      {
+        "name": "Blue Dog Coalition",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Wood, Samuel",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-10",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 1,
+      "republican": 1,
+      "highProfile": 0
+    }
+  },
+  "27": {
+    "districtNumber": 27,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Metro Times",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Martinez, Brandon",
+        "endorseeParty": "Democratic",
+        "date": "2025-06-26",
+        "weight": 5
+      },
+      {
+        "name": "Nurses Association",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Martinez, Brandon",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-19",
+        "weight": 3
+      },
+      {
+        "name": "Firefighters Union",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Martinez, Brandon",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-16",
+        "weight": 3
+      },
+      {
+        "name": "NAACP State Conference",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Martinez, Brandon",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-02",
+        "weight": 3
+      },
+      {
+        "name": "State Democratic Party",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Martinez, Brandon",
+        "endorseeParty": "Democratic",
+        "date": "2025-06-06",
+        "weight": 2
+      },
+      {
+        "name": "State Sierra Club",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Martinez, Brandon",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-07",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 6,
+      "republican": 0,
+      "highProfile": 1
+    }
+  },
+  "28": {
+    "districtNumber": 28,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "County Democratic Committee",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Sanchez, H., Jerry",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-23",
+        "weight": 4
+      },
+      {
+        "name": "NAACP State Conference",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Sanchez, H., Jerry",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-23",
+        "weight": 3
+      },
+      {
+        "name": "State Sierra Club",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Sanchez, H., Jerry",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-26",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 3,
+      "republican": 0,
+      "highProfile": 1
+    }
+  },
+  "29": {
+    "districtNumber": 29,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Chamber of Commerce",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Flores, O., James",
+        "endorseeParty": "Republican",
+        "date": "2025-12-20",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 1,
+      "highProfile": 0
+    }
+  },
+  "30": {
+    "districtNumber": 30,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Realtors Association",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Cox, Anna",
+        "endorseeParty": "Republican",
+        "date": "2025-12-04",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 1,
+      "highProfile": 0
+    }
+  },
+  "31": {
+    "districtNumber": 31,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Realtors Association",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Watson, Robert",
+        "endorseeParty": "Republican",
+        "date": "2025-11-20",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 1,
+      "highProfile": 0
+    }
+  },
+  "32": {
+    "districtNumber": 32,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Blue Dog Coalition",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Jenkins, Debra",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-08",
+        "weight": 4
+      },
+      {
+        "name": "Metro Times",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Jenkins, Debra",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-13",
+        "weight": 4
+      }
+    ],
+    "totals": {
+      "democratic": 2,
+      "republican": 0,
+      "highProfile": 2
+    }
+  },
+  "33": {
+    "districtNumber": 33,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Heather P. Long",
+        "type": "elected_official",
+        "party": "Democratic",
+        "endorsee": "Allen, N., Daniel",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-01",
+        "weight": 5
+      },
+      {
+        "name": "State Journal Editorial Board",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Allen, N., Daniel",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-24",
+        "weight": 4
+      },
+      {
+        "name": "Capital City Tribune",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Allen, N., Daniel",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-25",
+        "weight": 3
+      },
+      {
+        "name": "Nurses Association",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Allen, N., Daniel",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-02",
+        "weight": 3
+      },
+      {
+        "name": "Chamber of Commerce",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Wilson, Carolyn",
+        "endorseeParty": "Republican",
+        "date": "2025-10-01",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 4,
+      "republican": 1,
+      "highProfile": 2
+    }
+  },
+  "34": {
+    "districtNumber": 34,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Nurses Association",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Flores, Mary",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-27",
+        "weight": 5
+      },
+      {
+        "name": "Regional Daily News",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Flores, Mary",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-25",
+        "weight": 4
+      },
+      {
+        "name": "State Journal Editorial Board",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Flores, Mary",
+        "endorseeParty": "Democratic",
+        "date": "2025-06-18",
+        "weight": 3
+      },
+      {
+        "name": "Realtors Association",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Harris, Brandon",
+        "endorseeParty": "Republican",
+        "date": "2025-11-04",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 3,
+      "republican": 1,
+      "highProfile": 2
+    }
+  },
+  "35": {
+    "districtNumber": 35,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Regional Daily News",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Stone, Frank",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-11",
+        "weight": 5
+      },
+      {
+        "name": "Building Trades Council",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Stone, Frank",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-20",
+        "weight": 4
+      },
+      {
+        "name": "Realtors Association",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Scott, I., Jacob",
+        "endorseeParty": "Republican",
+        "date": "2025-12-25",
+        "weight": 4
+      },
+      {
+        "name": "State Democratic Party",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Stone, Frank",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-19",
+        "weight": 3
+      },
+      {
+        "name": "Realtors Association",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Scott, I., Jacob",
+        "endorseeParty": "Republican",
+        "date": "2025-12-06",
+        "weight": 3
+      },
+      {
+        "name": "Progressive Democrats",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Stone, Frank",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-12",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 4,
+      "republican": 2,
+      "highProfile": 3
+    }
+  },
+  "36": {
+    "districtNumber": 36,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Business Roundtable",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Morgan, Amy",
+        "endorseeParty": "Republican",
+        "date": "2025-09-26",
+        "weight": 4
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 1,
+      "highProfile": 1
+    }
+  },
+  "37": {
+    "districtNumber": 37,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Capital City Tribune",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Cunningham, Benjamin",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-23",
+        "weight": 4
+      },
+      {
+        "name": "Metro Times",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Cunningham, Benjamin",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-12",
+        "weight": 4
+      },
+      {
+        "name": "Realtors Association",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Hicks, D., George",
+        "endorseeParty": "Republican",
+        "date": "2025-10-19",
+        "weight": 4
+      },
+      {
+        "name": "Blue Dog Coalition",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Cunningham, Benjamin",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-08",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 3,
+      "republican": 1,
+      "highProfile": 3
+    }
+  },
+  "38": {
+    "districtNumber": 38,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Chamber of Commerce",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Roberts, Emily",
+        "endorseeParty": "Republican",
+        "date": "2025-10-02",
+        "weight": 4
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 1,
+      "highProfile": 1
+    }
+  },
+  "39": {
+    "districtNumber": 39,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Chamber of Commerce",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Stevens, Thomas",
+        "endorseeParty": "Republican",
+        "date": "2025-08-26",
+        "weight": 4
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 1,
+      "highProfile": 1
+    }
+  },
+  "40": {
+    "districtNumber": 40,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Chamber of Commerce",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Wallace, Melissa",
+        "endorseeParty": "Republican",
+        "date": "2025-09-25",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 1,
+      "highProfile": 0
+    }
+  },
+  "41": {
+    "districtNumber": 41,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Farm Bureau",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Lopez, Joseph",
+        "endorseeParty": "Republican",
+        "date": "2025-09-10",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 1,
+      "highProfile": 0
+    }
+  },
+  "42": {
+    "districtNumber": 42,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "State Democratic Party",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Diaz, E., Christine",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-17",
+        "weight": 4
+      },
+      {
+        "name": "Business Roundtable",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Mason, Sandra",
+        "endorseeParty": "Republican",
+        "date": "2025-07-03",
+        "weight": 4
+      },
+      {
+        "name": "Moms Demand Action",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Diaz, E., Christine",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-19",
+        "weight": 3
+      },
+      {
+        "name": "State Sierra Club",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Diaz, E., Christine",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-26",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 3,
+      "republican": 1,
+      "highProfile": 2
+    }
+  },
+  "43": {
+    "districtNumber": 43,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Progressive Democrats",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Baker, Anna",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-03",
+        "weight": 4
+      },
+      {
+        "name": "Farm Bureau",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Ward, D., Jose",
+        "endorseeParty": "Republican",
+        "date": "2025-09-17",
+        "weight": 4
+      },
+      {
+        "name": "State Education Association",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Baker, Anna",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-03",
+        "weight": 3
+      },
+      {
+        "name": "County Democratic Committee",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Baker, Anna",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-20",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 3,
+      "republican": 1,
+      "highProfile": 2
+    }
+  },
+  "44": {
+    "districtNumber": 44,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Building Trades Council",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Foster, H., Anna",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-28",
+        "weight": 4
+      },
+      {
+        "name": "Teachers Union",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Foster, H., Anna",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-22",
+        "weight": 4
+      },
+      {
+        "name": "County Democratic Committee",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Foster, H., Anna",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-10",
+        "weight": 3
+      },
+      {
+        "name": "Realtors Association",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Cruz, Melissa",
+        "endorseeParty": "Republican",
+        "date": "2025-07-17",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 3,
+      "republican": 1,
+      "highProfile": 2
+    }
+  },
+  "45": {
+    "districtNumber": 45,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Building Trades Council",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Holloway, J., Frank",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-17",
+        "weight": 5
+      },
+      {
+        "name": "Planned Parenthood Action",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Holloway, J., Frank",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-10",
+        "weight": 4
+      },
+      {
+        "name": "Capital City Tribune",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Holloway, J., Frank",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-13",
+        "weight": 4
+      },
+      {
+        "name": "Moms Demand Action",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Holloway, J., Frank",
+        "endorseeParty": "Democratic",
+        "date": "2025-06-14",
+        "weight": 4
+      },
+      {
+        "name": "Firefighters Union",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Holloway, J., Frank",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-27",
+        "weight": 4
+      },
+      {
+        "name": "Teachers Union",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Holloway, J., Frank",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-19",
+        "weight": 3
+      },
+      {
+        "name": "Progressive Democrats",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Holloway, J., Frank",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-02",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 7,
+      "republican": 0,
+      "highProfile": 5
+    }
+  },
+  "46": {
+    "districtNumber": 46,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Farm Bureau",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Adams, Rebecca",
+        "endorseeParty": "Republican",
+        "date": "2025-07-05",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 1,
+      "highProfile": 0
+    }
+  },
+  "47": {
+    "districtNumber": 47,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "SEIU Local",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Morgan, Daniel",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-28",
+        "weight": 4
+      },
+      {
+        "name": "Farm Bureau",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Mills, Aaron",
+        "endorseeParty": "Republican",
+        "date": "2025-12-28",
+        "weight": 4
+      },
+      {
+        "name": "Farm Bureau",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Mills, Aaron",
+        "endorseeParty": "Republican",
+        "date": "2025-12-03",
+        "weight": 3
+      },
+      {
+        "name": "State Democratic Women",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Morgan, Daniel",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-20",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 2,
+      "republican": 2,
+      "highProfile": 2
+    }
+  },
+  "48": {
+    "districtNumber": 48,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "State Journal Editorial Board",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Ross, Carolyn",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-26",
+        "weight": 4
+      },
+      {
+        "name": "Nurses Association",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Ross, Carolyn",
+        "endorseeParty": "Democratic",
+        "date": "2025-06-21",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 2,
+      "republican": 0,
+      "highProfile": 1
+    }
+  },
+  "49": {
+    "districtNumber": 49,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Nurses Association",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Taylor, V., Robert",
+        "endorseeParty": "Democratic",
+        "date": "2025-08-14",
+        "weight": 5
+      },
+      {
+        "name": "SEIU Local",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Taylor, V., Robert",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-23",
+        "weight": 5
+      },
+      {
+        "name": "Planned Parenthood Action",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Taylor, V., Robert",
+        "endorseeParty": "Democratic",
+        "date": "2025-09-16",
+        "weight": 4
+      },
+      {
+        "name": "Capital City Tribune",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Taylor, V., Robert",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-21",
+        "weight": 3
+      },
+      {
+        "name": "Business Roundtable",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Reed, David",
+        "endorseeParty": "Republican",
+        "date": "2025-11-28",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 4,
+      "republican": 1,
+      "highProfile": 3
+    }
+  },
+  "50": {
+    "districtNumber": 50,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Business Roundtable",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "McDowell, E., Mary",
+        "endorseeParty": "Republican",
+        "date": "2025-12-04",
+        "weight": 4
+      },
+      {
+        "name": "Realtors Association",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "McDowell, E., Mary",
+        "endorseeParty": "Republican",
+        "date": "2025-09-12",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 2,
+      "highProfile": 1
+    }
+  },
+  "51": {
+    "districtNumber": 51,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Realtors Association",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Turner, Joseph",
+        "endorseeParty": "Republican",
+        "date": "2025-07-22",
+        "weight": 4
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 1,
+      "highProfile": 1
+    }
+  },
+  "52": {
+    "districtNumber": 52,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Capital City Tribune",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Gonzalez, Richard",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-24",
+        "weight": 4
+      },
+      {
+        "name": "Regional Daily News",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Gonzalez, Richard",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-20",
+        "weight": 3
+      },
+      {
+        "name": "Farm Bureau",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Stone, Christine",
+        "endorseeParty": "Republican",
+        "date": "2025-07-05",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 2,
+      "republican": 1,
+      "highProfile": 1
+    }
+  },
+  "53": {
+    "districtNumber": 53,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "SEIU Local",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Hampton, Jeffrey",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-02",
+        "weight": 3
+      },
+      {
+        "name": "Progressive Democrats",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Hampton, Jeffrey",
+        "endorseeParty": "Democratic",
+        "date": "2025-06-03",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 2,
+      "republican": 0,
+      "highProfile": 0
+    }
+  },
+  "54": {
+    "districtNumber": 54,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "State Journal Editorial Board",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Singleton, L., Anthony",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-16",
+        "weight": 4
+      },
+      {
+        "name": "Firefighters Union",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Singleton, L., Anthony",
+        "endorseeParty": "Democratic",
+        "date": "2025-07-06",
+        "weight": 4
+      },
+      {
+        "name": "County Democratic Committee",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Singleton, L., Anthony",
+        "endorseeParty": "Democratic",
+        "date": "2025-11-25",
+        "weight": 3
+      },
+      {
+        "name": "Realtors Association",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Lawson, F., Anna",
+        "endorseeParty": "Republican",
+        "date": "2025-07-27",
+        "weight": 3
+      }
+    ],
+    "totals": {
+      "democratic": 3,
+      "republican": 1,
+      "highProfile": 2
+    }
+  },
+  "55": {
+    "districtNumber": 55,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Metro Times",
+        "type": "newspaper",
+        "party": "nonpartisan",
+        "endorsee": "Preston, H., Joshua",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-24",
+        "weight": 5
+      },
+      {
+        "name": "Building Trades Council",
+        "type": "labor",
+        "party": "Democratic",
+        "endorsee": "Preston, H., Joshua",
+        "endorseeParty": "Democratic",
+        "date": "2025-06-11",
+        "weight": 4
+      },
+      {
+        "name": "NAACP State Conference",
+        "type": "advocacy",
+        "party": "Democratic",
+        "endorsee": "Preston, H., Joshua",
+        "endorseeParty": "Democratic",
+        "date": "2025-10-03",
+        "weight": 4
+      },
+      {
+        "name": "Blue Dog Coalition",
+        "type": "organization",
+        "party": "Democratic",
+        "endorsee": "Preston, H., Joshua",
+        "endorseeParty": "Democratic",
+        "date": "2025-12-20",
+        "weight": 2
+      },
+      {
+        "name": "Chamber of Commerce",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Henderson, Jacob",
+        "endorseeParty": "Republican",
+        "date": "2025-08-28",
+        "weight": 2
+      },
+      {
+        "name": "Farm Bureau",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Henderson, Jacob",
+        "endorseeParty": "Republican",
+        "date": "2025-12-20",
+        "weight": 2
+      }
+    ],
+    "totals": {
+      "democratic": 4,
+      "republican": 2,
+      "highProfile": 3
+    }
+  },
+  "56": {
+    "districtNumber": 56,
+    "chamber": "senate",
+    "endorsements": [
+      {
+        "name": "Chamber of Commerce",
+        "type": "organization",
+        "party": "Republican",
+        "endorsee": "Cook, Linda",
+        "endorseeParty": "Republican",
+        "date": "2025-08-10",
+        "weight": 4
+      }
+    ],
+    "totals": {
+      "democratic": 0,
+      "republican": 1,
+      "highProfile": 1
+    }
+  }
+}

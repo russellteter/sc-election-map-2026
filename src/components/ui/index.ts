@@ -24,3 +24,6 @@ export {
   type CardProps,
   type CardVariant,
 } from './Card';
+
+// Demo Data badge for indicating demo/placeholder data
+export { default as DemoBadge, type DemoBadgeProps } from './DemoBadge';

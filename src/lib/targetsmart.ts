@@ -348,9 +348,10 @@ export async function getDistrictsByCoordinates(
  */
 export async function getDistrictElectorateProfile(
   chamber: 'house' | 'senate',
-  districtNumber: number
+  districtNumber: number,
+  stateCode: string = 'sc'
 ): Promise<DistrictElectorateProfile | null> {
-  const cacheKey = `profile:${chamber}:${districtNumber}`;
+  const cacheKey = `profile:${stateCode}:${chamber}:${districtNumber}`;
   const cached = cache.get<DistrictElectorateProfile>(cacheKey);
   if (cached) return cached;
 
@@ -361,6 +362,24 @@ export async function getDistrictElectorateProfile(
         ? '/sc-election-map-2026'
         : '';
 
+    // Try state-specific demo data first
+    const demoResponse = await fetch(
+      `${basePath}/data/states/${stateCode.toLowerCase()}/demo/${chamber}-voter-intelligence.json`
+    );
+
+    if (demoResponse.ok) {
+      const data = await demoResponse.json();
+      const voterIntel = data[districtNumber.toString()];
+
+      if (voterIntel) {
+        // Convert from demo format to DistrictElectorateProfile
+        const profile = convertVoterIntelToProfile(chamber, districtNumber, voterIntel);
+        cache.set(cacheKey, profile, CACHE_TTL.districtProfile);
+        return profile;
+      }
+    }
+
+    // Fallback to SC voter-intelligence data
     const response = await fetch(
       `${basePath}/data/voter-intelligence/${chamber}-profiles.json`
     );
@@ -383,6 +402,128 @@ export async function getDistrictElectorateProfile(
     // Return mock data for development
     return generateMockProfile(chamber, districtNumber);
   }
+}
+
+/**
+ * Convert VoterIntelligenceProfile (demo data format) to DistrictElectorateProfile
+ */
+function convertVoterIntelToProfile(
+  chamber: 'house' | 'senate',
+  districtNumber: number,
+  voterIntel: {
+    registeredVoters: number;
+    turnout2024: number;
+    turnout2022: number;
+    turnout2020: number;
+    registration: { democratic: number; republican: number; independent: number; other: number };
+    demographics: { medianAge: number; collegeEducated: number; urbanization: string; diversityIndex: number };
+    trends: { registrationTrend: number; turnoutTrend: number; demographicShift: number };
+  }
+): DistrictElectorateProfile {
+  const totalVoters = voterIntel.registeredVoters;
+  const reg = voterIntel.registration;
+
+  const partisanComposition: DistrictPartisanComposition = {
+    totalRegistered: totalVoters,
+    partyRegistration: {
+      democratic: reg.democratic,
+      republican: reg.republican,
+      independent: reg.independent,
+      other: reg.other,
+      noParty: 0,
+    },
+    partisanDistribution: {
+      strongDem: Math.floor(reg.democratic * 0.6),
+      leanDem: Math.floor(reg.democratic * 0.4),
+      swing: Math.floor(reg.independent * 0.6),
+      leanRep: Math.floor(reg.republican * 0.4),
+      strongRep: Math.floor(reg.republican * 0.6),
+    },
+    averagePartisanScore: Math.floor((reg.democratic / totalVoters) * 100),
+  };
+
+  const turnoutProfile: DistrictTurnoutProfile = {
+    turnoutDistribution: {
+      high: Math.floor(totalVoters * 0.25),
+      medium: Math.floor(totalVoters * 0.35),
+      low: Math.floor(totalVoters * 0.25),
+      veryLow: Math.floor(totalVoters * 0.15),
+    },
+    averageTurnout: {
+      general: voterIntel.turnout2024 * 100,
+      primary: voterIntel.turnout2022 * 100 * 0.4,
+      midterm: voterIntel.turnout2022 * 100,
+      presidential: voterIntel.turnout2020 * 100,
+    },
+    historicalTurnout: [
+      { year: 2024, type: 'general', turnoutRate: voterIntel.turnout2024 * 100 },
+      { year: 2022, type: 'general', turnoutRate: voterIntel.turnout2022 * 100 },
+      { year: 2020, type: 'general', turnoutRate: voterIntel.turnout2020 * 100 },
+    ],
+  };
+
+  const demographics: DistrictDemographicProfile = {
+    ageDistribution: {
+      age18_29: Math.floor(totalVoters * 0.18),
+      age30_44: Math.floor(totalVoters * 0.25),
+      age45_64: Math.floor(totalVoters * 0.32),
+      age65Plus: Math.floor(totalVoters * 0.25),
+    },
+    genderDistribution: {
+      male: Math.floor(totalVoters * 0.47),
+      female: Math.floor(totalVoters * 0.52),
+      unknown: Math.floor(totalVoters * 0.01),
+    },
+    ethnicityDistribution: {
+      white: Math.floor(totalVoters * (1 - voterIntel.demographics.diversityIndex) * 0.9),
+      black: Math.floor(totalVoters * voterIntel.demographics.diversityIndex * 0.6),
+      hispanic: Math.floor(totalVoters * voterIntel.demographics.diversityIndex * 0.2),
+      asian: Math.floor(totalVoters * voterIntel.demographics.diversityIndex * 0.1),
+      other: Math.floor(totalVoters * voterIntel.demographics.diversityIndex * 0.1),
+    },
+    educationDistribution: {
+      highSchoolOrLess: Math.floor(totalVoters * (1 - voterIntel.demographics.collegeEducated) * 0.6),
+      someCollege: Math.floor(totalVoters * (1 - voterIntel.demographics.collegeEducated) * 0.4),
+      bachelors: Math.floor(totalVoters * voterIntel.demographics.collegeEducated * 0.6),
+      graduate: Math.floor(totalVoters * voterIntel.demographics.collegeEducated * 0.4),
+    },
+  };
+
+  const lowTurnoutDems = Math.floor(
+    partisanComposition.partisanDistribution.strongDem * 0.3 +
+    partisanComposition.partisanDistribution.leanDem * 0.4
+  );
+
+  const mobilizationUniverse: MobilizationUniverse = {
+    lowTurnoutDems: {
+      count: lowTurnoutDems,
+      percentage: (lowTurnoutDems / totalVoters) * 100,
+      potential: lowTurnoutDems > 2000 ? 'high' : lowTurnoutDems > 1000 ? 'medium' : 'low',
+    },
+    swingVoters: {
+      count: partisanComposition.partisanDistribution.swing,
+      percentage: (partisanComposition.partisanDistribution.swing / totalVoters) * 100,
+    },
+    persuadable: {
+      leanDem: partisanComposition.partisanDistribution.leanDem,
+      leanRep: partisanComposition.partisanDistribution.leanRep,
+      total: partisanComposition.partisanDistribution.leanDem + partisanComposition.partisanDistribution.leanRep,
+    },
+    mobilizationPriority: Math.min(100, Math.floor((lowTurnoutDems / totalVoters) * 500)),
+    estimatedVotePickup: Math.floor(lowTurnoutDems * 0.3),
+  };
+
+  return {
+    chamber,
+    districtNumber,
+    partisanComposition,
+    turnoutProfile,
+    demographics,
+    mobilizationUniverse,
+    dataAsOf: new Date().toISOString(),
+    sampleSize: Math.floor(totalVoters * 0.8),
+    confidenceLevel: 'medium',
+  };
 }
 
 /**
@@ -558,9 +699,10 @@ export async function getHighMobilizationDistricts(
  */
 export async function getEarlyVoteTracking(
   chamber: 'house' | 'senate',
-  districtNumber: number
+  districtNumber: number,
+  stateCode: string = 'sc'
 ): Promise<EarlyVoteTracking | null> {
-  const cacheKey = `earlyvote:${chamber}:${districtNumber}`;
+  const cacheKey = `earlyvote:${stateCode}:${chamber}:${districtNumber}`;
   const cached = cache.get<EarlyVoteTracking>(cacheKey);
   if (cached) return cached;
 
@@ -570,6 +712,31 @@ export async function getEarlyVoteTracking(
         ? '/sc-election-map-2026'
         : '';
 
+    // Try state-specific demo data first
+    const demoResponse = await fetch(
+      `${basePath}/data/states/${stateCode.toLowerCase()}/demo/${chamber}-early-vote.json`
+    );
+
+    if (demoResponse.ok) {
+      const data = await demoResponse.json();
+      const tracking = data[districtNumber.toString()];
+
+      if (tracking) {
+        // Convert from demo format to EarlyVoteTracking format
+        const earlyVoteTracking: EarlyVoteTracking = {
+          districtNumber,
+          chamber,
+          ballotsRequested: tracking.ballotsRequested,
+          ballotsReturned: tracking.ballotsReturned,
+          earlyInPerson: tracking.earlyInPerson || { total: 0, byDate: [] },
+          asOf: tracking.lastUpdated || new Date().toISOString(),
+        };
+        cache.set(cacheKey, earlyVoteTracking, CACHE_TTL.earlyVote);
+        return earlyVoteTracking;
+      }
+    }
+
+    // Fallback to SC voter-intelligence data
     const response = await fetch(
       `${basePath}/data/voter-intelligence/early-vote-tracking.json`
     );
@@ -587,6 +754,70 @@ export async function getEarlyVoteTracking(
     }
 
     return tracking || null;
+  } catch {
+    return null;
+  }
+}
+
+// =============================================================================
+// Endorsement Data
+// =============================================================================
+
+export interface DistrictEndorsement {
+  name: string;
+  type: 'organization' | 'elected_official' | 'labor' | 'advocacy' | 'newspaper';
+  party: 'Democratic' | 'Republican' | 'nonpartisan';
+  endorsee: string;
+  endorseeParty: 'Democratic' | 'Republican';
+  date: string;
+  weight: number;
+}
+
+export interface DistrictEndorsementData {
+  districtNumber: number;
+  chamber: 'house' | 'senate';
+  endorsements: DistrictEndorsement[];
+  totals: {
+    democratic: number;
+    republican: number;
+    highProfile: number;
+  };
+}
+
+/**
+ * Get endorsement data for a district
+ */
+export async function getDistrictEndorsements(
+  chamber: 'house' | 'senate',
+  districtNumber: number,
+  stateCode: string = 'sc'
+): Promise<DistrictEndorsementData | null> {
+  const cacheKey = `endorsements:${stateCode}:${chamber}:${districtNumber}`;
+  const cached = cache.get<DistrictEndorsementData>(cacheKey);
+  if (cached) return cached;
+
+  try {
+    const basePath =
+      typeof window !== 'undefined' && process.env.NODE_ENV === 'production'
+        ? '/sc-election-map-2026'
+        : '';
+
+    const response = await fetch(
+      `${basePath}/data/states/${stateCode.toLowerCase()}/demo/${chamber}-endorsements.json`
+    );
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const data = await response.json();
+    const endorsementData = data[districtNumber.toString()];
+
+    if (endorsementData) {
+      cache.set(cacheKey, endorsementData, 24 * 60 * 60 * 1000); // 24 hour cache
+    }
+
+    return endorsementData || null;
   } catch {
     return null;
   }

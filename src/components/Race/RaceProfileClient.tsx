@@ -18,6 +18,13 @@ import {
   StrategicRecommendations,
 } from '@/components/Race';
 import { Button } from '@/components/ui';
+import {
+  ElectorateProfile,
+  MobilizationCard,
+  ResourceOptimizer,
+  EarlyVoteTracker,
+} from '@/components/Intelligence';
+import { DemoBadge } from '@/components/ui';
 
 type Chamber = 'house' | 'senate';
 
@@ -287,6 +294,75 @@ export default function RaceProfileClient({ chamber: chamberParam, district: dis
             chamber={chamber}
             districtNumber={districtNumber}
           />
+        </section>
+
+        {/* Voter Intelligence Section */}
+        <section className="animate-entrance stagger-5">
+          <div className="glass-surface rounded-xl p-5">
+            <div className="flex items-center gap-3 mb-4">
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center"
+                style={{
+                  background: 'linear-gradient(135deg, #6366F1 0%, #4F46E5 100%)',
+                }}
+              >
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <h3
+                    className="text-base font-semibold font-display"
+                    style={{ color: 'var(--text-color)' }}
+                  >
+                    Voter Intelligence
+                  </h3>
+                  <DemoBadge />
+                </div>
+                <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+                  Electorate profile and campaign strategy insights
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {/* Electorate Profile */}
+              <div>
+                <ElectorateProfile
+                  chamber={chamber}
+                  districtNumber={districtNumber}
+                />
+              </div>
+
+              {/* Mobilization Card */}
+              <div>
+                <MobilizationCard
+                  chamber={chamber}
+                  districtNumber={districtNumber}
+                  compact
+                />
+              </div>
+
+              {/* Resource Optimizer */}
+              <div>
+                <ResourceOptimizer
+                  chamber={chamber}
+                  districtNumber={districtNumber}
+                  compact
+                />
+              </div>
+
+              {/* Early Vote Tracker */}
+              <div>
+                <EarlyVoteTracker
+                  chamber={chamber}
+                  districtNumber={districtNumber}
+                  compact
+                />
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Data freshness indicator */}
