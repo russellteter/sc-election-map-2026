@@ -1,129 +1,100 @@
-# Technology Stack - SC Election Map 2026
+# Technology Stack
 
-> Generated: 2026-01-12 | GSD Codebase Mapping
+**Analysis Date:** 2026-01-17
+**Focus:** SC Voter Guide System
 
-## Primary Language & Version
+## Languages
 
-| Technology | Version | Notes |
-|------------|---------|-------|
-| **TypeScript** | 5 | Strict mode enabled |
-| **Target** | ES2017 | JSX React mode |
-| **Module Resolution** | bundler | Path alias: `@/*` → `./src/*` |
+**Primary:**
+- TypeScript 5.x - All application code (strict mode)
 
-## Framework
+**Secondary:**
+- JavaScript - Configuration files (next.config.ts uses TS)
+- CSS - Tailwind v4 with design tokens
 
-| Framework | Version | Configuration |
-|-----------|---------|---------------|
-| **Next.js** | 16.1.1 | App Router, Static Export |
-| **React** | 19.2.3 | Latest with automatic runtime |
-| **React DOM** | 19.2.3 | Client-side rendering |
+## Runtime
 
-### Next.js Configuration
+**Environment:**
+- Node.js 20+ (LTS)
+- Browser runtime (Next.js SSG → static HTML/JS)
+- Static export (no server runtime in production)
 
-```typescript
-// next.config.ts
-{
-  output: 'export',                    // Static generation (no server)
-  basePath: '/sc-election-map-2026',   // GitHub Pages subdirectory
-  assetPrefix: '/sc-election-map-2026/', // Asset URL prefix
-  images: { unoptimized: true },       // No Next.js image optimization
-  trailingSlash: true                  // URLs end with /
-}
-```
+**Package Manager:**
+- npm
+- Lockfile: `package-lock.json` present
 
-## Build Tools
+## Frameworks
 
-| Tool | Purpose |
-|------|---------|
-| **npm** | Package manager (package-lock.json) |
-| **Node.js** | 20 (GitHub Actions requirement) |
-| **Webpack** | Bundler (via Next.js) |
+**Core:**
+- Next.js 16.1.1 - App Router with static export
+- React 19.2.3 - UI components
 
-### Scripts
+**Testing:**
+- Jest 30.2.0 - Unit tests
+- Playwright 1.57.0 - E2E tests
+- Testing Library (React 16.3.1, Jest-DOM 6.9.1, User Event 14.6.1)
 
-```json
-{
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "lint": "eslint"
-}
-```
-
-## Styling
-
-| Technology | Version | Notes |
-|------------|---------|-------|
-| **Tailwind CSS** | 4 | Utility-first CSS |
-| **PostCSS** | 4 | Via `postcss.config.mjs` |
-| **Design System** | Custom | Glassmorphic tokens in CSS variables |
-
-### Design System Colors
-
-```css
---class-purple: #4739E7;           /* Primary brand */
---class-purple-light: #DAD7FA;     /* Light variant */
---glass-background: #EDECFD;       /* Page background */
---text-color: #0A1849;             /* Midnight blue */
-
-/* Election map semantic colors */
---map-democrat: #3b82f6;           /* Blue */
---map-republican: #ef4444;         /* Red */
---map-both-parties: #a855f7;       /* Purple */
---map-unknown: #9ca3af;            /* Gray */
---map-empty: #f3f4f6;              /* Light gray */
-```
+**Build/Dev:**
+- Turbopack - Default bundler (Next.js 16+)
+- Webpack fallback - Performance budgets (200KB entry, 100KB asset)
+- TypeScript 5.x - Compilation
+- Tailwind CSS v4 - Styling via @tailwindcss/postcss
 
 ## Key Dependencies
 
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `next` | 16.1.1 | Framework |
-| `react` | 19.2.3 | UI library |
-| `react-dom` | 19.2.3 | DOM rendering |
-| `tailwindcss` | ^4 | Styling |
-| `@tailwindcss/postcss` | ^4 | PostCSS plugin |
+**Critical (Voter Guide):**
+- `@turf/boolean-point-in-polygon` 7.3.1 - Point-in-polygon district lookup
+- `@turf/helpers` 7.3.1 - GeoJSON geometry helpers
+- `@geoapify/geocoder-autocomplete` 3.0.1 - Address autocomplete UI
 
-## Development Tools
+**Infrastructure:**
+- `next` 16.1.1 - Framework core
+- `react` 19.2.3 - UI rendering
+- `react-dom` 19.2.3 - DOM binding
 
-| Tool | Version | Configuration |
-|------|---------|---------------|
-| **ESLint** | 9 | `eslint.config.mjs` (flat config) |
-| **TypeScript** | 5 | `tsconfig.json` (strict mode) |
+**Dev Dependencies:**
+- `ts-jest` 29.4.6 - TypeScript test support
+- `dotenv` 17.2.3 - Environment variable loading
+- `eslint` 9.x + `eslint-config-next` 16.1.1 - Linting
 
-### ESLint Plugins
+## Configuration
 
-- `eslint-config-next/core-web-vitals` - Performance rules
-- `eslint-config-next/typescript` - TypeScript rules
+**Environment:**
+- `.env.local` for development secrets (gitignored)
+- `NEXT_PUBLIC_GEOAPIFY_KEY` - Address autocomplete API
+- All env vars are `NEXT_PUBLIC_*` (client-side, static export)
 
-### Ignored Paths
+**Build:**
+- `next.config.ts` - Static export, basePath, assetPrefix for GitHub Pages
+- `tsconfig.json` - TypeScript strict mode
+- `jest.config.js` - Test runner configuration
+- `playwright.config.ts` - E2E test configuration
 
-- `.next/` - Build artifacts
-- `out/` - Static export output
-- `build/` - Alternative build output
-- `next-env.d.ts` - Generated types
+## Platform Requirements
 
-## Fonts
+**Development:**
+- macOS/Linux/Windows (any platform with Node.js 20+)
+- npm for package management
+- No Docker required
 
-- **Geist Sans** - Primary font (via `next/font/google`)
-- **Geist Mono** - Monospace font
+**Production:**
+- Static HTML/JS/CSS files
+- GitHub Pages hosting (via `output: 'export'`)
+- basePath: `/sc-election-map-2026` in production
+- No server runtime (fully static)
 
-## Runtime Environment
+## Voter Guide-Specific Stack
 
-| Environment | Value |
-|-------------|-------|
-| **Client-Side** | Yes (`'use client'` directives) |
-| **Server-Side** | No (static export) |
-| **Deployment** | GitHub Pages |
-| **CDN** | GitHub Pages CDN |
+| Purpose | Technology | File |
+|---------|------------|------|
+| Address Input | Geoapify Autocomplete | `src/components/VoterGuide/AddressAutocomplete.tsx` |
+| Geocoding Fallback | Nominatim (OpenStreetMap) | `src/lib/geocoding.ts` |
+| District Detection | Turf.js Point-in-Polygon | `src/lib/districtLookup.ts` |
+| Congressional Lookup | County FIPS Mapping | `src/lib/congressionalLookup.ts` |
+| Data Loading | Progressive 3-Tier System | `src/lib/dataLoader.ts` |
+| Type Definitions | TypeScript Interfaces | `src/types/schema.ts` |
 
-## File Extensions
+---
 
-| Extension | Usage |
-|-----------|-------|
-| `.tsx` | React components with TypeScript |
-| `.ts` | TypeScript utilities/config |
-| `.css` | Global styles |
-| `.json` | Data files |
-| `.svg` | Map assets |
-| `.mjs` | ES module configs (PostCSS, ESLint) |
+*Stack analysis: 2026-01-17*
+*Update after major dependency changes*

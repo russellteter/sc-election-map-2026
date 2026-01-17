@@ -1,307 +1,309 @@
-# Testing - SC Election Map 2026
+# Testing Patterns
 
-> Generated: 2026-01-12 | GSD Codebase Mapping
+**Analysis Date:** 2026-01-17
+**Focus:** SC Voter Guide System
 
-## Current Status
+## Test Framework
 
-| Aspect | Status |
-|--------|--------|
-| **Test Framework** | NOT INSTALLED |
-| **Unit Tests** | 0 files |
-| **E2E Tests** | 0 files |
-| **Test Coverage** | 0% |
-| **Target Coverage** | >80% (per QA agent spec) |
+**Unit Testing:**
+- Jest 30.2.0
+- Config: `jest.config.js` in project root
+- ts-jest 29.4.6 for TypeScript support
 
-## Dependencies (Missing)
+**E2E Testing:**
+- Playwright 1.57.0
+- Config: `playwright.config.ts` in project root
 
-```json
-// NOT in package.json - needs to be added:
-{
-  "devDependencies": {
-    "jest": "^29",
-    "@testing-library/react": "^14",
-    "@testing-library/dom": "^9",
-    "playwright": "^1.40",
-    "@types/jest": "^29"
-  }
-}
+**Assertion Library:**
+- Jest built-in expect
+- @testing-library/jest-dom 6.9.1 for DOM matchers
+- Matchers: toBe, toEqual, toBeInTheDocument, toHaveAttribute
+
+**Run Commands:**
+```bash
+npm test                              # Run all unit tests
+npm run test:watch                    # Watch mode
+npm test -- path/to/file.test.ts     # Single file
+npm run test:coverage                 # Coverage report
+npm run test:e2e                      # Run Playwright E2E tests
+npm run test:e2e:ui                   # Playwright UI mode
 ```
 
-## Current Quality Tools
+## Test File Organization
 
-### ESLint (Configured)
+**Location:**
+- Unit tests: `__tests__/` directory or alongside source files
+- E2E tests: `e2e/` or `tests/` directory
+- Test utilities: `tests/` or `__tests__/utils/`
 
-```javascript
-// eslint.config.mjs
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
+**Naming:**
+- Unit tests: `*.test.ts` or `*.test.tsx`
+- E2E tests: `*.e2e.test.ts` or `*.spec.ts`
+- Test files mirror source file names
 
-const eslintConfig = defineConfig([
-  ...nextVitals,    // Core Web Vitals rules
-  ...nextTs,        // TypeScript rules
-  globalIgnores(['.next/', 'out/', 'build/'])
-]);
+**Structure:**
+```
+src/
+├── lib/
+│   ├── dataLoader.ts
+│   └── dataLoader.test.ts (optional colocation)
+├── components/
+│   └── VoterGuide/
+│       └── AddressAutocomplete.tsx
+__tests__/
+├── lib/
+│   └── dataLoader.test.ts
+├── components/
+│   └── VoterGuide/
+│       └── AddressAutocomplete.test.tsx
+e2e/
+└── voter-guide.e2e.test.ts
 ```
 
-**Run:** `npm run lint`
+## Test Structure
 
-### TypeScript (Strict Mode)
-
-- Catches type errors at compile time
-- Strict null checks enabled
-- No implicit any
-
-## Planned Test Architecture
-
-### Test Directory Structure
-
-```
-tests/
-├── e2e/                      # End-to-end tests
-│   ├── map.spec.ts           # Map rendering & interaction
-│   ├── sidepanel.spec.ts     # Side panel functionality
-│   └── chamber-toggle.spec.ts # Chamber switching
-│
-├── unit/                     # Unit tests
-│   ├── getDistrictColor.test.ts
-│   ├── calculateStats.test.ts
-│   └── components/
-│       ├── Legend.test.tsx
-│       └── CandidateCard.test.tsx
-│
-└── utils/                    # Test utilities
-    ├── mockData.ts           # Test fixtures
-    └── testHelpers.ts        # Common test functions
-```
-
-## Test Suites (Planned)
-
-### 1. SVG Rendering Tests
-
-| Test | Description | Priority |
-|------|-------------|----------|
-| House SVG loads | All 124 district paths exist | Critical |
-| Senate SVG loads | All 46 district paths exist | Critical |
-| Path IDs correct | Format `house-{N}`, `senate-{N}` | Critical |
-| Colors match data | Blue/red/purple/gray per candidates | Critical |
-| No black rendering | Regression test for fixed bug | Critical |
-
-### 2. User Interaction Tests
-
-| Test | Description | Priority |
-|------|-------------|----------|
-| Click → panel opens | District click shows side panel | High |
-| Hover → opacity | Path opacity changes to 0.8 | Medium |
-| Leave → restore | Opacity returns to 1.0 | Medium |
-| Selected highlight | Blue stroke on selected district | High |
-| Close button | Panel closes correctly | High |
-
-### 3. Chamber Toggle Tests
-
-| Test | Description | Priority |
-|------|-------------|----------|
-| House button | Loads House map (124 paths) | High |
-| Senate button | Loads Senate map (46 paths) | High |
-| Stats update | Stats reflect current chamber | High |
-| Selection clears | Previous selection cleared | Medium |
-
-### 4. Data Integrity Tests
-
-| Test | Description | Priority |
-|------|-------------|----------|
-| Candidate names | Display correctly | Medium |
-| Party badges | Correct colors | Medium |
-| Filed dates | Format correctly | Low |
-| Ethics links | Valid URLs | Medium |
-
-### 5. Responsive Design Tests
-
-| Test | Description | Priority |
-|------|-------------|----------|
-| Desktop layout | Map + sidebar side-by-side | Medium |
-| Mobile layout | Stacked layout | Medium |
-| Touch events | Work on mobile | Medium |
-
-## E2E Testing Plan
-
-### Tool: Playwright MCP
-
-**Testing URL:** `https://russellteter.github.io/sc-election-map-2026/`
-
+**Suite Organization:**
 ```typescript
-// Example test structure
+import { render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { ComponentName } from '@/components/ComponentName';
+
+describe('ComponentName', () => {
+  describe('rendering', () => {
+    it('should render with default props', () => {
+      render(<ComponentName />);
+      expect(screen.getByRole('button')).toBeInTheDocument();
+    });
+  });
+
+  describe('user interactions', () => {
+    it('should handle click events', async () => {
+      const user = userEvent.setup();
+      const onClick = jest.fn();
+
+      render(<ComponentName onClick={onClick} />);
+      await user.click(screen.getByRole('button'));
+
+      expect(onClick).toHaveBeenCalledTimes(1);
+    });
+  });
+});
+```
+
+**Patterns:**
+- Use describe blocks to group related tests
+- beforeEach for shared setup
+- afterEach for cleanup (restore mocks)
+- One assertion focus per test
+
+## Testing Library Patterns
+
+**React Component Testing:**
+```typescript
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
+it('should allow user input', async () => {
+  const user = userEvent.setup();
+  render(<AddressAutocomplete onSelect={jest.fn()} />);
+
+  const input = screen.getByRole('combobox');
+  await user.type(input, '123 Main St');
+
+  expect(input).toHaveValue('123 Main St');
+});
+```
+
+**Query Priority (Testing Library):**
+1. getByRole - Preferred (accessibility)
+2. getByLabelText - Form inputs
+3. getByPlaceholderText - Inputs without labels
+4. getByText - Static text content
+5. getByTestId - Last resort
+
+## Mocking
+
+**Framework:**
+- Jest built-in mocking
+- jest.mock() for module mocking
+- jest.fn() for function spies
+
+**Patterns:**
+```typescript
+// Mock module
+jest.mock('@/lib/geocoding', () => ({
+  geocodeAddress: jest.fn()
+}));
+
+// Mock in test
+import { geocodeAddress } from '@/lib/geocoding';
+
+const mockGeocode = geocodeAddress as jest.MockedFunction<typeof geocodeAddress>;
+
+it('handles geocoding', async () => {
+  mockGeocode.mockResolvedValue({
+    lat: 34.0,
+    lon: -81.0,
+    address: '123 Main St'
+  });
+
+  // Test code
+
+  expect(mockGeocode).toHaveBeenCalledWith('123 Main St');
+});
+```
+
+**What to Mock:**
+- External API calls (Geoapify, Nominatim)
+- fetch/network requests
+- Browser APIs (geolocation, localStorage)
+- Time-dependent functions (Date, setTimeout)
+
+**What NOT to Mock:**
+- Internal pure functions
+- React hooks (test through component behavior)
+- Simple utility functions
+
+## Fixtures and Factories
+
+**Test Data:**
+```typescript
+// Factory function
+function createTestCandidate(overrides?: Partial<Candidate>): Candidate {
+  return {
+    id: 'test-id',
+    name: 'Test Candidate',
+    party: 'Democrat',
+    office: 'State House',
+    district: 'HD-1',
+    ...overrides
+  };
+}
+
+// Usage
+const candidate = createTestCandidate({ name: 'Jane Doe' });
+```
+
+**Location:**
+- Factory functions: In test file or `__tests__/factories/`
+- Shared fixtures: `__tests__/fixtures/`
+- Mock data: Inline when simple, factory when complex
+
+## Coverage
+
+**Requirements:**
+- No enforced coverage target
+- Coverage tracked for awareness
+- Focus on critical paths (geocoding, district lookup, data loading)
+
+**Configuration:**
+- Jest coverage via `--coverage` flag
+- Excludes: config files, type definitions
+
+**View Coverage:**
+```bash
+npm run test:coverage
+open coverage/lcov-report/index.html
+```
+
+## Test Types
+
+**Unit Tests:**
+- Scope: Single function/component in isolation
+- Mocking: Mock all external dependencies
+- Speed: Each test <100ms
+- Examples: dataLoader functions, geocoding utilities
+
+**Integration Tests:**
+- Scope: Multiple modules together
+- Mocking: Mock only external boundaries (APIs)
+- Examples: Voter guide flow with mocked API responses
+
+**E2E Tests (Playwright):**
+- Scope: Full user flows in browser
+- Mocking: None (or mock network at Playwright level)
+- Location: `e2e/` directory
+- Examples: Complete voter guide address-to-ballot flow
+
+## Playwright E2E Patterns
+
+**Basic Test:**
+```typescript
 import { test, expect } from '@playwright/test';
 
-test.describe('District Map', () => {
-  test('should load House map with 124 districts', async ({ page }) => {
-    await page.goto('/');
+test('voter guide address flow', async ({ page }) => {
+  await page.goto('/voter-guide');
 
-    // Wait for SVG to load
-    await page.waitForSelector('svg');
+  const input = page.getByRole('combobox');
+  await input.fill('123 Main St, Columbia, SC');
 
-    // Count district paths
-    const paths = await page.locator('path[id^="house-"]').count();
-    expect(paths).toBe(124);
-  });
+  // Wait for suggestions
+  await expect(page.getByRole('listbox')).toBeVisible();
 
-  test('should color districts based on party', async ({ page }) => {
-    await page.goto('/');
+  // Select first suggestion
+  await page.getByRole('option').first().click();
 
-    // Check district 113 (known Democrat)
-    const district113 = page.locator('path[id="house-113"]');
-    const fill = await district113.getAttribute('fill');
-    expect(fill).toBe('#3b82f6'); // Blue
-  });
-
-  test('should open side panel on district click', async ({ page }) => {
-    await page.goto('/');
-
-    // Click district
-    await page.locator('path[id="house-113"]').click();
-
-    // Verify side panel shows
-    await expect(page.locator('text=House District 113')).toBeVisible();
-  });
+  // Verify district display
+  await expect(page.getByText('Your Districts')).toBeVisible();
 });
 ```
 
-### Evidence Requirements
-
-Per QA agent spec, all test results must include:
-- Screenshots for visual verification
-- Console logs for errors
-- DOM state inspection results
-
-## Unit Testing Plan
-
-### Critical Functions to Test
-
+**Configuration:**
 ```typescript
-// src/components/Map/DistrictMap.tsx:163-187
-function getDistrictColor(district: District | undefined): string
-
-// Test cases:
-// - undefined district → '#f3f4f6'
-// - empty candidates → '#f3f4f6'
-// - Democrat only → '#3b82f6'
-// - Republican only → '#ef4444'
-// - Both parties → '#a855f7'
-// - Unknown party → '#9ca3af'
+// playwright.config.ts
+export default {
+  testDir: './e2e',
+  baseURL: 'http://localhost:3000',
+  use: {
+    trace: 'on-first-retry',
+  },
+};
 ```
 
+## Common Patterns
+
+**Async Testing:**
 ```typescript
-// src/app/page.tsx (inline)
-function calculateStats(data, chamber)
+it('should load data asynchronously', async () => {
+  render(<Component />);
 
-// Test cases:
-// - All empty districts → counts all as empty
-// - Mixed parties → correct categorization
-// - Edge cases: null party, missing candidates array
-```
+  // Wait for async content
+  await screen.findByText('Loaded');
 
-## Accessibility Testing
-
-### Target: WCAG 2.1 AA
-
-| Criterion | Status | Notes |
-|-----------|--------|-------|
-| 1.1.1 Non-text Content | ❌ | SVG paths need alt text |
-| 1.3.1 Info & Relationships | ❌ | ARIA labels missing |
-| 1.4.1 Use of Color | ❌ | Color-only info |
-| 2.1.1 Keyboard | ❌ | SVG not keyboard accessible |
-| 2.4.3 Focus Order | ❌ | Focus not managed |
-
-### Automated Testing
-
-```typescript
-// Using axe-core
-import { injectAxe, checkA11y } from 'axe-playwright';
-
-test('should pass accessibility audit', async ({ page }) => {
-  await page.goto('/');
-  await injectAxe(page);
-
-  const results = await checkA11y(page);
-  expect(results.violations).toHaveLength(0);
+  expect(screen.getByText('Loaded')).toBeInTheDocument();
 });
 ```
 
-## Performance Testing
+**Error Testing:**
+```typescript
+it('should handle errors gracefully', async () => {
+  mockFetch.mockRejectedValue(new Error('Network error'));
 
-### Lighthouse Targets
+  render(<Component />);
 
-| Metric | Target | Current |
-|--------|--------|---------|
-| Performance | >90 | TBD |
-| Accessibility | >95 | TBD |
-| Best Practices | >90 | TBD |
-| SEO | >90 | TBD |
-
-### Core Web Vitals
-
-| Metric | Target | Current |
-|--------|--------|---------|
-| LCP | <2.5s | TBD |
-| FID | <100ms | TBD |
-| CLS | <0.1 | TBD |
-
-## Continuous Integration
-
-### Planned GitHub Action
-
-```yaml
-# .github/workflows/test.yml
-name: Test
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run linter
-        run: npm run lint
-
-      - name: Run unit tests
-        run: npm test
-
-      - name: Install Playwright
-        run: npx playwright install --with-deps
-
-      - name: Run E2E tests
-        run: npm run test:e2e
+  await screen.findByText('Error loading data');
+  expect(screen.getByRole('alert')).toBeInTheDocument();
+});
 ```
 
-## Implementation Priority
+**Timer Testing:**
+```typescript
+it('should debounce input', async () => {
+  jest.useFakeTimers();
 
-1. **Install test dependencies** - Jest, Testing Library, Playwright
-2. **Create test structure** - Directory setup, config files
-3. **Unit tests** - `getDistrictColor`, `calculateStats`
-4. **E2E tests** - Map loading, interactions
-5. **Accessibility tests** - axe-core integration
-6. **CI integration** - GitHub Actions workflow
-7. **Performance tests** - Lighthouse CI
+  render(<AddressAutocomplete />);
+  await userEvent.type(screen.getByRole('combobox'), 'test');
 
-## Success Criteria
+  // Fast-forward debounce timer
+  jest.advanceTimersByTime(300);
 
-| Metric | Target |
-|--------|--------|
-| Test coverage | >80% |
-| All E2E tests pass | 100% |
-| Accessibility violations | 0 critical |
-| Lighthouse Performance | >90 |
-| Lighthouse Accessibility | >95 |
+  expect(mockGeocode).toHaveBeenCalled();
+
+  jest.useRealTimers();
+});
+```
+
+---
+
+*Testing analysis: 2026-01-17*
+*Update when test patterns change*

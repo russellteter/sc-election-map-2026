@@ -1,324 +1,160 @@
-# Integrations - SC Election Map 2026
+# External Integrations
 
-> Generated: 2026-01-12 | GSD Codebase Mapping
+**Analysis Date:** 2026-01-17
+**Focus:** SC Voter Guide System
 
-## External Data Sources
+## APIs & External Services
 
-### 1. SC Ethics Commission
+**Address Autocomplete:**
+- Geoapify Geocoder API - Address input suggestions and coordinate lookup
+  - SDK/Client: `@geoapify/geocoder-autocomplete` v3.0.1
+  - Auth: API key in `NEXT_PUBLIC_GEOAPIFY_KEY` env var
+  - Features: Debounced input (300ms), SC bounding box filtering
+  - File: `src/components/VoterGuide/AddressAutocomplete.tsx`
 
-| Attribute | Value |
-|-----------|-------|
-| **Website** | https://ethicsfiling.sc.gov/public/campaign-reports/reports |
-| **Data Type** | Candidate filing information |
-| **Integration** | Indirect via SC Ethics Monitor |
-| **Update Frequency** | Daily (via separate monitor project) |
+**Geocoding Fallback:**
+- Nominatim (OpenStreetMap) - Free geocoding when Geoapify unavailable
+  - Integration: Direct REST API via fetch
+  - Auth: None (public API)
+  - Rate limits: 1.1s between requests (enforced in code)
+  - File: `src/lib/geocoding.ts`
 
-**Link Format:**
-```
-https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId={id}&seiId={id}&officeId={id}&reportId={id}
-```
+**Geographic Computation:**
+- Turf.js - Client-side point-in-polygon calculations
+  - SDK/Client: `@turf/boolean-point-in-polygon`, `@turf/helpers`
+  - Auth: None (client-side library)
+  - Purpose: Determine which district contains a coordinate
+  - File: `src/lib/districtLookup.ts`
 
-### 2. SC Ethics Monitor Repository
+## Data Storage
 
-| Attribute | Value |
-|-----------|-------|
-| **Repository** | https://github.com/russellteter/sc-ethics-monitor |
-| **Data Endpoint** | https://raw.githubusercontent.com/russellteter/sc-ethics-monitor/main/state.json |
-| **Integration** | Daily fetch via GitHub Actions |
-| **Data Format** | JSON with report metadata |
+**Static Data (Production):**
+- JSON files served from GitHub Pages
+  - Location: `public/data/` directory
+  - Files: `candidates.json`, `county-races.json`, `district-boundaries.json`, etc.
+  - Access: HTTP fetch at runtime
+  - No database (fully static site)
 
-**Data Flow:**
-```
-SC Ethics Website → SC Ethics Monitor → state.json → This Project
-```
+**GeoJSON Boundaries:**
+- District boundary polygons for point-in-polygon lookup
+  - Files: `public/maps/` and `public/data/` directories
+  - Size: ~2MB total (lazy-loaded on address input focus)
+  - Format: GeoJSON FeatureCollections
 
-### 3. US Census TIGER/Line
+**Client-Side Caching:**
+- Singleton pattern with in-memory cache
+  - Implementation: `src/lib/dataLoader.ts`
+  - Deduplication: Multiple requests for same data return cached promise
+  - No persistence (session-only cache)
 
-| Attribute | Value |
-|-----------|-------|
-| **Source** | US Census Bureau |
-| **Data Type** | Geographic shapefiles |
-| **Files Used** | SC State Legislative Districts (2024) |
-| **Integration** | One-time conversion to SVG |
+## Authentication & Identity
 
-**Shapefile IDs:**
-- `tl_2024_45_sldl` - SC House (Lower chamber)
-- `tl_2024_45_sldu` - SC Senate (Upper chamber)
-- `45` = South Carolina FIPS code
+**Auth Provider:**
+- None - Public read-only demo platform
+  - No user accounts
+  - No login required
+  - All data publicly accessible
 
-## Hosting & Deployment
+## Monitoring & Observability
 
-### GitHub Pages
+**Error Tracking:**
+- None configured
+  - Console errors only
+  - No Sentry, LogRocket, or similar
 
-| Attribute | Value |
-|-----------|-------|
-| **Service** | GitHub Pages |
-| **Repository** | russellteter/sc-election-map-2026 |
-| **URL** | https://russellteter.github.io/sc-election-map-2026/ |
-| **Build** | Static export (Next.js) |
-| **CDN** | GitHub Pages CDN |
+**Analytics:**
+- None configured
+  - No Google Analytics, Mixpanel, or similar
+  - No usage tracking
 
-**Deployment Configuration:**
-```typescript
-// next.config.ts
-{
-  output: 'export',
-  basePath: '/sc-election-map-2026',
-  assetPrefix: '/sc-election-map-2026/',
-  trailingSlash: true
-}
-```
+**Logs:**
+- Browser console only
+  - Development logging via console.log
+  - No production logging infrastructure
 
-## GitHub Actions Workflows
+## CI/CD & Deployment
 
-### 1. Deploy Workflow
+**Hosting:**
+- GitHub Pages - Static file hosting
+  - Deployment: Automatic on push to `main` branch
+  - basePath: `/sc-election-map-2026`
+  - assetPrefix: `/sc-election-map-2026/`
+  - URL: https://russellteter.github.io/sc-election-map-2026/
 
-**File:** `.github/workflows/deploy.yml`
-
-| Attribute | Value |
-|-----------|-------|
-| **Trigger** | Push to main, manual dispatch |
-| **Runner** | ubuntu-latest |
-| **Node Version** | 20 |
-
-**Steps:**
-1. Checkout repository
-2. Setup Node.js 20
-3. Install dependencies (`npm ci`)
-4. Build (`npm run build`)
-5. Upload artifact (`out/` directory)
-6. Deploy to GitHub Pages
-
-**Actions Used:**
-- `actions/checkout@v4`
-- `actions/setup-node@v4`
-- `actions/upload-pages-artifact@v3`
-- `actions/deploy-pages@v4`
-
-### 2. Update Data Workflow
-
-**File:** `.github/workflows/update-data.yml`
-
-| Attribute | Value |
-|-----------|-------|
-| **Trigger** | Daily at 15:00 UTC (10 AM EST), manual |
-| **Runner** | ubuntu-latest |
-| **Python Version** | 3.11 |
-
-**Steps:**
-1. Checkout repository
-2. Setup Python 3.11
-3. Install requests library
-4. Fetch ethics data via curl
-5. Process data with Python script
-6. Check for changes (`git diff`)
-7. Auto-commit if changed
-
-**Data Processing:**
-```bash
-curl -o ethics-data.json https://raw.githubusercontent.com/russellteter/sc-ethics-monitor/main/state.json
-python scripts/process-data.py
-```
-
-## Data Processing Script
-
-### Python ETL Script
-
-**File:** `scripts/process-data.py`
-
-| Function | Purpose |
-|----------|---------|
-| `extract_district_number()` | Parse office string for chamber/district |
-| `normalize_name()` | Standardize candidate names |
-| `load_party_data()` | Load manual party enrichment |
-| `find_party()` | Match candidates to party data |
-| `process_ethics_data()` | Main ETL pipeline |
-
-**Input Sources:**
-- `ethics-data.json` - Raw SC Ethics Monitor data
-- `src/data/party-data.json` - Manual party enrichment
-
-**Output:**
-- `src/data/candidates.json` - Enriched candidate data
-
-**Matching Logic:**
-1. Exact name match
-2. Normalized name match (lowercase, stripped)
-3. Partial match (first + last name components)
-
-## Static Data Files
-
-### Data Schema
-
-**candidates.json:**
-```json
-{
-  "lastUpdated": "2026-01-13T04:15:00Z",
-  "house": {
-    "1": {
-      "districtNumber": 1,
-      "candidates": [
-        {
-          "name": "Candidate Name",
-          "party": "Democratic|Republican|null",
-          "status": "filed",
-          "filedDate": "2026-01-01",
-          "ethicsUrl": "https://...",
-          "reportId": "123456",
-          "source": "ethics"
-        }
-      ]
-    }
-  },
-  "senate": { /* same structure */ }
-}
-```
-
-**party-data.json:**
-```json
-{
-  "lastUpdated": "2026-01-13T04:15:00Z",
-  "candidates": {
-    "Candidate Name": {
-      "party": "Democratic",
-      "verified": true,
-      "source": "SC House Democratic Caucus",
-      "district": "house-113"
-    }
-  }
-}
-```
-
-## SVG Map Assets
-
-### House Districts
-
-| Attribute | Value |
-|-----------|-------|
-| **File** | `public/maps/house-districts.svg` |
-| **Paths** | 124 |
-| **ID Format** | `house-{1-124}` |
-| **File Size** | 257 KB |
-| **ViewBox** | `0 0 800 531` |
-
-### Senate Districts
-
-| Attribute | Value |
-|-----------|-------|
-| **File** | `public/maps/senate-districts.svg` |
-| **Paths** | 46 |
-| **ID Format** | `senate-{1-46}` |
-| **File Size** | 181 KB |
-| **ViewBox** | `0 0 800 531` |
-
-## Client-Side Integration
-
-### Dynamic Path Resolution
-
-```typescript
-// Detect GitHub Pages deployment
-const basePath = window.location.pathname.includes('/sc-election-map-2026')
-  ? '/sc-election-map-2026'
-  : '';
-
-// Fetch data
-fetch(`${basePath}/data/candidates.json`)
-
-// Fetch SVG
-fetch(`${basePath}/maps/${chamber}-districts.svg`)
-```
+**CI Pipeline:**
+- GitHub Actions (inferred)
+  - Trigger: Push to main
+  - Build: `next build` (static export)
+  - Deploy: GitHub Pages
 
 ## Environment Configuration
 
-### GitHub Secrets
+**Development:**
+- Required env vars:
+  - `NEXT_PUBLIC_GEOAPIFY_KEY` - Address autocomplete
+- Secrets location: `.env.local` (gitignored)
+- Works without API key (fallback to Nominatim)
 
-| Secret | Purpose |
-|--------|---------|
-| `GITHUB_TOKEN` | Built-in, used for auto-commit |
+**Production:**
+- Env vars: Baked into static build at build time
+- Secrets management: GitHub repository secrets
+- No runtime environment (static files)
 
-### Environment Variables
+## Webhooks & Callbacks
 
-| Variable | Production | Development |
-|----------|------------|-------------|
-| `NODE_ENV` | production | development |
-| basePath | /sc-election-map-2026 | (empty) |
-| assetPrefix | /sc-election-map-2026/ | (empty) |
+**Incoming:**
+- None - Static site with no server
 
-## Integration Diagram
+**Outgoing:**
+- None - No server-side event triggers
+
+## Planned/Locked Integrations
+
+**BallotReady API (Locked):**
+- Purpose: Real candidate data, polling places, ballot information
+- Status: Not integrated (requires paid API key ~$5K/yr)
+- When unlocked: Would replace demo candidate data
+
+**TargetSmart API (Locked):**
+- Purpose: Voter intelligence, targeting data, voter file matching
+- Status: Not integrated (enterprise pricing)
+- When unlocked: Would power voter intelligence features
+
+**Google Civic API (Planned):**
+- Purpose: Polling places, election dates
+- Status: Partially planned for free data tier
+- No current implementation
+
+## API Dependency Map (Voter Guide)
 
 ```
-┌──────────────────────────────────────────────────────────────────┐
-│                    EXTERNAL DATA SOURCES                         │
-├──────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  ┌─────────────────────┐       ┌─────────────────────┐          │
-│  │  SC Ethics Website  │       │  US Census TIGER    │          │
-│  │  (Campaign Reports) │       │  (Shapefiles)       │          │
-│  └──────────┬──────────┘       └──────────┬──────────┘          │
-│             │                              │                     │
-│             ▼                              │                     │
-│  ┌─────────────────────┐                  │                     │
-│  │  SC Ethics Monitor  │                  │                     │
-│  │  (Separate Repo)    │                  │                     │
-│  └──────────┬──────────┘                  │                     │
-│             │                              │                     │
-└─────────────┼──────────────────────────────┼─────────────────────┘
-              │                              │
-              ▼                              ▼
-┌──────────────────────────────────────────────────────────────────┐
-│                    GITHUB ACTIONS                                │
-├──────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  ┌─────────────────────────────────────────────────────────┐    │
-│  │  update-data.yml (Daily 10 AM EST)                      │    │
-│  │  ├─ curl fetch state.json                               │    │
-│  │  ├─ python process-data.py                              │    │
-│  │  └─ git commit candidates.json                          │    │
-│  └─────────────────────────────────────────────────────────┘    │
-│                                                                  │
-│  ┌─────────────────────────────────────────────────────────┐    │
-│  │  deploy.yml (On Push to Main)                           │    │
-│  │  ├─ npm ci && npm run build                             │    │
-│  │  └─ Deploy to GitHub Pages                              │    │
-│  └─────────────────────────────────────────────────────────┘    │
-│                                                                  │
-└──────────────────────────────────────────────────────────────────┘
-              │
-              ▼
-┌──────────────────────────────────────────────────────────────────┐
-│                    STATIC ASSETS                                 │
-├──────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  public/                                                         │
-│  ├─ data/candidates.json    (Updated daily)                     │
-│  ├─ data/party-data.json    (Manual enrichment)                 │
-│  ├─ maps/house-districts.svg (124 paths)                        │
-│  └─ maps/senate-districts.svg (46 paths)                        │
-│                                                                  │
-└──────────────────────────────────────────────────────────────────┘
-              │
-              ▼
-┌──────────────────────────────────────────────────────────────────┐
-│                    GITHUB PAGES                                  │
-├──────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  URL: https://russellteter.github.io/sc-election-map-2026/      │
-│                                                                  │
-│  ┌─────────────────────────────────────────────────────────┐    │
-│  │  Client Browser                                          │    │
-│  │  ├─ fetch('/data/candidates.json')                       │    │
-│  │  ├─ fetch('/maps/house-districts.svg')                   │    │
-│  │  └─ Render interactive map                               │    │
-│  └─────────────────────────────────────────────────────────┘    │
-│                                                                  │
-└──────────────────────────────────────────────────────────────────┘
+User enters address
+       │
+       ▼
+┌─────────────────────┐
+│ Geoapify API        │ ← Primary geocoder
+│ (NEXT_PUBLIC_KEY)   │
+└─────────────────────┘
+       │ fallback
+       ▼
+┌─────────────────────┐
+│ Nominatim API       │ ← Free fallback
+│ (no auth)           │
+└─────────────────────┘
+       │
+       ▼
+┌─────────────────────┐
+│ Turf.js (local)     │ ← Point-in-polygon
+└─────────────────────┘
+       │
+       ▼
+┌─────────────────────┐
+│ Static JSON         │ ← District/candidate data
+│ (public/data/)      │
+└─────────────────────┘
 ```
 
-## Future Integration Possibilities
+---
 
-| Integration | Purpose | Status |
-|-------------|---------|--------|
-| SC Election Commission CSV | Official party data | March 2026 |
-| Ballotpedia API | Historical context | Not planned |
-| Analytics (Plausible/GA) | Usage tracking | Not implemented |
-| Error tracking (Sentry) | Error monitoring | Not implemented |
+*Integration audit: 2026-01-17*
+*Update when adding/removing external services*
