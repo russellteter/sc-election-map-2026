@@ -1,0 +1,262 @@
+{
+  "lastUpdated": "2026-01-13",
+  "statewideJudicial": [
+    {
+      "court": "SC Supreme Court",
+      "description": "South Carolina's highest court with final appellate jurisdiction",
+      "termYears": 10,
+      "seats": [
+        {
+          "seat": "Chief Justice",
+          "incumbent": "John W. Kittredge",
+          "termEnd": "2034",
+          "assumedOffice": "2024-07-30"
+        },
+        {
+          "seat": "Justice, Seat 2",
+          "incumbent": "John Cannon Few",
+          "termEnd": "2026",
+          "assumedOffice": "2016-02-09"
+        },
+        {
+          "seat": "Justice, Seat 3",
+          "incumbent": "George C. James, Jr.",
+          "termEnd": "2027",
+          "assumedOffice": "2017-02-07"
+        },
+        {
+          "seat": "Justice, Seat 4",
+          "incumbent": "D. Garrison Hill",
+          "termEnd": "2033",
+          "assumedOffice": "2023-02-08"
+        },
+        {
+          "seat": "Justice, Seat 5",
+          "incumbent": "Letitia H. Verdin",
+          "termEnd": "2034",
+          "assumedOffice": "2024-07-31"
+        }
+      ]
+    },
+    {
+      "court": "SC Court of Appeals",
+      "description": "Intermediate appellate court handling civil and criminal appeals",
+      "termYears": 6,
+      "seats": [
+        {
+          "seat": "Chief Judge",
+          "incumbent": "H. Bruce Williams",
+          "termEnd": "2028"
+        },
+        {
+          "seat": "Judge, Seat 2",
+          "incumbent": "Kristi F. Curtis",
+          "termEnd": "2029"
+        },
+        {
+          "seat": "Judge, Seat 3",
+          "incumbent": "John D. Geathers",
+          "termEnd": "2031"
+        },
+        {
+          "seat": "Judge, Seat 4",
+          "incumbent": "Paula H. Thomas",
+          "termEnd": "2031"
+        },
+        {
+          "seat": "Judge, Seat 5",
+          "incumbent": "Aphrodite K. Konduros",
+          "termEnd": "2027"
+        },
+        {
+          "seat": "Judge, Seat 6",
+          "incumbent": "Stephanie P. McDonald",
+          "termEnd": "2028"
+        },
+        {
+          "seat": "Judge, Seat 7",
+          "incumbent": "Blake A. Hewitt",
+          "termEnd": "2029"
+        },
+        {
+          "seat": "Judge, Seat 8",
+          "incumbent": "Jerry D. Vinson, Jr.",
+          "termEnd": "2030"
+        },
+        {
+          "seat": "Judge, Seat 9",
+          "incumbent": "Matthew P. Turner",
+          "termEnd": "2030"
+        }
+      ]
+    }
+  ],
+  "circuitCourts": [
+    {
+      "circuit": "1st",
+      "counties": ["Dorchester", "Calhoun", "Orangeburg"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    },
+    {
+      "circuit": "2nd",
+      "counties": ["Aiken", "Bamberg", "Barnwell"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    },
+    {
+      "circuit": "3rd",
+      "counties": ["Clarendon", "Lee", "Sumter", "Williamsburg"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    },
+    {
+      "circuit": "4th",
+      "counties": ["Chesterfield", "Darlington", "Marlboro", "Dillon"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    },
+    {
+      "circuit": "5th",
+      "counties": ["Kershaw", "Richland"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    },
+    {
+      "circuit": "6th",
+      "counties": ["Lancaster", "Chester", "Fairfield"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    },
+    {
+      "circuit": "7th",
+      "counties": ["Cherokee", "Spartanburg"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    },
+    {
+      "circuit": "8th",
+      "counties": ["Abbeville", "Greenwood", "Laurens", "Newberry"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    },
+    {
+      "circuit": "9th",
+      "counties": ["Charleston", "Berkeley"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    },
+    {
+      "circuit": "10th",
+      "counties": ["Anderson", "Oconee"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    },
+    {
+      "circuit": "11th",
+      "counties": ["Lexington", "Saluda", "Edgefield", "McCormick"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    },
+    {
+      "circuit": "12th",
+      "counties": ["Florence", "Marion"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    },
+    {
+      "circuit": "13th",
+      "counties": ["Greenville", "Pickens"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    },
+    {
+      "circuit": "14th",
+      "counties": ["Allendale", "Beaufort", "Colleton", "Hampton", "Jasper"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    },
+    {
+      "circuit": "15th",
+      "counties": ["Georgetown", "Horry"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    },
+    {
+      "circuit": "16th",
+      "counties": ["Union", "York"],
+      "judges": [
+        {
+          "position": "Circuit Court Judge",
+          "description": "General jurisdiction trial court for civil and criminal cases"
+        }
+      ]
+    }
+  ],
+  "selectionInfo": {
+    "method": "Legislative Election",
+    "description": "South Carolina is one of only two states where judges are elected by the General Assembly rather than by voters. The SC Judicial Merit Selection Commission screens candidates and submits a list of names to the legislature for confirmation.",
+    "voterRole": "SC voters do not directly vote for most judges. The exception is Probate Court judges, who are elected through partisan elections. All Supreme Court, Court of Appeals, and Circuit Court judges are selected by the legislature.",
+    "retentionVotes": false
+  }
+}

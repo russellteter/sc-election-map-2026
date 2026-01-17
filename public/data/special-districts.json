@@ -1,0 +1,557 @@
+{
+  "lastUpdated": "2026-01-13",
+  "districts": [
+    {
+      "county": "Richland",
+      "specialDistricts": [
+        {
+          "name": "Richland Soil & Water Conservation District",
+          "type": "soil_water",
+          "seats": [
+            {
+              "position": "Commissioner",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Richland County Recreation Commission",
+          "type": "recreation",
+          "seats": [
+            {
+              "position": "Commissioner - District 1",
+              "candidates": []
+            },
+            {
+              "position": "Commissioner - District 2",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Eastover-Gadsden Fire District",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Hopkins Fire District",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "county": "Greenville",
+      "specialDistricts": [
+        {
+          "name": "Greenville Soil & Water Conservation District",
+          "type": "soil_water",
+          "seats": [
+            {
+              "position": "Commissioner",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Greenville County Recreation District",
+          "type": "recreation",
+          "seats": [
+            {
+              "position": "Commissioner - Seat A",
+              "candidates": []
+            },
+            {
+              "position": "Commissioner - Seat B",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Taylors Fire & Sewer District",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Gantt Fire-Rescue District",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Parker Sewer & Fire District",
+          "type": "water_sewer",
+          "seats": [
+            {
+              "position": "Commissioner",
+              "candidates": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "county": "Charleston",
+      "specialDistricts": [
+        {
+          "name": "Charleston Soil & Water Conservation District",
+          "type": "soil_water",
+          "seats": [
+            {
+              "position": "Commissioner",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Charleston County Park & Recreation Commission",
+          "type": "recreation",
+          "seats": [
+            {
+              "position": "Commissioner - District 3",
+              "candidates": []
+            },
+            {
+              "position": "Commissioner - District 5",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "St. Johns Fire District",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "James Island Public Service District",
+          "type": "water_sewer",
+          "seats": [
+            {
+              "position": "Commissioner",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "St. Paul's Fire District",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "county": "Horry",
+      "specialDistricts": [
+        {
+          "name": "Horry Soil & Water Conservation District",
+          "type": "soil_water",
+          "seats": [
+            {
+              "position": "Commissioner",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Horry County Solid Waste Authority",
+          "type": "other",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "North Myrtle Beach Fire Rescue",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Grand Strand Water & Sewer Authority",
+          "type": "water_sewer",
+          "seats": [
+            {
+              "position": "Board Member - District 1",
+              "candidates": []
+            },
+            {
+              "position": "Board Member - District 4",
+              "candidates": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "county": "Spartanburg",
+      "specialDistricts": [
+        {
+          "name": "Spartanburg Soil & Water Conservation District",
+          "type": "soil_water",
+          "seats": [
+            {
+              "position": "Commissioner",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Spartanburg County Recreation Commission",
+          "type": "recreation",
+          "seats": [
+            {
+              "position": "Commissioner - District 2",
+              "candidates": []
+            },
+            {
+              "position": "Commissioner - District 4",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Boiling Springs Fire District",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Roebuck Fire District",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Spartanburg Sanitary Sewer District",
+          "type": "water_sewer",
+          "seats": [
+            {
+              "position": "Commissioner",
+              "candidates": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "county": "Lexington",
+      "specialDistricts": [
+        {
+          "name": "Lexington Soil & Water Conservation District",
+          "type": "soil_water",
+          "seats": [
+            {
+              "position": "Commissioner",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Lexington County Recreation & Aging Commission",
+          "type": "recreation",
+          "seats": [
+            {
+              "position": "Commissioner - Seat 1",
+              "candidates": []
+            },
+            {
+              "position": "Commissioner - Seat 3",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Lexington County Fire Service",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "South Congaree Fire District",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Gilbert-Summit Rural Water District",
+          "type": "water_sewer",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "county": "York",
+      "specialDistricts": [
+        {
+          "name": "York Soil & Water Conservation District",
+          "type": "soil_water",
+          "seats": [
+            {
+              "position": "Commissioner",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Bethel Rural Fire District",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Lesslie Fire District",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Lake Wylie Marine Commission",
+          "type": "other",
+          "seats": [
+            {
+              "position": "Commissioner",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Catawba Regional Transit Authority",
+          "type": "transit",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "county": "Berkeley",
+      "specialDistricts": [
+        {
+          "name": "Berkeley Soil & Water Conservation District",
+          "type": "soil_water",
+          "seats": [
+            {
+              "position": "Commissioner",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Berkeley County Water & Sanitation Authority",
+          "type": "water_sewer",
+          "seats": [
+            {
+              "position": "Board Member - District 1",
+              "candidates": []
+            },
+            {
+              "position": "Board Member - District 3",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Goose Creek Fire Department",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "St. Stephen Rural Fire District",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "county": "Anderson",
+      "specialDistricts": [
+        {
+          "name": "Anderson Soil & Water Conservation District",
+          "type": "soil_water",
+          "seats": [
+            {
+              "position": "Commissioner",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Anderson County Recreation Department",
+          "type": "recreation",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Homeland Park Fire District",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Starr-Iva Fire District",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Anderson Regional Joint Water System",
+          "type": "water_sewer",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "county": "Beaufort",
+      "specialDistricts": [
+        {
+          "name": "Beaufort Soil & Water Conservation District",
+          "type": "soil_water",
+          "seats": [
+            {
+              "position": "Commissioner",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Hilton Head Island Fire & Rescue",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Bluffton Township Fire District",
+          "type": "fire",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Beaufort-Jasper Water & Sewer Authority",
+          "type": "water_sewer",
+          "seats": [
+            {
+              "position": "Board Member - Seat 2",
+              "candidates": []
+            },
+            {
+              "position": "Board Member - Seat 4",
+              "candidates": []
+            }
+          ]
+        },
+        {
+          "name": "Lowcountry Regional Transportation Authority",
+          "type": "transit",
+          "seats": [
+            {
+              "position": "Board Member",
+              "candidates": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
