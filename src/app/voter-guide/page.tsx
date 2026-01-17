@@ -1,7 +1,6 @@
 'use client';
 
 import { Suspense } from 'react';
-import Link from 'next/link';
 import {
   AddressAutocomplete,
   DistrictResults,
@@ -15,7 +14,9 @@ import {
   VoterResources,
   VoterGuidePageSkeleton,
   ElectionCountdown,
-  PollingPlaceFinder
+  PollingPlaceFinder,
+  VoterGuideHeader,
+  VoterGuideFooter
 } from '@/components/VoterGuide';
 import { useVoterGuideData } from '@/hooks/useVoterGuideData';
 import { useAddressLookup } from '@/hooks/useAddressLookup';
@@ -50,36 +51,7 @@ function VoterGuideContent() {
 
   return (
     <div className="atmospheric-bg min-h-screen flex flex-col">
-      {/* Header */}
-      <header
-        className="glass-surface border-b sticky top-0 z-50"
-        style={{ borderColor: 'var(--class-purple-light)' }}
-      >
-        <div className="max-w-5xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Link
-                href="/"
-                className="flex items-center gap-2 text-sm font-medium transition-colors hover:opacity-80"
-                style={{ color: 'var(--class-purple)' }}
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                Back to Map
-              </Link>
-            </div>
-            <div className="text-right">
-              <h1 className="font-display font-bold text-xl" style={{ color: 'var(--text-color)' }}>
-                SC Voter Guide
-              </h1>
-              <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                2026 Elections
-              </p>
-            </div>
-          </div>
-        </div>
-      </header>
+      <VoterGuideHeader />
 
       {/* Main Content */}
       <main className="flex-1 w-full">
@@ -328,47 +300,7 @@ function VoterGuideContent() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer
-        className="border-t py-6"
-        style={{ borderColor: 'var(--border-subtle)', background: 'var(--card-bg)' }}
-      >
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-            Data sourced from the{' '}
-            <a
-              href="https://ethicsfiling.sc.gov/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline"
-              style={{ color: 'var(--class-purple)' }}
-            >
-              SC Ethics Commission
-            </a>
-            ,{' '}
-            <a
-              href="https://scvotes.gov/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline"
-              style={{ color: 'var(--class-purple)' }}
-            >
-              SC Election Commission
-            </a>
-            , and{' '}
-            <a
-              href="https://ballotpedia.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline"
-              style={{ color: 'var(--class-purple)' }}
-            >
-              Ballotpedia
-            </a>
-            .
-          </p>
-        </div>
-      </footer>
+      <VoterGuideFooter />
     </div>
   );
 }
