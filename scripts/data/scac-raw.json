@@ -1,0 +1,755 @@
+{
+  "metadata": {
+    "source": "SC Association of Counties",
+    "base_url": "https://www.sccounties.org",
+    "scraped_date": "2026-01-17T20:29:06.631433Z",
+    "total_counties": 46,
+    "total_officials_found": 254,
+    "offices": [
+      "Auditor",
+      "Treasurer",
+      "Coroner",
+      "Clerk of Court",
+      "Register of Deeds",
+      "Probate Judge"
+    ]
+  },
+  "counties": {
+    "Abbeville": {
+      "county": "Abbeville",
+      "officials": {
+        "Auditor": "Sheridan Laughlin",
+        "Treasurer": "Raphael Coleman",
+        "Coroner": "Brad Evans",
+        "Clerk of Court": "Shandal Boggs",
+        "Register of Deeds": null,
+        "Probate Judge": "Mark Sumner"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/abbeville-county/directory",
+      "scraped_date": "2026-01-17T20:28:12.198124Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Aiken": {
+      "county": "Aiken",
+      "officials": {
+        "Auditor": "Charles Barton",
+        "Treasurer": "Jason Goings",
+        "Coroner": "Darryl Ables",
+        "Clerk of Court": "Robert Harte",
+        "Register of Deeds": "Julie Stutts",
+        "Probate Judge": "Tonya Marchant"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/aiken-county/directory",
+      "scraped_date": "2026-01-17T20:28:13.382377Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Allendale": {
+      "county": "Allendale",
+      "officials": {
+        "Auditor": "Crystal Isham",
+        "Treasurer": "Valaree Smith",
+        "Coroner": "Renique Riley",
+        "Clerk of Court": "Elaine Sabb",
+        "Register of Deeds": null,
+        "Probate Judge": "D. Keith Smith"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/allendale-county/directory",
+      "scraped_date": "2026-01-17T20:28:14.539250Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Anderson": {
+      "county": "Anderson",
+      "officials": {
+        "Auditor": "John Benca",
+        "Treasurer": "Jason Phillips",
+        "Coroner": "Greg Shore",
+        "Clerk of Court": "C. Reena Thomason",
+        "Register of Deeds": "Cindy Radford",
+        "Probate Judge": "JT Foster"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/anderson-county/directory",
+      "scraped_date": "2026-01-17T20:28:15.709414Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Bamberg": {
+      "county": "Bamberg",
+      "officials": {
+        "Auditor": "Rosa Verner",
+        "Treasurer": "Alice Johnson",
+        "Coroner": "Shawn Hanks",
+        "Clerk of Court": "Jannie Johnson",
+        "Register of Deeds": null,
+        "Probate Judge": "Donna Brown"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/bamberg-county/directory",
+      "scraped_date": "2026-01-17T20:28:16.905037Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Barnwell": {
+      "county": "Barnwell",
+      "officials": {
+        "Auditor": "Gwen Kinard",
+        "Treasurer": "Sandra Cochran",
+        "Coroner": "Denise Gibson",
+        "Clerk of Court": "Rhonda McElveen",
+        "Register of Deeds": null,
+        "Probate Judge": "Myrna Dill"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/barnwell-county/directory",
+      "scraped_date": "2026-01-17T20:28:18.136400Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Beaufort": {
+      "county": "Beaufort",
+      "officials": {
+        "Auditor": "David Cadd",
+        "Treasurer": "Maria Walls",
+        "Coroner": "Debbie Youmans",
+        "Clerk of Court": "Jerri Roseneau",
+        "Register of Deeds": "Patsye Greene",
+        "Probate Judge": "Heather Galvin"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/beaufort-county/directory",
+      "scraped_date": "2026-01-17T20:28:19.332540Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Berkeley": {
+      "county": "Berkeley",
+      "officials": {
+        "Auditor": "Wilson Baggett",
+        "Treasurer": "Lori Glover",
+        "Coroner": "Darnell Hartwell",
+        "Clerk of Court": "Leah Dupree",
+        "Register of Deeds": "Cynthia Forte",
+        "Probate Judge": "Keith Kornahrens"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/berkeley-county/directory",
+      "scraped_date": "2026-01-17T20:28:20.522627Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Calhoun": {
+      "county": "Calhoun",
+      "officials": {
+        "Auditor": "April Wise",
+        "Treasurer": "Alicia Scott",
+        "Coroner": "Donnie Porth",
+        "Clerk of Court": "Bob Brockington",
+        "Register of Deeds": null,
+        "Probate Judge": "Kathy Brown"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/calhoun-county/directory",
+      "scraped_date": "2026-01-17T20:28:21.718562Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Charleston": {
+      "county": "Charleston",
+      "officials": {
+        "Auditor": "Peter Tecklenburg",
+        "Treasurer": "Mary Tinkler",
+        "Coroner": "Bobbi Jo O&#039;Neal",
+        "Clerk of Court": "Julie Armstrong",
+        "Register of Deeds": "Karen Hollings",
+        "Probate Judge": "Irvin Condon"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/charleston-county/directory",
+      "scraped_date": "2026-01-17T20:28:22.912650Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Cherokee": {
+      "county": "Cherokee",
+      "officials": {
+        "Auditor": "Christina  Layton",
+        "Treasurer": "Sheila Carpenter",
+        "Coroner": "Dennis Fowler",
+        "Clerk of Court": "Brandy McBee",
+        "Register of Deeds": "Chris Parker",
+        "Probate Judge": "Joshua Queen"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/cherokee-county/directory",
+      "scraped_date": "2026-01-17T20:28:24.104786Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Chester": {
+      "county": "Chester",
+      "officials": {
+        "Auditor": "Donnie Wade",
+        "Treasurer": "Thomas Darby",
+        "Coroner": "Terry Tinker",
+        "Clerk of Court": "Betty Jo Lawson",
+        "Register of Deeds": "Josh LaRussa",
+        "Probate Judge": "Terri Zion"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/chester-county/directory",
+      "scraped_date": "2026-01-17T20:28:25.292864Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Chesterfield": {
+      "county": "Chesterfield",
+      "officials": {
+        "Auditor": "Jack Rivers",
+        "Treasurer": "Fred Harris",
+        "Coroner": "Kip Kiser",
+        "Clerk of Court": "Christy Gaddy",
+        "Register of Deeds": "Faye Williams",
+        "Probate Judge": "Gail Ingram"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/chesterfield-county/directory",
+      "scraped_date": "2026-01-17T20:28:26.636555Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Clarendon": {
+      "county": "Clarendon",
+      "officials": {
+        "Auditor": "Patricia Pringle",
+        "Treasurer": "Carl Evans",
+        "Coroner": "Jacqueline Blackwell",
+        "Clerk of Court": "Shanita Brangman",
+        "Register of Deeds": "Rebecca Massey",
+        "Probate Judge": "Margaret Sorrell"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/clarendon-county/directory",
+      "scraped_date": "2026-01-17T20:28:27.819578Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Colleton": {
+      "county": "Colleton",
+      "officials": {
+        "Auditor": "Jeff Slocum",
+        "Treasurer": "Becky Hill",
+        "Coroner": "Richard Harvey",
+        "Clerk of Court": "Gary Hale",
+        "Register of Deeds": "Susan Kessler",
+        "Probate Judge": "Ceth Utsey"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/colleton-county/directory",
+      "scraped_date": "2026-01-17T20:28:29.026263Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Darlington": {
+      "county": "Darlington",
+      "officials": {
+        "Auditor": "Angie Suggs",
+        "Treasurer": "Jeff Robinson",
+        "Coroner": "J. Todd Hardee",
+        "Clerk of Court": "Scott Suggs",
+        "Register of Deeds": null,
+        "Probate Judge": "Marvin Lawson"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/darlington-county/directory",
+      "scraped_date": "2026-01-17T20:28:30.218594Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Dillon": {
+      "county": "Dillon",
+      "officials": {
+        "Auditor": "Joy Snipes",
+        "Treasurer": "Jamie Estes",
+        "Coroner": "Donnie Grimsley",
+        "Clerk of Court": "Marquita Britton",
+        "Register of Deeds": null,
+        "Probate Judge": "Teresa Smith"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/dillon-county/directory",
+      "scraped_date": "2026-01-17T20:28:31.396028Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Dorchester": {
+      "county": "Dorchester",
+      "officials": {
+        "Auditor": "James Messervy",
+        "Treasurer": "Cindy Chitty",
+        "Coroner": "Paul Brouthers",
+        "Clerk of Court": "Cheryl Graham",
+        "Register of Deeds": "Margaret Bailey",
+        "Probate Judge": "Mary Blunt"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/dorchester-county/directory",
+      "scraped_date": "2026-01-17T20:28:32.613265Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Edgefield": {
+      "county": "Edgefield",
+      "officials": {
+        "Auditor": "Bill Gilchrist",
+        "Treasurer": "Jo Knight",
+        "Coroner": "David Burnett",
+        "Clerk of Court": "Charles Reel",
+        "Register of Deeds": null,
+        "Probate Judge": "Gregory Anderson"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/edgefield-county/directory",
+      "scraped_date": "2026-01-17T20:28:33.789318Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Fairfield": {
+      "county": "Fairfield",
+      "officials": {
+        "Auditor": "Anne Bass",
+        "Treasurer": "Norma Branham",
+        "Coroner": "Chris Hill",
+        "Clerk of Court": "Judy Bonds",
+        "Register of Deeds": null,
+        "Probate Judge": "Brad Caulder"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/fairfield-county/directory",
+      "scraped_date": "2026-01-17T20:28:34.968430Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Florence": {
+      "county": "Florence",
+      "officials": {
+        "Auditor": "Debra Dennis",
+        "Treasurer": "Laurie Carpenter",
+        "Coroner": "Keith Von Lutcken",
+        "Clerk of Court": "Doris O&#039;Hara",
+        "Register of Deeds": "Felicia Simon",
+        "Probate Judge": "Jesse Cartrette"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/florence-county/directory",
+      "scraped_date": "2026-01-17T20:28:36.148635Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Georgetown": {
+      "county": "Georgetown",
+      "officials": {
+        "Auditor": "Kenneth Baker",
+        "Treasurer": "Miriam Mace",
+        "Coroner": "Chase Ridgeway",
+        "Clerk of Court": "Alma White",
+        "Register of Deeds": "Marlene McConnell",
+        "Probate Judge": "Leigh Powers-Boan"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/georgetown-county/directory",
+      "scraped_date": "2026-01-17T20:28:37.459442Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Greenville": {
+      "county": "Greenville",
+      "officials": {
+        "Auditor": "Scott Case",
+        "Treasurer": "Allen Hodges",
+        "Coroner": "Mike Ellis",
+        "Clerk of Court": "Jay Gresham",
+        "Register of Deeds": "Timothy Nanney",
+        "Probate Judge": "Chad Groover"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/greenville-county/directory",
+      "scraped_date": "2026-01-17T20:28:38.640056Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Greenwood": {
+      "county": "Greenwood",
+      "officials": {
+        "Auditor": "Ashley Davis",
+        "Treasurer": "Steffanie Dorn, CPFO",
+        "Coroner": "Sonny Cox",
+        "Clerk of Court": "Chastity Copeland",
+        "Register of Deeds": "Lindsey Reynolds",
+        "Probate Judge": "Travis Moore"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/greenwood-county/directory",
+      "scraped_date": "2026-01-17T20:28:39.808873Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Hampton": {
+      "county": "Hampton",
+      "officials": {
+        "Auditor": "Latanya Williams",
+        "Treasurer": "Alice Gordon",
+        "Coroner": "Anna Fields",
+        "Clerk of Court": "Jvonndra Brooks Creech",
+        "Register of Deeds": null,
+        "Probate Judge": "Shannon Parker"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/hampton-county/directory",
+      "scraped_date": "2026-01-17T20:28:40.974965Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Horry": {
+      "county": "Horry",
+      "officials": {
+        "Auditor": "Tina Hardee",
+        "Treasurer": "Angie Jones",
+        "Coroner": "Robert Edge",
+        "Clerk of Court": "Renee Elvis",
+        "Register of Deeds": null,
+        "Probate Judge": "Allen Beverly"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/horry-county/directory",
+      "scraped_date": "2026-01-17T20:28:42.259679Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Jasper": {
+      "county": "Jasper",
+      "officials": {
+        "Auditor": "Megan Carroll Horton",
+        "Treasurer": "Michael Skinner",
+        "Coroner": "Jeremiah Vaigneur",
+        "Clerk of Court": "R. Keith Horton",
+        "Register of Deeds": "Vanessa Wright",
+        "Probate Judge": "Albert Kleckley"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/jasper-county/directory",
+      "scraped_date": "2026-01-17T20:28:43.466556Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Kershaw": {
+      "county": "Kershaw",
+      "officials": {
+        "Auditor": "Dennis Arledge",
+        "Treasurer": "Randy Roberts",
+        "Coroner": "David West",
+        "Clerk of Court": "Ginger Farmer",
+        "Register of Deeds": "Kelli Josey",
+        "Probate Judge": "Debbie Branham"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/kershaw-county/directory",
+      "scraped_date": "2026-01-17T20:28:44.683781Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Lancaster": {
+      "county": "Lancaster",
+      "officials": {
+        "Auditor": "Suzette Murphy",
+        "Treasurer": "Carrie Helms",
+        "Coroner": "Karla Deese",
+        "Clerk of Court": "Mike Watkins",
+        "Register of Deeds": "Brittany Grant",
+        "Probate Judge": "Mary Rathel"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/lancaster-county/directory",
+      "scraped_date": "2026-01-17T20:28:45.892337Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Laurens": {
+      "county": "Laurens",
+      "officials": {
+        "Auditor": "James Coleman",
+        "Treasurer": "Cindy Burke",
+        "Coroner": "Patti Canupp",
+        "Clerk of Court": "Michelle Simmons",
+        "Register of Deeds": null,
+        "Probate Judge": "Kaye Fridy"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/laurens-county/directory",
+      "scraped_date": "2026-01-17T20:28:47.092236Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Lee": {
+      "county": "Lee",
+      "officials": {
+        "Auditor": "Cecil Stevens",
+        "Treasurer": "Shirley Dixon",
+        "Coroner": "Larry Logan",
+        "Clerk of Court": "Teresa Brown",
+        "Register of Deeds": "Loretta Asher",
+        "Probate Judge": "Michael Davis"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/lee-county/directory",
+      "scraped_date": "2026-01-17T20:28:48.329926Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Lexington": {
+      "county": "Lexington",
+      "officials": {
+        "Auditor": "Chris Harmon",
+        "Treasurer": "James Eckstrom",
+        "Coroner": "Margaret Fisher",
+        "Clerk of Court": "Lisa Comer",
+        "Register of Deeds": "Tina Guerry",
+        "Probate Judge": "Daniel Eckstrom"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/lexington-county/directory",
+      "scraped_date": "2026-01-17T20:28:49.552156Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Marion": {
+      "county": "Marion",
+      "officials": {
+        "Auditor": "Vicki Cook",
+        "Treasurer": "Alta Dubose",
+        "Coroner": "Jerry Richardson",
+        "Clerk of Court": "Christy Gray",
+        "Register of Deeds": null,
+        "Probate Judge": "T. Caroll Atkinson"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/marion-county/directory",
+      "scraped_date": "2026-01-17T20:28:50.768002Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Marlboro": {
+      "county": "Marlboro",
+      "officials": {
+        "Auditor": "Debra Weldon",
+        "Treasurer": "Sharea Bracey",
+        "Coroner": "De&#039;Aron Smith",
+        "Clerk of Court": "Anita Williams",
+        "Register of Deeds": null,
+        "Probate Judge": "Reneka McCoy"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/marlboro-county/directory",
+      "scraped_date": "2026-01-17T20:28:51.993380Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "McCormick": {
+      "county": "McCormick",
+      "officials": {
+        "Auditor": "Clarissa Parks",
+        "Treasurer": "Mary Shirley",
+        "Coroner": "Faye Puckett",
+        "Clerk of Court": "Gwendolyn Chiles",
+        "Register of Deeds": null,
+        "Probate Judge": "John Gray"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/mccormick-county/directory",
+      "scraped_date": "2026-01-17T20:28:53.209471Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Newberry": {
+      "county": "Newberry",
+      "officials": {
+        "Auditor": "Donna Lominack",
+        "Treasurer": "Karen Lindler Smith",
+        "Coroner": "Laura Kneece",
+        "Clerk of Court": "Beth Folk",
+        "Register of Deeds": null,
+        "Probate Judge": "Kelly Nobles"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/newberry-county/directory",
+      "scraped_date": "2026-01-17T20:28:54.426229Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Oconee": {
+      "county": "Oconee",
+      "officials": {
+        "Auditor": "Christy Hubbard",
+        "Treasurer": "Gena Acree",
+        "Coroner": "Karl Addis",
+        "Clerk of Court": "Lisa Burton",
+        "Register of Deeds": "Anna Davison",
+        "Probate Judge": "Danny Singleton"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/oconee-county/directory",
+      "scraped_date": "2026-01-17T20:28:55.638368Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Orangeburg": {
+      "county": "Orangeburg",
+      "officials": {
+        "Auditor": "Audrey Asbury",
+        "Treasurer": "E. Matt Stokes",
+        "Coroner": "Sean Fogle",
+        "Clerk of Court": "Winnifa Clark",
+        "Register of Deeds": "Demetrice Williams",
+        "Probate Judge": "Pandora Jones-Glover"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/orangeburg-county/directory",
+      "scraped_date": "2026-01-17T20:28:56.869408Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Pickens": {
+      "county": "Pickens",
+      "officials": {
+        "Auditor": "Brent Suddeth",
+        "Treasurer": "Dale Looper",
+        "Coroner": "Andrew Wilson",
+        "Clerk of Court": "Pat Welborn",
+        "Register of Deeds": null,
+        "Probate Judge": "David Allison"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/pickens-county/directory",
+      "scraped_date": "2026-01-17T20:28:58.091716Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Richland": {
+      "county": "Richland",
+      "officials": {
+        "Auditor": "Paul Brawley",
+        "Treasurer": "Kendra Dove",
+        "Coroner": "Naida Rutherford",
+        "Clerk of Court": "Jeannette McBride",
+        "Register of Deeds": "John Hopkins",
+        "Probate Judge": "Amy McCulloch"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/richland-county/directory",
+      "scraped_date": "2026-01-17T20:28:59.341593Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Saluda": {
+      "county": "Saluda",
+      "officials": {
+        "Auditor": "Alena Dorsey",
+        "Treasurer": "Tiffany Shaw",
+        "Coroner": "Angie Rita",
+        "Clerk of Court": "Sheri Coleman",
+        "Register of Deeds": null,
+        "Probate Judge": "Abigail Ridgell"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/saluda-county/directory",
+      "scraped_date": "2026-01-17T20:29:00.565297Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Spartanburg": {
+      "county": "Spartanburg",
+      "officials": {
+        "Auditor": "Sharon West",
+        "Treasurer": "Oren Brady",
+        "Coroner": "Rusty Clevenger",
+        "Clerk of Court": "Amy West-Cox",
+        "Register of Deeds": "Ashley Williams",
+        "Probate Judge": "Ponda Caldwell"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/spartanburg-county/directory",
+      "scraped_date": "2026-01-17T20:29:01.784409Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Sumter": {
+      "county": "Sumter",
+      "officials": {
+        "Auditor": "Lauretha McCants",
+        "Treasurer": "Carolina Richardson",
+        "Coroner": "Robert Baker",
+        "Clerk of Court": "James Campbell",
+        "Register of Deeds": "Rhonda Carter",
+        "Probate Judge": "Dale Atkinson"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/sumter-county/directory",
+      "scraped_date": "2026-01-17T20:29:02.990357Z",
+      "status": "success",
+      "officials_found": 6
+    },
+    "Union": {
+      "county": "Union",
+      "officials": {
+        "Auditor": "Brad Valentine",
+        "Treasurer": "Deborah Robertson",
+        "Coroner": "William Holcombe",
+        "Clerk of Court": "Stephanie Kitchens",
+        "Register of Deeds": null,
+        "Probate Judge": "Toni Allen"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/union-county/directory",
+      "scraped_date": "2026-01-17T20:29:04.217376Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "Williamsburg": {
+      "county": "Williamsburg",
+      "officials": {
+        "Auditor": "Crystal Powell",
+        "Treasurer": "Kimber Cooper",
+        "Coroner": "Ivori Henryhand",
+        "Clerk of Court": "Deitra Johnson",
+        "Register of Deeds": null,
+        "Probate Judge": "Betty Matthews"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/williamsburg-county/directory",
+      "scraped_date": "2026-01-17T20:29:05.419607Z",
+      "status": "success",
+      "officials_found": 5
+    },
+    "York": {
+      "county": "York",
+      "officials": {
+        "Auditor": "Ryan Thomas",
+        "Treasurer": null,
+        "Coroner": "Sabrina Gast",
+        "Clerk of Court": "Angie Bryant",
+        "Register of Deeds": null,
+        "Probate Judge": "Carolyn Woodruff"
+      },
+      "source": "sccounties.org",
+      "url": "https://www.sccounties.org/county/york-county/directory",
+      "scraped_date": "2026-01-17T20:29:06.631144Z",
+      "status": "success",
+      "officials_found": 4
+    }
+  }
+}
