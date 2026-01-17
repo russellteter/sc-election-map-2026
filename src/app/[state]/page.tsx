@@ -566,6 +566,7 @@ export default function StateDashboard() {
                 onDistrictClick={setSelectedDistrict}
                 onDistrictHover={setHoveredDistrict}
                 filteredDistricts={filteredDistricts}
+                stateCode={stateCode}
               />
             </div>
             <Legend />

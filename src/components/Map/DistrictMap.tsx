@@ -27,6 +27,8 @@ interface DistrictMapProps {
   filteredDistricts?: Set<number>;
   showRepublicanData?: boolean;
   republicanDataMode?: 'none' | 'incumbents' | 'challengers' | 'all';
+  /** State code for multi-state support (default: 'sc') */
+  stateCode?: string;
 }
 
 export default function DistrictMap({
@@ -39,6 +41,7 @@ export default function DistrictMap({
   filteredDistricts,
   showRepublicanData = false,
   republicanDataMode = 'none',
+  stateCode = 'sc',
 }: DistrictMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [rawSvgContent, setRawSvgContent] = useState<string>('');
@@ -61,19 +64,22 @@ export default function DistrictMap({
     prevSelectedRef.current = selectedDistrict;
   }, [selectedDistrict]);
 
-  // Load SVG
+  // Load SVG - supports multi-state with state-prefixed filenames
   useEffect(() => {
-    const basePath = window.location.pathname.includes('/sc-election-map-2026')
+    const basePath = window.location.pathname.includes('/blue-intelligence')
+      ? '/blue-intelligence'
+      : window.location.pathname.includes('/sc-election-map-2026')
       ? '/sc-election-map-2026'
       : '';
-    const svgPath = `${basePath}/maps/${chamber}-districts.svg`;
+    // Use state-specific map files (e.g., sc-house-districts.svg, nc-senate-districts.svg)
+    const svgPath = `${basePath}/maps/${stateCode.toLowerCase()}-${chamber}-districts.svg`;
     fetch(svgPath)
       .then((res) => res.text())
       .then((svg) => {
         setRawSvgContent(svg);
       })
       .catch((err) => console.error('Failed to load SVG:', err));
-  }, [chamber]);
+  }, [chamber, stateCode]);
 
   // Process SVG to add fills BEFORE rendering (fixes dangerouslySetInnerHTML reset issue)
   const processedSvgContent = useMemo(() => {
@@ -94,7 +100,7 @@ export default function DistrictMap({
     svg.style.maxWidth = '100%';
     svg.style.height = 'auto';
     svg.setAttribute('role', 'application');
-    svg.setAttribute('aria-label', `${chamber === 'house' ? 'SC House' : 'SC Senate'} District Map. Use Tab to navigate districts, Enter to select.`);
+    svg.setAttribute('aria-label', `${stateCode.toUpperCase()} ${chamber === 'house' ? 'House' : 'Senate'} District Map. Use Tab to navigate districts, Enter to select.`);
 
     // Process all district paths
     const paths = svg.querySelectorAll('path[id]');
