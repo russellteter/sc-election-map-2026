@@ -3,6 +3,7 @@
 import type { CongressionalData, CongressionalDistrict, USSenateRace, Candidate } from '@/types/schema';
 import CandidateCard from '@/components/Dashboard/CandidateCard';
 import { CD_INFO } from '@/lib/congressionalLookup';
+import { DemoBadge } from '@/components/ui';
 
 interface CongressionalRacesProps {
   data: CongressionalData;
@@ -36,9 +37,12 @@ export default function CongressionalRaces({ data, congressionalDistrict, county
           </svg>
         </div>
         <div>
-          <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
-            U.S. Congress
-          </h3>
+          <div className="flex items-center gap-2">
+            <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
+              U.S. Congress
+            </h3>
+            <DemoBadge />
+          </div>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
             Federal representatives for your area
           </p>

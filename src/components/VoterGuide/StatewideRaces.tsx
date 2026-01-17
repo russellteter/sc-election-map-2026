@@ -2,6 +2,7 @@
 
 import type { StatewideRacesData, StatewideRace, Candidate } from '@/types/schema';
 import CandidateCard from '@/components/Dashboard/CandidateCard';
+import { DemoBadge } from '@/components/ui';
 
 interface StatewideRacesProps {
   data: StatewideRacesData;
@@ -31,9 +32,12 @@ export default function StatewideRaces({ data }: StatewideRacesProps) {
           </svg>
         </div>
         <div>
-          <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
-            Statewide Offices
-          </h3>
+          <div className="flex items-center gap-2">
+            <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
+              Statewide Offices
+            </h3>
+            <DemoBadge />
+          </div>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
             All SC voters vote for these offices
           </p>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import type { BallotMeasuresData, StateMeasure, LocalMeasure, LocalMeasureGroup } from '@/types/schema';
+import { DemoBadge } from '@/components/ui';
 
 interface BallotMeasuresProps {
   data: BallotMeasuresData;
@@ -83,9 +84,12 @@ export default function BallotMeasures({ data, countyName }: BallotMeasuresProps
           </svg>
         </div>
         <div>
-          <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
-            Ballot Measures
-          </h3>
+          <div className="flex items-center gap-2">
+            <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
+              Ballot Measures
+            </h3>
+            <DemoBadge />
+          </div>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
             Proposed amendments and referendums on your ballot
           </p>
