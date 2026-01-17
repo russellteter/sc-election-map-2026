@@ -14,8 +14,9 @@ import gaConfig from '@/config/states/ga.json';
 import flConfig from '@/config/states/fl.json';
 import vaConfig from '@/config/states/va.json';
 
-// Re-export the type guard
+// Re-export types and type guard
 export { isActiveState } from '@/types/stateConfig';
+export type { StateConfig, AnyStateConfig, InactiveStateConfig, StateConfigMap } from '@/types/stateConfig';
 
 /**
  * All active state configurations
