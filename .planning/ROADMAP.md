@@ -88,15 +88,14 @@ All 12 original features from the API Integration Plan:
 - UI/UX enhancements (component refactoring, DemoBadge, UX polish)
 - Test coverage and performance optimization
 
-### Phase 1: Data File Scaffolding
+### Phase 1: Data File Scaffolding (COMPLETE)
 
 **Goal**: Create missing data files (judicial-races.json, school-board.json, ballot-measures.json, special-districts.json)
 **Depends on**: Phase A complete
-**Research**: Unlikely (internal patterns)
-**Plans**: TBD
+**Status**: COMPLETE (2026-01-17)
 
 Plans:
-- [ ] 01-01: TBD (run /gsd:plan-phase 1 to break down)
+- [x] 01-01: Copy Tier 3 data files to public/data/ (df74b56)
 
 ### Phase 2: County Candidate Data
 
@@ -306,7 +305,7 @@ Expand to all 50 states with:
 | Phase | Milestone | Status | Progress |
 |-------|-----------|--------|----------|
 | Phase A | v1.0 | COMPLETE | 100% |
-| 1. Data File Scaffolding | v1.1 | Not started | 0% |
+| 1. Data File Scaffolding | v1.1 | COMPLETE | 100% |
 | 2. County Candidate Data | v1.1 | Not started | 0% |
 | 3. DemoBadge Integration | v1.1 | Not started | 0% |
 | 4. Voter Guide Decomposition | v1.1 | Not started | 0% |
