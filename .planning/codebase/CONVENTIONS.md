@@ -1,358 +1,235 @@
-# Coding Conventions - SC Election Map 2026
+# Coding Conventions
 
-> Generated: 2026-01-12 | GSD Codebase Mapping
+**Analysis Date:** 2026-01-17
+**Focus:** SC Voter Guide System
 
-## TypeScript Patterns
+## Naming Patterns
 
-### Configuration
+**Files:**
+- `kebab-case.ts` for utility modules (data-loader.ts, district-lookup.ts)
+- `PascalCase.tsx` for React components (AddressAutocomplete.tsx, RaceCard.tsx)
+- `*.test.ts` or `*.test.tsx` for test files
+- `index.ts` for barrel exports
 
-```json
-// tsconfig.json
-{
-  "strict": true,              // Strict mode enabled
-  "target": "ES2017",          // Target ES2017
-  "jsx": "react-jsx",          // React 19 automatic runtime
-  "moduleResolution": "bundler",
-  "paths": { "@/*": ["./src/*"] }  // Path alias
-}
-```
+**Functions:**
+- camelCase for all functions (findDistricts, loadTier1, geocodeAddress)
+- No special prefix for async functions
+- handleEventName for event handlers (handleAddressSelect, handleSubmit)
 
-### Type Definitions
+**Variables:**
+- camelCase for variables (selectedAddress, districtBoundaries)
+- UPPER_SNAKE_CASE for constants (COUNTY_TO_CD, SC_BOUNDS)
+- No underscore prefix for private members
 
-**Preference:** Interfaces for props and data models
+**Types:**
+- PascalCase for interfaces, no I prefix (Candidate, District, not ICandidate)
+- PascalCase for type aliases (StatewideRace, CountyRace)
+- Located in `src/types/schema.ts` (centralized)
 
-```typescript
-// Component props
-interface ChamberToggleProps {
-  chamber: 'house' | 'senate';
-  onChange: (chamber: 'house' | 'senate') => void;
-}
+## Code Style
 
-// Data models
-interface Candidate {
-  name: string;
-  party: string | null;
-  status: string;
-  filedDate: string | null;
-  ethicsUrl: string | null;
-  reportId: string;
-  source: string;
-}
+**Formatting:**
+- No Prettier config (using ESLint only)
+- 2 space indentation
+- Single quotes for strings
+- Semicolons required
+- Line length not strictly enforced
 
-interface District {
-  districtNumber: number;
-  candidates: Candidate[];
-}
-```
+**Linting:**
+- ESLint 9.x with flat config (`eslint.config.js`)
+- extends `eslint-config-next` 16.1.1
+- Run: `npm run lint`
 
-## Component Patterns
-
-### Function Component Structure
-
-```typescript
-'use client';  // Client directive at top
-
-import { useState, useEffect } from 'react';
-
-// Props interface
-interface ComponentProps {
-  prop1: string;
-  prop2?: number;
-}
-
-// Component definition
-export default function ComponentName({ prop1, prop2 }: ComponentProps) {
-  // 1. Hooks at top
-  const [state, setState] = useState<Type>(initial);
-  const ref = useRef<HTMLDivElement>(null);
-
-  // 2. Effects
-  useEffect(() => {
-    // Side effect logic
-  }, [dependencies]);
-
-  // 3. Callbacks
-  const handleClick = useCallback(() => {
-    // Handler logic
-  }, [dependencies]);
-
-  // 4. Memoized values
-  const processed = useMemo(() => {
-    // Expensive computation
-  }, [dependencies]);
-
-  // 5. Early returns (loading, error)
-  if (isLoading) return <div>Loading...</div>;
-
-  // 6. Render
-  return (
-    <div className="...">
-      {/* JSX */}
-    </div>
-  );
-}
-
-// Helper functions at bottom
-function helperFunction(): Type {
-  // logic
-}
-```
-
-### Export Pattern
-
-- **Default exports** for components
-- Named helper functions stay in same file
-
-## Naming Conventions
-
-### Files & Directories
-
-| Type | Convention | Example |
-|------|------------|---------|
-| Components | PascalCase | `DistrictMap.tsx` |
-| Directories | PascalCase | `Dashboard/`, `Map/` |
-| Data files | kebab-case | `candidates.json` |
-| Config files | kebab-case | `next.config.ts` |
-
-### Variables
-
-| Type | Convention | Example |
-|------|------------|---------|
-| State | camelCase | `selectedDistrict` |
-| Boolean | `is*`, `has*` | `isLoading`, `hasDemocrat` |
-| Arrays | plural | `candidates`, `paths` |
-| Handlers | `handle*` | `handleClick` |
-| Callbacks | `on*` | `onDistrictClick` |
-
-### Functions
-
-| Type | Convention | Example |
-|------|------------|---------|
-| Getters | `get*` | `getDistrictColor()` |
-| Calculators | `calculate*` | `calculateStats()` |
-| Handlers | `handle*` | `handleMouseMove()` |
+**TypeScript:**
+- Strict mode enabled
+- Explicit return types optional (inferred)
+- No `any` without justification
 
 ## Import Organization
 
+**Order:**
+1. External packages (react, next, @turf/*)
+2. Internal absolute imports (@/lib, @/components)
+3. Relative imports (./utils, ../types)
+4. Type imports (import type { Candidate })
+
+**Grouping:**
+- Blank line between groups
+- React imports first within external group
+- Type-only imports use `import type`
+
+**Path Aliases:**
+- `@/` maps to `src/` (via tsconfig paths)
+- Used throughout: `@/lib/dataLoader`, `@/components/VoterGuide`
+
+## Component Patterns
+
+**Client Components:**
 ```typescript
-// 1. Client directive
 'use client';
 
-// 2. React imports
-import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
-// 3. Local components (@ alias)
-import DistrictMap from '@/components/Map/DistrictMap';
-import Legend from '@/components/Map/Legend';
-import SidePanel from '@/components/Dashboard/SidePanel';
+export function ComponentName({ prop1, prop2 }: Props) {
+  const [state, setState] = useState<Type>(initial);
 
-// 4. Types/interfaces defined inline (not imported)
-```
+  useEffect(() => {
+    // effect logic
+  }, [dependencies]);
 
-**Notes:**
-- Always use `@/` path alias
-- No external utility libraries (no lodash, classnames)
-- Standard React hooks only
-
-## Styling Conventions
-
-### Tailwind CSS
-
-```typescript
-// Inline className with utilities
-className="flex flex-col lg:flex-row gap-4"
-
-// Conditional classes with template literals
-className={`px-4 py-2 text-sm font-medium rounded-md ${
-  isActive
-    ? 'bg-white text-gray-900 shadow'
-    : 'text-gray-600 hover:text-gray-900'
-}`}
-
-// Responsive: mobile-first
-className="w-full lg:w-96"
-className="grid grid-cols-2 sm:grid-cols-4"
-```
-
-### CSS Variables (Design Tokens)
-
-```css
-/* Colors */
---class-purple: #4739E7;
---class-purple-light: #DAD7FA;
---text-color: #0A1849;
-
-/* Spacing */
---space-1: 2px;
---space-2: 4px;
---space-3: 8px;
---space-4: 12px;
---space-5: 16px;
-
-/* Typography */
---font-size-xs: 0.75rem;
---font-size-sm: 0.875rem;
---font-size-base: 1rem;
-
-/* Shadows */
---shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
---shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
-```
-
-### CSS Classes
-
-```css
-/* Component classes */
-.kpi-card { }
-.badge { }
-.badge-democrat { }
-.badge-republican { }
-.chamber-toggle { }
-.glass-surface { }
-
-/* Section comments */
-/* ================================================
-   GLASSMORPHIC DESIGN SYSTEM TOKENS
-   ================================================ */
-```
-
-## Comment Style
-
-### Minimal Inline Comments
-
-```typescript
-// Parse the SVG and add fill colors to each path
-const parser = new DOMParser();
-
-// Make SVG responsive
-svg.setAttribute('width', '100%');
-
-// Process all district paths
-paths.forEach(path => {
-  // Apply fill color directly to SVG string
-  path.setAttribute('fill', color);
-});
-```
-
-### CSS Section Comments
-
-```css
-/* ================================================
-   PRIMARY COLORS
-   ================================================ */
-
-/* SVG Map Styles */
-/* NOTE: Do NOT set fill here - JavaScript sets fill colors dynamically */
-```
-
-## State Management
-
-### Pattern: Prop Drilling
-
-```typescript
-// Parent (page.tsx)
-const [selectedDistrict, setSelectedDistrict] = useState<number | null>(null);
-
-// Pass down
-<DistrictMap
-  selectedDistrict={selectedDistrict}
-  onDistrictClick={setSelectedDistrict}
-/>
-```
-
-**No Context API** - app is simple enough for props
-
-## Event Handling
-
-### Event Delegation Pattern
-
-```typescript
-// Container handles all path events
-const handleClick = useCallback((e: React.MouseEvent) => {
-  const target = e.target as Element;
-  const path = target.closest('path[data-district]');
-  if (path) {
-    const districtNum = parseInt(path.getAttribute('data-district') || '0', 10);
-    if (districtNum > 0) {
-      onDistrictClick(districtNum);
-    }
-  }
-}, [onDistrictClick]);
-
-return (
-  <div onClick={handleClick}>
-    {/* SVG content */}
-  </div>
-);
-```
-
-## Data Handling
-
-### Nullable Fields
-
-```typescript
-interface Candidate {
-  party: string | null;      // May be unknown
-  filedDate: string | null;  // May not be set
-  ethicsUrl: string | null;  // May not have URL
+  return <div>...</div>;
 }
 ```
 
-### Conditional Rendering
+**Props:**
+- Destructure in parameter list
+- Define Props interface inline or imported
+- Use TypeScript for prop types (not PropTypes)
 
+**State Management:**
+- useState for component state
+- useEffect for side effects
+- No global state library (no Redux, Zustand)
+
+## Error Handling
+
+**Patterns:**
+- Try/catch for async operations
+- Fallback patterns (Geoapify → Nominatim)
+- Graceful degradation for missing data
+
+**Error Types:**
+- Throw Error with descriptive message
+- No custom error classes observed
+- Console.error for logging
+
+**Example:**
 ```typescript
-// Party badge
-{candidate.party ? (
-  <span className={`badge badge-${partyClass}`}>{candidate.party}</span>
-) : (
-  <span className="badge badge-unknown">Unknown</span>
-)}
-
-// Date formatting
-{candidate.filedDate && (
-  <span>{new Date(candidate.filedDate).toLocaleDateString()}</span>
-)}
+try {
+  const result = await geocodeAddress(address);
+  return result;
+} catch (error) {
+  console.error('Geocoding failed:', error);
+  // Fallback to alternative
+  return await nominatimGeocode(address);
+}
 ```
+
+## Logging
+
+**Framework:**
+- Console.log/error/warn (browser console)
+- No structured logging library
+
+**Patterns:**
+- console.log for debug information
+- console.error for error conditions
+- No production logging infrastructure
+
+## Comments
+
+**When to Comment:**
+- Explain why, not what
+- Document business logic (SC bounding box, district mapping)
+- TODO comments for incomplete features
+
+**JSDoc/TSDoc:**
+- Not consistently used
+- Some functions have parameter descriptions
+- Types provide most documentation
+
+**TODO Comments:**
+- Format: `// TODO: description`
+- No issue tracking links observed
+
+## Function Design
+
+**Size:**
+- Generally keep under 50 lines
+- Extract helpers for complex logic
+- Some large page components (voter-guide/page.tsx: 666 lines)
+
+**Parameters:**
+- Max 3-4 parameters
+- Use options object for complex inputs
+- Destructure in parameter list
+
+**Return Values:**
+- Explicit return for non-trivial functions
+- Return early for guard clauses
+- Promise<T> for async functions
+
+## React Patterns
+
+**Hooks:**
+```typescript
+// State
+const [value, setValue] = useState<Type>(initial);
+
+// Effects with cleanup
+useEffect(() => {
+  const controller = new AbortController();
+  fetchData(controller.signal);
+  return () => controller.abort();
+}, [dependency]);
+
+// Callbacks (memoized when needed)
+const handleClick = useCallback(() => {
+  // handler logic
+}, [dependencies]);
+```
+
+**Conditional Rendering:**
+```typescript
+{condition && <Component />}
+{condition ? <A /> : <B />}
+{items.map(item => <Item key={item.id} {...item} />)}
+```
+
+**Loading States:**
+```typescript
+if (isLoading) return <LoadingSpinner />;
+if (error) return <ErrorMessage error={error} />;
+return <Content data={data} />;
+```
+
+## Module Design
+
+**Exports:**
+- Named exports preferred
+- Default exports for page components (Next.js convention)
+- Barrel files (index.ts) for directory re-exports
+
+**File Organization:**
+- One component per file
+- Related utilities in same file (or separate helper file)
+- Types in `src/types/schema.ts` (centralized)
 
 ## Accessibility Patterns
 
-### Reduced Motion
+**ARIA:**
+- aria-label for interactive elements
+- aria-expanded for expandable sections
+- role attributes where semantic HTML insufficient
 
-```css
-@media (prefers-reduced-motion: reduce) {
-  .kpi-card::before { transition: none; }
-  .animate-count { animation: none; }
-}
+**Keyboard:**
+- onKeyDown handlers for keyboard navigation
+- Focus management in modals/dropdowns
+- Tab index management
+
+**Example (AddressAutocomplete):**
+```typescript
+<input
+  type="text"
+  role="combobox"
+  aria-autocomplete="list"
+  aria-expanded={showSuggestions}
+  aria-controls="suggestions-list"
+  onKeyDown={handleKeyDown}
+/>
 ```
 
-### ARIA Labels
+---
 
-```tsx
-<button
-  onClick={() => onChange('house')}
-  aria-pressed={chamber === 'house'}
->
-  House
-</button>
-
-<button
-  onClick={onClose}
-  aria-label="Close panel"
->
-  ×
-</button>
-```
-
-## Summary Checklist
-
-- [ ] TypeScript strict mode enabled
-- [ ] Interfaces for all props
-- [ ] PascalCase component files
-- [ ] camelCase variables
-- [ ] `@/` path alias for imports
-- [ ] Tailwind for styling
-- [ ] CSS variables for design tokens
-- [ ] Minimal comments (code is self-documenting)
-- [ ] Event delegation for SVG
-- [ ] useCallback/useMemo for performance
-- [ ] Nullable types handled explicitly
+*Convention analysis: 2026-01-17*
+*Update when patterns change*

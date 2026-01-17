@@ -1,224 +1,190 @@
-# Architecture - SC Election Map 2026
+# Architecture
 
-> Generated: 2026-01-12 | GSD Codebase Mapping
+**Analysis Date:** 2026-01-17
+**Focus:** SC Voter Guide System
 
-## Overview
+## Pattern Overview
 
-**Pattern:** Component-driven client-side application with static generation
+**Overall:** Static Site Generator with Progressive Data Loading
 
 **Key Characteristics:**
-- Static export via Next.js (`output: 'export'`)
-- Client-side data fetching and rendering
-- SVG-based interactive maps
-- Prop drilling for state management
-- No server runtime required
+- Static export to HTML/JS/CSS (no server runtime)
+- Client-side data fetching with progressive loading tiers
+- Address-to-ballot flow (geocode → district lookup → candidate display)
+- Glassmorphic UI design system
+
+## Layers
+
+**Presentation Layer:**
+- Purpose: React components for UI rendering
+- Contains: Page components, reusable UI components, voter guide sections
+- Location: `src/app/` (pages), `src/components/` (shared)
+- Depends on: Data layer for candidates/districts, lib utilities
+- Used by: Next.js App Router
+
+**Data Loading Layer:**
+- Purpose: Progressive data fetching with caching
+- Contains: Tier-based loaders, cache deduplication, JSON fetchers
+- Location: `src/lib/dataLoader.ts`
+- Depends on: Static JSON files in `public/data/`
+- Used by: Page components, Voter Guide components
+
+**Geospatial Layer:**
+- Purpose: Address geocoding and district detection
+- Contains: Geoapify integration, Nominatim fallback, Turf.js point-in-polygon
+- Location: `src/lib/geocoding.ts`, `src/lib/districtLookup.ts`, `src/lib/congressionalLookup.ts`
+- Depends on: External APIs (Geoapify, Nominatim), GeoJSON boundaries
+- Used by: Voter Guide address flow
+
+**Type Layer:**
+- Purpose: TypeScript type definitions
+- Contains: Candidate, District, Race, VoterGuide interfaces
+- Location: `src/types/schema.ts`
+- Depends on: Nothing (pure types)
+- Used by: All other layers
 
 ## Data Flow
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                      DATA PIPELINE                          │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  SC Ethics Commission Website                               │
-│         │                                                   │
-│         ▼ (curl fetch via GitHub Actions)                   │
-│  sc-ethics-monitor/state.json                               │
-│         │                                                   │
-│         ▼ (Python: scripts/process-data.py)                 │
-│  candidates.json (enriched with party-data.json)            │
-│         │                                                   │
-│         ▼ (auto-commit to repo)                             │
-│  public/data/candidates.json                                │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+**Voter Guide Flow (Core User Journey):**
 
-┌─────────────────────────────────────────────────────────────┐
-│                    CLIENT RENDERING                         │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  Browser loads page.tsx                                     │
-│         │                                                   │
-│         ▼ (useEffect)                                       │
-│  Fetch candidates.json + house/senate SVG maps              │
-│         │                                                   │
-│         ▼ (useMemo)                                         │
-│  Process SVG: add fill colors per candidate data            │
-│         │                                                   │
-│         ▼ (dangerouslySetInnerHTML)                         │
-│  Render colored SVG map with event delegation               │
-│         │                                                   │
-│         ▼ (onClick/onHover)                                 │
-│  Update state → Side panel shows district details           │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
-
-## State Management
-
-**Approach:** React hooks (useState, useEffect, useMemo, useCallback, useRef)
-
-**State Location:** Centralized in `page.tsx` (Home component)
-
-| State | Type | Trigger |
-|-------|------|---------|
-| `chamber` | `'house' \| 'senate'` | ChamberToggle button |
-| `selectedDistrict` | `number \| null` | Map path click |
-| `hoveredDistrict` | `number \| null` | Map path hover |
-| `candidatesData` | `CandidatesData \| null` | useEffect on mount |
-| `isLoading` | `boolean` | Async data load |
-| `rawSvgContent` | `string` | SVG fetch |
-| `processedSvgContent` | `string` | useMemo SVG coloring |
-
-**Data Flow Direction:**
-- Props flow **down**: `page.tsx` → Child components
-- Events flow **up**: Child onClick → Callbacks → setState
-
-## Component Architecture
+1. User enters address in `AddressAutocomplete.tsx`
+2. Geoapify API returns coordinate suggestions (debounced 300ms)
+3. User selects address → coordinates extracted
+4. `districtLookup.ts` performs point-in-polygon with Turf.js
+5. County determined → `congressionalLookup.ts` maps to Congressional District
+6. `dataLoader.ts` fetches relevant candidate/race data
+7. Voter Guide page renders personalized ballot
 
 ```
-layout.tsx (Root Layout)
-└── page.tsx (Home - Client Component)
-    │
-    ├── <header>
-    │   └── ChamberToggle
-    │
-    ├── <main>
-    │   │
-    │   ├── Left Section
-    │   │   ├── Stats Bar (KPI cards)
-    │   │   ├── DistrictMap (SVG)
-    │   │   ├── Legend
-    │   │   └── Hover Info
-    │   │
-    │   └── Right Section
-    │       └── SidePanel
-    │           └── CandidateCard (repeated)
-    │
-    └── <footer>
+┌─────────────────┐
+│ Address Input   │ AddressAutocomplete.tsx
+└────────┬────────┘
+         │ coordinates
+         ▼
+┌─────────────────┐
+│ District Lookup │ districtLookup.ts (Turf.js)
+└────────┬────────┘
+         │ house/senate district IDs
+         ▼
+┌─────────────────┐
+│ County Lookup   │ congressionalLookup.ts
+└────────┬────────┘
+         │ county + congressional district
+         ▼
+┌─────────────────┐
+│ Data Loading    │ dataLoader.ts
+└────────┬────────┘
+         │ candidates, races
+         ▼
+┌─────────────────┐
+│ Ballot Display  │ voter-guide/page.tsx
+└─────────────────┘
 ```
 
-## Key Architectural Decisions
-
-### 1. SVG Map Rendering
-
-**Strategy:** Pre-process SVG string before rendering
-
-```typescript
-// useMemo processes SVG with fills BEFORE React render
-const processedSvgContent = useMemo(() => {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(rawSvgContent, 'image/svg+xml');
-
-  // Add fill colors based on candidate data
-  paths.forEach(path => {
-    const color = getDistrictColor(districtData);
-    path.setAttribute('fill', color);
-  });
-
-  return new XMLSerializer().serializeToString(svg);
-}, [rawSvgContent, chamber, candidatesData, selectedDistrict]);
-```
-
-**Why:** React's `dangerouslySetInnerHTML` resets content on re-render, so colors must be applied to the string before rendering.
-
-### 2. Event Delegation
-
-**Strategy:** Single event handler on container
-
-```typescript
-const handleClick = useCallback((e: React.MouseEvent) => {
-  const path = e.target.closest('path[data-district]');
-  if (path) {
-    const districtNum = parseInt(path.getAttribute('data-district'));
-    onDistrictClick(districtNum);
-  }
-}, [onDistrictClick]);
-```
-
-**Why:** More efficient than 170 individual path listeners (124 House + 46 Senate).
-
-### 3. Static Export
-
-**Strategy:** Next.js `output: 'export'`
-
-**Benefits:**
-- No server required
-- GitHub Pages compatible
-- Fast CDN delivery
-- Simple deployment
-
-### 4. Client-Side Data Loading
-
-**Strategy:** Fetch on component mount
-
-```typescript
-useEffect(() => {
-  fetch('/data/candidates.json')
-    .then(res => res.json())
-    .then(data => setCandidatesData(data))
-    .catch(err => setError(true));
-}, []);
-```
-
-**Why:** Static export means no server-side data fetching.
-
-## Color Mapping Logic
-
-```typescript
-function getDistrictColor(district: District | undefined): string {
-  if (!district || district.candidates.length === 0) {
-    return '#f3f4f6'; // gray-100 - no candidates
-  }
-
-  const hasDemocrat = district.candidates.some(
-    c => c.party?.toLowerCase() === 'democratic'
-  );
-  const hasRepublican = district.candidates.some(
-    c => c.party?.toLowerCase() === 'republican'
-  );
-
-  if (hasDemocrat && hasRepublican) return '#a855f7'; // purple - contested
-  if (hasDemocrat) return '#3b82f6';                   // blue - Democrat
-  if (hasRepublican) return '#ef4444';                 // red - Republican
-  return '#9ca3af';                                     // gray - unknown
-}
-```
-
-## Performance Optimizations
-
-| Optimization | Location | Benefit |
-|--------------|----------|---------|
-| `useMemo` for SVG | DistrictMap | Prevents re-parsing |
-| `useCallback` for handlers | DistrictMap | Prevents child re-renders |
-| Event delegation | DistrictMap | Single handler for all paths |
-| Conditional rendering | page.tsx | Early return for loading |
-| Static JSON | public/data/ | No API latency |
-| Path aliases | tsconfig | Cleaner imports |
-
-## Deployment Model
+**Progressive Data Loading:**
 
 ```
-Development                    Production
-     │                              │
-     ▼                              ▼
- npm run dev              npm run build
-     │                              │
-     ▼                              ▼
- localhost:3000           out/ directory
-                                   │
-                                   ▼
-                          GitHub Pages
-                                   │
-                                   ▼
-                    russellteter.github.io/sc-election-map-2026/
+Tier 1 (6.5KB) - Immediate
+├── State config
+├── Critical UI data
+└── Navigation structure
+
+Tier 2 (95KB) - On-Demand
+├── Candidate data
+├── District information
+└── Race details
+
+Tier 3 (30KB) - Deferred
+├── Endorsements
+├── Historical data
+└── Secondary intelligence
 ```
 
-## External Dependencies
+**State Management:**
+- No global state management library (no Redux, Zustand)
+- React useState/useEffect for component state
+- Singleton cache in `dataLoader.ts` for data deduplication
+- URL-based state via Next.js dynamic routes
 
-| Dependency | Type | Purpose |
-|------------|------|---------|
-| SC Ethics Monitor | Data | Raw candidate filings |
-| US Census TIGER | Maps | District shapefiles |
-| GitHub Pages | Hosting | Static deployment |
-| GitHub Actions | CI/CD | Build + data updates |
+## Key Abstractions
+
+**DataLoader (Singleton):**
+- Purpose: Cache-deduplicated data fetching
+- Location: `src/lib/dataLoader.ts`
+- Pattern: Singleton with Promise caching
+- Methods: `loadTier1()`, `loadTier2(districts)`, `loadOnScroll(component)`
+
+**DistrictLookup:**
+- Purpose: Coordinate-to-district mapping
+- Location: `src/lib/districtLookup.ts`
+- Pattern: Lazy-loaded GeoJSON with Turf.js processing
+- Methods: `findDistricts(lat, lon)`, `preloadBoundaries()`
+
+**AddressAutocomplete:**
+- Purpose: Geoapify-powered address input
+- Location: `src/components/VoterGuide/AddressAutocomplete.tsx`
+- Pattern: Controlled component with debounced API calls
+- Features: SC bounding box, keyboard navigation, ARIA accessibility
+
+**Schema Types:**
+- Purpose: TypeScript interfaces for all data structures
+- Location: `src/types/schema.ts` (730 lines)
+- Types: `Candidate`, `District`, `StatewideRace`, `CountyRace`, `JudicialRaces`, `SchoolBoard`, `BallotMeasures`, etc.
+
+## Entry Points
+
+**National Landing:**
+- Location: `src/app/page.tsx`
+- Triggers: Root URL access
+- Responsibilities: US map display, state selection routing
+
+**State Pages:**
+- Location: `src/app/[state]/page.tsx`
+- Triggers: `/sc/`, `/nc/`, `/ga/`, `/fl/`, `/va/` routes
+- Responsibilities: State-specific district map, navigation
+
+**Voter Guide:**
+- Location: `src/app/voter-guide/page.tsx` (666 lines)
+- Triggers: `/voter-guide` route
+- Responsibilities: Address input, district detection, full ballot display
+
+## Error Handling
+
+**Strategy:** Try/catch with graceful degradation and fallbacks
+
+**Patterns:**
+- Geoapify failure → Nominatim fallback (`src/lib/geocoding.ts`)
+- Network errors → Cached data or loading states
+- Missing data → "No candidates found" UI messages
+- Invalid coordinates → SC bounds validation
+
+**Error Boundaries:**
+- Not explicitly implemented
+- Relies on React default error handling
+
+## Cross-Cutting Concerns
+
+**Logging:**
+- Console.log for development debugging
+- No production logging infrastructure
+
+**Validation:**
+- SC bounding box validation for coordinates
+- TypeScript compile-time type checking
+- No runtime schema validation (Zod not used)
+
+**Performance:**
+- Progressive data loading (3 tiers)
+- Lazy-loaded GeoJSON boundaries (~2MB)
+- Debounced API calls (300ms)
+- Performance budgets in webpack config
+
+**Accessibility:**
+- ARIA attributes in AddressAutocomplete
+- Keyboard navigation support
+- Focus management in interactive components
+
+---
+
+*Architecture analysis: 2026-01-17*
+*Update when major patterns change*

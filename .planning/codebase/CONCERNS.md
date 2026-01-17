@@ -1,259 +1,201 @@
-# Concerns - SC Election Map 2026
+# Codebase Concerns
 
-> Generated: 2026-01-12 | GSD Codebase Mapping
+**Analysis Date:** 2026-01-17
+**Focus:** SC Voter Guide System
 
-## Critical Issues
+## Tech Debt
 
-### 1. SVG Security Risk (XSS)
+**Large Page Component (voter-guide/page.tsx):**
+- Issue: Main voter guide page is 666 lines - handles address input, district lookup, all race sections
+- File: `src/app/voter-guide/page.tsx`
+- Why: Rapid iteration during development, incremental feature additions
+- Impact: Hard to maintain, test, and extend; cognitive overhead
+- Fix approach: Extract sections into dedicated components (FederalRaces, StatewideRaces, CountyRaces, etc.)
 
-**Location:** `src/components/Map/DistrictMap.tsx:158`
+**Hardcoded County Election Office URLs:**
+- Issue: County contact URLs are hardcoded in components
+- File: `src/components/VoterGuide/` (exact file TBD)
+- Why: Quick implementation without data abstraction
+- Impact: Cannot update URLs without code changes, no central data source
+- Fix approach: Move to `public/data/county-contacts.json` or state config
 
-**Issue:** Uses `dangerouslySetInnerHTML` with SVG content
-```typescript
-dangerouslySetInnerHTML={{ __html: processedSvgContent }}
-```
+**No DemoBadge Usage in Voter Guide:**
+- Issue: Voter guide components don't use DemoBadge despite demo data
+- Files: `src/app/voter-guide/page.tsx`, `src/components/VoterGuide/*.tsx`
+- Why: DemoBadge pattern established later, not retrofitted
+- Impact: Users may not realize candidate data is demo/placeholder
+- Fix approach: Add DemoBadge to candidate cards and race sections
 
-**Risk:** XSS vulnerability if SVG data is not sanitized
-**Impact:** High - Core map rendering path
-**Mitigation:** Basic attribute manipulation only
-**Recommendation:** Implement DOMPurify or SVG sanitization library
+## Known Bugs
+
+**Empty County Race Candidates:**
+- Symptoms: County races display with "No candidates" despite race entries existing
+- Trigger: Load voter guide, view any county race section
+- File: `public/data/county-races.json`
+- Workaround: None (data gap)
+- Root cause: JSON file has race entries but `"candidates": []` arrays are empty
+- Fix: Populate with real or demo candidate data
+
+## Data Gaps
+
+**Missing Data Files:**
+- Files not found that may be referenced in code:
+  - `judicial-races.json` - Judicial retention elections
+  - `school-board.json` - School board candidates
+  - `ballot-measures.json` - Ballot initiatives/referendums
+  - `special-districts.json` - Special district races
+- Impact: These race types cannot display, may cause silent failures
+- Fix: Create files with demo data or remove references
+
+**Incomplete County Data:**
+- Issue: County-level offices have structure but no candidate data
+- File: `public/data/county-races.json`
+- Example: Sheriff, Coroner, Auditor races have empty candidates arrays
+- Impact: County races section appears incomplete
+- Fix: Scrape SC Ethics Commission or generate demo data
+
+## Security Considerations
+
+**Client-Side API Keys:**
+- Risk: `NEXT_PUBLIC_GEOAPIFY_KEY` exposed in client bundle
+- File: `src/components/VoterGuide/AddressAutocomplete.tsx`
+- Current mitigation: Geoapify has domain restrictions, key is rate-limited
+- Recommendations: Monitor Geoapify dashboard for abuse, consider server proxy
+
+**No Input Sanitization for Address:**
+- Risk: Address input passed directly to external APIs
+- File: `src/lib/geocoding.ts`
+- Current mitigation: External APIs handle their own sanitization
+- Recommendations: Basic XSS sanitization before display
+
+## Performance Bottlenecks
+
+**GeoJSON Boundary Loading:**
+- Problem: ~2MB GeoJSON loaded when user focuses address input
+- File: `src/lib/districtLookup.ts`
+- Measurement: First load adds 2-3 seconds on slow connections
+- Cause: Full boundaries needed for point-in-polygon
+- Improvement path:
+  - Simplify boundary polygons (reduce vertex count)
+  - Load only relevant state boundaries
+  - Consider quadtree/spatial index
+
+**No Caching Between Sessions:**
+- Problem: All data re-fetched on each page visit
+- File: `src/lib/dataLoader.ts`
+- Measurement: 100KB+ loaded per visit
+- Cause: In-memory cache only, no persistence
+- Improvement path: LocalStorage caching with version invalidation
+
+## Fragile Areas
+
+**Address Autocomplete Debouncing:**
+- File: `src/components/VoterGuide/AddressAutocomplete.tsx`
+- Why fragile: Complex state management with debounce, API calls, keyboard navigation
+- Common failures: Race conditions if user types quickly then selects
+- Safe modification: Add comprehensive tests before changes
+- Test coverage: Limited (component is large)
+
+**District Lookup Flow:**
+- Files: `src/lib/districtLookup.ts`, `src/lib/congressionalLookup.ts`
+- Why fragile: Multiple coordinate systems, county→district mappings, GeoJSON parsing
+- Common failures: Coordinates at district boundaries may return unexpected results
+- Safe modification: Test with edge case coordinates (borders, corners)
+- Test coverage: Unknown
+
+## Scaling Limits
+
+**Static JSON Data:**
+- Current capacity: 5 states, 876 districts
+- Limit: JSON files will grow linearly with states (estimated 100KB per state)
+- Symptoms at limit: Slow initial load, high bandwidth usage
+- Scaling path:
+  - Split data by state (lazy load per state)
+  - Consider IndexedDB for client-side storage
+  - Server-side API for 50-state version
+
+**GitHub Pages:**
+- Current capacity: Unlimited bandwidth (for public repos)
+- Limit: 100MB repo size recommended, 1GB hard limit
+- Symptoms at limit: Slow clone times, push failures
+- Scaling path: Move large data files to separate CDN
+
+## Dependencies at Risk
+
+**Geoapify Free Tier:**
+- Risk: Limited requests (3000/day on free tier), may hit limits
+- Impact: Address autocomplete stops working
+- Migration plan: Upgrade plan or implement Nominatim as full fallback
+
+**@geoapify/geocoder-autocomplete:**
+- Risk: Small npm package, update frequency unknown
+- Impact: May need to maintain fork if abandoned
+- Migration plan: Can replace with direct API calls if needed
+
+## Missing Critical Features
+
+**No Address Validation Feedback:**
+- Problem: Invalid addresses may return empty results with no user feedback
+- Current workaround: User tries different address
+- Blocks: User experience on failed lookups
+- Implementation complexity: Low (add validation messaging)
+
+**No "My Location" Feature:**
+- Problem: Users must type full address, no geolocation option
+- Current workaround: Type address manually
+- Blocks: Mobile users, accessibility
+- Implementation complexity: Medium (browser geolocation API + reverse geocode)
+
+**No Saved Addresses:**
+- Problem: Users must re-enter address on each visit
+- Current workaround: None
+- Blocks: Returning user experience
+- Implementation complexity: Low (localStorage)
+
+## Test Coverage Gaps
+
+**Voter Guide Page:**
+- What's not tested: Main voter guide page component (666 lines)
+- File: `src/app/voter-guide/page.tsx`
+- Risk: Complex UI flow could break unnoticed
+- Priority: High
+- Difficulty: Complex mocking needed for geocoding + district lookup
+
+**District Lookup Logic:**
+- What's not tested: Point-in-polygon accuracy, edge cases
+- File: `src/lib/districtLookup.ts`
+- Risk: Coordinate boundary errors
+- Priority: High
+- Difficulty: Need test coordinates for each district
+
+**Geocoding Fallback:**
+- What's not tested: Geoapify→Nominatim fallback flow
+- File: `src/lib/geocoding.ts`
+- Risk: Fallback might silently fail
+- Priority: Medium
+- Difficulty: Need to mock API failures
+
+## Improvement Opportunities (Voter Guide Focus)
+
+**Data Quality:**
+1. Scrape real candidate data from SC Ethics Commission
+2. Add real judicial retention candidates
+3. Populate county race candidates
+4. Add school board candidates for major districts
+
+**UX Enhancements:**
+1. Add "Use My Location" button
+2. Save last searched address in localStorage
+3. Add DemoBadge to demo data sections
+4. Improve error messaging for failed lookups
+
+**Technical:**
+1. Break up voter-guide/page.tsx into smaller components
+2. Add comprehensive test coverage
+3. Implement persistent caching
+4. Optimize GeoJSON loading
 
 ---
 
-### 2. Zero Test Coverage
-
-**Location:** Entire codebase
-
-**Issue:** No automated tests despite critical UI components
-- No Jest/Vitest
-- No Testing Library
-- No Playwright E2E
-- Target coverage: >80%, Current: **0%**
-
-**Files Needing Tests:**
-- `src/app/page.tsx` - Main page logic
-- `src/components/Map/DistrictMap.tsx` - SVG rendering
-- `src/components/Dashboard/SidePanel.tsx` - Interactive UI
-- `getDistrictColor()` - Color logic
-- `calculateStats()` - Stats calculation
-
----
-
-### 3. Accessibility Violations (WCAG)
-
-**Locations:** Multiple components
-
-| Issue | Location | WCAG |
-|-------|----------|------|
-| No keyboard navigation | DistrictMap.tsx | 2.1.1 |
-| Missing ARIA labels | All SVG paths | 1.3.1 |
-| Color-only information | Map + Legend | 1.4.1 |
-| Focus not managed | SidePanel.tsx | 2.4.3 |
-| No alt text on icons | CandidateCard.tsx | 1.1.1 |
-
-**Target:** Lighthouse Accessibility >95
-**Current:** Likely <70 (untested)
-
----
-
-## High Priority Issues
-
-### 4. Data Pipeline Dependency
-
-**Location:** `.github/workflows/update-data.yml`
-
-**Issue:** Depends on external SC Ethics Monitor repo
-- URL: `https://raw.githubusercontent.com/russellteter/sc-ethics-monitor/main/state.json`
-- No fallback if source fails
-- No integrity verification
-- No error notification
-
-**Risk:** Single point of failure for data freshness
-
----
-
-### 5. Limited Error Handling
-
-**Locations:**
-- `src/app/page.tsx:46-56` - fetch with only console.error
-- `src/components/Map/DistrictMap.tsx:50-55` - SVG fetch no user feedback
-
-**Issue:**
-- Failed loads show only "Failed to load election data"
-- No retry mechanism
-- No error recovery UI
-- Console errors only
-
----
-
-### 6. Low Party Enrichment Rate
-
-**Location:** `src/data/party-data.json`
-
-**Current Status:**
-- House: 2/33 known = **6%**
-- Senate: 0/6 known = **0%**
-- Target: >70%
-
-**Impact:** Map shows mostly gray/yellow districts
-
----
-
-## Medium Priority Issues
-
-### 7. Duplicate Type Definitions
-
-**Locations:**
-- `src/app/page.tsx` lines 6-27
-- `src/components/Map/DistrictMap.tsx` lines 5-24
-- `src/components/Dashboard/SidePanel.tsx` lines 3-22
-
-**Issue:** `Candidate`, `District`, `CandidatesData` defined 3+ times
-**Recommendation:** Create shared `types.ts` file
-
----
-
-### 8. Hardcoded Values (Magic Numbers)
-
-**Locations:**
-- Color hex values scattered across files
-- District counts (124, 46) hardcoded
-- Timing values in CSS
-
-**Examples:**
-```typescript
-// DistrictMap.tsx:178-186
-return '#f3f4f6'; // gray-100
-return '#3b82f6'; // blue-500
-return '#ef4444'; // red-500
-```
-
-**Recommendation:** Move to constants or config file
-
----
-
-### 9. SVG Performance
-
-**Issue:** Large SVG files
-- House: 257 KB (target: <200 KB)
-- Senate: 181 KB
-- No SVGO compression
-
-**Impact:** Slower initial load
-
----
-
-### 10. SVG Re-parsing on State Change
-
-**Location:** `src/components/Map/DistrictMap.tsx:59-102`
-
-**Issue:** `useMemo` re-parses SVG when candidatesData or selectedDistrict changes
-- DOMParser called on every relevant state update
-- Heavy computation in render path
-
----
-
-### 11. Glassmorphic Design Not Implemented
-
-**Location:** `docs/GLASSMORPHIC_MIGRATION_PLAN.md`
-
-**Status:** Plan exists (34KB), implementation: **0%**
-
-| Component | Current | Target |
-|-----------|---------|--------|
-| Stats bar | Basic grid | Animated KPI cards |
-| Side panel | Plain white | Glassmorphic blur |
-| Legend | Simple boxes | Status badges |
-| Buttons | Generic gray | Purple brand |
-
----
-
-## Low Priority Issues
-
-### 12. Placeholder Metadata
-
-**Location:** `src/app/layout.tsx`
-
-```typescript
-title: "Create Next App"
-description: "Generated by create next app"
-```
-
-**Fix:** Update with proper SEO metadata
-
----
-
-### 13. Missing Documentation
-
-| Missing | Location |
-|---------|----------|
-| JSDoc comments | All components |
-| API documentation | candidates.json format |
-| Setup instructions | README.md |
-| Deployment guide | Not documented |
-
----
-
-### 14. No Pre-commit Hooks
-
-**Issue:** ESLint not automatically run before commits
-**Recommendation:** Add Husky with `npm run lint`
-
----
-
-### 15. Mixed Path Resolution
-
-**Issue:** Base path detection duplicated
-```typescript
-// page.tsx
-const basePath = window.location.pathname.includes('/sc-election-map-2026') ? ...
-
-// DistrictMap.tsx
-const basePath = window.location.pathname.includes('/sc-election-map-2026') ? ...
-```
-
-**Recommendation:** Centralize in utility function
-
----
-
-## Summary by Severity
-
-| Severity | Count | Examples |
-|----------|-------|----------|
-| **Critical** | 3 | XSS risk, no tests, accessibility |
-| **High** | 3 | Data pipeline, error handling, party enrichment |
-| **Medium** | 5 | Duplicate types, magic numbers, performance |
-| **Low** | 4 | Metadata, docs, pre-commit, paths |
-
-## Recommended Fix Priority
-
-1. **Accessibility** - Add keyboard support, ARIA labels (WCAG compliance)
-2. **Testing** - Install Jest/Playwright, create basic E2E tests
-3. **Security** - Add SVG sanitization (DOMPurify)
-4. **Error Handling** - Add retry logic, better error UI
-5. **Data Pipeline** - Document dependencies, add fallbacks
-6. **Type Consolidation** - Create shared types.ts
-7. **Glassmorphic Design** - Implement migration plan
-8. **Performance** - Compress SVGs, optimize re-parsing
-9. **Documentation** - JSDoc, setup guide
-
-## Technical Debt Markers
-
-### TODO Comments Found
-
-None in source code.
-
-### Areas Needing Refactoring
-
-1. **DistrictMap.tsx** - Complex SVG processing could be extracted to hooks
-2. **page.tsx** - Stats calculation could be memoized separately
-3. **Type definitions** - Should be centralized
-4. **Color constants** - Should be in config file
-
-### Missing Features
-
-- [ ] Search/filter functionality (Phase 9)
-- [ ] Offline support (service worker)
-- [ ] Data validation schema (Zod)
-- [ ] Error boundaries
-- [ ] Loading skeletons
+*Concerns audit: 2026-01-17*
+*Update as issues are fixed or new ones discovered*
