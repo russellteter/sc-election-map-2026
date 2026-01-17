@@ -1,0 +1,2402 @@
+{
+  "1": {
+    "districtNumber": 1,
+    "registeredVoters": 31638,
+    "turnout2024": 0.5639895200794515,
+    "turnout2022": 0.4286291926999713,
+    "turnout2020": 0.5272669315465107,
+    "registration": {
+      "democratic": 17401,
+      "republican": 4746,
+      "independent": 8859,
+      "other": 633
+    },
+    "demographics": {
+      "medianAge": 38,
+      "collegeEducated": 0.35087566084734895,
+      "urbanization": "suburban",
+      "diversityIndex": 0.31161875729990135
+    },
+    "trends": {
+      "registrationTrend": 0.5104214262731475,
+      "turnoutTrend": 1.3862444173480593,
+      "demographicShift": 1.6135369551431094
+    }
+  },
+  "2": {
+    "districtNumber": 2,
+    "registeredVoters": 50349,
+    "turnout2024": 0.619887661966443,
+    "turnout2022": 0.4291552662752361,
+    "turnout2020": 0.5838831782731615,
+    "registration": {
+      "democratic": 14604,
+      "republican": 18626,
+      "independent": 16112,
+      "other": 1007
+    },
+    "demographics": {
+      "medianAge": 55,
+      "collegeEducated": 0.3681869507619119,
+      "urbanization": "rural",
+      "diversityIndex": 0.5156843186894824
+    },
+    "trends": {
+      "registrationTrend": -0.8093376154123515,
+      "turnoutTrend": 0.4572277969947214,
+      "demographicShift": 1.6726399672555923
+    }
+  },
+  "3": {
+    "districtNumber": 3,
+    "registeredVoters": 29059,
+    "turnout2024": 0.5659321367814821,
+    "turnout2022": 0.4581296801604935,
+    "turnout2020": 0.5416354686215685,
+    "registration": {
+      "democratic": 11188,
+      "republican": 7991,
+      "independent": 9299,
+      "other": 581
+    },
+    "demographics": {
+      "medianAge": 36,
+      "collegeEducated": 0.3535722912073006,
+      "urbanization": "urban",
+      "diversityIndex": 0.4965368033836301
+    },
+    "trends": {
+      "registrationTrend": -1.149733781418639,
+      "turnoutTrend": 1.4456847619478053,
+      "demographicShift": -0.9831339120786329
+    }
+  },
+  "4": {
+    "districtNumber": 4,
+    "registeredVoters": 47770,
+    "turnout2024": 0.6218302727080092,
+    "turnout2022": 0.44738745689270437,
+    "turnout2020": 0.6664932728589016,
+    "registration": {
+      "democratic": 17983,
+      "republican": 13546,
+      "independent": 15286,
+      "other": 955
+    },
+    "demographics": {
+      "medianAge": 43,
+      "collegeEducated": 0.21756367684228517,
+      "urbanization": "suburban",
+      "diversityIndex": 0.44115253996157666
+    },
+    "trends": {
+      "registrationTrend": -1.0584522481348608,
+      "turnoutTrend": 0.5569154925443771,
+      "demographicShift": 1.3993775855746948
+    }
+  },
+  "5": {
+    "districtNumber": 5,
+    "registeredVoters": 26480,
+    "turnout2024": 0.5678747475230483,
+    "turnout2022": 0.3763618707313956,
+    "turnout2020": 0.5242455542200457,
+    "registration": {
+      "democratic": 14386,
+      "republican": 3972,
+      "independent": 7592,
+      "other": 530
+    },
+    "demographics": {
+      "medianAge": 43,
+      "collegeEducated": 0.4110068620233829,
+      "urbanization": "urban",
+      "diversityIndex": 0.42331225882438583
+    },
+    "trends": {
+      "registrationTrend": 1.9334619063574179,
+      "turnoutTrend": 0.3625614649441844,
+      "demographicShift": 0.1152861123510105
+    }
+  },
+  "6": {
+    "districtNumber": 6,
+    "registeredVoters": 45190,
+    "turnout2024": 0.6237728834495754,
+    "turnout2022": 0.46561964751017265,
+    "turnout2020": 0.6491033673980755,
+    "registration": {
+      "democratic": 24855,
+      "republican": 6779,
+      "independent": 12653,
+      "other": 904
+    },
+    "demographics": {
+      "medianAge": 49,
+      "collegeEducated": 0.46221568596652507,
+      "urbanization": "urban",
+      "diversityIndex": 0.5457523585975879
+    },
+    "trends": {
+      "registrationTrend": -1.7052180765686642,
+      "turnoutTrend": -0.21672835909609145,
+      "demographicShift": 1.311150432709209
+    }
+  },
+  "7": {
+    "districtNumber": 7,
+    "registeredVoters": 23900,
+    "turnout2024": 0.5698173582646145,
+    "turnout2022": 0.3945940613488639,
+    "turnout2020": 0.6068556607267147,
+    "registration": {
+      "democratic": 8174,
+      "republican": 7600,
+      "independent": 7648,
+      "other": 478
+    },
+    "demographics": {
+      "medianAge": 36,
+      "collegeEducated": 0.28888488416042407,
+      "urbanization": "urban",
+      "diversityIndex": 0.6590232076398205
+    },
+    "trends": {
+      "registrationTrend": 0.034696341508392514,
+      "turnoutTrend": -0.5471751687802259,
+      "demographicShift": -0.6671005783915056
+    }
+  },
+  "8": {
+    "districtNumber": 8,
+    "registeredVoters": 42611,
+    "turnout2024": 0.6257154941911416,
+    "turnout2022": 0.48385183812764093,
+    "turnout2020": 0.6317134619372494,
+    "registration": {
+      "democratic": 22873,
+      "republican": 6392,
+      "independent": 12494,
+      "other": 852
+    },
+    "demographics": {
+      "medianAge": 55,
+      "collegeEducated": 0.47447745812799663,
+      "urbanization": "suburban",
+      "diversityIndex": 0.2200849771593162
+    },
+    "trends": {
+      "registrationTrend": 2.804641159626023,
+      "turnoutTrend": 1.3597334634325158,
+      "demographicShift": 0.8218654402633505
+    }
+  },
+  "9": {
+    "districtNumber": 9,
+    "registeredVoters": 21321,
+    "turnout2024": 0.6816136420385975,
+    "turnout2022": 0.49564620854595964,
+    "turnout2020": 0.7200881422590875,
+    "registration": {
+      "democratic": 9965,
+      "republican": 4107,
+      "independent": 6823,
+      "other": 426
+    },
+    "demographics": {
+      "medianAge": 45,
+      "collegeEducated": 0.3626159311098121,
+      "urbanization": "suburban",
+      "diversityIndex": 0.32664431339439204
+    },
+    "trends": {
+      "registrationTrend": 2.58194196437576,
+      "turnoutTrend": 0.2236577278113261,
+      "demographicShift": 1.6730819953014526
+    }
+  },
+  "10": {
+    "districtNumber": 10,
+    "registeredVoters": 40172,
+    "turnout2024": 0.7166695118726555,
+    "turnout2022": 0.5453997850862331,
+    "turnout2020": 0.7458491088104663,
+    "registration": {
+      "democratic": 10438,
+      "republican": 16076,
+      "independent": 12855,
+      "other": 803
+    },
+    "demographics": {
+      "medianAge": 36,
+      "collegeEducated": 0.43719976853448883,
+      "urbanization": "suburban",
+      "diversityIndex": 0.47732163680592626
+    },
+    "trends": {
+      "registrationTrend": 1.4118992106113115,
+      "turnoutTrend": -0.06410610632230807,
+      "demographicShift": -0.10516321617419044
+    }
+  },
+  "11": {
+    "districtNumber": 11,
+    "registeredVoters": 58883,
+    "turnout2024": 0.6176408291178015,
+    "turnout2022": 0.47705247403450896,
+    "turnout2020": 0.6506710291610431,
+    "registration": {
+      "democratic": 22456,
+      "republican": 16407,
+      "independent": 18843,
+      "other": 1178
+    },
+    "demographics": {
+      "medianAge": 39,
+      "collegeEducated": 0.2483515024410335,
+      "urbanization": "urban",
+      "diversityIndex": 0.2624846369319058
+    },
+    "trends": {
+      "registrationTrend": 2.0054234880979287,
+      "turnoutTrend": 1.84335470331989,
+      "demographicShift": 1.594869138018633
+    }
+  },
+  "12": {
+    "districtNumber": 12,
+    "registeredVoters": 37593,
+    "turnout2024": 0.7186121345351507,
+    "turnout2022": 0.5861685634293448,
+    "turnout2020": 0.6694394946887342,
+    "registration": {
+      "democratic": 20377,
+      "republican": 5639,
+      "independent": 10825,
+      "other": 752
+    },
+    "demographics": {
+      "medianAge": 48,
+      "collegeEducated": 0.224509954463928,
+      "urbanization": "suburban",
+      "diversityIndex": 0.6876787813788646
+    },
+    "trends": {
+      "registrationTrend": -0.35998535079880867,
+      "turnoutTrend": -0.05552482560999916,
+      "demographicShift": 1.978084565595763
+    }
+  },
+  "13": {
+    "districtNumber": 13,
+    "registeredVoters": 56304,
+    "turnout2024": 0.6195834398593677,
+    "turnout2022": 0.4952846646519773,
+    "turnout2020": 0.6332811266804492,
+    "registration": {
+      "democratic": 30967,
+      "republican": 8446,
+      "independent": 15765,
+      "other": 1126
+    },
+    "demographics": {
+      "medianAge": 54,
+      "collegeEducated": 0.2722864628174745,
+      "urbanization": "suburban",
+      "diversityIndex": 0.6817750605204026
+    },
+    "trends": {
+      "registrationTrend": -0.02502214816632775,
+      "turnoutTrend": 0.21257984694679255,
+      "demographicShift": 1.2624679814383706
+    }
+  },
+  "14": {
+    "districtNumber": 14,
+    "registeredVoters": 35014,
+    "turnout2024": 0.7205547452767169,
+    "turnout2022": 0.604400765967742,
+    "turnout2020": 0.6971227557384981,
+    "registration": {
+      "democratic": 13513,
+      "republican": 9596,
+      "independent": 11204,
+      "other": 700
+    },
+    "demographics": {
+      "medianAge": 47,
+      "collegeEducated": 0.2539019942534631,
+      "urbanization": "suburban",
+      "diversityIndex": 0.3115039140505269
+    },
+    "trends": {
+      "registrationTrend": 2.7463110111403797,
+      "turnoutTrend": -0.4804947373832086,
+      "demographicShift": -0.11158004361744045
+    }
+  },
+  "15": {
+    "districtNumber": 15,
+    "registeredVoters": 53724,
+    "turnout2024": 0.6215260506009339,
+    "turnout2022": 0.5135168552694456,
+    "turnout2020": 0.6158912212196231,
+    "registration": {
+      "democratic": 22504,
+      "republican": 12954,
+      "independent": 17192,
+      "other": 1074
+    },
+    "demographics": {
+      "medianAge": 39,
+      "collegeEducated": 0.4836640955338553,
+      "urbanization": "urban",
+      "diversityIndex": 0.42497099648461256
+    },
+    "trends": {
+      "registrationTrend": -0.119903205949768,
+      "turnoutTrend": 1.0063821086689746,
+      "demographicShift": 0.1804691558612832
+    }
+  },
+  "16": {
+    "districtNumber": 16,
+    "registeredVoters": 32434,
+    "turnout2024": 0.7224973560182831,
+    "turnout2022": 0.5226329446177151,
+    "turnout2020": 0.7346596838136482,
+    "registration": {
+      "democratic": 15319,
+      "republican": 6087,
+      "independent": 10379,
+      "other": 649
+    },
+    "demographics": {
+      "medianAge": 43,
+      "collegeEducated": 0.2691859007203886,
+      "urbanization": "suburban",
+      "diversityIndex": 0.4474247367342118
+    },
+    "trends": {
+      "registrationTrend": 1.4917432086038143,
+      "turnoutTrend": -0.6848379372082827,
+      "demographicShift": 0.7743739792026458
+    }
+  },
+  "17": {
+    "districtNumber": 17,
+    "registeredVoters": 51145,
+    "turnout2024": 0.6234686613425001,
+    "turnout2022": 0.4317490458403477,
+    "turnout2020": 0.5985013127785648,
+    "registration": {
+      "democratic": 12936,
+      "republican": 20820,
+      "independent": 16366,
+      "other": 1023
+    },
+    "demographics": {
+      "medianAge": 36,
+      "collegeEducated": 0.2508014410970739,
+      "urbanization": "suburban",
+      "diversityIndex": 0.5208121360842195
+    },
+    "trends": {
+      "registrationTrend": 0.8509974492951287,
+      "turnoutTrend": 0.3729748732284526,
+      "demographicShift": 1.9040341390781261
+    }
+  },
+  "18": {
+    "districtNumber": 18,
+    "registeredVoters": 29855,
+    "turnout2024": 0.7244399667598493,
+    "turnout2022": 0.5408651471561124,
+    "turnout2020": 0.7623429418831799,
+    "registration": {
+      "democratic": 14006,
+      "republican": 5698,
+      "independent": 9554,
+      "other": 597
+    },
+    "demographics": {
+      "medianAge": 50,
+      "collegeEducated": 0.23241696359236586,
+      "urbanization": "rural",
+      "diversityIndex": 0.2068824440272909
+    },
+    "trends": {
+      "registrationTrend": 2.0344092082392464,
+      "turnoutTrend": 1.272366763219408,
+      "demographicShift": -0.723748922219383
+    }
+  },
+  "19": {
+    "districtNumber": 19,
+    "registeredVoters": 48566,
+    "turnout2024": 0.5803380966327797,
+    "turnout2022": 0.4188546150777744,
+    "turnout2020": 0.6103691459216034,
+    "registration": {
+      "democratic": 7285,
+      "republican": 26711,
+      "independent": 13598,
+      "other": 971
+    },
+    "demographics": {
+      "medianAge": 53,
+      "collegeEducated": 0.49479844583887533,
+      "urbanization": "urban",
+      "diversityIndex": 0.2567017793919434
+    },
+    "trends": {
+      "registrationTrend": 2.4850219807052154,
+      "turnoutTrend": 0.5381821401129394,
+      "demographicShift": -0.5890451667779335
+    }
+  },
+  "20": {
+    "districtNumber": 20,
+    "registeredVoters": 20192,
+    "turnout2024": 0.7115605049587602,
+    "turnout2022": 0.5471250229036086,
+    "turnout2020": 0.6952336960449972,
+    "registration": {
+      "democratic": 5976,
+      "republican": 7351,
+      "independent": 6461,
+      "other": 404
+    },
+    "demographics": {
+      "medianAge": 38,
+      "collegeEducated": 0.30063448851026336,
+      "urbanization": "rural",
+      "diversityIndex": 0.3535703540563445
+    },
+    "trends": {
+      "registrationTrend": 1.0231231465112063,
+      "turnoutTrend": 0.8804227122480157,
+      "demographicShift": 1.043668390272031
+    }
+  },
+  "21": {
+    "districtNumber": 21,
+    "registeredVoters": 38903,
+    "turnout2024": 0.6125318050675708,
+    "turnout2022": 0.43388135432446434,
+    "turnout2020": 0.6432562113475316,
+    "registration": {
+      "democratic": 13431,
+      "republican": 12245,
+      "independent": 12449,
+      "other": 778
+    },
+    "demographics": {
+      "medianAge": 45,
+      "collegeEducated": 0.4561581851244709,
+      "urbanization": "suburban",
+      "diversityIndex": 0.5079284430984075
+    },
+    "trends": {
+      "registrationTrend": -0.30022931019786236,
+      "turnoutTrend": 0.9964411267994162,
+      "demographicShift": 0.14225125365995384
+    }
+  },
+  "22": {
+    "districtNumber": 22,
+    "registeredVoters": 57614,
+    "turnout2024": 0.713503122405849,
+    "turnout2022": 0.5655340433658724,
+    "turnout2020": 0.7480781317912406,
+    "registration": {
+      "democratic": 18692,
+      "republican": 19333,
+      "independent": 18436,
+      "other": 1152
+    },
+    "demographics": {
+      "medianAge": 49,
+      "collegeEducated": 0.33438918596803635,
+      "urbanization": "suburban",
+      "diversityIndex": 0.38302023419319664
+    },
+    "trends": {
+      "registrationTrend": 2.8161804698483,
+      "turnoutTrend": 1.2044160376323463,
+      "demographicShift": 1.7170341027514238
+    }
+  },
+  "23": {
+    "districtNumber": 23,
+    "registeredVoters": 36324,
+    "turnout2024": 0.6144744158091371,
+    "turnout2022": 0.45211354494193273,
+    "turnout2020": 0.6258663058867057,
+    "registration": {
+      "democratic": 6133,
+      "republican": 17841,
+      "independent": 11624,
+      "other": 726
+    },
+    "demographics": {
+      "medianAge": 51,
+      "collegeEducated": 0.4346150756974775,
+      "urbanization": "rural",
+      "diversityIndex": 0.39739466914785776
+    },
+    "trends": {
+      "registrationTrend": -1.1503900285579218,
+      "turnoutTrend": -0.7877245246375559,
+      "demographicShift": 0.0930153732621184
+    }
+  },
+  "24": {
+    "districtNumber": 24,
+    "registeredVoters": 55034,
+    "turnout2024": 0.7154457093055573,
+    "turnout2022": 0.5386930466111252,
+    "turnout2020": 0.7036544800753027,
+    "registration": {
+      "democratic": 13405,
+      "republican": 22917,
+      "independent": 17611,
+      "other": 1101
+    },
+    "demographics": {
+      "medianAge": 54,
+      "collegeEducated": 0.20103608369875517,
+      "urbanization": "urban",
+      "diversityIndex": 0.6269027248615877
+    },
+    "trends": {
+      "registrationTrend": 0.9743534340403759,
+      "turnoutTrend": 0.1719626193735575,
+      "demographicShift": -0.5533596275157107
+    }
+  },
+  "25": {
+    "districtNumber": 25,
+    "registeredVoters": 33744,
+    "turnout2024": 0.6164170265507033,
+    "turnout2022": 0.47034573555940107,
+    "turnout2020": 0.6084764004258796,
+    "registration": {
+      "democratic": 15354,
+      "republican": 6917,
+      "independent": 10798,
+      "other": 675
+    },
+    "demographics": {
+      "medianAge": 36,
+      "collegeEducated": 0.4130719752111808,
+      "urbanization": "suburban",
+      "diversityIndex": 0.23051942588319976
+    },
+    "trends": {
+      "registrationTrend": 0.1507854769708521,
+      "turnoutTrend": -0.12595105130502537,
+      "demographicShift": 1.3120019446648667
+    }
+  },
+  "26": {
+    "districtNumber": 26,
+    "registeredVoters": 52455,
+    "turnout2024": 0.7173883438889814,
+    "turnout2022": 0.6019984246008091,
+    "turnout2020": 0.7132983238498207,
+    "registration": {
+      "democratic": 22880,
+      "republican": 11740,
+      "independent": 16786,
+      "other": 1049
+    },
+    "demographics": {
+      "medianAge": 49,
+      "collegeEducated": 0.2697017789211598,
+      "urbanization": "suburban",
+      "diversityIndex": 0.5455066235482258
+    },
+    "trends": {
+      "registrationTrend": -0.43597531245833965,
+      "turnoutTrend": -0.7270505427043189,
+      "demographicShift": 1.1000188300851819
+    }
+  },
+  "27": {
+    "districtNumber": 27,
+    "registeredVoters": 31165,
+    "turnout2024": 0.5732864737619118,
+    "turnout2022": 0.3799878984363694,
+    "turnout2020": 0.5838611126336555,
+    "registration": {
+      "democratic": 16898,
+      "republican": 4675,
+      "independent": 8969,
+      "other": 623
+    },
+    "demographics": {
+      "medianAge": 46,
+      "collegeEducated": 0.3934197426742966,
+      "urbanization": "urban",
+      "diversityIndex": 0.4094559670469984
+    },
+    "trends": {
+      "registrationTrend": -0.1504869452447104,
+      "turnoutTrend": -0.520833015218765,
+      "demographicShift": -0.6394337712039397
+    }
+  },
+  "28": {
+    "districtNumber": 28,
+    "registeredVoters": 49876,
+    "turnout2024": 0.674257779179261,
+    "turnout2022": 0.48910399677190186,
+    "turnout2020": 0.6364344478288826,
+    "registration": {
+      "democratic": 13594,
+      "republican": 19324,
+      "independent": 15960,
+      "other": 998
+    },
+    "demographics": {
+      "medianAge": 35,
+      "collegeEducated": 0.4680526812877751,
+      "urbanization": "rural",
+      "diversityIndex": 0.5774085046618285
+    },
+    "trends": {
+      "registrationTrend": 0.9304742826756436,
+      "turnoutTrend": 1.7043046963886845,
+      "demographicShift": 1.2003812800163316
+    }
+  },
+  "29": {
+    "districtNumber": 29,
+    "registeredVoters": 28585,
+    "turnout2024": 0.5752290904639424,
+    "turnout2022": 0.4094883858968915,
+    "turnout2020": 0.5982296407680165,
+    "registration": {
+      "democratic": 8068,
+      "republican": 10798,
+      "independent": 9147,
+      "other": 572
+    },
+    "demographics": {
+      "medianAge": 46,
+      "collegeEducated": 0.2427038073738589,
+      "urbanization": "urban",
+      "diversityIndex": 0.25775745215721313
+    },
+    "trends": {
+      "registrationTrend": 2.381661715163691,
+      "turnoutTrend": 1.3186581145593235,
+      "demographicShift": 0.16771149689690734
+    }
+  },
+  "30": {
+    "districtNumber": 30,
+    "registeredVoters": 40213,
+    "turnout2024": 0.7064514637721943,
+    "turnout2022": 0.5590575457127102,
+    "turnout2020": 0.7310194731834436,
+    "registration": {
+      "democratic": 13354,
+      "republican": 13187,
+      "independent": 12868,
+      "other": 804
+    },
+    "demographics": {
+      "medianAge": 48,
+      "collegeEducated": 0.41865460882832045,
+      "urbanization": "suburban",
+      "diversityIndex": 0.23201019765437125
+    },
+    "trends": {
+      "registrationTrend": -1.0938411648822208,
+      "turnoutTrend": 1.0869780192556688,
+      "demographicShift": 0.15612793022586402
+    }
+  },
+  "31": {
+    "districtNumber": 31,
+    "registeredVoters": 58924,
+    "turnout2024": 0.6074227810173402,
+    "turnout2022": 0.49071023466098596,
+    "turnout2020": 0.6358413965142524,
+    "registration": {
+      "democratic": 18214,
+      "republican": 20676,
+      "independent": 18856,
+      "other": 1178
+    },
+    "demographics": {
+      "medianAge": 39,
+      "collegeEducated": 0.27528443041969297,
+      "urbanization": "suburban",
+      "diversityIndex": 0.4343144417900193
+    },
+    "trends": {
+      "registrationTrend": -1.8145151137441933,
+      "turnoutTrend": 1.7630530310622663,
+      "demographicShift": -0.8991478681094702
+    }
+  },
+  "32": {
+    "districtNumber": 32,
+    "registeredVoters": 37634,
+    "turnout2024": 0.7083940864346894,
+    "turnout2022": 0.5998263240558217,
+    "turnout2020": 0.7546098620885098,
+    "registration": {
+      "democratic": 9247,
+      "republican": 15592,
+      "independent": 12043,
+      "other": 753
+    },
+    "demographics": {
+      "medianAge": 53,
+      "collegeEducated": 0.27212578061601417,
+      "urbanization": "rural",
+      "diversityIndex": 0.25039329829178436
+    },
+    "trends": {
+      "registrationTrend": 1.849240841273796,
+      "turnoutTrend": 0.8265800484579895,
+      "demographicShift": 0.7476329811604847
+    }
+  },
+  "33": {
+    "districtNumber": 33,
+    "registeredVoters": 56344,
+    "turnout2024": 0.6093653917589064,
+    "turnout2022": 0.5089424252784542,
+    "turnout2020": 0.6184514906808973,
+    "registration": {
+      "democratic": 18454,
+      "republican": 18734,
+      "independent": 18030,
+      "other": 1127
+    },
+    "demographics": {
+      "medianAge": 51,
+      "collegeEducated": 0.42207388888209774,
+      "urbanization": "rural",
+      "diversityIndex": 0.5061945439810839
+    },
+    "trends": {
+      "registrationTrend": -1.3839049336425517,
+      "turnoutTrend": 0.6669021554602785,
+      "demographicShift": 0.6172329194924018
+    }
+  },
+  "34": {
+    "districtNumber": 34,
+    "registeredVoters": 35054,
+    "turnout2024": 0.7103366971762556,
+    "turnout2022": 0.5180585265476529,
+    "turnout2020": 0.682293117131243,
+    "registration": {
+      "democratic": 7061,
+      "republican": 16074,
+      "independent": 11217,
+      "other": 701
+    },
+    "demographics": {
+      "medianAge": 48,
+      "collegeEducated": 0.3860381961735143,
+      "urbanization": "suburban",
+      "diversityIndex": 0.5902950884729135
+    },
+    "trends": {
+      "registrationTrend": 2.77927983029712,
+      "turnoutTrend": -0.7611929177125882,
+      "demographicShift": 0.7954311081187013
+    }
+  },
+  "35": {
+    "districtNumber": 35,
+    "registeredVoters": 53765,
+    "turnout2024": 0.6113080025004727,
+    "turnout2022": 0.42717461584935656,
+    "turnout2020": 0.6010615826123682,
+    "registration": {
+      "democratic": 12965,
+      "republican": 22520,
+      "independent": 17205,
+      "other": 1075
+    },
+    "demographics": {
+      "medianAge": 42,
+      "collegeEducated": 0.253799390817899,
+      "urbanization": "rural",
+      "diversityIndex": 0.3860344559820529
+    },
+    "trends": {
+      "registrationTrend": -0.24116766370887288,
+      "turnoutTrend": -0.6445282696022319,
+      "demographicShift": 1.4778201293562634
+    }
+  },
+  "36": {
+    "districtNumber": 36,
+    "registeredVoters": 32475,
+    "turnout2024": 0.6672061443874642,
+    "turnout2022": 0.5277006864909553,
+    "turnout2020": 0.6464095354761974,
+    "registration": {
+      "democratic": 12992,
+      "republican": 8442,
+      "independent": 10392,
+      "other": 650
+    },
+    "demographics": {
+      "medianAge": 37,
+      "collegeEducated": 0.2012430518871374,
+      "urbanization": "suburban",
+      "diversityIndex": 0.3785751265373896
+    },
+    "trends": {
+      "registrationTrend": 2.2005300541410833,
+      "turnoutTrend": 1.8001317990944403,
+      "demographicShift": -0.1288785930391767
+    }
+  },
+  "37": {
+    "districtNumber": 37,
+    "registeredVoters": 51186,
+    "turnout2024": 0.5681774616326101,
+    "turnout2022": 0.45935337245899877,
+    "turnout2020": 0.5399631679244168,
+    "registration": {
+      "democratic": 20718,
+      "republican": 13065,
+      "independent": 16380,
+      "other": 1024
+    },
+    "demographics": {
+      "medianAge": 50,
+      "collegeEducated": 0.21842502356433544,
+      "urbanization": "urban",
+      "diversityIndex": 0.5054369242421524
+    },
+    "trends": {
+      "registrationTrend": -0.6982512467998319,
+      "turnoutTrend": 1.1883406649289379,
+      "demographicShift": -0.12197351414802182
+    }
+  },
+  "38": {
+    "districtNumber": 38,
+    "registeredVoters": 29895,
+    "turnout2024": 0.6691487551290304,
+    "turnout2022": 0.5459328771084235,
+    "turnout2020": 0.6290196329956035,
+    "registration": {
+      "democratic": 14542,
+      "republican": 5189,
+      "independent": 9566,
+      "other": 598
+    },
+    "demographics": {
+      "medianAge": 48,
+      "collegeEducated": 0.28157005313857,
+      "urbanization": "urban",
+      "diversityIndex": 0.41992969523180723
+    },
+    "trends": {
+      "registrationTrend": 2.034919740648437,
+      "turnoutTrend": 1.4501743328059904,
+      "demographicShift": 0.900074006011744
+    }
+  },
+  "39": {
+    "districtNumber": 39,
+    "registeredVoters": 48606,
+    "turnout2024": 0.5701200485323183,
+    "turnout2022": 0.4325123757042514,
+    "turnout2020": 0.5955395102945806,
+    "registration": {
+      "democratic": 19667,
+      "republican": 12413,
+      "independent": 15554,
+      "other": 972
+    },
+    "demographics": {
+      "medianAge": 44,
+      "collegeEducated": 0.2100581765221703,
+      "urbanization": "rural",
+      "diversityIndex": 0.2399152785725497
+    },
+    "trends": {
+      "registrationTrend": 1.9272227901626482,
+      "turnoutTrend": 0.4627323157446144,
+      "demographicShift": 0.026706696034738187
+    }
+  },
+  "40": {
+    "districtNumber": 40,
+    "registeredVoters": 20233,
+    "turnout2024": 0.701342456858299,
+    "turnout2022": 0.5607827835300857,
+    "turnout2020": 0.6804040604179744,
+    "registration": {
+      "democratic": 7450,
+      "republican": 5904,
+      "independent": 6475,
+      "other": 405
+    },
+    "demographics": {
+      "medianAge": 50,
+      "collegeEducated": 0.282089328804095,
+      "urbanization": "suburban",
+      "diversityIndex": 0.6082589151376201
+    },
+    "trends": {
+      "registrationTrend": -1.4826173779939382,
+      "turnoutTrend": -0.6304444370933084,
+      "demographicShift": 0.3522065288164684
+    }
+  },
+  "41": {
+    "districtNumber": 41,
+    "registeredVoters": 38944,
+    "turnout2024": 0.6023137569671095,
+    "turnout2022": 0.44753911495094145,
+    "turnout2020": 0.6284265757205089,
+    "registration": {
+      "democratic": 10631,
+      "republican": 15072,
+      "independent": 12462,
+      "other": 779
+    },
+    "demographics": {
+      "medianAge": 36,
+      "collegeEducated": 0.43761304329969597,
+      "urbanization": "rural",
+      "diversityIndex": 0.6499340655514663
+    },
+    "trends": {
+      "registrationTrend": 1.496702315051436,
+      "turnoutTrend": -0.9464498758066677,
+      "demographicShift": 1.3914851743688272
+    }
+  },
+  "42": {
+    "districtNumber": 42,
+    "registeredVoters": 57655,
+    "turnout2024": 0.7032850743053878,
+    "turnout2022": 0.5791918039923496,
+    "turnout2020": 0.7332484991444501,
+    "registration": {
+      "democratic": 16249,
+      "republican": 21803,
+      "independent": 18450,
+      "other": 1153
+    },
+    "demographics": {
+      "medianAge": 49,
+      "collegeEducated": 0.26043796542121,
+      "urbanization": "urban",
+      "diversityIndex": 0.6800548704713838
+    },
+    "trends": {
+      "registrationTrend": 0.5499218714190288,
+      "turnoutTrend": 0.4157253510391923,
+      "demographicShift": 1.8772517456101498
+    }
+  },
+  "43": {
+    "districtNumber": 43,
+    "registeredVoters": 36364,
+    "turnout2024": 0.6042563677086757,
+    "turnout2022": 0.46577130556840973,
+    "turnout2020": 0.6110366702596828,
+    "registration": {
+      "democratic": 8795,
+      "republican": 15206,
+      "independent": 11636,
+      "other": 727
+    },
+    "demographics": {
+      "medianAge": 42,
+      "collegeEducated": 0.4160699249320058,
+      "urbanization": "suburban",
+      "diversityIndex": 0.5957417609150251
+    },
+    "trends": {
+      "registrationTrend": -1.5047944781858449,
+      "turnoutTrend": 0.4853963560822403,
+      "demographicShift": -0.959074497203843
+    }
+  },
+  "44": {
+    "districtNumber": 44,
+    "registeredVoters": 55075,
+    "turnout2024": 0.6601545095956672,
+    "turnout2022": 0.4662973761634423,
+    "turnout2020": 0.656384623123512,
+    "registration": {
+      "democratic": 23187,
+      "republican": 13163,
+      "independent": 17624,
+      "other": 1102
+    },
+    "demographics": {
+      "medianAge": 38,
+      "collegeEducated": 0.36351358600124417,
+      "urbanization": "suburban",
+      "diversityIndex": 0.5882824184318456
+    },
+    "trends": {
+      "registrationTrend": 2.0548908729361797,
+      "turnoutTrend": 0.8076779850794367,
+      "demographicShift": 0.6571567066279971
+    }
+  },
+  "45": {
+    "districtNumber": 45,
+    "registeredVoters": 33785,
+    "turnout2024": 0.5611258149198842,
+    "turnout2022": 0.3754134684453781,
+    "turnout2020": 0.5864213824674587,
+    "registration": {
+      "democratic": 9367,
+      "republican": 12931,
+      "independent": 10811,
+      "other": 676
+    },
+    "demographics": {
+      "medianAge": 52,
+      "collegeEducated": 0.4302225829242834,
+      "urbanization": "suburban",
+      "diversityIndex": 0.5032032252769931
+    },
+    "trends": {
+      "registrationTrend": 0.7052891267022532,
+      "turnoutTrend": 0.23513007221516702,
+      "demographicShift": 1.6127154839284326
+    }
+  },
+  "46": {
+    "districtNumber": 46,
+    "registeredVoters": 52496,
+    "turnout2024": 0.6620971203372334,
+    "turnout2022": 0.4845295667809106,
+    "turnout2020": 0.6389947176626859,
+    "registration": {
+      "democratic": 19105,
+      "republican": 15543,
+      "independent": 16799,
+      "other": 1050
+    },
+    "demographics": {
+      "medianAge": 44,
+      "collegeEducated": 0.341970467633554,
+      "urbanization": "rural",
+      "diversityIndex": 0.5340901137954044
+    },
+    "trends": {
+      "registrationTrend": -0.946605920301101,
+      "turnoutTrend": -0.7604757844286392,
+      "demographicShift": 1.3065972934973415
+    }
+  },
+  "47": {
+    "districtNumber": 47,
+    "registeredVoters": 31206,
+    "turnout2024": 0.5630684256614505,
+    "turnout2022": 0.3936456590628465,
+    "turnout2020": 0.5690314770066327,
+    "registration": {
+      "democratic": 13758,
+      "republican": 6838,
+      "independent": 9986,
+      "other": 624
+    },
+    "demographics": {
+      "medianAge": 37,
+      "collegeEducated": 0.4086794824379867,
+      "urbanization": "rural",
+      "diversityIndex": 0.33632798201233516
+    },
+    "trends": {
+      "registrationTrend": 2.006464483219415,
+      "turnoutTrend": 1.234952450839315,
+      "demographicShift": 1.2028517733341326
+    }
+  },
+  "48": {
+    "districtNumber": 48,
+    "registeredVoters": 49916,
+    "turnout2024": 0.6640397310787998,
+    "turnout2022": 0.5027617573983789,
+    "turnout2020": 0.6216048122018599,
+    "registration": {
+      "democratic": 22477,
+      "republican": 10467,
+      "independent": 15973,
+      "other": 998
+    },
+    "demographics": {
+      "medianAge": 47,
+      "collegeEducated": 0.4495075226991938,
+      "urbanization": "suburban",
+      "diversityIndex": 0.3875543595233719
+    },
+    "trends": {
+      "registrationTrend": 2.0387725848885125,
+      "turnoutTrend": -0.1376934047498244,
+      "demographicShift": -0.7204780577311656
+    }
+  },
+  "49": {
+    "districtNumber": 49,
+    "registeredVoters": 28626,
+    "turnout2024": 0.5650110423634812,
+    "turnout2022": 0.4231461465233687,
+    "turnout2020": 0.5834000051409938,
+    "registration": {
+      "democratic": 7220,
+      "republican": 11673,
+      "independent": 9160,
+      "other": 573
+    },
+    "demographics": {
+      "medianAge": 37,
+      "collegeEducated": 0.25796354713754893,
+      "urbanization": "rural",
+      "diversityIndex": 0.6846294822565417
+    },
+    "trends": {
+      "registrationTrend": -1.0248012538183486,
+      "turnoutTrend": 0.689148039412288,
+      "demographicShift": -0.3146551844266501
+    }
+  },
+  "50": {
+    "districtNumber": 50,
+    "registeredVoters": 40254,
+    "turnout2024": 0.6962334156717329,
+    "turnout2022": 0.5727153063391872,
+    "turnout2020": 0.7161898405366529,
+    "registration": {
+      "democratic": 16276,
+      "republican": 10291,
+      "independent": 12881,
+      "other": 805
+    },
+    "demographics": {
+      "medianAge": 48,
+      "collegeEducated": 0.3785082698699591,
+      "urbanization": "rural",
+      "diversityIndex": 0.31391121154367513
+    },
+    "trends": {
+      "registrationTrend": 2.5633347353727256,
+      "turnoutTrend": -0.293838023810572,
+      "demographicShift": 1.801506610029147
+    }
+  },
+  "51": {
+    "districtNumber": 51,
+    "registeredVoters": 58965,
+    "turnout2024": 0.5972047329168789,
+    "turnout2022": 0.4043679922606647,
+    "turnout2020": 0.6097434640441759,
+    "registration": {
+      "democratic": 13966,
+      "republican": 24951,
+      "independent": 18869,
+      "other": 1179
+    },
+    "demographics": {
+      "medianAge": 41,
+      "collegeEducated": 0.2084728121796962,
+      "urbanization": "suburban",
+      "diversityIndex": 0.2066071283103
+    },
+    "trends": {
+      "registrationTrend": 1.1269485145467097,
+      "turnoutTrend": 1.7153596890696137,
+      "demographicShift": 1.1514692316537114
+    }
+  },
+  "52": {
+    "districtNumber": 52,
+    "registeredVoters": 37674,
+    "turnout2024": 0.6981760383342281,
+    "turnout2022": 0.5134840846357327,
+    "turnout2020": 0.7397802234812548,
+    "registration": {
+      "democratic": 15259,
+      "republican": 9605,
+      "independent": 12056,
+      "other": 753
+    },
+    "demographics": {
+      "medianAge": 35,
+      "collegeEducated": 0.2751818258665417,
+      "urbanization": "suburban",
+      "diversityIndex": 0.4533876897084469
+    },
+    "trends": {
+      "registrationTrend": 1.5839676873683777,
+      "turnoutTrend": 1.2540526400571936,
+      "demographicShift": -0.8226494788297682
+    }
+  },
+  "53": {
+    "districtNumber": 53,
+    "registeredVoters": 56385,
+    "turnout2024": 0.5540741920490164,
+    "turnout2022": 0.4365467522230684,
+    "turnout2020": 0.5488218784559621,
+    "registration": {
+      "democratic": 18070,
+      "republican": 19144,
+      "independent": 18043,
+      "other": 1128
+    },
+    "demographics": {
+      "medianAge": 42,
+      "collegeEducated": 0.45708719503930173,
+      "urbanization": "urban",
+      "diversityIndex": 0.6800860287994547
+    },
+    "trends": {
+      "registrationTrend": 2.450110795185953,
+      "turnoutTrend": 0.2840281730909031,
+      "demographicShift": 1.3555113088132402
+    }
+  },
+  "54": {
+    "districtNumber": 54,
+    "registeredVoters": 35095,
+    "turnout2024": 0.6550454855454366,
+    "turnout2022": 0.5231262564999639,
+    "turnout2020": 0.6489698053100006,
+    "registration": {
+      "democratic": 13329,
+      "republican": 9834,
+      "independent": 11230,
+      "other": 702
+    },
+    "demographics": {
+      "medianAge": 44,
+      "collegeEducated": 0.20424100160796244,
+      "urbanization": "suburban",
+      "diversityIndex": 0.24379744643522308
+    },
+    "trends": {
+      "registrationTrend": 1.108365015642888,
+      "turnoutTrend": -0.8863955735631266,
+      "demographicShift": -0.5857892332532393
+    }
+  },
+  "55": {
+    "districtNumber": 55,
+    "registeredVoters": 53806,
+    "turnout2024": 0.5560167789487247,
+    "turnout2022": 0.409705755468321,
+    "turnout2020": 0.6043982267865904,
+    "registration": {
+      "democratic": 16863,
+      "republican": 18649,
+      "independent": 17218,
+      "other": 1076
+    },
+    "demographics": {
+      "medianAge": 47,
+      "collegeEducated": 0.39134385594695054,
+      "urbanization": "suburban",
+      "diversityIndex": 0.4937012912210548
+    },
+    "trends": {
+      "registrationTrend": -0.12301039608335618,
+      "turnoutTrend": -0.001576661598671536,
+      "demographicShift": -0.623377084556677
+    }
+  },
+  "56": {
+    "districtNumber": 56,
+    "registeredVoters": 32516,
+    "turnout2024": 0.6569880962870028,
+    "turnout2022": 0.5413584471174322,
+    "turnout2020": 0.6315799028294067,
+    "registration": {
+      "democratic": 10659,
+      "republican": 10802,
+      "independent": 10405,
+      "other": 650
+    },
+    "demographics": {
+      "medianAge": 38,
+      "collegeEducated": 0.4272918404207061,
+      "urbanization": "urban",
+      "diversityIndex": 0.61926825066063
+    },
+    "trends": {
+      "registrationTrend": -0.6695754521850383,
+      "turnoutTrend": -0.9085524081758002,
+      "demographicShift": -0.35043254464419205
+    }
+  },
+  "57": {
+    "districtNumber": 57,
+    "registeredVoters": 51226,
+    "turnout2024": 0.5579594135321488,
+    "turnout2022": 0.37301113303890976,
+    "turnout2020": 0.5251335263369296,
+    "registration": {
+      "democratic": 24436,
+      "republican": 9373,
+      "independent": 16392,
+      "other": 1025
+    },
+    "demographics": {
+      "medianAge": 49,
+      "collegeEducated": 0.42014141093014806,
+      "urbanization": "rural",
+      "diversityIndex": 0.37351150520775067
+    },
+    "trends": {
+      "registrationTrend": -1.0950870509702186,
+      "turnoutTrend": 1.5123787832038378,
+      "demographicShift": -0.8110197781636472
+    }
+  },
+  "58": {
+    "districtNumber": 58,
+    "registeredVoters": 29936,
+    "turnout2024": 0.658930707028569,
+    "turnout2022": 0.45959063768833436,
+    "turnout2020": 0.6141899824674194,
+    "registration": {
+      "democratic": 5242,
+      "republican": 14516,
+      "independent": 9580,
+      "other": 599
+    },
+    "demographics": {
+      "medianAge": 48,
+      "collegeEducated": 0.2279288053642627,
+      "urbanization": "urban",
+      "diversityIndex": 0.6662529381300568
+    },
+    "trends": {
+      "registrationTrend": -1.870283007561361,
+      "turnoutTrend": 1.174975832074404,
+      "demographicShift": 0.08303916504748132
+    }
+  },
+  "59": {
+    "districtNumber": 59,
+    "registeredVoters": 48647,
+    "turnout2024": 0.5599020004318571,
+    "turnout2022": 0.44617013633072855,
+    "turnout2020": 0.5807098806280223,
+    "registration": {
+      "democratic": 11316,
+      "republican": 20791,
+      "independent": 15567,
+      "other": 973
+    },
+    "demographics": {
+      "medianAge": 44,
+      "collegeEducated": 0.22941181661068083,
+      "urbanization": "suburban",
+      "diversityIndex": 0.6965309055971591
+    },
+    "trends": {
+      "registrationTrend": -0.15025687131577037,
+      "turnoutTrend": -0.46806645368601496,
+      "demographicShift": 0.41107162898921956
+    }
+  },
+  "60": {
+    "districtNumber": 60,
+    "registeredVoters": 20274,
+    "turnout2024": 0.6911244087578376,
+    "turnout2022": 0.5744405441565628,
+    "turnout2020": 0.6655744277711838,
+    "registration": {
+      "democratic": 8930,
+      "republican": 4451,
+      "independent": 6488,
+      "other": 405
+    },
+    "demographics": {
+      "medianAge": 51,
+      "collegeEducated": 0.2081381082572686,
+      "urbanization": "urban",
+      "diversityIndex": 0.40529354932033157
+    },
+    "trends": {
+      "registrationTrend": 0.6965510857741122,
+      "turnoutTrend": -0.5875585077272535,
+      "demographicShift": 1.1816037605430947
+    }
+  },
+  "61": {
+    "districtNumber": 61,
+    "registeredVoters": 38984,
+    "turnout2024": 0.7470225454294228,
+    "turnout2022": 0.5526068568707476,
+    "turnout2020": 0.7401764274761903,
+    "registration": {
+      "democratic": 17571,
+      "republican": 8159,
+      "independent": 12475,
+      "other": 780
+    },
+    "demographics": {
+      "medianAge": 52,
+      "collegeEducated": 0.3696701765850513,
+      "urbanization": "rural",
+      "diversityIndex": 0.6937673809443448
+    },
+    "trends": {
+      "registrationTrend": -0.9791953558936695,
+      "turnoutTrend": -0.15183463653169327,
+      "demographicShift": 1.4324177514912644
+    }
+  },
+  "62": {
+    "districtNumber": 62,
+    "registeredVoters": 57695,
+    "turnout2024": 0.6479938507536398,
+    "turnout2022": 0.46172294617245113,
+    "turnout2020": 0.6589448929573153,
+    "registration": {
+      "democratic": 21284,
+      "republican": 16795,
+      "independent": 18462,
+      "other": 1154
+    },
+    "demographics": {
+      "medianAge": 44,
+      "collegeEducated": 0.36651153572206924,
+      "urbanization": "suburban",
+      "diversityIndex": 0.4535047532308403
+    },
+    "trends": {
+      "registrationTrend": 0.3993110667910944,
+      "turnoutTrend": 1.0809764871750849,
+      "demographicShift": 0.014930725570270198
+    }
+  },
+  "63": {
+    "districtNumber": 63,
+    "registeredVoters": 36405,
+    "turnout2024": 0.748965156170989,
+    "turnout2022": 0.570839035567287,
+    "turnout2020": 0.7777133585315725,
+    "registration": {
+      "democratic": 19866,
+      "republican": 5461,
+      "independent": 10351,
+      "other": 728
+    },
+    "demographics": {
+      "medianAge": 36,
+      "collegeEducated": 0.36335290379978386,
+      "urbanization": "rural",
+      "diversityIndex": 0.656900656436058
+    },
+    "trends": {
+      "registrationTrend": -1.0708464379752272,
+      "turnoutTrend": -0.9022240936300829,
+      "demographicShift": 0.22266978082371414
+    }
+  },
+  "64": {
+    "districtNumber": 64,
+    "registeredVoters": 55116,
+    "turnout2024": 0.649936461495206,
+    "turnout2022": 0.4799551367899194,
+    "turnout2020": 0.6415549874964892,
+    "registration": {
+      "democratic": 30314,
+      "republican": 8267,
+      "independent": 15432,
+      "other": 1102
+    },
+    "demographics": {
+      "medianAge": 50,
+      "collegeEducated": 0.34496842629507574,
+      "urbanization": "rural",
+      "diversityIndex": 0.34297097928029063
+    },
+    "trends": {
+      "registrationTrend": -0.45084965156896484,
+      "turnoutTrend": -0.7031892536688547,
+      "demographicShift": 0.30374357165011734
+    }
+  },
+  "65": {
+    "districtNumber": 65,
+    "registeredVoters": 33826,
+    "turnout2024": 0.550907766819423,
+    "turnout2022": 0.3890712294443842,
+    "turnout2020": 0.5605002761168872,
+    "registration": {
+      "democratic": 11823,
+      "republican": 10502,
+      "independent": 10824,
+      "other": 677
+    },
+    "demographics": {
+      "medianAge": 40,
+      "collegeEducated": 0.27372562888717544,
+      "urbanization": "suburban",
+      "diversityIndex": 0.5105453254238448
+    },
+    "trends": {
+      "registrationTrend": 0.09123492338286487,
+      "turnoutTrend": 0.65288949089725,
+      "demographicShift": -0.3439395424648838
+    }
+  },
+  "66": {
+    "districtNumber": 66,
+    "registeredVoters": 52537,
+    "turnout2024": 0.6518790722367722,
+    "turnout2022": 0.4981873274073877,
+    "turnout2020": 0.6241650820356631,
+    "registration": {
+      "democratic": 24363,
+      "republican": 10311,
+      "independent": 16812,
+      "other": 1051
+    },
+    "demographics": {
+      "medianAge": 54,
+      "collegeEducated": 0.4525054813607156,
+      "urbanization": "suburban",
+      "diversityIndex": 0.6964352252410888
+    },
+    "trends": {
+      "registrationTrend": 2.534528257574201,
+      "turnoutTrend": 1.271788121327659,
+      "demographicShift": 0.1276078229432962
+    }
+  },
+  "67": {
+    "districtNumber": 67,
+    "registeredVoters": 31246,
+    "turnout2024": 0.5528503775609892,
+    "turnout2022": 0.4073034200618525,
+    "turnout2020": 0.5431103766165257,
+    "registration": {
+      "democratic": 4687,
+      "republican": 17185,
+      "independent": 8749,
+      "other": 625
+    },
+    "demographics": {
+      "medianAge": 39,
+      "collegeEducated": 0.3324514687678085,
+      "urbanization": "urban",
+      "diversityIndex": 0.26642946604007367
+    },
+    "trends": {
+      "registrationTrend": 2.582981916415962,
+      "turnoutTrend": 1.9815968288954333,
+      "demographicShift": -0.4023523327905463
+    }
+  },
+  "68": {
+    "districtNumber": 68,
+    "registeredVoters": 49957,
+    "turnout2024": 0.6538216829783384,
+    "turnout2022": 0.516419518024856,
+    "turnout2020": 0.606775176574837,
+    "registration": {
+      "democratic": 12675,
+      "republican": 20297,
+      "independent": 15986,
+      "other": 999
+    },
+    "demographics": {
+      "medianAge": 36,
+      "collegeEducated": 0.3472176150173031,
+      "urbanization": "urban",
+      "diversityIndex": 0.4141445280118587
+    },
+    "trends": {
+      "registrationTrend": -0.15622746858570147,
+      "turnoutTrend": -0.5317002532685642,
+      "demographicShift": 0.5071530051097057
+    }
+  },
+  "69": {
+    "districtNumber": 69,
+    "registeredVoters": 28667,
+    "turnout2024": 0.5547929942630199,
+    "turnout2022": 0.4368039075223747,
+    "turnout2020": 0.5574789077311191,
+    "registration": {
+      "democratic": 5460,
+      "republican": 13460,
+      "independent": 9173,
+      "other": 573
+    },
+    "demographics": {
+      "medianAge": 43,
+      "collegeEducated": 0.4177641869605352,
+      "urbanization": "rural",
+      "diversityIndex": 0.39013547906192736
+    },
+    "trends": {
+      "registrationTrend": -0.3748579017700897,
+      "turnoutTrend": 1.9117517484872377,
+      "demographicShift": 0.6148443229565603
+    }
+  },
+  "70": {
+    "districtNumber": 70,
+    "registeredVoters": 40295,
+    "turnout2024": 0.640942215961843,
+    "turnout2022": 0.5003196358915045,
+    "turnout2020": 0.66891998060463,
+    "registration": {
+      "democratic": 19205,
+      "republican": 7390,
+      "independent": 12894,
+      "other": 806
+    },
+    "demographics": {
+      "medianAge": 44,
+      "collegeEducated": 0.49497718824771103,
+      "urbanization": "urban",
+      "diversityIndex": 0.37834568031986504
+    },
+    "trends": {
+      "registrationTrend": -1.7877502440417885,
+      "turnoutTrend": -0.1969737108782743,
+      "demographicShift": -0.23102748358204384
+    }
+  },
+  "71": {
+    "districtNumber": 71,
+    "registeredVoters": 59005,
+    "turnout2024": 0.7419135094582632,
+    "turnout2022": 0.5868991375606969,
+    "turnout2020": 0.7467081547932272,
+    "registration": {
+      "democratic": 32453,
+      "republican": 8851,
+      "independent": 16521,
+      "other": 1180
+    },
+    "demographics": {
+      "medianAge": 47,
+      "collegeEducated": 0.32900795942591876,
+      "urbanization": "suburban",
+      "diversityIndex": 0.6775865080196347
+    },
+    "trends": {
+      "registrationTrend": -0.394300936904876,
+      "turnoutTrend": 1.509562016702053,
+      "demographicShift": -0.585896968648721
+    }
+  },
+  "72": {
+    "districtNumber": 72,
+    "registeredVoters": 37715,
+    "turnout2024": 0.6428848267034092,
+    "turnout2022": 0.5185518265089728,
+    "turnout2020": 0.6515300751438039,
+    "registration": {
+      "democratic": 12551,
+      "republican": 12341,
+      "independent": 12069,
+      "other": 754
+    },
+    "demographics": {
+      "medianAge": 50,
+      "collegeEducated": 0.20723896026948418,
+      "urbanization": "suburban",
+      "diversityIndex": 0.5526783121529399
+    },
+    "trends": {
+      "registrationTrend": 1.6041212098692177,
+      "turnoutTrend": 0.8399152764305078,
+      "demographicShift": 1.10400486090407
+    }
+  },
+  "73": {
+    "districtNumber": 73,
+    "registeredVoters": 56426,
+    "turnout2024": 0.7438561440416873,
+    "turnout2022": 0.5502045155038147,
+    "turnout2020": 0.7563519955875129,
+    "registration": {
+      "democratic": 31034,
+      "republican": 8464,
+      "independent": 15799,
+      "other": 1129
+    },
+    "demographics": {
+      "medianAge": 54,
+      "collegeEducated": 0.385469961252748,
+      "urbanization": "rural",
+      "diversityIndex": 0.4277700902092131
+    },
+    "trends": {
+      "registrationTrend": 0.8385186208591415,
+      "turnoutTrend": 1.925511838367913,
+      "demographicShift": -0.43633127186276544
+    }
+  },
+  "74": {
+    "districtNumber": 74,
+    "registeredVoters": 35136,
+    "turnout2024": 0.6448274374449754,
+    "turnout2022": 0.5367840171264411,
+    "turnout2020": 0.6341401726632101,
+    "registration": {
+      "democratic": 9450,
+      "republican": 13740,
+      "independent": 11244,
+      "other": 703
+    },
+    "demographics": {
+      "medianAge": 44,
+      "collegeEducated": 0.4302897812008345,
+      "urbanization": "urban",
+      "diversityIndex": 0.5408320547737331
+    },
+    "trends": {
+      "registrationTrend": 0.5235086691209623,
+      "turnoutTrend": -0.41924202415125533,
+      "demographicShift": -0.2939820584347388
+    }
+  },
+  "75": {
+    "districtNumber": 75,
+    "registeredVoters": 53847,
+    "turnout2024": 0.7457987309413956,
+    "turnout2022": 0.6233635187956335,
+    "turnout2020": 0.7119283468518072,
+    "registration": {
+      "democratic": 20766,
+      "republican": 14773,
+      "independent": 17231,
+      "other": 1077
+    },
+    "demographics": {
+      "medianAge": 42,
+      "collegeEducated": 0.4548711360687721,
+      "urbanization": "suburban",
+      "diversityIndex": 0.5856532575495789
+    },
+    "trends": {
+      "registrationTrend": 0.9170107855075091,
+      "turnoutTrend": -0.9171748160930233,
+      "demographicShift": 0.06873377089795363
+    }
+  },
+  "76": {
+    "districtNumber": 76,
+    "registeredVoters": 32556,
+    "turnout2024": 0.6467700481865416,
+    "turnout2022": 0.4550162076973432,
+    "turnout2020": 0.6167502642221517,
+    "registration": {
+      "democratic": 8319,
+      "republican": 13168,
+      "independent": 10418,
+      "other": 651
+    },
+    "demographics": {
+      "medianAge": 39,
+      "collegeEducated": 0.29323291484882724,
+      "urbanization": "rural",
+      "diversityIndex": 0.23926730157773352
+    },
+    "trends": {
+      "registrationTrend": 2.0086628515313674,
+      "turnoutTrend": 0.0020929579632789075,
+      "demographicShift": -0.49530017352444133
+    }
+  },
+  "77": {
+    "districtNumber": 77,
+    "registeredVoters": 51267,
+    "turnout2024": 0.7477413655248197,
+    "turnout2022": 0.5866688967387512,
+    "turnout2020": 0.7215721846658607,
+    "registration": {
+      "democratic": 15343,
+      "republican": 18493,
+      "independent": 16405,
+      "other": 1025
+    },
+    "demographics": {
+      "medianAge": 42,
+      "collegeEducated": 0.4038541615958578,
+      "urbanization": "urban",
+      "diversityIndex": 0.4882848979385033
+    },
+    "trends": {
+      "registrationTrend": -0.6972892278327092,
+      "turnoutTrend": -0.25423645938478245,
+      "demographicShift": 0.8508651265180043
+    }
+  },
+  "78": {
+    "districtNumber": 78,
+    "registeredVoters": 29977,
+    "turnout2024": 0.6487126589281078,
+    "turnout2022": 0.47324839831481147,
+    "turnout2020": 0.5993603587613257,
+    "registration": {
+      "democratic": 11424,
+      "republican": 8361,
+      "independent": 9593,
+      "other": 600
+    },
+    "demographics": {
+      "medianAge": 42,
+      "collegeEducated": 0.3548474670177547,
+      "urbanization": "suburban",
+      "diversityIndex": 0.2402634740063285
+    },
+    "trends": {
+      "registrationTrend": 1.6195762472318376,
+      "turnoutTrend": 0.4401674277336185,
+      "demographicShift": 1.116450310738967
+    }
+  },
+  "79": {
+    "districtNumber": 79,
+    "registeredVoters": 48688,
+    "turnout2024": 0.749683952424528,
+    "turnout2022": 0.5598278999840038,
+    "turnout2020": 0.7771485329964889,
+    "registration": {
+      "democratic": 12664,
+      "republican": 19470,
+      "independent": 15580,
+      "other": 974
+    },
+    "demographics": {
+      "medianAge": 49,
+      "collegeEducated": 0.2428355217179449,
+      "urbanization": "suburban",
+      "diversityIndex": 0.2354514271185973
+    },
+    "trends": {
+      "registrationTrend": 0.6416417968653336,
+      "turnoutTrend": 0.9876034269051641,
+      "demographicShift": 1.5827505600558363
+    }
+  },
+  "80": {
+    "districtNumber": 80,
+    "registeredVoters": 20314,
+    "turnout2024": 0.6358331971270187,
+    "turnout2022": 0.47950827406230767,
+    "turnout2020": 0.6322511129697092,
+    "registration": {
+      "democratic": 5337,
+      "republican": 8070,
+      "independent": 6500,
+      "other": 406
+    },
+    "demographics": {
+      "medianAge": 35,
+      "collegeEducated": 0.21082715690640136,
+      "urbanization": "suburban",
+      "diversityIndex": 0.3677649319953122
+    },
+    "trends": {
+      "registrationTrend": 2.4700971266581195,
+      "turnoutTrend": 1.1605615625905625,
+      "demographicShift": -0.030510901953331615
+    }
+  },
+  "81": {
+    "districtNumber": 81,
+    "registeredVoters": 39025,
+    "turnout2024": 0.7368044973289615,
+    "turnout2022": 0.5662646174972246,
+    "turnout2020": 0.7253467918491674,
+    "registration": {
+      "democratic": 13446,
+      "republican": 12311,
+      "independent": 12488,
+      "other": 781
+    },
+    "demographics": {
+      "medianAge": 43,
+      "collegeEducated": 0.3511250258195796,
+      "urbanization": "suburban",
+      "diversityIndex": 0.3921144724786815
+    },
+    "trends": {
+      "registrationTrend": -1.3335998055215925,
+      "turnoutTrend": 1.121286244188103,
+      "demographicShift": 0.38032805983923756
+    }
+  },
+  "82": {
+    "districtNumber": 82,
+    "registeredVoters": 57736,
+    "turnout2024": 0.6377758026531785,
+    "turnout2022": 0.4753807067989282,
+    "turnout2020": 0.6441152573302925,
+    "registration": {
+      "democratic": 17127,
+      "republican": 20978,
+      "independent": 18476,
+      "other": 1155
+    },
+    "demographics": {
+      "medianAge": 35,
+      "collegeEducated": 0.2808871314306218,
+      "urbanization": "urban",
+      "diversityIndex": 0.22741083504045886
+    },
+    "trends": {
+      "registrationTrend": 1.3124397710489295,
+      "turnoutTrend": 1.2768124352566956,
+      "demographicShift": -0.8586164712247515
+    }
+  },
+  "83": {
+    "districtNumber": 83,
+    "registeredVoters": 36446,
+    "turnout2024": 0.7387471080705277,
+    "turnout2022": 0.5844967961937639,
+    "turnout2020": 0.7628837229045498,
+    "registration": {
+      "democratic": 12562,
+      "republican": 11493,
+      "independent": 11663,
+      "other": 729
+    },
+    "demographics": {
+      "medianAge": 49,
+      "collegeEducated": 0.3448077440936155,
+      "urbanization": "suburban",
+      "diversityIndex": 0.41158921728450304
+    },
+    "trends": {
+      "registrationTrend": 1.4234130398479352,
+      "turnoutTrend": 0.5869085796116424,
+      "demographicShift": 0.20730519350958287
+    }
+  },
+  "84": {
+    "districtNumber": 84,
+    "registeredVoters": 55157,
+    "turnout2024": 0.6397184133947447,
+    "turnout2022": 0.49361289741639647,
+    "turnout2020": 0.6267253518694664,
+    "registration": {
+      "democratic": 16783,
+      "republican": 19621,
+      "independent": 17650,
+      "other": 1103
+    },
+    "demographics": {
+      "medianAge": 41,
+      "collegeEducated": 0.32642327552960404,
+      "urbanization": "suburban",
+      "diversityIndex": 0.5413180710474579
+    },
+    "trends": {
+      "registrationTrend": -0.8052541011968879,
+      "turnoutTrend": 0.569931716457909,
+      "demographicShift": 1.913604976103457
+    }
+  },
+  "85": {
+    "districtNumber": 85,
+    "registeredVoters": 33866,
+    "turnout2024": 0.740689718812094,
+    "turnout2022": 0.6027289987321613,
+    "turnout2020": 0.7905669809740815,
+    "registration": {
+      "democratic": 14284,
+      "republican": 8067,
+      "independent": 10837,
+      "other": 677
+    },
+    "demographics": {
+      "medianAge": 55,
+      "collegeEducated": 0.3080388069655927,
+      "urbanization": "suburban",
+      "diversityIndex": 0.6710469248104127
+    },
+    "trends": {
+      "registrationTrend": 1.9660787600865954,
+      "turnoutTrend": 0.5529546744902407,
+      "demographicShift": 1.2960023890696477
+    }
+  },
+  "86": {
+    "districtNumber": 86,
+    "registeredVoters": 52577,
+    "turnout2024": 0.641661024136311,
+    "turnout2022": 0.5118450880338649,
+    "turnout2020": 0.6093354464086405,
+    "registration": {
+      "democratic": 28917,
+      "republican": 7887,
+      "independent": 14722,
+      "other": 1052
+    },
+    "demographics": {
+      "medianAge": 45,
+      "collegeEducated": 0.36635060318110074,
+      "urbanization": "urban",
+      "diversityIndex": 0.5996837140990811
+    },
+    "trends": {
+      "registrationTrend": 2.811770918225763,
+      "turnoutTrend": -0.25767469371560714,
+      "demographicShift": 1.8526844991616365
+    }
+  },
+  "87": {
+    "districtNumber": 87,
+    "registeredVoters": 31287,
+    "turnout2024": 0.7426323295536601,
+    "turnout2022": 0.6209611774287005,
+    "turnout2020": 0.7281039149631298,
+    "registration": {
+      "democratic": 12127,
+      "republican": 8523,
+      "independent": 10012,
+      "other": 626
+    },
+    "demographics": {
+      "medianAge": 49,
+      "collegeEducated": 0.2801203370467389,
+      "urbanization": "suburban",
+      "diversityIndex": 0.574075591738371
+    },
+    "trends": {
+      "registrationTrend": -1.2653280493176207,
+      "turnoutTrend": 0.36464044515259575,
+      "demographicShift": -0.5317471025193795
+    }
+  },
+  "88": {
+    "districtNumber": 88,
+    "registeredVoters": 49998,
+    "turnout2024": 0.5985304832684484,
+    "turnout2022": 0.44402384459694094,
+    "turnout2020": 0.6482370258067907,
+    "registration": {
+      "democratic": 24821,
+      "republican": 8177,
+      "independent": 15999,
+      "other": 1000
+    },
+    "demographics": {
+      "medianAge": 35,
+      "collegeEducated": 0.4417883475505693,
+      "urbanization": "suburban",
+      "diversityIndex": 0.6352781774640447
+    },
+    "trends": {
+      "registrationTrend": 2.237177373951849,
+      "turnoutTrend": -0.5514245031175318,
+      "demographicShift": 1.1127639720741493
+    }
+  },
+  "89": {
+    "districtNumber": 89,
+    "registeredVoters": 28708,
+    "turnout2024": 0.6995017827253331,
+    "turnout2022": 0.5418716490696518,
+    "turnout2020": 0.6803202212696524,
+    "registration": {
+      "democratic": 13607,
+      "republican": 5340,
+      "independent": 9187,
+      "other": 574
+    },
+    "demographics": {
+      "medianAge": 44,
+      "collegeEducated": 0.471475529797131,
+      "urbanization": "suburban",
+      "diversityIndex": 0.42680985938143445
+    },
+    "trends": {
+      "registrationTrend": 2.2717254181726485,
+      "turnoutTrend": 1.5274755966511906,
+      "demographicShift": 1.9712975039013183
+    }
+  },
+  "90": {
+    "districtNumber": 90,
+    "registeredVoters": 40335,
+    "turnout2024": 0.6307241678613816,
+    "turnout2022": 0.5139773965179815,
+    "turnout2020": 0.6540903479578395,
+    "registration": {
+      "democratic": 12055,
+      "republican": 14566,
+      "independent": 12907,
+      "other": 807
+    },
+    "demographics": {
+      "medianAge": 45,
+      "collegeEducated": 0.4886357308778147,
+      "urbanization": "suburban",
+      "diversityIndex": 0.24511308672144688
+    },
+    "trends": {
+      "registrationTrend": 2.2294456084395975,
+      "turnoutTrend": 1.7828379882419663,
+      "demographicShift": -0.03984391644589791
+    }
+  },
+  "91": {
+    "districtNumber": 91,
+    "registeredVoters": 59046,
+    "turnout2024": 0.731695461357802,
+    "turnout2022": 0.600556898187174,
+    "turnout2020": 0.7318785191662044,
+    "registration": {
+      "democratic": 22477,
+      "republican": 16493,
+      "independent": 18895,
+      "other": 1181
+    },
+    "demographics": {
+      "medianAge": 38,
+      "collegeEducated": 0.2766579449533755,
+      "urbanization": "urban",
+      "diversityIndex": 0.47838429821579914
+    },
+    "trends": {
+      "registrationTrend": 2.0671181697710965,
+      "turnoutTrend": -0.11860895115817383,
+      "demographicShift": -0.24940347636556415
+    }
+  },
+  "92": {
+    "districtNumber": 92,
+    "registeredVoters": 37756,
+    "turnout2024": 0.6326667786029478,
+    "turnout2022": 0.5322095871354497,
+    "turnout2020": 0.6367004421244843,
+    "registration": {
+      "democratic": 9836,
+      "republican": 15083,
+      "independent": 12082,
+      "other": 755
+    },
+    "demographics": {
+      "medianAge": 35,
+      "collegeEducated": 0.46640084398277143,
+      "urbanization": "urban",
+      "diversityIndex": 0.49827106012882244
+    },
+    "trends": {
+      "registrationTrend": 1.4119927899036524,
+      "turnoutTrend": 0.6412937648786667,
+      "demographicShift": 1.2236692915780791
+    }
+  },
+  "93": {
+    "districtNumber": 93,
+    "registeredVoters": 56467,
+    "turnout2024": 0.7336380959412261,
+    "turnout2022": 0.5638622761302918,
+    "turnout2020": 0.7415223599604901,
+    "registration": {
+      "democratic": 8486,
+      "republican": 28782,
+      "independent": 18069,
+      "other": 1129
+    },
+    "demographics": {
+      "medianAge": 45,
+      "collegeEducated": 0.3669248104872763,
+      "urbanization": "suburban",
+      "diversityIndex": 0.6261171819763803
+    },
+    "trends": {
+      "registrationTrend": 0.48411417123121847,
+      "turnoutTrend": 0.1986327176907252,
+      "demographicShift": 1.5115790378821918
+    }
+  },
+  "94": {
+    "districtNumber": 94,
+    "registeredVoters": 35177,
+    "turnout2024": 0.634609389344514,
+    "turnout2022": 0.45044177770635196,
+    "turnout2020": 0.619310534055955,
+    "registration": {
+      "democratic": 12203,
+      "republican": 11014,
+      "independent": 11257,
+      "other": 704
+    },
+    "demographics": {
+      "medianAge": 47,
+      "collegeEducated": 0.46715070021671745,
+      "urbanization": "rural",
+      "diversityIndex": 0.6404916169310415
+    },
+    "trends": {
+      "registrationTrend": 1.5175436751533038,
+      "turnoutTrend": 1.20649206741084,
+      "demographicShift": 0.22560894546360188
+    }
+  },
+  "95": {
+    "districtNumber": 95,
+    "registeredVoters": 53887,
+    "turnout2024": 0.7355806828409344,
+    "turnout2022": 0.5370212793755444,
+    "turnout2020": 0.6970987082445522,
+    "registration": {
+      "democratic": 29638,
+      "republican": 8083,
+      "independent": 15088,
+      "other": 1078
+    },
+    "demographics": {
+      "medianAge": 47,
+      "collegeEducated": 0.32884702688495027,
+      "urbanization": "urban",
+      "diversityIndex": 0.3237654686550449
+    },
+    "trends": {
+      "registrationTrend": 2.018158914529792,
+      "turnoutTrend": 0.17091083581136113,
+      "demographicShift": 1.2518568049426455
+    }
+  },
+  "96": {
+    "districtNumber": 96,
+    "registeredVoters": 32597,
+    "turnout2024": 0.6365520000860803,
+    "turnout2022": 0.46867396832382024,
+    "turnout2020": 0.601920628595129,
+    "registration": {
+      "democratic": 14123,
+      "republican": 7391,
+      "independent": 10431,
+      "other": 652
+    },
+    "demographics": {
+      "medianAge": 51,
+      "collegeEducated": 0.27468775514265886,
+      "urbanization": "suburban",
+      "diversityIndex": 0.4939558626590091
+    },
+    "trends": {
+      "registrationTrend": -0.4970778219853891,
+      "turnoutTrend": 1.829274536496622,
+      "demographicShift": 0.8604849585613632
+    }
+  },
+  "97": {
+    "districtNumber": 97,
+    "registeredVoters": 51308,
+    "turnout2024": 0.6924501419730718,
+    "turnout2022": 0.5692000389654189,
+    "turnout2020": 0.6472685844391903,
+    "registration": {
+      "democratic": 18033,
+      "republican": 15830,
+      "independent": 16419,
+      "other": 1026
+    },
+    "demographics": {
+      "medianAge": 53,
+      "collegeEducated": 0.22819577456833598,
+      "urbanization": "urban",
+      "diversityIndex": 0.3104249507703003
+    },
+    "trends": {
+      "registrationTrend": -1.5333966610643066,
+      "turnoutTrend": 0.5862186260457236,
+      "demographicShift": 1.9293262972167349
+    }
+  },
+  "98": {
+    "districtNumber": 98,
+    "registeredVoters": 30018,
+    "turnout2024": 0.5934214472972889,
+    "turnout2022": 0.4783161312473548,
+    "turnout2020": 0.577305340802905,
+    "registration": {
+      "democratic": 13609,
+      "republican": 6203,
+      "independent": 9606,
+      "other": 600
+    },
+    "demographics": {
+      "medianAge": 42,
+      "collegeEducated": 0.45976024878200156,
+      "urbanization": "suburban",
+      "diversityIndex": 0.43741930734246004
+    },
+    "trends": {
+      "registrationTrend": 2.8774665616813433,
+      "turnoutTrend": -0.8279395102653371,
+      "demographicShift": 1.3959680508803425
+    }
+  },
+  "99": {
+    "districtNumber": 99,
+    "registeredVoters": 48729,
+    "turnout2024": 0.6943927527146381,
+    "turnout2022": 0.5874322295828873,
+    "turnout2020": 0.7298786790249305,
+    "registration": {
+      "democratic": 21336,
+      "republican": 10825,
+      "independent": 15593,
+      "other": 975
+    },
+    "demographics": {
+      "medianAge": 43,
+      "collegeEducated": 0.3499069452983825,
+      "urbanization": "suburban",
+      "diversityIndex": 0.35186011798300787
+    },
+    "trends": {
+      "registrationTrend": 0.23715186223255103,
+      "turnoutTrend": 1.5225174438778857,
+      "demographicShift": 1.8014643205336593
+    }
+  },
+  "100": {
+    "districtNumber": 100,
+    "registeredVoters": 55285,
+    "turnout2024": 0.718693184931154,
+    "turnout2022": 0.6124689698975854,
+    "turnout2020": 0.7431964309155924,
+    "registration": {
+      "democratic": 16238,
+      "republican": 20250,
+      "independent": 17691,
+      "other": 1106
+    },
+    "demographics": {
+      "medianAge": 41,
+      "collegeEducated": 0.37762871988938596,
+      "urbanization": "urban",
+      "diversityIndex": 0.46082795870528925
+    },
+    "trends": {
+      "registrationTrend": -0.8051015133061918,
+      "turnoutTrend": -0.591964036036266,
+      "demographicShift": -0.4674068090819785
+    }
+  }
+}

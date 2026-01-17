@@ -1,0 +1,2868 @@
+{
+  "lastUpdated": "2026-01-17T06:38:14.499Z",
+  "source": "demo-generated",
+  "house": {
+    "1": {
+      "districtNumber": 1,
+      "candidates": [
+        {
+          "name": "Rivera, Joseph",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-17",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Joseph Rivera",
+        "party": "Democratic",
+        "yearsInOffice": 10
+      }
+    },
+    "2": {
+      "districtNumber": 2,
+      "candidates": [
+        {
+          "name": "Russell, Brandon",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-07-24",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Cook, Jack",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-06",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Brandon Russell",
+        "party": "Republican",
+        "yearsInOffice": 13
+      }
+    },
+    "3": {
+      "districtNumber": 3,
+      "candidates": [
+        {
+          "name": "Fleming, Kimberly",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-08-14",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Kimberly Fleming",
+        "party": "Democratic",
+        "yearsInOffice": 16
+      }
+    },
+    "4": {
+      "districtNumber": 4,
+      "candidates": [
+        {
+          "name": "Ramirez, Jack",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-10-07",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Nelson, Rebecca",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-12-15",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Jack Ramirez",
+        "party": "Democratic",
+        "yearsInOffice": 19
+      }
+    },
+    "5": {
+      "districtNumber": 5,
+      "candidates": [
+        {
+          "name": "Hernandez, Pamela",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-04",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Pamela Hernandez",
+        "party": "Democratic",
+        "yearsInOffice": 2
+      }
+    },
+    "6": {
+      "districtNumber": 6,
+      "candidates": [
+        {
+          "name": "Gomez, I., Michael",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-11-25",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Michael I. Gomez",
+        "party": "Democratic",
+        "yearsInOffice": 5
+      }
+    },
+    "7": {
+      "districtNumber": 7,
+      "candidates": [
+        {
+          "name": "Porter, Rachel",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-10-05",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Rachel Porter",
+        "party": "Democratic",
+        "yearsInOffice": 14
+      }
+    },
+    "8": {
+      "districtNumber": 8,
+      "candidates": [],
+      "incumbent": {
+        "name": "Matthew Sanchez",
+        "party": "Democratic",
+        "yearsInOffice": 11
+      }
+    },
+    "9": {
+      "districtNumber": 9,
+      "candidates": [
+        {
+          "name": "Rodriguez, Jennifer",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-09-06",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Jennifer Rodriguez",
+        "party": "Democratic",
+        "yearsInOffice": 9
+      }
+    },
+    "10": {
+      "districtNumber": 10,
+      "candidates": [
+        {
+          "name": "Hicks, John",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-11-15",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "John Hicks",
+        "party": "Republican",
+        "yearsInOffice": 18
+      }
+    },
+    "11": {
+      "districtNumber": 11,
+      "candidates": [
+        {
+          "name": "Sullivan, Carolyn",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-04-17",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Gomez, Matthew",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-10-06",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Carolyn Sullivan",
+        "party": "Democratic",
+        "yearsInOffice": 15
+      }
+    },
+    "12": {
+      "districtNumber": 12,
+      "candidates": [
+        {
+          "name": "Randolph, Christopher",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-20",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Christopher Randolph",
+        "party": "Democratic",
+        "yearsInOffice": 12
+      }
+    },
+    "13": {
+      "districtNumber": 13,
+      "candidates": [
+        {
+          "name": "Hall, Stephanie",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-05-02",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Stephanie Hall",
+        "party": "Democratic",
+        "yearsInOffice": 9
+      }
+    },
+    "14": {
+      "districtNumber": 14,
+      "candidates": [
+        {
+          "name": "Jefferson, Joshua",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-09-08",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Joshua Jefferson",
+        "party": "Democratic",
+        "yearsInOffice": 7
+      }
+    },
+    "15": {
+      "districtNumber": 15,
+      "candidates": [
+        {
+          "name": "Morales, Anna",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-05-26",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Anna Morales",
+        "party": "Democratic",
+        "yearsInOffice": 4
+      }
+    },
+    "16": {
+      "districtNumber": 16,
+      "candidates": [
+        {
+          "name": "Richardson, Aaron",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-11-20",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Aaron Richardson",
+        "party": "Democratic",
+        "yearsInOffice": 20
+      }
+    },
+    "17": {
+      "districtNumber": 17,
+      "candidates": [
+        {
+          "name": "McCoy, Sandra",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-08-26",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Sandra McCoy",
+        "party": "Republican",
+        "yearsInOffice": 17
+      }
+    },
+    "18": {
+      "districtNumber": 18,
+      "candidates": [
+        {
+          "name": "Anderson, Joseph",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-12-05",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Joseph Anderson",
+        "party": "Democratic",
+        "yearsInOffice": 15
+      }
+    },
+    "19": {
+      "districtNumber": 19,
+      "candidates": [
+        {
+          "name": "Washington, Amanda",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-09-11",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Amanda Washington",
+        "party": "Republican",
+        "yearsInOffice": 12
+      }
+    },
+    "20": {
+      "districtNumber": 20,
+      "candidates": [
+        {
+          "name": "Diaz, John",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-05-04",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "John Diaz",
+        "party": "Republican",
+        "yearsInOffice": 9
+      }
+    },
+    "21": {
+      "districtNumber": 21,
+      "candidates": [
+        {
+          "name": "Evans, Emily",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-12-20",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Sanders, James",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-10-01",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Emily Evans",
+        "party": "Democratic",
+        "yearsInOffice": 6
+      }
+    },
+    "22": {
+      "districtNumber": 22,
+      "candidates": [
+        {
+          "name": "Manning, Stephen",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-03-13",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Kelly, Donna",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-01-03",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Stephen Manning",
+        "party": "Republican",
+        "yearsInOffice": 3
+      }
+    },
+    "23": {
+      "districtNumber": 23,
+      "candidates": [
+        {
+          "name": "Garcia, Stephanie",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-05-24",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Stephanie Garcia",
+        "party": "Republican",
+        "yearsInOffice": 19
+      }
+    },
+    "24": {
+      "districtNumber": 24,
+      "candidates": [
+        {
+          "name": "Thornton, Gregory",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-09-06",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Gregory Thornton",
+        "party": "Republican",
+        "yearsInOffice": 17
+      }
+    },
+    "25": {
+      "districtNumber": 25,
+      "candidates": [
+        {
+          "name": "Walker, Elizabeth",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-06-08",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Elizabeth Walker",
+        "party": "Democratic",
+        "yearsInOffice": 14
+      }
+    },
+    "26": {
+      "districtNumber": 26,
+      "candidates": [
+        {
+          "name": "Madison, H., Christopher",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-10-18",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Christopher H. Madison",
+        "party": "Democratic",
+        "yearsInOffice": 11
+      }
+    },
+    "27": {
+      "districtNumber": 27,
+      "candidates": [
+        {
+          "name": "Robinson, Stephanie",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-21",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Stephanie Robinson",
+        "party": "Democratic",
+        "yearsInOffice": 8
+      }
+    },
+    "28": {
+      "districtNumber": 28,
+      "candidates": [
+        {
+          "name": "James, N., Gary",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-10-15",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Rivera, Debra",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-06-14",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Gary N. James",
+        "party": "Republican",
+        "yearsInOffice": 6
+      }
+    },
+    "29": {
+      "districtNumber": 29,
+      "candidates": [
+        {
+          "name": "Wood, Anna",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-04-21",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Morris, K., Justin",
+          "party": "Democratic",
+          "status": "announced",
+          "filedDate": "2026-01-15",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Anna Wood",
+        "party": "Republican",
+        "yearsInOffice": 3
+      }
+    },
+    "30": {
+      "districtNumber": 30,
+      "candidates": [
+        {
+          "name": "Nguyen, Kenneth",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-05-05",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Kenneth Nguyen",
+        "party": "Democratic",
+        "yearsInOffice": 18
+      }
+    },
+    "31": {
+      "districtNumber": 31,
+      "candidates": [
+        {
+          "name": "Campbell, P., Gregory",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-01-04",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Laura Flores",
+        "party": "Republican",
+        "yearsInOffice": 16
+      }
+    },
+    "32": {
+      "districtNumber": 32,
+      "candidates": [
+        {
+          "name": "Perkins, Jonathan",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-04",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Samuel Brown",
+        "party": "Republican",
+        "yearsInOffice": 13
+      }
+    },
+    "33": {
+      "districtNumber": 33,
+      "candidates": [
+        {
+          "name": "Davidson, A., Dorothy",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-08-08",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Ward, Edward",
+          "party": "Democratic",
+          "status": "announced",
+          "filedDate": "2025-08-22",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Dorothy A. Davidson",
+        "party": "Republican",
+        "yearsInOffice": 10
+      }
+    },
+    "34": {
+      "districtNumber": 34,
+      "candidates": [
+        {
+          "name": "Hall, Gary",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-09-28",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Gary Hall",
+        "party": "Republican",
+        "yearsInOffice": 7
+      }
+    },
+    "35": {
+      "districtNumber": 35,
+      "candidates": [
+        {
+          "name": "Stanton, Mary",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-08-01",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Calhoun, Amy",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-06-17",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Mary Stanton",
+        "party": "Republican",
+        "yearsInOffice": 5
+      }
+    },
+    "36": {
+      "districtNumber": 36,
+      "candidates": [
+        {
+          "name": "Washington, Brian",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-08",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Brian Washington",
+        "party": "Democratic",
+        "yearsInOffice": 2
+      }
+    },
+    "37": {
+      "districtNumber": 37,
+      "candidates": [
+        {
+          "name": "Harris, Donald",
+          "party": "Democratic",
+          "status": "announced",
+          "filedDate": "2026-01-10",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Emma Holloway",
+        "party": "Democratic",
+        "yearsInOffice": 18
+      }
+    },
+    "38": {
+      "districtNumber": 38,
+      "candidates": [
+        {
+          "name": "Perez, M., John",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-11-25",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "John M. Perez",
+        "party": "Democratic",
+        "yearsInOffice": 15
+      }
+    },
+    "39": {
+      "districtNumber": 39,
+      "candidates": [
+        {
+          "name": "Hernandez, Heather",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-05-07",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Heather Hernandez",
+        "party": "Democratic",
+        "yearsInOffice": 13
+      }
+    },
+    "40": {
+      "districtNumber": 40,
+      "candidates": [
+        {
+          "name": "Jackson, John",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-06-23",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Howard, Karen",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-09-27",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "John Jackson",
+        "party": "Democratic",
+        "yearsInOffice": 13
+      }
+    },
+    "41": {
+      "districtNumber": 41,
+      "candidates": [
+        {
+          "name": "Stanton, Scott",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-04-25",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Gray, Sharon",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-06-05",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Scott Stanton",
+        "party": "Republican",
+        "yearsInOffice": 7
+      }
+    },
+    "42": {
+      "districtNumber": 42,
+      "candidates": [
+        {
+          "name": "Flores, Angela",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-12-08",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Powell, Michelle",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-11-21",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Angela Flores",
+        "party": "Republican",
+        "yearsInOffice": 4
+      }
+    },
+    "43": {
+      "districtNumber": 43,
+      "candidates": [
+        {
+          "name": "Taylor, U., Paul",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-08-15",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Paul U. Taylor",
+        "party": "Republican",
+        "yearsInOffice": 20
+      }
+    },
+    "44": {
+      "districtNumber": 44,
+      "candidates": [],
+      "incumbent": {
+        "name": "Betty Green",
+        "party": "Democratic",
+        "yearsInOffice": 17
+      }
+    },
+    "45": {
+      "districtNumber": 45,
+      "candidates": [
+        {
+          "name": "Myers, Jack",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-01-14",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Thomas Norwood",
+        "party": "Republican",
+        "yearsInOffice": 15
+      }
+    },
+    "46": {
+      "districtNumber": 46,
+      "candidates": [
+        {
+          "name": "Brown, Brandon",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-01-02",
+          "isIncumbent": false,
+          "source": "demo"
+        },
+        {
+          "name": "Morris, Anna",
+          "party": "Republican",
+          "status": "announced",
+          "filedDate": "2025-09-19",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Debra Adams",
+        "party": "Democratic",
+        "yearsInOffice": 12
+      }
+    },
+    "47": {
+      "districtNumber": 47,
+      "candidates": [
+        {
+          "name": "Scott, Mary",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-10-01",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Samuel Young",
+        "party": "Democratic",
+        "yearsInOffice": 9
+      }
+    },
+    "48": {
+      "districtNumber": 48,
+      "candidates": [],
+      "incumbent": {
+        "name": "Melissa Adams",
+        "party": "Democratic",
+        "yearsInOffice": 6
+      }
+    },
+    "49": {
+      "districtNumber": 49,
+      "candidates": [
+        {
+          "name": "Bell, Kenneth",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-04-10",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Hill, Scott",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-01-06",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Kenneth Bell",
+        "party": "Republican",
+        "yearsInOffice": 4
+      }
+    },
+    "50": {
+      "districtNumber": 50,
+      "candidates": [
+        {
+          "name": "Rogers, Heather",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-22",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Gregory Lawrence",
+        "party": "Democratic",
+        "yearsInOffice": 3
+      }
+    },
+    "51": {
+      "districtNumber": 51,
+      "candidates": [
+        {
+          "name": "Robinson, Frank",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-10-03",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Edward Rodriguez",
+        "party": "Republican",
+        "yearsInOffice": 6
+      }
+    },
+    "52": {
+      "districtNumber": 52,
+      "candidates": [
+        {
+          "name": "Gomez, Karen",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-08-27",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Karen Gomez",
+        "party": "Democratic",
+        "yearsInOffice": 8
+      }
+    },
+    "53": {
+      "districtNumber": 53,
+      "candidates": [
+        {
+          "name": "Edwards, Raymond",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-10-12",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Phillips, Edward",
+          "party": "Democratic",
+          "status": "announced",
+          "filedDate": "2025-11-10",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Raymond Edwards",
+        "party": "Republican",
+        "yearsInOffice": 11
+      }
+    },
+    "54": {
+      "districtNumber": 54,
+      "candidates": [
+        {
+          "name": "Gonzalez, Patricia",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-12-25",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Hollis, A., Mark",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-12-09",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Patricia Gonzalez",
+        "party": "Democratic",
+        "yearsInOffice": 8
+      }
+    },
+    "55": {
+      "districtNumber": 55,
+      "candidates": [
+        {
+          "name": "Douglas, V., Scott",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-10-07",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "White, Amy",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-01-02",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Scott V. Douglas",
+        "party": "Republican",
+        "yearsInOffice": 5
+      }
+    },
+    "56": {
+      "districtNumber": 56,
+      "candidates": [
+        {
+          "name": "James, Dorothy",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-11-21",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Sanders, Melissa",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-01-10",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Dorothy James",
+        "party": "Republican",
+        "yearsInOffice": 3
+      }
+    },
+    "57": {
+      "districtNumber": 57,
+      "candidates": [
+        {
+          "name": "Perkins, Ryan",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-21",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Ryan Perkins",
+        "party": "Democratic",
+        "yearsInOffice": 19
+      }
+    },
+    "58": {
+      "districtNumber": 58,
+      "candidates": [
+        {
+          "name": "Wright, Betty",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-10-24",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Betty Wright",
+        "party": "Republican",
+        "yearsInOffice": 16
+      }
+    },
+    "59": {
+      "districtNumber": 59,
+      "candidates": [
+        {
+          "name": "Gonzalez, Jerry",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-03-26",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Cox, Jose",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-08-13",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Jerry Gonzalez",
+        "party": "Republican",
+        "yearsInOffice": 13
+      }
+    },
+    "60": {
+      "districtNumber": 60,
+      "candidates": [
+        {
+          "name": "Lee, Kenneth",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-26",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Lee, Justin",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-11-06",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Kenneth Lee",
+        "party": "Democratic",
+        "yearsInOffice": 12
+      }
+    },
+    "61": {
+      "districtNumber": 61,
+      "candidates": [
+        {
+          "name": "Taylor, Brenda",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-09-16",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Peterson, Robert",
+          "party": "Republican",
+          "status": "announced",
+          "filedDate": "2025-08-20",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Brenda Taylor",
+        "party": "Democratic",
+        "yearsInOffice": 15
+      }
+    },
+    "62": {
+      "districtNumber": 62,
+      "candidates": [
+        {
+          "name": "Bailey, G., Ryan",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-10-12",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Wallace, Raymond",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-10-25",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Ryan G. Bailey",
+        "party": "Democratic",
+        "yearsInOffice": 17
+      }
+    },
+    "63": {
+      "districtNumber": 63,
+      "candidates": [
+        {
+          "name": "Scott, Debra",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-12-26",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Brown, Scott",
+          "party": "Republican",
+          "status": "announced",
+          "filedDate": "2025-11-24",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Debra Scott",
+        "party": "Democratic",
+        "yearsInOffice": 20
+      }
+    },
+    "64": {
+      "districtNumber": 64,
+      "candidates": [
+        {
+          "name": "Davidson, Thomas",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-14",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Thomas Davidson",
+        "party": "Democratic",
+        "yearsInOffice": 4
+      }
+    },
+    "65": {
+      "districtNumber": 65,
+      "candidates": [
+        {
+          "name": "Cruz, Melissa",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-03-26",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Gomez, Debra",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-11-05",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Melissa Cruz",
+        "party": "Democratic",
+        "yearsInOffice": 7
+      }
+    },
+    "66": {
+      "districtNumber": 66,
+      "candidates": [
+        {
+          "name": "Preston, Paul",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-08-10",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Paul Preston",
+        "party": "Democratic",
+        "yearsInOffice": 13
+      }
+    },
+    "67": {
+      "districtNumber": 67,
+      "candidates": [
+        {
+          "name": "King, Amy",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-09-07",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Amy King",
+        "party": "Republican",
+        "yearsInOffice": 10
+      }
+    },
+    "68": {
+      "districtNumber": 68,
+      "candidates": [
+        {
+          "name": "Moore, Jerry",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-10-21",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Roberts, Rachel",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-01-12",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Jerry Moore",
+        "party": "Republican",
+        "yearsInOffice": 7
+      }
+    },
+    "69": {
+      "districtNumber": 69,
+      "candidates": [
+        {
+          "name": "Gray, Samantha",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-09-19",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Holland, Pamela",
+          "party": "Democratic",
+          "status": "announced",
+          "filedDate": "2025-06-04",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Samantha Gray",
+        "party": "Republican",
+        "yearsInOffice": 4
+      }
+    },
+    "70": {
+      "districtNumber": 70,
+      "candidates": [
+        {
+          "name": "Wood, Frank",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-05-23",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Montgomery, Ronald",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-09-08",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Frank Wood",
+        "party": "Democratic",
+        "yearsInOffice": 2
+      }
+    },
+    "71": {
+      "districtNumber": 71,
+      "candidates": [
+        {
+          "name": "Hall, Janet",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-06-17",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "White, Margaret",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-10-27",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Janet Hall",
+        "party": "Democratic",
+        "yearsInOffice": 5
+      }
+    },
+    "72": {
+      "districtNumber": 72,
+      "candidates": [
+        {
+          "name": "Kelly, Jose",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-06-19",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Jose Kelly",
+        "party": "Democratic",
+        "yearsInOffice": 8
+      }
+    },
+    "73": {
+      "districtNumber": 73,
+      "candidates": [
+        {
+          "name": "Morales, L., Ashley",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-06-27",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Ashley L. Morales",
+        "party": "Democratic",
+        "yearsInOffice": 10
+      }
+    },
+    "74": {
+      "districtNumber": 74,
+      "candidates": [
+        {
+          "name": "Myers, Kenneth",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-09-07",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Kenneth Myers",
+        "party": "Republican",
+        "yearsInOffice": 13
+      }
+    },
+    "75": {
+      "districtNumber": 75,
+      "candidates": [
+        {
+          "name": "Adams, Melissa",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-11-25",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Melissa Adams",
+        "party": "Democratic",
+        "yearsInOffice": 16
+      }
+    },
+    "76": {
+      "districtNumber": 76,
+      "candidates": [
+        {
+          "name": "Holloway, Samuel",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-12-15",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Samuel Holloway",
+        "party": "Republican",
+        "yearsInOffice": 19
+      }
+    },
+    "77": {
+      "districtNumber": 77,
+      "candidates": [
+        {
+          "name": "Hicks, K., Debra",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-12-17",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Cruz, Steven",
+          "party": "Democratic",
+          "status": "announced",
+          "filedDate": "2025-10-27",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Debra K. Hicks",
+        "party": "Republican",
+        "yearsInOffice": 2
+      }
+    },
+    "78": {
+      "districtNumber": 78,
+      "candidates": [],
+      "incumbent": {
+        "name": "Thomas Mitchell",
+        "party": "Democratic",
+        "yearsInOffice": 17
+      }
+    },
+    "79": {
+      "districtNumber": 79,
+      "candidates": [],
+      "incumbent": {
+        "name": "Betty X. Martin",
+        "party": "Republican",
+        "yearsInOffice": 14
+      }
+    },
+    "80": {
+      "districtNumber": 80,
+      "candidates": [
+        {
+          "name": "Scott, O., Thomas",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-08-06",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Thomas O. Scott",
+        "party": "Republican",
+        "yearsInOffice": 11
+      }
+    },
+    "81": {
+      "districtNumber": 81,
+      "candidates": [
+        {
+          "name": "Johnson, Cynthia",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-04-27",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Cynthia Johnson",
+        "party": "Democratic",
+        "yearsInOffice": 14
+      }
+    },
+    "82": {
+      "districtNumber": 82,
+      "candidates": [
+        {
+          "name": "Richardson, Raymond",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-07-21",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Patterson, Dorothy",
+          "party": "Democratic",
+          "status": "announced",
+          "filedDate": "2025-07-02",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Raymond Richardson",
+        "party": "Republican",
+        "yearsInOffice": 17
+      }
+    },
+    "83": {
+      "districtNumber": 83,
+      "candidates": [
+        {
+          "name": "Lee, Karen",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-04-19",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Bennett, D., Brandon",
+          "party": "Republican",
+          "status": "announced",
+          "filedDate": "2025-08-18",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Karen Lee",
+        "party": "Democratic",
+        "yearsInOffice": 19
+      }
+    },
+    "84": {
+      "districtNumber": 84,
+      "candidates": [
+        {
+          "name": "Powell, D., William",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-04-21",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Clark, William",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-01-10",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "William D. Powell",
+        "party": "Republican",
+        "yearsInOffice": 3
+      }
+    },
+    "85": {
+      "districtNumber": 85,
+      "candidates": [
+        {
+          "name": "Diaz, Paul",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-10-15",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Paul Diaz",
+        "party": "Democratic",
+        "yearsInOffice": 6
+      }
+    },
+    "86": {
+      "districtNumber": 86,
+      "candidates": [
+        {
+          "name": "Gonzalez, Maria",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-11-10",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Maria Gonzalez",
+        "party": "Democratic",
+        "yearsInOffice": 9
+      }
+    },
+    "87": {
+      "districtNumber": 87,
+      "candidates": [
+        {
+          "name": "Richardson, Stephen",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-10-18",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Preston, John",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-12-03",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Stephen Richardson",
+        "party": "Democratic",
+        "yearsInOffice": 11
+      }
+    },
+    "88": {
+      "districtNumber": 88,
+      "candidates": [
+        {
+          "name": "Adams, Betty",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-12-11",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "McCoy, Kenneth",
+          "party": "Republican",
+          "status": "announced",
+          "filedDate": "2025-09-14",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Betty Adams",
+        "party": "Democratic",
+        "yearsInOffice": 14
+      }
+    },
+    "89": {
+      "districtNumber": 89,
+      "candidates": [
+        {
+          "name": "Chandler, Pamela",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-10-08",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Robert Holloway",
+        "party": "Democratic",
+        "yearsInOffice": 17
+      }
+    },
+    "90": {
+      "districtNumber": 90,
+      "candidates": [
+        {
+          "name": "Johnson, Timothy",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-04-16",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Holland, Diane",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-19",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Timothy Johnson",
+        "party": "Republican",
+        "yearsInOffice": 20
+      }
+    },
+    "91": {
+      "districtNumber": 91,
+      "candidates": [
+        {
+          "name": "McCoy, Jessica",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-03-14",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Jessica McCoy",
+        "party": "Democratic",
+        "yearsInOffice": 4
+      }
+    },
+    "92": {
+      "districtNumber": 92,
+      "candidates": [
+        {
+          "name": "Sanchez, Michael",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-07-24",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Michael Sanchez",
+        "party": "Republican",
+        "yearsInOffice": 7
+      }
+    },
+    "93": {
+      "districtNumber": 93,
+      "candidates": [
+        {
+          "name": "Clark, Jose",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-03-17",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Jose Clark",
+        "party": "Republican",
+        "yearsInOffice": 10
+      }
+    },
+    "94": {
+      "districtNumber": 94,
+      "candidates": [
+        {
+          "name": "Chandler, Larry",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-06-11",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Reyes, Ashley",
+          "party": "Republican",
+          "status": "announced",
+          "filedDate": "2025-08-19",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Larry Chandler",
+        "party": "Democratic",
+        "yearsInOffice": 12
+      }
+    },
+    "95": {
+      "districtNumber": 95,
+      "candidates": [
+        {
+          "name": "Warren, D., Nicholas",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-12-05",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Nicholas D. Warren",
+        "party": "Democratic",
+        "yearsInOffice": 15
+      }
+    },
+    "96": {
+      "districtNumber": 96,
+      "candidates": [
+        {
+          "name": "Jones, Sandra",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-03-23",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Sandra Jones",
+        "party": "Democratic",
+        "yearsInOffice": 18
+      }
+    },
+    "97": {
+      "districtNumber": 97,
+      "candidates": [
+        {
+          "name": "Moore, Daniel",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-03-20",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Thompson, Frank",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-09-14",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Daniel Moore",
+        "party": "Democratic",
+        "yearsInOffice": 2
+      }
+    },
+    "98": {
+      "districtNumber": 98,
+      "candidates": [
+        {
+          "name": "Adams, Susan",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-09-06",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Richardson, Shirley",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-09-11",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Susan Adams",
+        "party": "Democratic",
+        "yearsInOffice": 4
+      }
+    },
+    "99": {
+      "districtNumber": 99,
+      "candidates": [
+        {
+          "name": "Peterson, Frank",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-04-06",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Frank Peterson",
+        "party": "Democratic",
+        "yearsInOffice": 7
+      }
+    },
+    "100": {
+      "districtNumber": 100,
+      "candidates": [
+        {
+          "name": "Weaver, S., Frank",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-09-18",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Harris, Tyler",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-06-22",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Frank S. Weaver",
+        "party": "Republican",
+        "yearsInOffice": 5
+      }
+    }
+  },
+  "senate": {
+    "1": {
+      "districtNumber": 1,
+      "candidates": [
+        {
+          "name": "Reed, Kimberly",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-01-07",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Joshua Stanton",
+        "party": "Democratic",
+        "yearsInOffice": 10
+      }
+    },
+    "2": {
+      "districtNumber": 2,
+      "candidates": [
+        {
+          "name": "Rivera, Anna",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-03-13",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Anna Rivera",
+        "party": "Republican",
+        "yearsInOffice": 7
+      }
+    },
+    "3": {
+      "districtNumber": 3,
+      "candidates": [
+        {
+          "name": "Price, W., Larry",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-06-16",
+          "isIncumbent": false,
+          "source": "demo"
+        },
+        {
+          "name": "James, Christine",
+          "party": "Republican",
+          "status": "announced",
+          "filedDate": "2025-10-01",
+          "isIncumbent": false,
+          "source": "demo"
+        },
+        {
+          "name": "Wilson, Ryan",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-10-14",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Benjamin Thomas",
+        "party": "Democratic",
+        "yearsInOffice": 5
+      }
+    },
+    "4": {
+      "districtNumber": 4,
+      "candidates": [
+        {
+          "name": "Roberts, Christine",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-12-17",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Watson, Michael",
+          "party": "Democratic",
+          "status": "announced",
+          "filedDate": "2025-10-18",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Christine Roberts",
+        "party": "Republican",
+        "yearsInOffice": 2
+      }
+    },
+    "5": {
+      "districtNumber": 5,
+      "candidates": [
+        {
+          "name": "Price, John",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-08-01",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Joseph N. Cooper",
+        "party": "Republican",
+        "yearsInOffice": 18
+      }
+    },
+    "6": {
+      "districtNumber": 6,
+      "candidates": [
+        {
+          "name": "Hill, Nancy",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-05-10",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Nancy Hill",
+        "party": "Republican",
+        "yearsInOffice": 16
+      }
+    },
+    "7": {
+      "districtNumber": 7,
+      "candidates": [
+        {
+          "name": "Thornton, Jeffrey",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-09-26",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Jeffrey Hill",
+        "party": "Democratic",
+        "yearsInOffice": 13
+      }
+    },
+    "8": {
+      "districtNumber": 8,
+      "candidates": [
+        {
+          "name": "McKinney, Kathleen",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-06-22",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Kathleen McKinney",
+        "party": "Democratic",
+        "yearsInOffice": 10
+      }
+    },
+    "9": {
+      "districtNumber": 9,
+      "candidates": [
+        {
+          "name": "Turner, X., Thomas",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-06-12",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Justin Murphy",
+        "party": "Democratic",
+        "yearsInOffice": 7
+      }
+    },
+    "10": {
+      "districtNumber": 10,
+      "candidates": [],
+      "incumbent": {
+        "name": "Jerry O. Price",
+        "party": "Democratic",
+        "yearsInOffice": 8
+      }
+    },
+    "11": {
+      "districtNumber": 11,
+      "candidates": [
+        {
+          "name": "Gray, T., Brandon",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-01-14",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Eric Y. Scott",
+        "party": "Democratic",
+        "yearsInOffice": 11
+      }
+    },
+    "12": {
+      "districtNumber": 12,
+      "candidates": [
+        {
+          "name": "Gonzalez, Steven",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-06-05",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Steven Gonzalez",
+        "party": "Democratic",
+        "yearsInOffice": 13
+      }
+    },
+    "13": {
+      "districtNumber": 13,
+      "candidates": [
+        {
+          "name": "Price, Melissa",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-07-23",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Mitchell, Z., Carol",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-09-01",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Melissa Price",
+        "party": "Republican",
+        "yearsInOffice": 16
+      }
+    },
+    "14": {
+      "districtNumber": 14,
+      "candidates": [
+        {
+          "name": "Roberts, Thomas",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-09-13",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Preston, Christopher",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-11-01",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Thomas Roberts",
+        "party": "Democratic",
+        "yearsInOffice": 19
+      }
+    },
+    "15": {
+      "districtNumber": 15,
+      "candidates": [
+        {
+          "name": "Manning, Debra",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-04-15",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Baker, Paul",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-01-08",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Debra Manning",
+        "party": "Republican",
+        "yearsInOffice": 3
+      }
+    },
+    "16": {
+      "districtNumber": 16,
+      "candidates": [
+        {
+          "name": "Morris, Jose",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-03-19",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Baker, Q., Kenneth",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-01-03",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Jose Morris",
+        "party": "Republican",
+        "yearsInOffice": 17
+      }
+    },
+    "17": {
+      "districtNumber": 17,
+      "candidates": [
+        {
+          "name": "Long, Anna",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-11-01",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Hall, U., Matthew",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-12-14",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Anna Long",
+        "party": "Republican",
+        "yearsInOffice": 14
+      }
+    },
+    "18": {
+      "districtNumber": 18,
+      "candidates": [],
+      "incumbent": {
+        "name": "Kenneth Peterson",
+        "party": "Democratic",
+        "yearsInOffice": 11
+      }
+    },
+    "19": {
+      "districtNumber": 19,
+      "candidates": [],
+      "incumbent": {
+        "name": "Linda Lewis",
+        "party": "Democratic",
+        "yearsInOffice": 8
+      }
+    },
+    "20": {
+      "districtNumber": 20,
+      "candidates": [
+        {
+          "name": "Long, S., Betty",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-09-18",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Harrison, Kathleen",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-10-18",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Betty S. Long",
+        "party": "Democratic",
+        "yearsInOffice": 17
+      }
+    },
+    "21": {
+      "districtNumber": 21,
+      "candidates": [
+        {
+          "name": "Taylor, Jacob",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-05-09",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Jacob Taylor",
+        "party": "Democratic",
+        "yearsInOffice": 20
+      }
+    },
+    "22": {
+      "districtNumber": 22,
+      "candidates": [
+        {
+          "name": "Stone, Carol",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-03-25",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Perkins, L., William",
+          "party": "Democratic",
+          "status": "announced",
+          "filedDate": "2025-06-21",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Carol Stone",
+        "party": "Republican",
+        "yearsInOffice": 4
+      }
+    },
+    "23": {
+      "districtNumber": 23,
+      "candidates": [
+        {
+          "name": "Morgan, Scott",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-03-24",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Scott Morgan",
+        "party": "Republican",
+        "yearsInOffice": 6
+      }
+    },
+    "24": {
+      "districtNumber": 24,
+      "candidates": [
+        {
+          "name": "Smith, Patricia",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-03-04",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Patricia Smith",
+        "party": "Democratic",
+        "yearsInOffice": 9
+      }
+    },
+    "25": {
+      "districtNumber": 25,
+      "candidates": [
+        {
+          "name": "Cooper, Ryan",
+          "party": "Republican",
+          "status": "announced",
+          "filedDate": "2025-09-17",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Raymond Wilson",
+        "party": "Democratic",
+        "yearsInOffice": 12
+      }
+    },
+    "26": {
+      "districtNumber": 26,
+      "candidates": [],
+      "incumbent": {
+        "name": "Karen Edwards",
+        "party": "Republican",
+        "yearsInOffice": 15
+      }
+    },
+    "27": {
+      "districtNumber": 27,
+      "candidates": [
+        {
+          "name": "Cook, Edward",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-09-01",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Edward Cook",
+        "party": "Democratic",
+        "yearsInOffice": 17
+      }
+    },
+    "28": {
+      "districtNumber": 28,
+      "candidates": [
+        {
+          "name": "Robinson, E., Samantha",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-27",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Samantha E. Robinson",
+        "party": "Democratic",
+        "yearsInOffice": 20
+      }
+    },
+    "29": {
+      "districtNumber": 29,
+      "candidates": [],
+      "incumbent": {
+        "name": "Stephen E. Ferguson",
+        "party": "Democratic",
+        "yearsInOffice": 18
+      }
+    },
+    "30": {
+      "districtNumber": 30,
+      "candidates": [
+        {
+          "name": "Cook, Ronald",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-12-17",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Ronald Cook",
+        "party": "Democratic",
+        "yearsInOffice": 7
+      }
+    },
+    "31": {
+      "districtNumber": 31,
+      "candidates": [
+        {
+          "name": "Tucker, Raymond",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-05-14",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Raymond Tucker",
+        "party": "Democratic",
+        "yearsInOffice": 10
+      }
+    },
+    "32": {
+      "districtNumber": 32,
+      "candidates": [
+        {
+          "name": "Randolph, Rachel",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-11-04",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Rachel Randolph",
+        "party": "Democratic",
+        "yearsInOffice": 13
+      }
+    },
+    "33": {
+      "districtNumber": 33,
+      "candidates": [
+        {
+          "name": "Martinez, Tyler",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-04-02",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Lee, Y., Joseph",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-09-24",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Tyler Martinez",
+        "party": "Democratic",
+        "yearsInOffice": 15
+      }
+    },
+    "34": {
+      "districtNumber": 34,
+      "candidates": [
+        {
+          "name": "Moore, J., Betty",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-10-20",
+          "isIncumbent": true,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Betty J. Moore",
+        "party": "Democratic",
+        "yearsInOffice": 18
+      }
+    },
+    "35": {
+      "districtNumber": 35,
+      "candidates": [
+        {
+          "name": "Gomez, Paul",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-07",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Stewart, Robert",
+          "party": "Republican",
+          "status": "announced",
+          "filedDate": "2025-10-25",
+          "isIncumbent": false,
+          "source": "demo"
+        },
+        {
+          "name": "Phillips, Samuel",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-12-26",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Paul Gomez",
+        "party": "Democratic",
+        "yearsInOffice": 2
+      }
+    },
+    "36": {
+      "districtNumber": 36,
+      "candidates": [
+        {
+          "name": "Nguyen, Angela",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-16",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Holloway, Carolyn",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-12-04",
+          "isIncumbent": false,
+          "source": "demo"
+        },
+        {
+          "name": "Sanchez, Nicholas",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-12-24",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Angela Nguyen",
+        "party": "Democratic",
+        "yearsInOffice": 5
+      }
+    },
+    "37": {
+      "districtNumber": 37,
+      "candidates": [],
+      "incumbent": {
+        "name": "Scott Allen",
+        "party": "Democratic",
+        "yearsInOffice": 7
+      }
+    },
+    "38": {
+      "districtNumber": 38,
+      "candidates": [],
+      "incumbent": {
+        "name": "Samantha G. Hughes",
+        "party": "Republican",
+        "yearsInOffice": 10
+      }
+    },
+    "39": {
+      "districtNumber": 39,
+      "candidates": [
+        {
+          "name": "Davis, Janet",
+          "party": "Democratic",
+          "status": "announced",
+          "filedDate": "2025-09-04",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "David Patterson",
+        "party": "Republican",
+        "yearsInOffice": 13
+      }
+    },
+    "40": {
+      "districtNumber": 40,
+      "candidates": [
+        {
+          "name": "Brown, F., Ronald",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-12-22",
+          "isIncumbent": true,
+          "source": "demo"
+        },
+        {
+          "name": "Lopez, W., Jack",
+          "party": "Republican",
+          "status": "announced",
+          "filedDate": "2025-09-24",
+          "isIncumbent": false,
+          "source": "demo"
+        },
+        {
+          "name": "Weaver, Amy",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-09-02",
+          "isIncumbent": false,
+          "source": "demo"
+        }
+      ],
+      "incumbent": {
+        "name": "Ronald F. Brown",
+        "party": "Democratic",
+        "yearsInOffice": 16
+      }
+    }
+  }
+}

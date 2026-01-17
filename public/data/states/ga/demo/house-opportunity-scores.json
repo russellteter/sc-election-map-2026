@@ -1,0 +1,2342 @@
+{
+  "1": {
+    "districtNumber": 1,
+    "overallScore": 38,
+    "factors": {
+      "marginFactor": 66,
+      "registrationFactor": 25,
+      "turnoutGapFactor": 13,
+      "demographicFactor": 33,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "2": {
+    "districtNumber": 2,
+    "overallScore": 51,
+    "factors": {
+      "marginFactor": 93,
+      "registrationFactor": 31,
+      "turnoutGapFactor": 24,
+      "demographicFactor": 35,
+      "incumbentFactor": 20
+    },
+    "category": "HIGH_OPPORTUNITY",
+    "recommendation": "Maximum investment recommended - winnable district"
+  },
+  "3": {
+    "districtNumber": 3,
+    "overallScore": 37,
+    "factors": {
+      "marginFactor": 60,
+      "registrationFactor": 23,
+      "turnoutGapFactor": 11,
+      "demographicFactor": 45,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "4": {
+    "districtNumber": 4,
+    "overallScore": 21,
+    "factors": {
+      "marginFactor": 12,
+      "registrationFactor": 15,
+      "turnoutGapFactor": 20,
+      "demographicFactor": 51,
+      "incumbentFactor": 20
+    },
+    "category": "SAFE_R",
+    "recommendation": "Low priority - focus resources elsewhere"
+  },
+  "5": {
+    "districtNumber": 5,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 67,
+      "registrationFactor": 41,
+      "turnoutGapFactor": 12,
+      "demographicFactor": 38,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "6": {
+    "districtNumber": 6,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 70,
+      "registrationFactor": 40,
+      "turnoutGapFactor": 17,
+      "demographicFactor": 39,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "7": {
+    "districtNumber": 7,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 40,
+      "registrationFactor": 48,
+      "turnoutGapFactor": 19,
+      "demographicFactor": 38,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "8": {
+    "districtNumber": 8,
+    "overallScore": 31,
+    "factors": {
+      "marginFactor": 45,
+      "registrationFactor": 19,
+      "turnoutGapFactor": 13,
+      "demographicFactor": 38,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "9": {
+    "districtNumber": 9,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 72,
+      "registrationFactor": 40,
+      "turnoutGapFactor": 15,
+      "demographicFactor": 55,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "10": {
+    "districtNumber": 10,
+    "overallScore": 38,
+    "factors": {
+      "marginFactor": 68,
+      "registrationFactor": 25,
+      "turnoutGapFactor": 17,
+      "demographicFactor": 27,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "11": {
+    "districtNumber": 11,
+    "overallScore": 61,
+    "factors": {
+      "marginFactor": 99,
+      "registrationFactor": 33,
+      "turnoutGapFactor": 19,
+      "demographicFactor": 33,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "12": {
+    "districtNumber": 12,
+    "overallScore": 33,
+    "factors": {
+      "marginFactor": 58,
+      "registrationFactor": 23,
+      "turnoutGapFactor": 16,
+      "demographicFactor": 21,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "13": {
+    "districtNumber": 13,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 91,
+      "registrationFactor": 35,
+      "turnoutGapFactor": 15,
+      "demographicFactor": 42,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "14": {
+    "districtNumber": 14,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 44,
+      "registrationFactor": 47,
+      "turnoutGapFactor": 13,
+      "demographicFactor": 50,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "15": {
+    "districtNumber": 15,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 10,
+      "registrationFactor": 55,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 47,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "16": {
+    "districtNumber": 16,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 3,
+      "registrationFactor": 55,
+      "turnoutGapFactor": 19,
+      "demographicFactor": 49,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "17": {
+    "districtNumber": 17,
+    "overallScore": 53,
+    "factors": {
+      "marginFactor": 94,
+      "registrationFactor": 32,
+      "turnoutGapFactor": 21,
+      "demographicFactor": 50,
+      "incumbentFactor": 20
+    },
+    "category": "HIGH_OPPORTUNITY",
+    "recommendation": "Maximum investment recommended - winnable district"
+  },
+  "18": {
+    "districtNumber": 18,
+    "overallScore": 49,
+    "factors": {
+      "marginFactor": 90,
+      "registrationFactor": 30,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 44,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Recruit candidate - district becoming competitive"
+  },
+  "19": {
+    "districtNumber": 19,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 71,
+      "registrationFactor": 40,
+      "turnoutGapFactor": 17,
+      "demographicFactor": 57,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "20": {
+    "districtNumber": 20,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 91,
+      "registrationFactor": 35,
+      "turnoutGapFactor": 20,
+      "demographicFactor": 42,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "21": {
+    "districtNumber": 21,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 85,
+      "registrationFactor": 37,
+      "turnoutGapFactor": 16,
+      "demographicFactor": 51,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "22": {
+    "districtNumber": 22,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 56,
+      "registrationFactor": 44,
+      "turnoutGapFactor": 17,
+      "demographicFactor": 36,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "23": {
+    "districtNumber": 23,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 89,
+      "registrationFactor": 36,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 29,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "24": {
+    "districtNumber": 24,
+    "overallScore": 44,
+    "factors": {
+      "marginFactor": 78,
+      "registrationFactor": 28,
+      "turnoutGapFactor": 13,
+      "demographicFactor": 44,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "25": {
+    "districtNumber": 25,
+    "overallScore": 15,
+    "factors": {
+      "marginFactor": 0,
+      "registrationFactor": 15,
+      "turnoutGapFactor": 11,
+      "demographicFactor": 47,
+      "incumbentFactor": 20
+    },
+    "category": "SAFE_R",
+    "recommendation": "Low priority - focus resources elsewhere"
+  },
+  "26": {
+    "districtNumber": 26,
+    "overallScore": 45,
+    "factors": {
+      "marginFactor": 79,
+      "registrationFactor": 28,
+      "turnoutGapFactor": 10,
+      "demographicFactor": 51,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Recruit candidate - district becoming competitive"
+  },
+  "27": {
+    "districtNumber": 27,
+    "overallScore": 45,
+    "factors": {
+      "marginFactor": 80,
+      "registrationFactor": 28,
+      "turnoutGapFactor": 19,
+      "demographicFactor": 37,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "28": {
+    "districtNumber": 28,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 56,
+      "registrationFactor": 44,
+      "turnoutGapFactor": 16,
+      "demographicFactor": 50,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "29": {
+    "districtNumber": 29,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 85,
+      "registrationFactor": 37,
+      "turnoutGapFactor": 21,
+      "demographicFactor": 41,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "30": {
+    "districtNumber": 30,
+    "overallScore": 48,
+    "factors": {
+      "marginFactor": 95,
+      "registrationFactor": 32,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 23,
+      "incumbentFactor": 20
+    },
+    "category": "HIGH_OPPORTUNITY",
+    "recommendation": "Maximum investment recommended - winnable district"
+  },
+  "31": {
+    "districtNumber": 31,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 70,
+      "registrationFactor": 40,
+      "turnoutGapFactor": 18,
+      "demographicFactor": 39,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "32": {
+    "districtNumber": 32,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 71,
+      "registrationFactor": 40,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 38,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "33": {
+    "districtNumber": 33,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 46,
+      "registrationFactor": 47,
+      "turnoutGapFactor": 15,
+      "demographicFactor": 47,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "34": {
+    "districtNumber": 34,
+    "overallScore": 15,
+    "factors": {
+      "marginFactor": 0,
+      "registrationFactor": 15,
+      "turnoutGapFactor": 20,
+      "demographicFactor": 39,
+      "incumbentFactor": 20
+    },
+    "category": "SAFE_R",
+    "recommendation": "Low priority - focus resources elsewhere"
+  },
+  "35": {
+    "districtNumber": 35,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 95,
+      "registrationFactor": 34,
+      "turnoutGapFactor": 11,
+      "demographicFactor": 29,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "36": {
+    "districtNumber": 36,
+    "overallScore": 50,
+    "factors": {
+      "marginFactor": 93,
+      "registrationFactor": 31,
+      "turnoutGapFactor": 16,
+      "demographicFactor": 34,
+      "incumbentFactor": 20
+    },
+    "category": "HIGH_OPPORTUNITY",
+    "recommendation": "Maximum investment recommended - winnable district"
+  },
+  "37": {
+    "districtNumber": 37,
+    "overallScore": 39,
+    "factors": {
+      "marginFactor": 66,
+      "registrationFactor": 24,
+      "turnoutGapFactor": 18,
+      "demographicFactor": 34,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "38": {
+    "districtNumber": 38,
+    "overallScore": 15,
+    "factors": {
+      "marginFactor": 0,
+      "registrationFactor": 15,
+      "turnoutGapFactor": 12,
+      "demographicFactor": 46,
+      "incumbentFactor": 20
+    },
+    "category": "SAFE_R",
+    "recommendation": "Low priority - focus resources elsewhere"
+  },
+  "39": {
+    "districtNumber": 39,
+    "overallScore": 62,
+    "factors": {
+      "marginFactor": 100,
+      "registrationFactor": 33,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 44,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "40": {
+    "districtNumber": 40,
+    "overallScore": 47,
+    "factors": {
+      "marginFactor": 80,
+      "registrationFactor": 28,
+      "turnoutGapFactor": 18,
+      "demographicFactor": 51,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "41": {
+    "districtNumber": 41,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 56,
+      "registrationFactor": 44,
+      "turnoutGapFactor": 15,
+      "demographicFactor": 33,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "42": {
+    "districtNumber": 42,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 85,
+      "registrationFactor": 37,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 42,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "43": {
+    "districtNumber": 43,
+    "overallScore": 29,
+    "factors": {
+      "marginFactor": 44,
+      "registrationFactor": 19,
+      "turnoutGapFactor": 22,
+      "demographicFactor": 27,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "44": {
+    "districtNumber": 44,
+    "overallScore": 32,
+    "factors": {
+      "marginFactor": 49,
+      "registrationFactor": 20,
+      "turnoutGapFactor": 10,
+      "demographicFactor": 43,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "45": {
+    "districtNumber": 45,
+    "overallScore": 25,
+    "factors": {
+      "marginFactor": 33,
+      "registrationFactor": 16,
+      "turnoutGapFactor": 18,
+      "demographicFactor": 35,
+      "incumbentFactor": 20
+    },
+    "category": "SAFE_R",
+    "recommendation": "Low priority - focus resources elsewhere"
+  },
+  "46": {
+    "districtNumber": 46,
+    "overallScore": 61,
+    "factors": {
+      "marginFactor": 92,
+      "registrationFactor": 35,
+      "turnoutGapFactor": 17,
+      "demographicFactor": 47,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "47": {
+    "districtNumber": 47,
+    "overallScore": 34,
+    "factors": {
+      "marginFactor": 51,
+      "registrationFactor": 21,
+      "turnoutGapFactor": 16,
+      "demographicFactor": 46,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "48": {
+    "districtNumber": 48,
+    "overallScore": 42,
+    "factors": {
+      "marginFactor": 73,
+      "registrationFactor": 26,
+      "turnoutGapFactor": 13,
+      "demographicFactor": 43,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Recruit candidate - district becoming competitive"
+  },
+  "49": {
+    "districtNumber": 49,
+    "overallScore": 45,
+    "factors": {
+      "marginFactor": 86,
+      "registrationFactor": 29,
+      "turnoutGapFactor": 18,
+      "demographicFactor": 25,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "50": {
+    "districtNumber": 50,
+    "overallScore": 39,
+    "factors": {
+      "marginFactor": 66,
+      "registrationFactor": 24,
+      "turnoutGapFactor": 11,
+      "demographicFactor": 41,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "51": {
+    "districtNumber": 51,
+    "overallScore": 37,
+    "factors": {
+      "marginFactor": 59,
+      "registrationFactor": 23,
+      "turnoutGapFactor": 16,
+      "demographicFactor": 42,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "52": {
+    "districtNumber": 52,
+    "overallScore": 63,
+    "factors": {
+      "marginFactor": 100,
+      "registrationFactor": 33,
+      "turnoutGapFactor": 21,
+      "demographicFactor": 41,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "53": {
+    "districtNumber": 53,
+    "overallScore": 48,
+    "factors": {
+      "marginFactor": 92,
+      "registrationFactor": 31,
+      "turnoutGapFactor": 12,
+      "demographicFactor": 31,
+      "incumbentFactor": 20
+    },
+    "category": "HIGH_OPPORTUNITY",
+    "recommendation": "Maximum investment recommended - winnable district"
+  },
+  "54": {
+    "districtNumber": 54,
+    "overallScore": 63,
+    "factors": {
+      "marginFactor": 98,
+      "registrationFactor": 34,
+      "turnoutGapFactor": 17,
+      "demographicFactor": 50,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "55": {
+    "districtNumber": 55,
+    "overallScore": 61,
+    "factors": {
+      "marginFactor": 98,
+      "registrationFactor": 34,
+      "turnoutGapFactor": 8,
+      "demographicFactor": 46,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "56": {
+    "districtNumber": 56,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 78,
+      "registrationFactor": 39,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 43,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "57": {
+    "districtNumber": 57,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 63,
+      "registrationFactor": 42,
+      "turnoutGapFactor": 15,
+      "demographicFactor": 45,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "58": {
+    "districtNumber": 58,
+    "overallScore": 48,
+    "factors": {
+      "marginFactor": 88,
+      "registrationFactor": 30,
+      "turnoutGapFactor": 18,
+      "demographicFactor": 35,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "59": {
+    "districtNumber": 59,
+    "overallScore": 41,
+    "factors": {
+      "marginFactor": 71,
+      "registrationFactor": 26,
+      "turnoutGapFactor": 11,
+      "demographicFactor": 43,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Recruit candidate - district becoming competitive"
+  },
+  "60": {
+    "districtNumber": 60,
+    "overallScore": 15,
+    "factors": {
+      "marginFactor": 0,
+      "registrationFactor": 15,
+      "turnoutGapFactor": 15,
+      "demographicFactor": 44,
+      "incumbentFactor": 20
+    },
+    "category": "SAFE_R",
+    "recommendation": "Low priority - focus resources elsewhere"
+  },
+  "61": {
+    "districtNumber": 61,
+    "overallScore": 42,
+    "factors": {
+      "marginFactor": 73,
+      "registrationFactor": 26,
+      "turnoutGapFactor": 22,
+      "demographicFactor": 32,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Recruit candidate - district becoming competitive"
+  },
+  "62": {
+    "districtNumber": 62,
+    "overallScore": 45,
+    "factors": {
+      "marginFactor": 86,
+      "registrationFactor": 29,
+      "turnoutGapFactor": 11,
+      "demographicFactor": 29,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Recruit candidate - district becoming competitive"
+  },
+  "63": {
+    "districtNumber": 63,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 62,
+      "registrationFactor": 43,
+      "turnoutGapFactor": 19,
+      "demographicFactor": 28,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "64": {
+    "districtNumber": 64,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 80,
+      "registrationFactor": 38,
+      "turnoutGapFactor": 8,
+      "demographicFactor": 40,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "65": {
+    "districtNumber": 65,
+    "overallScore": 49,
+    "factors": {
+      "marginFactor": 88,
+      "registrationFactor": 30,
+      "turnoutGapFactor": 15,
+      "demographicFactor": 47,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "66": {
+    "districtNumber": 66,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 63,
+      "registrationFactor": 42,
+      "turnoutGapFactor": 24,
+      "demographicFactor": 40,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "67": {
+    "districtNumber": 67,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 22,
+      "registrationFactor": 53,
+      "turnoutGapFactor": 13,
+      "demographicFactor": 55,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "68": {
+    "districtNumber": 68,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 98,
+      "registrationFactor": 34,
+      "turnoutGapFactor": 12,
+      "demographicFactor": 36,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "69": {
+    "districtNumber": 69,
+    "overallScore": 36,
+    "factors": {
+      "marginFactor": 57,
+      "registrationFactor": 22,
+      "turnoutGapFactor": 15,
+      "demographicFactor": 43,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "70": {
+    "districtNumber": 70,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 10,
+      "registrationFactor": 55,
+      "turnoutGapFactor": 18,
+      "demographicFactor": 32,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "71": {
+    "districtNumber": 71,
+    "overallScore": 50,
+    "factors": {
+      "marginFactor": 87,
+      "registrationFactor": 30,
+      "turnoutGapFactor": 13,
+      "demographicFactor": 56,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Recruit candidate - district becoming competitive"
+  },
+  "72": {
+    "districtNumber": 72,
+    "overallScore": 42,
+    "factors": {
+      "marginFactor": 71,
+      "registrationFactor": 26,
+      "turnoutGapFactor": 18,
+      "demographicFactor": 41,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Recruit candidate - district becoming competitive"
+  },
+  "73": {
+    "districtNumber": 73,
+    "overallScore": 32,
+    "factors": {
+      "marginFactor": 53,
+      "registrationFactor": 21,
+      "turnoutGapFactor": 9,
+      "demographicFactor": 30,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "74": {
+    "districtNumber": 74,
+    "overallScore": 49,
+    "factors": {
+      "marginFactor": 86,
+      "registrationFactor": 29,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 56,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "75": {
+    "districtNumber": 75,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 66,
+      "registrationFactor": 41,
+      "turnoutGapFactor": 16,
+      "demographicFactor": 36,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "76": {
+    "districtNumber": 76,
+    "overallScore": 36,
+    "factors": {
+      "marginFactor": 51,
+      "registrationFactor": 21,
+      "turnoutGapFactor": 20,
+      "demographicFactor": 50,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "77": {
+    "districtNumber": 77,
+    "overallScore": 32,
+    "factors": {
+      "marginFactor": 40,
+      "registrationFactor": 18,
+      "turnoutGapFactor": 22,
+      "demographicFactor": 52,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "78": {
+    "districtNumber": 78,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 83,
+      "registrationFactor": 37,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 43,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "79": {
+    "districtNumber": 79,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 58,
+      "registrationFactor": 44,
+      "turnoutGapFactor": 19,
+      "demographicFactor": 46,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "80": {
+    "districtNumber": 80,
+    "overallScore": 42,
+    "factors": {
+      "marginFactor": 76,
+      "registrationFactor": 27,
+      "turnoutGapFactor": 12,
+      "demographicFactor": 37,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "81": {
+    "districtNumber": 81,
+    "overallScore": 63,
+    "factors": {
+      "marginFactor": 98,
+      "registrationFactor": 33,
+      "turnoutGapFactor": 20,
+      "demographicFactor": 44,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "82": {
+    "districtNumber": 82,
+    "overallScore": 35,
+    "factors": {
+      "marginFactor": 57,
+      "registrationFactor": 22,
+      "turnoutGapFactor": 8,
+      "demographicFactor": 40,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "83": {
+    "districtNumber": 83,
+    "overallScore": 40,
+    "factors": {
+      "marginFactor": 67,
+      "registrationFactor": 25,
+      "turnoutGapFactor": 16,
+      "demographicFactor": 37,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "84": {
+    "districtNumber": 84,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 67,
+      "registrationFactor": 41,
+      "turnoutGapFactor": 7,
+      "demographicFactor": 37,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "85": {
+    "districtNumber": 85,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 83,
+      "registrationFactor": 37,
+      "turnoutGapFactor": 12,
+      "demographicFactor": 28,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "86": {
+    "districtNumber": 86,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 73,
+      "registrationFactor": 40,
+      "turnoutGapFactor": 9,
+      "demographicFactor": 46,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "87": {
+    "districtNumber": 87,
+    "overallScore": 50,
+    "factors": {
+      "marginFactor": 93,
+      "registrationFactor": 31,
+      "turnoutGapFactor": 10,
+      "demographicFactor": 42,
+      "incumbentFactor": 20
+    },
+    "category": "HIGH_OPPORTUNITY",
+    "recommendation": "Maximum investment recommended - winnable district"
+  },
+  "88": {
+    "districtNumber": 88,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 69,
+      "registrationFactor": 41,
+      "turnoutGapFactor": 20,
+      "demographicFactor": 24,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "89": {
+    "districtNumber": 89,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 72,
+      "registrationFactor": 40,
+      "turnoutGapFactor": 12,
+      "demographicFactor": 36,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "90": {
+    "districtNumber": 90,
+    "overallScore": 33,
+    "factors": {
+      "marginFactor": 50,
+      "registrationFactor": 20,
+      "turnoutGapFactor": 15,
+      "demographicFactor": 41,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "91": {
+    "districtNumber": 91,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 84,
+      "registrationFactor": 37,
+      "turnoutGapFactor": 10,
+      "demographicFactor": 49,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "92": {
+    "districtNumber": 92,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 58,
+      "registrationFactor": 44,
+      "turnoutGapFactor": 18,
+      "demographicFactor": 31,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "93": {
+    "districtNumber": 93,
+    "overallScore": 46,
+    "factors": {
+      "marginFactor": 82,
+      "registrationFactor": 28,
+      "turnoutGapFactor": 6,
+      "demographicFactor": 51,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "94": {
+    "districtNumber": 94,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 40,
+      "registrationFactor": 48,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 25,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "95": {
+    "districtNumber": 95,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 56,
+      "registrationFactor": 44,
+      "turnoutGapFactor": 23,
+      "demographicFactor": 43,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "96": {
+    "districtNumber": 96,
+    "overallScore": 45,
+    "factors": {
+      "marginFactor": 80,
+      "registrationFactor": 28,
+      "turnoutGapFactor": 10,
+      "demographicFactor": 43,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "97": {
+    "districtNumber": 97,
+    "overallScore": 31,
+    "factors": {
+      "marginFactor": 47,
+      "registrationFactor": 20,
+      "turnoutGapFactor": 19,
+      "demographicFactor": 33,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "98": {
+    "districtNumber": 98,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 55,
+      "registrationFactor": 44,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 33,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "99": {
+    "districtNumber": 99,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 87,
+      "registrationFactor": 36,
+      "turnoutGapFactor": 16,
+      "demographicFactor": 39,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "100": {
+    "districtNumber": 100,
+    "overallScore": 40,
+    "factors": {
+      "marginFactor": 68,
+      "registrationFactor": 25,
+      "turnoutGapFactor": 16,
+      "demographicFactor": 39,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "101": {
+    "districtNumber": 101,
+    "overallScore": 38,
+    "factors": {
+      "marginFactor": 56,
+      "registrationFactor": 22,
+      "turnoutGapFactor": 24,
+      "demographicFactor": 49,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "102": {
+    "districtNumber": 102,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 97,
+      "registrationFactor": 34,
+      "turnoutGapFactor": 20,
+      "demographicFactor": 29,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "103": {
+    "districtNumber": 103,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 47,
+      "registrationFactor": 46,
+      "turnoutGapFactor": 21,
+      "demographicFactor": 27,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "104": {
+    "districtNumber": 104,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 80,
+      "registrationFactor": 38,
+      "turnoutGapFactor": 16,
+      "demographicFactor": 51,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "105": {
+    "districtNumber": 105,
+    "overallScore": 40,
+    "factors": {
+      "marginFactor": 70,
+      "registrationFactor": 26,
+      "turnoutGapFactor": 17,
+      "demographicFactor": 33,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Recruit candidate - district becoming competitive"
+  },
+  "106": {
+    "districtNumber": 106,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 80,
+      "registrationFactor": 38,
+      "turnoutGapFactor": 13,
+      "demographicFactor": 37,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "107": {
+    "districtNumber": 107,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 61,
+      "registrationFactor": 43,
+      "turnoutGapFactor": 17,
+      "demographicFactor": 44,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "108": {
+    "districtNumber": 108,
+    "overallScore": 25,
+    "factors": {
+      "marginFactor": 39,
+      "registrationFactor": 18,
+      "turnoutGapFactor": 19,
+      "demographicFactor": 38,
+      "incumbentFactor": 20
+    },
+    "category": "SAFE_R",
+    "recommendation": "Low priority - focus resources elsewhere"
+  },
+  "109": {
+    "districtNumber": 109,
+    "overallScore": 42,
+    "factors": {
+      "marginFactor": 74,
+      "registrationFactor": 26,
+      "turnoutGapFactor": 17,
+      "demographicFactor": 37,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Recruit candidate - district becoming competitive"
+  },
+  "110": {
+    "districtNumber": 110,
+    "overallScore": 33,
+    "factors": {
+      "marginFactor": 54,
+      "registrationFactor": 21,
+      "turnoutGapFactor": 7,
+      "demographicFactor": 41,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "111": {
+    "districtNumber": 111,
+    "overallScore": 41,
+    "factors": {
+      "marginFactor": 71,
+      "registrationFactor": 26,
+      "turnoutGapFactor": 12,
+      "demographicFactor": 43,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Recruit candidate - district becoming competitive"
+  },
+  "112": {
+    "districtNumber": 112,
+    "overallScore": 48,
+    "factors": {
+      "marginFactor": 88,
+      "registrationFactor": 30,
+      "turnoutGapFactor": 23,
+      "demographicFactor": 29,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "113": {
+    "districtNumber": 113,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 64,
+      "registrationFactor": 42,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 53,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "114": {
+    "districtNumber": 114,
+    "overallScore": 38,
+    "factors": {
+      "marginFactor": 69,
+      "registrationFactor": 25,
+      "turnoutGapFactor": 20,
+      "demographicFactor": 23,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "115": {
+    "districtNumber": 115,
+    "overallScore": 31,
+    "factors": {
+      "marginFactor": 48,
+      "registrationFactor": 20,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 38,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "116": {
+    "districtNumber": 116,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 66,
+      "registrationFactor": 42,
+      "turnoutGapFactor": 16,
+      "demographicFactor": 56,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "117": {
+    "districtNumber": 117,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 75,
+      "registrationFactor": 39,
+      "turnoutGapFactor": 11,
+      "demographicFactor": 33,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "118": {
+    "districtNumber": 118,
+    "overallScore": 40,
+    "factors": {
+      "marginFactor": 65,
+      "registrationFactor": 24,
+      "turnoutGapFactor": 13,
+      "demographicFactor": 50,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "119": {
+    "districtNumber": 119,
+    "overallScore": 38,
+    "factors": {
+      "marginFactor": 59,
+      "registrationFactor": 23,
+      "turnoutGapFactor": 17,
+      "demographicFactor": 49,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "120": {
+    "districtNumber": 120,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 23,
+      "registrationFactor": 52,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 48,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "121": {
+    "districtNumber": 121,
+    "overallScore": 47,
+    "factors": {
+      "marginFactor": 85,
+      "registrationFactor": 29,
+      "turnoutGapFactor": 21,
+      "demographicFactor": 37,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "122": {
+    "districtNumber": 122,
+    "overallScore": 42,
+    "factors": {
+      "marginFactor": 74,
+      "registrationFactor": 26,
+      "turnoutGapFactor": 17,
+      "demographicFactor": 35,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "123": {
+    "districtNumber": 123,
+    "overallScore": 34,
+    "factors": {
+      "marginFactor": 51,
+      "registrationFactor": 21,
+      "turnoutGapFactor": 21,
+      "demographicFactor": 41,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "124": {
+    "districtNumber": 124,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 51,
+      "registrationFactor": 45,
+      "turnoutGapFactor": 13,
+      "demographicFactor": 37,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "125": {
+    "districtNumber": 125,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 80,
+      "registrationFactor": 38,
+      "turnoutGapFactor": 18,
+      "demographicFactor": 32,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "126": {
+    "districtNumber": 126,
+    "overallScore": 31,
+    "factors": {
+      "marginFactor": 49,
+      "registrationFactor": 20,
+      "turnoutGapFactor": 20,
+      "demographicFactor": 28,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "127": {
+    "districtNumber": 127,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 90,
+      "registrationFactor": 36,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 28,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "128": {
+    "districtNumber": 128,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 86,
+      "registrationFactor": 37,
+      "turnoutGapFactor": 16,
+      "demographicFactor": 47,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "129": {
+    "districtNumber": 129,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 55,
+      "registrationFactor": 44,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 54,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "130": {
+    "districtNumber": 130,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 75,
+      "registrationFactor": 39,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 50,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "131": {
+    "districtNumber": 131,
+    "overallScore": 53,
+    "factors": {
+      "marginFactor": 100,
+      "registrationFactor": 33,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 42,
+      "incumbentFactor": 20
+    },
+    "category": "HIGH_OPPORTUNITY",
+    "recommendation": "Maximum investment recommended - winnable district"
+  },
+  "132": {
+    "districtNumber": 132,
+    "overallScore": 37,
+    "factors": {
+      "marginFactor": 59,
+      "registrationFactor": 23,
+      "turnoutGapFactor": 20,
+      "demographicFactor": 38,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "133": {
+    "districtNumber": 133,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 73,
+      "registrationFactor": 40,
+      "turnoutGapFactor": 15,
+      "demographicFactor": 46,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "134": {
+    "districtNumber": 134,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 53,
+      "registrationFactor": 45,
+      "turnoutGapFactor": 17,
+      "demographicFactor": 47,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "135": {
+    "districtNumber": 135,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 96,
+      "registrationFactor": 34,
+      "turnoutGapFactor": 11,
+      "demographicFactor": 33,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "136": {
+    "districtNumber": 136,
+    "overallScore": 39,
+    "factors": {
+      "marginFactor": 63,
+      "registrationFactor": 24,
+      "turnoutGapFactor": 13,
+      "demographicFactor": 49,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "137": {
+    "districtNumber": 137,
+    "overallScore": 52,
+    "factors": {
+      "marginFactor": 96,
+      "registrationFactor": 32,
+      "turnoutGapFactor": 18,
+      "demographicFactor": 40,
+      "incumbentFactor": 20
+    },
+    "category": "HIGH_OPPORTUNITY",
+    "recommendation": "Maximum investment recommended - winnable district"
+  },
+  "138": {
+    "districtNumber": 138,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 71,
+      "registrationFactor": 40,
+      "turnoutGapFactor": 10,
+      "demographicFactor": 52,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "139": {
+    "districtNumber": 139,
+    "overallScore": 35,
+    "factors": {
+      "marginFactor": 61,
+      "registrationFactor": 23,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 23,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "140": {
+    "districtNumber": 140,
+    "overallScore": 37,
+    "factors": {
+      "marginFactor": 68,
+      "registrationFactor": 25,
+      "turnoutGapFactor": 11,
+      "demographicFactor": 25,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "141": {
+    "districtNumber": 141,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 86,
+      "registrationFactor": 36,
+      "turnoutGapFactor": 22,
+      "demographicFactor": 29,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "142": {
+    "districtNumber": 142,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 55,
+      "registrationFactor": 44,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 37,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "143": {
+    "districtNumber": 143,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 88,
+      "registrationFactor": 36,
+      "turnoutGapFactor": 19,
+      "demographicFactor": 34,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "144": {
+    "districtNumber": 144,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 27,
+      "registrationFactor": 51,
+      "turnoutGapFactor": 20,
+      "demographicFactor": 44,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "145": {
+    "districtNumber": 145,
+    "overallScore": 48,
+    "factors": {
+      "marginFactor": 87,
+      "registrationFactor": 30,
+      "turnoutGapFactor": 15,
+      "demographicFactor": 44,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Recruit candidate - district becoming competitive"
+  },
+  "146": {
+    "districtNumber": 146,
+    "overallScore": 43,
+    "factors": {
+      "marginFactor": 78,
+      "registrationFactor": 27,
+      "turnoutGapFactor": 17,
+      "demographicFactor": 34,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Recruit candidate - district becoming competitive"
+  },
+  "147": {
+    "districtNumber": 147,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 62,
+      "registrationFactor": 42,
+      "turnoutGapFactor": 11,
+      "demographicFactor": 54,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "148": {
+    "districtNumber": 148,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 88,
+      "registrationFactor": 36,
+      "turnoutGapFactor": 13,
+      "demographicFactor": 31,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "149": {
+    "districtNumber": 149,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 71,
+      "registrationFactor": 40,
+      "turnoutGapFactor": 8,
+      "demographicFactor": 33,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "150": {
+    "districtNumber": 150,
+    "overallScore": 50,
+    "factors": {
+      "marginFactor": 96,
+      "registrationFactor": 32,
+      "turnoutGapFactor": 11,
+      "demographicFactor": 34,
+      "incumbentFactor": 20
+    },
+    "category": "HIGH_OPPORTUNITY",
+    "recommendation": "URGENT: Recruit strong candidate immediately"
+  },
+  "151": {
+    "districtNumber": 151,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 72,
+      "registrationFactor": 40,
+      "turnoutGapFactor": 11,
+      "demographicFactor": 33,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "152": {
+    "districtNumber": 152,
+    "overallScore": 37,
+    "factors": {
+      "marginFactor": 61,
+      "registrationFactor": 23,
+      "turnoutGapFactor": 18,
+      "demographicFactor": 37,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "153": {
+    "districtNumber": 153,
+    "overallScore": 53,
+    "factors": {
+      "marginFactor": 98,
+      "registrationFactor": 32,
+      "turnoutGapFactor": 22,
+      "demographicFactor": 37,
+      "incumbentFactor": 20
+    },
+    "category": "HIGH_OPPORTUNITY",
+    "recommendation": "Maximum investment recommended - winnable district"
+  },
+  "154": {
+    "districtNumber": 154,
+    "overallScore": 47,
+    "factors": {
+      "marginFactor": 83,
+      "registrationFactor": 29,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 49,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "155": {
+    "districtNumber": 155,
+    "overallScore": 54,
+    "factors": {
+      "marginFactor": 95,
+      "registrationFactor": 32,
+      "turnoutGapFactor": 19,
+      "demographicFactor": 56,
+      "incumbentFactor": 20
+    },
+    "category": "HIGH_OPPORTUNITY",
+    "recommendation": "Maximum investment recommended - winnable district"
+  },
+  "156": {
+    "districtNumber": 156,
+    "overallScore": 49,
+    "factors": {
+      "marginFactor": 92,
+      "registrationFactor": 31,
+      "turnoutGapFactor": 11,
+      "demographicFactor": 42,
+      "incumbentFactor": 20
+    },
+    "category": "HIGH_OPPORTUNITY",
+    "recommendation": "Maximum investment recommended - winnable district"
+  },
+  "157": {
+    "districtNumber": 157,
+    "overallScore": 41,
+    "factors": {
+      "marginFactor": 67,
+      "registrationFactor": 25,
+      "turnoutGapFactor": 15,
+      "demographicFactor": 46,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "158": {
+    "districtNumber": 158,
+    "overallScore": 33,
+    "factors": {
+      "marginFactor": 57,
+      "registrationFactor": 22,
+      "turnoutGapFactor": 9,
+      "demographicFactor": 26,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "159": {
+    "districtNumber": 159,
+    "overallScore": 48,
+    "factors": {
+      "marginFactor": 90,
+      "registrationFactor": 31,
+      "turnoutGapFactor": 11,
+      "demographicFactor": 35,
+      "incumbentFactor": 20
+    },
+    "category": "HIGH_OPPORTUNITY",
+    "recommendation": "Maximum investment recommended - winnable district"
+  },
+  "160": {
+    "districtNumber": 160,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 72,
+      "registrationFactor": 40,
+      "turnoutGapFactor": 18,
+      "demographicFactor": 25,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "161": {
+    "districtNumber": 161,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 57,
+      "registrationFactor": 44,
+      "turnoutGapFactor": 19,
+      "demographicFactor": 25,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "162": {
+    "districtNumber": 162,
+    "overallScore": 43,
+    "factors": {
+      "marginFactor": 76,
+      "registrationFactor": 27,
+      "turnoutGapFactor": 21,
+      "demographicFactor": 32,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "163": {
+    "districtNumber": 163,
+    "overallScore": 45,
+    "factors": {
+      "marginFactor": 83,
+      "registrationFactor": 29,
+      "turnoutGapFactor": 16,
+      "demographicFactor": 34,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "164": {
+    "districtNumber": 164,
+    "overallScore": 45,
+    "factors": {
+      "marginFactor": 85,
+      "registrationFactor": 29,
+      "turnoutGapFactor": 18,
+      "demographicFactor": 28,
+      "incumbentFactor": 20
+    },
+    "category": "EMERGING",
+    "recommendation": "Strong investment opportunity with good candidate"
+  },
+  "165": {
+    "districtNumber": 165,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 0,
+      "registrationFactor": 55,
+      "turnoutGapFactor": 12,
+      "demographicFactor": 30,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "166": {
+    "districtNumber": 166,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 94,
+      "registrationFactor": 35,
+      "turnoutGapFactor": 14,
+      "demographicFactor": 36,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "167": {
+    "districtNumber": 167,
+    "overallScore": 12,
+    "factors": {
+      "marginFactor": 0,
+      "registrationFactor": 15,
+      "turnoutGapFactor": 19,
+      "demographicFactor": 23,
+      "incumbentFactor": 20
+    },
+    "category": "SAFE_R",
+    "recommendation": "Low priority - focus resources elsewhere"
+  },
+  "168": {
+    "districtNumber": 168,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 80,
+      "registrationFactor": 38,
+      "turnoutGapFactor": 13,
+      "demographicFactor": 36,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "169": {
+    "districtNumber": 169,
+    "overallScore": 36,
+    "factors": {
+      "marginFactor": 56,
+      "registrationFactor": 22,
+      "turnoutGapFactor": 15,
+      "demographicFactor": 44,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "170": {
+    "districtNumber": 170,
+    "overallScore": 40,
+    "factors": {
+      "marginFactor": 67,
+      "registrationFactor": 25,
+      "turnoutGapFactor": 8,
+      "demographicFactor": 50,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "171": {
+    "districtNumber": 171,
+    "overallScore": 34,
+    "factors": {
+      "marginFactor": 57,
+      "registrationFactor": 22,
+      "turnoutGapFactor": 8,
+      "demographicFactor": 33,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "172": {
+    "districtNumber": 172,
+    "overallScore": 50,
+    "factors": {
+      "marginFactor": 90,
+      "registrationFactor": 31,
+      "turnoutGapFactor": 15,
+      "demographicFactor": 49,
+      "incumbentFactor": 20
+    },
+    "category": "HIGH_OPPORTUNITY",
+    "recommendation": "URGENT: Recruit strong candidate immediately"
+  },
+  "173": {
+    "districtNumber": 173,
+    "overallScore": 42,
+    "factors": {
+      "marginFactor": 69,
+      "registrationFactor": 25,
+      "turnoutGapFactor": 19,
+      "demographicFactor": 43,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "174": {
+    "districtNumber": 174,
+    "overallScore": 15,
+    "factors": {
+      "marginFactor": 0,
+      "registrationFactor": 15,
+      "turnoutGapFactor": 21,
+      "demographicFactor": 40,
+      "incumbentFactor": 20
+    },
+    "category": "SAFE_R",
+    "recommendation": "Low priority - focus resources elsewhere"
+  },
+  "175": {
+    "districtNumber": 175,
+    "overallScore": 61,
+    "factors": {
+      "marginFactor": 97,
+      "registrationFactor": 34,
+      "turnoutGapFactor": 16,
+      "demographicFactor": 40,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "176": {
+    "districtNumber": 176,
+    "overallScore": 39,
+    "factors": {
+      "marginFactor": 66,
+      "registrationFactor": 24,
+      "turnoutGapFactor": 10,
+      "demographicFactor": 42,
+      "incumbentFactor": 20
+    },
+    "category": "LONG_SHOT",
+    "recommendation": "Long-term investment - build party infrastructure"
+  },
+  "177": {
+    "districtNumber": 177,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 62,
+      "registrationFactor": 42,
+      "turnoutGapFactor": 12,
+      "demographicFactor": 42,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Monitor for challenger strength"
+  },
+  "178": {
+    "districtNumber": 178,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 95,
+      "registrationFactor": 34,
+      "turnoutGapFactor": 17,
+      "demographicFactor": 37,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "179": {
+    "districtNumber": 179,
+    "overallScore": 60,
+    "factors": {
+      "marginFactor": 81,
+      "registrationFactor": 38,
+      "turnoutGapFactor": 9,
+      "demographicFactor": 54,
+      "incumbentFactor": 80
+    },
+    "category": "DEFENSIVE",
+    "recommendation": "Priority defensive seat - ensure strong candidate support"
+  },
+  "180": {
+    "districtNumber": 180,
+    "overallScore": 52,
+    "factors": {
+      "marginFactor": 100,
+      "registrationFactor": 33,
+      "turnoutGapFactor": 13,
+      "demographicFactor": 36,
+      "incumbentFactor": 20
+    },
+    "category": "HIGH_OPPORTUNITY",
+    "recommendation": "Maximum investment recommended - winnable district"
+  }
+}
