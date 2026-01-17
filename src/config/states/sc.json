@@ -1,0 +1,62 @@
+{
+  "code": "SC",
+  "name": "South Carolina",
+  "abbrev": "S.C.",
+  "fipsCode": "45",
+
+  "chambers": {
+    "house": {
+      "name": "House of Representatives",
+      "shortName": "house",
+      "count": 124,
+      "termYears": 2
+    },
+    "senate": {
+      "name": "Senate",
+      "shortName": "senate",
+      "count": 46,
+      "termYears": 4
+    }
+  },
+
+  "bounds": {
+    "north": 35.2155,
+    "south": 32.0346,
+    "east": -78.5413,
+    "west": -83.3539
+  },
+
+  "dataSources": {
+    "candidates": "live",
+    "voterIntelligence": "demo"
+  },
+
+  "urls": {
+    "ethicsCommission": "https://ethics.sc.gov/",
+    "electionCommission": "https://scvotes.gov/",
+    "stateParty": "https://scdp.org/",
+    "legislature": "https://www.scstatehouse.gov/"
+  },
+
+  "baseline2024": {
+    "presidentialMargin": -17.0,
+    "registeredVoters": 3600000,
+    "registration": {
+      "democratic": 950000,
+      "republican": 1150000,
+      "independent": 1400000,
+      "other": 100000
+    }
+  },
+
+  "electionDates": {
+    "primaryDate": "2026-06-09",
+    "generalDate": "2026-11-03",
+    "registrationDeadline": "2026-10-04",
+    "earlyVotingStart": "2026-10-19",
+    "earlyVotingEnd": "2026-11-02"
+  },
+
+  "isActive": true,
+  "displayOrder": 1
+}

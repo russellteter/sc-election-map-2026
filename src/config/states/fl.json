@@ -1,0 +1,62 @@
+{
+  "code": "FL",
+  "name": "Florida",
+  "abbrev": "Fla.",
+  "fipsCode": "12",
+
+  "chambers": {
+    "house": {
+      "name": "House of Representatives",
+      "shortName": "house",
+      "count": 120,
+      "termYears": 2
+    },
+    "senate": {
+      "name": "Senate",
+      "shortName": "senate",
+      "count": 40,
+      "termYears": 4
+    }
+  },
+
+  "bounds": {
+    "north": 31.0035,
+    "south": 24.3963,
+    "east": -79.9743,
+    "west": -87.6349
+  },
+
+  "dataSources": {
+    "candidates": "demo",
+    "voterIntelligence": "demo"
+  },
+
+  "urls": {
+    "ethicsCommission": "https://ethics.state.fl.us/",
+    "electionCommission": "https://dos.fl.gov/elections/",
+    "stateParty": "https://www.floridadems.org/",
+    "legislature": "https://www.leg.state.fl.us/"
+  },
+
+  "baseline2024": {
+    "presidentialMargin": -13.2,
+    "registeredVoters": 14500000,
+    "registration": {
+      "democratic": 4700000,
+      "republican": 5200000,
+      "independent": 4200000,
+      "other": 400000
+    }
+  },
+
+  "electionDates": {
+    "primaryDate": "2026-08-25",
+    "generalDate": "2026-11-03",
+    "registrationDeadline": "2026-10-05",
+    "earlyVotingStart": "2026-10-19",
+    "earlyVotingEnd": "2026-11-01"
+  },
+
+  "isActive": true,
+  "displayOrder": 4
+}
