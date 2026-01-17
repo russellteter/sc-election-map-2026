@@ -50,6 +50,15 @@ export const VoterResources = dynamic(() => import('./VoterResources'), {
   ssr: false
 });
 
+// New API-powered components
+export const ElectionCountdown = dynamic(() => import('./ElectionCountdown'), {
+  ssr: false
+});
+
+export const PollingPlaceFinder = dynamic(() => import('./PollingPlaceFinder'), {
+  ssr: false
+});
+
 // Re-export skeletons (always loaded for loading states)
 export {
   RaceCardSkeleton,

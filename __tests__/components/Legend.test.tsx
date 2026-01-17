@@ -1,26 +1,24 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Legend from '@/components/Map/Legend';
 
 describe('Legend Component', () => {
-  it('renders all base legend items', () => {
+  it('renders all legend items', () => {
     render(<Legend />);
 
-    expect(screen.getByText('High')).toBeInTheDocument();
-    expect(screen.getByText('Emerging')).toBeInTheDocument();
-    expect(screen.getByText('Build')).toBeInTheDocument();
-    expect(screen.getByText('Defensive')).toBeInTheDocument();
-    expect(screen.getByText('Low')).toBeInTheDocument();
-    expect(screen.getByText('Empty')).toBeInTheDocument();
+    expect(screen.getByText('Dem Incumbent')).toBeInTheDocument();
+    expect(screen.getByText('Dem Challenger')).toBeInTheDocument();
+    expect(screen.getByText('Close Race')).toBeInTheDocument();
+    expect(screen.getByText('Safe R Seat')).toBeInTheDocument();
   });
 
   it('has proper ARIA structure', () => {
     render(<Legend />);
 
-    const list = screen.getByRole('list', { name: 'Opportunity tier legend' });
+    const list = screen.getByRole('list', { name: 'District status legend' });
     expect(list).toBeInTheDocument();
 
     const items = screen.getAllByRole('listitem');
-    expect(items).toHaveLength(6);
+    expect(items).toHaveLength(4);
   });
 
   it('applies custom className', () => {
@@ -30,32 +28,29 @@ describe('Legend Component', () => {
     expect(legendContainer).toBeInTheDocument();
   });
 
-  it('shows Republican legend item when showRepublicanData is true', () => {
-    render(<Legend showRepublicanData={true} />);
-
-    expect(screen.getByText('GOP Only')).toBeInTheDocument();
-
-    const items = screen.getAllByRole('listitem');
-    expect(items).toHaveLength(7); // 6 base + 1 GOP Only
-  });
-
-  it('does not show Republican legend item when showRepublicanData is false', () => {
-    render(<Legend showRepublicanData={false} />);
-
-    expect(screen.queryByText('GOP Only')).not.toBeInTheDocument();
-
-    const items = screen.getAllByRole('listitem');
-    expect(items).toHaveLength(6);
-  });
-
-  it('has title attributes with descriptions', () => {
+  it('shows descriptions for each legend item', () => {
     render(<Legend />);
 
-    const highItem = screen.getByTitle('High Opportunity (Score 70+)');
-    expect(highItem).toBeInTheDocument();
+    expect(screen.getByText('Current representative is Democrat')).toBeInTheDocument();
+    expect(screen.getByText('Democrat filed to run')).toBeInTheDocument();
+    expect(screen.getByText('No Dem filed, margin ≤15pts')).toBeInTheDocument();
+    expect(screen.getByText('No Dem filed, margin >15pts')).toBeInTheDocument();
+  });
 
-    const defensiveItem = screen.getByTitle('Defensive (Dem Incumbent)');
-    expect(defensiveItem).toBeInTheDocument();
+  it('can be collapsed and expanded', () => {
+    render(<Legend />);
+
+    // Initially expanded
+    const header = screen.getByRole('button', { name: /map legend/i });
+    expect(header).toHaveAttribute('aria-expanded', 'true');
+
+    // Collapse it
+    fireEvent.click(header);
+    expect(header).toHaveAttribute('aria-expanded', 'false');
+
+    // Expand it again
+    fireEvent.click(header);
+    expect(header).toHaveAttribute('aria-expanded', 'true');
   });
 
   it('hides color indicators from screen readers', () => {
@@ -63,6 +58,12 @@ describe('Legend Component', () => {
 
     // Color spans should have aria-hidden
     const hiddenSpans = container.querySelectorAll('[aria-hidden="true"]');
-    expect(hiddenSpans.length).toBe(6); // One per legend item
+    expect(hiddenSpans.length).toBe(4); // One per legend item
+  });
+
+  it('shows footnote about data source', () => {
+    render(<Legend />);
+
+    expect(screen.getByText(/SC Election Commission/)).toBeInTheDocument();
   });
 });

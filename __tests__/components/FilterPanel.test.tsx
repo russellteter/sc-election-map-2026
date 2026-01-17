@@ -8,252 +8,236 @@ describe('FilterPanel Component', () => {
     mockOnFilterChange.mockClear();
   });
 
-  it('renders filter toggle button', () => {
-    render(
-      <FilterPanel
-        filters={defaultFilters}
-        onFilterChange={mockOnFilterChange}
-      />
-    );
+  describe('Horizontal variant (default)', () => {
+    it('renders filter bar with label', () => {
+      render(
+        <FilterPanel
+          filters={defaultFilters}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
 
-    expect(screen.getByRole('button', { name: /filters/i })).toBeInTheDocument();
-  });
+      expect(screen.getByText('FILTERS')).toBeInTheDocument();
+    });
 
-  it('expands panel when toggle button is clicked', () => {
-    render(
-      <FilterPanel
-        filters={defaultFilters}
-        onFilterChange={mockOnFilterChange}
-      />
-    );
+    it('renders party dropdown', () => {
+      render(
+        <FilterPanel
+          filters={defaultFilters}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
 
-    const toggleBtn = screen.getByRole('button', { name: /filters/i });
-    expect(toggleBtn).toHaveAttribute('aria-expanded', 'false');
+      expect(screen.getByText('PARTY')).toBeInTheDocument();
+    });
 
-    fireEvent.click(toggleBtn);
+    it('renders status dropdown', () => {
+      render(
+        <FilterPanel
+          filters={defaultFilters}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
 
-    expect(toggleBtn).toHaveAttribute('aria-expanded', 'true');
-    expect(screen.getByText('Party')).toBeInTheDocument();
-  });
+      expect(screen.getByText('STATUS')).toBeInTheDocument();
+    });
 
-  it('shows party filter options when expanded', () => {
-    render(
-      <FilterPanel
-        filters={defaultFilters}
-        onFilterChange={mockOnFilterChange}
-      />
-    );
+    it('renders opportunity dropdown', () => {
+      render(
+        <FilterPanel
+          filters={defaultFilters}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
 
-    fireEvent.click(screen.getByRole('button', { name: /filters/i }));
+      expect(screen.getByText('OPPORTUNITY')).toBeInTheDocument();
+    });
 
-    expect(screen.getByRole('button', { name: 'Democrats' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Republicans' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Unknown Party' })).toBeInTheDocument();
-  });
+    it('shows party options when party dropdown is opened', () => {
+      render(
+        <FilterPanel
+          filters={defaultFilters}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
 
-  it('shows candidate status filter options when expanded', () => {
-    render(
-      <FilterPanel
-        filters={defaultFilters}
-        onFilterChange={mockOnFilterChange}
-      />
-    );
+      // Find the party dropdown button (shows "All" by default)
+      const partyButtons = screen.getAllByRole('button', { name: /all/i });
+      const partyDropdown = partyButtons[0]; // First "All" is the party dropdown
 
-    fireEvent.click(screen.getByRole('button', { name: /filters/i }));
+      fireEvent.click(partyDropdown);
 
-    expect(screen.getByRole('button', { name: 'All Districts' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Has Candidates' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'No Candidates' })).toBeInTheDocument();
-  });
+      expect(screen.getByText('Democrats')).toBeInTheDocument();
+      expect(screen.getByText('Republicans')).toBeInTheDocument();
+      expect(screen.getByText('Unknown Party')).toBeInTheDocument();
+    });
 
-  it('shows race type filter options when expanded', () => {
-    render(
-      <FilterPanel
-        filters={defaultFilters}
-        onFilterChange={mockOnFilterChange}
-      />
-    );
+    it('calls onFilterChange when party is selected', () => {
+      render(
+        <FilterPanel
+          filters={defaultFilters}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
 
-    fireEvent.click(screen.getByRole('button', { name: /filters/i }));
+      // Open party dropdown
+      const partyButtons = screen.getAllByRole('button', { name: /all/i });
+      fireEvent.click(partyButtons[0]);
 
-    expect(screen.getByRole('button', { name: 'All Races' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Contested' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Uncontested' })).toBeInTheDocument();
-  });
+      // Select Democrats
+      fireEvent.click(screen.getByText('Democrats'));
 
-  it('calls onFilterChange when party filter is toggled', () => {
-    render(
-      <FilterPanel
-        filters={defaultFilters}
-        onFilterChange={mockOnFilterChange}
-      />
-    );
+      expect(mockOnFilterChange).toHaveBeenCalledWith({
+        ...defaultFilters,
+        party: ['Democratic'],
+      });
+    });
 
-    fireEvent.click(screen.getByRole('button', { name: /filters/i }));
-    fireEvent.click(screen.getByRole('button', { name: 'Democrats' }));
+    it('shows reset button when filters are active', () => {
+      const activeFilters: FilterState = {
+        party: ['Democratic'],
+        hasCandidate: 'all',
+        contested: 'all',
+        opportunity: [],
+        showRepublicanData: false,
+        republicanDataMode: 'none',
+      };
 
-    expect(mockOnFilterChange).toHaveBeenCalledWith({
-      ...defaultFilters,
-      party: ['Democratic'],
+      render(
+        <FilterPanel
+          filters={activeFilters}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
+
+      expect(screen.getByRole('button', { name: /reset all/i })).toBeInTheDocument();
+    });
+
+    it('clears all filters when reset button is clicked', () => {
+      const activeFilters: FilterState = {
+        party: ['Democratic', 'Republican'],
+        hasCandidate: 'yes',
+        contested: 'yes',
+        opportunity: ['HIGH_OPPORTUNITY'],
+        showRepublicanData: true,
+        republicanDataMode: 'all',
+      };
+
+      render(
+        <FilterPanel
+          filters={activeFilters}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
+
+      fireEvent.click(screen.getByRole('button', { name: /reset all/i }));
+
+      expect(mockOnFilterChange).toHaveBeenCalledWith(defaultFilters);
+    });
+
+    it('does not show reset button when no filters are active', () => {
+      render(
+        <FilterPanel
+          filters={defaultFilters}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
+
+      expect(screen.queryByRole('button', { name: /reset all/i })).not.toBeInTheDocument();
+    });
+
+    it('has More button for additional filters', () => {
+      render(
+        <FilterPanel
+          filters={defaultFilters}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
+
+      expect(screen.getByRole('button', { name: /more/i })).toBeInTheDocument();
+    });
+
+    it('shows race type options when More is clicked', () => {
+      render(
+        <FilterPanel
+          filters={defaultFilters}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
+
+      fireEvent.click(screen.getByRole('button', { name: /more/i }));
+
+      expect(screen.getByText('Race Type')).toBeInTheDocument();
+      expect(screen.getByText('All Races')).toBeInTheDocument();
+      expect(screen.getByText('Contested')).toBeInTheDocument();
+      expect(screen.getByText('Uncontested')).toBeInTheDocument();
+    });
+
+    it('shows Republican data toggle when More is clicked', () => {
+      render(
+        <FilterPanel
+          filters={defaultFilters}
+          onFilterChange={mockOnFilterChange}
+        />
+      );
+
+      fireEvent.click(screen.getByRole('button', { name: /more/i }));
+
+      expect(screen.getByText('Opposition Data')).toBeInTheDocument();
+      expect(screen.getByText('Show Republican Data')).toBeInTheDocument();
     });
   });
 
-  it('removes party from filter when clicked again', () => {
-    const filtersWithParty: FilterState = {
-      ...defaultFilters,
-      party: ['Democratic'],
-    };
+  describe('Dropdown variant', () => {
+    it('renders filter toggle button', () => {
+      render(
+        <FilterPanel
+          filters={defaultFilters}
+          onFilterChange={mockOnFilterChange}
+          variant="dropdown"
+        />
+      );
 
-    render(
-      <FilterPanel
-        filters={filtersWithParty}
-        onFilterChange={mockOnFilterChange}
-      />
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: /filters/i }));
-    fireEvent.click(screen.getByRole('button', { name: 'Democrats' }));
-
-    expect(mockOnFilterChange).toHaveBeenCalledWith({
-      ...defaultFilters,
-      party: [],
+      expect(screen.getByRole('button', { name: /filters/i })).toBeInTheDocument();
     });
-  });
 
-  it('calls onFilterChange when candidate status filter is changed', () => {
-    render(
-      <FilterPanel
-        filters={defaultFilters}
-        onFilterChange={mockOnFilterChange}
-      />
-    );
+    it('expands panel when toggle button is clicked', () => {
+      render(
+        <FilterPanel
+          filters={defaultFilters}
+          onFilterChange={mockOnFilterChange}
+          variant="dropdown"
+        />
+      );
 
-    fireEvent.click(screen.getByRole('button', { name: /filters/i }));
-    fireEvent.click(screen.getByRole('button', { name: 'Has Candidates' }));
+      const toggleBtn = screen.getByRole('button', { name: /filters/i });
+      expect(toggleBtn).toHaveAttribute('aria-expanded', 'false');
 
-    expect(mockOnFilterChange).toHaveBeenCalledWith({
-      ...defaultFilters,
-      hasCandidate: 'yes',
+      fireEvent.click(toggleBtn);
+
+      expect(toggleBtn).toHaveAttribute('aria-expanded', 'true');
     });
-  });
 
-  it('calls onFilterChange when race type filter is changed', () => {
-    render(
-      <FilterPanel
-        filters={defaultFilters}
-        onFilterChange={mockOnFilterChange}
-      />
-    );
+    it('shows active filter count badge when filters are applied', () => {
+      const activeFilters: FilterState = {
+        party: ['Democratic', 'Republican'],
+        hasCandidate: 'yes',
+        contested: 'all',
+        opportunity: [],
+        showRepublicanData: false,
+        republicanDataMode: 'none',
+      };
 
-    fireEvent.click(screen.getByRole('button', { name: /filters/i }));
-    fireEvent.click(screen.getByRole('button', { name: 'Contested' }));
+      render(
+        <FilterPanel
+          filters={activeFilters}
+          onFilterChange={mockOnFilterChange}
+          variant="dropdown"
+        />
+      );
 
-    expect(mockOnFilterChange).toHaveBeenCalledWith({
-      ...defaultFilters,
-      contested: 'yes',
+      // Count should be 3: 2 parties + 1 hasCandidate
+      expect(screen.getByText('3')).toBeInTheDocument();
     });
-  });
-
-  it('shows active filter count badge when filters are applied', () => {
-    const activeFilters: FilterState = {
-      party: ['Democratic', 'Republican'],
-      hasCandidate: 'yes',
-      contested: 'all',
-      opportunity: [],
-      showRepublicanData: false,
-      republicanDataMode: 'none',
-    };
-
-    render(
-      <FilterPanel
-        filters={activeFilters}
-        onFilterChange={mockOnFilterChange}
-      />
-    );
-
-    // Count should be 3: 2 parties + 1 hasCandidate
-    expect(screen.getByText('3')).toBeInTheDocument();
-  });
-
-  it('shows clear all button when filters are active', () => {
-    const activeFilters: FilterState = {
-      party: ['Democratic'],
-      hasCandidate: 'all',
-      contested: 'all',
-      opportunity: [],
-      showRepublicanData: false,
-      republicanDataMode: 'none',
-    };
-
-    render(
-      <FilterPanel
-        filters={activeFilters}
-        onFilterChange={mockOnFilterChange}
-      />
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: /filters/i }));
-
-    expect(screen.getByRole('button', { name: 'Clear all filters' })).toBeInTheDocument();
-  });
-
-  it('clears all filters when clear button is clicked', () => {
-    const activeFilters: FilterState = {
-      party: ['Democratic', 'Republican'],
-      hasCandidate: 'yes',
-      contested: 'yes',
-      opportunity: [],
-      showRepublicanData: false,
-      republicanDataMode: 'none',
-    };
-
-    render(
-      <FilterPanel
-        filters={activeFilters}
-        onFilterChange={mockOnFilterChange}
-      />
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: /filters/i }));
-    fireEvent.click(screen.getByRole('button', { name: 'Clear all filters' }));
-
-    expect(mockOnFilterChange).toHaveBeenCalledWith(defaultFilters);
-  });
-
-  it('does not show clear button when no filters are active', () => {
-    render(
-      <FilterPanel
-        filters={defaultFilters}
-        onFilterChange={mockOnFilterChange}
-      />
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: /filters/i }));
-
-    expect(screen.queryByRole('button', { name: 'Clear all filters' })).not.toBeInTheDocument();
-  });
-
-  it('has proper aria-pressed attributes on filter buttons', () => {
-    const activeFilters: FilterState = {
-      party: ['Democratic'],
-      hasCandidate: 'yes',
-      contested: 'all',
-      opportunity: [],
-      showRepublicanData: false,
-      republicanDataMode: 'none',
-    };
-
-    render(
-      <FilterPanel
-        filters={activeFilters}
-        onFilterChange={mockOnFilterChange}
-      />
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: /filters/i }));
-
-    expect(screen.getByRole('button', { name: 'Democrats' })).toHaveAttribute('aria-pressed', 'true');
-    expect(screen.getByRole('button', { name: 'Republicans' })).toHaveAttribute('aria-pressed', 'false');
-    expect(screen.getByRole('button', { name: 'Has Candidates' })).toHaveAttribute('aria-pressed', 'true');
   });
 });

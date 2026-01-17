@@ -1,7 +1,7 @@
 {
-  "name": "sc-election-map-2026",
+  "name": "blue-intelligence",
   "version": "1.0.0",
-  "description": "Interactive SC election map and comprehensive voter guide",
+  "description": "National Election Intelligence Platform - 50-state election intelligence demo for Democratic campaigns",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -32,6 +32,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.2.3",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "jest": "^30.2.0",

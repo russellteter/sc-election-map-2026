@@ -90,6 +90,13 @@ export const DATA_FILES = {
   HOUSE_DISTRICTS_GEOJSON: `${DATA_BASE_URL}/maps/house-districts.geojson`,
   SENATE_DISTRICTS_GEOJSON: `${DATA_BASE_URL}/maps/senate-districts.geojson`,
   CONGRESSIONAL_DISTRICTS_GEOJSON: `${DATA_BASE_URL}/maps/congressional-districts.geojson`,
+
+  // Voter Intelligence data (pre-computed from TargetSmart)
+  HOUSE_ELECTORATE_PROFILES: `${DATA_BASE_URL}/data/voter-intelligence/house-profiles.json`,
+  SENATE_ELECTORATE_PROFILES: `${DATA_BASE_URL}/data/voter-intelligence/senate-profiles.json`,
+  MOBILIZATION_SCORES: `${DATA_BASE_URL}/data/voter-intelligence/mobilization-scores.json`,
+  EARLY_VOTE_TRACKING: `${DATA_BASE_URL}/data/voter-intelligence/early-vote-tracking.json`,
+  DONOR_SUMMARIES: `${DATA_BASE_URL}/data/voter-intelligence/donor-summaries.json`,
 } as const;
 
 /**
@@ -97,6 +104,8 @@ export const DATA_FILES = {
  */
 export const API_ENDPOINTS = {
   GEOAPIFY_GEOCODE: 'https://api.geoapify.com/v1/geocode/autocomplete',
+  BALLOTREADY_BASE: 'https://api.civicengine.com',
+  TARGETSMART_BASE: 'https://api.targetsmart.com',
 } as const;
 
 /**

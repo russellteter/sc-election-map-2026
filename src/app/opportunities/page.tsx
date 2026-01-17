@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import type { OpportunityData, DistrictOpportunity, CandidatesData } from '@/types/schema';
 import OpportunityCard from '@/components/Dashboard/OpportunityCard';
+import { RecruitmentPipeline, EndorsementDashboard } from '@/components/Intelligence';
 
 // Tier colors matching the map
 const TIER_COLORS = {
@@ -212,6 +213,20 @@ export default function OpportunitiesPage() {
           </div>
         </div>
       </header>
+
+      {/* Recruitment Pipeline (Phase 2 Feature) */}
+      {opportunityData && (
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <RecruitmentPipeline opportunityData={opportunityData} chamber={chamber} />
+        </div>
+      )}
+
+      {/* Endorsement Dashboard (Phase 3 Feature) */}
+      {candidatesData && (
+        <div className="max-w-7xl mx-auto px-4 pb-4">
+          <EndorsementDashboard candidatesData={candidatesData} chamber={chamber} />
+        </div>
+      )}
 
       {/* Results count */}
       <div className="max-w-7xl mx-auto px-4 py-3">

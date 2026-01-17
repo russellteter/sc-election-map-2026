@@ -14,7 +14,9 @@ import {
   SpecialDistricts,
   BallotMeasures,
   VoterResources,
-  VoterGuidePageSkeleton
+  VoterGuidePageSkeleton,
+  ElectionCountdown,
+  PollingPlaceFinder
 } from '@/components/VoterGuide';
 import { geocodeAddress, reverseGeocode, getCurrentLocation, isInSouthCarolina, GeocodeResult } from '@/lib/geocoding';
 import { findDistricts, preloadBoundaries, DistrictResult } from '@/lib/districtLookup';
@@ -368,6 +370,9 @@ function VoterGuideContent() {
             </p>
           </div>
 
+          {/* Election Countdown - Always Visible */}
+          <ElectionCountdown />
+
           {/* Loading State with Skeleton */}
           {isDataLoading && (
             <div className="space-y-8">
@@ -479,6 +484,13 @@ function VoterGuideContent() {
                       </div>
                     </div>
                   </div>
+
+                  {/* Polling Place Finder - Shows after address lookup */}
+                  {geocodeResult && (
+                    <PollingPlaceFinder
+                      address={geocodeResult.displayName || ''}
+                    />
+                  )}
 
                   {/* Statewide Constitutional Offices */}
                   {allData.statewide && (
