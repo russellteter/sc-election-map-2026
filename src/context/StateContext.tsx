@@ -3,6 +3,8 @@
 import { createContext, useContext, useMemo, type ReactNode } from 'react';
 import type { StateConfig } from '@/types/stateConfig';
 import { getActiveStateConfig, getStateDataPaths, ACTIVE_STATE_CODES } from '@/lib/stateConfig';
+// Note: We import BASE_PATH only for data fetching paths, not for navigation URLs
+// Next.js Link and router.push automatically handle basePath
 import { BASE_PATH } from '@/lib/constants';
 
 /**
@@ -53,8 +55,9 @@ export function StateProvider({ children, stateCode }: StateProviderProps) {
       stateCode: normalizedCode,
       dataPaths,
       getStateUrl: (path: string) => {
+        // Don't include BASE_PATH - Next.js Link/router automatically handles basePath
         const cleanPath = path.startsWith('/') ? path : `/${path}`;
-        return `${BASE_PATH}/${normalizedCode.toLowerCase()}${cleanPath}`;
+        return `/${normalizedCode.toLowerCase()}${cleanPath}`;
       },
       isDemo: (feature: 'candidates' | 'voterIntelligence') => {
         return stateConfig.dataSources[feature] === 'demo';

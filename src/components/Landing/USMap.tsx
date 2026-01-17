@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getAllStates, isStateActive, type AnyStateConfig } from '@/lib/stateConfig';
-import { BASE_PATH } from '@/lib/constants';
+// Note: Next.js router.push automatically handles basePath, so we don't need BASE_PATH for navigation
 
 interface USMapProps {
   onStateClick?: (stateCode: string) => void;
@@ -73,7 +73,7 @@ export default function USMap({ onStateClick, onInactiveStateClick }: USMapProps
   const handleStateClick = (stateCode: string) => {
     if (isStateActive(stateCode)) {
       onStateClick?.(stateCode);
-      router.push(`${BASE_PATH}/${stateCode.toLowerCase()}`);
+      router.push(`/${stateCode.toLowerCase()}`);
     } else {
       const state = allStates.find(s => s.code === stateCode);
       if (state) {

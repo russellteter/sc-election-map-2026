@@ -11,22 +11,20 @@
  * In production (GitHub Pages), the app is served from `/sc-election-map-2026/`.
  * In development, the app is served from the root `/`.
  *
- * This constant is used for:
- * - Asset paths (images, data files)
- * - Navigation links
- * - API endpoints
- *
- * **Important:** This only works in client-side code (browser).
- * For server-side code, use `process.env.NEXT_PUBLIC_BASE_PATH` or next.config.ts.
+ * **IMPORTANT:** Only use BASE_PATH for data fetching with fetch().
+ * Next.js Link and router.push AUTOMATICALLY add basePath from next.config.ts.
  *
  * @example
  * ```tsx
- * // Correct usage
+ * // CORRECT: Data fetching (fetch doesn't auto-add basePath)
  * fetch(`${BASE_PATH}/data/candidates.json`)
- * <Link href={`${BASE_PATH}/voter-guide`}>
  *
- * // Incorrect usage
- * <a href="/voter-guide"> // Will break in production
+ * // CORRECT: Navigation (Next.js adds basePath automatically)
+ * <Link href="/voter-guide">
+ * router.push('/sc')
+ *
+ * // WRONG: Double basePath!
+ * <Link href={`${BASE_PATH}/voter-guide`}>  // Results in /sc-election-map-2026/sc-election-map-2026/voter-guide
  * ```
  */
 export const BASE_PATH =
@@ -51,14 +49,22 @@ export const DATA_BASE_URL = BASE_PATH;
  * Application routes
  *
  * Centralized route constants to avoid hardcoded strings throughout the app.
- * Automatically includes BASE_PATH for production compatibility.
+ *
+ * **NOTE:** These do NOT include BASE_PATH because Next.js Link and router.push
+ * automatically add basePath. Use these directly with Next.js navigation.
+ *
+ * @example
+ * ```tsx
+ * <Link href={ROUTES.VOTER_GUIDE}>Voter Guide</Link>
+ * router.push(ROUTES.HOME)
+ * ```
  */
 export const ROUTES = {
-  HOME: `${BASE_PATH}/`,
-  VOTER_GUIDE: `${BASE_PATH}/voter-guide`,
-  TABLE_VIEW: `${BASE_PATH}/table`,
-  OPPORTUNITIES: `${BASE_PATH}/opportunities`,
-  RACE_DETAIL: (id: string | number) => `${BASE_PATH}/race/${id}`,
+  HOME: '/',
+  VOTER_GUIDE: '/voter-guide',
+  TABLE_VIEW: '/table',
+  OPPORTUNITIES: '/opportunities',
+  RACE_DETAIL: (id: string | number) => `/race/${id}`,
 } as const;
 
 /**

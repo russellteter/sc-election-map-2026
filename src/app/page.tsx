@@ -5,7 +5,7 @@ import Link from 'next/link';
 import USMap from '@/components/Landing/USMap';
 import StateModal from '@/components/Landing/StateModal';
 import { getActiveStates, type AnyStateConfig } from '@/lib/stateConfig';
-import { BASE_PATH } from '@/lib/constants';
+// Note: Next.js Link component automatically handles basePath, so we don't need BASE_PATH for internal links
 
 export default function LandingPage() {
   const [selectedInactiveState, setSelectedInactiveState] = useState<AnyStateConfig | null>(null);
@@ -27,14 +27,14 @@ export default function LandingPage() {
             </div>
             <div className="hidden md:flex items-center gap-3">
               <Link
-                href={`${BASE_PATH}/about`}
+                href="/about"
                 className="px-4 py-2 text-sm font-medium rounded-lg transition-all hover:opacity-80"
                 style={{ color: 'var(--text-color)' }}
               >
                 About
               </Link>
               <Link
-                href={`${BASE_PATH}/contact`}
+                href="/contact"
                 className="px-4 py-2 text-sm font-medium rounded-lg transition-all"
                 style={{
                   background: 'var(--class-purple)',
@@ -137,7 +137,7 @@ export default function LandingPage() {
               {activeStates.map((state) => (
                 <Link
                   key={state.code}
-                  href={`${BASE_PATH}/${state.code.toLowerCase()}`}
+                  href={`/${state.code.toLowerCase()}`}
                   className="glass-surface rounded-xl p-4 text-center transition-all hover:shadow-lg hover:-translate-y-1"
                   style={{ borderColor: 'var(--class-purple-light)' }}
                 >
@@ -176,7 +176,7 @@ export default function LandingPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href={`${BASE_PATH}/contact`}
+                href="/contact"
                 className="px-6 py-3 rounded-lg font-medium transition-all hover:opacity-90"
                 style={{
                   background: 'var(--class-purple)',
@@ -217,10 +217,10 @@ export default function LandingPage() {
               </p>
             </div>
             <div className="flex items-center gap-6">
-              <Link href={`${BASE_PATH}/about`} className="text-sm hover:underline" style={{ color: 'var(--text-muted)' }}>
+              <Link href="/about" className="text-sm hover:underline" style={{ color: 'var(--text-muted)' }}>
                 About
               </Link>
-              <Link href={`${BASE_PATH}/contact`} className="text-sm hover:underline" style={{ color: 'var(--text-muted)' }}>
+              <Link href="/contact" className="text-sm hover:underline" style={{ color: 'var(--text-muted)' }}>
                 Contact
               </Link>
               <a
