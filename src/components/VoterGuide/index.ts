@@ -8,6 +8,7 @@ export { default as DistrictResults } from './DistrictResults';
 // Page structure components (static, no props)
 export { default as VoterGuideHeader } from './VoterGuideHeader';
 export { default as VoterGuideFooter } from './VoterGuideFooter';
+export { default as VoterGuideSummary } from './VoterGuideSummary';
 
 // Import skeletons for re-export
 import {
