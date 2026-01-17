@@ -44,14 +44,18 @@ export default function StateDashboard() {
 
     const cacheBuster = `v=${Date.now()}`;
 
-    // For SC, use existing data. For other states, use demo data structure
-    const dataPath = stateCode === 'SC'
-      ? basePath
-      : `${basePath}/data/states/${stateCode.toLowerCase()}`;
+    // For SC, use existing data structure. For other states, use demo data structure
+    const candidatesPath = stateCode === 'SC'
+      ? `${basePath}/data/candidates.json`
+      : `${basePath}/data/states/${stateCode.toLowerCase()}/candidates.json`;
+
+    const electionsPath = stateCode === 'SC'
+      ? `${basePath}/data/elections.json`
+      : `${basePath}/data/states/${stateCode.toLowerCase()}/elections.json`;
 
     Promise.all([
-      fetch(`${dataPath}/data/candidates.json?${cacheBuster}`).then((res) => res.json()),
-      fetch(`${dataPath}/data/elections.json?${cacheBuster}`).then((res) => res.json()),
+      fetch(`${candidatesPath}?${cacheBuster}`).then((res) => res.json()),
+      fetch(`${electionsPath}?${cacheBuster}`).then((res) => res.json()),
     ])
       .then(([candidates, elections]) => {
         setCandidatesData(candidates);

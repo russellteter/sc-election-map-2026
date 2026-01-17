@@ -1,0 +1,2702 @@
+{
+  "1": {
+    "districtNumber": 1,
+    "universe": {
+      "totalTargets": 2974,
+      "lowPropensityDems": 1071,
+      "persuadables": 1047,
+      "registrationTargets": 856
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.56,
+      "lift": 0.03
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "2": {
+    "districtNumber": 2,
+    "universe": {
+      "totalTargets": 8040,
+      "lowPropensityDems": 3426,
+      "persuadables": 1826,
+      "registrationTargets": 2788
+    },
+    "projectedTurnout": {
+      "baseline": 0.53,
+      "withMobilization": 0.57,
+      "lift": 0.04
+    },
+    "contactStrategy": "Full contact program: doors, phones, digital, mail"
+  },
+  "3": {
+    "districtNumber": 3,
+    "universe": {
+      "totalTargets": 2236,
+      "lowPropensityDems": 893,
+      "persuadables": 881,
+      "registrationTargets": 462
+    },
+    "projectedTurnout": {
+      "baseline": 0.57,
+      "withMobilization": 0.58,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "4": {
+    "districtNumber": 4,
+    "universe": {
+      "totalTargets": 6574,
+      "lowPropensityDems": 1550,
+      "persuadables": 2331,
+      "registrationTargets": 2693
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.55,
+      "lift": 0.01
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "5": {
+    "districtNumber": 5,
+    "universe": {
+      "totalTargets": 9720,
+      "lowPropensityDems": 4475,
+      "persuadables": 3848,
+      "registrationTargets": 1397
+    },
+    "projectedTurnout": {
+      "baseline": 0.56,
+      "withMobilization": 0.58,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "6": {
+    "districtNumber": 6,
+    "universe": {
+      "totalTargets": 8299,
+      "lowPropensityDems": 3913,
+      "persuadables": 2400,
+      "registrationTargets": 1986
+    },
+    "projectedTurnout": {
+      "baseline": 0.56,
+      "withMobilization": 0.6,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "7": {
+    "districtNumber": 7,
+    "universe": {
+      "totalTargets": 12396,
+      "lowPropensityDems": 4970,
+      "persuadables": 3541,
+      "registrationTargets": 3885
+    },
+    "projectedTurnout": {
+      "baseline": 0.48,
+      "withMobilization": 0.5,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "8": {
+    "districtNumber": 8,
+    "universe": {
+      "totalTargets": 5244,
+      "lowPropensityDems": 1743,
+      "persuadables": 2148,
+      "registrationTargets": 1353
+    },
+    "projectedTurnout": {
+      "baseline": 0.58,
+      "withMobilization": 0.62,
+      "lift": 0.04
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "9": {
+    "districtNumber": 9,
+    "universe": {
+      "totalTargets": 10147,
+      "lowPropensityDems": 3957,
+      "persuadables": 3247,
+      "registrationTargets": 2943
+    },
+    "projectedTurnout": {
+      "baseline": 0.5,
+      "withMobilization": 0.52,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "10": {
+    "districtNumber": 10,
+    "universe": {
+      "totalTargets": 3262,
+      "lowPropensityDems": 1141,
+      "persuadables": 1119,
+      "registrationTargets": 1002
+    },
+    "projectedTurnout": {
+      "baseline": 0.51,
+      "withMobilization": 0.54,
+      "lift": 0.04
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "11": {
+    "districtNumber": 11,
+    "universe": {
+      "totalTargets": 8827,
+      "lowPropensityDems": 3675,
+      "persuadables": 1764,
+      "registrationTargets": 3388
+    },
+    "projectedTurnout": {
+      "baseline": 0.43,
+      "withMobilization": 0.48,
+      "lift": 0.06
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "12": {
+    "districtNumber": 12,
+    "universe": {
+      "totalTargets": 4050,
+      "lowPropensityDems": 940,
+      "persuadables": 955,
+      "registrationTargets": 2155
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.57,
+      "lift": 0.03
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "13": {
+    "districtNumber": 13,
+    "universe": {
+      "totalTargets": 7816,
+      "lowPropensityDems": 3707,
+      "persuadables": 1558,
+      "registrationTargets": 2551
+    },
+    "projectedTurnout": {
+      "baseline": 0.44,
+      "withMobilization": 0.47,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "14": {
+    "districtNumber": 14,
+    "universe": {
+      "totalTargets": 3748,
+      "lowPropensityDems": 1773,
+      "persuadables": 1453,
+      "registrationTargets": 522
+    },
+    "projectedTurnout": {
+      "baseline": 0.56,
+      "withMobilization": 0.58,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "15": {
+    "districtNumber": 15,
+    "universe": {
+      "totalTargets": 10130,
+      "lowPropensityDems": 5449,
+      "persuadables": 2192,
+      "registrationTargets": 2489
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.57,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "16": {
+    "districtNumber": 16,
+    "universe": {
+      "totalTargets": 4424,
+      "lowPropensityDems": 1862,
+      "persuadables": 1090,
+      "registrationTargets": 1472
+    },
+    "projectedTurnout": {
+      "baseline": 0.47,
+      "withMobilization": 0.49,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "17": {
+    "districtNumber": 17,
+    "universe": {
+      "totalTargets": 6962,
+      "lowPropensityDems": 2948,
+      "persuadables": 2256,
+      "registrationTargets": 1758
+    },
+    "projectedTurnout": {
+      "baseline": 0.56,
+      "withMobilization": 0.59,
+      "lift": 0.03
+    },
+    "contactStrategy": "Full contact program: doors, phones, digital, mail"
+  },
+  "18": {
+    "districtNumber": 18,
+    "universe": {
+      "totalTargets": 9129,
+      "lowPropensityDems": 2783,
+      "persuadables": 3220,
+      "registrationTargets": 3126
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.55,
+      "lift": 0.02
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "19": {
+    "districtNumber": 19,
+    "universe": {
+      "totalTargets": 6638,
+      "lowPropensityDems": 3518,
+      "persuadables": 2020,
+      "registrationTargets": 1100
+    },
+    "projectedTurnout": {
+      "baseline": 0.58,
+      "withMobilization": 0.61,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "20": {
+    "districtNumber": 20,
+    "universe": {
+      "totalTargets": 7715,
+      "lowPropensityDems": 4052,
+      "persuadables": 2067,
+      "registrationTargets": 1596
+    },
+    "projectedTurnout": {
+      "baseline": 0.46,
+      "withMobilization": 0.5,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "21": {
+    "districtNumber": 21,
+    "universe": {
+      "totalTargets": 4538,
+      "lowPropensityDems": 1634,
+      "persuadables": 1148,
+      "registrationTargets": 1756
+    },
+    "projectedTurnout": {
+      "baseline": 0.49,
+      "withMobilization": 0.52,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "22": {
+    "districtNumber": 22,
+    "universe": {
+      "totalTargets": 10299,
+      "lowPropensityDems": 4786,
+      "persuadables": 1844,
+      "registrationTargets": 3669
+    },
+    "projectedTurnout": {
+      "baseline": 0.48,
+      "withMobilization": 0.52,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "23": {
+    "districtNumber": 23,
+    "universe": {
+      "totalTargets": 3654,
+      "lowPropensityDems": 1448,
+      "persuadables": 980,
+      "registrationTargets": 1226
+    },
+    "projectedTurnout": {
+      "baseline": 0.59,
+      "withMobilization": 0.62,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "24": {
+    "districtNumber": 24,
+    "universe": {
+      "totalTargets": 8588,
+      "lowPropensityDems": 2840,
+      "persuadables": 3292,
+      "registrationTargets": 2456
+    },
+    "projectedTurnout": {
+      "baseline": 0.5,
+      "withMobilization": 0.54,
+      "lift": 0.04
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "25": {
+    "districtNumber": 25,
+    "universe": {
+      "totalTargets": 3685,
+      "lowPropensityDems": 546,
+      "persuadables": 1481,
+      "registrationTargets": 1658
+    },
+    "projectedTurnout": {
+      "baseline": 0.61,
+      "withMobilization": 0.63,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "26": {
+    "districtNumber": 26,
+    "universe": {
+      "totalTargets": 7404,
+      "lowPropensityDems": 2693,
+      "persuadables": 2999,
+      "registrationTargets": 1712
+    },
+    "projectedTurnout": {
+      "baseline": 0.52,
+      "withMobilization": 0.55,
+      "lift": 0.03
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "27": {
+    "districtNumber": 27,
+    "universe": {
+      "totalTargets": 3540,
+      "lowPropensityDems": 908,
+      "persuadables": 1454,
+      "registrationTargets": 1178
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.56,
+      "lift": 0.02
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "28": {
+    "districtNumber": 28,
+    "universe": {
+      "totalTargets": 7783,
+      "lowPropensityDems": 4023,
+      "persuadables": 2718,
+      "registrationTargets": 1042
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.57,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "29": {
+    "districtNumber": 29,
+    "universe": {
+      "totalTargets": 9742,
+      "lowPropensityDems": 3335,
+      "persuadables": 3936,
+      "registrationTargets": 2471
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.55,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "30": {
+    "districtNumber": 30,
+    "universe": {
+      "totalTargets": 3957,
+      "lowPropensityDems": 1492,
+      "persuadables": 1353,
+      "registrationTargets": 1112
+    },
+    "projectedTurnout": {
+      "baseline": 0.52,
+      "withMobilization": 0.55,
+      "lift": 0.03
+    },
+    "contactStrategy": "Full contact program: doors, phones, digital, mail"
+  },
+  "31": {
+    "districtNumber": 31,
+    "universe": {
+      "totalTargets": 9962,
+      "lowPropensityDems": 4572,
+      "persuadables": 2144,
+      "registrationTargets": 3246
+    },
+    "projectedTurnout": {
+      "baseline": 0.52,
+      "withMobilization": 0.54,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "32": {
+    "districtNumber": 32,
+    "universe": {
+      "totalTargets": 3531,
+      "lowPropensityDems": 1736,
+      "persuadables": 1169,
+      "registrationTargets": 626
+    },
+    "projectedTurnout": {
+      "baseline": 0.55,
+      "withMobilization": 0.57,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "33": {
+    "districtNumber": 33,
+    "universe": {
+      "totalTargets": 9326,
+      "lowPropensityDems": 4993,
+      "persuadables": 1917,
+      "registrationTargets": 2416
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.55,
+      "lift": 0.01
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "34": {
+    "districtNumber": 34,
+    "universe": {
+      "totalTargets": 3149,
+      "lowPropensityDems": 585,
+      "persuadables": 873,
+      "registrationTargets": 1691
+    },
+    "projectedTurnout": {
+      "baseline": 0.47,
+      "withMobilization": 0.49,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "35": {
+    "districtNumber": 35,
+    "universe": {
+      "totalTargets": 6828,
+      "lowPropensityDems": 3466,
+      "persuadables": 1703,
+      "registrationTargets": 1659
+    },
+    "projectedTurnout": {
+      "baseline": 0.56,
+      "withMobilization": 0.6,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "36": {
+    "districtNumber": 36,
+    "universe": {
+      "totalTargets": 3470,
+      "lowPropensityDems": 1095,
+      "persuadables": 1659,
+      "registrationTargets": 716
+    },
+    "projectedTurnout": {
+      "baseline": 0.49,
+      "withMobilization": 0.52,
+      "lift": 0.03
+    },
+    "contactStrategy": "Full contact program: doors, phones, digital, mail"
+  },
+  "37": {
+    "districtNumber": 37,
+    "universe": {
+      "totalTargets": 8422,
+      "lowPropensityDems": 2324,
+      "persuadables": 3017,
+      "registrationTargets": 3081
+    },
+    "projectedTurnout": {
+      "baseline": 0.58,
+      "withMobilization": 0.61,
+      "lift": 0.04
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "38": {
+    "districtNumber": 38,
+    "universe": {
+      "totalTargets": 9851,
+      "lowPropensityDems": 1416,
+      "persuadables": 3788,
+      "registrationTargets": 4647
+    },
+    "projectedTurnout": {
+      "baseline": 0.55,
+      "withMobilization": 0.58,
+      "lift": 0.03
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "39": {
+    "districtNumber": 39,
+    "universe": {
+      "totalTargets": 8020,
+      "lowPropensityDems": 2949,
+      "persuadables": 2732,
+      "registrationTargets": 2339
+    },
+    "projectedTurnout": {
+      "baseline": 0.6,
+      "withMobilization": 0.67,
+      "lift": 0.07
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "40": {
+    "districtNumber": 40,
+    "universe": {
+      "totalTargets": 9498,
+      "lowPropensityDems": 3290,
+      "persuadables": 2996,
+      "registrationTargets": 3212
+    },
+    "projectedTurnout": {
+      "baseline": 0.48,
+      "withMobilization": 0.5,
+      "lift": 0.02
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "41": {
+    "districtNumber": 41,
+    "universe": {
+      "totalTargets": 4284,
+      "lowPropensityDems": 2017,
+      "persuadables": 1680,
+      "registrationTargets": 587
+    },
+    "projectedTurnout": {
+      "baseline": 0.59,
+      "withMobilization": 0.63,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "42": {
+    "districtNumber": 42,
+    "universe": {
+      "totalTargets": 8271,
+      "lowPropensityDems": 4083,
+      "persuadables": 2214,
+      "registrationTargets": 1974
+    },
+    "projectedTurnout": {
+      "baseline": 0.5,
+      "withMobilization": 0.51,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "43": {
+    "districtNumber": 43,
+    "universe": {
+      "totalTargets": 3123,
+      "lowPropensityDems": 789,
+      "persuadables": 1184,
+      "registrationTargets": 1150
+    },
+    "projectedTurnout": {
+      "baseline": 0.51,
+      "withMobilization": 0.52,
+      "lift": 0.01
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "44": {
+    "districtNumber": 44,
+    "universe": {
+      "totalTargets": 5350,
+      "lowPropensityDems": 2140,
+      "persuadables": 1983,
+      "registrationTargets": 1227
+    },
+    "projectedTurnout": {
+      "baseline": 0.51,
+      "withMobilization": 0.53,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "45": {
+    "districtNumber": 45,
+    "universe": {
+      "totalTargets": 2321,
+      "lowPropensityDems": 611,
+      "persuadables": 1009,
+      "registrationTargets": 701
+    },
+    "projectedTurnout": {
+      "baseline": 0.53,
+      "withMobilization": 0.54,
+      "lift": 0.01
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "46": {
+    "districtNumber": 46,
+    "universe": {
+      "totalTargets": 8311,
+      "lowPropensityDems": 3468,
+      "persuadables": 1766,
+      "registrationTargets": 3077
+    },
+    "projectedTurnout": {
+      "baseline": 0.53,
+      "withMobilization": 0.57,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "47": {
+    "districtNumber": 47,
+    "universe": {
+      "totalTargets": 3115,
+      "lowPropensityDems": 695,
+      "persuadables": 847,
+      "registrationTargets": 1573
+    },
+    "projectedTurnout": {
+      "baseline": 0.56,
+      "withMobilization": 0.6,
+      "lift": 0.04
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "48": {
+    "districtNumber": 48,
+    "universe": {
+      "totalTargets": 6336,
+      "lowPropensityDems": 2452,
+      "persuadables": 1561,
+      "registrationTargets": 2323
+    },
+    "projectedTurnout": {
+      "baseline": 0.55,
+      "withMobilization": 0.56,
+      "lift": 0.01
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "49": {
+    "districtNumber": 49,
+    "universe": {
+      "totalTargets": 9451,
+      "lowPropensityDems": 2760,
+      "persuadables": 4393,
+      "registrationTargets": 2298
+    },
+    "projectedTurnout": {
+      "baseline": 0.55,
+      "withMobilization": 0.58,
+      "lift": 0.03
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "50": {
+    "districtNumber": 50,
+    "universe": {
+      "totalTargets": 4774,
+      "lowPropensityDems": 1187,
+      "persuadables": 1910,
+      "registrationTargets": 1677
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.56,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "51": {
+    "districtNumber": 51,
+    "universe": {
+      "totalTargets": 7576,
+      "lowPropensityDems": 2616,
+      "persuadables": 3049,
+      "registrationTargets": 1911
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.56,
+      "lift": 0.03
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "52": {
+    "districtNumber": 52,
+    "universe": {
+      "totalTargets": 4289,
+      "lowPropensityDems": 1469,
+      "persuadables": 1678,
+      "registrationTargets": 1142
+    },
+    "projectedTurnout": {
+      "baseline": 0.46,
+      "withMobilization": 0.51,
+      "lift": 0.05
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "53": {
+    "districtNumber": 53,
+    "universe": {
+      "totalTargets": 7306,
+      "lowPropensityDems": 3381,
+      "persuadables": 2774,
+      "registrationTargets": 1151
+    },
+    "projectedTurnout": {
+      "baseline": 0.55,
+      "withMobilization": 0.58,
+      "lift": 0.02
+    },
+    "contactStrategy": "Full contact program: doors, phones, digital, mail"
+  },
+  "54": {
+    "districtNumber": 54,
+    "universe": {
+      "totalTargets": 3491,
+      "lowPropensityDems": 1351,
+      "persuadables": 1459,
+      "registrationTargets": 681
+    },
+    "projectedTurnout": {
+      "baseline": 0.48,
+      "withMobilization": 0.53,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "55": {
+    "districtNumber": 55,
+    "universe": {
+      "totalTargets": 7040,
+      "lowPropensityDems": 3466,
+      "persuadables": 2043,
+      "registrationTargets": 1531
+    },
+    "projectedTurnout": {
+      "baseline": 0.57,
+      "withMobilization": 0.63,
+      "lift": 0.06
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "56": {
+    "districtNumber": 56,
+    "universe": {
+      "totalTargets": 3539,
+      "lowPropensityDems": 1391,
+      "persuadables": 1013,
+      "registrationTargets": 1135
+    },
+    "projectedTurnout": {
+      "baseline": 0.5,
+      "withMobilization": 0.54,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "57": {
+    "districtNumber": 57,
+    "universe": {
+      "totalTargets": 6780,
+      "lowPropensityDems": 4102,
+      "persuadables": 1822,
+      "registrationTargets": 856
+    },
+    "projectedTurnout": {
+      "baseline": 0.59,
+      "withMobilization": 0.62,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "58": {
+    "districtNumber": 58,
+    "universe": {
+      "totalTargets": 7700,
+      "lowPropensityDems": 2911,
+      "persuadables": 2584,
+      "registrationTargets": 2205
+    },
+    "projectedTurnout": {
+      "baseline": 0.39,
+      "withMobilization": 0.42,
+      "lift": 0.03
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "59": {
+    "districtNumber": 59,
+    "universe": {
+      "totalTargets": 6513,
+      "lowPropensityDems": 2353,
+      "persuadables": 1613,
+      "registrationTargets": 2547
+    },
+    "projectedTurnout": {
+      "baseline": 0.61,
+      "withMobilization": 0.63,
+      "lift": 0.02
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "60": {
+    "districtNumber": 60,
+    "universe": {
+      "totalTargets": 7072,
+      "lowPropensityDems": 1796,
+      "persuadables": 3436,
+      "registrationTargets": 1840
+    },
+    "projectedTurnout": {
+      "baseline": 0.49,
+      "withMobilization": 0.53,
+      "lift": 0.03
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "61": {
+    "districtNumber": 61,
+    "universe": {
+      "totalTargets": 5360,
+      "lowPropensityDems": 1240,
+      "persuadables": 1905,
+      "registrationTargets": 2215
+    },
+    "projectedTurnout": {
+      "baseline": 0.5,
+      "withMobilization": 0.52,
+      "lift": 0.02
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "62": {
+    "districtNumber": 62,
+    "universe": {
+      "totalTargets": 8674,
+      "lowPropensityDems": 3348,
+      "persuadables": 3096,
+      "registrationTargets": 2230
+    },
+    "projectedTurnout": {
+      "baseline": 0.51,
+      "withMobilization": 0.55,
+      "lift": 0.04
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "63": {
+    "districtNumber": 63,
+    "universe": {
+      "totalTargets": 5144,
+      "lowPropensityDems": 1832,
+      "persuadables": 1669,
+      "registrationTargets": 1643
+    },
+    "projectedTurnout": {
+      "baseline": 0.52,
+      "withMobilization": 0.54,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "64": {
+    "districtNumber": 64,
+    "universe": {
+      "totalTargets": 8381,
+      "lowPropensityDems": 4096,
+      "persuadables": 2817,
+      "registrationTargets": 1468
+    },
+    "projectedTurnout": {
+      "baseline": 0.53,
+      "withMobilization": 0.56,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "65": {
+    "districtNumber": 65,
+    "universe": {
+      "totalTargets": 3751,
+      "lowPropensityDems": 1160,
+      "persuadables": 1446,
+      "registrationTargets": 1145
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.56,
+      "lift": 0.02
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "66": {
+    "districtNumber": 66,
+    "universe": {
+      "totalTargets": 10132,
+      "lowPropensityDems": 4274,
+      "persuadables": 2551,
+      "registrationTargets": 3307
+    },
+    "projectedTurnout": {
+      "baseline": 0.45,
+      "withMobilization": 0.48,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "67": {
+    "districtNumber": 67,
+    "universe": {
+      "totalTargets": 3710,
+      "lowPropensityDems": 1813,
+      "persuadables": 1177,
+      "registrationTargets": 720
+    },
+    "projectedTurnout": {
+      "baseline": 0.57,
+      "withMobilization": 0.59,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "68": {
+    "districtNumber": 68,
+    "universe": {
+      "totalTargets": 6201,
+      "lowPropensityDems": 3192,
+      "persuadables": 1871,
+      "registrationTargets": 1138
+    },
+    "projectedTurnout": {
+      "baseline": 0.45,
+      "withMobilization": 0.48,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "69": {
+    "districtNumber": 69,
+    "universe": {
+      "totalTargets": 8231,
+      "lowPropensityDems": 2145,
+      "persuadables": 2685,
+      "registrationTargets": 3401
+    },
+    "projectedTurnout": {
+      "baseline": 0.57,
+      "withMobilization": 0.59,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "70": {
+    "districtNumber": 70,
+    "universe": {
+      "totalTargets": 5904,
+      "lowPropensityDems": 2754,
+      "persuadables": 906,
+      "registrationTargets": 2244
+    },
+    "projectedTurnout": {
+      "baseline": 0.45,
+      "withMobilization": 0.47,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "71": {
+    "districtNumber": 71,
+    "universe": {
+      "totalTargets": 7320,
+      "lowPropensityDems": 3522,
+      "persuadables": 1625,
+      "registrationTargets": 2173
+    },
+    "projectedTurnout": {
+      "baseline": 0.55,
+      "withMobilization": 0.59,
+      "lift": 0.04
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "72": {
+    "districtNumber": 72,
+    "universe": {
+      "totalTargets": 3721,
+      "lowPropensityDems": 1183,
+      "persuadables": 879,
+      "registrationTargets": 1659
+    },
+    "projectedTurnout": {
+      "baseline": 0.48,
+      "withMobilization": 0.5,
+      "lift": 0.02
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "73": {
+    "districtNumber": 73,
+    "universe": {
+      "totalTargets": 7404,
+      "lowPropensityDems": 2372,
+      "persuadables": 3633,
+      "registrationTargets": 1399
+    },
+    "projectedTurnout": {
+      "baseline": 0.57,
+      "withMobilization": 0.6,
+      "lift": 0.03
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "74": {
+    "districtNumber": 74,
+    "universe": {
+      "totalTargets": 3482,
+      "lowPropensityDems": 1220,
+      "persuadables": 1654,
+      "registrationTargets": 608
+    },
+    "projectedTurnout": {
+      "baseline": 0.5,
+      "withMobilization": 0.53,
+      "lift": 0.03
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "75": {
+    "districtNumber": 75,
+    "universe": {
+      "totalTargets": 8995,
+      "lowPropensityDems": 4376,
+      "persuadables": 2853,
+      "registrationTargets": 1766
+    },
+    "projectedTurnout": {
+      "baseline": 0.59,
+      "withMobilization": 0.6,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "76": {
+    "districtNumber": 76,
+    "universe": {
+      "totalTargets": 3755,
+      "lowPropensityDems": 773,
+      "persuadables": 1427,
+      "registrationTargets": 1555
+    },
+    "projectedTurnout": {
+      "baseline": 0.4,
+      "withMobilization": 0.43,
+      "lift": 0.03
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "77": {
+    "districtNumber": 77,
+    "universe": {
+      "totalTargets": 5458,
+      "lowPropensityDems": 1798,
+      "persuadables": 2584,
+      "registrationTargets": 1076
+    },
+    "projectedTurnout": {
+      "baseline": 0.5,
+      "withMobilization": 0.52,
+      "lift": 0.01
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "78": {
+    "districtNumber": 78,
+    "universe": {
+      "totalTargets": 10748,
+      "lowPropensityDems": 3721,
+      "persuadables": 3695,
+      "registrationTargets": 3332
+    },
+    "projectedTurnout": {
+      "baseline": 0.4,
+      "withMobilization": 0.44,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "79": {
+    "districtNumber": 79,
+    "universe": {
+      "totalTargets": 9140,
+      "lowPropensityDems": 4057,
+      "persuadables": 2327,
+      "registrationTargets": 2756
+    },
+    "projectedTurnout": {
+      "baseline": 0.52,
+      "withMobilization": 0.54,
+      "lift": 0.01
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "80": {
+    "districtNumber": 80,
+    "universe": {
+      "totalTargets": 8553,
+      "lowPropensityDems": 3292,
+      "persuadables": 1924,
+      "registrationTargets": 3337
+    },
+    "projectedTurnout": {
+      "baseline": 0.51,
+      "withMobilization": 0.53,
+      "lift": 0.02
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "81": {
+    "districtNumber": 81,
+    "universe": {
+      "totalTargets": 3740,
+      "lowPropensityDems": 1629,
+      "persuadables": 1068,
+      "registrationTargets": 1043
+    },
+    "projectedTurnout": {
+      "baseline": 0.52,
+      "withMobilization": 0.55,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "82": {
+    "districtNumber": 82,
+    "universe": {
+      "totalTargets": 6775,
+      "lowPropensityDems": 2579,
+      "persuadables": 1709,
+      "registrationTargets": 2487
+    },
+    "projectedTurnout": {
+      "baseline": 0.52,
+      "withMobilization": 0.55,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "83": {
+    "districtNumber": 83,
+    "universe": {
+      "totalTargets": 2585,
+      "lowPropensityDems": 1100,
+      "persuadables": 908,
+      "registrationTargets": 577
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.55,
+      "lift": 0.01
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "84": {
+    "districtNumber": 84,
+    "universe": {
+      "totalTargets": 7743,
+      "lowPropensityDems": 4527,
+      "persuadables": 1506,
+      "registrationTargets": 1710
+    },
+    "projectedTurnout": {
+      "baseline": 0.63,
+      "withMobilization": 0.65,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "85": {
+    "districtNumber": 85,
+    "universe": {
+      "totalTargets": 3841,
+      "lowPropensityDems": 1491,
+      "persuadables": 760,
+      "registrationTargets": 1590
+    },
+    "projectedTurnout": {
+      "baseline": 0.55,
+      "withMobilization": 0.59,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "86": {
+    "districtNumber": 86,
+    "universe": {
+      "totalTargets": 10188,
+      "lowPropensityDems": 4121,
+      "persuadables": 2883,
+      "registrationTargets": 3184
+    },
+    "projectedTurnout": {
+      "baseline": 0.64,
+      "withMobilization": 0.66,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "87": {
+    "districtNumber": 87,
+    "universe": {
+      "totalTargets": 3174,
+      "lowPropensityDems": 1114,
+      "persuadables": 1401,
+      "registrationTargets": 659
+    },
+    "projectedTurnout": {
+      "baseline": 0.58,
+      "withMobilization": 0.61,
+      "lift": 0.03
+    },
+    "contactStrategy": "Full contact program: doors, phones, digital, mail"
+  },
+  "88": {
+    "districtNumber": 88,
+    "universe": {
+      "totalTargets": 8991,
+      "lowPropensityDems": 3960,
+      "persuadables": 2609,
+      "registrationTargets": 2422
+    },
+    "projectedTurnout": {
+      "baseline": 0.56,
+      "withMobilization": 0.58,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "89": {
+    "districtNumber": 89,
+    "universe": {
+      "totalTargets": 12253,
+      "lowPropensityDems": 3976,
+      "persuadables": 3772,
+      "registrationTargets": 4505
+    },
+    "projectedTurnout": {
+      "baseline": 0.58,
+      "withMobilization": 0.61,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "90": {
+    "districtNumber": 90,
+    "universe": {
+      "totalTargets": 3667,
+      "lowPropensityDems": 1055,
+      "persuadables": 1594,
+      "registrationTargets": 1018
+    },
+    "projectedTurnout": {
+      "baseline": 0.46,
+      "withMobilization": 0.48,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "91": {
+    "districtNumber": 91,
+    "universe": {
+      "totalTargets": 9431,
+      "lowPropensityDems": 4463,
+      "persuadables": 2531,
+      "registrationTargets": 2437
+    },
+    "projectedTurnout": {
+      "baseline": 0.56,
+      "withMobilization": 0.6,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "92": {
+    "districtNumber": 92,
+    "universe": {
+      "totalTargets": 4731,
+      "lowPropensityDems": 2057,
+      "persuadables": 1094,
+      "registrationTargets": 1580
+    },
+    "projectedTurnout": {
+      "baseline": 0.57,
+      "withMobilization": 0.61,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "93": {
+    "districtNumber": 93,
+    "universe": {
+      "totalTargets": 6293,
+      "lowPropensityDems": 3244,
+      "persuadables": 1786,
+      "registrationTargets": 1263
+    },
+    "projectedTurnout": {
+      "baseline": 0.58,
+      "withMobilization": 0.61,
+      "lift": 0.02
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "94": {
+    "districtNumber": 94,
+    "universe": {
+      "totalTargets": 4055,
+      "lowPropensityDems": 2048,
+      "persuadables": 930,
+      "registrationTargets": 1077
+    },
+    "projectedTurnout": {
+      "baseline": 0.59,
+      "withMobilization": 0.63,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "95": {
+    "districtNumber": 95,
+    "universe": {
+      "totalTargets": 9502,
+      "lowPropensityDems": 4746,
+      "persuadables": 1579,
+      "registrationTargets": 3177
+    },
+    "projectedTurnout": {
+      "baseline": 0.5,
+      "withMobilization": 0.52,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "96": {
+    "districtNumber": 96,
+    "universe": {
+      "totalTargets": 2498,
+      "lowPropensityDems": 1073,
+      "persuadables": 778,
+      "registrationTargets": 647
+    },
+    "projectedTurnout": {
+      "baseline": 0.61,
+      "withMobilization": 0.64,
+      "lift": 0.03
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "97": {
+    "districtNumber": 97,
+    "universe": {
+      "totalTargets": 5783,
+      "lowPropensityDems": 1995,
+      "persuadables": 1385,
+      "registrationTargets": 2403
+    },
+    "projectedTurnout": {
+      "baseline": 0.52,
+      "withMobilization": 0.54,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "98": {
+    "districtNumber": 98,
+    "universe": {
+      "totalTargets": 10980,
+      "lowPropensityDems": 4573,
+      "persuadables": 1947,
+      "registrationTargets": 4460
+    },
+    "projectedTurnout": {
+      "baseline": 0.62,
+      "withMobilization": 0.65,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "99": {
+    "districtNumber": 99,
+    "universe": {
+      "totalTargets": 7464,
+      "lowPropensityDems": 3454,
+      "persuadables": 2628,
+      "registrationTargets": 1382
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.56,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "100": {
+    "districtNumber": 100,
+    "universe": {
+      "totalTargets": 3334,
+      "lowPropensityDems": 1216,
+      "persuadables": 783,
+      "registrationTargets": 1335
+    },
+    "projectedTurnout": {
+      "baseline": 0.48,
+      "withMobilization": 0.5,
+      "lift": 0.01
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "101": {
+    "districtNumber": 101,
+    "universe": {
+      "totalTargets": 3926,
+      "lowPropensityDems": 1349,
+      "persuadables": 1519,
+      "registrationTargets": 1058
+    },
+    "projectedTurnout": {
+      "baseline": 0.39,
+      "withMobilization": 0.43,
+      "lift": 0.04
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "102": {
+    "districtNumber": 102,
+    "universe": {
+      "totalTargets": 11331,
+      "lowPropensityDems": 4508,
+      "persuadables": 2301,
+      "registrationTargets": 4522
+    },
+    "projectedTurnout": {
+      "baseline": 0.49,
+      "withMobilization": 0.5,
+      "lift": 0.01
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "103": {
+    "districtNumber": 103,
+    "universe": {
+      "totalTargets": 5682,
+      "lowPropensityDems": 2643,
+      "persuadables": 1513,
+      "registrationTargets": 1526
+    },
+    "projectedTurnout": {
+      "baseline": 0.41,
+      "withMobilization": 0.45,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "104": {
+    "districtNumber": 104,
+    "universe": {
+      "totalTargets": 8971,
+      "lowPropensityDems": 4873,
+      "persuadables": 2338,
+      "registrationTargets": 1760
+    },
+    "projectedTurnout": {
+      "baseline": 0.51,
+      "withMobilization": 0.52,
+      "lift": 0.01
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "105": {
+    "districtNumber": 105,
+    "universe": {
+      "totalTargets": 4773,
+      "lowPropensityDems": 1359,
+      "persuadables": 1494,
+      "registrationTargets": 1920
+    },
+    "projectedTurnout": {
+      "baseline": 0.43,
+      "withMobilization": 0.47,
+      "lift": 0.04
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "106": {
+    "districtNumber": 106,
+    "universe": {
+      "totalTargets": 9434,
+      "lowPropensityDems": 4626,
+      "persuadables": 2362,
+      "registrationTargets": 2446
+    },
+    "projectedTurnout": {
+      "baseline": 0.53,
+      "withMobilization": 0.55,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "107": {
+    "districtNumber": 107,
+    "universe": {
+      "totalTargets": 5809,
+      "lowPropensityDems": 2106,
+      "persuadables": 1463,
+      "registrationTargets": 2240
+    },
+    "projectedTurnout": {
+      "baseline": 0.53,
+      "withMobilization": 0.54,
+      "lift": 0.01
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "108": {
+    "districtNumber": 108,
+    "universe": {
+      "totalTargets": 7481,
+      "lowPropensityDems": 2049,
+      "persuadables": 2373,
+      "registrationTargets": 3059
+    },
+    "projectedTurnout": {
+      "baseline": 0.45,
+      "withMobilization": 0.47,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "109": {
+    "districtNumber": 109,
+    "universe": {
+      "totalTargets": 3318,
+      "lowPropensityDems": 1195,
+      "persuadables": 1418,
+      "registrationTargets": 705
+    },
+    "projectedTurnout": {
+      "baseline": 0.56,
+      "withMobilization": 0.57,
+      "lift": 0.01
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "110": {
+    "districtNumber": 110,
+    "universe": {
+      "totalTargets": 5421,
+      "lowPropensityDems": 1335,
+      "persuadables": 2893,
+      "registrationTargets": 1193
+    },
+    "projectedTurnout": {
+      "baseline": 0.53,
+      "withMobilization": 0.56,
+      "lift": 0.03
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "111": {
+    "districtNumber": 111,
+    "universe": {
+      "totalTargets": 4177,
+      "lowPropensityDems": 1159,
+      "persuadables": 1427,
+      "registrationTargets": 1591
+    },
+    "projectedTurnout": {
+      "baseline": 0.42,
+      "withMobilization": 0.46,
+      "lift": 0.04
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "112": {
+    "districtNumber": 112,
+    "universe": {
+      "totalTargets": 6236,
+      "lowPropensityDems": 1754,
+      "persuadables": 2808,
+      "registrationTargets": 1674
+    },
+    "projectedTurnout": {
+      "baseline": 0.45,
+      "withMobilization": 0.48,
+      "lift": 0.03
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "113": {
+    "districtNumber": 113,
+    "universe": {
+      "totalTargets": 11617,
+      "lowPropensityDems": 5442,
+      "persuadables": 4234,
+      "registrationTargets": 1941
+    },
+    "projectedTurnout": {
+      "baseline": 0.47,
+      "withMobilization": 0.51,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "114": {
+    "districtNumber": 114,
+    "universe": {
+      "totalTargets": 5105,
+      "lowPropensityDems": 1370,
+      "persuadables": 2709,
+      "registrationTargets": 1026
+    },
+    "projectedTurnout": {
+      "baseline": 0.47,
+      "withMobilization": 0.48,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "115": {
+    "districtNumber": 115,
+    "universe": {
+      "totalTargets": 9283,
+      "lowPropensityDems": 2464,
+      "persuadables": 4179,
+      "registrationTargets": 2640
+    },
+    "projectedTurnout": {
+      "baseline": 0.57,
+      "withMobilization": 0.58,
+      "lift": 0.01
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "116": {
+    "districtNumber": 116,
+    "universe": {
+      "totalTargets": 6129,
+      "lowPropensityDems": 2097,
+      "persuadables": 2598,
+      "registrationTargets": 1434
+    },
+    "projectedTurnout": {
+      "baseline": 0.48,
+      "withMobilization": 0.5,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "117": {
+    "districtNumber": 117,
+    "universe": {
+      "totalTargets": 11986,
+      "lowPropensityDems": 4611,
+      "persuadables": 4110,
+      "registrationTargets": 3265
+    },
+    "projectedTurnout": {
+      "baseline": 0.59,
+      "withMobilization": 0.6,
+      "lift": 0.01
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "118": {
+    "districtNumber": 118,
+    "universe": {
+      "totalTargets": 5366,
+      "lowPropensityDems": 1123,
+      "persuadables": 2475,
+      "registrationTargets": 1768
+    },
+    "projectedTurnout": {
+      "baseline": 0.5,
+      "withMobilization": 0.52,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "119": {
+    "districtNumber": 119,
+    "universe": {
+      "totalTargets": 8280,
+      "lowPropensityDems": 2551,
+      "persuadables": 2719,
+      "registrationTargets": 3010
+    },
+    "projectedTurnout": {
+      "baseline": 0.5,
+      "withMobilization": 0.52,
+      "lift": 0.01
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "120": {
+    "districtNumber": 120,
+    "universe": {
+      "totalTargets": 4090,
+      "lowPropensityDems": 2486,
+      "persuadables": 1137,
+      "registrationTargets": 467
+    },
+    "projectedTurnout": {
+      "baseline": 0.5,
+      "withMobilization": 0.53,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "121": {
+    "districtNumber": 121,
+    "universe": {
+      "totalTargets": 8125,
+      "lowPropensityDems": 3496,
+      "persuadables": 2264,
+      "registrationTargets": 2365
+    },
+    "projectedTurnout": {
+      "baseline": 0.4,
+      "withMobilization": 0.44,
+      "lift": 0.03
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "122": {
+    "districtNumber": 122,
+    "universe": {
+      "totalTargets": 8993,
+      "lowPropensityDems": 3470,
+      "persuadables": 3394,
+      "registrationTargets": 2129
+    },
+    "projectedTurnout": {
+      "baseline": 0.5,
+      "withMobilization": 0.54,
+      "lift": 0.03
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "123": {
+    "districtNumber": 123,
+    "universe": {
+      "totalTargets": 7264,
+      "lowPropensityDems": 2304,
+      "persuadables": 2210,
+      "registrationTargets": 2750
+    },
+    "projectedTurnout": {
+      "baseline": 0.51,
+      "withMobilization": 0.54,
+      "lift": 0.03
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "124": {
+    "districtNumber": 124,
+    "universe": {
+      "totalTargets": 11895,
+      "lowPropensityDems": 5672,
+      "persuadables": 3383,
+      "registrationTargets": 2840
+    },
+    "projectedTurnout": {
+      "baseline": 0.52,
+      "withMobilization": 0.56,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "125": {
+    "districtNumber": 125,
+    "universe": {
+      "totalTargets": 6531,
+      "lowPropensityDems": 3962,
+      "persuadables": 1224,
+      "registrationTargets": 1345
+    },
+    "projectedTurnout": {
+      "baseline": 0.52,
+      "withMobilization": 0.55,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "126": {
+    "districtNumber": 126,
+    "universe": {
+      "totalTargets": 6964,
+      "lowPropensityDems": 2410,
+      "persuadables": 1946,
+      "registrationTargets": 2608
+    },
+    "projectedTurnout": {
+      "baseline": 0.44,
+      "withMobilization": 0.47,
+      "lift": 0.03
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "127": {
+    "districtNumber": 127,
+    "universe": {
+      "totalTargets": 6341,
+      "lowPropensityDems": 3421,
+      "persuadables": 1212,
+      "registrationTargets": 1708
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.57,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "128": {
+    "districtNumber": 128,
+    "universe": {
+      "totalTargets": 9343,
+      "lowPropensityDems": 4152,
+      "persuadables": 1977,
+      "registrationTargets": 3214
+    },
+    "projectedTurnout": {
+      "baseline": 0.46,
+      "withMobilization": 0.49,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "129": {
+    "districtNumber": 129,
+    "universe": {
+      "totalTargets": 7097,
+      "lowPropensityDems": 3910,
+      "persuadables": 1189,
+      "registrationTargets": 1998
+    },
+    "projectedTurnout": {
+      "baseline": 0.57,
+      "withMobilization": 0.6,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "130": {
+    "districtNumber": 130,
+    "universe": {
+      "totalTargets": 9022,
+      "lowPropensityDems": 4799,
+      "persuadables": 1679,
+      "registrationTargets": 2544
+    },
+    "projectedTurnout": {
+      "baseline": 0.44,
+      "withMobilization": 0.46,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "131": {
+    "districtNumber": 131,
+    "universe": {
+      "totalTargets": 3181,
+      "lowPropensityDems": 1457,
+      "persuadables": 1273,
+      "registrationTargets": 451
+    },
+    "projectedTurnout": {
+      "baseline": 0.51,
+      "withMobilization": 0.54,
+      "lift": 0.02
+    },
+    "contactStrategy": "Full contact program: doors, phones, digital, mail"
+  },
+  "132": {
+    "districtNumber": 132,
+    "universe": {
+      "totalTargets": 7441,
+      "lowPropensityDems": 2621,
+      "persuadables": 2508,
+      "registrationTargets": 2312
+    },
+    "projectedTurnout": {
+      "baseline": 0.46,
+      "withMobilization": 0.49,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "133": {
+    "districtNumber": 133,
+    "universe": {
+      "totalTargets": 10937,
+      "lowPropensityDems": 5034,
+      "persuadables": 3789,
+      "registrationTargets": 2114
+    },
+    "projectedTurnout": {
+      "baseline": 0.56,
+      "withMobilization": 0.59,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "134": {
+    "districtNumber": 134,
+    "universe": {
+      "totalTargets": 9882,
+      "lowPropensityDems": 4776,
+      "persuadables": 2430,
+      "registrationTargets": 2676
+    },
+    "projectedTurnout": {
+      "baseline": 0.48,
+      "withMobilization": 0.51,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "135": {
+    "districtNumber": 135,
+    "universe": {
+      "totalTargets": 10674,
+      "lowPropensityDems": 4115,
+      "persuadables": 3753,
+      "registrationTargets": 2806
+    },
+    "projectedTurnout": {
+      "baseline": 0.58,
+      "withMobilization": 0.61,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "136": {
+    "districtNumber": 136,
+    "universe": {
+      "totalTargets": 5652,
+      "lowPropensityDems": 2363,
+      "persuadables": 2339,
+      "registrationTargets": 950
+    },
+    "projectedTurnout": {
+      "baseline": 0.5,
+      "withMobilization": 0.53,
+      "lift": 0.03
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "137": {
+    "districtNumber": 137,
+    "universe": {
+      "totalTargets": 10813,
+      "lowPropensityDems": 3684,
+      "persuadables": 3705,
+      "registrationTargets": 3424
+    },
+    "projectedTurnout": {
+      "baseline": 0.5,
+      "withMobilization": 0.53,
+      "lift": 0.03
+    },
+    "contactStrategy": "Full contact program: doors, phones, digital, mail"
+  },
+  "138": {
+    "districtNumber": 138,
+    "universe": {
+      "totalTargets": 7239,
+      "lowPropensityDems": 3681,
+      "persuadables": 2236,
+      "registrationTargets": 1322
+    },
+    "projectedTurnout": {
+      "baseline": 0.52,
+      "withMobilization": 0.55,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "139": {
+    "districtNumber": 139,
+    "universe": {
+      "totalTargets": 10169,
+      "lowPropensityDems": 2556,
+      "persuadables": 3645,
+      "registrationTargets": 3968
+    },
+    "projectedTurnout": {
+      "baseline": 0.52,
+      "withMobilization": 0.55,
+      "lift": 0.03
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "140": {
+    "districtNumber": 140,
+    "universe": {
+      "totalTargets": 2719,
+      "lowPropensityDems": 1171,
+      "persuadables": 1016,
+      "registrationTargets": 532
+    },
+    "projectedTurnout": {
+      "baseline": 0.51,
+      "withMobilization": 0.53,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "141": {
+    "districtNumber": 141,
+    "universe": {
+      "totalTargets": 8735,
+      "lowPropensityDems": 4294,
+      "persuadables": 1953,
+      "registrationTargets": 2488
+    },
+    "projectedTurnout": {
+      "baseline": 0.5,
+      "withMobilization": 0.52,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "142": {
+    "districtNumber": 142,
+    "universe": {
+      "totalTargets": 10925,
+      "lowPropensityDems": 5682,
+      "persuadables": 2937,
+      "registrationTargets": 2306
+    },
+    "projectedTurnout": {
+      "baseline": 0.52,
+      "withMobilization": 0.54,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "143": {
+    "districtNumber": 143,
+    "universe": {
+      "totalTargets": 8752,
+      "lowPropensityDems": 3967,
+      "persuadables": 1920,
+      "registrationTargets": 2865
+    },
+    "projectedTurnout": {
+      "baseline": 0.52,
+      "withMobilization": 0.54,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "144": {
+    "districtNumber": 144,
+    "universe": {
+      "totalTargets": 12225,
+      "lowPropensityDems": 6295,
+      "persuadables": 2920,
+      "registrationTargets": 3010
+    },
+    "projectedTurnout": {
+      "baseline": 0.44,
+      "withMobilization": 0.46,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "145": {
+    "districtNumber": 145,
+    "universe": {
+      "totalTargets": 6003,
+      "lowPropensityDems": 3057,
+      "persuadables": 1873,
+      "registrationTargets": 1073
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.56,
+      "lift": 0.02
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "146": {
+    "districtNumber": 146,
+    "universe": {
+      "totalTargets": 9790,
+      "lowPropensityDems": 3206,
+      "persuadables": 2943,
+      "registrationTargets": 3641
+    },
+    "projectedTurnout": {
+      "baseline": 0.46,
+      "withMobilization": 0.47,
+      "lift": 0.02
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "147": {
+    "districtNumber": 147,
+    "universe": {
+      "totalTargets": 7289,
+      "lowPropensityDems": 4018,
+      "persuadables": 1814,
+      "registrationTargets": 1457
+    },
+    "projectedTurnout": {
+      "baseline": 0.56,
+      "withMobilization": 0.58,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "148": {
+    "districtNumber": 148,
+    "universe": {
+      "totalTargets": 8070,
+      "lowPropensityDems": 4010,
+      "persuadables": 2927,
+      "registrationTargets": 1133
+    },
+    "projectedTurnout": {
+      "baseline": 0.47,
+      "withMobilization": 0.49,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "149": {
+    "districtNumber": 149,
+    "universe": {
+      "totalTargets": 7028,
+      "lowPropensityDems": 3518,
+      "persuadables": 1743,
+      "registrationTargets": 1767
+    },
+    "projectedTurnout": {
+      "baseline": 0.57,
+      "withMobilization": 0.6,
+      "lift": 0.02
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "150": {
+    "districtNumber": 150,
+    "universe": {
+      "totalTargets": 7883,
+      "lowPropensityDems": 3856,
+      "persuadables": 1357,
+      "registrationTargets": 2670
+    },
+    "projectedTurnout": {
+      "baseline": 0.46,
+      "withMobilization": 0.49,
+      "lift": 0.03
+    },
+    "contactStrategy": "Full contact program: doors, phones, digital, mail"
+  },
+  "151": {
+    "districtNumber": 151,
+    "universe": {
+      "totalTargets": 3265,
+      "lowPropensityDems": 1743,
+      "persuadables": 684,
+      "registrationTargets": 838
+    },
+    "projectedTurnout": {
+      "baseline": 0.53,
+      "withMobilization": 0.56,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "152": {
+    "districtNumber": 152,
+    "universe": {
+      "totalTargets": 7059,
+      "lowPropensityDems": 2631,
+      "persuadables": 1368,
+      "registrationTargets": 3060
+    },
+    "projectedTurnout": {
+      "baseline": 0.48,
+      "withMobilization": 0.51,
+      "lift": 0.04
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "153": {
+    "districtNumber": 153,
+    "universe": {
+      "totalTargets": 9350,
+      "lowPropensityDems": 4031,
+      "persuadables": 2098,
+      "registrationTargets": 3221
+    },
+    "projectedTurnout": {
+      "baseline": 0.48,
+      "withMobilization": 0.51,
+      "lift": 0.04
+    },
+    "contactStrategy": "Full contact program: doors, phones, digital, mail"
+  },
+  "154": {
+    "districtNumber": 154,
+    "universe": {
+      "totalTargets": 5587,
+      "lowPropensityDems": 3020,
+      "persuadables": 1366,
+      "registrationTargets": 1201
+    },
+    "projectedTurnout": {
+      "baseline": 0.49,
+      "withMobilization": 0.53,
+      "lift": 0.04
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "155": {
+    "districtNumber": 155,
+    "universe": {
+      "totalTargets": 9765,
+      "lowPropensityDems": 3763,
+      "persuadables": 2138,
+      "registrationTargets": 3864
+    },
+    "projectedTurnout": {
+      "baseline": 0.49,
+      "withMobilization": 0.53,
+      "lift": 0.04
+    },
+    "contactStrategy": "Full contact program: doors, phones, digital, mail"
+  },
+  "156": {
+    "districtNumber": 156,
+    "universe": {
+      "totalTargets": 5984,
+      "lowPropensityDems": 3035,
+      "persuadables": 1351,
+      "registrationTargets": 1598
+    },
+    "projectedTurnout": {
+      "baseline": 0.51,
+      "withMobilization": 0.55,
+      "lift": 0.04
+    },
+    "contactStrategy": "Full contact program: doors, phones, digital, mail"
+  },
+  "157": {
+    "districtNumber": 157,
+    "universe": {
+      "totalTargets": 9675,
+      "lowPropensityDems": 2792,
+      "persuadables": 3300,
+      "registrationTargets": 3583
+    },
+    "projectedTurnout": {
+      "baseline": 0.51,
+      "withMobilization": 0.53,
+      "lift": 0.01
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "158": {
+    "districtNumber": 158,
+    "universe": {
+      "totalTargets": 5434,
+      "lowPropensityDems": 2021,
+      "persuadables": 1996,
+      "registrationTargets": 1417
+    },
+    "projectedTurnout": {
+      "baseline": 0.61,
+      "withMobilization": 0.63,
+      "lift": 0.01
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "159": {
+    "districtNumber": 159,
+    "universe": {
+      "totalTargets": 7670,
+      "lowPropensityDems": 3279,
+      "persuadables": 3259,
+      "registrationTargets": 1132
+    },
+    "projectedTurnout": {
+      "baseline": 0.53,
+      "withMobilization": 0.55,
+      "lift": 0.01
+    },
+    "contactStrategy": "Full contact program: doors, phones, digital, mail"
+  },
+  "160": {
+    "districtNumber": 160,
+    "universe": {
+      "totalTargets": 4197,
+      "lowPropensityDems": 1837,
+      "persuadables": 1415,
+      "registrationTargets": 945
+    },
+    "projectedTurnout": {
+      "baseline": 0.43,
+      "withMobilization": 0.46,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "161": {
+    "districtNumber": 161,
+    "universe": {
+      "totalTargets": 8620,
+      "lowPropensityDems": 5067,
+      "persuadables": 2700,
+      "registrationTargets": 853
+    },
+    "projectedTurnout": {
+      "baseline": 0.51,
+      "withMobilization": 0.55,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "162": {
+    "districtNumber": 162,
+    "universe": {
+      "totalTargets": 8345,
+      "lowPropensityDems": 3382,
+      "persuadables": 2480,
+      "registrationTargets": 2483
+    },
+    "projectedTurnout": {
+      "baseline": 0.43,
+      "withMobilization": 0.46,
+      "lift": 0.03
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "163": {
+    "districtNumber": 163,
+    "universe": {
+      "totalTargets": 7733,
+      "lowPropensityDems": 3124,
+      "persuadables": 1629,
+      "registrationTargets": 2980
+    },
+    "projectedTurnout": {
+      "baseline": 0.53,
+      "withMobilization": 0.56,
+      "lift": 0.03
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "164": {
+    "districtNumber": 164,
+    "universe": {
+      "totalTargets": 9200,
+      "lowPropensityDems": 3509,
+      "persuadables": 2510,
+      "registrationTargets": 3181
+    },
+    "projectedTurnout": {
+      "baseline": 0.45,
+      "withMobilization": 0.48,
+      "lift": 0.03
+    },
+    "contactStrategy": "Targeted contact: persuasion mail + digital"
+  },
+  "165": {
+    "districtNumber": 165,
+    "universe": {
+      "totalTargets": 8130,
+      "lowPropensityDems": 5549,
+      "persuadables": 1403,
+      "registrationTargets": 1178
+    },
+    "projectedTurnout": {
+      "baseline": 0.55,
+      "withMobilization": 0.59,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "166": {
+    "districtNumber": 166,
+    "universe": {
+      "totalTargets": 10296,
+      "lowPropensityDems": 3966,
+      "persuadables": 2526,
+      "registrationTargets": 3804
+    },
+    "projectedTurnout": {
+      "baseline": 0.47,
+      "withMobilization": 0.5,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "167": {
+    "districtNumber": 167,
+    "universe": {
+      "totalTargets": 4324,
+      "lowPropensityDems": 1401,
+      "persuadables": 1368,
+      "registrationTargets": 1555
+    },
+    "projectedTurnout": {
+      "baseline": 0.47,
+      "withMobilization": 0.51,
+      "lift": 0.04
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "168": {
+    "districtNumber": 168,
+    "universe": {
+      "totalTargets": 7949,
+      "lowPropensityDems": 4132,
+      "persuadables": 2530,
+      "registrationTargets": 1287
+    },
+    "projectedTurnout": {
+      "baseline": 0.57,
+      "withMobilization": 0.61,
+      "lift": 0.04
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "169": {
+    "districtNumber": 169,
+    "universe": {
+      "totalTargets": 5259,
+      "lowPropensityDems": 1887,
+      "persuadables": 1513,
+      "registrationTargets": 1859
+    },
+    "projectedTurnout": {
+      "baseline": 0.49,
+      "withMobilization": 0.52,
+      "lift": 0.04
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "170": {
+    "districtNumber": 170,
+    "universe": {
+      "totalTargets": 8760,
+      "lowPropensityDems": 2939,
+      "persuadables": 3024,
+      "registrationTargets": 2797
+    },
+    "projectedTurnout": {
+      "baseline": 0.47,
+      "withMobilization": 0.49,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "171": {
+    "districtNumber": 171,
+    "universe": {
+      "totalTargets": 3346,
+      "lowPropensityDems": 951,
+      "persuadables": 1495,
+      "registrationTargets": 900
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.57,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "172": {
+    "districtNumber": 172,
+    "universe": {
+      "totalTargets": 7174,
+      "lowPropensityDems": 3395,
+      "persuadables": 2931,
+      "registrationTargets": 848
+    },
+    "projectedTurnout": {
+      "baseline": 0.49,
+      "withMobilization": 0.51,
+      "lift": 0.03
+    },
+    "contactStrategy": "Full contact program: doors, phones, digital, mail"
+  },
+  "173": {
+    "districtNumber": 173,
+    "universe": {
+      "totalTargets": 10874,
+      "lowPropensityDems": 3066,
+      "persuadables": 4413,
+      "registrationTargets": 3395
+    },
+    "projectedTurnout": {
+      "baseline": 0.49,
+      "withMobilization": 0.52,
+      "lift": 0.03
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "174": {
+    "districtNumber": 174,
+    "universe": {
+      "totalTargets": 5341,
+      "lowPropensityDems": 1558,
+      "persuadables": 2472,
+      "registrationTargets": 1311
+    },
+    "projectedTurnout": {
+      "baseline": 0.41,
+      "withMobilization": 0.43,
+      "lift": 0.03
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "175": {
+    "districtNumber": 175,
+    "universe": {
+      "totalTargets": 12312,
+      "lowPropensityDems": 3930,
+      "persuadables": 4351,
+      "registrationTargets": 4031
+    },
+    "projectedTurnout": {
+      "baseline": 0.51,
+      "withMobilization": 0.57,
+      "lift": 0.06
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "176": {
+    "districtNumber": 176,
+    "universe": {
+      "totalTargets": 5143,
+      "lowPropensityDems": 2352,
+      "persuadables": 1090,
+      "registrationTargets": 1701
+    },
+    "projectedTurnout": {
+      "baseline": 0.61,
+      "withMobilization": 0.63,
+      "lift": 0.02
+    },
+    "contactStrategy": "Minimal contact: digital only"
+  },
+  "177": {
+    "districtNumber": 177,
+    "universe": {
+      "totalTargets": 7905,
+      "lowPropensityDems": 4698,
+      "persuadables": 1759,
+      "registrationTargets": 1448
+    },
+    "projectedTurnout": {
+      "baseline": 0.53,
+      "withMobilization": 0.55,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "178": {
+    "districtNumber": 178,
+    "universe": {
+      "totalTargets": 6151,
+      "lowPropensityDems": 3052,
+      "persuadables": 1083,
+      "registrationTargets": 2016
+    },
+    "projectedTurnout": {
+      "baseline": 0.53,
+      "withMobilization": 0.55,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "179": {
+    "districtNumber": 179,
+    "universe": {
+      "totalTargets": 7855,
+      "lowPropensityDems": 3969,
+      "persuadables": 1795,
+      "registrationTargets": 2091
+    },
+    "projectedTurnout": {
+      "baseline": 0.54,
+      "withMobilization": 0.57,
+      "lift": 0.03
+    },
+    "contactStrategy": "Base mobilization: GOTV focus on low-propensity Dems"
+  },
+  "180": {
+    "districtNumber": 180,
+    "universe": {
+      "totalTargets": 3740,
+      "lowPropensityDems": 1479,
+      "persuadables": 1250,
+      "registrationTargets": 1011
+    },
+    "projectedTurnout": {
+      "baseline": 0.44,
+      "withMobilization": 0.46,
+      "lift": 0.02
+    },
+    "contactStrategy": "Full contact program: doors, phones, digital, mail"
+  }
+}
