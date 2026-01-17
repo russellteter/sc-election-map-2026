@@ -1,12 +1,15 @@
 'use client';
 
-import type { DistrictOpportunity, DistrictElectionHistory } from '@/types/schema';
+import type { DistrictOpportunity, DistrictElectionHistory, Chamber } from '@/types/schema';
 import { Badge } from '@/components/ui';
 import Sparkline from '@/components/Charts/Sparkline';
+import { MobilizationCard } from '@/components/Intelligence';
 
 interface StrategicInsightsProps {
   opportunity: DistrictOpportunity | undefined;
   history: DistrictElectionHistory | undefined;
+  chamber?: Chamber;
+  districtNumber?: number;
 }
 
 // Tier colors for visual consistency
@@ -24,6 +27,8 @@ const TIER_COLORS = {
 export default function StrategicInsights({
   opportunity,
   history,
+  chamber,
+  districtNumber,
 }: StrategicInsightsProps) {
   if (!opportunity) {
     return (
@@ -230,6 +235,20 @@ export default function StrategicInsights({
             )}
         </div>
       </div>
+
+      {/* Voter Intelligence - Mobilization Card (Phase 2) */}
+      {chamber && districtNumber && (
+        <div
+          className="pt-4 border-t"
+          style={{ borderColor: 'var(--class-purple-light)' }}
+        >
+          <MobilizationCard
+            chamber={chamber}
+            districtNumber={districtNumber}
+            compact
+          />
+        </div>
+      )}
     </div>
   );
 }

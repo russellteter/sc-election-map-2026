@@ -1,0 +1,13 @@
+{
+  "house": {
+    "totalDistricts": 124,
+    "democraticSeats": 36,
+    "republicanSeats": 88
+  },
+  "senate": {
+    "totalDistricts": 46,
+    "democraticSeats": 13,
+    "republicanSeats": 33
+  },
+  "lastUpdated": "2026-01-12"
+}

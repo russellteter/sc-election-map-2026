@@ -20,8 +20,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "SC Election Map 2026",
-  description: "Interactive map of South Carolina 2026 election candidates by district",
+  title: "Blue Intelligence | National Election Platform",
+  description: "National Election Intelligence Platform - 50-state election intelligence demo showcasing voter intelligence, opportunity scoring, and mobilization tools for Democratic campaigns",
 };
 
 // Viewport configuration for mobile optimization
