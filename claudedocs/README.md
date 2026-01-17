@@ -1,100 +1,131 @@
-# SC Election Map 2026 - Documentation Index
+# Blue Intelligence - Claude Code Documentation
 
-## Quick Navigation
+> Quick navigation for Claude Code context loading
 
-| Document | Purpose |
-|----------|---------|
-| [Project Bible](./# SC Election Map 2026 - Project Bible.md) | Complete strategic context, mission, API specs |
-| [API Integration Plan](./API-INTEGRATION-PLAN.md) | 4-tier implementation roadmap |
-| [gsd/CONTEXT.md](./gsd/CONTEXT.md) | Condensed context for GSD plans |
-| [gsd/OPERATIONS.md](./gsd/OPERATIONS.md) | All dev/deploy/test commands |
+---
 
-## Current State
+## Context Loading Workflow
 
-- **Working:** Map, opportunities, voter guide, race details, table, filters, KPIs
-- **Stubbed:** BallotReady API, TargetSmart API, voter intelligence features
+For new Claude Code sessions, load context in this order:
 
-## Hybrid Workflow: GSD + Ralph Wiggum
+### 1. Quick Start (30 seconds)
+```
+/CLAUDE.md → Instant project overview and status
+```
 
-This project uses **GSD** for structure/planning and **Ralph Wiggum** for persistent execution.
+### 2. Mission Context (if needed)
+```
+.planning/PROJECT.md → Mission, strategic context, constraints
+```
 
-### GSD Commands (Planning & Structure)
+### 3. Current Progress
+```
+.planning/STATE.md → Phase completion status
+docs/CURRENT-STATE.md → Live metrics, feature matrix
+```
+
+### 4. Deep Context (when needed)
+```
+claudedocs/BLUE-INTELLIGENCE-BIBLE.md → Full strategic and technical context
+```
+
+### 5. Technical Reference
+```
+.planning/codebase/OVERVIEW.md → Consolidated codebase documentation
+```
+
+---
+
+## Document Index
+
+| Document | Purpose | When to Use |
+|----------|---------|-------------|
+| `/CLAUDE.md` | Primary entry point | Every session |
+| `.planning/PROJECT.md` | Mission & strategy | Understanding goals |
+| `.planning/STATE.md` | Progress tracking | Checking current state |
+| `.planning/ROADMAP.md` | Phase planning | Planning future work |
+| `docs/CURRENT-STATE.md` | Live metrics | Verifying deployment |
+| `BLUE-INTELLIGENCE-BIBLE.md` | Full context | Deep understanding |
+| `.planning/codebase/OVERVIEW.md` | Technical reference | Implementation work |
+
+---
+
+## GSD Workflow Commands
+
+This project uses the GSD (Get Stuff Done) system:
 
 ```bash
-/gsd:new-project        # Initialize project with brief
-/gsd:create-roadmap     # Create roadmap and phases
-/gsd:plan-phase N       # Create PLAN.md for phase N
-/gsd:progress           # Check current phase status
-/gsd:verify-work        # Run verification checklist
-/gsd:complete-milestone # Archive milestone, prepare next
+/gsd:progress        # Check current state and route to next action
+/gsd:plan-phase N    # Create detailed plan for phase N
+/gsd:execute-plan    # Execute a PLAN.md file
+/gsd:verify-work     # Manual UAT verification
 ```
 
-### Ralph Wiggum Commands (Execution)
+---
 
-```bash
-# Execute a phase plan with persistent iteration
-/ralph-loop "Execute PLAN.md at .planning/phases/XX-name/XX-01-PLAN.md.
-Read @claudedocs/gsd/CONTEXT.md first. Follow task XML exactly.
-Commit after each working task." \
-  --completion-promise 'All tasks complete and verified' \
-  --max-iterations 50
+## Current Project Status
 
-# Cancel an active loop
-/cancel-ralph
+**Phase A:** COMPLETE (5 states, 876 districts, all 12 features)
+**Live URL:** https://russellteter.github.io/sc-election-map-2026/
+**Lighthouse:** 100/94/96/100
 
-# Show ralph-wiggum help
-/help
-```
+---
 
-### Execution Flow
+## Directory Structure
 
-```
-/gsd:plan-phase N          → Creates PLAN.md
-        ↓
-/ralph-loop "..." --completion-promise '...' --max-iterations 50
-        ↓
-(Claude iterates until promise fulfilled or max reached)
-        ↓
-/gsd:verify-work           → Manual UAT from verification checklist
-        ↓
-git push origin main       → Deploy
-```
-
-## Quick Start
-
-1. `/clear` - Fresh context
-2. `/gsd:new-project` - Initialize (if not done)
-3. `/gsd:create-roadmap` - Create phases
-4. `/gsd:plan-phase 1` - Plan first phase
-5. Use `/ralph-loop` with tier prompt from `gsd/tier-prompts/`
-6. `/gsd:verify-work` - Verify completion
-
-## Tier Prompts (for Ralph Loop)
-
-| Tier | Prompt File | Focus |
-|------|-------------|-------|
-| 1 | `gsd/tier-prompts/tier-1-foundation.md` | API setup, countdown, polling |
-| 2 | `gsd/tier-prompts/tier-2-intelligence.md` | Recruitment, profiles, scores |
-| 3 | `gsd/tier-prompts/tier-3-enrichment.md` | Candidates, endorsements |
-| 4 | `gsd/tier-prompts/tier-4-advanced.md` | Early vote, optimizer, maps |
-
-## File Structure
 ```
 claudedocs/
 ├── README.md                     # This file
-├── # SC Election Map 2026 - Project Bible.md
-├── API-INTEGRATION-PLAN.md
+├── BLUE-INTELLIGENCE-BIBLE.md    # Complete project context
 └── gsd/
     ├── CONTEXT.md                # Condensed execution context
     ├── OPERATIONS.md             # Dev/deploy/test commands
-    ├── tier-prompts/
+    ├── tier-prompts/             # Execution prompts by tier
     │   ├── tier-1-foundation.md
     │   ├── tier-2-intelligence.md
     │   ├── tier-3-enrichment.md
     │   └── tier-4-advanced.md
-    └── verification/
+    └── verification/             # Verification checklists
         ├── tier-1-checklist.md
         ├── tier-2-checklist.md
         ├── tier-3-checklist.md
         └── tier-4-checklist.md
 ```
+
+---
+
+## Key Information
+
+### States Deployed
+- South Carolina (SC) - Real + Demo data
+- North Carolina (NC) - Demo data
+- Georgia (GA) - Demo data
+- Florida (FL) - Demo data
+- Virginia (VA) - Demo data
+
+### Tech Stack
+- Next.js 16 + React 19
+- TypeScript (strict mode)
+- Tailwind CSS v4
+- Static export to GitHub Pages
+
+### Critical Constraints
+- Static export (no server runtime)
+- Neutral public UI (no overt Democratic branding)
+- <10KB initial payload (mobile-first)
+- Demo data clearly labeled (DemoBadge component)
+
+---
+
+## Quick Commands
+
+```bash
+npm run dev      # Development server
+npm run build    # Production build
+npm run lint     # ESLint check
+npm test         # Run tests
+```
+
+---
+
+*For the primary Claude Code entry point, see `/CLAUDE.md`*

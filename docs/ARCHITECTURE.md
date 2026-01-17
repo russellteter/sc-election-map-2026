@@ -1,6 +1,7 @@
-# Architecture - SC Election Map 2026
+# Architecture - Blue Intelligence Platform
 
-> Last Updated: 2026-01-13 | Comprehensive Cleanup
+> Last Updated: 2026-01-17 | Phase A Complete
+> Note: For consolidated codebase overview, see `.planning/codebase/OVERVIEW.md`
 
 ## Overview
 
