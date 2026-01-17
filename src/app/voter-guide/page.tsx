@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, Suspense } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense } from 'react';
 import Link from 'next/link';
 import {
   AddressAutocomplete,
@@ -19,234 +18,31 @@ import {
   PollingPlaceFinder
 } from '@/components/VoterGuide';
 import { useVoterGuideData } from '@/hooks/useVoterGuideData';
-import { geocodeAddress, reverseGeocode, getCurrentLocation, isInSouthCarolina, GeocodeResult } from '@/lib/geocoding';
-import { findDistricts, DistrictResult } from '@/lib/districtLookup';
-import { getCountyFromCoordinates } from '@/lib/congressionalLookup';
-
-type LookupStatus = 'idle' | 'geocoding' | 'finding-districts' | 'done' | 'error';
-
-interface ExtendedDistrictResult extends DistrictResult {
-  congressionalDistrict?: number | null;
-  countyName?: string | null;
-}
+import { useAddressLookup } from '@/hooks/useAddressLookup';
 
 function VoterGuideContent() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
   // Load all voter guide data
   const { data: allData, isLoading: isDataLoading } = useVoterGuideData();
 
-  // Lookup state
-  const [status, setStatus] = useState<LookupStatus>('idle');
-  const [statusMessage, setStatusMessage] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [isGeolocating, setIsGeolocating] = useState(false);
-
-  // Results state
-  const [geocodeResult, setGeocodeResult] = useState<GeocodeResult | null>(null);
-  const [districtResult, setDistrictResult] = useState<ExtendedDistrictResult | null>(null);
-
-  // Address from URL for sharing
-  const [initialAddress, setInitialAddress] = useState('');
-  const [shareUrl, setShareUrl] = useState<string | null>(null);
-
-  // Handle URL parameter on mount (for shareable links)
-  useEffect(() => {
-    const addressParam = searchParams.get('address');
-    if (addressParam && !geocodeResult) {
-      const decodedAddress = decodeURIComponent(addressParam);
-      setInitialAddress(decodedAddress);
-      // Auto-search if we have an address in the URL
-      handleAddressSubmit(decodedAddress, 0, 0);
-    }
-  }, [searchParams]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Generate shareable URL when we have results
-  useEffect(() => {
-    if (geocodeResult?.displayName) {
-      const url = new URL(window.location.href);
-      url.searchParams.set('address', encodeURIComponent(geocodeResult.displayName));
-      setShareUrl(url.toString());
-    } else {
-      setShareUrl(null);
-    }
-  }, [geocodeResult]);
-
-  const handleAddressSubmit = useCallback(async (address: string, lat: number, lon: number) => {
-    // Reset state
-    setError(null);
-    setGeocodeResult(null);
-    setDistrictResult(null);
-    setShareUrl(null);
-
-    try {
-      let finalLat = lat;
-      let finalLon = lon;
-      let displayName = address;
-
-      // If we have coordinates from autocomplete, use them directly
-      if (lat !== 0 && lon !== 0) {
-        // Verify they're in SC
-        if (!isInSouthCarolina(lat, lon)) {
-          setStatus('error');
-          setError('This address does not appear to be in South Carolina. Please enter a South Carolina address.');
-          return;
-        }
-
-        setGeocodeResult({
-          success: true,
-          lat,
-          lon,
-          displayName: address,
-        });
-      } else {
-        // Need to geocode the address
-        setStatus('geocoding');
-        setStatusMessage('Looking up address...');
-
-        const geoResult = await geocodeAddress(address);
-
-        if (!geoResult.success) {
-          setStatus('error');
-          setError(geoResult.error || 'Address lookup failed');
-          setStatusMessage(null);
-          return;
-        }
-
-        finalLat = geoResult.lat!;
-        finalLon = geoResult.lon!;
-        displayName = geoResult.displayName || address;
-
-        setGeocodeResult(geoResult);
-      }
-
-      setStatusMessage(`Found: ${displayName.split(',').slice(0, 3).join(',')}`);
-
-      // Step 2: Find all districts
-      setStatus('finding-districts');
-      setStatusMessage('Finding your districts...');
-
-      // Get state legislative districts
-      const districts = await findDistricts(finalLat, finalLon);
-
-      // Get county and congressional district
-      const countyInfo = await getCountyFromCoordinates(finalLat, finalLon);
-
-      if (!districts.success) {
-        setStatus('error');
-        setError(districts.error || 'Could not determine districts');
-        setStatusMessage(null);
-        return;
-      }
-
-      // Combine all district info
-      const extendedResult: ExtendedDistrictResult = {
-        ...districts,
-        congressionalDistrict: countyInfo.congressionalDistrict,
-        countyName: countyInfo.countyName,
-      };
-
-      setDistrictResult(extendedResult);
-      setStatus('done');
-      setStatusMessage(null);
-
-      // Update URL with address (without triggering navigation)
-      const url = new URL(window.location.href);
-      url.searchParams.set('address', encodeURIComponent(displayName));
-      window.history.replaceState({}, '', url.toString());
-
-    } catch (err) {
-      console.error('Lookup error:', err);
-      setStatus('error');
-      setError('An unexpected error occurred. Please try again.');
-      setStatusMessage(null);
-    }
-  }, [router]);
-
-  const handleGeolocationRequest = useCallback(async () => {
-    setIsGeolocating(true);
-    setError(null);
-
-    try {
-      const location = await getCurrentLocation();
-
-      if (!location) {
-        setError('Unable to get your location. Please check your browser permissions and try again, or enter your address manually.');
-        setIsGeolocating(false);
-        return;
-      }
-
-      const { lat, lon } = location;
-
-      // Check if in SC
-      if (!isInSouthCarolina(lat, lon)) {
-        setError('Your location does not appear to be in South Carolina. Please enter a South Carolina address manually.');
-        setIsGeolocating(false);
-        return;
-      }
-
-      // Reverse geocode to get address
-      setStatusMessage('Getting your address...');
-      const reverseResult = await reverseGeocode(lat, lon);
-
-      if (!reverseResult.success) {
-        setError(reverseResult.error || 'Could not determine your address');
-        setIsGeolocating(false);
-        return;
-      }
-
-      // Set the address in the input
-      setInitialAddress(reverseResult.displayName || '');
-      setIsGeolocating(false);
-
-      // Auto-submit with the coordinates we already have
-      handleAddressSubmit(reverseResult.displayName || '', lat, lon);
-
-    } catch (err) {
-      console.error('Geolocation error:', err);
-      setError('An error occurred while getting your location. Please enter your address manually.');
-      setIsGeolocating(false);
-    }
-  }, [handleAddressSubmit]);
-
-  const handleReset = () => {
-    setStatus('idle');
-    setError(null);
-    setStatusMessage(null);
-    setGeocodeResult(null);
-    setDistrictResult(null);
-    setInitialAddress('');
-    setShareUrl(null);
-    // Clear URL params
-    const url = new URL(window.location.href);
-    url.search = '';
-    window.history.replaceState({}, '', url.toString());
-  };
-
-  const handleCopyShareLink = async () => {
-    if (shareUrl) {
-      try {
-        await navigator.clipboard.writeText(shareUrl);
-        alert('Link copied to clipboard!');
-      } catch {
-        // Fallback for older browsers
-        const textArea = document.createElement('textarea');
-        textArea.value = shareUrl;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        alert('Link copied to clipboard!');
-      }
-    }
-  };
-
-  const isLoading = status === 'geocoding' || status === 'finding-districts';
-  const hasResults = status === 'done' && districtResult;
+  // Address lookup and district finding
+  const {
+    error,
+    isGeolocating,
+    geocodeResult,
+    districtResult,
+    initialAddress,
+    shareUrl,
+    statusMessage,
+    handleAddressSubmit,
+    handleGeolocationRequest,
+    handleReset,
+    handleCopyShareLink,
+    isLoading,
+    hasResults,
+  } = useAddressLookup();
 
   // Count total races for display
-  const raceCount = hasResults ? (
+  const raceCount = hasResults && districtResult ? (
     2 + // House + Senate state legislative
     (allData.statewide?.races.length || 0) +
     (districtResult.congressionalDistrict ? 2 : 0) // US House + US Senate
@@ -330,7 +126,7 @@ function VoterGuideContent() {
               />
 
               {/* Results Section */}
-              {hasResults && allData.candidates && (
+              {hasResults && districtResult && allData.candidates && (
                 <div className="space-y-10">
                   {/* KPI Summary Card - Glassmorphic */}
                   <div className="kpi-summary-card animate-in">
