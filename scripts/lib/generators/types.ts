@@ -117,3 +117,49 @@ export interface StateConfig {
   presidentialMargin2024: number; // Positive = D, Negative = R
   baselinePartisanship: number; // -1 to 1 scale
 }
+
+export interface Endorsement {
+  name: string;
+  type: 'organization' | 'elected_official' | 'labor' | 'advocacy' | 'newspaper';
+  party: 'Democratic' | 'Republican' | 'nonpartisan';
+  endorsee: string; // Candidate name
+  endorseeParty: 'Democratic' | 'Republican';
+  date: string;
+  weight: number; // 1-5 scale for importance
+}
+
+export interface EndorsementData {
+  districtNumber: number;
+  chamber: 'house' | 'senate';
+  endorsements: Endorsement[];
+  totals: {
+    democratic: number;
+    republican: number;
+    highProfile: number; // Weight >= 4
+  };
+}
+
+export interface DailyVoteCount {
+  date: string;
+  count: number;
+}
+
+export interface PartyBallots {
+  total: number;
+  democratic: number;
+  republican: number;
+  other: number;
+  byDate: DailyVoteCount[];
+}
+
+export interface EarlyVoteData {
+  districtNumber: number;
+  chamber: 'house' | 'senate';
+  ballotsRequested: PartyBallots;
+  ballotsReturned: PartyBallots;
+  earlyInPerson: {
+    total: number;
+    byDate: DailyVoteCount[];
+  } | null;
+  lastUpdated: string;
+}
