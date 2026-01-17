@@ -1,0 +1,62 @@
+{
+  "code": "NC",
+  "name": "North Carolina",
+  "abbrev": "N.C.",
+  "fipsCode": "37",
+
+  "chambers": {
+    "house": {
+      "name": "House of Representatives",
+      "shortName": "house",
+      "count": 120,
+      "termYears": 2
+    },
+    "senate": {
+      "name": "Senate",
+      "shortName": "senate",
+      "count": 50,
+      "termYears": 2
+    }
+  },
+
+  "bounds": {
+    "north": 36.5881,
+    "south": 33.8422,
+    "east": -75.4001,
+    "west": -84.3219
+  },
+
+  "dataSources": {
+    "candidates": "demo",
+    "voterIntelligence": "demo"
+  },
+
+  "urls": {
+    "ethicsCommission": "https://ethicscommission.nc.gov/",
+    "electionCommission": "https://www.ncsbe.gov/",
+    "stateParty": "https://www.ncdp.org/",
+    "legislature": "https://www.ncleg.gov/"
+  },
+
+  "baseline2024": {
+    "presidentialMargin": -3.2,
+    "registeredVoters": 7500000,
+    "registration": {
+      "democratic": 2400000,
+      "republican": 2300000,
+      "independent": 2600000,
+      "other": 200000
+    }
+  },
+
+  "electionDates": {
+    "primaryDate": "2026-05-05",
+    "generalDate": "2026-11-03",
+    "registrationDeadline": "2026-10-09",
+    "earlyVotingStart": "2026-10-15",
+    "earlyVotingEnd": "2026-10-31"
+  },
+
+  "isActive": true,
+  "displayOrder": 2
+}

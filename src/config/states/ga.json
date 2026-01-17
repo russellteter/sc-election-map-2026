@@ -1,0 +1,62 @@
+{
+  "code": "GA",
+  "name": "Georgia",
+  "abbrev": "Ga.",
+  "fipsCode": "13",
+
+  "chambers": {
+    "house": {
+      "name": "House of Representatives",
+      "shortName": "house",
+      "count": 180,
+      "termYears": 2
+    },
+    "senate": {
+      "name": "Senate",
+      "shortName": "senate",
+      "count": 56,
+      "termYears": 2
+    }
+  },
+
+  "bounds": {
+    "north": 35.0008,
+    "south": 30.3558,
+    "east": -80.7517,
+    "west": -85.6052
+  },
+
+  "dataSources": {
+    "candidates": "demo",
+    "voterIntelligence": "demo"
+  },
+
+  "urls": {
+    "ethicsCommission": "https://ethics.ga.gov/",
+    "electionCommission": "https://sos.ga.gov/how-to-guide/elections-division-resources",
+    "stateParty": "https://www.georgiademocrat.org/",
+    "legislature": "https://www.legis.ga.gov/"
+  },
+
+  "baseline2024": {
+    "presidentialMargin": -2.1,
+    "registeredVoters": 7900000,
+    "registration": {
+      "democratic": 2500000,
+      "republican": 2400000,
+      "independent": 2800000,
+      "other": 200000
+    }
+  },
+
+  "electionDates": {
+    "primaryDate": "2026-05-19",
+    "generalDate": "2026-11-03",
+    "registrationDeadline": "2026-10-05",
+    "earlyVotingStart": "2026-10-12",
+    "earlyVotingEnd": "2026-10-30"
+  },
+
+  "isActive": true,
+  "displayOrder": 3
+}

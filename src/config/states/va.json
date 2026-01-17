@@ -1,0 +1,62 @@
+{
+  "code": "VA",
+  "name": "Virginia",
+  "abbrev": "Va.",
+  "fipsCode": "51",
+
+  "chambers": {
+    "house": {
+      "name": "House of Delegates",
+      "shortName": "house",
+      "count": 100,
+      "termYears": 2
+    },
+    "senate": {
+      "name": "Senate",
+      "shortName": "senate",
+      "count": 40,
+      "termYears": 4
+    }
+  },
+
+  "bounds": {
+    "north": 39.4660,
+    "south": 36.5408,
+    "east": -75.2423,
+    "west": -83.6753
+  },
+
+  "dataSources": {
+    "candidates": "demo",
+    "voterIntelligence": "demo"
+  },
+
+  "urls": {
+    "ethicsCommission": "https://ethics.virginia.gov/",
+    "electionCommission": "https://www.elections.virginia.gov/",
+    "stateParty": "https://vademocrats.org/",
+    "legislature": "https://virginiageneralassembly.gov/"
+  },
+
+  "baseline2024": {
+    "presidentialMargin": 6.3,
+    "registeredVoters": 6100000,
+    "registration": {
+      "democratic": 1800000,
+      "republican": 1600000,
+      "independent": 2500000,
+      "other": 200000
+    }
+  },
+
+  "electionDates": {
+    "primaryDate": "2026-06-09",
+    "generalDate": "2026-11-03",
+    "registrationDeadline": "2026-10-12",
+    "earlyVotingStart": "2026-09-18",
+    "earlyVotingEnd": "2026-10-31"
+  },
+
+  "isActive": true,
+  "displayOrder": 5
+}
