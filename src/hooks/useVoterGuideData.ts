@@ -5,7 +5,7 @@
  * Handles GitHub Pages base path detection and cache-busting.
  *
  * Features:
- * - Loads 9 JSON data files in parallel
+ * - Loads 10 JSON data files in parallel
  * - Handles GitHub Pages base path detection
  * - Cache-busting with timestamp query param
  * - Graceful error handling (null for failed fetches)
@@ -21,7 +21,8 @@ import type {
   JudicialRacesData,
   SchoolBoardData,
   BallotMeasuresData,
-  SpecialDistrictsData
+  SpecialDistrictsData,
+  CountyContactsData
 } from '@/types/schema';
 
 /**
@@ -37,6 +38,7 @@ export interface AllRacesData {
   specialDistricts: SpecialDistrictsData | null;
   ballotMeasures: BallotMeasuresData | null;
   electionDates: ElectionDatesData | null;
+  countyContacts: CountyContactsData | null;
 }
 
 /**
@@ -62,6 +64,7 @@ const initialData: AllRacesData = {
   specialDistricts: null,
   ballotMeasures: null,
   electionDates: null,
+  countyContacts: null,
 };
 
 /**
@@ -102,7 +105,8 @@ export function useVoterGuideData(): UseVoterGuideDataReturn {
       fetch(`${basePath}/data/special-districts.json?${cacheBuster}`).then(r => r.json()).catch(() => null),
       fetch(`${basePath}/data/ballot-measures.json?${cacheBuster}`).then(r => r.json()).catch(() => null),
       fetch(`${basePath}/data/election-dates.json?${cacheBuster}`).then(r => r.json()).catch(() => null),
-    ]).then(([candidates, statewide, judicialRaces, congressional, countyRaces, schoolBoard, specialDistricts, ballotMeasures, electionDates]) => {
+      fetch(`${basePath}/data/county-contacts.json?${cacheBuster}`).then(r => r.json()).catch(() => null),
+    ]).then(([candidates, statewide, judicialRaces, congressional, countyRaces, schoolBoard, specialDistricts, ballotMeasures, electionDates, countyContacts]) => {
       setData({
         candidates,
         statewide,
@@ -112,7 +116,8 @@ export function useVoterGuideData(): UseVoterGuideDataReturn {
         schoolBoard,
         specialDistricts,
         ballotMeasures,
-        electionDates
+        electionDates,
+        countyContacts
       });
       setIsLoading(false);
     }).catch(err => {
