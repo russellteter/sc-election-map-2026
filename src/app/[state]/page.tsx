@@ -1,5 +1,5 @@
 'use client';
-// SC Election Map 2026 - Objective fact-based display
+
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import DistrictMap from '@/components/Map/DistrictMap';
@@ -9,13 +9,16 @@ import SidePanel from '@/components/Dashboard/SidePanel';
 import SearchBar from '@/components/Search/SearchBar';
 import FilterPanel, { FilterState, defaultFilters } from '@/components/Search/FilterPanel';
 import KeyboardShortcutsHelp from '@/components/Search/KeyboardShortcutsHelp';
-import { KPICard } from '@/components/Dashboard/KPICard';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 import { useToast } from '@/components/Toast';
 import { KPICardSkeleton, MapSkeleton, CandidateCardSkeleton } from '@/components/Skeleton';
-import type { CandidatesData, ChamberStats, ElectionsData } from '@/types/schema';
+import { useStateContext } from '@/context/StateContext';
+import { BASE_PATH } from '@/lib/constants';
+import type { CandidatesData, ElectionsData } from '@/types/schema';
 
-export default function Home() {
+export default function StateDashboard() {
+  const { stateConfig, stateCode, isDemo } = useStateContext();
+
   const [chamber, setChamber] = useState<'house' | 'senate'>('house');
   const [selectedDistrict, setSelectedDistrict] = useState<number | null>(null);
   const [hoveredDistrict, setHoveredDistrict] = useState<number | null>(null);
@@ -24,24 +27,31 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState<FilterState>(defaultFilters);
   const [showShortcuts, setShowShortcuts] = useState(false);
-  const searchInputRef = useRef<HTMLInputElement>(null);
   const { showToast } = useToast();
 
-  // Track previous filter state for toast notifications
   const prevFiltersRef = useRef<FilterState>(defaultFilters);
+
+  // Get district counts from state config
+  const houseCount = stateConfig.chambers.house.count;
+  const senateCount = stateConfig.chambers.senate.count;
+  const districtCount = chamber === 'house' ? houseCount : senateCount;
 
   // Load candidates and elections data
   useEffect(() => {
-    // Use relative path from current page
-    const basePath = window.location.pathname.includes('/sc-election-map-2026')
-      ? '/sc-election-map-2026'
+    const basePath = window.location.pathname.includes('/blue-intelligence')
+      ? '/blue-intelligence'
       : '';
 
-    // Load all data files in parallel with cache-busting
     const cacheBuster = `v=${Date.now()}`;
+
+    // For SC, use existing data. For other states, use demo data structure
+    const dataPath = stateCode === 'SC'
+      ? basePath
+      : `${basePath}/data/states/${stateCode.toLowerCase()}`;
+
     Promise.all([
-      fetch(`${basePath}/data/candidates.json?${cacheBuster}`).then((res) => res.json()),
-      fetch(`${basePath}/data/elections.json?${cacheBuster}`).then((res) => res.json()),
+      fetch(`${dataPath}/data/candidates.json?${cacheBuster}`).then((res) => res.json()),
+      fetch(`${dataPath}/data/elections.json?${cacheBuster}`).then((res) => res.json()),
     ])
       .then(([candidates, elections]) => {
         setCandidatesData(candidates);
@@ -52,7 +62,7 @@ export default function Home() {
         console.error('Failed to load election data:', err);
         setIsLoading(false);
       });
-  }, []);
+  }, [stateCode]);
 
   // Parse URL state on mount
   useEffect(() => {
@@ -65,13 +75,11 @@ export default function Home() {
     const urlHasCandidate = params.get('hasCandidate');
     const urlContested = params.get('contested');
     const urlOpportunity = params.get('opportunity');
+    const urlShowRepublican = params.get('showRepublican');
+    const urlRepublicanMode = params.get('republicanMode');
 
     if (urlChamber === 'senate') setChamber('senate');
     if (urlDistrict) setSelectedDistrict(parseInt(urlDistrict, 10));
-
-    // Parse Republican toggle params
-    const urlShowRepublican = params.get('showRepublican');
-    const urlRepublicanMode = params.get('republicanMode');
 
     const parsedFilters: FilterState = {
       party: urlParty ? urlParty.split(',').filter(Boolean) : [],
@@ -110,12 +118,11 @@ export default function Home() {
     updateUrl();
   }, [updateUrl]);
 
-  // Clear selection when chamber changes
   useEffect(() => {
     setSelectedDistrict(null);
   }, [chamber]);
 
-  // Show toast notification when filters change
+  // Toast notifications for filter changes
   useEffect(() => {
     const prev = prevFiltersRef.current;
     const hasActiveFilters =
@@ -127,13 +134,11 @@ export default function Home() {
       prev.hasCandidate !== 'all' ||
       prev.contested !== 'all';
 
-    // Only show toast if filters actually changed (not on initial mount)
     if (
       prev.party.join(',') !== filters.party.join(',') ||
       prev.hasCandidate !== filters.hasCandidate ||
       prev.contested !== filters.contested
     ) {
-      // Skip toast on initial URL parsing
       if (hadActiveFilters || hasActiveFilters) {
         if (!hasActiveFilters && hadActiveFilters) {
           showToast('Filters cleared', 'info', 2500);
@@ -150,11 +155,6 @@ export default function Home() {
 
     prevFiltersRef.current = filters;
   }, [filters, showToast]);
-
-  // Get total district count for navigation
-  const districtCount = useMemo(() => {
-    return chamber === 'house' ? 124 : 46;
-  }, [chamber]);
 
   // Keyboard shortcuts
   const handleNextDistrict = useCallback(() => {
@@ -187,7 +187,7 @@ export default function Home() {
     enabled: !showShortcuts,
   });
 
-  // Filter districts based on current filters (using OBJECTIVE criteria)
+  // Filter districts
   const filteredDistricts = useMemo(() => {
     if (!candidatesData) return new Set<number>();
 
@@ -202,18 +202,15 @@ export default function Home() {
       const hasRep = district.candidates.some((c) => c.party?.toLowerCase() === 'republican');
       const isDemIncumbent = district.incumbent?.party === 'Democratic';
 
-      // Check hasCandidate filter
       if (filters.hasCandidate === 'yes' && !hasCandidates) continue;
       if (filters.hasCandidate === 'no' && hasCandidates) continue;
 
-      // Check contested filter (both parties running)
       if (hasCandidates) {
         const isContested = hasDem && hasRep;
         if (filters.contested === 'yes' && !isContested) continue;
         if (filters.contested === 'no' && isContested) continue;
       }
 
-      // Check party filter
       if (filters.party.length > 0 && hasCandidates) {
         const matchesParty = filters.party.some((filterParty) => {
           if (filterParty === 'unknown') {
@@ -226,7 +223,6 @@ export default function Home() {
         if (!matchesParty) continue;
       }
 
-      // Check opportunity filter (now using OBJECTIVE criteria)
       if (filters.opportunity.length > 0) {
         const electionHistory = elections[districtNum];
         const lastElection = electionHistory?.elections?.['2024']
@@ -237,14 +233,11 @@ export default function Home() {
         const matchesFilter = filters.opportunity.some((filterOpp) => {
           switch (filterOpp) {
             case 'needsCandidate':
-              // No Dem filed and close race (margin ≤15)
               return !hasDem && !isDemIncumbent && margin <= 15;
             case 'DEFENSIVE':
-              // Dem incumbent
               return isDemIncumbent;
             case 'HIGH_OPPORTUNITY':
             case 'EMERGING':
-              // Simplified: has Dem filed (not incumbent)
               return hasDem && !isDemIncumbent;
             default:
               return false;
@@ -267,10 +260,7 @@ export default function Home() {
     ? electionsData[chamber][String(selectedDistrict)]
     : null;
 
-  // Calculate statistics
-  const stats = candidatesData ? calculateStats(candidatesData, chamber) : null;
-
-  // Calculate OBJECTIVE statistics (fact-based, no scores)
+  // Calculate objective stats
   const objectiveStats = useMemo(() => {
     if (!candidatesData || !electionsData) return null;
     const districts = candidatesData[chamber];
@@ -287,16 +277,10 @@ export default function Home() {
       const hasRep = district.candidates.some(c => c.party?.toLowerCase() === 'republican');
       const isDemIncumbent = district.incumbent?.party === 'Democratic';
 
-      // Count Dem filed
       if (hasDem || isDemIncumbent) demFiled++;
-
-      // Count Dem incumbents
       if (isDemIncumbent) demIncumbents++;
-
-      // Count contested races (both D and R filed)
       if (hasDem && hasRep) contested++;
 
-      // Count close opportunities (no Dem filed, margin ≤15pts)
       if (!hasDem && !isDemIncumbent) {
         const electionHistory = elections[districtNum];
         const lastElection = electionHistory?.elections?.['2024']
@@ -311,10 +295,11 @@ export default function Home() {
     return { demFiled, demIncumbents, contested, closeOpportunities, totalDistricts };
   }, [candidatesData, electionsData, chamber]);
 
+  const stateUrl = (path: string) => `${BASE_PATH}/${stateCode.toLowerCase()}${path}`;
+
   if (isLoading) {
     return (
       <div className="atmospheric-bg min-h-screen flex flex-col">
-        {/* Skeleton header */}
         <header className="glass-surface border-b animate-entrance" style={{ borderColor: 'var(--class-purple-light)' }}>
           <div className="max-w-[1800px] mx-auto px-4 py-4">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
@@ -330,47 +315,22 @@ export default function Home() {
           </div>
         </header>
 
-        {/* Skeleton main content */}
         <div className="flex-1 flex flex-col lg:flex-row">
-          {/* Map section skeleton */}
           <div className="flex-1 flex flex-col p-4">
-            {/* KPI skeleton */}
             <div className="mb-4 animate-entrance stagger-2">
               <KPICardSkeleton count={4} />
             </div>
-
-            {/* Map skeleton */}
-            <div
-              className="flex-1 glass-surface rounded-xl overflow-hidden animate-entrance stagger-3"
-              style={{ minHeight: '400px' }}
-            >
+            <div className="flex-1 glass-surface rounded-xl overflow-hidden animate-entrance stagger-3" style={{ minHeight: '400px' }}>
               <MapSkeleton />
-            </div>
-
-            {/* Legend skeleton */}
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-4 animate-entrance stagger-4">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <div className="skeleton-base skeleton-shimmer w-4 h-4 rounded-sm" />
-                  <div className="skeleton-base skeleton-shimmer h-3 w-20 rounded" />
-                </div>
-              ))}
             </div>
           </div>
 
-          {/* Side panel skeleton */}
-          <aside
-            className="w-full lg:w-[380px] glass-surface border-t lg:border-l lg:border-t-0 animate-entrance stagger-5"
-            style={{ borderColor: 'var(--class-purple-light)' }}
-          >
+          <aside className="w-full lg:w-[380px] glass-surface border-t lg:border-l lg:border-t-0 animate-entrance stagger-5" style={{ borderColor: 'var(--class-purple-light)' }}>
             <div className="h-full flex flex-col">
-              {/* Panel header skeleton */}
               <div className="p-4 border-b" style={{ borderColor: 'var(--class-purple-light)' }}>
                 <div className="skeleton-base skeleton-shimmer h-6 w-40 rounded mb-2" />
                 <div className="skeleton-base skeleton-shimmer h-4 w-28 rounded" />
               </div>
-
-              {/* Candidates skeleton */}
               <div className="flex-1 p-4">
                 <CandidateCardSkeleton count={2} />
               </div>
@@ -385,20 +345,27 @@ export default function Home() {
     return (
       <div className="atmospheric-bg min-h-screen flex items-center justify-center">
         <div className="text-center glass-surface rounded-xl p-8 animate-entrance">
-          <div
-            className="w-12 h-12 mx-auto mb-4 flex items-center justify-center rounded-full"
-            style={{ background: 'var(--color-at-risk-bg)' }}
-          >
+          <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center rounded-full" style={{ background: 'var(--color-at-risk-bg)' }}>
             <svg className="w-6 h-6" fill="none" stroke="var(--color-at-risk)" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
           </div>
           <p className="font-medium" style={{ color: 'var(--color-at-risk)' }}>
-            Failed to load election data
+            {isDemo('candidates') ? 'Demo data not yet available for ' + stateConfig.name : 'Failed to load election data'}
           </p>
           <p className="text-sm mt-2" style={{ color: 'var(--text-muted)' }}>
-            Please refresh the page to try again.
+            {isDemo('candidates') ? 'Check back soon!' : 'Please refresh the page to try again.'}
           </p>
+          <Link
+            href={`${BASE_PATH}/`}
+            className="inline-block mt-4 px-4 py-2 rounded-lg text-sm font-medium"
+            style={{
+              background: 'var(--class-purple)',
+              color: 'white',
+            }}
+          >
+            Back to State Selection
+          </Link>
         </div>
       </div>
     );
@@ -406,7 +373,6 @@ export default function Home() {
 
   return (
     <div className="atmospheric-bg min-h-screen flex flex-col">
-      {/* Skip link for keyboard users */}
       <a
         href="#map-container"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg"
@@ -415,46 +381,45 @@ export default function Home() {
         Skip to map
       </a>
 
-      {/* Live region for screen reader announcements */}
-      <div
-        role="status"
-        aria-live="polite"
-        aria-atomic="true"
-        className="sr-only"
-      >
+      <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
         {selectedDistrict
-          ? `Selected ${chamber === 'house' ? 'House' : 'Senate'} District ${selectedDistrict}`
+          ? `Selected ${chamber === 'house' ? stateConfig.chambers.house.name : stateConfig.chambers.senate.name} District ${selectedDistrict}`
           : hoveredDistrict
-          ? `Hovering over ${chamber === 'house' ? 'House' : 'Senate'} District ${hoveredDistrict}`
+          ? `Hovering over District ${hoveredDistrict}`
           : ''}
       </div>
 
-      {/* Keyboard shortcuts help modal */}
-      <KeyboardShortcutsHelp
-        isOpen={showShortcuts}
-        onClose={() => setShowShortcuts(false)}
-      />
+      <KeyboardShortcutsHelp isOpen={showShortcuts} onClose={() => setShowShortcuts(false)} />
 
-      {/* Header - Glassmorphic, Sticky */}
+      {/* Header */}
       <header className="glass-surface border-b animate-entrance stagger-1 sticky top-0 z-40" style={{ borderColor: 'var(--class-purple-light)' }}>
         <div className="max-w-7xl mx-auto px-4 py-2">
           <div className="flex flex-col gap-2">
-            {/* Row 1: Title + Search + Chamber Toggle + Help */}
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-4">
                 <div>
-                  <h1 className="text-xl font-bold font-display" style={{ color: 'var(--text-color)' }}>
-                    SC 2026 Election Map
-                  </h1>
+                  <div className="flex items-center gap-2">
+                    <Link href={`${BASE_PATH}/`} className="text-sm hover:underline" style={{ color: 'var(--class-purple)' }}>
+                      All States
+                    </Link>
+                    <span style={{ color: 'var(--text-muted)' }}>/</span>
+                    <h1 className="text-xl font-bold font-display" style={{ color: 'var(--text-color)' }}>
+                      {stateConfig.name} 2026
+                    </h1>
+                  </div>
                   <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
-                    Tracking {chamber === 'house' ? '124 House' : '46 Senate'} districts
+                    Tracking {chamber === 'house' ? `${houseCount} ${stateConfig.chambers.house.name}` : `${senateCount} ${stateConfig.chambers.senate.name}`} districts
                     {filteredDistricts.size < districtCount && (
-                      <span> • Showing {filteredDistricts.size} of {districtCount}</span>
+                      <span> - Showing {filteredDistricts.size} of {districtCount}</span>
+                    )}
+                    {isDemo('candidates') && (
+                      <span className="ml-2 px-1.5 py-0.5 rounded text-xs" style={{ background: '#FEF3C7', color: '#92400E' }}>
+                        Demo Data
+                      </span>
                     )}
                   </p>
                 </div>
 
-                {/* Search Bar - moved to header row */}
                 <div className="hidden sm:block">
                   <SearchBar
                     candidatesData={candidatesData}
@@ -469,31 +434,28 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Navigation Links */}
               <div className="hidden md:flex items-center gap-2">
                 <Link
-                  href={`/table?chamber=${chamber}`}
+                  href={stateUrl(`/table?chamber=${chamber}`)}
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all hover:opacity-70 focus-ring"
                   style={{
-                    background: 'var(--card-bg, #FFFFFF)',
-                    borderColor: 'var(--class-purple-light, #DAD7FA)',
-                    color: 'var(--text-color, #0A1849)',
-                    border: '1px solid var(--class-purple-light, #DAD7FA)',
+                    background: 'var(--card-bg)',
+                    border: '1px solid var(--class-purple-light)',
+                    color: 'var(--text-color)',
                   }}
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                   </svg>
-                  <span>Table View</span>
+                  <span>Table</span>
                 </Link>
                 <Link
-                  href="/opportunities"
+                  href={stateUrl('/opportunities')}
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all hover:opacity-70 focus-ring"
                   style={{
-                    background: 'var(--card-bg, #FFFFFF)',
-                    borderColor: 'var(--class-purple-light, #DAD7FA)',
-                    color: 'var(--text-color, #0A1849)',
-                    border: '1px solid var(--class-purple-light, #DAD7FA)',
+                    background: 'var(--card-bg)',
+                    border: '1px solid var(--class-purple-light)',
+                    color: 'var(--text-color)',
                   }}
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -502,12 +464,12 @@ export default function Home() {
                   <span>Opportunities</span>
                 </Link>
                 <Link
-                  href="/voter-guide"
+                  href={stateUrl('/voter-guide')}
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all hover:opacity-70 focus-ring"
                   style={{
-                    background: 'linear-gradient(135deg, var(--class-purple-bg, #F3E8FF) 0%, #E0E7FF 100%)',
-                    color: 'var(--class-purple, #4739E7)',
-                    border: '1px solid var(--class-purple-light, #DAD7FA)',
+                    background: 'linear-gradient(135deg, var(--class-purple-bg) 0%, #E0E7FF 100%)',
+                    color: 'var(--class-purple)',
+                    border: '1px solid var(--class-purple-light)',
                   }}
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -524,9 +486,9 @@ export default function Home() {
                   onClick={() => setShowShortcuts(true)}
                   className="p-2 rounded-lg border transition-all hover:opacity-70"
                   style={{
-                    background: 'var(--card-bg, #FFFFFF)',
-                    borderColor: 'var(--class-purple-light, #DAD7FA)',
-                    color: 'var(--color-text-muted, #4A5568)',
+                    background: 'var(--card-bg)',
+                    borderColor: 'var(--class-purple-light)',
+                    color: 'var(--text-muted)',
                   }}
                   aria-label="Show keyboard shortcuts"
                   title="Keyboard shortcuts (?)"
@@ -538,7 +500,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Mobile Search - shown only on small screens */}
             <div className="sm:hidden">
               <SearchBar
                 candidatesData={candidatesData}
@@ -555,218 +516,41 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Horizontal Filter Bar - Class Dashboard Style */}
+      {/* Filter Bar */}
       <div className="border-b animate-entrance stagger-2" style={{ background: '#FAFAFA', borderColor: '#E2E8F0' }}>
         <div className="max-w-7xl mx-auto px-4 py-2">
-          <FilterPanel
-            filters={filters}
-            onFilterChange={setFilters}
-            variant="horizontal"
-          />
+          <FilterPanel filters={filters} onFilterChange={setFilters} variant="horizontal" />
         </div>
       </div>
 
-      {/* Active Filter Pills - Shows when filters are applied */}
-      {(filters.party.length > 0 || filters.hasCandidate !== 'all' || filters.contested !== 'all' || filters.opportunity.length > 0 || filters.showRepublicanData) && (
-        <div
-          className="px-4 py-2 border-b animate-entrance"
-          style={{
-            background: 'linear-gradient(90deg, var(--class-purple-bg) 0%, rgba(255,255,255,0.95) 100%)',
-            borderColor: 'var(--class-purple-light)',
-          }}
-        >
-          <div className="max-w-[1800px] mx-auto flex flex-wrap items-center gap-2">
-            <span className="text-xs font-medium mr-1" style={{ color: 'var(--text-muted)' }}>
-              Active filters:
-            </span>
-
-            {/* Party filters */}
-            {filters.party.map((party) => (
-              <button
-                key={party}
-                onClick={() => setFilters((prev) => ({
-                  ...prev,
-                  party: prev.party.filter((p) => p !== party),
-                }))}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all hover:opacity-80 focus-ring"
-                style={{
-                  background: party === 'Democratic'
-                    ? 'linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%)'
-                    : 'linear-gradient(135deg, #FFFCF0 0%, #FEF8E0 100%)',
-                  color: party === 'Democratic'
-                    ? 'var(--class-purple)'
-                    : '#92400E',
-                  border: `1px solid ${
-                    party === 'Democratic'
-                      ? 'rgba(71, 57, 231, 0.3)'
-                      : 'rgba(217, 119, 6, 0.2)'
-                  }`,
-                }}
-                aria-label={`Remove ${party} filter`}
-              >
-                {party === 'Democratic' ? 'Democrat' : 'Unknown Party'}
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            ))}
-
-            {/* Has candidate filter */}
-            {filters.hasCandidate !== 'all' && (
-              <button
-                onClick={() => setFilters((prev) => ({ ...prev, hasCandidate: 'all' }))}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all hover:opacity-80 focus-ring"
-                style={{
-                  background: 'linear-gradient(135deg, var(--class-purple-bg) 0%, #EDE9FE 100%)',
-                  color: 'var(--class-purple)',
-                  border: '1px solid rgba(71, 57, 231, 0.3)',
-                }}
-                aria-label="Remove candidate status filter"
-              >
-                {filters.hasCandidate === 'yes' ? 'Has Candidates' : 'No Candidates'}
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            )}
-
-            {/* Contested filter */}
-            {filters.contested !== 'all' && (
-              <button
-                onClick={() => setFilters((prev) => ({ ...prev, contested: 'all' }))}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all hover:opacity-80 focus-ring"
-                style={{
-                  background: filters.contested === 'yes'
-                    ? 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)'
-                    : 'linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%)',
-                  color: filters.contested === 'yes' ? 'var(--color-excellent)' : '#6B7280',
-                  border: `1px solid ${filters.contested === 'yes' ? 'rgba(5, 150, 105, 0.3)' : 'rgba(156, 163, 175, 0.3)'}`,
-                }}
-                aria-label="Remove contested filter"
-              >
-                {filters.contested === 'yes' ? 'Contested Only' : 'Uncontested Only'}
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            )}
-
-            {/* Opportunity filters */}
-            {filters.opportunity.map((opp) => {
-              const oppColors: Record<string, { bg: string; color: string; border: string; label: string }> = {
-                HIGH_OPPORTUNITY: { bg: '#ECFDF5', color: '#059669', border: 'rgba(5, 150, 105, 0.3)', label: 'High Opportunity' },
-                EMERGING: { bg: '#ECFEFF', color: '#0891B2', border: 'rgba(8, 145, 178, 0.3)', label: 'Emerging' },
-                needsCandidate: { bg: '#FFFBEB', color: '#F59E0B', border: 'rgba(245, 158, 11, 0.3)', label: 'Needs Candidate' },
-                DEFENSIVE: { bg: '#EFF6FF', color: '#3676eb', border: 'rgba(54, 118, 235, 0.3)', label: 'Defensive' },
-              };
-              const style = oppColors[opp] || { bg: '#F9FAFB', color: '#6B7280', border: 'rgba(156, 163, 175, 0.3)', label: opp };
-              return (
-                <button
-                  key={opp}
-                  onClick={() => setFilters((prev) => ({
-                    ...prev,
-                    opportunity: prev.opportunity.filter((o) => o !== opp),
-                  }))}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all hover:opacity-80 focus-ring"
-                  style={{
-                    background: style.bg,
-                    color: style.color,
-                    border: `1px solid ${style.border}`,
-                  }}
-                  aria-label={`Remove ${style.label} filter`}
-                >
-                  {style.label}
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              );
-            })}
-
-            {/* Republican data filter */}
-            {filters.showRepublicanData && (
-              <button
-                onClick={() => setFilters((prev) => ({
-                  ...prev,
-                  showRepublicanData: false,
-                  republicanDataMode: 'none',
-                }))}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all hover:opacity-80 focus-ring"
-                style={{
-                  background: 'linear-gradient(135deg, #FEF2F2 0%, #FECACA 100%)',
-                  color: '#DC2626',
-                  border: '1px solid rgba(220, 38, 38, 0.3)',
-                }}
-                aria-label="Remove Republican data filter"
-              >
-                Republicans: {filters.republicanDataMode === 'all' ? 'All' : filters.republicanDataMode === 'incumbents' ? 'Incumbents' : 'Challengers'}
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            )}
-
-            {/* Clear all filters */}
-            <button
-              onClick={() => setFilters(defaultFilters)}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium transition-all hover:opacity-80 focus-ring ml-auto"
-              style={{
-                background: 'transparent',
-                color: 'var(--text-muted)',
-              }}
-              aria-label="Clear all filters"
-            >
-              Clear all
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* Main content */}
       <div className="flex-1 flex flex-col lg:flex-row">
-        {/* Map section */}
         <div className="flex-1 flex flex-col p-4">
-          {/* Stats bar - Strategic Opportunity KPIs */}
           {objectiveStats && (
             <div className="kpi-grid mb-4 animate-entrance stagger-2">
-              {/* Dem Filed */}
               <div className="kpi-card animate-entrance" style={{ animationDelay: '0ms' }}>
                 <div className="label" style={{ color: '#3B82F6' }}>Dem Filed</div>
                 <div className="value font-display" style={{ color: '#3B82F6' }}>{objectiveStats.demFiled}</div>
-                <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>
-                  of {objectiveStats.totalDistricts} districts
-                </div>
+                <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>of {objectiveStats.totalDistricts} districts</div>
               </div>
-
-              {/* Contested Races */}
               <div className="kpi-card animate-entrance" style={{ animationDelay: '50ms' }}>
                 <div className="label" style={{ color: '#059669' }}>Contested</div>
                 <div className="value font-display" style={{ color: '#059669' }}>{objectiveStats.contested}</div>
                 <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Both D &amp; R filed</div>
               </div>
-
-              {/* Dem Incumbents */}
               <div className="kpi-card animate-entrance" style={{ animationDelay: '100ms' }}>
                 <div className="label" style={{ color: '#1E40AF' }}>Dem Incumbents</div>
                 <div className="value font-display" style={{ color: '#1E40AF' }}>{objectiveStats.demIncumbents}</div>
                 <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Current Dem seats</div>
               </div>
-
-              {/* Close Opportunities */}
               <div className="kpi-card animate-entrance" style={{ animationDelay: '150ms' }}>
                 <div className="label" style={{ color: '#F59E0B' }}>Close Races</div>
                 <div className="value font-display" style={{ color: '#F59E0B' }}>{objectiveStats.closeOpportunities}</div>
-                <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>
-                  No Dem, margin ≤15pts
-                </div>
+                <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>No Dem, margin ≤15pts</div>
               </div>
             </div>
           )}
 
-          {/* Map container - Enhanced 3D depth */}
           <div
             id="map-container"
             className="flex-1 map-container min-h-[400px] animate-entrance stagger-3 relative"
@@ -784,24 +568,21 @@ export default function Home() {
                 filteredDistricts={filteredDistricts}
               />
             </div>
-            {/* Legend - Bottom left overlay */}
             <Legend />
           </div>
 
-          {/* Hover info - Glassmorphic with enhanced styling */}
           {hoveredDistrict && (
             <div
               className="fixed bottom-4 left-4 glass-surface rounded-lg p-3 animate-tooltip-in shadow-lg"
               style={{ borderColor: 'var(--class-purple-light)' }}
             >
               <span className="font-medium font-display" style={{ color: 'var(--text-color)' }}>
-                {chamber === 'house' ? 'House' : 'Senate'} District {hoveredDistrict}
+                {chamber === 'house' ? stateConfig.chambers.house.name : stateConfig.chambers.senate.name} District {hoveredDistrict}
               </span>
             </div>
           )}
         </div>
 
-        {/* Side panel - Glassmorphic */}
         <div
           className="w-full lg:w-96 glass-surface border-l animate-entrance stagger-5"
           style={{ borderColor: 'var(--class-purple-light)' }}
@@ -818,71 +599,38 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Footer - Glassmorphic */}
+      {/* Footer */}
       <footer
         className="glass-surface border-t py-4 px-4 animate-entrance stagger-6"
         style={{ borderColor: 'var(--class-purple-light)' }}
       >
-        <div className="max-w-7xl mx-auto text-center text-sm" style={{ color: 'var(--color-text-muted, #4A5568)' }}>
-          <p>
-            Data updated: {new Date(candidatesData.lastUpdated).toLocaleDateString('en-US', {
-              month: 'long',
-              day: 'numeric',
-              year: 'numeric',
-              hour: 'numeric',
-              minute: '2-digit',
-            })}
-          </p>
-          <p className="mt-1">
-            Source:{' '}
-            <a
-              href="https://ethicsfiling.sc.gov/public/campaign-reports/reports"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:underline"
-              style={{ color: 'var(--class-purple, #4739E7)' }}
-            >
-              SC Ethics Commission
-            </a>
-          </p>
+        <div className="max-w-7xl mx-auto text-center text-sm" style={{ color: 'var(--text-muted)' }}>
+          {candidatesData.lastUpdated && (
+            <p>
+              Data updated: {new Date(candidatesData.lastUpdated).toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+              })}
+              {isDemo('candidates') && <span className="ml-2">(Demo Data)</span>}
+            </p>
+          )}
+          {stateConfig.urls.electionCommission && (
+            <p className="mt-1">
+              Source:{' '}
+              <a
+                href={stateConfig.urls.electionCommission}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+                style={{ color: 'var(--class-purple)' }}
+              >
+                {stateConfig.name} Election Commission
+              </a>
+            </p>
+          )}
         </div>
       </footer>
     </div>
   );
-}
-
-function calculateStats(data: CandidatesData, chamber: 'house' | 'senate') {
-  let democrats = 0;
-  let unknown = 0;
-  let empty = 0;
-  let totalCandidates = 0;
-  let enrichedCandidates = 0;
-
-  const districts = data[chamber];
-  for (const district of Object.values(districts)) {
-    if (district.candidates.length === 0) {
-      empty++;
-    } else {
-      const hasDem = district.candidates.some(
-        (c) => c.party?.toLowerCase() === 'democratic'
-      );
-
-      if (hasDem) democrats++;
-      if (!hasDem) unknown++; // Count non-Democrats as unknown
-
-      // Count individual candidates for enrichment stats
-      for (const candidate of district.candidates) {
-        totalCandidates++;
-        if (candidate.party) {
-          enrichedCandidates++;
-        }
-      }
-    }
-  }
-
-  const enrichmentPercent = totalCandidates > 0
-    ? Math.round((enrichedCandidates / totalCandidates) * 100)
-    : 0;
-
-  return { democrats, unknown, empty, totalCandidates, enrichedCandidates, enrichmentPercent };
 }
