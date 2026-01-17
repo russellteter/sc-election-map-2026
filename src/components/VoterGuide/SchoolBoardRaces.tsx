@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import type { SchoolBoardData, SchoolDistrict, SchoolBoardSeat, SchoolBoardCandidate } from '@/types/schema';
+import { DemoBadge } from '@/components/ui';
 
 interface SchoolBoardRacesProps {
   data: SchoolBoardData;
@@ -49,9 +50,12 @@ export default function SchoolBoardRaces({ data, countyName }: SchoolBoardRacesP
           </svg>
         </div>
         <div>
-          <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
-            School Board Races
-          </h3>
+          <div className="flex items-center gap-2">
+            <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
+              School Board Races
+            </h3>
+            <DemoBadge />
+          </div>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
             {countyName
               ? `Local school board elections in ${countyName} County`

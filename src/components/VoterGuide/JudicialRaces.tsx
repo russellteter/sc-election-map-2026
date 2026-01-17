@@ -1,6 +1,7 @@
 'use client';
 
 import type { JudicialRacesData, StatewideJudicialCourt, CircuitCourt, JudicialSeat } from '@/types/schema';
+import { DemoBadge } from '@/components/ui';
 
 interface JudicialRacesProps {
   data: JudicialRacesData;
@@ -32,9 +33,12 @@ export default function JudicialRaces({ data, countyName }: JudicialRacesProps) 
           </svg>
         </div>
         <div>
-          <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
-            Judicial Offices
-          </h3>
+          <div className="flex items-center gap-2">
+            <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
+              Judicial Offices
+            </h3>
+            <DemoBadge />
+          </div>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
             State and circuit court positions
           </p>

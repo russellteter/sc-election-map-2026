@@ -7,6 +7,7 @@ import type {
   SpecialDistrict,
   SpecialDistrictType,
 } from '@/types/schema';
+import { DemoBadge } from '@/components/ui';
 
 interface SpecialDistrictsProps {
   data: SpecialDistrictsData;
@@ -191,9 +192,12 @@ export default function SpecialDistricts({ data, countyName }: SpecialDistrictsP
           </svg>
         </div>
         <div>
-          <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
-            {countyName ? `${countyName} County Special Districts` : 'Special Districts'}
-          </h3>
+          <div className="flex items-center gap-2">
+            <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
+              {countyName ? `${countyName} County Special Districts` : 'Special Districts'}
+            </h3>
+            <DemoBadge />
+          </div>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
             {countyName
               ? 'Local special purpose districts in your area'
