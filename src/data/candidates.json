@@ -1,14 +1,12 @@
 {
-  "lastUpdated": "2026-01-16T15:20:58.599289Z",
+  "lastUpdated": "2026-01-17T15:17:05.351778Z",
   "house": {
     "1": {
       "districtNumber": 1,
       "candidates": [],
       "incumbent": {
-        "name": "William R. &quot;Bill&quot; Whitmire",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1914204316",
-        "photo_url": null
+        "name": "Bill Whitmire",
+        "party": "Republican"
       }
     },
     "2": {
@@ -27,9 +25,7 @@
       ],
       "incumbent": {
         "name": "Adam L. Duncan",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0502272667",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "3": {
@@ -68,9 +64,7 @@
       ],
       "incumbent": {
         "name": "Phillip Bowers",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0169318162",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "4": {
@@ -89,9 +83,7 @@
       ],
       "incumbent": {
         "name": "David R. Hiott",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0848863535",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "5": {
@@ -99,9 +91,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Neal A. Collins",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0388636317",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "6": {
@@ -109,9 +99,7 @@
       "candidates": [],
       "incumbent": {
         "name": "April Cromer",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0434090857",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "7": {
@@ -119,9 +107,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Thomas Lee Gilreath",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0675852192",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "8": {
@@ -139,10 +125,8 @@
         }
       ],
       "incumbent": {
-        "name": "Donald G. &quot;Don&quot; Chapman",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0347727231",
-        "photo_url": null
+        "name": "Don Chapman",
+        "party": "Republican"
       }
     },
     "9": {
@@ -150,9 +134,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Richard Blake Sanders",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1624999805",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "10": {
@@ -160,9 +142,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Thomas Beach",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0129545439",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "11": {
@@ -170,9 +150,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Craig A. Gagnon",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0632954470",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "12": {
@@ -180,9 +158,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Daniel Gibson",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0667045375",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "13": {
@@ -190,9 +166,7 @@
       "candidates": [],
       "incumbent": {
         "name": "John R. McCravy III",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1217045309",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "14": {
@@ -211,9 +185,7 @@
       ],
       "incumbent": {
         "name": "Luke S. Rankin",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1510227092",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "15": {
@@ -233,9 +205,7 @@
       ],
       "incumbent": {
         "name": "JA Moore",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1356818019",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "16": {
@@ -243,29 +213,23 @@
       "candidates": [],
       "incumbent": {
         "name": "Mark N. Willis",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1942613404",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "17": {
       "districtNumber": 17,
       "candidates": [],
       "incumbent": {
-        "name": "James Mikell &quot;Mike&quot; Burns",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0257954515",
-        "photo_url": null
+        "name": "Mike Burns",
+        "party": "Republican"
       }
     },
     "18": {
       "districtNumber": 18,
       "candidates": [],
       "incumbent": {
-        "name": "T. Alan Morgan, Jr.",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1374999835",
-        "photo_url": null
+        "name": "T. Alan Morgan Jr.",
+        "party": "Republican"
       }
     },
     "19": {
@@ -273,9 +237,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Patrick B. Haddon",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0733806731",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "20": {
@@ -294,9 +256,7 @@
       ],
       "incumbent": {
         "name": "Stephen Frank",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0614772654",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "21": {
@@ -315,9 +275,7 @@
       ],
       "incumbent": {
         "name": "Dianne Mitchell",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1344175976",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "22": {
@@ -325,9 +283,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Paul B. Wickensimer",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1914630453",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "23": {
@@ -347,9 +303,7 @@
       ],
       "incumbent": {
         "name": "Chandra E. Dillard",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0479545397",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "24": {
@@ -357,9 +311,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Bruce W. Bannister",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0103409079",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "25": {
@@ -379,9 +331,7 @@
       ],
       "incumbent": {
         "name": "Wendell K. Jones",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0953408977",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "26": {
@@ -389,9 +339,7 @@
       "candidates": [],
       "incumbent": {
         "name": "David Martin",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1157954407",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "27": {
@@ -399,19 +347,15 @@
       "candidates": [],
       "incumbent": {
         "name": "David Vaughan",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1865908867",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "28": {
       "districtNumber": 28,
       "candidates": [],
       "incumbent": {
-        "name": "William C. &quot;Chris&quot; Huff",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0893181711",
-        "photo_url": null
+        "name": "Chris Huff",
+        "party": "Republican"
       }
     },
     "29": {
@@ -419,9 +363,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Dennis C. Moss",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1379545289",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "30": {
@@ -429,9 +371,7 @@
       "candidates": [],
       "incumbent": {
         "name": "M. Brian Lawson",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1067613508",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "31": {
@@ -450,10 +390,8 @@
         }
       ],
       "incumbent": {
-        "name": "Rosalyn D. Henderson-Myers, Ph.D.",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0824999901",
-        "photo_url": null
+        "name": "Rosalyn Henderson-Myers",
+        "party": "Democratic"
       }
     },
     "32": {
@@ -461,9 +399,7 @@
       "candidates": [],
       "incumbent": {
         "name": "W. Scott Montgomery IV",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1351704384",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "33": {
@@ -482,9 +418,7 @@
       ],
       "incumbent": {
         "name": "Travis A. Moore",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1365908927",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "34": {
@@ -492,29 +426,23 @@
       "candidates": [],
       "incumbent": {
         "name": "Sarita L. Edgerton",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0522159029",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "35": {
       "districtNumber": 35,
       "candidates": [],
       "incumbent": {
-        "name": "William M. &quot;Bill&quot; Chumley",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0351704504",
-        "photo_url": null
+        "name": "Bill Chumley",
+        "party": "Republican"
       }
     },
     "36": {
       "districtNumber": 36,
       "candidates": [],
       "incumbent": {
-        "name": "Robert J. &quot;Rob&quot; Harris",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0764772636",
-        "photo_url": null
+        "name": "Rob Harris",
+        "party": "Republican"
       }
     },
     "37": {
@@ -522,9 +450,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Steven Wayne Long",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1120454411",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "38": {
@@ -532,19 +458,15 @@
       "candidates": [],
       "incumbent": {
         "name": "Josiah Magnuson",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1130965774",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "39": {
       "districtNumber": 39,
       "candidates": [],
       "incumbent": {
-        "name": "Cally R. &quot;Cal&quot; Forrest, Jr.",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0608238564",
-        "photo_url": null
+        "name": "Cal Forrest Jr.",
+        "party": "Republican"
       }
     },
     "40": {
@@ -562,10 +484,8 @@
         }
       ],
       "incumbent": {
-        "name": "Joseph S. &quot;Joe&quot; White",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1912499771",
-        "photo_url": null
+        "name": "Joe White",
+        "party": "Republican"
       }
     },
     "41": {
@@ -585,19 +505,15 @@
       ],
       "incumbent": {
         "name": "Annie E. McDaniel",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1221590763",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "42": {
       "districtNumber": 42,
       "candidates": [],
       "incumbent": {
-        "name": "Leon D. &quot;Doug&quot; Gilliam",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0675426055",
-        "photo_url": null
+        "name": "Doug Gilliam",
+        "party": "Republican"
       }
     },
     "43": {
@@ -615,10 +531,8 @@
         }
       ],
       "incumbent": {
-        "name": "Thomas R. &quot;Randy&quot; Ligon",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1087499870",
-        "photo_url": null
+        "name": "Randy Ligon",
+        "party": "Republican"
       }
     },
     "44": {
@@ -646,10 +560,8 @@
         }
       ],
       "incumbent": {
-        "name": "James M. &quot;Mike&quot; Neese",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1403977105",
-        "photo_url": null
+        "name": "Mike Neese",
+        "party": "Republican"
       }
     },
     "45": {
@@ -668,9 +580,7 @@
       ],
       "incumbent": {
         "name": "Brandon Newton",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1418607785",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "46": {
@@ -678,19 +588,15 @@
       "candidates": [],
       "incumbent": {
         "name": "Heath Sessions",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1649715712",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "47": {
       "districtNumber": 47,
       "candidates": [],
       "incumbent": {
-        "name": "Thomas E. &quot;Tommy&quot; Pope",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1484090731",
-        "photo_url": null
+        "name": "Tommy Pope",
+        "party": "Republican"
       }
     },
     "48": {
@@ -698,9 +604,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Brandon Guffey",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0730681731",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "49": {
@@ -720,9 +624,7 @@
       ],
       "incumbent": {
         "name": "John Richard C. King",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1002272607",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "50": {
@@ -741,9 +643,7 @@
       ],
       "incumbent": {
         "name": "Keishan M. Scott",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1645738439",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "51": {
@@ -763,9 +663,7 @@
       ],
       "incumbent": {
         "name": "J. David Weeks",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1898863409",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "52": {
@@ -783,20 +681,16 @@
         }
       ],
       "incumbent": {
-        "name": "Jermaine L. Johnson, Sr.",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0943181705",
-        "photo_url": null
+        "name": "Jermaine L. Johnson Sr.",
+        "party": "Democratic"
       }
     },
     "53": {
       "districtNumber": 53,
       "candidates": [],
       "incumbent": {
-        "name": "Richard L. &quot;Richie&quot; Yow",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1998863577",
-        "photo_url": null
+        "name": "Richie Yow",
+        "party": "Republican"
       }
     },
     "54": {
@@ -826,9 +720,7 @@
       ],
       "incumbent": {
         "name": "Jason S. Luck",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1126420320",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "55": {
@@ -847,20 +739,16 @@
         }
       ],
       "incumbent": {
-        "name": "Jackie E. &quot;Coach&quot; Hayes",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0802272631",
-        "photo_url": null
+        "name": "Jackie Hayes",
+        "party": "Democratic"
       }
     },
     "56": {
       "districtNumber": 56,
       "candidates": [],
       "incumbent": {
-        "name": "Timothy A. &quot;Tim&quot; McGinnis",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1256818031",
-        "photo_url": null
+        "name": "Tim McGinnis",
+        "party": "Republican"
       }
     },
     "57": {
@@ -880,19 +768,15 @@
       ],
       "incumbent": {
         "name": "Lucas Atkinson",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0066477265",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "58": {
       "districtNumber": 58,
       "candidates": [],
       "incumbent": {
-        "name": "Jeffrey E. &quot;Jeff&quot; Johnson",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0938636251",
-        "photo_url": null
+        "name": "Jeff Johnson",
+        "party": "Republican"
       }
     },
     "59": {
@@ -912,9 +796,7 @@
       ],
       "incumbent": {
         "name": "Terry Alexander",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0011363635",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "60": {
@@ -922,9 +804,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Phillip D. Lowe",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1125568047",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "61": {
@@ -932,9 +812,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Carla Schuessler",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1635227077",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "62": {
@@ -954,19 +832,15 @@
       ],
       "incumbent": {
         "name": "Robert Q. Williams",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1942045222",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "63": {
       "districtNumber": 63,
       "candidates": [],
       "incumbent": {
-        "name": "Wallace H. &quot;Jay&quot; Jordan, Jr.",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0957954431",
-        "photo_url": null
+        "name": "Jay Jordan Jr.",
+        "party": "Republican"
       }
     },
     "64": {
@@ -974,9 +848,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Fawn M. Pedalino",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1453408917",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "65": {
@@ -984,9 +856,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Cody T. Mitchell",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1344033930",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "66": {
@@ -994,9 +864,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Jackie R. Terribile",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1812357738",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "67": {
@@ -1014,10 +882,8 @@
         }
       ],
       "incumbent": {
-        "name": "G. Murrell Smith, Jr.",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1703408887",
-        "photo_url": null
+        "name": "Murrell Smith Jr.",
+        "party": "Republican"
       }
     },
     "68": {
@@ -1025,9 +891,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Heather Ammons Crawford",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0428977222",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "69": {
@@ -1035,9 +899,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Chris Wooten",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1978408854",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "70": {
@@ -1077,9 +939,7 @@
       ],
       "incumbent": {
         "name": "Robert T. Reese",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1527840726",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "71": {
@@ -1098,9 +958,7 @@
       ],
       "incumbent": {
         "name": "Nathan Ballentine",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0102272715",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "72": {
@@ -1120,9 +978,7 @@
       ],
       "incumbent": {
         "name": "Seth Rose",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1584090719",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "73": {
@@ -1141,10 +997,8 @@
         }
       ],
       "incumbent": {
-        "name": "Christopher R. &quot;Chris&quot; Hart",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0770454453",
-        "photo_url": null
+        "name": "Chris Hart",
+        "party": "Democratic"
       }
     },
     "74": {
@@ -1163,10 +1017,8 @@
         }
       ],
       "incumbent": {
-        "name": "J. Todd Rutherford",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1614772534",
-        "photo_url": null
+        "name": "Todd Rutherford",
+        "party": "Democratic"
       }
     },
     "75": {
@@ -1186,9 +1038,7 @@
       ],
       "incumbent": {
         "name": "Heather Bauer",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0125568167",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "76": {
@@ -1208,9 +1058,7 @@
       ],
       "incumbent": {
         "name": "Leon Howard",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0879545349",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "77": {
@@ -1230,9 +1078,7 @@
       ],
       "incumbent": {
         "name": "Kambrell H. Garvin",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0657954467",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "78": {
@@ -1252,9 +1098,7 @@
       ],
       "incumbent": {
         "name": "Beth E. Bernstein",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0141477256",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "79": {
@@ -1274,9 +1118,7 @@
       ],
       "incumbent": {
         "name": "Hamilton R. Grant",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0705681734",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "80": {
@@ -1284,9 +1126,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Kathy Landing",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1066477145",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "81": {
@@ -1294,9 +1134,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Charles V. Hartz",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0776136271",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "82": {
@@ -1315,20 +1153,16 @@
         }
       ],
       "incumbent": {
-        "name": "William &quot;Bill&quot; Clyburn",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0363636320",
-        "photo_url": null
+        "name": "Bill Clyburn",
+        "party": "Democratic"
       }
     },
     "83": {
       "districtNumber": 83,
       "candidates": [],
       "incumbent": {
-        "name": "William M. &quot;Bill&quot; Hixon",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0849715808",
-        "photo_url": null
+        "name": "Bill Hixon",
+        "party": "Republican"
       }
     },
     "84": {
@@ -1336,9 +1170,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Melissa Lackey Oremus",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1432386192",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "85": {
@@ -1356,10 +1188,8 @@
         }
       ],
       "incumbent": {
-        "name": "John Gregory &quot;Jay&quot; Kilmartin",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0993323745",
-        "photo_url": null
+        "name": "Jay Kilmartin",
+        "party": "Republican"
       }
     },
     "86": {
@@ -1367,9 +1197,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Bill Taylor",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1811363419",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "87": {
@@ -1388,9 +1216,7 @@
       ],
       "incumbent": {
         "name": "Paula Rawl Calhoon",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0293181783",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "88": {
@@ -1419,19 +1245,15 @@
       ],
       "incumbent": {
         "name": "John Lastinger",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1066761236",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "89": {
       "districtNumber": 89,
       "candidates": [],
       "incumbent": {
-        "name": "Micajah P. &quot;Micah&quot; Caskey IV",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0329545415",
-        "photo_url": null
+        "name": "Micah Caskey IV",
+        "party": "Republican"
       }
     },
     "90": {
@@ -1451,9 +1273,7 @@
       ],
       "incumbent": {
         "name": "Justin T. Bamberg",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0102840897",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "91": {
@@ -1493,9 +1313,7 @@
       ],
       "incumbent": {
         "name": "Lonnie Hosey",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0874999895",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "92": {
@@ -1503,9 +1321,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Brandon L. Cox",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0428124949",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "93": {
@@ -1534,10 +1350,8 @@
         }
       ],
       "incumbent": {
-        "name": "Jerry N. Govan, Jr.",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0702272643",
-        "photo_url": null
+        "name": "Jerry N. Govan Jr.",
+        "party": "Democratic"
       }
     },
     "94": {
@@ -1545,9 +1359,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Gil Gatch",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0658522648",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "95": {
@@ -1567,19 +1379,15 @@
       ],
       "incumbent": {
         "name": "Gilda Cobb-Hunter",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0372727228",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "96": {
       "districtNumber": 96,
       "candidates": [],
       "incumbent": {
-        "name": "Donald Ryan McCabe, Jr.",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1206818037",
-        "photo_url": null
+        "name": "Ryan McCabe Jr.",
+        "party": "Republican"
       }
     },
     "97": {
@@ -1587,9 +1395,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Robby Robbins",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1565340722",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "98": {
@@ -1643,10 +1449,8 @@
         }
       ],
       "incumbent": {
-        "name": "Marvin &quot;Mark&quot; Smith",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1724999793",
-        "photo_url": null
+        "name": "Mark Smith",
+        "party": "Republican"
       }
     },
     "100": {
@@ -1654,9 +1458,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Sylleste H. Davis",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0456249946",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "101": {
@@ -1676,9 +1478,7 @@
       ],
       "incumbent": {
         "name": "Roger K. Kirby",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1006818061",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "102": {
@@ -1697,9 +1497,7 @@
       ],
       "incumbent": {
         "name": "Harriet A. Holman",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0867045351",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "103": {
@@ -1719,9 +1517,7 @@
       ],
       "incumbent": {
         "name": "Carl L. Anderson",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0021590907",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "104": {
@@ -1740,9 +1536,7 @@
       ],
       "incumbent": {
         "name": "William H. Bailey",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0088636353",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "105": {
@@ -1750,29 +1544,23 @@
       "candidates": [],
       "incumbent": {
         "name": "Kevin Hardee",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0743749911",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "106": {
       "districtNumber": 106,
       "candidates": [],
       "incumbent": {
-        "name": "Thomas Duval &quot;Val&quot; Guest, Jr.",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0730113549",
-        "photo_url": null
+        "name": "Val Guest Jr.",
+        "party": "Republican"
       }
     },
     "107": {
       "districtNumber": 107,
       "candidates": [],
       "incumbent": {
-        "name": "Thomas C. &quot;Case&quot; Brittain, Jr.",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0202272703",
-        "photo_url": null
+        "name": "Case Brittain Jr.",
+        "party": "Republican"
       }
     },
     "108": {
@@ -1791,9 +1579,7 @@
       ],
       "incumbent": {
         "name": "Lee Hewitt",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0834658991",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "109": {
@@ -1812,19 +1598,15 @@
       ],
       "incumbent": {
         "name": "Tiffany Spann-Wilder",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1742897519",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "110": {
       "districtNumber": 110,
       "candidates": [],
       "incumbent": {
-        "name": "Thomas F. &quot;Tom&quot; Hartnett, Jr.",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0774999907",
-        "photo_url": null
+        "name": "Tom Hartnett Jr.",
+        "party": "Republican"
       }
     },
     "111": {
@@ -1844,9 +1626,7 @@
       ],
       "incumbent": {
         "name": "Wendell G. Gilliard",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0675568101",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "112": {
@@ -1864,10 +1644,8 @@
         }
       ],
       "incumbent": {
-        "name": "Joseph M. &quot;Joe&quot; Bustos",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0278409057",
-        "photo_url": null
+        "name": "Joe Bustos",
+        "party": "Republican"
       }
     },
     "113": {
@@ -1886,19 +1664,15 @@
       ],
       "incumbent": {
         "name": "Courtney S. Waters",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1896590682",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "114": {
       "districtNumber": 114,
       "candidates": [],
       "incumbent": {
-        "name": "Gary S. Brewer, Jr.",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0192045432",
-        "photo_url": null
+        "name": "Gary S. Brewer Jr.",
+        "party": "Republican"
       }
     },
     "115": {
@@ -1936,10 +1710,8 @@
         }
       ],
       "incumbent": {
-        "name": "Elizabeth &quot;Spencer&quot; Wetmore",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1905681590",
-        "photo_url": null
+        "name": "Spencer Wetmore",
+        "party": "Democratic"
       }
     },
     "116": {
@@ -1947,9 +1719,7 @@
       "candidates": [],
       "incumbent": {
         "name": "James E. Teeple",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1812215692",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "117": {
@@ -1957,19 +1727,15 @@
       "candidates": [],
       "incumbent": {
         "name": "Jordan S. Pace",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1433984204",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "118": {
       "districtNumber": 118,
       "candidates": [],
       "incumbent": {
-        "name": "William G. &quot;Bill&quot; Herbkersman",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0832954446",
-        "photo_url": null
+        "name": "Bill Herbkersman",
+        "party": "Republican"
       }
     },
     "119": {
@@ -1998,20 +1764,16 @@
         }
       ],
       "incumbent": {
-        "name": "Leonidas E. &quot;Leon&quot; Stavrinakis",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1747727063",
-        "photo_url": null
+        "name": "Leon Stavrinakis",
+        "party": "Democratic"
       }
     },
     "120": {
       "districtNumber": 120,
       "candidates": [],
       "incumbent": {
-        "name": "Wm. Weston J. Newton",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1418749830",
-        "photo_url": null
+        "name": "Weston Newton",
+        "party": "Republican"
       }
     },
     "121": {
@@ -2030,30 +1792,24 @@
         }
       ],
       "incumbent": {
-        "name": "Michael F. Rivers, Sr.",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1564346404",
-        "photo_url": null
+        "name": "Michael F. Rivers Sr.",
+        "party": "Democratic"
       }
     },
     "122": {
       "districtNumber": 122,
       "candidates": [],
       "incumbent": {
-        "name": "William &quot;Bill&quot; Hager",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0733948776",
-        "photo_url": null
+        "name": "Bill Hager",
+        "party": "Republican"
       }
     },
     "123": {
       "districtNumber": 123,
       "candidates": [],
       "incumbent": {
-        "name": "Jeffrey A. &quot;Jeff&quot; Bradley",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0171590889",
-        "photo_url": null
+        "name": "Jeff Bradley",
+        "party": "Republican"
       }
     },
     "124": {
@@ -2061,9 +1817,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Shannon S. Erickson",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0539772663",
-        "photo_url": null
+        "party": "Republican"
       }
     }
   },
@@ -2073,9 +1827,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Thomas C. Alexander",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0013636362",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "2": {
@@ -2083,9 +1835,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Rex F. Rice",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1547727087",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "3": {
@@ -2093,9 +1843,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Richard J. Cash",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0328409052",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "4": {
@@ -2103,19 +1851,15 @@
       "candidates": [],
       "incumbent": {
         "name": "Michael W. Gambrell",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0635227197",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "5": {
       "districtNumber": 5,
       "candidates": [],
       "incumbent": {
-        "name": "Thomas D. &quot;Tom&quot; Corbin",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0402272679",
-        "photo_url": null
+        "name": "Thomas D. Corbin",
+        "party": "Republican"
       }
     },
     "6": {
@@ -2123,9 +1867,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Jason Elliott",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0529545391",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "7": {
@@ -2133,9 +1875,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Karl B. Allen",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0015340908",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "8": {
@@ -2143,19 +1883,15 @@
       "candidates": [],
       "incumbent": {
         "name": "Ross Turner",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1847727051",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "9": {
       "districtNumber": 9,
       "candidates": [],
       "incumbent": {
-        "name": "Daniel B. &quot;Danny&quot; Verdin III",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1874999775",
-        "photo_url": null
+        "name": "Daniel B. Verdin III",
+        "party": "Republican"
       }
     },
     "10": {
@@ -2163,9 +1899,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Billy Garrett",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0638636287",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "11": {
@@ -2173,9 +1907,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Josh Kimbrell",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0993465790",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "12": {
@@ -2214,9 +1946,7 @@
       ],
       "incumbent": {
         "name": "Lee Bright",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0193181795",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "13": {
@@ -2224,19 +1954,15 @@
       "candidates": [],
       "incumbent": {
         "name": "Shane R. Martin",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1179545313",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "14": {
       "districtNumber": 14,
       "candidates": [],
       "incumbent": {
-        "name": "Harvey S. Peeler, Jr.",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1454545280",
-        "photo_url": null
+        "name": "Harvey S. Peeler Jr.",
+        "party": "Republican"
       }
     },
     "15": {
@@ -2255,9 +1981,7 @@
       ],
       "incumbent": {
         "name": "Wes Climer",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0356818139",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "16": {
@@ -2265,9 +1989,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Michael Johnson",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0949431704",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "17": {
@@ -2275,9 +1997,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Everett Stubbs",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1780681605",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "18": {
@@ -2285,9 +2005,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Ronnie W. Cromer",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0438636311",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "19": {
@@ -2295,9 +2013,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Tameika Isaac Devine",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0477840852",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "20": {
@@ -2316,9 +2032,7 @@
       ],
       "incumbent": {
         "name": "Ed Sutton",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1782954332",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "21": {
@@ -2326,9 +2040,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Darrell Jackson",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0920454435",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "22": {
@@ -2336,9 +2048,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Overture Walker",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1889772501",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "23": {
@@ -2357,19 +2067,15 @@
       ],
       "incumbent": {
         "name": "Carlisle Kennedy",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0984090791",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "24": {
       "districtNumber": 24,
       "candidates": [],
       "incumbent": {
-        "name": "Tom Young, Jr.",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1996590730",
-        "photo_url": null
+        "name": "Tom Young Jr.",
+        "party": "Republican"
       }
     },
     "25": {
@@ -2377,9 +2083,7 @@
       "candidates": [],
       "incumbent": {
         "name": "A. Shane Massey",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1185227131",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "26": {
@@ -2387,9 +2091,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Russell L. Ott",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1433096420",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "27": {
@@ -2397,9 +2099,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Allen Blackmon",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0143749983",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "28": {
@@ -2407,9 +2107,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Greg Hembree",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0819318084",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "29": {
@@ -2428,9 +2126,7 @@
       ],
       "incumbent": {
         "name": "JD Chaplin",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0346590868",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "30": {
@@ -2438,9 +2134,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Kent M. Williams",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1938636131",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "31": {
@@ -2459,9 +2153,7 @@
       ],
       "incumbent": {
         "name": "Mike Reichenbach",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1528408908",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "32": {
@@ -2469,9 +2161,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Ronnie A. Sabb",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1617045261",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "33": {
@@ -2479,9 +2169,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Luke A. Rankin",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1511363455",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "34": {
@@ -2489,9 +2177,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Stephen L. Goldfinch",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0682386282",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "35": {
@@ -2499,9 +2185,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Jeffrey R. Graham",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0703124916",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "36": {
@@ -2509,19 +2193,15 @@
       "candidates": [],
       "incumbent": {
         "name": "Jeff Zell",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1999431789",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "37": {
       "districtNumber": 37,
       "candidates": [],
       "incumbent": {
-        "name": "Lawrence K. &quot;Larry&quot; Grooms",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0729545367",
-        "photo_url": null
+        "name": "Lawrence K. Grooms",
+        "party": "Republican"
       }
     },
     "38": {
@@ -2529,9 +2209,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Sean M. Bennett",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0141193165",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "39": {
@@ -2539,9 +2217,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Tom Fernandez",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0574999931",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "40": {
@@ -2549,19 +2225,15 @@
       "candidates": [],
       "incumbent": {
         "name": "Brad Hutto",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0912499891",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "41": {
       "districtNumber": 41,
       "candidates": [],
       "incumbent": {
-        "name": "Matthew W. &quot;Matt&quot; Leber",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=1074431690",
-        "photo_url": null
+        "name": "Matthew W. Leber",
+        "party": "Republican"
       }
     },
     "42": {
@@ -2569,19 +2241,15 @@
       "candidates": [],
       "incumbent": {
         "name": "Deon T. Tedder",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=1811931601",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "43": {
       "districtNumber": 43,
       "candidates": [],
       "incumbent": {
-        "name": "George E. &quot;Chip&quot; Campsen III",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0302272691",
-        "photo_url": null
+        "name": "George E. Campsen III",
+        "party": "Republican"
       }
     },
     "44": {
@@ -2589,9 +2257,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Brian Adams",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0002272727",
-        "photo_url": null
+        "party": "Republican"
       }
     },
     "45": {
@@ -2599,9 +2265,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Margie Bright Matthews",
-        "party": "Democratic",
-        "url": "https://www.scstatehouse.gov/member.php?code=0194318159",
-        "photo_url": null
+        "party": "Democratic"
       }
     },
     "46": {
@@ -2609,9 +2273,7 @@
       "candidates": [],
       "incumbent": {
         "name": "Tom Davis",
-        "party": "Republican",
-        "url": "https://www.scstatehouse.gov/member.php?code=0456818127",
-        "photo_url": null
+        "party": "Republican"
       }
     }
   }
