@@ -99,14 +99,12 @@ Plans:
 
 ### Phase 2: County Candidate Data
 
-**Goal**: Populate county-races.json with demo or real candidates (Sheriff, Coroner, Auditor, etc.)
+**Goal**: Populate county-races.json with real incumbents (Sheriff, Coroner, Auditor, etc.)
 **Depends on**: Phase 1
-**Research**: Likely (SC Ethics Commission data source)
-**Research topics**: SC Ethics Commission candidate filing format, county office types
-**Plans**: TBD
+**Status**: COMPLETE (2026-01-17)
 
 Plans:
-- [ ] 02-01: TBD
+- [x] 02-01: Scrape sheriffsc.org + sccounties.org, merge into county-races.json (019c82e)
 
 ### Phase 3: DemoBadge Integration
 
@@ -306,7 +304,7 @@ Expand to all 50 states with:
 |-------|-----------|--------|----------|
 | Phase A | v1.0 | COMPLETE | 100% |
 | 1. Data File Scaffolding | v1.1 | COMPLETE | 100% |
-| 2. County Candidate Data | v1.1 | Not started | 0% |
+| 2. County Candidate Data | v1.1 | COMPLETE | 100% |
 | 3. DemoBadge Integration | v1.1 | Not started | 0% |
 | 4. Voter Guide Decomposition | v1.1 | Not started | 0% |
 | 5. County Contact Extraction | v1.1 | Not started | 0% |
