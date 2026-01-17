@@ -1,0 +1,125 @@
+{
+  "lastUpdated": "2026-01-13",
+  "stateMeasures": [
+    {
+      "number": "1",
+      "title": "Constitutional Amendment on Property Tax Assessment",
+      "description": "Would amend Article X, Section 6 of the South Carolina Constitution to cap annual property tax assessment increases at 3% for owner-occupied residential property, unless the property is sold or substantially improved.",
+      "type": "constitutional",
+      "fullText": "https://www.scstatehouse.gov/sess127_2025-2026/bills/hjr.htm",
+      "proArguments": [
+        "Provides predictable property tax costs for homeowners",
+        "Protects seniors and fixed-income residents from being priced out of their homes",
+        "Encourages long-term homeownership and neighborhood stability"
+      ],
+      "conArguments": [
+        "Could shift tax burden to new homebuyers and commercial properties",
+        "May reduce local government revenue for schools and services",
+        "Creates assessment inequities between similar properties"
+      ]
+    },
+    {
+      "number": "2",
+      "title": "Education Funding Reform Amendment",
+      "description": "Would amend Article XI of the South Carolina Constitution to establish a minimum per-pupil funding level for public schools, adjusted annually for inflation, and require the General Assembly to fund the full amount.",
+      "type": "constitutional",
+      "fullText": "https://www.scstatehouse.gov/sess127_2025-2026/bills/hjr.htm",
+      "proArguments": [
+        "Ensures consistent, adequate funding for all SC public schools",
+        "Reduces funding disparities between wealthy and poor school districts",
+        "Provides accountability for state education spending"
+      ],
+      "conArguments": [
+        "Limits legislative flexibility in budget priorities",
+        "May require tax increases or cuts to other programs",
+        "Does not guarantee improved educational outcomes"
+      ]
+    },
+    {
+      "number": "3",
+      "title": "Renewable Energy Standard Advisory Question",
+      "description": "Non-binding advisory question asking whether the General Assembly should require electric utilities to generate at least 30% of electricity from renewable sources by 2035.",
+      "type": "advisory",
+      "fullText": "https://www.scstatehouse.gov/sess127_2025-2026/bills/hjr.htm",
+      "proArguments": [
+        "Promotes clean energy jobs and economic development",
+        "Reduces air pollution and public health costs",
+        "Positions SC competitively for federal clean energy incentives"
+      ],
+      "conArguments": [
+        "Could increase electricity costs for consumers and businesses",
+        "May not be technically or economically feasible in the timeframe",
+        "Advisory only - does not bind the General Assembly"
+      ]
+    }
+  ],
+  "localMeasures": [
+    {
+      "county": "Richland",
+      "measures": [
+        {
+          "number": "A",
+          "title": "Richland County School Bond Referendum",
+          "description": "Authorizes Richland County School District One to issue up to $500 million in general obligation bonds to construct new schools, renovate existing facilities, and upgrade technology infrastructure throughout the district.",
+          "type": "bond",
+          "amount": "$500,000,000"
+        },
+        {
+          "number": "B",
+          "title": "Penny Tax Extension for Transportation",
+          "description": "Extends the existing one-cent transportation sales tax for an additional seven years to fund road improvements, public transit expansion, and pedestrian safety projects throughout Richland County.",
+          "type": "tax",
+          "amount": "1 cent sales tax"
+        }
+      ]
+    },
+    {
+      "county": "Charleston",
+      "measures": [
+        {
+          "number": "1",
+          "title": "Charleston County Greenspace Preservation Bond",
+          "description": "Authorizes the issuance of $200 million in general obligation bonds to acquire and preserve natural areas, protect wetlands, and create new public parks and recreational facilities throughout Charleston County.",
+          "type": "bond",
+          "amount": "$200,000,000"
+        }
+      ]
+    },
+    {
+      "county": "Greenville",
+      "measures": [
+        {
+          "number": "R",
+          "title": "Greenville County Library System Bond",
+          "description": "Authorizes the issuance of $75 million in general obligation bonds to construct a new main library facility, renovate branch libraries, and expand digital resources for the Greenville County Library System.",
+          "type": "bond",
+          "amount": "$75,000,000"
+        }
+      ]
+    },
+    {
+      "county": "Horry",
+      "measures": [
+        {
+          "number": "1",
+          "title": "Hospitality Fee Allocation Amendment",
+          "description": "Advisory question on whether to dedicate 25% of hospitality fee revenues specifically to beach renourishment, drainage improvements, and flood mitigation projects in coastal areas of Horry County.",
+          "type": "other",
+          "amount": "25% of hospitality fees"
+        }
+      ]
+    },
+    {
+      "county": "Spartanburg",
+      "measures": [
+        {
+          "number": "A",
+          "title": "Spartanburg County Parks and Recreation Bond",
+          "description": "Authorizes the issuance of $45 million in general obligation bonds to develop new recreational facilities, upgrade existing parks, and construct multi-use trails connecting communities throughout Spartanburg County.",
+          "type": "bond",
+          "amount": "$45,000,000"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "lastUpdated": "2026-01-13",
+  "districts": [
+    {
+      "name": "Richland School District One",
+      "county": "Richland",
+      "seats": [
+        {
+          "seat": "Seat 1",
+          "candidates": []
+        },
+        {
+          "seat": "Seat 3",
+          "candidates": []
+        },
+        {
+          "seat": "Seat 5",
+          "candidates": []
+        },
+        {
+          "seat": "Seat 7",
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "name": "Richland School District Two",
+      "county": "Richland",
+      "seats": [
+        {
+          "seat": "Seat 2",
+          "candidates": []
+        },
+        {
+          "seat": "Seat 4",
+          "candidates": []
+        },
+        {
+          "seat": "Seat 6",
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "name": "Lexington School District One",
+      "county": "Lexington",
+      "seats": [
+        {
+          "seat": "Area 1",
+          "candidates": []
+        },
+        {
+          "seat": "Area 3",
+          "candidates": []
+        },
+        {
+          "seat": "Area 5",
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "name": "Charleston County School District",
+      "county": "Charleston",
+      "seats": [
+        {
+          "seat": "District 1",
+          "candidates": []
+        },
+        {
+          "seat": "District 4",
+          "candidates": []
+        },
+        {
+          "seat": "District 5",
+          "candidates": []
+        },
+        {
+          "seat": "District 8",
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "name": "Greenville County Schools",
+      "county": "Greenville",
+      "seats": [
+        {
+          "seat": "Area 20",
+          "candidates": []
+        },
+        {
+          "seat": "Area 21",
+          "candidates": []
+        },
+        {
+          "seat": "Area 22",
+          "candidates": []
+        },
+        {
+          "seat": "Area 23",
+          "candidates": []
+        },
+        {
+          "seat": "Area 25",
+          "candidates": []
+        },
+        {
+          "seat": "Area 26",
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "name": "Spartanburg School District Seven",
+      "county": "Spartanburg",
+      "seats": [
+        {
+          "seat": "Seat 1",
+          "candidates": []
+        },
+        {
+          "seat": "Seat 3",
+          "candidates": []
+        },
+        {
+          "seat": "Seat 5",
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "name": "Horry County Schools",
+      "county": "Horry",
+      "seats": [
+        {
+          "seat": "District 1",
+          "candidates": []
+        },
+        {
+          "seat": "District 3",
+          "candidates": []
+        },
+        {
+          "seat": "District 5",
+          "candidates": []
+        },
+        {
+          "seat": "District 7",
+          "candidates": []
+        },
+        {
+          "seat": "District 9",
+          "candidates": []
+        },
+        {
+          "seat": "District 11",
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "name": "Berkeley County School District",
+      "county": "Berkeley",
+      "seats": [
+        {
+          "seat": "District 1",
+          "candidates": []
+        },
+        {
+          "seat": "District 3",
+          "candidates": []
+        },
+        {
+          "seat": "District 5",
+          "candidates": []
+        },
+        {
+          "seat": "District 7",
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "name": "Dorchester School District Two",
+      "county": "Dorchester",
+      "seats": [
+        {
+          "seat": "Seat 2",
+          "candidates": []
+        },
+        {
+          "seat": "Seat 4",
+          "candidates": []
+        },
+        {
+          "seat": "Seat 6",
+          "candidates": []
+        }
+      ]
+    },
+    {
+      "name": "York School District Three (Rock Hill)",
+      "county": "York",
+      "seats": [
+        {
+          "seat": "Area 1",
+          "candidates": []
+        },
+        {
+          "seat": "Area 3",
+          "candidates": []
+        },
+        {
+          "seat": "Area 5",
+          "candidates": []
+        },
+        {
+          "seat": "Area 7",
+          "candidates": []
+        }
+      ]
+    }
+  ]
+}
