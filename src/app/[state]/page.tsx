@@ -13,7 +13,7 @@ import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 import { useToast } from '@/components/Toast';
 import { KPICardSkeleton, MapSkeleton, CandidateCardSkeleton } from '@/components/Skeleton';
 import { useStateContext } from '@/context/StateContext';
-import { BASE_PATH } from '@/lib/constants';
+// Note: BASE_PATH not needed - data fetching uses window.location detection, navigation uses Next.js auto basePath
 import type { CandidatesData, ElectionsData } from '@/types/schema';
 
 export default function StateDashboard() {
@@ -299,7 +299,8 @@ export default function StateDashboard() {
     return { demFiled, demIncumbents, contested, closeOpportunities, totalDistricts };
   }, [candidatesData, electionsData, chamber]);
 
-  const stateUrl = (path: string) => `${BASE_PATH}/${stateCode.toLowerCase()}${path}`;
+  // Note: Don't include BASE_PATH - Next.js Link automatically handles basePath
+  const stateUrl = (path: string) => `/${stateCode.toLowerCase()}${path}`;
 
   if (isLoading) {
     return (
@@ -361,7 +362,7 @@ export default function StateDashboard() {
             {isDemo('candidates') ? 'Check back soon!' : 'Please refresh the page to try again.'}
           </p>
           <Link
-            href={`${BASE_PATH}/`}
+            href="/"
             className="inline-block mt-4 px-4 py-2 rounded-lg text-sm font-medium"
             style={{
               background: 'var(--class-purple)',
@@ -403,7 +404,7 @@ export default function StateDashboard() {
               <div className="flex items-center gap-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <Link href={`${BASE_PATH}/`} className="text-sm hover:underline" style={{ color: 'var(--class-purple)' }}>
+                    <Link href="/" className="text-sm hover:underline" style={{ color: 'var(--class-purple)' }}>
                       All States
                     </Link>
                     <span style={{ color: 'var(--text-muted)' }}>/</span>
