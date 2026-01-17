@@ -18,34 +18,12 @@ import {
   ElectionCountdown,
   PollingPlaceFinder
 } from '@/components/VoterGuide';
+import { useVoterGuideData } from '@/hooks/useVoterGuideData';
 import { geocodeAddress, reverseGeocode, getCurrentLocation, isInSouthCarolina, GeocodeResult } from '@/lib/geocoding';
-import { findDistricts, preloadBoundaries, DistrictResult } from '@/lib/districtLookup';
+import { findDistricts, DistrictResult } from '@/lib/districtLookup';
 import { getCountyFromCoordinates } from '@/lib/congressionalLookup';
-import type {
-  CandidatesData,
-  StatewideRacesData,
-  CongressionalData,
-  ElectionDatesData,
-  CountyRacesData,
-  JudicialRacesData,
-  SchoolBoardData,
-  BallotMeasuresData,
-  SpecialDistrictsData
-} from '@/types/schema';
 
 type LookupStatus = 'idle' | 'geocoding' | 'finding-districts' | 'done' | 'error';
-
-interface AllRacesData {
-  candidates: CandidatesData | null;
-  statewide: StatewideRacesData | null;
-  judicialRaces: JudicialRacesData | null;
-  congressional: CongressionalData | null;
-  countyRaces: CountyRacesData | null;
-  schoolBoard: SchoolBoardData | null;
-  specialDistricts: SpecialDistrictsData | null;
-  ballotMeasures: BallotMeasuresData | null;
-  electionDates: ElectionDatesData | null;
-}
 
 interface ExtendedDistrictResult extends DistrictResult {
   congressionalDistrict?: number | null;
@@ -56,18 +34,8 @@ function VoterGuideContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const [allData, setAllData] = useState<AllRacesData>({
-    candidates: null,
-    statewide: null,
-    judicialRaces: null,
-    congressional: null,
-    countyRaces: null,
-    schoolBoard: null,
-    specialDistricts: null,
-    ballotMeasures: null,
-    electionDates: null,
-  });
-  const [isDataLoading, setIsDataLoading] = useState(true);
+  // Load all voter guide data
+  const { data: allData, isLoading: isDataLoading } = useVoterGuideData();
 
   // Lookup state
   const [status, setStatus] = useState<LookupStatus>('idle');
@@ -82,46 +50,6 @@ function VoterGuideContent() {
   // Address from URL for sharing
   const [initialAddress, setInitialAddress] = useState('');
   const [shareUrl, setShareUrl] = useState<string | null>(null);
-
-  // Load all data on mount
-  useEffect(() => {
-    const basePath = window.location.pathname.includes('/sc-election-map-2026')
-      ? '/sc-election-map-2026'
-      : '';
-    const cacheBuster = `v=${Date.now()}`;
-
-    // Load all data files in parallel
-    Promise.all([
-      fetch(`${basePath}/data/candidates.json?${cacheBuster}`).then(r => r.json()).catch(() => null),
-      fetch(`${basePath}/data/statewide-races.json?${cacheBuster}`).then(r => r.json()).catch(() => null),
-      fetch(`${basePath}/data/judicial-races.json?${cacheBuster}`).then(r => r.json()).catch(() => null),
-      fetch(`${basePath}/data/congress-candidates.json?${cacheBuster}`).then(r => r.json()).catch(() => null),
-      fetch(`${basePath}/data/county-races.json?${cacheBuster}`).then(r => r.json()).catch(() => null),
-      fetch(`${basePath}/data/school-board.json?${cacheBuster}`).then(r => r.json()).catch(() => null),
-      fetch(`${basePath}/data/special-districts.json?${cacheBuster}`).then(r => r.json()).catch(() => null),
-      fetch(`${basePath}/data/ballot-measures.json?${cacheBuster}`).then(r => r.json()).catch(() => null),
-      fetch(`${basePath}/data/election-dates.json?${cacheBuster}`).then(r => r.json()).catch(() => null),
-    ]).then(([candidates, statewide, judicialRaces, congressional, countyRaces, schoolBoard, specialDistricts, ballotMeasures, electionDates]) => {
-      setAllData({
-        candidates,
-        statewide,
-        judicialRaces,
-        congressional,
-        countyRaces,
-        schoolBoard,
-        specialDistricts,
-        ballotMeasures,
-        electionDates
-      });
-      setIsDataLoading(false);
-    }).catch(err => {
-      console.error('Failed to load data:', err);
-      setIsDataLoading(false);
-    });
-
-    // Note: GeoJSON boundaries are now lazy-loaded on AddressAutocomplete focus
-    // This defers 2MB of data until user interaction
-  }, []);
 
   // Handle URL parameter on mount (for shareable links)
   useEffect(() => {
