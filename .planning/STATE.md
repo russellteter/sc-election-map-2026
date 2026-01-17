@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-17)
 
 **Core value:** Build a national election intelligence platform that helps Democratic campaigns win
-**Current focus:** v1.1 SC Voter Guide Enhancement - Phase 1 complete
+**Current focus:** v1.1 SC Voter Guide Enhancement - Phase 2 complete
 
 ## Current Position
 
-Phase: 1 of 10 (Data File Scaffolding)
+Phase: 2 of 10 (County Candidate Data)
 Milestone: v1.1 SC Voter Guide Enhancement
 Status: Phase complete
-Last activity: 2026-01-17 - Completed 01-01-PLAN.md
+Last activity: 2026-01-17 - Completed 02-01-PLAN.md
 
-Progress: █░░░░░░░░░ 10%
+Progress: ██░░░░░░░░ 20%
 
 ## Phase A Completion Summary
 
@@ -85,6 +85,8 @@ Progress: █░░░░░░░░░ 10%
 | 2026-01-16 | 5-state regional focus | Prove concept before 50-state expansion |
 | 2026-01-17 | DemoBadge component | Clear labeling of demo vs real data |
 | 2026-01-17 | Neutral public UI | Build trust, expand reach |
+| 2026-01-17 | Real data for county officials | Scraped sheriffsc.org + sccounties.org |
+| 2026-01-17 | Newer data wins in conflicts | 51 conflicts resolved with recent scrapes |
 
 ### Deferred to Phase B
 
@@ -108,16 +110,17 @@ Progress: █░░░░░░░░░ 10%
 ## Session Continuity
 
 Last session: 2026-01-17
-Stopped at: Completed Phase 1: Data File Scaffolding
+Stopped at: Completed Phase 2: County Candidate Data
 Resume file: None
 
 ### Roadmap Evolution
 
 - **2026-01-17**: Milestone v1.1 created: SC Voter Guide Enhancement, 10 phases (Phase 1-10)
 - **2026-01-17**: Phase 1 complete: Tier 3 data files moved to public/data/
+- **2026-01-17**: Phase 2 complete: county-races.json expanded to 46 counties with real data
 
 ## Next Actions
 
-1. Plan Phase 2: County Candidate Data (`/gsd:plan-phase 2`)
+1. Plan Phase 3: DemoBadge Integration (`/gsd:plan-phase 3`)
 2. Execute v1.1 phases in sequence
 3. Plan Phase B when triggered (first customer OR second contributor)
