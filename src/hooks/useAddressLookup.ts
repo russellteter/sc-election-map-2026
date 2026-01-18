@@ -19,6 +19,47 @@ import { findDistricts, DistrictResult } from '@/lib/districtLookup';
 import { getCountyFromCoordinates } from '@/lib/congressionalLookup';
 
 /**
+ * localStorage key for persisting the last successfully looked-up address
+ */
+const STORAGE_KEY = 'voter-guide-last-address';
+
+/**
+ * Safely retrieve stored address from localStorage (handles SSR and private browsing)
+ */
+function getStoredAddress(): string | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    return localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return null; // Handle private browsing mode
+  }
+}
+
+/**
+ * Safely store address to localStorage (handles SSR and private browsing)
+ */
+function setStoredAddress(address: string): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(STORAGE_KEY, address);
+  } catch {
+    // Silently fail for private browsing
+  }
+}
+
+/**
+ * Clear stored address from localStorage
+ */
+function clearStoredAddress(): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // Silently fail for private browsing
+  }
+}
+
+/**
  * Status of the address lookup process
  */
 export type LookupStatus = 'idle' | 'geocoding' | 'finding-districts' | 'done' | 'error';
@@ -195,6 +236,9 @@ export function useAddressLookup(): UseAddressLookupReturn {
       url.searchParams.set('address', encodeURIComponent(displayName));
       window.history.replaceState({}, '', url.toString());
 
+      // Persist address to localStorage for returning users
+      setStoredAddress(displayName);
+
     } catch (err) {
       console.error('Lookup error:', err);
       setStatus('error');
@@ -261,6 +305,8 @@ export function useAddressLookup(): UseAddressLookupReturn {
     const url = new URL(window.location.href);
     url.search = '';
     window.history.replaceState({}, '', url.toString());
+    // Clear localStorage
+    clearStoredAddress();
   }, []);
 
   const handleCopyShareLink = useCallback(async () => {
@@ -281,14 +327,27 @@ export function useAddressLookup(): UseAddressLookupReturn {
     }
   }, [shareUrl]);
 
-  // Handle URL parameter on mount (for shareable links)
+  // Handle URL parameter on mount (for shareable links) or localStorage (for returning users)
   useEffect(() => {
+    // Skip if we already have results
+    if (geocodeResult) return;
+
+    // Priority 1: URL parameter (shareable links take precedence)
     const addressParam = searchParams.get('address');
-    if (addressParam && !geocodeResult) {
+    if (addressParam) {
       const decodedAddress = decodeURIComponent(addressParam);
       setInitialAddress(decodedAddress);
       // Auto-search if we have an address in the URL
       handleAddressSubmit(decodedAddress, 0, 0);
+      return;
+    }
+
+    // Priority 2: localStorage (returning users)
+    const storedAddress = getStoredAddress();
+    if (storedAddress) {
+      setInitialAddress(storedAddress);
+      // Auto-search with the stored address
+      handleAddressSubmit(storedAddress, 0, 0);
     }
   }, [searchParams]); // eslint-disable-line react-hooks/exhaustive-deps
 
