@@ -136,16 +136,14 @@ Plans:
 Plans:
 - [x] 05-01: Extract county contacts to JSON (e49a87a)
 
-### Phase 6: Address UX Improvements
+### Phase 6: Address UX Improvements (COMPLETE)
 
 **Goal**: Add "Use My Location" button and localStorage address persistence
 **Depends on**: Phase 5
-**Research**: Likely (browser geolocation API)
-**Research topics**: Geolocation API permissions, reverse geocoding workflow
-**Plans**: TBD
+**Status**: COMPLETE (2026-01-17)
 
 Plans:
-- [ ] 06-01: TBD
+- [x] 06-01: localStorage persistence + mobile location button (ab279d1, 1de6edb)
 
 ### Phase 7: Error Handling & Validation
 
@@ -308,7 +306,7 @@ Expand to all 50 states with:
 | 3. DemoBadge Integration | v1.1 | COMPLETE | 100% |
 | 4. Voter Guide Decomposition | v1.1 | COMPLETE | 100% |
 | 5. County Contact Extraction | v1.1 | COMPLETE | 100% |
-| 6. Address UX Improvements | v1.1 | Not started | 0% |
+| 6. Address UX Improvements | v1.1 | COMPLETE | 100% |
 | 7. Error Handling & Validation | v1.1 | Not started | 0% |
 | 8. Test Coverage | v1.1 | Not started | 0% |
 | 9. Performance Optimization | v1.1 | Not started | 0% |
