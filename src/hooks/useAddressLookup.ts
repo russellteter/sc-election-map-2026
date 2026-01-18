@@ -17,6 +17,7 @@ import { useSearchParams } from 'next/navigation';
 import { geocodeAddress, reverseGeocode, getCurrentLocation, isInSouthCarolina, GeocodeResult } from '@/lib/geocoding';
 import { findDistricts, DistrictResult } from '@/lib/districtLookup';
 import { getCountyFromCoordinates } from '@/lib/congressionalLookup';
+import { validateAddress, mapApiErrorToUserFriendly } from '@/lib/addressValidation';
 
 /**
  * localStorage key for persisting the last successfully looked-up address
@@ -82,6 +83,10 @@ interface UseAddressLookupReturn {
   statusMessage: string | null;
   /** Error message if lookup failed */
   error: string | null;
+  /** Type of error for styling (error, warning, info) */
+  errorType: 'error' | 'warning' | 'info' | null;
+  /** Actionable suggestion for the error */
+  errorSuggestion: string | null;
   /** Whether geolocation is in progress */
   isGeolocating: boolean;
   /** Geocode result after address lookup */
@@ -139,6 +144,8 @@ export function useAddressLookup(): UseAddressLookupReturn {
   const [status, setStatus] = useState<LookupStatus>('idle');
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [errorType, setErrorType] = useState<'error' | 'warning' | 'info' | null>(null);
+  const [errorSuggestion, setErrorSuggestion] = useState<string | null>(null);
   const [isGeolocating, setIsGeolocating] = useState(false);
 
   // Results state
@@ -156,6 +163,8 @@ export function useAddressLookup(): UseAddressLookupReturn {
   const handleAddressSubmit = useCallback(async (address: string, lat: number, lon: number) => {
     // Reset state
     setError(null);
+    setErrorType(null);
+    setErrorSuggestion(null);
     setGeocodeResult(null);
     setDistrictResult(null);
     setShareUrl(null);
@@ -170,7 +179,9 @@ export function useAddressLookup(): UseAddressLookupReturn {
         // Verify they're in SC
         if (!isInSouthCarolina(lat, lon)) {
           setStatus('error');
-          setError('This address does not appear to be in South Carolina. Please enter a South Carolina address.');
+          setError('This address does not appear to be in South Carolina');
+          setErrorType('error');
+          setErrorSuggestion('This tool only works for South Carolina addresses.');
           return;
         }
 
@@ -181,6 +192,26 @@ export function useAddressLookup(): UseAddressLookupReturn {
           displayName: address,
         });
       } else {
+        // Pre-flight validation BEFORE any API call
+        const validation = validateAddress(address);
+
+        if (!validation.isValid) {
+          setStatus('error');
+          setError(validation.message || 'Invalid address');
+          setErrorType('error');
+          setErrorSuggestion(validation.suggestion || null);
+          return;
+        }
+
+        // Handle PO Box warning (validation passed but with warning)
+        if (validation.isWarning) {
+          // Set warning state but continue with lookup
+          setError(validation.message || null);
+          setErrorType('warning');
+          setErrorSuggestion(validation.suggestion || null);
+          // Note: We continue execution here, not return
+        }
+
         // Need to geocode the address
         setStatus('geocoding');
         setStatusMessage('Looking up address...');
@@ -188,8 +219,12 @@ export function useAddressLookup(): UseAddressLookupReturn {
         const geoResult = await geocodeAddress(address);
 
         if (!geoResult.success) {
+          // Map API error to user-friendly message
+          const userError = mapApiErrorToUserFriendly(geoResult.error || 'Unknown error');
           setStatus('error');
-          setError(geoResult.error || 'Address lookup failed');
+          setError(userError.message);
+          setErrorType(userError.errorType);
+          setErrorSuggestion(userError.suggestion);
           setStatusMessage(null);
           return;
         }
@@ -215,7 +250,9 @@ export function useAddressLookup(): UseAddressLookupReturn {
 
       if (!districts.success) {
         setStatus('error');
-        setError(districts.error || 'Could not determine districts');
+        setError('Could not determine your voting districts');
+        setErrorType('error');
+        setErrorSuggestion('The address may be outside district boundaries. Try a nearby address or contact your county election office.');
         setStatusMessage(null);
         return;
       }
@@ -231,6 +268,13 @@ export function useAddressLookup(): UseAddressLookupReturn {
       setStatus('done');
       setStatusMessage(null);
 
+      // Clear any warning once we have successful results
+      if (errorType === 'warning') {
+        setError(null);
+        setErrorType(null);
+        setErrorSuggestion(null);
+      }
+
       // Update URL with address (without triggering navigation)
       const url = new URL(window.location.href);
       url.searchParams.set('address', encodeURIComponent(displayName));
@@ -242,20 +286,26 @@ export function useAddressLookup(): UseAddressLookupReturn {
     } catch (err) {
       console.error('Lookup error:', err);
       setStatus('error');
-      setError('An unexpected error occurred. Please try again.');
+      setError('An unexpected error occurred');
+      setErrorType('error');
+      setErrorSuggestion('Please try again. If the problem persists, enter a different address.');
       setStatusMessage(null);
     }
-  }, []);
+  }, [errorType]);
 
   const handleGeolocationRequest = useCallback(async () => {
     setIsGeolocating(true);
     setError(null);
+    setErrorType(null);
+    setErrorSuggestion(null);
 
     try {
       const location = await getCurrentLocation();
 
       if (!location) {
-        setError('Unable to get your location. Please check your browser permissions and try again, or enter your address manually.');
+        setError('Unable to get your location');
+        setErrorType('error');
+        setErrorSuggestion('Check your browser permissions and try again, or enter your address manually.');
         setIsGeolocating(false);
         return;
       }
@@ -264,7 +314,9 @@ export function useAddressLookup(): UseAddressLookupReturn {
 
       // Check if in SC
       if (!isInSouthCarolina(lat, lon)) {
-        setError('Your location does not appear to be in South Carolina. Please enter a South Carolina address manually.');
+        setError('Your location is not in South Carolina');
+        setErrorType('error');
+        setErrorSuggestion('This tool only works for South Carolina addresses. Please enter an address manually.');
         setIsGeolocating(false);
         return;
       }
@@ -274,7 +326,9 @@ export function useAddressLookup(): UseAddressLookupReturn {
       const reverseResult = await reverseGeocode(lat, lon);
 
       if (!reverseResult.success) {
-        setError(reverseResult.error || 'Could not determine your address');
+        setError('Could not determine your address');
+        setErrorType('error');
+        setErrorSuggestion('Please enter your address manually.');
         setIsGeolocating(false);
         return;
       }
@@ -288,7 +342,9 @@ export function useAddressLookup(): UseAddressLookupReturn {
 
     } catch (err) {
       console.error('Geolocation error:', err);
-      setError('An error occurred while getting your location. Please enter your address manually.');
+      setError('An error occurred while getting your location');
+      setErrorType('error');
+      setErrorSuggestion('Please enter your address manually.');
       setIsGeolocating(false);
     }
   }, [handleAddressSubmit]);
@@ -296,6 +352,8 @@ export function useAddressLookup(): UseAddressLookupReturn {
   const handleReset = useCallback(() => {
     setStatus('idle');
     setError(null);
+    setErrorType(null);
+    setErrorSuggestion(null);
     setStatusMessage(null);
     setGeocodeResult(null);
     setDistrictResult(null);
@@ -366,6 +424,8 @@ export function useAddressLookup(): UseAddressLookupReturn {
     status,
     statusMessage,
     error,
+    errorType,
+    errorSuggestion,
     isGeolocating,
     geocodeResult,
     districtResult,
