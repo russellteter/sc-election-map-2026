@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-17)
 
 **Core value:** Build a national election intelligence platform that helps Democratic campaigns win
-**Current focus:** v1.1 SC Voter Guide Enhancement - Phase 5 complete
+**Current focus:** v1.1 SC Voter Guide Enhancement - Phase 6 complete
 
 ## Current Position
 
-Phase: 5 of 10 (County Contact Extraction)
+Phase: 6 of 10 (Address UX Improvements)
 Milestone: v1.1 SC Voter Guide Enhancement
 Status: Phase complete
-Last activity: 2026-01-17 - Completed Phase 5: county contacts extracted to JSON (3 tasks, 3 commits)
+Last activity: 2026-01-17 - Completed Phase 6: localStorage persistence + mobile location button (2 tasks, 2 commits)
 
-Progress: █████░░░░░ 50%
+Progress: ██████░░░░ 60%
 
 ## Phase A Completion Summary
 
@@ -91,6 +91,8 @@ Progress: █████░░░░░ 50%
 | 2026-01-17 | CountyRaces no badge | Absence implies real data - simpler than indicator |
 | 2026-01-17 | Extract hooks before components | Data logic first, then UI extraction |
 | 2026-01-17 | No props for Header/Footer | Static content = pure presentational extraction |
+| 2026-01-17 | Store address, not coords in localStorage | Privacy - coords derivable from address |
+| 2026-01-17 | URL params override localStorage | Shareable links must work correctly |
 
 ### Deferred to Phase B
 
@@ -114,7 +116,7 @@ Progress: █████░░░░░ 50%
 ## Session Continuity
 
 Last session: 2026-01-17
-Stopped at: Completed Phase 5: County Contact Extraction (3 tasks, 3 commits)
+Stopped at: Completed Phase 6: Address UX Improvements (2 tasks, 2 commits)
 Resume file: None
 
 ### Roadmap Evolution
@@ -125,9 +127,10 @@ Resume file: None
 - **2026-01-17**: Phase 3 complete: DemoBadge added to 6 voter guide components
 - **2026-01-17**: Phase 4 complete: page.tsx decomposed 666→251 lines (2 hooks, 3 components)
 - **2026-01-17**: Phase 5 complete: county election URLs extracted to JSON data file
+- **2026-01-17**: Phase 6 complete: localStorage address persistence + mobile location button
 
 ## Next Actions
 
-1. Plan Phase 6: Address UX Improvements (`/gsd:plan-phase 6`)
+1. Plan Phase 7: Error Handling & Validation (`/gsd:plan-phase 7`)
 2. Execute v1.1 phases in sequence
 3. Plan Phase B when triggered (first customer OR second contributor)
