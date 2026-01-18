@@ -9,10 +9,10 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 
 ## Current Position
 
-Phase: 9 of 10 (Performance Optimization)
+Phase: 10 of 10 (Real Data Integration)
 Milestone: v1.1 SC Voter Guide Enhancement
-Status: Phase complete
-Last activity: 2026-01-18 - Completed 09-01-PLAN.md (persistent caching for GeoJSON + JSON data)
+Status: Phase planned
+Last activity: 2026-01-17 - Created 10-01-PLAN.md (Ethics scraper integration)
 
 Progress: █████████░ 90%
 
@@ -140,7 +140,6 @@ Resume file: None
 
 ## Next Actions
 
-1. Plan Phase 10: Real Data Integration (`/gsd:plan-phase 10`)
-2. Execute final v1.1 phase (10)
-3. Complete milestone v1.1 (`/gsd:complete-milestone`)
-4. Plan Phase B when triggered (first customer OR second contributor)
+1. Execute Phase 10: Real Data Integration (`/gsd:execute-plan .planning/phases/10-real-data-integration/10-01-PLAN.md`)
+2. Complete milestone v1.1 (`/gsd:complete-milestone`)
+3. Plan Phase B when triggered (first customer OR second contributor)
