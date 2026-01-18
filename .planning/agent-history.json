@@ -45,6 +45,64 @@
       "task_commits": ["d5dc050", "601a625"],
       "metadata_commit": "518fa5f",
       "deviations": []
+    },
+    {
+      "agent_id": "a9bcb0d",
+      "task_description": "Parallel: Execute 08-01-PLAN.md (TDD Address Validation Tests)",
+      "phase": "08",
+      "plan": "01",
+      "parallel_group": "pg-20260118-phase8",
+      "granularity": "plan",
+      "wave": 1,
+      "depends_on": [],
+      "timestamp": "2026-01-18T00:52:57Z",
+      "status": "completed",
+      "files_modified": [
+        "__tests__/lib/addressValidation.test.ts",
+        ".planning/phases/08-test-coverage/08-01-SUMMARY.md"
+      ],
+      "completion_timestamp": "2026-01-18T00:55:39Z",
+      "task_commits": ["626c0c5", "0856309"],
+      "deviations": ["Plan expected city_only for 'Main Street, Columbia' but implementation returns missing_street - test adjusted"]
+    },
+    {
+      "agent_id": "abe76e1",
+      "task_description": "Parallel: Execute 08-02-PLAN.md (District Lookup Tests)",
+      "phase": "08",
+      "plan": "02",
+      "parallel_group": "pg-20260118-phase8",
+      "granularity": "plan",
+      "wave": 1,
+      "depends_on": [],
+      "timestamp": "2026-01-18T00:52:57Z",
+      "status": "completed",
+      "files_modified": [
+        "__tests__/lib/districtLookup.test.ts",
+        ".planning/phases/08-test-coverage/08-02-SUMMARY.md"
+      ],
+      "completion_timestamp": "2026-01-18T00:56:10Z",
+      "task_commits": ["1d85e38", "9847c16"],
+      "deviations": ["Tasks 2 and 3 consolidated into Task 1 - complete test suite written together"]
+    },
+    {
+      "agent_id": "a94beec",
+      "task_description": "Parallel: Execute 08-03-PLAN.md (Hook Tests)",
+      "phase": "08",
+      "plan": "03",
+      "parallel_group": "pg-20260118-phase8",
+      "granularity": "plan",
+      "wave": 2,
+      "depends_on": ["08-01", "08-02"],
+      "timestamp": "2026-01-18T00:57:00Z",
+      "status": "completed",
+      "files_modified": [
+        "__tests__/hooks/useVoterGuideData.test.ts",
+        "__tests__/hooks/useAddressLookup.test.ts",
+        ".planning/phases/08-test-coverage/08-03-SUMMARY.md"
+      ],
+      "completion_timestamp": "2026-01-18T01:02:42Z",
+      "task_commits": ["a495ef0", "eab1001", "fb42327"],
+      "deviations": []
     }
   ]
 }
