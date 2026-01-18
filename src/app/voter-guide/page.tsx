@@ -175,6 +175,7 @@ function VoterGuideContent() {
                     <CountyRaces
                       data={allData.countyRaces}
                       countyName={districtResult.countyName || null}
+                      countyContacts={allData.countyContacts}
                     />
                   )}
 
