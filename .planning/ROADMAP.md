@@ -127,15 +127,14 @@ Plans:
 
 **Result**: page.tsx reduced from 666 to 251 lines (62% reduction)
 
-### Phase 5: County Contact Extraction
+### Phase 5: County Contact Extraction (COMPLETE)
 
 **Goal**: Move hardcoded county election office URLs to public/data/county-contacts.json
 **Depends on**: Phase 4
-**Research**: Unlikely (data migration)
-**Plans**: TBD
+**Status**: COMPLETE (2026-01-17)
 
 Plans:
-- [ ] 05-01: TBD
+- [x] 05-01: Extract county contacts to JSON (e49a87a)
 
 ### Phase 6: Address UX Improvements
 
@@ -308,7 +307,7 @@ Expand to all 50 states with:
 | 2. County Candidate Data | v1.1 | COMPLETE | 100% |
 | 3. DemoBadge Integration | v1.1 | COMPLETE | 100% |
 | 4. Voter Guide Decomposition | v1.1 | COMPLETE | 100% |
-| 5. County Contact Extraction | v1.1 | Not started | 0% |
+| 5. County Contact Extraction | v1.1 | COMPLETE | 100% |
 | 6. Address UX Improvements | v1.1 | Not started | 0% |
 | 7. Error Handling & Validation | v1.1 | Not started | 0% |
 | 8. Test Coverage | v1.1 | Not started | 0% |
