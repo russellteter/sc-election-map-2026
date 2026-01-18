@@ -43,3 +43,6 @@ next-env.d.ts
 # Raw shapefile data
 data/shapefiles/
 .playwright-mcp/
+
+# Data pipeline intermediate files
+scripts/data/*.json
