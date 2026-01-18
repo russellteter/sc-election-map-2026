@@ -1,168 +1,52 @@
-# Blue Intelligence - Claude Code Context
+# CLAUDE.md
 
-> **Primary entry point for Claude Code sessions**
-> Last Updated: 2026-01-17 | Phase A Complete
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
----
+## Project Overview
 
-## Project Status
-
-| Phase | Status | Details |
-|-------|--------|---------|
-| **Phase A** | COMPLETE | 5 states, 876 districts, all 12 features |
-| **Phase B** | PLANNED | Monorepo Migration |
-| **Phase C** | PLANNED | SC Production Migration |
-| **Phase D** | PLANNED | State Expansion |
+Blue Intelligence is a national 50-state election intelligence demo platform for Democratic campaigns. Currently deployed with 5 states (SC, NC, GA, FL, VA) and 876 districts as a proof-of-concept.
 
 **Live URL:** https://russellteter.github.io/sc-election-map-2026/
 
-**Lighthouse Scores (Production):**
-| Metric | Score |
-|--------|-------|
-| Performance | 100 |
-| Accessibility | 94 |
-| Best Practices | 96 |
-| SEO | 100 |
-
----
-
-## What is Blue Intelligence?
-
-A **national 50-state election intelligence demo platform** for Democratic campaigns. Currently deployed with 5 states as a proof-of-concept:
-
-| State | House | Senate | Total | Data Type |
-|-------|-------|--------|-------|-----------|
-| SC | 124 | 46 | 170 | Real + Demo |
-| NC | 120 | 50 | 170 | Demo |
-| GA | 180 | 56 | 236 | Demo |
-| FL | 120 | 40 | 160 | Demo |
-| VA | 100 | 40 | 140 | Demo |
-| **Total** | **644** | **232** | **876** | |
-
----
-
-## Quick Reference
-
-| Purpose | Location |
-|---------|----------|
-| Mission & Strategy | `.planning/PROJECT.md` |
-| Current Progress | `.planning/STATE.md` |
-| Roadmap & Phases | `.planning/ROADMAP.md` |
-| Full Context Bible | `claudedocs/BLUE-INTELLIGENCE-BIBLE.md` |
-| Codebase Reference | `.planning/codebase/OVERVIEW.md` |
-| Architecture | `docs/ARCHITECTURE.md` |
-| Current State Metrics | `docs/CURRENT-STATE.md` |
-
----
-
-## Context Loading Priority
-
-For new Claude Code sessions, load context in this order:
-
-1. **This file** (instant overview)
-2. `.planning/PROJECT.md` (mission, constraints)
-3. `.planning/STATE.md` (current progress)
-4. `docs/CURRENT-STATE.md` (live metrics, feature matrix)
-5. `claudedocs/BLUE-INTELLIGENCE-BIBLE.md` (deep context when needed)
-
----
-
-## Critical Constraints
-
-| Constraint | Requirement | Rationale |
-|------------|-------------|-----------|
-| Hosting | Static export to GitHub Pages | No server runtime available |
-| API Keys | Client-side (`NEXT_PUBLIC_*`) | Read-only public demo data |
-| Performance | <10KB initial payload | Mobile-first user base |
-| Appearance | Neutral public UI | No overt Democratic branding |
-| Demo Data | Clearly labeled with DemoBadge | Transparency for demo mode |
-
----
-
-## Key Commands
+## Commands
 
 ```bash
 # Development
-npm run dev          # Development server (localhost:3000)
-npm run build        # Production build
-npm run lint         # ESLint check
-npm test             # Run tests
+npm run dev              # Start development server (localhost:3000)
+npm run build            # Production build (static export to out/)
+npm run lint             # ESLint check
+
+# Testing
+npm test                 # Run Jest unit tests
+npm run test:watch       # Run tests in watch mode
+npm run test:coverage    # Run tests with coverage report
+npm run test:e2e         # Run Playwright E2E tests (requires dev server)
+npm run test:e2e:ui      # Run Playwright with UI
+
+# Data Pipeline
+npm run refresh-data     # Scrape Ethics Commission + regenerate candidates.json
 
 # Deployment
-git push origin main # Auto-deploys via GitHub Actions
+git push origin main     # Auto-deploys via GitHub Actions
 ```
 
----
+## Architecture
 
-## GSD Workflow
+**Pattern:** Static-export Next.js application with progressive data loading
 
-This project uses the GSD (Get Stuff Done) system for structured execution.
+**Key Constraints:**
+- Static export only (`output: 'export'`) - no server runtime, GitHub Pages hosting
+- Client-side API keys only (`NEXT_PUBLIC_*`) - for public demo data
+- <10KB initial payload target - mobile-first performance
+- Neutral public UI - no overt Democratic branding
 
-```bash
-/gsd:progress        # Check current state and route to next action
-/gsd:plan-phase N    # Create detailed plan for phase N
-/gsd:execute-plan    # Execute a PLAN.md file
-/gsd:verify-work     # Manual UAT verification
-```
+**Tech Stack:**
+- Next.js 16 + React 19 + TypeScript (strict mode)
+- Tailwind CSS v4 with glassmorphic design tokens
+- Turf.js for geographic calculations
+- Static JSON data in `public/data/`
 
----
-
-## Tech Stack Summary
-
-| Layer | Technology |
-|-------|------------|
-| Framework | Next.js 16 + React 19 |
-| Language | TypeScript (strict mode) |
-| Styling | Tailwind CSS v4 + Glassmorphic tokens |
-| Build | Static export (`output: 'export'`) |
-| Hosting | GitHub Pages |
-| Maps | SVG district maps + GeoJSON boundaries |
-
----
-
-## Feature Matrix (Phase A Complete)
-
-| Feature | Status | Component |
-|---------|--------|-----------|
-| Interactive District Maps | Live | `DistrictMap.tsx` |
-| Voter Guide | Live | `/voter-guide` |
-| Electorate Profiles | Live | `ElectorateProfile.tsx` |
-| Mobilization Scoring | Live | `MobilizationCard.tsx` |
-| Early Vote Tracker | Live | `EarlyVoteTracker.tsx` |
-| Resource Optimizer | Live | `ResourceOptimizer.tsx` |
-| Endorsement Dashboard | Partial | Demo data only |
-| National Landing Page | Live | US map with state selection |
-| Multi-State Routing | Live | `/[state]/` dynamic routes |
-
----
-
-## Data Tiering Strategy
-
-```
-LAYER 1: Real Free Data
-├── Census boundaries (district shapes)
-├── State election results (historical margins)
-├── Google Civic API (polling places, election dates)
-└── Census demographics (for algorithmic generation)
-
-LAYER 2: Real Scraped Data (SC only)
-├── SC Ethics Commission (candidate filings)
-├── SC State party websites (verified Democrats)
-└── OpenStates (incumbent info)
-
-LAYER 3: Demo Generated Data (all states)
-├── Voter intelligence profiles
-├── Opportunity scores
-├── Mobilization universes
-├── Endorsements, early vote tracking
-└── Resource optimization recommendations
-
-LAYER 4: Unlockable (When Customer Pays)
-├── BallotReady API -> Real candidate data
-└── TargetSmart API -> Real voter intelligence
-```
-
----
+**Path Alias:** `@/` maps to `src/` (e.g., `import { Candidate } from '@/types/schema'`)
 
 ## Key Files
 
@@ -171,39 +55,88 @@ LAYER 4: Unlockable (When Customer Pays)
 | Type definitions | `src/types/schema.ts` |
 | State configurations | `src/config/states/` |
 | Demo data generator | `src/lib/demoDataGenerator.ts` |
-| Data loading | `src/lib/dataLoader.ts` |
-| District lookup | `src/lib/districtLookup.ts` |
-| Main pages | `src/app/` |
-| Components | `src/components/` |
-| Static data | `public/data/` |
+| Progressive data loading | `src/lib/dataLoader.ts` |
+| District lookup (GeoJSON) | `src/lib/districtLookup.ts` |
+| Route pages | `src/app/page.tsx`, `src/app/[state]/page.tsx` |
 
----
+## Data Flow
+
+- **SC only:** Real data from SC Ethics Commission + party enrichment
+- **All other states:** Demo-generated data (clearly labeled with DemoBadge component)
+- Data pipeline: Python scripts in `scripts/` → JSON in `public/data/` → client fetch
+
+## Data Refresh Pipeline
+
+To update candidate data from the SC Ethics Commission:
+
+```bash
+npm run refresh-data
+```
+
+This runs the full pipeline:
+1. **Scrape** - Playwright scrapes ethicsfiling.sc.gov for Initial Reports
+2. **Process** - Merges with party-data.json for party enrichment
+3. **Output** - Generates public/data/candidates.json
+
+**Prerequisites:**
+- Python 3.11+ with virtual environment at `.venv/`
+- Playwright: `pip install playwright && python -m playwright install chromium`
+
+**Manual scraping (advanced):**
+```bash
+# Activate venv first
+source .venv/bin/activate
+
+# Scrape ethics data
+python scripts/scrape-ethics.py --max-pages 10 --output scripts/data/ethics-state.json
+
+# Process with party enrichment
+python scripts/process-data.py scripts/data/ethics-state.json
+
+# Copy to public
+cp src/data/candidates.json public/data/candidates.json
+```
+
+## Code Patterns
+
+**DemoBadge:** Always label demo/generated data:
+```tsx
+import { DemoBadge } from '@/components/ui/DemoBadge';
+<DemoBadge />
+```
+
+**Progressive Loading:** Use 3-tier data loading for Voter Guide:
+- Tier 1 (Critical): election-dates.json, statewide-races.json
+- Tier 2 (On-demand): candidates.json, county-races.json
+- Tier 3 (Deferred): judicial, school-board, special-districts
+
+**Event Delegation:** SVG maps use single event handler on container, not per-path listeners.
+
+## Environment Variables
+
+```bash
+NEXT_PUBLIC_GEOAPIFY_KEY=your_key_here  # Address geocoding (3,000 req/day free)
+```
+
+## Documentation
+
+| Document | Purpose |
+|----------|---------|
+| `.planning/PROJECT.md` | Mission & strategy |
+| `.planning/STATE.md` | Current progress |
+| `docs/ARCHITECTURE.md` | System architecture details |
+| `docs/CURRENT-STATE.md` | Live metrics & feature matrix |
+| `claudedocs/BLUE-INTELLIGENCE-BIBLE.md` | Deep context (load when needed) |
 
 ## Guiding Principles
 
 **DO:**
-- Maintain professional, neutral-appearing public interface
-- Use DemoBadge component to clearly label demo/generated data
-- Follow existing component patterns
-- Use the established type system
+- Use DemoBadge to clearly label demo/generated data
+- Follow existing glassmorphic design system
+- Use the established type system in `src/types/schema.ts`
 - Keep mobile performance optimized
-- Prioritize Democratic-strategic features in background
 
 **DON'T:**
 - Add overt Democratic branding to public-facing UI
 - Present demo data as real data
-- Break the existing glassmorphic design system
-- Introduce dependencies without clear justification
-- Add features that don't serve the core mission
-
----
-
-## Mission Statement
-
-> **Build a national election intelligence platform that helps Democratic campaigns win.**
-
-Every feature serves this goal. Phase A proves the concept with 5 states and demo data. Future phases will add real API integrations and expand to all 50 states.
-
----
-
-*For detailed context, see `claudedocs/BLUE-INTELLIGENCE-BIBLE.md`*
+- Break static export compatibility (no server-side features)
