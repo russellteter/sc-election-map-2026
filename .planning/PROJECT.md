@@ -1,6 +1,23 @@
 # Blue Intelligence - Project Definition
 
-> Generated: 2026-01-17 | Phase A Complete
+> Generated: 2026-01-17 | v1.1 Shipped 2026-01-18
+
+---
+
+## Current State (v1.1 Shipped)
+
+**Live URL:** https://russellteter.github.io/sc-election-map-2026/
+
+**What shipped:**
+- 5 states deployed (SC, NC, GA, FL, VA) with 876 districts
+- All 12 intelligence features with demo data
+- SC Voter Guide with real county officials, Ethics Commission scraper integration
+- 155 tests passing, comprehensive coverage
+- Persistent caching (IndexedDB for GeoJSON, localStorage for JSON)
+- Mobile-optimized with Lighthouse scores 100/94/96/100
+
+**Tech stack:** Next.js 16, React 19, TypeScript, Tailwind CSS v4, Turf.js
+**LOC:** 24,219 TypeScript
 
 ---
 
@@ -175,5 +192,52 @@ Blue Intelligence is designed as a **national platform** that can scale to all 5
 | `claudedocs/gsd/verification/` | Verification checklists |
 
 ---
+
+## Requirements
+
+### Validated (v1.1)
+
+- Interactive district maps with 876 districts across 5 states - v1.0
+- 12 intelligence features with demo data generation - v1.0
+- DemoBadge component for transparent demo data labeling - v1.0
+- Mobile optimization with <10KB initial payload - v1.0
+- Real county official data scraped from sheriffsc.org/sccounties.org - v1.1
+- Voter Guide page refactored to testable components - v1.1
+- Comprehensive test coverage (155 tests, >90% validation) - v1.1
+- Persistent caching (IndexedDB/localStorage) - v1.1
+- SC Ethics Commission scraper integration - v1.1
+- Address validation with user-friendly error messages - v1.1
+
+### Active (v2.0+)
+
+- [ ] Monorepo migration (Turborepo)
+- [ ] BallotReady API client implementation
+- [ ] TargetSmart API client implementation
+- [ ] Multi-contributor workflow support
+- [ ] Per-state production deployments
+
+### Out of Scope
+
+- Mobile native apps - web-first approach, PWA sufficient
+- Offline mode - real-time data is core value
+- Video chat features - use external tools
+- Breaking static export compatibility - GitHub Pages constraint
+
+---
+
+## Key Decisions
+
+| Decision | Rationale | Outcome |
+|----------|-----------|---------|
+| Demo data strategy | Enable full demo without paid APIs | Good - demonstrates all features |
+| 5-state regional focus | Prove concept before 50-state expansion | Good - validated architecture |
+| DemoBadge component | Clear labeling of demo vs real data | Good - builds trust |
+| Extract hooks before components | Data logic first, then UI extraction | Good - clean separation |
+| IndexedDB for GeoJSON | Large data (~2MB) needs structured storage | Good - fast repeat visits |
+| Pre-flight validation | Reduce unnecessary API calls | Good - immediate feedback |
+
+---
+
+*Last updated: 2026-01-18 after v1.1 milestone*
 
 *Every feature serves the mission: Build a national election intelligence platform that helps Democratic campaigns win.*

@@ -2,34 +2,26 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-01-17)
+See: .planning/PROJECT.md (updated 2026-01-18)
 
 **Core value:** Build a national election intelligence platform that helps Democratic campaigns win
-**Current focus:** v1.1 SC Voter Guide Enhancement - MILESTONE COMPLETE
+**Current focus:** v1.1 SHIPPED — Planning next milestone
 
 ## Current Position
 
-Phase: 10 of 10 (Real Data Integration)
-Milestone: v1.1 SC Voter Guide Enhancement
-Status: Milestone complete
-Last activity: 2026-01-18 - Completed 10-01-PLAN.md (Ethics scraper integration)
+Phase: v1.1 Complete
+Milestone: v1.1 SC Voter Guide Enhancement — SHIPPED
+Status: Ready for next milestone
+Last activity: 2026-01-18 — v1.1 milestone complete
 
 Progress: ██████████ 100%
 
-## Phase A Completion Summary
+## Shipped Milestones
 
-| Work Package | Status | Deliverables |
-|--------------|--------|--------------|
-| WP-1: Repository Setup | COMPLETE | GitHub Pages deployed |
-| WP-2: State Configuration | COMPLETE | 5 state configs created |
-| WP-3: Multi-State Routing | COMPLETE | /[state]/ routes working |
-| WP-4: National Landing Page | COMPLETE | US map with state navigation |
-| WP-5: State Map Assets | COMPLETE | 10 SVG maps (5 states x 2 chambers) |
-| WP-6: State Config Files | COMPLETE | NC, GA, FL, VA configs |
-| WP-7: Demo Data Generation | COMPLETE | 876 districts with demo data |
-| WP-8: 12-Phase Features | COMPLETE | All Intelligence components |
-| WP-9: UI Polish & Disclaimers | COMPLETE | DemoBadge, mobile audit |
-| WP-10: Deployment & Testing | COMPLETE | Lighthouse >90 all categories |
+| Milestone | Shipped | Key Deliverables |
+|-----------|---------|------------------|
+| v1.0 Blue Intelligence Demo | 2026-01-17 | 5 states, 876 districts, 12 features |
+| v1.1 SC Voter Guide Enhancement | 2026-01-18 | Real county data, 155 tests, caching, Ethics scraper |
 
 ## Live Deployment Metrics
 
@@ -53,93 +45,41 @@ Progress: ██████████ 100%
 | Best Practices | 96 | >90 |
 | SEO | 100 | >90 |
 
-## Performance Metrics
+## v1.1 Summary
 
-**Velocity:**
-- Total phases completed: 12
-- Work packages completed: 10
-- Build time: <10 seconds
-- Initial payload: <10KB
+**10 phases, 13 plans, 2 days**
 
-**Feature Implementation:**
-| Feature | Status |
-|---------|--------|
-| Interactive District Maps | Live |
-| Voter Guide | Live |
-| Electorate Profiles | Live |
-| Mobilization Scoring | Live |
-| Early Vote Tracker | Live |
-| Resource Optimizer | Live |
-| Endorsement Dashboard | Partial (demo) |
-| Down-Ballot Ecosystem | Live |
-| National Landing Page | Live |
-| Multi-State Routing | Live |
+Key achievements:
+- Real county official data (300 incumbents, 46 counties)
+- Voter Guide decomposition (666 → 251 lines, 62% reduction)
+- Test coverage (87 new tests, 155 total)
+- Persistent caching (IndexedDB/localStorage, ~2.2MB saved)
+- SC Ethics Commission scraper (`npm run refresh-data`)
 
-## Accumulated Context
+**Git:** Tagged v1.1
 
-### Key Decisions
+## Key Decisions (v1.1)
 
 | Date | Decision | Rationale |
 |------|----------|-----------|
-| 2026-01-16 | Demo data strategy | Enable full demo without paid APIs |
-| 2026-01-16 | 5-state regional focus | Prove concept before 50-state expansion |
-| 2026-01-17 | DemoBadge component | Clear labeling of demo vs real data |
-| 2026-01-17 | Neutral public UI | Build trust, expand reach |
-| 2026-01-17 | Real data for county officials | Scraped sheriffsc.org + sccounties.org |
-| 2026-01-17 | Newer data wins in conflicts | 51 conflicts resolved with recent scrapes |
-| 2026-01-17 | DemoBadge inline with titles | Consistent flex pattern across components |
-| 2026-01-17 | CountyRaces no badge | Absence implies real data - simpler than indicator |
 | 2026-01-17 | Extract hooks before components | Data logic first, then UI extraction |
-| 2026-01-17 | No props for Header/Footer | Static content = pure presentational extraction |
-| 2026-01-17 | Store address, not coords in localStorage | Privacy - coords derivable from address |
-| 2026-01-17 | URL params override localStorage | Shareable links must work correctly |
+| 2026-01-17 | Store only address string in localStorage | Privacy - coords derivable from address |
 | 2026-01-18 | Pre-flight validation before API calls | Reduce unnecessary requests, immediate feedback |
-| 2026-01-18 | PO Box as warning not error | Allow lookup to proceed with warning |
-| 2026-01-18 | Reusable ErrorDisplay component | Consistent error UX across app |
 | 2026-01-18 | IndexedDB for GeoJSON, localStorage for JSON | Size-appropriate storage selection |
-| 2026-01-18 | Tier 1 stays in-memory only | Changes frequently, small size |
 | 2026-01-18 | Version-based cache invalidation | Single constant controls all caches |
 
-### Deferred to Phase B
+## Next Steps
 
-- Monorepo migration (Turborepo)
-- Real API integrations (BallotReady, TargetSmart)
-- Multi-contributor workflow
-- Package extraction
+1. **Plan Phase B** when triggered (first customer OR second contributor)
+   - Monorepo migration (Turborepo)
+   - Package extraction
 
-### Deferred to Phase C
-
-- SC production migration
-- Real data cutover
-- A/B testing infrastructure
-
-### Deferred to Phase D
-
-- State expansion beyond 5 states
-- Per-state customization
-- Regional deployment batches
+2. **Plan Phase C** when triggered (SC Democratic Party contract)
+   - BallotReady API integration
+   - TargetSmart API integration
 
 ## Session Continuity
 
 Last session: 2026-01-18
-Stopped at: Completed 10-01-PLAN.md (Ethics scraper integration) - MILESTONE COMPLETE
+Stopped at: v1.1 milestone complete
 Resume file: None
-
-### Roadmap Evolution
-
-- **2026-01-17**: Milestone v1.1 created: SC Voter Guide Enhancement, 10 phases (Phase 1-10)
-- **2026-01-17**: Phase 1 complete: Tier 3 data files moved to public/data/
-- **2026-01-17**: Phase 2 complete: county-races.json expanded to 46 counties with real data
-- **2026-01-17**: Phase 3 complete: DemoBadge added to 6 voter guide components
-- **2026-01-17**: Phase 4 complete: page.tsx decomposed 666→251 lines (2 hooks, 3 components)
-- **2026-01-17**: Phase 5 complete: county election URLs extracted to JSON data file
-- **2026-01-17**: Phase 6 complete: localStorage address persistence + mobile location button
-- **2026-01-18**: Phase 7 complete: Pre-flight validation + ErrorDisplay component (3 tasks, 3 commits)
-- **2026-01-18**: Phase 8 complete: Test Coverage via parallel execution (87 new tests, 155 total)
-- **2026-01-18**: Phase 9 complete: Persistent caching (IndexedDB for GeoJSON, localStorage for JSON)
-- **2026-01-18**: Phase 10 complete: Ethics scraper integration (3 tasks, 3 commits)
-
-## Next Actions
-
-1. Complete milestone v1.1 (`/gsd:complete-milestone`)
-2. Plan Phase B when triggered (first customer OR second contributor)
