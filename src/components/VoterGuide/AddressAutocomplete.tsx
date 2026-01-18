@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState, useCallback } from 'react';
 import { preloadBoundaries } from '@/lib/districtLookup';
+import { ErrorDisplay } from './ErrorDisplay';
 
 // Geoapify API configuration
 const GEOAPIFY_API_KEY = process.env.NEXT_PUBLIC_GEOAPIFY_KEY || '';
@@ -19,6 +20,8 @@ interface AddressAutocompleteProps {
   onGeolocationRequest: () => void;
   isLoading: boolean;
   error?: string | null;
+  errorType?: 'error' | 'warning' | 'info' | null;
+  errorSuggestion?: string | null;
   statusMessage?: string | null;
   initialAddress?: string;
   isGeolocating?: boolean;
@@ -42,6 +45,8 @@ export default function AddressAutocomplete({
   onGeolocationRequest,
   isLoading,
   error,
+  errorType,
+  errorSuggestion,
   statusMessage,
   initialAddress = '',
   isGeolocating = false,
@@ -437,34 +442,14 @@ export default function AddressAutocomplete({
         </div>
       )}
 
-      {/* Error Message */}
+      {/* Error/Warning Message */}
       {error && (
-        <div
-          id="address-error"
-          className="flex items-start gap-2 mt-4 p-3 rounded-lg animate-entrance"
-          style={{
-            background: 'var(--color-at-risk-bg)',
-            border: '1px solid rgba(220, 38, 38, 0.3)',
-          }}
-          role="alert"
-        >
-          <svg
-            className="w-5 h-5 flex-shrink-0 mt-0.5"
-            style={{ color: 'var(--color-at-risk)' }}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          <p className="text-sm" style={{ color: 'var(--color-at-risk)' }}>
-            {error}
-          </p>
+        <div id="address-error">
+          <ErrorDisplay
+            type={errorType || 'error'}
+            message={error}
+            suggestion={errorSuggestion || undefined}
+          />
         </div>
       )}
 
