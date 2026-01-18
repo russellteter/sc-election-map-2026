@@ -29,6 +29,8 @@ function VoterGuideContent() {
   // Address lookup and district finding
   const {
     error,
+    errorType,
+    errorSuggestion,
     isGeolocating,
     geocodeResult,
     districtResult,
@@ -94,6 +96,8 @@ function VoterGuideContent() {
                 isLoading={isLoading}
                 isGeolocating={isGeolocating}
                 error={error}
+                errorType={errorType}
+                errorSuggestion={errorSuggestion}
                 statusMessage={statusMessage}
                 initialAddress={initialAddress}
               />
