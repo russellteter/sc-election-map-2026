@@ -3,17 +3,33 @@
  *
  * Uses Turf.js point-in-polygon with bundled GeoJSON boundaries
  * Works offline after initial load, fully debuggable
+ *
+ * Caching Strategy:
+ * - GeoJSON boundaries (~2MB) are cached in IndexedDB for cross-session persistence
+ * - First visit: Network fetch, then cache to IndexedDB
+ * - Subsequent visits: Load from IndexedDB (instant)
+ * - Cache invalidation: Controlled by CACHE_VERSION in cacheUtils.ts
  */
 
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 import { point } from '@turf/helpers';
 import type { Feature, FeatureCollection, Polygon, MultiPolygon } from 'geojson';
+import {
+  getGeoJsonFromCache,
+  setGeoJsonInCache,
+  checkCacheVersion,
+} from './cacheUtils';
 
 // Debug mode
-const DEBUG = typeof window !== 'undefined' && localStorage.getItem('voter-guide-debug') === 'true';
+const DEBUG = typeof window !== 'undefined' && localStorage?.getItem('voter-guide-debug') === 'true';
 
 function log(message: string, data?: unknown) {
   if (DEBUG) console.log(`[DistrictLookup] ${message}`, data || '');
+}
+
+// Initialize cache version check on module load (browser only)
+if (typeof window !== 'undefined') {
+  checkCacheVersion().catch((err) => log('Cache version check failed', err));
 }
 
 export interface DistrictResult {
@@ -30,11 +46,16 @@ let loadingPromise: Promise<void> | null = null;
 
 /**
  * Load GeoJSON boundary files (lazy load, cached)
+ *
+ * Loading order:
+ * 1. Check in-memory cache (same session)
+ * 2. Check IndexedDB cache (cross-session)
+ * 3. Network fetch (first visit or cache miss)
  */
 async function loadBoundaries(): Promise<void> {
-  // Already loaded
+  // Already loaded in memory
   if (houseDistricts && senateDistricts) {
-    log('Using cached boundaries');
+    log('Using in-memory cached boundaries');
     return;
   }
 
@@ -48,11 +69,31 @@ async function loadBoundaries(): Promise<void> {
   loadingPromise = (async () => {
     log('Loading district boundaries...');
 
+    // Try IndexedDB cache first
+    try {
+      const cachedHouse = await getGeoJsonFromCache('sc-house-districts');
+      const cachedSenate = await getGeoJsonFromCache('sc-senate-districts');
+
+      if (cachedHouse && cachedSenate) {
+        houseDistricts = cachedHouse;
+        senateDistricts = cachedSenate;
+        log('Loaded boundaries from IndexedDB cache', {
+          houseFeatures: houseDistricts?.features?.length,
+          senateFeatures: senateDistricts?.features?.length
+        });
+        return;
+      }
+    } catch (error) {
+      log('IndexedDB cache check failed, falling back to network', error);
+    }
+
+    // Network fetch
     const basePath = typeof window !== 'undefined' && window.location.pathname.includes('/sc-election-map-2026')
       ? '/sc-election-map-2026'
       : '';
 
     try {
+      log('Fetching boundaries from network...');
       const [houseResponse, senateResponse] = await Promise.all([
         fetch(`${basePath}/data/sc-house-districts.geojson`),
         fetch(`${basePath}/data/sc-senate-districts.geojson`)
@@ -65,10 +106,19 @@ async function loadBoundaries(): Promise<void> {
       houseDistricts = await houseResponse.json();
       senateDistricts = await senateResponse.json();
 
-      log('Boundaries loaded', {
+      log('Boundaries loaded from network', {
         houseFeatures: houseDistricts?.features?.length,
         senateFeatures: senateDistricts?.features?.length
       });
+
+      // Cache to IndexedDB for future sessions (async, don't await)
+      Promise.all([
+        setGeoJsonInCache('sc-house-districts', houseDistricts!),
+        setGeoJsonInCache('sc-senate-districts', senateDistricts!)
+      ])
+        .then(() => log('Cached boundaries to IndexedDB'))
+        .catch((err) => log('Failed to cache boundaries to IndexedDB', err));
+
     } catch (error) {
       log('Error loading boundaries:', error);
       loadingPromise = null; // Allow retry
