@@ -158,18 +158,9 @@ async function rateLimit(): Promise<void> {
 export async function geocodeAddress(address: string): Promise<GeocodeResult> {
   const trimmedAddress = address.trim();
 
-  // Input validation
+  // Basic input validation (comprehensive validation is in addressValidation.ts)
   if (!trimmedAddress) {
     return { success: false, error: 'Please enter an address' };
-  }
-
-  // Reject ZIP-only inputs
-  const zipOnlyPattern = /^\d{5}(-\d{4})?$/;
-  if (zipOnlyPattern.test(trimmedAddress)) {
-    return {
-      success: false,
-      error: 'Please enter a full street address, not just a ZIP code. Example: "123 Main St, Columbia, SC 29201"'
-    };
   }
 
   // Check for South Carolina in the address (add if missing for better results)

@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState, useCallback } from 'react';
 import { preloadBoundaries } from '@/lib/districtLookup';
+import { ErrorDisplay } from './ErrorDisplay';
 
 // Geoapify API configuration
 const GEOAPIFY_API_KEY = process.env.NEXT_PUBLIC_GEOAPIFY_KEY || '';
@@ -19,6 +20,8 @@ interface AddressAutocompleteProps {
   onGeolocationRequest: () => void;
   isLoading: boolean;
   error?: string | null;
+  errorType?: 'error' | 'warning' | 'info' | null;
+  errorSuggestion?: string | null;
   statusMessage?: string | null;
   initialAddress?: string;
   isGeolocating?: boolean;
@@ -42,6 +45,8 @@ export default function AddressAutocomplete({
   onGeolocationRequest,
   isLoading,
   error,
+  errorType,
+  errorSuggestion,
   statusMessage,
   initialAddress = '',
   isGeolocating = false,
@@ -389,6 +394,35 @@ export default function AddressAutocomplete({
         </div>
       </form>
 
+      {/* Use My Location - More prominent on mobile */}
+      <div className="flex justify-center mt-3 sm:hidden">
+        <button
+          type="button"
+          onClick={onGeolocationRequest}
+          disabled={isLoading || isGeolocating}
+          className="flex items-center gap-2 text-sm font-medium transition-all disabled:opacity-50"
+          style={{ color: 'var(--class-purple)' }}
+        >
+          {isGeolocating ? (
+            <>
+              <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              Getting location...
+            </>
+          ) : (
+            <>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2v2m0 16v2M2 12h2m16 0h2" />
+              </svg>
+              Use my current location
+            </>
+          )}
+        </button>
+      </div>
+
       {/* Status Message */}
       {statusMessage && !error && (
         <div
@@ -408,34 +442,14 @@ export default function AddressAutocomplete({
         </div>
       )}
 
-      {/* Error Message */}
+      {/* Error/Warning Message */}
       {error && (
-        <div
-          id="address-error"
-          className="flex items-start gap-2 mt-4 p-3 rounded-lg animate-entrance"
-          style={{
-            background: 'var(--color-at-risk-bg)',
-            border: '1px solid rgba(220, 38, 38, 0.3)',
-          }}
-          role="alert"
-        >
-          <svg
-            className="w-5 h-5 flex-shrink-0 mt-0.5"
-            style={{ color: 'var(--color-at-risk)' }}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          <p className="text-sm" style={{ color: 'var(--color-at-risk)' }}>
-            {error}
-          </p>
+        <div id="address-error">
+          <ErrorDisplay
+            type={errorType || 'error'}
+            message={error}
+            suggestion={errorSuggestion || undefined}
+          />
         </div>
       )}
 
