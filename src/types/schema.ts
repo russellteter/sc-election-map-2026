@@ -727,3 +727,33 @@ export interface JudicialRacesData {
   /** Information about SC's judicial selection process */
   selectionInfo: JudicialSelectionInfo;
 }
+
+// =============================================================================
+// County Contacts Types (Election Office URLs, Phone, Address)
+// =============================================================================
+
+/**
+ * County election office contact information
+ */
+export interface CountyContact {
+  /** URL to county election office website (null = use defaultUrl) */
+  electionUrl: string | null;
+  /** Phone number for county election office */
+  phone: string | null;
+  /** Physical address for county election office */
+  address: string | null;
+}
+
+/**
+ * County contacts data file structure
+ */
+export interface CountyContactsData {
+  /** ISO timestamp of when the data was last updated */
+  lastUpdated: string;
+  /** Data source attribution */
+  source: string;
+  /** Default fallback URL for counties without specific URLs */
+  defaultUrl: string;
+  /** Counties keyed by county name */
+  counties: Record<string, CountyContact>;
+}

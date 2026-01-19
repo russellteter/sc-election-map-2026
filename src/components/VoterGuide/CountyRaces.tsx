@@ -1,38 +1,22 @@
 'use client';
 
-import type { CountyRacesData, CountyRace, CountyData } from '@/types/schema';
+import type { CountyRacesData, CountyRace, CountyData, CountyContactsData } from '@/types/schema';
 import CandidateCard from '@/components/Dashboard/CandidateCard';
 
 interface CountyRacesProps {
   data: CountyRacesData;
   countyName: string | null;
+  countyContacts: CountyContactsData | null;
 }
 
-// County election office URLs for SC counties
-const COUNTY_ELECTION_URLS: Record<string, string> = {
-  'Greenville': 'https://www.greenvillecounty.org/voterregistration/',
-  'Richland': 'https://richlandcountysc.gov/government/election-commission',
-  'Charleston': 'https://www.charlestoncounty.org/departments/bevr/',
-  'Horry': 'https://www.horrycounty.org/Departments/Voter-Registration',
-  'Spartanburg': 'https://www.spartanburgcounty.org/189/Voter-Registration',
-  'Lexington': 'https://lex-co.sc.gov/departments/election-commission',
-  'York': 'https://www.yorkcountygov.com/137/Board-of-Voter-Registration-Elections',
-  'Berkeley': 'https://www.berkeleycountysc.gov/election/',
-  'Anderson': 'https://www.andersoncountysc.org/voter-registration/',
-  'Beaufort': 'https://www.beaufortcountysc.gov/elections/',
-};
-
-// Default fallback URL for counties not in the list
-const DEFAULT_COUNTY_URL = 'https://scvotes.gov/voters/locate-your-county-voter-registration-and-elections-office/';
-
-export default function CountyRaces({ data, countyName }: CountyRacesProps) {
+export default function CountyRaces({ data, countyName, countyContacts }: CountyRacesProps) {
   // Get county data if available
   const countyData: CountyData | null = countyName ? data.counties[countyName] || null : null;
 
-  // Get election office URL for the county
-  const countyElectionUrl = countyName
-    ? COUNTY_ELECTION_URLS[countyName] || DEFAULT_COUNTY_URL
-    : DEFAULT_COUNTY_URL;
+  // Get election office URL for the county from JSON data
+  const countyElectionUrl = countyName && countyContacts?.counties[countyName]?.electionUrl
+    ? countyContacts.counties[countyName].electionUrl
+    : countyContacts?.defaultUrl || 'https://scvotes.gov/voters/locate-your-county-voter-registration-and-elections-office/';
 
   return (
     <div className="space-y-6">

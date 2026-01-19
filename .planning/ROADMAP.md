@@ -18,7 +18,7 @@ Political data visualization, campaign intelligence, React/Next.js development
 ## Milestones
 
 - ✅ **v1.0 Blue Intelligence Demo** - Phase A (COMPLETE, shipped 2026-01-17)
-- 🚧 **v1.1 SC Voter Guide Enhancement** - Phases 1-10 (in progress)
+- ✅ **v1.1 SC Voter Guide Enhancement** - Phases 1-10 (COMPLETE, shipped 2026-01-18) → [Archive](milestones/v1.1-ROADMAP.md)
 - 📋 **v2.0 Monorepo Architecture** - Phase B (PLANNED)
 - 📋 **v3.0 SC Production** - Phase C (PLANNED)
 - 📋 **v4.0 National Platform** - Phase D (PLANNED)
@@ -79,114 +79,25 @@ All 12 original features from the API Integration Plan:
 
 ---
 
-## 🚧 v1.1 SC Voter Guide Enhancement (In Progress)
+<details>
+<summary>✅ v1.1 SC Voter Guide Enhancement (Phases 1-10) — SHIPPED 2026-01-18</summary>
 
-**Milestone Goal:** Enhance the SC Voter Guide with complete data, improved UX, and production-ready code quality.
+**Delivered:** Enhanced SC Voter Guide with real county data, 62% code reduction, 155 tests, persistent caching, Ethics Commission scraper.
 
-**Focus Areas:**
-- Data quality improvements (county races, judicial, school board)
-- UI/UX enhancements (component refactoring, DemoBadge, UX polish)
-- Test coverage and performance optimization
+- [x] Phase 1: Data File Scaffolding (1/1 plan) — 2026-01-17
+- [x] Phase 2: County Candidate Data (1/1 plan) — 2026-01-17
+- [x] Phase 3: DemoBadge Integration (1/1 plan) — 2026-01-17
+- [x] Phase 4: Voter Guide Decomposition (2/2 plans) — 2026-01-17
+- [x] Phase 5: County Contact Extraction (1/1 plan) — 2026-01-17
+- [x] Phase 6: Address UX Improvements (1/1 plan) — 2026-01-17
+- [x] Phase 7: Error Handling & Validation (1/1 plan) — 2026-01-18
+- [x] Phase 8: Test Coverage (3/3 plans) — 2026-01-18
+- [x] Phase 9: Performance Optimization (1/1 plan) — 2026-01-18
+- [x] Phase 10: Real Data Integration (1/1 plan) — 2026-01-18
 
-### Phase 1: Data File Scaffolding (COMPLETE)
+**Full details:** [milestones/v1.1-ROADMAP.md](milestones/v1.1-ROADMAP.md)
 
-**Goal**: Create missing data files (judicial-races.json, school-board.json, ballot-measures.json, special-districts.json)
-**Depends on**: Phase A complete
-**Status**: COMPLETE (2026-01-17)
-
-Plans:
-- [x] 01-01: Copy Tier 3 data files to public/data/ (df74b56)
-
-### Phase 2: County Candidate Data
-
-**Goal**: Populate county-races.json with real incumbents (Sheriff, Coroner, Auditor, etc.)
-**Depends on**: Phase 1
-**Status**: COMPLETE (2026-01-17)
-
-Plans:
-- [x] 02-01: Scrape sheriffsc.org + sccounties.org, merge into county-races.json (019c82e)
-
-### Phase 3: DemoBadge Integration (COMPLETE)
-
-**Goal**: Add DemoBadge to all voter guide components displaying demo data
-**Depends on**: Phase 2
-**Status**: COMPLETE (2026-01-17)
-
-Plans:
-- [x] 03-01: Add DemoBadge to 6 demo data voter guide components (de9dc98)
-
-### Phase 4: Voter Guide Decomposition
-
-**Goal**: Break up 666-line voter-guide/page.tsx into smaller, testable components
-**Depends on**: Phase 3
-**Research**: Unlikely (refactoring internal code)
-**Plans**: TBD
-
-Plans:
-- [ ] 04-01: TBD
-
-### Phase 5: County Contact Extraction
-
-**Goal**: Move hardcoded county election office URLs to public/data/county-contacts.json
-**Depends on**: Phase 4
-**Research**: Unlikely (data migration)
-**Plans**: TBD
-
-Plans:
-- [ ] 05-01: TBD
-
-### Phase 6: Address UX Improvements
-
-**Goal**: Add "Use My Location" button and localStorage address persistence
-**Depends on**: Phase 5
-**Research**: Likely (browser geolocation API)
-**Research topics**: Geolocation API permissions, reverse geocoding workflow
-**Plans**: TBD
-
-Plans:
-- [ ] 06-01: TBD
-
-### Phase 7: Error Handling & Validation
-
-**Goal**: Improve error messaging for failed lookups and invalid addresses
-**Depends on**: Phase 6
-**Research**: Unlikely (UX patterns exist)
-**Plans**: TBD
-
-Plans:
-- [ ] 07-01: TBD
-
-### Phase 8: Test Coverage
-
-**Goal**: Add comprehensive tests for voter guide components and district lookup
-**Depends on**: Phase 7
-**Research**: Unlikely (testing patterns exist)
-**Plans**: TBD
-
-Plans:
-- [ ] 08-01: TBD
-
-### Phase 9: Performance Optimization
-
-**Goal**: Implement GeoJSON caching and persistent data caching (localStorage/IndexedDB)
-**Depends on**: Phase 8
-**Research**: Likely (IndexedDB patterns, caching strategies)
-**Research topics**: IndexedDB for GeoJSON, cache invalidation strategies
-**Plans**: TBD
-
-Plans:
-- [ ] 09-01: TBD
-
-### Phase 10: Real Data Integration
-
-**Goal**: Scrape SC Ethics Commission for real candidate data
-**Depends on**: Phase 9
-**Research**: Likely (external API/scraping)
-**Research topics**: SC Ethics Commission API/HTML structure, data freshness requirements
-**Plans**: TBD
-
-Plans:
-- [ ] 10-01: TBD
+</details>
 
 ---
 
@@ -299,22 +210,13 @@ Expand to all 50 states with:
 
 ## Progress Summary
 
-| Phase | Milestone | Status | Progress |
-|-------|-----------|--------|----------|
-| Phase A | v1.0 | COMPLETE | 100% |
-| 1. Data File Scaffolding | v1.1 | COMPLETE | 100% |
-| 2. County Candidate Data | v1.1 | COMPLETE | 100% |
-| 3. DemoBadge Integration | v1.1 | COMPLETE | 100% |
-| 4. Voter Guide Decomposition | v1.1 | Not started | 0% |
-| 5. County Contact Extraction | v1.1 | Not started | 0% |
-| 6. Address UX Improvements | v1.1 | Not started | 0% |
-| 7. Error Handling & Validation | v1.1 | Not started | 0% |
-| 8. Test Coverage | v1.1 | Not started | 0% |
-| 9. Performance Optimization | v1.1 | Not started | 0% |
-| 10. Real Data Integration | v1.1 | Not started | 0% |
-| Phase B | v2.0 | PLANNED | 0% |
-| Phase C | v3.0 | PLANNED | 0% |
-| Phase D | v4.0 | PLANNED | 0% |
+| Milestone | Phases | Plans | Status | Shipped |
+|-----------|--------|-------|--------|---------|
+| v1.0 Blue Intelligence Demo | Phase A (10 WPs) | 10 | COMPLETE | 2026-01-17 |
+| v1.1 SC Voter Guide | Phases 1-10 | 13 | COMPLETE | 2026-01-18 |
+| v2.0 Monorepo Architecture | Phase B | TBD | PLANNED | - |
+| v3.0 SC Production | Phase C | TBD | PLANNED | - |
+| v4.0 National Platform | Phase D | TBD | PLANNED | - |
 
 ---
 

@@ -4,6 +4,12 @@ import dynamic from 'next/dynamic';
 export { default as AddressInput } from './AddressInput';
 export { default as AddressAutocomplete } from './AddressAutocomplete';
 export { default as DistrictResults } from './DistrictResults';
+export { ErrorDisplay } from './ErrorDisplay';
+
+// Page structure components (static, no props)
+export { default as VoterGuideHeader } from './VoterGuideHeader';
+export { default as VoterGuideFooter } from './VoterGuideFooter';
+export { default as VoterGuideSummary } from './VoterGuideSummary';
 
 // Import skeletons for re-export
 import {
