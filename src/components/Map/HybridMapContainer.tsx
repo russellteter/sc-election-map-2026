@@ -3,7 +3,9 @@
 import { useState, useCallback, useMemo, Suspense, lazy } from 'react';
 import DistrictMap from './DistrictMap';
 import ShareButton from './ShareButton';
-import type { CandidatesData, ElectionsData } from '@/types/schema';
+import MapSearchOverlay from './MapSearchOverlay';
+import { useSearchShortcut } from '@/hooks/useSearchShortcut';
+import type { CandidatesData, ElectionsData, SearchResult } from '@/types/schema';
 import type { ChamberType } from '@/lib/leafletLoader';
 import type { MapState } from '@/lib/mapStateUtils';
 
@@ -37,6 +39,8 @@ export interface HybridMapContainerProps {
   showModeToggle?: boolean;
   /** Show share button (default: true) */
   showShareButton?: boolean;
+  /** Show search button and enable search shortcuts (default: true) */
+  showSearch?: boolean;
   /** Additional className */
   className?: string;
 }
@@ -79,10 +83,29 @@ export default function HybridMapContainer({
   showChamberToggle = true,
   showModeToggle = true,
   showShareButton = true,
+  showSearch = true,
   className,
 }: HybridMapContainerProps) {
   const [mode, setMode] = useState<MapMode>('svg');
   const [chamber, setChamber] = useState<LegislativeChamber | 'congressional'>(initialChamber);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  // Register keyboard shortcuts for search (/, Cmd+K)
+  useSearchShortcut(
+    () => setIsSearchOpen(true),
+    { enabled: showSearch && !isSearchOpen }
+  );
+
+  // Handle search result selection - zoom to district
+  const handleSearchSelect = useCallback((result: SearchResult) => {
+    // Change chamber if needed
+    if (result.chamber !== chamber) {
+      setChamber(result.chamber);
+    }
+    // Click the district to select it
+    onDistrictClick(result.districtNumber);
+    setIsSearchOpen(false);
+  }, [chamber, onDistrictClick]);
 
   // Toggle between SVG and Leaflet mode
   const toggleMode = useCallback(() => {
@@ -202,6 +225,23 @@ export default function HybridMapContainer({
         {showShareButton && (
           <ShareButton mapState={shareMapState} size="sm" />
         )}
+
+        {/* Search Button */}
+        {showSearch && (
+          <button
+            onClick={() => setIsSearchOpen(true)}
+            className="glass-control px-3 py-1.5 text-xs font-medium bg-white/90 text-gray-700 hover:bg-blue-50 rounded-lg transition-colors"
+            title="Search districts (/ or ⌘K)"
+            aria-label="Search districts"
+          >
+            <span className="flex items-center gap-1.5">
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <span className="hidden sm:inline">Search</span>
+            </span>
+          </button>
+        )}
       </div>
 
       {/* Map Container */}
@@ -216,6 +256,17 @@ export default function HybridMapContainer({
             Interactive Mode
           </span>
         </div>
+      )}
+
+      {/* Search Overlay */}
+      {showSearch && (
+        <MapSearchOverlay
+          candidatesData={candidatesData}
+          isOpen={isSearchOpen}
+          onClose={() => setIsSearchOpen(false)}
+          onSelect={handleSearchSelect}
+          chamberFilter={chamber === 'congressional' ? undefined : chamber}
+        />
       )}
     </div>
   );
