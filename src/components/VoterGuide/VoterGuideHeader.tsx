@@ -14,7 +14,7 @@ export default function VoterGuideHeader() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link
-              href="/"
+              href="/sc"
               className="flex items-center gap-2 text-sm font-medium transition-colors hover:opacity-80"
               style={{ color: 'var(--class-purple)' }}
             >

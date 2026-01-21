@@ -72,7 +72,7 @@ function VoterGuideContent() {
           </div>
 
           {/* Election Countdown - Always Visible */}
-          <ElectionCountdown />
+          <ElectionCountdown fallbackData={allData.electionDates || undefined} />
 
           {/* Loading State with Skeleton */}
           {isDataLoading && (
@@ -165,7 +165,7 @@ function VoterGuideContent() {
 
                   {/* Statewide Constitutional Offices */}
                   {allData.statewide && (
-                    <StatewideRaces data={allData.statewide} />
+                    <StatewideRaces data={allData.statewide} stateCode="SC" />
                   )}
 
                   {/* Judicial Races */}
@@ -173,6 +173,7 @@ function VoterGuideContent() {
                     <JudicialRaces
                       data={allData.judicialRaces}
                       countyName={districtResult.countyName || null}
+                      stateCode="SC"
                     />
                   )}
 
@@ -182,6 +183,7 @@ function VoterGuideContent() {
                       data={allData.congressional}
                       congressionalDistrict={districtResult.congressionalDistrict || null}
                       countyName={districtResult.countyName || null}
+                      stateCode="SC"
                     />
                   )}
 
@@ -239,6 +241,7 @@ function VoterGuideContent() {
                     <SchoolBoardRaces
                       data={allData.schoolBoard}
                       countyName={districtResult.countyName || null}
+                      stateCode="SC"
                     />
                   )}
 
@@ -247,6 +250,7 @@ function VoterGuideContent() {
                     <SpecialDistricts
                       data={allData.specialDistricts}
                       countyName={districtResult.countyName || null}
+                      stateCode="SC"
                     />
                   )}
 
@@ -255,6 +259,7 @@ function VoterGuideContent() {
                     <BallotMeasures
                       data={allData.ballotMeasures}
                       countyName={districtResult.countyName || null}
+                      stateCode="SC"
                     />
                   )}
 

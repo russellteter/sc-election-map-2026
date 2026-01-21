@@ -6,9 +6,10 @@ import { DemoBadge } from '@/components/ui';
 interface JudicialRacesProps {
   data: JudicialRacesData;
   countyName: string | null;
+  stateCode?: string;
 }
 
-export default function JudicialRaces({ data, countyName }: JudicialRacesProps) {
+export default function JudicialRaces({ data, countyName, stateCode = 'SC' }: JudicialRacesProps) {
   // Find the user's circuit based on their county
   const userCircuit = countyName
     ? data.circuitCourts.find(circuit =>
@@ -37,7 +38,7 @@ export default function JudicialRaces({ data, countyName }: JudicialRacesProps) 
             <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
               Judicial Offices
             </h3>
-            <DemoBadge />
+            {stateCode !== 'SC' && <DemoBadge />}
           </div>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
             State and circuit court positions

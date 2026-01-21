@@ -7,9 +7,10 @@ import { DemoBadge } from '@/components/ui';
 interface SchoolBoardRacesProps {
   data: SchoolBoardData;
   countyName: string | null;
+  stateCode?: string;
 }
 
-export default function SchoolBoardRaces({ data, countyName }: SchoolBoardRacesProps) {
+export default function SchoolBoardRaces({ data, countyName, stateCode = 'SC' }: SchoolBoardRacesProps) {
   // Filter districts to only show those in the user's county
   const relevantDistricts = countyName
     ? data.districts.filter(d => d.county === countyName)
@@ -54,7 +55,7 @@ export default function SchoolBoardRaces({ data, countyName }: SchoolBoardRacesP
             <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
               School Board Races
             </h3>
-            <DemoBadge />
+            {stateCode !== 'SC' && <DemoBadge />}
           </div>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
             {countyName

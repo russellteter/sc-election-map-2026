@@ -21,7 +21,7 @@ export default function VoterGuideSummary({
   onReset,
 }: VoterGuideSummaryProps) {
   return (
-    <div className="kpi-summary-card animate-in" style={{ opacity: 0 }}>
+    <div className="kpi-summary-card">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         {/* Left side - Title and stats */}
         <div className="flex items-center gap-5">

@@ -12,6 +12,7 @@ import { DemoBadge } from '@/components/ui';
 interface SpecialDistrictsProps {
   data: SpecialDistrictsData;
   countyName: string | null;
+  stateCode?: string;
 }
 
 // Icons for each district type
@@ -154,7 +155,7 @@ const DISTRICT_TYPE_COLORS: Record<
   },
 };
 
-export default function SpecialDistricts({ data, countyName }: SpecialDistrictsProps) {
+export default function SpecialDistricts({ data, countyName, stateCode = 'SC' }: SpecialDistrictsProps) {
   // Find county data if available
   const countyData: CountySpecialDistricts | null = countyName
     ? data.districts.find((d) => d.county === countyName) || null
@@ -196,7 +197,7 @@ export default function SpecialDistricts({ data, countyName }: SpecialDistrictsP
             <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
               {countyName ? `${countyName} County Special Districts` : 'Special Districts'}
             </h3>
-            <DemoBadge />
+            {stateCode !== 'SC' && <DemoBadge />}
           </div>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
             {countyName
