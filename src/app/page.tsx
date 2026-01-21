@@ -29,10 +29,10 @@ export default function LandingPage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl md:text-3xl font-bold font-display" style={{ color: 'var(--text-color)' }}>
-                Blue Intelligence
+                State Election Intel Hub
               </h1>
               <p className="text-sm mt-1" style={{ color: 'var(--text-muted)' }}>
-                National Election Intelligence Platform
+                South Carolina Election Intelligence
               </p>
             </div>
             <div className="hidden md:flex items-center gap-3">
@@ -232,10 +232,10 @@ export default function LandingPage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-center md:text-left">
               <p className="font-semibold" style={{ color: 'var(--text-color)' }}>
-                Blue Intelligence
+                State Election Intel Hub
               </p>
               <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-                Empowering Democratic campaigns with data-driven intelligence
+                South Carolina election intelligence for informed voters
               </p>
             </div>
             <div className="flex items-center gap-6">
