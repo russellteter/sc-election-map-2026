@@ -6,9 +6,10 @@ import { DemoBadge } from '@/components/ui';
 
 interface StatewideRacesProps {
   data: StatewideRacesData;
+  stateCode?: string;
 }
 
-export default function StatewideRaces({ data }: StatewideRacesProps) {
+export default function StatewideRaces({ data, stateCode = 'SC' }: StatewideRacesProps) {
   // Filter to only show races (all are relevant for 2026)
   const races = data.races;
 
@@ -36,7 +37,7 @@ export default function StatewideRaces({ data }: StatewideRacesProps) {
             <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
               Statewide Offices
             </h3>
-            <DemoBadge />
+            {stateCode !== 'SC' && <DemoBadge />}
           </div>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
             All SC voters vote for these offices

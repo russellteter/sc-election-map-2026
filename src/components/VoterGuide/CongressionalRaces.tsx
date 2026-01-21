@@ -9,9 +9,10 @@ interface CongressionalRacesProps {
   data: CongressionalData;
   congressionalDistrict: number | null;
   countyName: string | null;
+  stateCode?: string;
 }
 
-export default function CongressionalRaces({ data, congressionalDistrict, countyName }: CongressionalRacesProps) {
+export default function CongressionalRaces({ data, congressionalDistrict, countyName, stateCode = 'SC' }: CongressionalRacesProps) {
   // Get the user's congressional district data
   const houseDistrict = congressionalDistrict
     ? data.house[String(congressionalDistrict)]
@@ -41,7 +42,7 @@ export default function CongressionalRaces({ data, congressionalDistrict, county
             <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
               U.S. Congress
             </h3>
-            <DemoBadge />
+            {stateCode !== 'SC' && <DemoBadge />}
           </div>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
             Federal representatives for your area

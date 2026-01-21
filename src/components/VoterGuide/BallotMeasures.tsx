@@ -7,6 +7,7 @@ import { DemoBadge } from '@/components/ui';
 interface BallotMeasuresProps {
   data: BallotMeasuresData;
   countyName: string | null;
+  stateCode?: string;
 }
 
 // Color schemes for different measure types
@@ -55,7 +56,7 @@ const MEASURE_TYPE_STYLES = {
   },
 };
 
-export default function BallotMeasures({ data, countyName }: BallotMeasuresProps) {
+export default function BallotMeasures({ data, countyName, stateCode = 'SC' }: BallotMeasuresProps) {
   // Find local measures for the selected county
   const localMeasureGroup = countyName
     ? data.localMeasures.find((group) => group.county === countyName)
@@ -88,7 +89,7 @@ export default function BallotMeasures({ data, countyName }: BallotMeasuresProps
             <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
               Ballot Measures
             </h3>
-            <DemoBadge />
+            {stateCode !== 'SC' && <DemoBadge />}
           </div>
           <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
             Proposed amendments and referendums on your ballot
