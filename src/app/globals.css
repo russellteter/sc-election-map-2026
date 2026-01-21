@@ -115,43 +115,28 @@ svg path[id^="senate-"]:hover,
 }
 
 /* ================================================
-   MINI MAP PREVIEW
-   Compact, non-interactive map thumbnail for Voter Guide
+   MAP ZOOM ANIMATION SYSTEM
+   CSS-powered zoom transitions for map navigation
    ================================================ */
-.mini-map-preview {
-  width: 150px;
-  height: auto;
-  max-height: 100px;
-  border-radius: 8px;
-  overflow: hidden;
-  background: var(--glass-background);
-  border: 1px solid var(--border-subtle);
-  flex-shrink: 0;
+
+/* Map zoom transition container */
+.map-zoom-container {
+  transition: transform var(--map-zoom-duration) var(--map-zoom-easing);
+  will-change: auto; /* Only set to transform during active animations */
 }
 
-.mini-map-preview svg {
-  width: 100%;
-  height: auto;
-  display: block;
+.map-zoom-container.animating {
+  will-change: transform;
 }
 
-.mini-map-preview path {
-  fill: var(--color-empty);
-  stroke: var(--map-stroke);
-  stroke-width: 0.3;
-  pointer-events: none;
-}
+/* Zoom levels for consistent scaling */
+.map-zoom-1 { transform: scale(1); }
+.map-zoom-2 { transform: scale(1.5); }
+.map-zoom-3 { transform: scale(2.5); }
 
-.mini-map-preview .district-highlighted {
-  fill: var(--class-purple);
-  filter: drop-shadow(0 0 3px rgba(30, 64, 175, 0.4));
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .mini-map-preview {
-    background: rgba(30, 41, 59, 0.8);
-    border-color: rgba(255, 255, 255, 0.1);
+@media (prefers-reduced-motion: reduce) {
+  .map-zoom-container {
+    transition-duration: 0ms;
   }
 }
 
@@ -265,6 +250,11 @@ svg path[id^="senate-"]:hover,
   --transition-normal: 0.25s ease;
   --transition-slow: 0.4s ease;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* MAP ZOOM ANIMATION TOKENS */
+  --map-zoom-duration: 400ms;
+  --map-zoom-easing: cubic-bezier(0.16, 1, 0.3, 1); /* ease-out-expo */
+  --map-zoom-scale-max: 3;
 }
 
 /* CLEAN SURFACES - Class Dashboard Style */
