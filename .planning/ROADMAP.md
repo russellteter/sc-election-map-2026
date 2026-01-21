@@ -19,9 +19,10 @@ Political data visualization, campaign intelligence, React/Next.js development
 
 - ✅ **v1.0 Blue Intelligence Demo** - Phase A (COMPLETE, shipped 2026-01-17)
 - ✅ **v1.1 SC Voter Guide Enhancement** - Phases 1-10 (COMPLETE, shipped 2026-01-18) → [Archive](milestones/v1.1-ROADMAP.md)
-- 📋 **v2.0 Monorepo Architecture** - Phase B (PLANNED)
-- 📋 **v3.0 SC Production** - Phase C (PLANNED)
-- 📋 **v4.0 National Platform** - Phase D (PLANNED)
+- ✅ **v2.0 Map Navigation System** - Phases 11-14 (COMPLETE, shipped 2026-01-21)
+- 📋 **v3.0 Monorepo Architecture** - Phase B (PLANNED)
+- 📋 **v4.0 SC Production** - Phase C (PLANNED)
+- 📋 **v5.0 National Platform** - Phase D (PLANNED)
 
 ---
 
@@ -98,6 +99,100 @@ All 12 original features from the API Integration Plan:
 **Full details:** [milestones/v1.1-ROADMAP.md](milestones/v1.1-ROADMAP.md)
 
 </details>
+
+---
+
+## v2.0 Map Navigation System (COMPLETE)
+
+> **Status:** COMPLETE
+> **Started:** 2026-01-20
+> **Completed:** 2026-01-21
+> **Goal:** Transform Blue Intelligence into a map-first navigation experience
+
+### Overview
+
+Transform static district visualization into dynamic, interactive mapping:
+- Maps serve as primary navigation (country → state → district)
+- User location searches trigger animated zoom-to-district
+- Beautiful CartoDB Positron tiles (not boring Google Maps)
+- Zero initial bundle impact (all lazy-loaded)
+
+### Architecture Decisions
+
+| Decision | Choice | Rationale |
+|----------|--------|-----------|
+| Map Library | Leaflet + react-leaflet | Lightweight (18KB), mobile-optimized, static-export compatible |
+| Tile Provider | CartoDB Positron | Minimal, elegant, matches glassmorphic design |
+| Architecture | Hybrid SVG/Leaflet | SVG fast default, Leaflet lazy-loads on interaction |
+
+### Phases
+
+- [x] **Phase 11: Foundation** - Enhanced SVG animations, zoom transitions ✅ 2026-01-21
+- [x] **Phase 12: Leaflet Integration** - Real pan/zoom with CartoDB tiles ✅ 2026-01-21
+- [x] **Phase 13: Voter Guide Map** - Personal location zoom, district highlighting ✅ 2026-01-21
+- [x] **Phase 14: Navigation Maps** - Maps as primary navigation, URL-synced ✅ 2026-01-21
+
+### Phase Details
+
+#### Phase 11: Foundation ✅ COMPLETE
+**Goal**: Enhance existing SVG maps with smooth animations - no new dependencies
+**Completed**: 2026-01-21
+**Plans**: 3/3 complete
+
+- [x] 11-01: AnimatedMapContainer with CSS zoom transitions
+- [x] 11-02: AnimatedUSMap with zoom-to-state navigation
+- [x] 11-03: MiniMapPreview component for Voter Guide thumbnail
+
+#### Phase 12: Leaflet Integration ✅ COMPLETE
+**Goal**: Add real pan/zoom mapping with CartoDB Positron tiles
+**Completed**: 2026-01-21
+**Commit**: 983bdcf
+**Plans**: 4/4 complete
+
+- [x] 12-01: Install Leaflet + react-leaflet, configure dynamic imports
+- [x] 12-02: LeafletMap wrapper with SVG fallback
+- [x] 12-03: DistrictGeoJSONLayer with existing color scheme
+- [x] 12-04: HybridMapContainer (SVG default, Leaflet on interaction)
+
+#### Phase 13: Voter Guide Map ✅ COMPLETE
+**Goal**: Personal location-focused map that zooms to user's address
+**Completed**: 2026-01-21
+**Commit**: 983bdcf
+**Plans**: 3/3 complete
+
+- [x] 13-01: PersonalDistrictMap centering on user coordinates
+- [x] 13-02: MapZoomAnimation from state to user location
+- [x] 13-03: Integrate map into Voter Guide page
+
+#### Phase 14: Navigation Maps ✅ COMPLETE
+**Goal**: Maps as primary navigation interface with URL-synced state
+**Completed**: 2026-01-21
+**Plans**: 4/4 complete
+
+- [x] 14-01: NavigableDistrictMap with click-to-navigate
+- [x] 14-02: useMapState hook for URL synchronization
+- [x] 14-03: ZoomLevelContent for progressive disclosure
+- [x] 14-04: NavigableUSMap with zoom-to-state navigation
+
+### Bundle Impact
+
+| Phase | Initial | Lazy | Cumulative |
+|-------|---------|------|------------|
+| 11. Foundation | +0KB | N/A | 0KB |
+| 12. Leaflet | +0KB | +18KB | 18KB |
+| 13. Voter Guide | +0KB | +2KB | 20KB |
+| 14. Navigation | +0KB | +3KB | 23KB |
+
+**Total Initial: +0KB** | **Total Lazy: ~23KB**
+
+### Progress
+
+| Phase | Plans | Status |
+|-------|-------|--------|
+| 11. Foundation | 3/3 | ✅ Complete |
+| 12. Leaflet Integration | 4/4 | ✅ Complete |
+| 13. Voter Guide Map | 3/3 | ✅ Complete |
+| 14. Navigation Maps | 4/4 | ✅ Complete |
 
 ---
 
@@ -214,9 +309,10 @@ Expand to all 50 states with:
 |-----------|--------|-------|--------|---------|
 | v1.0 Blue Intelligence Demo | Phase A (10 WPs) | 10 | COMPLETE | 2026-01-17 |
 | v1.1 SC Voter Guide | Phases 1-10 | 13 | COMPLETE | 2026-01-18 |
-| v2.0 Monorepo Architecture | Phase B | TBD | PLANNED | - |
-| v3.0 SC Production | Phase C | TBD | PLANNED | - |
-| v4.0 National Platform | Phase D | TBD | PLANNED | - |
+| v2.0 Map Navigation System | Phases 11-14 | 14 | COMPLETE | 2026-01-21 |
+| v3.0 Monorepo Architecture | Phase B | TBD | PLANNED | - |
+| v4.0 SC Production | Phase C | TBD | PLANNED | - |
+| v5.0 National Platform | Phase D | TBD | PLANNED | - |
 
 ---
 

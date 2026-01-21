@@ -5,16 +5,17 @@
 See: .planning/PROJECT.md (updated 2026-01-18)
 
 **Core value:** Build a national election intelligence platform that helps Democratic campaigns win
-**Current focus:** v1.1 SHIPPED — Planning next milestone
+**Current focus:** Milestone complete — ready for next milestone
 
 ## Current Position
 
-Phase: v1.1 Complete
-Milestone: v1.1 SC Voter Guide Enhancement — SHIPPED
-Status: Ready for next milestone
-Last activity: 2026-01-18 — v1.1 milestone complete
+Phase: 14 of 14 (Navigation Maps) ✅ COMPLETE
+Milestone: v2.0 Map Navigation System ✅ SHIPPED
+Plan: All 4 plans complete
+Status: Milestone shipped
+Last activity: 2026-01-21 — Phase 14 complete, v2.0 shipped
 
-Progress: ██████████ 100%
+Progress: ██████████ 100% (Phases 11, 12, 13, 14 complete)
 
 ## Shipped Milestones
 
@@ -22,64 +23,133 @@ Progress: ██████████ 100%
 |-----------|---------|------------------|
 | v1.0 Blue Intelligence Demo | 2026-01-17 | 5 states, 876 districts, 12 features |
 | v1.1 SC Voter Guide Enhancement | 2026-01-18 | Real county data, 155 tests, caching, Ethics scraper |
+| v2.0 Map Navigation System | 2026-01-21 | NavigableDistrictMap, useMapState, ZoomLevelContent, NavigableUSMap |
 
-## Live Deployment Metrics
+## v2.0 Map Navigation System
 
-**URL:** https://russellteter.github.io/sc-election-map-2026/
+**4 phases, 14 plans, zero initial bundle impact**
 
-**Coverage:**
-| State | House | Senate | Total |
-|-------|-------|--------|-------|
-| SC | 124 | 46 | 170 |
-| NC | 120 | 50 | 170 |
-| GA | 180 | 56 | 236 |
-| FL | 120 | 40 | 160 |
-| VA | 100 | 40 | 140 |
-| **Total** | **644** | **232** | **876** |
+Goal: Transform Blue Intelligence into a map-first navigation experience
 
-**Lighthouse Scores:**
-| Metric | Score | Target |
-|--------|-------|--------|
-| Performance | 100 | >90 |
-| Accessibility | 94 | >90 |
-| Best Practices | 96 | >90 |
-| SEO | 100 | >90 |
+| Phase | Plans | Goal | Status |
+|-------|-------|------|--------|
+| 11. Foundation | 3 | Enhanced SVG animations, zoom transitions | ✅ Complete |
+| 12. Leaflet Integration | 4 | Real pan/zoom with CartoDB Positron tiles | ✅ Complete |
+| 13. Voter Guide Map | 3 | Personal location zoom, district highlighting | ✅ Complete |
+| 14. Navigation Maps | 4 | Maps as primary navigation, URL-synced | ✅ Complete |
 
-## v1.1 Summary
+**Architecture Decisions:**
+- Map Library: Leaflet + react-leaflet (18KB lazy)
+- Tile Provider: CartoDB Positron (minimal, glassmorphic)
+- Pattern: Hybrid SVG/Leaflet (SVG default, Leaflet on interaction)
 
-**10 phases, 13 plans, 2 days**
-
-Key achievements:
-- Real county official data (300 incumbents, 46 counties)
-- Voter Guide decomposition (666 → 251 lines, 62% reduction)
-- Test coverage (87 new tests, 155 total)
-- Persistent caching (IndexedDB/localStorage, ~2.2MB saved)
-- SC Ethics Commission scraper (`npm run refresh-data`)
-
-**Git:** Tagged v1.1
-
-## Key Decisions (v1.1)
+## Key Decisions (v2.0)
 
 | Date | Decision | Rationale |
 |------|----------|-----------|
-| 2026-01-17 | Extract hooks before components | Data logic first, then UI extraction |
-| 2026-01-17 | Store only address string in localStorage | Privacy - coords derivable from address |
-| 2026-01-18 | Pre-flight validation before API calls | Reduce unnecessary requests, immediate feedback |
-| 2026-01-18 | IndexedDB for GeoJSON, localStorage for JSON | Size-appropriate storage selection |
-| 2026-01-18 | Version-based cache invalidation | Single constant controls all caches |
+| 2026-01-20 | Leaflet over MapLibre | Smaller bundle (18KB vs 55KB), mobile-optimized |
+| 2026-01-20 | CartoDB Positron tiles | Minimal, elegant, matches glassmorphic design |
+| 2026-01-20 | Hybrid SVG/Leaflet | Best of both: fast SVG default, rich Leaflet on demand |
+| 2026-01-20 | All phases sequential | Build foundation before advanced features |
 
-## Next Steps
+## Accumulated Context
 
-1. **Plan Phase B** when triggered (first customer OR second contributor)
-   - Monorepo migration (Turborepo)
-   - Package extraction
+### Research Completed (2026-01-20)
+- Explored mapcn (MapLibre-based, shadcn compatible)
+- Explored Leaflet (lightweight, battle-tested)
+- Analyzed StateNavigate.org patterns
+- Inventoried existing map components (DistrictMap.tsx, USMap.tsx)
 
-2. **Plan Phase C** when triggered (SC Democratic Party contract)
-   - BallotReady API integration
-   - TargetSmart API integration
+### Deferred Issues
+
+None yet.
+
+### Blockers/Concerns
+
+None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-18
-Stopped at: v1.1 milestone complete
+Last session: 2026-01-21
+Stopped at: v2.0 Map Navigation System milestone shipped
 Resume file: None
+Next milestone: v3.0 Monorepo Architecture (PLANNED)
+
+## Phase 11 Accomplishments
+
+**3 plans executed via parallel agents:**
+
+| Plan | Agent | Key Deliverables |
+|------|-------|------------------|
+| 11-01 | a56bb29 | AnimatedMapContainer, useReducedMotion hook, CSS zoom tokens |
+| 11-02 | ae531b7 | AnimatedUSMap, STATE_PATHS export, zoom-to-state navigation |
+| 11-03 | a238f17 | MiniMapPreview component, Voter Guide integration |
+
+**New Components:**
+- `src/components/Map/AnimatedMapContainer.tsx` - CSS-powered zoom container
+- `src/components/Landing/AnimatedUSMap.tsx` - Animated US map with zoom-to-state
+- `src/components/VoterGuide/MiniMapPreview.tsx` - Non-interactive district preview
+
+**New Hooks:**
+- `src/hooks/useReducedMotion.ts` - prefers-reduced-motion support
+
+## Phase 12 Accomplishments
+
+**Commit:** 983bdcf — Leaflet integration with CartoDB Positron tiles
+
+**New Components:**
+- `src/components/Map/LeafletMap.tsx` - Base Leaflet wrapper
+- `src/components/Map/DistrictGeoJSONLayer.tsx` - Styled GeoJSON overlays
+- `src/components/Map/HybridMapContainer.tsx` - SVG/Leaflet hybrid
+
+**New Hooks:**
+- `src/hooks/useLeafletMap.ts` - Map instance access
+- `src/hooks/useGeoJSONLoader.ts` - Lazy GeoJSON fetching
+
+**Infrastructure:**
+- `src/lib/leafletLoader.ts` - Dynamic Leaflet imports
+- `src/lib/districtColors.ts` - Centralized color utilities
+- `public/data/sc-congressional-districts.geojson` - 7 Congressional districts
+
+## Phase 13 Accomplishments
+
+**Commit:** 983bdcf — PersonalDistrictMap for Voter Guide
+
+**New Components:**
+- `src/components/VoterGuide/PersonalDistrictMap.tsx` - 419 lines
+  - Animated zoom to user location
+  - Chamber toggle (House/Senate/Congressional)
+  - District badges showing assignments
+  - User marker with pulse animation
+
+**Integration:**
+- Updated `src/app/voter-guide/page.tsx` with map display
+- Added ~100 lines of glassmorphic CSS for map controls
+
+## Phase 14 Accomplishments
+
+**Plans:** 4/4 complete — Parallel execution via Wave-based agents
+
+| Plan | Key Deliverables |
+|------|------------------|
+| 14-01 | NavigableDistrictMap with double-click navigation |
+| 14-02 | useMapState hook for bidirectional URL sync |
+| 14-03 | ZoomLevelContent for progressive disclosure |
+| 14-04 | NavigableUSMap with deep-linking and keyboard nav |
+
+**New Components:**
+- `src/components/Map/NavigableDistrictMap.tsx` - Double-click to navigate to district
+- `src/components/Map/ZoomLevelContent.tsx` - Progressive disclosure based on zoom
+- `src/components/Landing/NavigableUSMap.tsx` - URL-synced landing map
+
+**New Hooks:**
+- `src/hooks/useMapState.ts` - Bidirectional URL state sync with debouncing
+
+**Utilities:**
+- `src/lib/mapStateUtils.ts` - URL serialization/deserialization
+
+**Key Features:**
+- Deep-linking: `/?state=SC` highlights South Carolina on landing
+- Keyboard navigation: Tab/Enter/Arrows for accessible map navigation
+- URL sync: Map state persists in URL for sharing
+- Progressive disclosure: Content changes based on zoom level

@@ -115,6 +115,72 @@ svg path[id^="senate-"]:hover,
 }
 
 /* ================================================
+   MAP ZOOM ANIMATION SYSTEM
+   CSS-powered zoom transitions for map navigation
+   ================================================ */
+
+/* Map zoom transition container */
+.map-zoom-container {
+  transition: transform var(--map-zoom-duration) var(--map-zoom-easing);
+  will-change: auto; /* Only set to transform during active animations */
+}
+
+.map-zoom-container.animating {
+  will-change: transform;
+}
+
+/* Zoom levels for consistent scaling */
+.map-zoom-1 { transform: scale(1); }
+.map-zoom-2 { transform: scale(1.5); }
+.map-zoom-3 { transform: scale(2.5); }
+
+@media (prefers-reduced-motion: reduce) {
+  .map-zoom-container {
+    transition-duration: 0ms;
+  }
+}
+
+/* ================================================
+   MINI MAP PREVIEW
+   Compact, non-interactive map thumbnail for Voter Guide
+   ================================================ */
+.mini-map-preview {
+  width: 150px;
+  height: auto;
+  max-height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--glass-background);
+  border: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.mini-map-preview svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mini-map-preview path {
+  fill: var(--color-empty, #E5E7EB);
+  stroke: var(--map-stroke, #374151);
+  stroke-width: 0.3;
+  pointer-events: none;
+}
+
+.mini-map-preview .district-highlighted {
+  fill: var(--class-purple, #4739E7);
+  filter: drop-shadow(0 0 3px rgba(30, 64, 175, 0.4));
+}
+
+@media (prefers-color-scheme: dark) {
+  .mini-map-preview {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* ================================================
    GLASSMORPHIC DESIGN SYSTEM TOKENS
    SC Election Map 2026
    Design System: /glassmorphic-dashboard + /frontend-design
@@ -224,6 +290,11 @@ svg path[id^="senate-"]:hover,
   --transition-normal: 0.25s ease;
   --transition-slow: 0.4s ease;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* MAP ZOOM ANIMATION TOKENS */
+  --map-zoom-duration: 400ms;
+  --map-zoom-easing: cubic-bezier(0.16, 1, 0.3, 1); /* ease-out-expo */
+  --map-zoom-scale-max: 3;
 }
 
 /* CLEAN SURFACES - Class Dashboard Style */
@@ -4295,5 +4366,589 @@ textarea:focus-visible,
   .animate-shimmer-fast {
     animation: none !important;
     background: #f5f5f5 !important;
+  }
+}
+
+/* ================================================
+   LEAFLET MAP STYLES
+   Glassmorphic styling for interactive maps
+   ================================================ */
+
+/* Import Leaflet base CSS */
+@import 'leaflet/dist/leaflet.css';
+
+/* Map container styling */
+.leaflet-map-container {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 100%);
+}
+
+/* Loading placeholder */
+.leaflet-loading-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 100%);
+  border-radius: 12px;
+  color: var(--text-muted, #64748B);
+  font-size: 0.875rem;
+}
+
+.leaflet-loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.leaflet-loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border-subtle, #E2E8F0);
+  border-top-color: var(--class-blue, #1E40AF);
+  border-radius: 50%;
+  animation: leaflet-spin 0.8s linear infinite;
+}
+
+@keyframes leaflet-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Glassmorphic zoom controls */
+.leaflet-control-zoom {
+  border: none !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1),
+              0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+  overflow: hidden;
+}
+
+.leaflet-control-zoom a {
+  color: var(--text-color, #0F172A) !important;
+  background: transparent !important;
+  border: none !important;
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 32px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  transition: background-color 0.15s ease !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: rgba(30, 64, 175, 0.1) !important;
+  color: var(--class-blue, #1E40AF) !important;
+}
+
+.leaflet-control-zoom a:active {
+  background: rgba(30, 64, 175, 0.2) !important;
+}
+
+.leaflet-control-zoom-in {
+  border-bottom: 1px solid var(--border-subtle, #E2E8F0) !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.leaflet-control-zoom-out {
+  border-radius: 0 0 8px 8px !important;
+}
+
+.leaflet-disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+/* Attribution styling */
+.leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  font-size: 10px !important;
+  padding: 2px 6px !important;
+  border-radius: 4px 0 0 0 !important;
+  color: var(--text-muted, #64748B) !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--link-blue, #2563EB) !important;
+}
+
+/* Popup styling - glassmorphic */
+.leaflet-popup-content-wrapper {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 10px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15),
+              0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+  padding: 0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px !important;
+  font-size: 0.875rem !important;
+  color: var(--text-color, #0F172A) !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.leaflet-popup-close-button {
+  color: var(--text-muted, #64748B) !important;
+  font-size: 18px !important;
+  padding: 6px 8px !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: var(--text-color, #0F172A) !important;
+}
+
+/* District polygon hover effects */
+.leaflet-interactive:hover {
+  cursor: pointer;
+}
+
+/* Touch-friendly controls on mobile */
+@media (max-width: 768px) {
+  .leaflet-control-zoom a {
+    width: 40px !important;
+    height: 40px !important;
+    line-height: 40px !important;
+    font-size: 18px !important;
+  }
+
+  .leaflet-control-zoom {
+    margin-right: 8px !important;
+    margin-top: 8px !important;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .leaflet-loading-spinner {
+    animation: none;
+  }
+
+  .leaflet-fade-anim .leaflet-popup {
+    transition: none !important;
+  }
+
+  .leaflet-zoom-anim .leaflet-zoom-animated {
+    transition: none !important;
+  }
+}
+
+/* Print styles for Leaflet */
+@media print {
+  .leaflet-control-zoom,
+  .leaflet-control-attribution {
+    display: none !important;
+  }
+
+  .leaflet-map-container {
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Hybrid Map Container Controls */
+.hybrid-map-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.glass-control {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle, #E2E8F0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.glass-badge {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid var(--border-subtle, #E2E8F0);
+}
+
+/* ================================================
+   PERSONAL DISTRICT MAP (Voter Guide)
+   Interactive map showing user's location and districts
+   ================================================ */
+
+.personal-district-map {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Expand map into page margins for more prominence */
+.personal-map-container {
+  width: calc(100% + 2rem);
+  height: 400px;
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+@media (min-width: 640px) {
+  .personal-map-container {
+    width: calc(100% + 3rem);
+    height: 500px;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .personal-map-container {
+    height: 550px;
+  }
+}
+
+.personal-district-map-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 100%);
+  z-index: 1000;
+}
+
+/* Map Controls */
+.personal-map-controls {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.personal-map-controls > * {
+  pointer-events: auto;
+}
+
+.chamber-toggle-group {
+  display: flex;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-subtle, #E2E8F0);
+}
+
+.chamber-btn {
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted, #64748B);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chamber-btn:hover:not(:disabled) {
+  background: rgba(30, 64, 175, 0.08);
+  color: var(--class-blue, #1E40AF);
+}
+
+.chamber-btn.active {
+  background: var(--class-blue, #1E40AF);
+  color: white;
+}
+
+.chamber-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.district-badge {
+  font-size: 0.65rem;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+}
+
+.chamber-btn.active .district-badge {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.zoom-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.zoom-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle, #E2E8F0);
+  color: var(--text-muted, #64748B);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.zoom-btn:hover {
+  background: rgba(30, 64, 175, 0.1);
+  color: var(--class-blue, #1E40AF);
+  border-color: var(--class-blue, #1E40AF);
+}
+
+/* District Info Badge */
+.district-info-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-subtle, #E2E8F0);
+  font-size: 0.75rem;
+}
+
+.badge-label {
+  color: var(--text-muted, #64748B);
+}
+
+.badge-value {
+  font-weight: 700;
+  color: var(--class-blue, #1E40AF);
+  font-size: 0.875rem;
+}
+
+/* User Location Marker */
+.user-location-marker {
+  position: relative;
+}
+
+.user-marker-pulse {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(30, 64, 175, 0.3);
+  animation: user-pulse 2s ease-out infinite;
+}
+
+.user-marker-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--class-blue, #1E40AF);
+  border: 2px solid white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes user-pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Glassmorphic Popup */
+.glassmorphic-popup .leaflet-popup-content-wrapper {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.user-popup {
+  text-align: center;
+  min-width: 180px;
+}
+
+.user-popup strong {
+  display: block;
+  color: var(--class-blue, #1E40AF);
+  margin-bottom: 4px;
+}
+
+.user-popup p {
+  margin: 4px 0;
+  color: var(--text-color, #0F172A);
+  font-size: 0.8125rem;
+}
+
+.user-popup .districts-info {
+  font-size: 0.75rem;
+  color: var(--text-muted, #64748B);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle, #E2E8F0);
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .chamber-toggle-group {
+    flex-wrap: wrap;
+    max-width: 200px;
+  }
+
+  .chamber-btn {
+    padding: 5px 8px;
+    font-size: 0.7rem;
+  }
+
+  .district-badge {
+    display: none;
+  }
+
+  .personal-map-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .zoom-controls {
+    margin-top: 8px;
+  }
+}
+
+/* ================================================
+   ZOOM LEVEL CONTENT - Progressive Disclosure
+   ================================================ */
+
+.zoom-level-content {
+  position: relative;
+  width: 100%;
+}
+
+.zoom-level-content__wrapper {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--zoom-transition-duration, 300ms) ease-out,
+    transform var(--zoom-transition-duration, 300ms) ease-out;
+}
+
+/* Animation states for content transitions */
+.zoom-level-content[data-zoom-level="state"] .zoom-level-content__wrapper {
+  animation: zoom-content-in var(--zoom-transition-duration, 300ms) ease-out;
+}
+
+.zoom-level-content[data-zoom-level="region"] .zoom-level-content__wrapper {
+  animation: zoom-content-in var(--zoom-transition-duration, 300ms) ease-out;
+}
+
+.zoom-level-content[data-zoom-level="district"] .zoom-level-content__wrapper {
+  animation: zoom-content-in var(--zoom-transition-duration, 300ms) ease-out;
+}
+
+@keyframes zoom-content-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .zoom-level-content__wrapper {
+    transition: none;
+  }
+
+  .zoom-level-content[data-zoom-level="state"] .zoom-level-content__wrapper,
+  .zoom-level-content[data-zoom-level="region"] .zoom-level-content__wrapper,
+  .zoom-level-content[data-zoom-level="district"] .zoom-level-content__wrapper {
+    animation: none;
+  }
+}
+
+/* Zoom indicator badge (optional visual feedback) */
+.zoom-level-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: var(--card-bg, rgba(255, 255, 255, 0.95));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle, #E2E8F0);
+  border-radius: var(--radius-sm, 6px);
+  font-size: var(--font-size-xs, 0.6875rem);
+  font-weight: 500;
+  color: var(--text-muted, #64748B);
+  transition: all 0.2s ease;
+}
+
+.zoom-level-indicator[data-level="state"] {
+  color: var(--class-purple, #6366F1);
+  border-color: var(--class-purple-light, #C7D2FE);
+}
+
+.zoom-level-indicator[data-level="region"] {
+  color: var(--class-blue, #3B82F6);
+  border-color: #BFDBFE;
+}
+
+.zoom-level-indicator[data-level="district"] {
+  color: #059669;
+  border-color: #A7F3D0;
+}
+
+/* Mobile: Adjust zoom content spacing */
+@media (max-width: 640px) {
+  .zoom-level-content {
+    padding: 0;
+  }
+
+  .zoom-level-indicator {
+    font-size: 0.625rem;
+    padding: 3px 6px;
   }
 }
