@@ -8,10 +8,13 @@ import { getAllStates, isStateActive, type AnyStateConfig } from '@/lib/stateCon
 interface USMapProps {
   onStateClick?: (stateCode: string) => void;
   onInactiveStateClick?: (state: AnyStateConfig) => void;
+  /** When true, don't call router.push internally - let parent handle navigation */
+  disableInternalNavigation?: boolean;
 }
 
 // US state paths (simplified for demo - would use full SVG paths in production)
-const STATE_PATHS: Record<string, { d: string; x: number; y: number }> = {
+// viewBox: 0 0 800 500
+export const STATE_PATHS: Record<string, { d: string; x: number; y: number }> = {
   AL: { d: 'M 595 340 l 0 60 l 30 30 l -5 15 l -35 0 l 0 -105 z', x: 582, y: 375 },
   AK: { d: 'M 120 420 l 80 0 l 0 60 l -80 0 z', x: 145, y: 450 },
   AZ: { d: 'M 195 305 l 55 0 l 15 90 l -65 10 l -20 -80 z', x: 212, y: 345 },
@@ -65,7 +68,31 @@ const STATE_PATHS: Record<string, { d: string; x: number; y: number }> = {
   DC: { d: 'M 695 260 l 8 0 l 0 8 l -8 0 z', x: 697, y: 262 },
 };
 
-export default function USMap({ onStateClick, onInactiveStateClick }: USMapProps) {
+/**
+ * Get normalized zoom target coordinates for a state
+ *
+ * Converts STATE_PATHS x,y (in SVG viewBox coordinates) to normalized 0-1 coordinates
+ * suitable for use with AnimatedMapContainer.
+ *
+ * @param stateCode - Two-letter state code (e.g., "SC", "NC")
+ * @returns Normalized coordinates { x: 0-1, y: 0-1 } or null if state not found
+ *
+ * @example
+ * ```tsx
+ * const target = getStateZoomTarget('SC');
+ * // Returns { x: 0.825, y: 0.7 } for South Carolina
+ * ```
+ */
+export function getStateZoomTarget(stateCode: string): { x: number; y: number } | null {
+  const path = STATE_PATHS[stateCode];
+  if (!path) return null;
+  return {
+    x: path.x / 800,  // Normalize to 0-1 based on viewBox width
+    y: path.y / 500,  // Normalize to 0-1 based on viewBox height
+  };
+}
+
+export default function USMap({ onStateClick, onInactiveStateClick, disableInternalNavigation }: USMapProps) {
   const router = useRouter();
   const [hoveredState, setHoveredState] = useState<string | null>(null);
   const allStates = getAllStates();
@@ -73,7 +100,10 @@ export default function USMap({ onStateClick, onInactiveStateClick }: USMapProps
   const handleStateClick = (stateCode: string) => {
     if (isStateActive(stateCode)) {
       onStateClick?.(stateCode);
-      router.push(`/${stateCode.toLowerCase()}`);
+      // Only navigate internally if not disabled (allows parent to handle navigation)
+      if (!disableInternalNavigation) {
+        router.push(`/${stateCode.toLowerCase()}`);
+      }
     } else {
       const state = allStates.find(s => s.code === stateCode);
       if (state) {
