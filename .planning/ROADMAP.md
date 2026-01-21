@@ -19,7 +19,8 @@ Political data visualization, campaign intelligence, React/Next.js development
 
 - ✅ **v1.0 Blue Intelligence Demo** - Phase A (COMPLETE, shipped 2026-01-17)
 - ✅ **v1.1 SC Voter Guide Enhancement** - Phases 1-10 (COMPLETE, shipped 2026-01-18) → [Archive](milestones/v1.1-ROADMAP.md)
-- 🚧 **v2.0 Map Navigation System** - Phases 11-14 (IN PROGRESS)
+- ✅ **v2.0 Map Navigation System** - Phases 11-14 (COMPLETE, shipped 2026-01-21)
+- ✅ **v2.1 Strategic Visualization** - Phase 15 (COMPLETE, shipped 2026-01-21)
 - 📋 **v3.0 Monorepo Architecture** - Phase B (PLANNED)
 - 📋 **v4.0 SC Production** - Phase C (PLANNED)
 - 📋 **v5.0 National Platform** - Phase D (PLANNED)
@@ -102,10 +103,10 @@ All 12 original features from the API Integration Plan:
 
 ---
 
-## v2.0 Map Navigation System (IN PROGRESS)
+## v2.0 Map Navigation System ✅ COMPLETE
 
-> **Status:** IN PROGRESS
-> **Started:** 2026-01-20
+> **Status:** COMPLETE
+> **Shipped:** 2026-01-21
 > **Goal:** Transform Blue Intelligence into a map-first navigation experience
 
 ### Overview
@@ -129,7 +130,7 @@ Transform static district visualization into dynamic, interactive mapping:
 - [x] **Phase 11: Foundation** - Enhanced SVG animations, zoom transitions ✅ 2026-01-21
 - [x] **Phase 12: Leaflet Integration** - Real pan/zoom with CartoDB tiles ✅ 2026-01-21
 - [x] **Phase 13: Voter Guide Map** - Personal location zoom, district highlighting ✅ 2026-01-21
-- [ ] **Phase 14: Navigation Maps** - Maps as primary navigation, URL-synced
+- [x] **Phase 14: Navigation Maps** - Maps as primary navigation, URL-synced ✅ 2026-01-21
 
 ### Phase Details
 
@@ -163,15 +164,15 @@ Transform static district visualization into dynamic, interactive mapping:
 - [x] 13-02: MapZoomAnimation from state to user location
 - [x] 13-03: Integrate map into Voter Guide page
 
-#### Phase 14: Navigation Maps
+#### Phase 14: Navigation Maps ✅ COMPLETE
 **Goal**: Maps as primary navigation interface with URL-synced state
-**Research**: Unlikely (React Router patterns)
-**Plans**: 4 plans
+**Completed**: 2026-01-21
+**Plans**: 4/4 complete
 
-- [ ] 14-01: NavigableDistrictMap with click-to-navigate
-- [ ] 14-02: useMapState hook for URL synchronization
-- [ ] 14-03: ZoomLevelContent for progressive disclosure
-- [ ] 14-04: NavigableUSMap with zoom-to-state navigation
+- [x] 14-01: NavigableDistrictMap with click-to-navigate
+- [x] 14-02: useMapState hook for URL synchronization
+- [x] 14-03: ZoomLevelContent for progressive disclosure
+- [x] 14-04: NavigableUSMap with deep-linking and keyboard navigation
 
 ### Bundle Impact
 
@@ -191,7 +192,51 @@ Transform static district visualization into dynamic, interactive mapping:
 | 11. Foundation | 3/3 | ✅ Complete |
 | 12. Leaflet Integration | 4/4 | ✅ Complete |
 | 13. Voter Guide Map | 3/3 | ✅ Complete |
-| 14. Navigation Maps | 0/4 | ⏳ Next |
+| 14. Navigation Maps | 4/4 | ✅ Complete |
+
+---
+
+## v2.1 Strategic Visualization ✅ COMPLETE
+
+> **Status:** COMPLETE
+> **Shipped:** 2026-01-21
+> **Goal:** Advanced map-driven features for strategic campaign decision-making
+
+### Overview
+
+Four strategic visualization components inspired by industry leaders:
+- **270toWin** - Scenario simulator concept
+- **NYC Election Atlas** - Historical comparison slider
+- **FiveThirtyEight** - Swing-O-Matic demographic modeling
+
+### Phase 15: Strategic Visualization ✅ COMPLETE
+
+| Plan | Component | Purpose | Status |
+|------|-----------|---------|--------|
+| 15-01 | Scenario Simulator | Click districts to toggle D/R/Tossup outcomes | ✅ Complete |
+| 15-02 | Historical Comparison | Margin changes between election cycles | ✅ Complete |
+| 15-03 | Recruitment Radar | Districts needing Democratic candidates | ✅ Complete |
+| 15-04 | Resource Heatmap | Investment prioritization with ROI scoring | ✅ Complete |
+
+### New Components
+
+- `src/components/Scenario/ScenarioSimulator.tsx` - What-if district flipping with seat counters
+- `src/components/Historical/HistoricalComparison.tsx` - Period selector with diverging color scale
+- `src/components/Recruitment/RecruitmentRadar.tsx` - Ranked target list with pulse animation
+- `src/components/ResourceHeatmap/ResourceHeatmap.tsx` - Three-tier intensity with CSV export
+
+### New Hooks
+
+- `src/hooks/useScenario.ts` - Scenario state management with URL sync (`?scenario=d23,r45`)
+- `src/hooks/useHistoricalComparison.ts` - Election cycle delta calculations
+- `src/hooks/useRecruitmentRadar.ts` - Opportunity scoring for recruitment targets
+- `src/hooks/useResourceHeatmap.ts` - Composite resource allocation scoring
+
+### Color Systems (districtColors.ts)
+
+- `SCENARIO_COLORS` - Flipped district patterns (striped overlays)
+- `HISTORICAL_DELTA_COLORS` - Diverging blue↔gray↔red scale
+- `RESOURCE_HEATMAP_COLORS` - Hot/Warm/Cool intensity levels
 
 ---
 
@@ -308,9 +353,11 @@ Expand to all 50 states with:
 |-----------|--------|-------|--------|---------|
 | v1.0 Blue Intelligence Demo | Phase A (10 WPs) | 10 | COMPLETE | 2026-01-17 |
 | v1.1 SC Voter Guide | Phases 1-10 | 13 | COMPLETE | 2026-01-18 |
-| v2.0 Monorepo Architecture | Phase B | TBD | PLANNED | - |
-| v3.0 SC Production | Phase C | TBD | PLANNED | - |
-| v4.0 National Platform | Phase D | TBD | PLANNED | - |
+| v2.0 Map Navigation System | Phases 11-14 | 14 | COMPLETE | 2026-01-21 |
+| v2.1 Strategic Visualization | Phase 15 | 4 | COMPLETE | 2026-01-21 |
+| v3.0 Monorepo Architecture | Phase B | TBD | PLANNED | - |
+| v4.0 SC Production | Phase C | TBD | PLANNED | - |
+| v5.0 National Platform | Phase D | TBD | PLANNED | - |
 
 ---
 
