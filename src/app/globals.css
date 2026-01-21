@@ -115,6 +115,47 @@ svg path[id^="senate-"]:hover,
 }
 
 /* ================================================
+   MINI MAP PREVIEW
+   Compact, non-interactive map thumbnail for Voter Guide
+   ================================================ */
+.mini-map-preview {
+  width: 150px;
+  height: auto;
+  max-height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--glass-background);
+  border: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.mini-map-preview svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mini-map-preview path {
+  fill: var(--color-empty);
+  stroke: var(--map-stroke);
+  stroke-width: 0.3;
+  pointer-events: none;
+}
+
+.mini-map-preview .district-highlighted {
+  fill: var(--class-purple);
+  filter: drop-shadow(0 0 3px rgba(30, 64, 175, 0.4));
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .mini-map-preview {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* ================================================
    GLASSMORPHIC DESIGN SYSTEM TOKENS
    SC Election Map 2026
    Design System: /glassmorphic-dashboard + /frontend-design
