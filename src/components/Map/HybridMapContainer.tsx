@@ -2,8 +2,10 @@
 
 import { useState, useCallback, useMemo, Suspense, lazy } from 'react';
 import DistrictMap from './DistrictMap';
+import ShareButton from './ShareButton';
 import type { CandidatesData, ElectionsData } from '@/types/schema';
 import type { ChamberType } from '@/lib/leafletLoader';
+import type { MapState } from '@/lib/mapStateUtils';
 
 // Lazy load Leaflet components for zero initial bundle impact
 const LeafletMap = lazy(() => import('./LeafletMap'));
@@ -33,6 +35,8 @@ export interface HybridMapContainerProps {
   showChamberToggle?: boolean;
   /** Show mode toggle button (default: true) */
   showModeToggle?: boolean;
+  /** Show share button (default: true) */
+  showShareButton?: boolean;
   /** Additional className */
   className?: string;
 }
@@ -74,6 +78,7 @@ export default function HybridMapContainer({
   stateCode = 'sc',
   showChamberToggle = true,
   showModeToggle = true,
+  showShareButton = true,
   className,
 }: HybridMapContainerProps) {
   const [mode, setMode] = useState<MapMode>('svg');
@@ -99,6 +104,12 @@ export default function HybridMapContainer({
       setMode('leaflet');
     }
   }, [mode]);
+
+  // Map state for sharing
+  const shareMapState = useMemo((): MapState => ({
+    chamber: chamber === 'congressional' ? 'house' : chamber,
+    district: selectedDistrict ?? undefined,
+  }), [chamber, selectedDistrict]);
 
   // Render SVG map (House/Senate only)
   const renderSvgMap = () => {
@@ -185,6 +196,11 @@ export default function HybridMapContainer({
               </span>
             )}
           </button>
+        )}
+
+        {/* Share Button */}
+        {showShareButton && (
+          <ShareButton mapState={shareMapState} size="sm" />
         )}
       </div>
 
