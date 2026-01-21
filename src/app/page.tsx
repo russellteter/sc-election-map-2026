@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import USMap from '@/components/Landing/USMap';
+import AnimatedUSMap from '@/components/Landing/AnimatedUSMap';
 import StateModal from '@/components/Landing/StateModal';
 import { getActiveStates, type AnyStateConfig } from '@/lib/stateConfig';
 // Note: Next.js Link component automatically handles basePath, so we don't need BASE_PATH for internal links
@@ -123,7 +123,7 @@ export default function LandingPage() {
             <h3 className="text-xl font-semibold text-center mb-6" style={{ color: 'var(--text-color)' }}>
               Select a State to Explore
             </h3>
-            <USMap onInactiveStateClick={setSelectedInactiveState} />
+            <AnimatedUSMap onInactiveStateClick={setSelectedInactiveState} />
           </div>
         </section>
 
