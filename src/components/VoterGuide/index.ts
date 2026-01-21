@@ -66,6 +66,11 @@ export const PollingPlaceFinder = dynamic(() => import('./PollingPlaceFinder'), 
   ssr: false
 });
 
+// Leaflet-based interactive map (client-side only)
+export const PersonalDistrictMap = dynamic(() => import('./PersonalDistrictMap'), {
+  ssr: false
+});
+
 // Re-export skeletons (always loaded for loading states)
 export {
   RaceCardSkeleton,
