@@ -17,7 +17,8 @@ import {
   PollingPlaceFinder,
   VoterGuideHeader,
   VoterGuideFooter,
-  VoterGuideSummary
+  VoterGuideSummary,
+  MiniMapPreview
 } from '@/components/VoterGuide';
 import { useVoterGuideData } from '@/hooks/useVoterGuideData';
 import { useAddressLookup } from '@/hooks/useAddressLookup';
@@ -145,26 +146,35 @@ function VoterGuideContent() {
 
                   {/* State Legislative Districts */}
                   <div className="space-y-6 animate-in animate-in-delay-3">
-                    <div className="section-header-accent">
-                      <div
-                        className="section-header-icon"
-                        style={{
-                          background: 'var(--class-purple-bg)',
-                          border: '1px solid var(--class-purple-light)',
-                        }}
-                      >
-                        <svg className="w-5 h-5" style={{ color: 'var(--class-purple)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                        </svg>
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="section-header-accent flex-1">
+                        <div
+                          className="section-header-icon"
+                          style={{
+                            background: 'var(--class-purple-bg)',
+                            border: '1px solid var(--class-purple-light)',
+                          }}
+                        >
+                          <svg className="w-5 h-5" style={{ color: 'var(--class-purple)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
+                            SC State Legislature
+                          </h3>
+                          <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+                            Your state representative and senator
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-display font-semibold text-lg" style={{ color: 'var(--text-color)' }}>
-                          SC State Legislature
-                        </h3>
-                        <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-                          Your state representative and senator
-                        </p>
-                      </div>
+                      {/* Mini map preview showing user's district */}
+                      <MiniMapPreview
+                        stateCode="sc"
+                        chamber="house"
+                        highlightedDistrict={districtResult.houseDistrict}
+                        className="hidden sm:block"
+                      />
                     </div>
                     <DistrictResults
                       houseDistrict={districtResult.houseDistrict}
