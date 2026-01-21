@@ -4854,3 +4854,101 @@ textarea:focus-visible,
     margin-top: 8px;
   }
 }
+
+/* ================================================
+   ZOOM LEVEL CONTENT - Progressive Disclosure
+   ================================================ */
+
+.zoom-level-content {
+  position: relative;
+  width: 100%;
+}
+
+.zoom-level-content__wrapper {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--zoom-transition-duration, 300ms) ease-out,
+    transform var(--zoom-transition-duration, 300ms) ease-out;
+}
+
+/* Animation states for content transitions */
+.zoom-level-content[data-zoom-level="state"] .zoom-level-content__wrapper {
+  animation: zoom-content-in var(--zoom-transition-duration, 300ms) ease-out;
+}
+
+.zoom-level-content[data-zoom-level="region"] .zoom-level-content__wrapper {
+  animation: zoom-content-in var(--zoom-transition-duration, 300ms) ease-out;
+}
+
+.zoom-level-content[data-zoom-level="district"] .zoom-level-content__wrapper {
+  animation: zoom-content-in var(--zoom-transition-duration, 300ms) ease-out;
+}
+
+@keyframes zoom-content-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .zoom-level-content__wrapper {
+    transition: none;
+  }
+
+  .zoom-level-content[data-zoom-level="state"] .zoom-level-content__wrapper,
+  .zoom-level-content[data-zoom-level="region"] .zoom-level-content__wrapper,
+  .zoom-level-content[data-zoom-level="district"] .zoom-level-content__wrapper {
+    animation: none;
+  }
+}
+
+/* Zoom indicator badge (optional visual feedback) */
+.zoom-level-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: var(--card-bg, rgba(255, 255, 255, 0.95));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle, #E2E8F0);
+  border-radius: var(--radius-sm, 6px);
+  font-size: var(--font-size-xs, 0.6875rem);
+  font-weight: 500;
+  color: var(--text-muted, #64748B);
+  transition: all 0.2s ease;
+}
+
+.zoom-level-indicator[data-level="state"] {
+  color: var(--class-purple, #6366F1);
+  border-color: var(--class-purple-light, #C7D2FE);
+}
+
+.zoom-level-indicator[data-level="region"] {
+  color: var(--class-blue, #3B82F6);
+  border-color: #BFDBFE;
+}
+
+.zoom-level-indicator[data-level="district"] {
+  color: #059669;
+  border-color: #A7F3D0;
+}
+
+/* Mobile: Adjust zoom content spacing */
+@media (max-width: 640px) {
+  .zoom-level-content {
+    padding: 0;
+  }
+
+  .zoom-level-indicator {
+    font-size: 0.625rem;
+    padding: 3px 6px;
+  }
+}
