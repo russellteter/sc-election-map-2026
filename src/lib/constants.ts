@@ -118,8 +118,8 @@ export const API_ENDPOINTS = {
  * Application metadata
  */
 export const APP_METADATA = {
-  NAME: 'Blue Intelligence',
-  DESCRIPTION: 'National Election Intelligence Platform - 50-state election intelligence demo for Democratic campaigns',
+  NAME: 'State Election Intel Hub',
+  DESCRIPTION: 'South Carolina election intelligence - voter guide, candidate tracking, and opportunity scoring for state legislative races',
   VERSION: '1.0.0',
   GITHUB_URL: 'https://github.com/russellteter/sc-election-map-2026',
   LIVE_URL: 'https://russellteter.github.io/sc-election-map-2026/',

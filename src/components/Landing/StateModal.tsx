@@ -72,7 +72,7 @@ export default function StateModal({ state, onClose }: StateModalProps) {
         ) : (
           <>
             <p className="text-sm mb-4" style={{ color: 'var(--text-muted)' }}>
-              Blue Intelligence is expanding to cover all 50 states. Sign up to be notified when
+              State Election Intel Hub is expanding to cover more states. Sign up to be notified when
               election intelligence for {state.name} becomes available.
             </p>
 

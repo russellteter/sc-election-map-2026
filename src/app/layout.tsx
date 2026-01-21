@@ -20,8 +20,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Blue Intelligence | National Election Platform",
-  description: "National Election Intelligence Platform - 50-state election intelligence demo showcasing voter intelligence, opportunity scoring, and mobilization tools for Democratic campaigns",
+  title: "State Election Intel Hub | South Carolina",
+  description: "South Carolina election intelligence - voter guide, candidate tracking, opportunity scoring, and mobilization tools for state legislative races",
 };
 
 // Viewport configuration for mobile optimization
