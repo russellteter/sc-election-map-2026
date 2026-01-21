@@ -51,14 +51,14 @@ export default function AnimatedUSMap({
 
       // Skip animation if user prefers reduced motion
       if (prefersReducedMotion) {
-        router.push(\`/\${stateCode.toLowerCase()}\`);
+        router.push(`/${stateCode.toLowerCase()}`);
         return;
       }
 
       // Get zoom target coordinates for the state
       const target = getStateZoomTarget(stateCode);
       if (!target) {
-        router.push(\`/\${stateCode.toLowerCase()}\`);
+        router.push(`/${stateCode.toLowerCase()}`);
         return;
       }
 
@@ -77,7 +77,7 @@ export default function AnimatedUSMap({
 
       // Navigate after animation completes
       timeoutRef.current = setTimeout(() => {
-        router.push(\`/\${stateCode.toLowerCase()}\`);
+        router.push(`/${stateCode.toLowerCase()}`);
 
         // Reset zoom state after navigation (for back navigation)
         setTimeout(() => {

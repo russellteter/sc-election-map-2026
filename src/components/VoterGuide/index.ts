@@ -10,6 +10,7 @@ export { ErrorDisplay } from './ErrorDisplay';
 export { default as VoterGuideHeader } from './VoterGuideHeader';
 export { default as VoterGuideFooter } from './VoterGuideFooter';
 export { default as VoterGuideSummary } from './VoterGuideSummary';
+export { default as MiniMapPreview } from './MiniMapPreview';
 
 // Import skeletons for re-export
 import {
