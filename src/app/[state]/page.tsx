@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Link from 'next/link';
-import DistrictMap from '@/components/Map/DistrictMap';
+import NavigableDistrictMap from '@/components/Map/NavigableDistrictMap';
 import Legend from '@/components/Map/Legend';
 import ChamberToggle from '@/components/Map/ChamberToggle';
 import SidePanel from '@/components/Dashboard/SidePanel';
@@ -560,18 +560,21 @@ export default function StateDashboard() {
             id="map-container"
             className="flex-1 map-container min-h-[400px] animate-entrance stagger-3 relative"
             role="region"
-            aria-label="Interactive district map"
+            aria-label="Interactive district map - double-click a district to view details"
           >
             <div className="map-svg-wrapper h-full">
-              <DistrictMap
+              <NavigableDistrictMap
+                stateCode={stateCode}
                 chamber={chamber}
                 candidatesData={candidatesData}
                 electionsData={electionsData}
                 selectedDistrict={selectedDistrict}
-                onDistrictClick={setSelectedDistrict}
+                onDistrictSelect={setSelectedDistrict}
                 onDistrictHover={setHoveredDistrict}
                 filteredDistricts={filteredDistricts}
-                stateCode={stateCode}
+                enableNavigation={true}
+                showChamberToggle={false}
+                showModeToggle={true}
               />
             </div>
             <Legend />
