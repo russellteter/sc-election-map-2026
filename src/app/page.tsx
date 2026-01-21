@@ -1,11 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
-import AnimatedUSMap from '@/components/Landing/AnimatedUSMap';
+import NavigableUSMap from '@/components/Landing/NavigableUSMap';
 import StateModal from '@/components/Landing/StateModal';
 import { getActiveStates, type AnyStateConfig } from '@/lib/stateConfig';
 // Note: Next.js Link component automatically handles basePath, so we don't need BASE_PATH for internal links
+
+// Separate component to handle search params (requires Suspense boundary)
+function USMapSection({ onInactiveStateClick }: { onInactiveStateClick: (state: AnyStateConfig) => void }) {
+  return (
+    <NavigableUSMap
+      onInactiveStateClick={onInactiveStateClick}
+      syncUrl={true}
+    />
+  );
+}
 
 export default function LandingPage() {
   const [selectedInactiveState, setSelectedInactiveState] = useState<AnyStateConfig | null>(null);
@@ -123,7 +133,19 @@ export default function LandingPage() {
             <h3 className="text-xl font-semibold text-center mb-6" style={{ color: 'var(--text-color)' }}>
               Select a State to Explore
             </h3>
-            <AnimatedUSMap onInactiveStateClick={setSelectedInactiveState} />
+            <p className="text-sm text-center mb-4" style={{ color: 'var(--text-muted)' }}>
+              Use Tab to navigate between states, Enter to select
+            </p>
+            <Suspense fallback={
+              <div className="flex items-center justify-center h-64">
+                <div className="animate-pulse text-center">
+                  <div className="w-12 h-12 rounded-full bg-purple-100 mx-auto mb-2" />
+                  <span style={{ color: 'var(--text-muted)' }}>Loading map...</span>
+                </div>
+              </div>
+            }>
+              <USMapSection onInactiveStateClick={setSelectedInactiveState} />
+            </Suspense>
           </div>
         </section>
 
