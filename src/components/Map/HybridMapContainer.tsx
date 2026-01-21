@@ -164,6 +164,7 @@ export default function HybridMapContainer({
         <CountyGeoJSONLayer stateCode={stateCode} />
         <DistrictGeoJSONLayer
           chamber={chamber as ChamberType}
+          stateCode={stateCode}
           candidatesData={candidatesData}
           electionsData={electionsData}
           selectedDistrict={selectedDistrict}

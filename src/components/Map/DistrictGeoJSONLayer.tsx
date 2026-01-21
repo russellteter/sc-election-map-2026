@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback, useMemo } from 'react';
-import { importLeaflet, GEOJSON_PATHS, getDistrictPropertyKey, getBasePath, type ChamberType } from '@/lib/leafletLoader';
+import { importLeaflet, getStateGeoJSONPaths, getDistrictPropertyKey, getBasePath, type ChamberType } from '@/lib/leafletLoader';
 import { getGeoJsonFromCache, setGeoJsonInCache } from '@/lib/cacheUtils';
 import {
   getDistrictFillColor,
@@ -18,6 +18,8 @@ type DistrictFeature = Feature<Polygon | MultiPolygon, GeoJsonProperties>;
 export interface DistrictGeoJSONLayerProps {
   /** Chamber type: house, senate, or congressional */
   chamber: ChamberType;
+  /** State code for multi-state support (default: 'sc') */
+  stateCode?: string;
   /** Candidate data for coloring (house/senate only) */
   candidatesData?: CandidatesData;
   /** Election history for margin-based coloring */
@@ -40,6 +42,7 @@ export interface DistrictGeoJSONLayerProps {
  */
 export default function DistrictGeoJSONLayer({
   chamber,
+  stateCode = 'sc',
   candidatesData,
   electionsData,
   selectedDistrict,
@@ -57,10 +60,10 @@ export default function DistrictGeoJSONLayer({
     importLeaflet().then(setLeafletComponents);
   }, []);
 
-  // Load GeoJSON data
+  // Load GeoJSON data for the specified state
   useEffect(() => {
     let mounted = true;
-    const cacheKey = `sc-${chamber}-districts`;
+    const cacheKey = `${stateCode.toLowerCase()}-${chamber}-districts`;
 
     async function loadGeoJSON() {
       setIsLoading(true);
@@ -75,9 +78,10 @@ export default function DistrictGeoJSONLayer({
           return;
         }
 
-        // Fetch from network
+        // Fetch from network using state-specific path
         const basePath = getBasePath();
-        const path = GEOJSON_PATHS[chamber];
+        const paths = getStateGeoJSONPaths(stateCode);
+        const path = paths[chamber];
         const response = await fetch(`${basePath}${path}`);
 
         if (!response.ok) {
@@ -106,7 +110,7 @@ export default function DistrictGeoJSONLayer({
     return () => {
       mounted = false;
     };
-  }, [chamber]);
+  }, [chamber, stateCode]);
 
   // Get district number from feature
   const getDistrictNumber = useCallback((feature: DistrictFeature): number | null => {

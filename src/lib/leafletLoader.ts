@@ -108,7 +108,7 @@ export function createLeafletComponent<P extends object>(
 }
 
 /**
- * GeoJSON file paths for SC district boundaries
+ * GeoJSON file paths for SC district boundaries (legacy - use getStateGeoJSONPaths)
  */
 export const GEOJSON_PATHS = {
   house: '/data/sc-house-districts.geojson',
@@ -117,6 +117,60 @@ export const GEOJSON_PATHS = {
 } as const;
 
 export type ChamberType = keyof typeof GEOJSON_PATHS;
+
+/**
+ * State-specific bounds (approx bounding boxes)
+ */
+export const STATE_BOUNDS: Record<string, LatLngBoundsExpression> = {
+  sc: SC_BOUNDS,
+  nc: [[33.7529, -84.3219], [36.5881, -75.4001]],
+  ga: [[30.3575, -85.6052], [35.0008, -80.8393]],
+  fl: [[24.3963, -87.6349], [31.0010, -79.9743]],
+  va: [[36.5408, -83.6753], [39.4660, -75.1663]],
+};
+
+/**
+ * State-specific centers
+ */
+export const STATE_CENTERS: Record<string, LatLngExpression> = {
+  sc: SC_CENTER,
+  nc: [35.5923, -79.2629],
+  ga: [32.6781, -83.2218],
+  fl: [27.6987, -83.8048],
+  va: [37.5034, -79.4210],
+};
+
+/**
+ * Get GeoJSON file paths for any state's district boundaries
+ * @param stateCode Two-letter state code (e.g., "sc", "nc")
+ * @returns Object with paths for house, senate, and congressional districts
+ */
+export function getStateGeoJSONPaths(stateCode: string): Record<ChamberType, string> {
+  const code = stateCode.toLowerCase();
+  return {
+    house: `/data/${code}-house-districts.geojson`,
+    senate: `/data/${code}-senate-districts.geojson`,
+    congressional: `/data/${code}-congressional-districts.geojson`,
+  };
+}
+
+/**
+ * Get bounds for a specific state
+ * @param stateCode Two-letter state code
+ * @returns Bounding box or SC bounds as fallback
+ */
+export function getStateBounds(stateCode: string): LatLngBoundsExpression {
+  return STATE_BOUNDS[stateCode.toLowerCase()] ?? SC_BOUNDS;
+}
+
+/**
+ * Get center coordinates for a specific state
+ * @param stateCode Two-letter state code
+ * @returns Center coordinates or SC center as fallback
+ */
+export function getStateCenter(stateCode: string): LatLngExpression {
+  return STATE_CENTERS[stateCode.toLowerCase()] ?? SC_CENTER;
+}
 
 /**
  * Get the property key for district number based on chamber type
