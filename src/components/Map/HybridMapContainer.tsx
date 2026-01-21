@@ -12,6 +12,7 @@ import type { MapState } from '@/lib/mapStateUtils';
 // Lazy load Leaflet components for zero initial bundle impact
 const LeafletMap = lazy(() => import('./LeafletMap'));
 const DistrictGeoJSONLayer = lazy(() => import('./DistrictGeoJSONLayer'));
+const CountyGeoJSONLayer = lazy(() => import('./CountyGeoJSONLayer'));
 
 type MapMode = 'svg' | 'leaflet';
 type LegislativeChamber = 'house' | 'senate';
@@ -159,6 +160,8 @@ export default function HybridMapContainer({
   const renderLeafletMap = () => (
     <Suspense fallback={<LeafletLoadingFallback />}>
       <LeafletMap className="w-full h-full">
+        {/* County boundaries at region zoom (7-11) - rendered first so districts overlay */}
+        <CountyGeoJSONLayer stateCode={stateCode} />
         <DistrictGeoJSONLayer
           chamber={chamber as ChamberType}
           candidatesData={candidatesData}
