@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useMemo, Suspense, lazy } from 'react';
-import AnalyticsTabBar from './AnalyticsTabBar';
+import AnalyticsTabBar, { MobileAnalyticsTabBar } from './AnalyticsTabBar';
 import AnalyticsMap, { getDefaultLayerConfig } from './AnalyticsMap';
 import ChamberToggle from '@/components/Map/ChamberToggle';
 import Legend from '@/components/Map/Legend';
@@ -261,14 +261,8 @@ export default function AnalyticsDashboard({
             />
           </div>
 
-          {/* Tab bar (mobile - compact) */}
-          <div className="md:hidden">
-            <AnalyticsTabBar
-              activeTab={activeTab}
-              onTabChange={setTab}
-              compact={true}
-            />
-          </div>
+          {/* Tab bar (mobile) - hidden here, shown in fixed bottom nav */}
+          {/* Mobile tabs are rendered in the fixed bottom nav below */}
         </div>
       </header>
 
@@ -325,40 +319,53 @@ export default function AnalyticsDashboard({
         </aside>
       </div>
 
-      {/* Mobile toggle bar */}
-      <div className="lg:hidden border-t p-2 glass-surface" style={{ borderColor: 'var(--class-purple-light)' }}>
-        <div className="flex gap-2">
+      {/* Mobile Bottom Navigation */}
+      <div className="md:hidden sticky bottom-0 z-50">
+        {/* View toggle (Map/Panel) */}
+        <div
+          className="flex gap-1 px-2 py-1.5 border-b"
+          style={{
+            background: 'rgba(255, 255, 255, 0.9)',
+            borderColor: 'var(--border-subtle)',
+          }}
+        >
           <button
             onClick={() => setShowMobilePanel(false)}
-            className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all ${
+            className={`flex-1 py-1.5 px-3 rounded-lg text-xs font-medium transition-all min-h-[36px] ${
               !showMobilePanel ? 'shadow-sm' : ''
             }`}
             style={{
               background: !showMobilePanel
                 ? 'linear-gradient(135deg, var(--class-purple-bg) 0%, #E0E7FF 100%)'
-                : 'var(--card-bg)',
+                : 'transparent',
               color: !showMobilePanel ? 'var(--class-purple)' : 'var(--text-muted)',
-              border: `1px solid ${!showMobilePanel ? 'var(--class-purple-light)' : 'var(--border-subtle)'}`,
+              border: `1px solid ${!showMobilePanel ? 'var(--class-purple-light)' : 'transparent'}`,
             }}
           >
-            Map
+            🗺️ Map
           </button>
           <button
             onClick={() => setShowMobilePanel(true)}
-            className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all ${
+            className={`flex-1 py-1.5 px-3 rounded-lg text-xs font-medium transition-all min-h-[36px] ${
               showMobilePanel ? 'shadow-sm' : ''
             }`}
             style={{
               background: showMobilePanel
                 ? 'linear-gradient(135deg, var(--class-purple-bg) 0%, #E0E7FF 100%)'
-                : 'var(--card-bg)',
+                : 'transparent',
               color: showMobilePanel ? 'var(--class-purple)' : 'var(--text-muted)',
-              border: `1px solid ${showMobilePanel ? 'var(--class-purple-light)' : 'var(--border-subtle)'}`,
+              border: `1px solid ${showMobilePanel ? 'var(--class-purple-light)' : 'transparent'}`,
             }}
           >
-            Panel
+            📊 Panel
           </button>
         </div>
+
+        {/* 7-tab bottom navigation */}
+        <MobileAnalyticsTabBar
+          activeTab={activeTab}
+          onTabChange={setTab}
+        />
       </div>
     </div>
   );

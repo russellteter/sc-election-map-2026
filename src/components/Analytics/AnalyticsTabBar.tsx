@@ -147,7 +147,14 @@ export default function AnalyticsTabBar({
 }
 
 /**
- * Mobile-specific tab bar variant with bottom navigation style
+ * MobileBottomNav - Fixed bottom navigation for analytics dashboard
+ *
+ * Features:
+ * - 7 tab icons in horizontal layout
+ * - 44px minimum tap targets (iOS/Android guidelines)
+ * - Glassmorphic styling with backdrop blur
+ * - Safe area padding for notched devices
+ * - Active state with purple gradient
  */
 export function MobileAnalyticsTabBar({
   activeTab,
@@ -155,48 +162,63 @@ export function MobileAnalyticsTabBar({
   className = '',
 }: Omit<AnalyticsTabBarProps, 'compact'>) {
   return (
-    <div
-      className={`mobile-analytics-tabs ${className}`}
+    <nav
+      className={`mobile-bottom-nav ${className}`}
       role="tablist"
-      aria-label="Analytics sections"
+      aria-label="Analytics navigation"
     >
-      <div className="grid grid-cols-7 gap-0.5 p-1 bg-white/50 rounded-xl backdrop-blur-sm">
-        {ANALYTICS_TABS.map((tab) => {
-          const isActive = activeTab === tab.id;
+      {/* Glassmorphic container with safe area padding */}
+      <div
+        className="glass-surface border-t backdrop-blur-md pb-safe"
+        style={{
+          borderColor: 'var(--class-purple-light)',
+          background: 'rgba(255, 255, 255, 0.85)',
+        }}
+      >
+        <div className="grid grid-cols-7 gap-0.5 px-1 py-1">
+          {ANALYTICS_TABS.map((tab) => {
+            const isActive = activeTab === tab.id;
 
-          return (
-            <button
-              key={tab.id}
-              role="tab"
-              aria-selected={isActive}
-              aria-controls={`panel-${tab.id}`}
-              id={`tab-mobile-${tab.id}`}
-              onClick={() => onTabChange(tab.id)}
-              className={`
-                flex flex-col items-center justify-center py-1.5 px-1 rounded-lg
-                transition-all duration-200 min-h-[52px]
-                ${isActive ? 'shadow-sm' : ''}
-              `}
-              style={{
-                background: isActive
-                  ? 'linear-gradient(135deg, var(--class-purple-bg) 0%, #E0E7FF 100%)'
-                  : 'transparent',
-                color: isActive ? 'var(--class-purple)' : 'var(--text-muted)',
-              }}
-            >
-              <span className="text-lg" role="img" aria-hidden="true">
-                {tab.icon}
-              </span>
-              <span
-                className="text-[9px] font-medium mt-0.5 leading-tight text-center"
-                style={{ lineHeight: 1.1 }}
+            return (
+              <button
+                key={tab.id}
+                role="tab"
+                aria-selected={isActive}
+                aria-controls={`panel-${tab.id}`}
+                id={`tab-mobile-${tab.id}`}
+                onClick={() => onTabChange(tab.id)}
+                className={`
+                  flex flex-col items-center justify-center rounded-lg
+                  transition-all duration-200
+                  min-h-[44px] min-w-[44px]
+                  ${isActive ? 'shadow-sm scale-105' : 'active:scale-95'}
+                `}
+                style={{
+                  background: isActive
+                    ? 'linear-gradient(135deg, var(--class-purple-bg) 0%, #E0E7FF 100%)'
+                    : 'transparent',
+                  color: isActive ? 'var(--class-purple)' : 'var(--text-muted)',
+                  border: isActive ? '1px solid var(--class-purple-light)' : '1px solid transparent',
+                }}
               >
-                {tab.shortLabel}
-              </span>
-            </button>
-          );
-        })}
+                <span
+                  className={`transition-transform duration-200 ${isActive ? 'text-xl' : 'text-lg'}`}
+                  role="img"
+                  aria-hidden="true"
+                >
+                  {tab.icon}
+                </span>
+                <span
+                  className="text-[9px] font-medium leading-tight text-center truncate w-full px-0.5"
+                  style={{ lineHeight: 1.1 }}
+                >
+                  {tab.shortLabel}
+                </span>
+              </button>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </nav>
   );
 }
