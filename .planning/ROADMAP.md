@@ -127,8 +127,8 @@ Transform static district visualization into dynamic, interactive mapping:
 ### Phases
 
 - [x] **Phase 11: Foundation** - Enhanced SVG animations, zoom transitions ✅ 2026-01-21
-- [ ] **Phase 12: Leaflet Integration** - Real pan/zoom with CartoDB tiles
-- [ ] **Phase 13: Voter Guide Map** - Personal location zoom, district highlighting
+- [x] **Phase 12: Leaflet Integration** - Real pan/zoom with CartoDB tiles ✅ 2026-01-21
+- [x] **Phase 13: Voter Guide Map** - Personal location zoom, district highlighting ✅ 2026-01-21
 - [ ] **Phase 14: Navigation Maps** - Maps as primary navigation, URL-synced
 
 ### Phase Details
@@ -142,25 +142,26 @@ Transform static district visualization into dynamic, interactive mapping:
 - [x] 11-02: AnimatedUSMap with zoom-to-state navigation
 - [x] 11-03: MiniMapPreview component for Voter Guide thumbnail
 
-#### Phase 12: Leaflet Integration
+#### Phase 12: Leaflet Integration ✅ COMPLETE
 **Goal**: Add real pan/zoom mapping with CartoDB Positron tiles
-**Research**: Likely (react-leaflet patterns)
-**Research topics**: react-leaflet v5 + Next.js 16, dynamic imports, GeoJSON styling
-**Plans**: 4 plans
+**Completed**: 2026-01-21
+**Commit**: 983bdcf
+**Plans**: 4/4 complete
 
-- [ ] 12-01: Install Leaflet + react-leaflet, configure dynamic imports
-- [ ] 12-02: LeafletMap wrapper with SVG fallback
-- [ ] 12-03: DistrictGeoJSONLayer with existing color scheme
-- [ ] 12-04: HybridMapContainer (SVG default, Leaflet on interaction)
+- [x] 12-01: Install Leaflet + react-leaflet, configure dynamic imports
+- [x] 12-02: LeafletMap wrapper with SVG fallback
+- [x] 12-03: DistrictGeoJSONLayer with existing color scheme
+- [x] 12-04: HybridMapContainer (SVG default, Leaflet on interaction)
 
-#### Phase 13: Voter Guide Map
+#### Phase 13: Voter Guide Map ✅ COMPLETE
 **Goal**: Personal location-focused map that zooms to user's address
-**Research**: Unlikely (building on Phase 12)
-**Plans**: 3 plans
+**Completed**: 2026-01-21
+**Commit**: 983bdcf
+**Plans**: 3/3 complete
 
-- [ ] 13-01: PersonalDistrictMap centering on user coordinates
-- [ ] 13-02: MapZoomAnimation from state to user location
-- [ ] 13-03: Integrate map into Voter Guide page
+- [x] 13-01: PersonalDistrictMap centering on user coordinates
+- [x] 13-02: MapZoomAnimation from state to user location
+- [x] 13-03: Integrate map into Voter Guide page
 
 #### Phase 14: Navigation Maps
 **Goal**: Maps as primary navigation interface with URL-synced state
@@ -188,9 +189,9 @@ Transform static district visualization into dynamic, interactive mapping:
 | Phase | Plans | Status |
 |-------|-------|--------|
 | 11. Foundation | 3/3 | ✅ Complete |
-| 12. Leaflet Integration | 0/4 | Not started |
-| 13. Voter Guide Map | 0/3 | Not started |
-| 14. Navigation Maps | 0/4 | Not started |
+| 12. Leaflet Integration | 4/4 | ✅ Complete |
+| 13. Voter Guide Map | 3/3 | ✅ Complete |
+| 14. Navigation Maps | 0/4 | ⏳ Next |
 
 ---
 
