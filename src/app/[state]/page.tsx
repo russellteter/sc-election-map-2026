@@ -5,6 +5,7 @@ import Link from 'next/link';
 import NavigableDistrictMap from '@/components/Map/NavigableDistrictMap';
 import Legend from '@/components/Map/Legend';
 import ChamberToggle from '@/components/Map/ChamberToggle';
+import ZoomLevelContent, { useZoomLevel, ZOOM_THRESHOLDS } from '@/components/Map/ZoomLevelContent';
 import SidePanel from '@/components/Dashboard/SidePanel';
 import SearchBar from '@/components/Search/SearchBar';
 import FilterPanel, { FilterState, defaultFilters } from '@/components/Search/FilterPanel';
@@ -13,6 +14,7 @@ import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 import { useToast } from '@/components/Toast';
 import { KPICardSkeleton, MapSkeleton, CandidateCardSkeleton } from '@/components/Skeleton';
 import { useStateContext } from '@/context/StateContext';
+import { useMapState } from '@/hooks/useMapState';
 // Note: BASE_PATH not needed - data fetching uses window.location detection, navigation uses Next.js auto basePath
 import type { CandidatesData, ElectionsData } from '@/types/schema';
 
@@ -28,6 +30,11 @@ export default function StateDashboard() {
   const [filters, setFilters] = useState<FilterState>(defaultFilters);
   const [showShortcuts, setShowShortcuts] = useState(false);
   const { showToast } = useToast();
+
+  // Map state with URL sync for deep-linking
+  const { mapState, setMapState } = useMapState({ debounceMs: 300 });
+  const currentZoom = mapState.zoom;
+  const zoomLevel = useZoomLevel(currentZoom);
 
   const prevFiltersRef = useRef<FilterState>(defaultFilters);
 
@@ -532,28 +539,86 @@ export default function StateDashboard() {
       <div className="flex-1 flex flex-col lg:flex-row">
         <div className="flex-1 flex flex-col p-4">
           {objectiveStats && (
-            <div className="kpi-grid mb-4 animate-entrance stagger-2">
-              <div className="kpi-card animate-entrance" style={{ animationDelay: '0ms' }}>
-                <div className="label" style={{ color: '#3B82F6' }}>Dem Filed</div>
-                <div className="value font-display" style={{ color: '#3B82F6' }}>{objectiveStats.demFiled}</div>
-                <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>of {objectiveStats.totalDistricts} districts</div>
-              </div>
-              <div className="kpi-card animate-entrance" style={{ animationDelay: '50ms' }}>
-                <div className="label" style={{ color: '#059669' }}>Contested</div>
-                <div className="value font-display" style={{ color: '#059669' }}>{objectiveStats.contested}</div>
-                <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Both D &amp; R filed</div>
-              </div>
-              <div className="kpi-card animate-entrance" style={{ animationDelay: '100ms' }}>
-                <div className="label" style={{ color: '#1E40AF' }}>Dem Incumbents</div>
-                <div className="value font-display" style={{ color: '#1E40AF' }}>{objectiveStats.demIncumbents}</div>
-                <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Current Dem seats</div>
-              </div>
-              <div className="kpi-card animate-entrance" style={{ animationDelay: '150ms' }}>
-                <div className="label" style={{ color: '#F59E0B' }}>Close Races</div>
-                <div className="value font-display" style={{ color: '#F59E0B' }}>{objectiveStats.closeOpportunities}</div>
-                <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>No Dem, margin ≤15pts</div>
-              </div>
-            </div>
+            <ZoomLevelContent
+              currentZoom={currentZoom}
+              className="mb-4 animate-entrance stagger-2"
+              stateViewContent={
+                /* State level (zoom <= 8): Full 4-column KPI grid */
+                <div className="kpi-grid">
+                  <div className="kpi-card animate-entrance" style={{ animationDelay: '0ms' }}>
+                    <div className="label" style={{ color: '#3B82F6' }}>Dem Filed</div>
+                    <div className="value font-display" style={{ color: '#3B82F6' }}>{objectiveStats.demFiled}</div>
+                    <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>of {objectiveStats.totalDistricts} districts</div>
+                  </div>
+                  <div className="kpi-card animate-entrance" style={{ animationDelay: '50ms' }}>
+                    <div className="label" style={{ color: '#059669' }}>Contested</div>
+                    <div className="value font-display" style={{ color: '#059669' }}>{objectiveStats.contested}</div>
+                    <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Both D &amp; R filed</div>
+                  </div>
+                  <div className="kpi-card animate-entrance" style={{ animationDelay: '100ms' }}>
+                    <div className="label" style={{ color: '#1E40AF' }}>Dem Incumbents</div>
+                    <div className="value font-display" style={{ color: '#1E40AF' }}>{objectiveStats.demIncumbents}</div>
+                    <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Current Dem seats</div>
+                  </div>
+                  <div className="kpi-card animate-entrance" style={{ animationDelay: '150ms' }}>
+                    <div className="label" style={{ color: '#F59E0B' }}>Close Races</div>
+                    <div className="value font-display" style={{ color: '#F59E0B' }}>{objectiveStats.closeOpportunities}</div>
+                    <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>No Dem, margin ≤15pts</div>
+                  </div>
+                </div>
+              }
+              regionViewContent={
+                /* Region level (8 < zoom <= 10): Simplified 2-column KPI */
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="kpi-card">
+                    <div className="label" style={{ color: '#3B82F6' }}>Dem Filed</div>
+                    <div className="value font-display text-lg" style={{ color: '#3B82F6' }}>
+                      {objectiveStats.demFiled}/{objectiveStats.totalDistricts}
+                    </div>
+                  </div>
+                  <div className="kpi-card">
+                    <div className="label" style={{ color: '#F59E0B' }}>Close Races</div>
+                    <div className="value font-display text-lg" style={{ color: '#F59E0B' }}>
+                      {objectiveStats.closeOpportunities}
+                    </div>
+                  </div>
+                </div>
+              }
+              districtViewContent={
+                /* District level (zoom > 10): Selected district mini-summary */
+                selectedDistrictData ? (
+                  <div className="glass-surface rounded-lg p-3 border" style={{ borderColor: 'var(--class-purple-light)' }}>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="text-xs font-medium" style={{ color: 'var(--text-muted)' }}>
+                          {chamber === 'house' ? stateConfig.chambers.house.name : stateConfig.chambers.senate.name}
+                        </span>
+                        <h3 className="font-display font-bold text-lg" style={{ color: 'var(--text-color)' }}>
+                          District {selectedDistrict}
+                        </h3>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-xs" style={{ color: 'var(--text-muted)' }}>Candidates</span>
+                        <div className="font-display font-bold text-lg" style={{ color: 'var(--class-purple)' }}>
+                          {selectedDistrictData.candidates.length}
+                        </div>
+                      </div>
+                    </div>
+                    {selectedDistrictData.incumbent && (
+                      <div className="mt-2 pt-2 border-t text-xs" style={{ borderColor: 'var(--border-subtle)', color: 'var(--text-muted)' }}>
+                        Incumbent: {selectedDistrictData.incumbent.name} ({selectedDistrictData.incumbent.party})
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="glass-surface rounded-lg p-3 border text-center" style={{ borderColor: 'var(--class-purple-light)' }}>
+                    <span className="text-sm" style={{ color: 'var(--text-muted)' }}>
+                      Click a district to view details
+                    </span>
+                  </div>
+                )
+              }
+            />
           )}
 
           <div
