@@ -5,17 +5,17 @@
 See: .planning/PROJECT.md (updated 2026-01-18)
 
 **Core value:** Build a national election intelligence platform that helps Democratic campaigns win
-**Current focus:** v2.0 Map Navigation System — Phase 14 Navigation Maps
+**Current focus:** v2.1 Strategic Visualization complete — ready for integration
 
 ## Current Position
 
-Phase: 14 of 14 (Navigation Maps)
-Milestone: v2.0 Map Navigation System
-Plan: Not started
-Status: Ready to plan
-Last activity: 2026-01-21 — Phase 12.1 bug fixes and documentation recovery complete
+Phase: 15 of 15 (Strategic Visualization) ✅ COMPLETE
+Milestone: v2.1 Strategic Visualization ✅ SHIPPED
+Plan: All 4 plans complete
+Status: Ready for integration into dashboards
+Last activity: 2026-01-21 — Phase 15 Strategic Visualization complete
 
-Progress: ███████░░░ 75% (Phases 11, 12, 13 complete)
+Progress: ██████████ 100% (v2.0 + v2.1 complete)
 
 ## Shipped Milestones
 
@@ -23,8 +23,10 @@ Progress: ███████░░░ 75% (Phases 11, 12, 13 complete)
 |-----------|---------|------------------|
 | v1.0 Blue Intelligence Demo | 2026-01-17 | 5 states, 876 districts, 12 features |
 | v1.1 SC Voter Guide Enhancement | 2026-01-18 | Real county data, 155 tests, caching, Ethics scraper |
+| v2.0 Map Navigation System | 2026-01-21 | NavigableUSMap, useMapState, ZoomLevelContent, HybridMapContainer |
+| v2.1 Strategic Visualization | 2026-01-21 | ScenarioSimulator, HistoricalComparison, RecruitmentRadar, ResourceHeatmap |
 
-## v2.0 Map Navigation System
+## v2.0 Map Navigation System ✅ SHIPPED
 
 **4 phases, 14 plans, zero initial bundle impact**
 
@@ -35,29 +37,57 @@ Goal: Transform Blue Intelligence into a map-first navigation experience
 | 11. Foundation | 3 | Enhanced SVG animations, zoom transitions | ✅ Complete |
 | 12. Leaflet Integration | 4 | Real pan/zoom with CartoDB Positron tiles | ✅ Complete |
 | 13. Voter Guide Map | 3 | Personal location zoom, district highlighting | ✅ Complete |
-| 14. Navigation Maps | 4 | Maps as primary navigation, URL-synced | ⏳ Next |
+| 14. Navigation Maps | 4 | Maps as primary navigation, URL-synced | ✅ Complete |
 
 **Architecture Decisions:**
 - Map Library: Leaflet + react-leaflet (18KB lazy)
 - Tile Provider: CartoDB Positron (minimal, glassmorphic)
 - Pattern: Hybrid SVG/Leaflet (SVG default, Leaflet on interaction)
 
-## Key Decisions (v2.0)
+## v2.1 Strategic Visualization ✅ SHIPPED
+
+**4 components for campaign intelligence**
+
+Goal: Advanced map-driven features for strategic decision-making
+
+| Phase | Component | Purpose | Status |
+|-------|-----------|---------|--------|
+| 15-01 | Scenario Simulator | What-if district flipping | ✅ Complete |
+| 15-02 | Historical Comparison | Margin changes between cycles | ✅ Complete |
+| 15-03 | Recruitment Radar | Districts needing candidates | ✅ Complete |
+| 15-04 | Resource Heatmap | Investment prioritization | ✅ Complete |
+
+**New Components:**
+- `src/components/Scenario/ScenarioSimulator.tsx` - Click districts to toggle outcomes
+- `src/components/Historical/HistoricalComparison.tsx` - Diverging color scale for margin shifts
+- `src/components/Recruitment/RecruitmentRadar.tsx` - Ranked target list with pulse animation
+- `src/components/ResourceHeatmap/ResourceHeatmap.tsx` - Three-tier intensity with CSV export
+
+**New Hooks:**
+- `src/hooks/useScenario.ts` - Scenario state with URL sync
+- `src/hooks/useHistoricalComparison.ts` - Election cycle delta calculations
+- `src/hooks/useRecruitmentRadar.ts` - Opportunity scoring for recruitment
+- `src/hooks/useResourceHeatmap.ts` - Composite resource allocation scoring
+
+## Key Decisions
 
 | Date | Decision | Rationale |
 |------|----------|-----------|
 | 2026-01-20 | Leaflet over MapLibre | Smaller bundle (18KB vs 55KB), mobile-optimized |
 | 2026-01-20 | CartoDB Positron tiles | Minimal, elegant, matches glassmorphic design |
 | 2026-01-20 | Hybrid SVG/Leaflet | Best of both: fast SVG default, rich Leaflet on demand |
-| 2026-01-20 | All phases sequential | Build foundation before advanced features |
+| 2026-01-21 | Scenario URL sync | Shareable what-if scenarios via `?scenario=d23,r45` |
+| 2026-01-21 | Three-tier resource intensity | Hot/Warm/Cool for investment prioritization |
 
 ## Accumulated Context
 
-### Research Completed (2026-01-20)
+### Research Completed
 - Explored mapcn (MapLibre-based, shadcn compatible)
 - Explored Leaflet (lightweight, battle-tested)
 - Analyzed StateNavigate.org patterns
-- Inventoried existing map components (DistrictMap.tsx, USMap.tsx)
+- Analyzed 270toWin scenario simulator
+- Analyzed NYC Election Atlas historical comparison
+- Analyzed FiveThirtyEight Swing-O-Matic
 
 ### Deferred Issues
 
@@ -70,56 +100,40 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-21
-Stopped at: Phase 12.1 bug fixes and documentation recovery
+Stopped at: Phase 15 Strategic Visualization complete
 Resume file: None
 
-## Phase 11 Accomplishments
+## Phase 14 Accomplishments
 
-**3 plans executed via parallel agents:**
+**4 plans completed:**
 
-| Plan | Agent | Key Deliverables |
-|------|-------|------------------|
-| 11-01 | a56bb29 | AnimatedMapContainer, useReducedMotion hook, CSS zoom tokens |
-| 11-02 | ae531b7 | AnimatedUSMap, STATE_PATHS export, zoom-to-state navigation |
-| 11-03 | a238f17 | MiniMapPreview component, Voter Guide integration |
+| Plan | Key Deliverables |
+|------|------------------|
+| 14-01 | NavigableDistrictMap with click-to-navigate |
+| 14-02 | useMapState hook for URL synchronization |
+| 14-03 | ZoomLevelContent for progressive disclosure |
+| 14-04 | NavigableUSMap with deep-linking and keyboard nav |
 
 **New Components:**
-- `src/components/Map/AnimatedMapContainer.tsx` - CSS-powered zoom container
-- `src/components/Landing/AnimatedUSMap.tsx` - Animated US map with zoom-to-state
-- `src/components/VoterGuide/MiniMapPreview.tsx` - Non-interactive district preview
+- `src/components/Map/NavigableDistrictMap.tsx` - Click-to-navigate district map
+- `src/components/Map/ZoomLevelContent.tsx` - Progressive disclosure by zoom
+- `src/components/Landing/NavigableUSMap.tsx` - Deep-linking + keyboard navigation
 
 **New Hooks:**
-- `src/hooks/useReducedMotion.ts` - prefers-reduced-motion support
+- `src/hooks/useMapState.ts` - Bidirectional URL sync
 
-## Phase 12 Accomplishments
+## Phase 15 Accomplishments
 
-**Commit:** 983bdcf — Leaflet integration with CartoDB Positron tiles
+**4 strategic visualization components:**
 
-**New Components:**
-- `src/components/Map/LeafletMap.tsx` - Base Leaflet wrapper
-- `src/components/Map/DistrictGeoJSONLayer.tsx` - Styled GeoJSON overlays
-- `src/components/Map/HybridMapContainer.tsx` - SVG/Leaflet hybrid
+| Plan | Component | Lines | Key Features |
+|------|-----------|-------|--------------|
+| 15-01 | ScenarioSimulator | 450 | District flipping, seat counters, URL sync |
+| 15-02 | HistoricalComparison | 360 | Period selector, color legend, top movers |
+| 15-03 | RecruitmentRadar | 350 | Ranked targets, pulse animation, urgency levels |
+| 15-04 | ResourceHeatmap | 450 | Composite scoring, CSV export, filter toggles |
 
-**New Hooks:**
-- `src/hooks/useLeafletMap.ts` - Map instance access
-- `src/hooks/useGeoJSONLoader.ts` - Lazy GeoJSON fetching
-
-**Infrastructure:**
-- `src/lib/leafletLoader.ts` - Dynamic Leaflet imports
-- `src/lib/districtColors.ts` - Centralized color utilities
-- `public/data/sc-congressional-districts.geojson` - 7 Congressional districts
-
-## Phase 13 Accomplishments
-
-**Commit:** 983bdcf — PersonalDistrictMap for Voter Guide
-
-**New Components:**
-- `src/components/VoterGuide/PersonalDistrictMap.tsx` - 419 lines
-  - Animated zoom to user location
-  - Chamber toggle (House/Senate/Congressional)
-  - District badges showing assignments
-  - User marker with pulse animation
-
-**Integration:**
-- Updated `src/app/voter-guide/page.tsx` with map display
-- Added ~100 lines of glassmorphic CSS for map controls
+**Color Systems Added to districtColors.ts:**
+- `SCENARIO_COLORS` - Flipped district patterns
+- `HISTORICAL_DELTA_COLORS` - Diverging blue↔red scale
+- `RESOURCE_HEATMAP_COLORS` - Hot/Warm/Cool intensity
