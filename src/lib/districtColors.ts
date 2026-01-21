@@ -171,3 +171,258 @@ export function getDistrictStrokeColor(isSelected: boolean): string {
 export function getDistrictStrokeWidth(isSelected: boolean): number {
   return isSelected ? 2.5 : 0.5;
 }
+
+// =============================================================================
+// Scenario Simulator Colors (Phase 15-01)
+// =============================================================================
+
+/**
+ * Scenario status for a district flip
+ */
+export type ScenarioStatus = 'baseline' | 'flipped-dem' | 'flipped-rep' | 'tossup';
+
+/**
+ * Colors for scenario simulator mode
+ * These overlay/replace base colors when scenario mode is active
+ */
+export const SCENARIO_COLORS = {
+  // Flipped to Democrat (was R, now D in scenario)
+  FLIPPED_DEM: '#2563EB',           // Bright blue
+  FLIPPED_DEM_PATTERN: 'url(#flipped-dem-pattern)',
+
+  // Flipped to Republican (was D, now R in scenario)
+  FLIPPED_REP: '#DC2626',           // Bright red
+  FLIPPED_REP_PATTERN: 'url(#flipped-rep-pattern)',
+
+  // Toss-up (competitive, uncertain)
+  TOSSUP: '#8B5CF6',                // Purple
+  TOSSUP_PATTERN: 'url(#tossup-pattern)',
+
+  // Current control colors for scenario baseline
+  DEM_HELD: '#1E40AF',              // Solid blue (current D)
+  REP_HELD: '#B91C1C',              // Solid red (current R)
+} as const;
+
+/**
+ * Get fill color for a district in scenario mode
+ *
+ * @param baselineParty - Current actual party control ('D' or 'R')
+ * @param scenarioStatus - Scenario flip status
+ * @param useSolidColors - Whether to use solid colors (for Leaflet) vs patterns
+ */
+export function getScenarioFillColor(
+  baselineParty: 'D' | 'R' | null,
+  scenarioStatus: ScenarioStatus,
+  useSolidColors = false
+): string {
+  // No change from baseline
+  if (scenarioStatus === 'baseline') {
+    if (baselineParty === 'D') return SCENARIO_COLORS.DEM_HELD;
+    if (baselineParty === 'R') return SCENARIO_COLORS.REP_HELD;
+    return DISTRICT_COLORS.NO_DATA;
+  }
+
+  // Flipped states
+  if (scenarioStatus === 'flipped-dem') {
+    return useSolidColors ? SCENARIO_COLORS.FLIPPED_DEM : SCENARIO_COLORS.FLIPPED_DEM_PATTERN;
+  }
+
+  if (scenarioStatus === 'flipped-rep') {
+    return useSolidColors ? SCENARIO_COLORS.FLIPPED_REP : SCENARIO_COLORS.FLIPPED_REP_PATTERN;
+  }
+
+  if (scenarioStatus === 'tossup') {
+    return useSolidColors ? SCENARIO_COLORS.TOSSUP : SCENARIO_COLORS.TOSSUP_PATTERN;
+  }
+
+  // Fallback
+  return DISTRICT_COLORS.NO_DATA;
+}
+
+/**
+ * Calculate seat counts for baseline and scenario
+ */
+export interface SeatCount {
+  dem: number;
+  rep: number;
+  tossup: number;
+}
+
+/**
+ * Get human-readable label for scenario status
+ */
+export function getScenarioStatusLabel(
+  baselineParty: 'D' | 'R' | null,
+  scenarioStatus: ScenarioStatus
+): string {
+  if (scenarioStatus === 'baseline') {
+    if (baselineParty === 'D') return 'Dem-held (baseline)';
+    if (baselineParty === 'R') return 'Rep-held (baseline)';
+    return 'No data';
+  }
+
+  if (scenarioStatus === 'flipped-dem') {
+    return 'Flipped to Democrat';
+  }
+
+  if (scenarioStatus === 'flipped-rep') {
+    return 'Flipped to Republican';
+  }
+
+  if (scenarioStatus === 'tossup') {
+    return 'Toss-up';
+  }
+
+  return 'Unknown';
+}
+
+// =============================================================================
+// Historical Comparison Colors (Phase 15-02)
+// =============================================================================
+
+/**
+ * Colors for historical margin comparison (diverging scale)
+ * Blue = improving for Democrats, Red = worsening for Democrats
+ */
+export const HISTORICAL_DELTA_COLORS = {
+  // Strong Dem improvement (+10pts or more)
+  DEM_STRONG: '#1E40AF',
+  // Moderate Dem improvement (+5 to +10pts)
+  DEM_MODERATE: '#3B82F6',
+  // Slight Dem improvement (+2 to +5pts)
+  DEM_SLIGHT: '#93C5FD',
+  // Stable (-2 to +2pts)
+  STABLE: '#9CA3AF',
+  // Slight Rep improvement (-2 to -5pts)
+  REP_SLIGHT: '#FCA5A5',
+  // Moderate Rep improvement (-5 to -10pts)
+  REP_MODERATE: '#EF4444',
+  // Strong Rep improvement (-10pts or more)
+  REP_STRONG: '#B91C1C',
+} as const;
+
+/**
+ * Get fill color for historical margin delta
+ *
+ * @param delta - Margin change (positive = Dem improved, negative = Rep improved)
+ */
+export function getHistoricalDeltaColor(delta: number): string {
+  if (delta >= 10) return HISTORICAL_DELTA_COLORS.DEM_STRONG;
+  if (delta >= 5) return HISTORICAL_DELTA_COLORS.DEM_MODERATE;
+  if (delta >= 2) return HISTORICAL_DELTA_COLORS.DEM_SLIGHT;
+  if (delta >= -2) return HISTORICAL_DELTA_COLORS.STABLE;
+  if (delta >= -5) return HISTORICAL_DELTA_COLORS.REP_SLIGHT;
+  if (delta >= -10) return HISTORICAL_DELTA_COLORS.REP_MODERATE;
+  return HISTORICAL_DELTA_COLORS.REP_STRONG;
+}
+
+/**
+ * Get label for historical margin delta
+ */
+export function getHistoricalDeltaLabel(delta: number): string {
+  const absValue = Math.abs(delta).toFixed(1);
+  if (delta >= 2) return `+${absValue}pt Dem`;
+  if (delta <= -2) return `+${absValue}pt Rep`;
+  return 'Stable';
+}
+
+// =============================================================================
+// Resource Allocation Heatmap Colors (Phase 15-04)
+// =============================================================================
+
+/**
+ * Resource allocation intensity level
+ */
+export type ResourceIntensity = 'hot' | 'warm' | 'cool' | 'none';
+
+/**
+ * Colors for resource allocation heatmap overlay
+ * Three-tier intensity system for investment prioritization
+ */
+export const RESOURCE_HEATMAP_COLORS = {
+  // Hot - Invest heavily (high ROI opportunities)
+  HOT: 'rgba(220, 38, 38, 0.65)',        // Semi-transparent red
+  HOT_BORDER: '#DC2626',
+
+  // Warm - Maintain current investment
+  WARM: 'rgba(245, 158, 11, 0.55)',      // Semi-transparent amber
+  WARM_BORDER: '#F59E0B',
+
+  // Cool - Deprioritize (low ROI)
+  COOL: 'rgba(59, 130, 246, 0.35)',      // Semi-transparent blue
+  COOL_BORDER: '#3B82F6',
+
+  // No overlay (district excluded from analysis)
+  NONE: 'transparent',
+} as const;
+
+/**
+ * Score thresholds for resource intensity classification
+ */
+export const RESOURCE_THRESHOLDS = {
+  HOT_MIN: 70,    // Scores 70+ = Hot (high priority investment)
+  WARM_MIN: 45,   // Scores 45-69 = Warm (maintain)
+  // Below 45 = Cool (deprioritize)
+} as const;
+
+/**
+ * Get fill color for resource allocation heatmap overlay
+ *
+ * @param intensity - Resource allocation intensity level
+ */
+export function getResourceHeatmapColor(intensity: ResourceIntensity): string {
+  switch (intensity) {
+    case 'hot':
+      return RESOURCE_HEATMAP_COLORS.HOT;
+    case 'warm':
+      return RESOURCE_HEATMAP_COLORS.WARM;
+    case 'cool':
+      return RESOURCE_HEATMAP_COLORS.COOL;
+    default:
+      return RESOURCE_HEATMAP_COLORS.NONE;
+  }
+}
+
+/**
+ * Get border color for resource allocation heatmap
+ */
+export function getResourceHeatmapBorderColor(intensity: ResourceIntensity): string {
+  switch (intensity) {
+    case 'hot':
+      return RESOURCE_HEATMAP_COLORS.HOT_BORDER;
+    case 'warm':
+      return RESOURCE_HEATMAP_COLORS.WARM_BORDER;
+    case 'cool':
+      return RESOURCE_HEATMAP_COLORS.COOL_BORDER;
+    default:
+      return 'transparent';
+  }
+}
+
+/**
+ * Get intensity level from composite score
+ *
+ * @param score - Composite resource allocation score (0-100)
+ */
+export function getResourceIntensity(score: number): ResourceIntensity {
+  if (score >= RESOURCE_THRESHOLDS.HOT_MIN) return 'hot';
+  if (score >= RESOURCE_THRESHOLDS.WARM_MIN) return 'warm';
+  if (score > 0) return 'cool';
+  return 'none';
+}
+
+/**
+ * Get human-readable label for resource intensity
+ */
+export function getResourceIntensityLabel(intensity: ResourceIntensity): string {
+  switch (intensity) {
+    case 'hot':
+      return 'High Priority';
+    case 'warm':
+      return 'Maintain';
+    case 'cool':
+      return 'Deprioritize';
+    default:
+      return 'N/A';
+  }
+}
