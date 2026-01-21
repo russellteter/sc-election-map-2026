@@ -39,10 +39,16 @@ export interface DistrictResult {
   error?: string;
 }
 
+export interface AllDistrictsResult extends DistrictResult {
+  congressionalDistrict: number | null;
+}
+
 // Cached GeoJSON data
 let houseDistricts: FeatureCollection | null = null;
 let senateDistricts: FeatureCollection | null = null;
+let congressionalDistricts: FeatureCollection | null = null;
 let loadingPromise: Promise<void> | null = null;
+let congressionalLoadingPromise: Promise<void> | null = null;
 
 /**
  * Load GeoJSON boundary files (lazy load, cached)
@@ -212,11 +218,191 @@ function isPolygonFeature(feature: Feature): feature is Feature<Polygon | MultiP
 }
 
 /**
+ * Load Congressional district boundaries (lazy load, cached)
+ */
+async function loadCongressionalBoundaries(): Promise<void> {
+  // Already loaded in memory
+  if (congressionalDistricts) {
+    log('Using in-memory cached Congressional boundaries');
+    return;
+  }
+
+  // Already loading - wait for it
+  if (congressionalLoadingPromise) {
+    log('Waiting for Congressional boundaries to load...');
+    return congressionalLoadingPromise;
+  }
+
+  // Start loading
+  congressionalLoadingPromise = (async () => {
+    log('Loading Congressional district boundaries...');
+
+    // Try IndexedDB cache first
+    try {
+      const cached = await getGeoJsonFromCache('sc-congressional-districts');
+      if (cached) {
+        congressionalDistricts = cached;
+        log('Loaded Congressional boundaries from IndexedDB cache', {
+          features: congressionalDistricts?.features?.length
+        });
+        return;
+      }
+    } catch (error) {
+      log('IndexedDB cache check failed for Congressional, falling back to network', error);
+    }
+
+    // Network fetch
+    const basePath = typeof window !== 'undefined' && window.location.pathname.includes('/sc-election-map-2026')
+      ? '/sc-election-map-2026'
+      : '';
+
+    try {
+      log('Fetching Congressional boundaries from network...');
+      const response = await fetch(`${basePath}/data/sc-congressional-districts.geojson`);
+
+      if (!response.ok) {
+        throw new Error('Failed to load Congressional district boundaries');
+      }
+
+      congressionalDistricts = await response.json();
+
+      log('Congressional boundaries loaded from network', {
+        features: congressionalDistricts?.features?.length
+      });
+
+      // Cache to IndexedDB (async, don't await)
+      setGeoJsonInCache('sc-congressional-districts', congressionalDistricts!)
+        .then(() => log('Cached Congressional boundaries to IndexedDB'))
+        .catch((err) => log('Failed to cache Congressional boundaries', err));
+
+    } catch (error) {
+      log('Error loading Congressional boundaries:', error);
+      congressionalLoadingPromise = null;
+      throw error;
+    }
+  })();
+
+  return congressionalLoadingPromise;
+}
+
+/**
+ * Find all districts (House, Senate, and Congressional) for a coordinate
+ */
+export async function findAllDistricts(lat: number, lon: number): Promise<AllDistrictsResult> {
+  log('Finding all districts for:', { lat, lon });
+
+  // Load all boundaries in parallel
+  try {
+    await Promise.all([
+      loadBoundaries(),
+      loadCongressionalBoundaries()
+    ]);
+  } catch {
+    return {
+      success: false,
+      houseDistrict: null,
+      senateDistrict: null,
+      congressionalDistrict: null,
+      error: 'Unable to load district boundaries. Please refresh the page and try again.'
+    };
+  }
+
+  if (!houseDistricts || !senateDistricts) {
+    return {
+      success: false,
+      houseDistrict: null,
+      senateDistrict: null,
+      congressionalDistrict: null,
+      error: 'District boundary data not available.'
+    };
+  }
+
+  const pt = point([lon, lat]);
+
+  // Find House district
+  let houseDistrict: number | null = null;
+  for (const feature of houseDistricts.features) {
+    if (isPolygonFeature(feature) && booleanPointInPolygon(pt, feature)) {
+      const districtStr = feature.properties?.SLDLST;
+      if (districtStr) {
+        houseDistrict = parseInt(districtStr, 10);
+        log('Found House district:', { district: houseDistrict, raw: districtStr });
+      }
+      break;
+    }
+  }
+
+  // Find Senate district
+  let senateDistrict: number | null = null;
+  for (const feature of senateDistricts.features) {
+    if (isPolygonFeature(feature) && booleanPointInPolygon(pt, feature)) {
+      const districtStr = feature.properties?.SLDUST;
+      if (districtStr) {
+        senateDistrict = parseInt(districtStr, 10);
+        log('Found Senate district:', { district: senateDistrict, raw: districtStr });
+      }
+      break;
+    }
+  }
+
+  // Find Congressional district
+  let congressionalDistrict: number | null = null;
+  if (congressionalDistricts) {
+    for (const feature of congressionalDistricts.features) {
+      if (isPolygonFeature(feature) && booleanPointInPolygon(pt, feature)) {
+        // CD118FP is zero-padded (e.g., "01", "06")
+        const districtStr = feature.properties?.CD118FP;
+        if (districtStr) {
+          congressionalDistrict = parseInt(districtStr, 10);
+          log('Found Congressional district:', { district: congressionalDistrict, raw: districtStr });
+        }
+        break;
+      }
+    }
+  }
+
+  if (houseDistrict === null && senateDistrict === null && congressionalDistrict === null) {
+    log('No districts found for coordinates');
+    return {
+      success: false,
+      houseDistrict: null,
+      senateDistrict: null,
+      congressionalDistrict: null,
+      error: 'Could not determine your districts. The coordinates may be outside South Carolina legislative boundaries.'
+    };
+  }
+
+  log('All districts found:', { houseDistrict, senateDistrict, congressionalDistrict });
+
+  return {
+    success: true,
+    houseDistrict,
+    senateDistrict,
+    congressionalDistrict
+  };
+}
+
+/**
  * Preload district boundaries (call on page load for faster lookups)
  */
 export async function preloadBoundaries(): Promise<boolean> {
   try {
     await loadBoundaries();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Preload all boundaries including Congressional
+ */
+export async function preloadAllBoundaries(): Promise<boolean> {
+  try {
+    await Promise.all([
+      loadBoundaries(),
+      loadCongressionalBoundaries()
+    ]);
     return true;
   } catch {
     return false;
