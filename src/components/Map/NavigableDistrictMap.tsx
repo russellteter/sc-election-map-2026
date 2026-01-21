@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import HybridMapContainer, { type HybridMapContainerProps } from './HybridMapContainer';
+import ShareButton from './ShareButton';
 import type { CandidatesData, ElectionsData } from '@/types/schema';
 
 type LegislativeChamber = 'house' | 'senate';
@@ -142,6 +143,23 @@ export default function NavigableDistrictMap({
         showModeToggle={showModeToggle}
         className="h-full cursor-pointer"
       />
+
+      {/* Share button - top right corner */}
+      <div className="absolute top-3 right-3 z-20">
+        <ShareButton
+          mapState={{
+            chamber: chamber === 'congressional' ? 'house' : chamber,
+            district: selectedDistrict ?? undefined,
+          }}
+          options={{
+            title: `${stateCode.toUpperCase()} Election Map`,
+            text: selectedDistrict
+              ? `View ${chamber === 'congressional' ? 'House' : chamber.charAt(0).toUpperCase() + chamber.slice(1)} District ${selectedDistrict}`
+              : `View the ${stateCode.toUpperCase()} Election Map`,
+          }}
+          size="sm"
+        />
+      </div>
 
       {/* Navigation hint tooltip */}
       {enableNavigation && showNavigationHint !== null && !prefersReducedMotion && (

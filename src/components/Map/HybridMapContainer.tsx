@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useMemo, Suspense, lazy } from 'react';
+import type { Map as LeafletMapType } from 'leaflet';
 import DistrictMap from './DistrictMap';
 import type { CandidatesData, ElectionsData } from '@/types/schema';
 import type { ChamberType } from '@/lib/leafletLoader';
@@ -8,6 +9,7 @@ import type { ChamberType } from '@/lib/leafletLoader';
 // Lazy load Leaflet components for zero initial bundle impact
 const LeafletMap = lazy(() => import('./LeafletMap'));
 const DistrictGeoJSONLayer = lazy(() => import('./DistrictGeoJSONLayer'));
+const CountyBoundaryLayer = lazy(() => import('./CountyBoundaryLayer'));
 
 type MapMode = 'svg' | 'leaflet';
 type LegislativeChamber = 'house' | 'senate';
@@ -78,6 +80,8 @@ export default function HybridMapContainer({
 }: HybridMapContainerProps) {
   const [mode, setMode] = useState<MapMode>('svg');
   const [chamber, setChamber] = useState<LegislativeChamber | 'congressional'>(initialChamber);
+  const [leafletMap, setLeafletMap] = useState<LeafletMapType | null>(null);
+  const [hoveredCounty, setHoveredCounty] = useState<string | null>(null);
 
   // Toggle between SVG and Leaflet mode
   const toggleMode = useCallback(() => {
@@ -121,12 +125,29 @@ export default function HybridMapContainer({
     );
   };
 
+  // Handle map ready callback
+  const handleMapReady = useCallback((map: LeafletMapType) => {
+    setLeafletMap(map);
+  }, []);
+
   // Render Leaflet map
   const renderLeafletMap = () => (
     <Suspense fallback={<LeafletLoadingFallback />}>
-      <LeafletMap className="w-full h-full">
+      <LeafletMap className="w-full h-full" onMapReady={handleMapReady}>
+        {/* County boundaries (shown at zoom 8-10) */}
+        {stateCode === 'sc' && (
+          <CountyBoundaryLayer
+            map={leafletMap}
+            stateCode={stateCode}
+            minZoom={8}
+            maxZoom={10}
+            onCountyHover={setHoveredCounty}
+          />
+        )}
+        {/* District boundaries */}
         <DistrictGeoJSONLayer
           chamber={chamber as ChamberType}
+          stateCode={stateCode}
           candidatesData={candidatesData}
           electionsData={electionsData}
           selectedDistrict={selectedDistrict}
@@ -195,10 +216,15 @@ export default function HybridMapContainer({
 
       {/* Mode Indicator */}
       {mode === 'leaflet' && (
-        <div className="absolute bottom-2 left-2 z-10">
+        <div className="absolute bottom-2 left-2 z-10 flex items-center gap-2">
           <span className="glass-badge px-2 py-1 text-xs text-gray-600 bg-white/80 rounded">
             Interactive Mode
           </span>
+          {hoveredCounty && (
+            <span className="glass-badge px-2 py-1 text-xs text-gray-700 bg-white/90 rounded font-medium">
+              {hoveredCounty} County
+            </span>
+          )}
         </div>
       )}
     </div>

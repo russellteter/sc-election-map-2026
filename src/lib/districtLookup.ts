@@ -408,3 +408,83 @@ export async function preloadAllBoundaries(): Promise<boolean> {
     return false;
   }
 }
+
+/**
+ * District center coordinates result
+ */
+export interface DistrictCenterResult {
+  success: boolean;
+  lat: number | null;
+  lng: number | null;
+  error?: string;
+}
+
+/**
+ * Get center coordinates for a district
+ * Uses INTPTLAT/INTPTLON from GeoJSON properties
+ *
+ * @param chamber - 'house' or 'senate'
+ * @param districtNumber - District number
+ * @returns Center coordinates or error
+ */
+export async function getDistrictCenter(
+  chamber: 'house' | 'senate',
+  districtNumber: number
+): Promise<DistrictCenterResult> {
+  log('Getting district center for:', { chamber, districtNumber });
+
+  try {
+    await loadBoundaries();
+  } catch {
+    return {
+      success: false,
+      lat: null,
+      lng: null,
+      error: 'Unable to load district boundaries.'
+    };
+  }
+
+  const districts = chamber === 'house' ? houseDistricts : senateDistricts;
+
+  if (!districts) {
+    return {
+      success: false,
+      lat: null,
+      lng: null,
+      error: 'District boundary data not available.'
+    };
+  }
+
+  // Find the district feature
+  const propertyKey = chamber === 'house' ? 'SLDLST' : 'SLDUST';
+
+  for (const feature of districts.features) {
+    const districtStr = feature.properties?.[propertyKey];
+    if (districtStr && parseInt(districtStr, 10) === districtNumber) {
+      const lat = feature.properties?.INTPTLAT;
+      const lng = feature.properties?.INTPTLON;
+
+      if (lat && lng) {
+        const parsedLat = parseFloat(lat);
+        const parsedLng = parseFloat(lng);
+
+        log('Found district center:', { lat: parsedLat, lng: parsedLng });
+
+        return {
+          success: true,
+          lat: parsedLat,
+          lng: parsedLng
+        };
+      }
+    }
+  }
+
+  log('District not found:', { chamber, districtNumber });
+
+  return {
+    success: false,
+    lat: null,
+    lng: null,
+    error: `District ${districtNumber} not found.`
+  };
+}

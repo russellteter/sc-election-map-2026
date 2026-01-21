@@ -5,6 +5,7 @@ import Link from 'next/link';
 import NavigableDistrictMap from '@/components/Map/NavigableDistrictMap';
 import Legend from '@/components/Map/Legend';
 import ChamberToggle from '@/components/Map/ChamberToggle';
+import ShareButton from '@/components/Map/ShareButton';
 import ZoomLevelContent, { useZoomLevel, ZOOM_THRESHOLDS } from '@/components/Map/ZoomLevelContent';
 import SidePanel from '@/components/Dashboard/SidePanel';
 import SearchBar from '@/components/Search/SearchBar';
@@ -16,7 +17,8 @@ import { KPICardSkeleton, MapSkeleton, CandidateCardSkeleton } from '@/component
 import { useStateContext } from '@/context/StateContext';
 import { useMapState } from '@/hooks/useMapState';
 // Note: BASE_PATH not needed - data fetching uses window.location detection, navigation uses Next.js auto basePath
-import type { CandidatesData, ElectionsData } from '@/types/schema';
+import { getDistrictCenter } from '@/lib/districtLookup';
+import type { CandidatesData, ElectionsData, SearchResult } from '@/types/schema';
 
 export default function StateDashboard() {
   const { stateConfig, stateCode, isDemo } = useStateContext();
@@ -181,6 +183,35 @@ export default function StateDashboard() {
       return prev > 1 ? prev - 1 : districtCount;
     });
   }, [districtCount]);
+
+  // Handle search result selection with zoom
+  const handleSearchSelect = useCallback(async (result: SearchResult) => {
+    // Change chamber if needed
+    if (result.chamber !== chamber) {
+      setChamber(result.chamber);
+    }
+
+    // Set selected district
+    setSelectedDistrict(result.districtNumber);
+
+    // Zoom to district center (only for SC for now)
+    if (stateCode === 'SC') {
+      try {
+        const center = await getDistrictCenter(result.chamber, result.districtNumber);
+        if (center.success && center.lat && center.lng) {
+          setMapState({
+            lat: center.lat,
+            lng: center.lng,
+            zoom: 10, // Zoom in to district level
+            district: result.districtNumber,
+          });
+        }
+      } catch {
+        // Fallback: just select without zoom
+        console.debug('Could not zoom to district center');
+      }
+    }
+  }, [chamber, stateCode, setMapState]);
 
   useKeyboardShortcuts({
     onToggleChamber: () => setChamber((c) => (c === 'house' ? 'senate' : 'house')),
@@ -435,12 +466,7 @@ export default function StateDashboard() {
                 <div className="hidden sm:block">
                   <SearchBar
                     candidatesData={candidatesData}
-                    onSelectResult={(result) => {
-                      if (result.chamber !== chamber) {
-                        setChamber(result.chamber);
-                      }
-                      setTimeout(() => setSelectedDistrict(result.districtNumber), 0);
-                    }}
+                    onSelectResult={handleSearchSelect}
                     className="w-64"
                   />
                 </div>
@@ -493,6 +519,22 @@ export default function StateDashboard() {
 
               <div className="flex items-center gap-2">
                 <ChamberToggle chamber={chamber} onChange={setChamber} />
+                <ShareButton
+                  mapState={{
+                    chamber,
+                    district: selectedDistrict ?? undefined,
+                    zoom: mapState.zoom,
+                    lat: mapState.lat,
+                    lng: mapState.lng,
+                  }}
+                  options={{
+                    title: `${stateConfig.name} Election Map`,
+                    text: selectedDistrict
+                      ? `View ${chamber === 'house' ? stateConfig.chambers.house.name : stateConfig.chambers.senate.name} District ${selectedDistrict}`
+                      : `View the ${stateConfig.name} Election Map`,
+                  }}
+                  size="sm"
+                />
                 <button
                   type="button"
                   onClick={() => setShowShortcuts(true)}
@@ -515,12 +557,7 @@ export default function StateDashboard() {
             <div className="sm:hidden">
               <SearchBar
                 candidatesData={candidatesData}
-                onSelectResult={(result) => {
-                  if (result.chamber !== chamber) {
-                    setChamber(result.chamber);
-                  }
-                  setTimeout(() => setSelectedDistrict(result.districtNumber), 0);
-                }}
+                onSelectResult={handleSearchSelect}
                 className="w-full"
               />
             </div>

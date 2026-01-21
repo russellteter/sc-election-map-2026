@@ -10,14 +10,69 @@
 
 import type { LatLngBoundsExpression, LatLngExpression } from 'leaflet';
 
-// SC state bounding box (approx)
-export const SC_BOUNDS: LatLngBoundsExpression = [
-  [32.0346, -83.3533], // Southwest corner
-  [35.2155, -78.5410]  // Northeast corner
-];
+/**
+ * State map configuration for multi-state support
+ */
+export interface StateMapConfig {
+  bounds: LatLngBoundsExpression;
+  center: LatLngExpression;
+  defaultZoom: number;
+  minZoom: number;
+  maxZoom: number;
+}
 
-// SC state center
-export const SC_CENTER: LatLngExpression = [33.8361, -81.1637];
+/**
+ * State-specific map configurations
+ */
+export const STATE_MAP_CONFIGS: Record<string, StateMapConfig> = {
+  sc: {
+    bounds: [[32.0346, -83.3533], [35.2155, -78.5410]],
+    center: [33.8361, -81.1637],
+    defaultZoom: 7,
+    minZoom: 6,
+    maxZoom: 12,
+  },
+  nc: {
+    bounds: [[33.8422, -84.3219], [36.5882, -75.4601]],
+    center: [35.7596, -79.0193],
+    defaultZoom: 7,
+    minZoom: 6,
+    maxZoom: 12,
+  },
+  ga: {
+    bounds: [[30.3575, -85.6052], [35.0015, -80.8396]],
+    center: [32.1656, -82.9001],
+    defaultZoom: 7,
+    minZoom: 6,
+    maxZoom: 12,
+  },
+  fl: {
+    bounds: [[24.3963, -87.6349], [31.0009, -79.9743]],
+    center: [27.6648, -81.5158],
+    defaultZoom: 6,
+    minZoom: 5,
+    maxZoom: 12,
+  },
+  va: {
+    bounds: [[36.5407, -83.6753], [39.4660, -75.2422]],
+    center: [37.4316, -78.6569],
+    defaultZoom: 7,
+    minZoom: 6,
+    maxZoom: 12,
+  },
+};
+
+/**
+ * Get state map configuration
+ */
+export function getStateMapConfig(stateCode: string): StateMapConfig {
+  const config = STATE_MAP_CONFIGS[stateCode.toLowerCase()];
+  return config || STATE_MAP_CONFIGS.sc; // Default to SC
+}
+
+// Legacy exports for backwards compatibility
+export const SC_BOUNDS: LatLngBoundsExpression = STATE_MAP_CONFIGS.sc.bounds;
+export const SC_CENTER: LatLngExpression = STATE_MAP_CONFIGS.sc.center;
 
 // Default zoom levels
 export const DEFAULT_ZOOM = 7;
@@ -108,7 +163,7 @@ export function createLeafletComponent<P extends object>(
 }
 
 /**
- * GeoJSON file paths for SC district boundaries
+ * GeoJSON file paths for SC district boundaries (legacy)
  */
 export const GEOJSON_PATHS = {
   house: '/data/sc-house-districts.geojson',
@@ -117,6 +172,49 @@ export const GEOJSON_PATHS = {
 } as const;
 
 export type ChamberType = keyof typeof GEOJSON_PATHS;
+
+/**
+ * States with available GeoJSON data
+ * SC has full coverage, others only have congressional
+ */
+export const STATE_GEOJSON_AVAILABILITY: Record<string, { house: boolean; senate: boolean; congressional: boolean }> = {
+  sc: { house: true, senate: true, congressional: true },
+  nc: { house: false, senate: false, congressional: true },
+  ga: { house: false, senate: false, congressional: true },
+  fl: { house: false, senate: false, congressional: true },
+  va: { house: false, senate: false, congressional: true },
+};
+
+/**
+ * Get GeoJSON path for a specific state and chamber
+ *
+ * @param stateCode - State abbreviation (e.g., 'sc', 'nc')
+ * @param chamber - Chamber type (house, senate, congressional)
+ * @returns Path to GeoJSON file or null if not available
+ */
+export function getGeoJsonPath(stateCode: string, chamber: ChamberType): string | null {
+  const state = stateCode.toLowerCase();
+  const availability = STATE_GEOJSON_AVAILABILITY[state];
+
+  if (!availability) {
+    return null;
+  }
+
+  if (!availability[chamber]) {
+    return null;
+  }
+
+  return `/data/${state}-${chamber}-districts.geojson`;
+}
+
+/**
+ * Check if GeoJSON is available for a state/chamber combination
+ */
+export function hasGeoJsonAvailable(stateCode: string, chamber: ChamberType): boolean {
+  const state = stateCode.toLowerCase();
+  const availability = STATE_GEOJSON_AVAILABILITY[state];
+  return availability?.[chamber] ?? false;
+}
 
 /**
  * Get the property key for district number based on chamber type
