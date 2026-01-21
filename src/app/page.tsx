@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
-import USMap from '@/components/Landing/USMap';
+import NavigableUSMap from '@/components/Landing/NavigableUSMap';
 import StateModal from '@/components/Landing/StateModal';
 import { getActiveStates, type AnyStateConfig } from '@/lib/stateConfig';
 // Note: Next.js Link component automatically handles basePath, so we don't need BASE_PATH for internal links
@@ -118,12 +118,32 @@ export default function LandingPage() {
         </section>
 
         {/* US Map Section */}
-        <section className="py-8 px-4" style={{ background: 'rgba(255, 255, 255, 0.5)' }}>
+        <section className="py-8 px-4" style={{ background: 'rgba(255, 255, 255, 0.5)' }} id="map-section">
           <div className="max-w-6xl mx-auto">
             <h3 className="text-xl font-semibold text-center mb-6" style={{ color: 'var(--text-color)' }}>
               Select a State to Explore
             </h3>
-            <USMap onInactiveStateClick={setSelectedInactiveState} />
+            {/* Suspense boundary required for useSearchParams in NavigableUSMap */}
+            <Suspense fallback={
+              <div className="w-full max-w-4xl mx-auto animate-pulse">
+                <div className="aspect-[8/5] bg-slate-200 rounded-lg" />
+                <div className="flex justify-center gap-6 mt-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 rounded bg-slate-300" />
+                    <div className="w-20 h-4 rounded bg-slate-200" />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 rounded bg-slate-300" />
+                    <div className="w-20 h-4 rounded bg-slate-200" />
+                  </div>
+                </div>
+              </div>
+            }>
+              <NavigableUSMap
+                onInactiveStateClick={setSelectedInactiveState}
+                syncUrl={true}
+              />
+            </Suspense>
           </div>
         </section>
 

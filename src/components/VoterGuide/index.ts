@@ -10,6 +10,7 @@ export { ErrorDisplay } from './ErrorDisplay';
 export { default as VoterGuideHeader } from './VoterGuideHeader';
 export { default as VoterGuideFooter } from './VoterGuideFooter';
 export { default as VoterGuideSummary } from './VoterGuideSummary';
+export { default as MiniMapPreview } from './MiniMapPreview';
 
 // Import skeletons for re-export
 import {
@@ -62,6 +63,11 @@ export const ElectionCountdown = dynamic(() => import('./ElectionCountdown'), {
 });
 
 export const PollingPlaceFinder = dynamic(() => import('./PollingPlaceFinder'), {
+  ssr: false
+});
+
+// Leaflet-based interactive map (client-side only)
+export const PersonalDistrictMap = dynamic(() => import('./PersonalDistrictMap'), {
   ssr: false
 });
 

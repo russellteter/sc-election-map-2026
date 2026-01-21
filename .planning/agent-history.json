@@ -19,7 +19,10 @@
         "src/app/voter-guide/page.tsx"
       ],
       "completion_timestamp": "2026-01-17T23:45:13Z",
-      "task_commits": ["33791a8", "43bbc5b"],
+      "task_commits": [
+        "33791a8",
+        "43bbc5b"
+      ],
       "metadata_commit": "9dee4f9",
       "deviations": []
     },
@@ -31,7 +34,9 @@
       "parallel_group": "pg-20260117-phase4",
       "granularity": "plan",
       "wave": 2,
-      "depends_on": ["04-01"],
+      "depends_on": [
+        "04-01"
+      ],
       "timestamp": "2026-01-17T23:46:00Z",
       "status": "completed",
       "files_modified": [
@@ -42,7 +47,10 @@
         "src/app/voter-guide/page.tsx"
       ],
       "completion_timestamp": "2026-01-17T23:49:58Z",
-      "task_commits": ["d5dc050", "601a625"],
+      "task_commits": [
+        "d5dc050",
+        "601a625"
+      ],
       "metadata_commit": "518fa5f",
       "deviations": []
     },
@@ -62,8 +70,13 @@
         ".planning/phases/08-test-coverage/08-01-SUMMARY.md"
       ],
       "completion_timestamp": "2026-01-18T00:55:39Z",
-      "task_commits": ["626c0c5", "0856309"],
-      "deviations": ["Plan expected city_only for 'Main Street, Columbia' but implementation returns missing_street - test adjusted"]
+      "task_commits": [
+        "626c0c5",
+        "0856309"
+      ],
+      "deviations": [
+        "Plan expected city_only for 'Main Street, Columbia' but implementation returns missing_street - test adjusted"
+      ]
     },
     {
       "agent_id": "abe76e1",
@@ -81,8 +94,13 @@
         ".planning/phases/08-test-coverage/08-02-SUMMARY.md"
       ],
       "completion_timestamp": "2026-01-18T00:56:10Z",
-      "task_commits": ["1d85e38", "9847c16"],
-      "deviations": ["Tasks 2 and 3 consolidated into Task 1 - complete test suite written together"]
+      "task_commits": [
+        "1d85e38",
+        "9847c16"
+      ],
+      "deviations": [
+        "Tasks 2 and 3 consolidated into Task 1 - complete test suite written together"
+      ]
     },
     {
       "agent_id": "a94beec",
@@ -92,7 +110,10 @@
       "parallel_group": "pg-20260118-phase8",
       "granularity": "plan",
       "wave": 2,
-      "depends_on": ["08-01", "08-02"],
+      "depends_on": [
+        "08-01",
+        "08-02"
+      ],
       "timestamp": "2026-01-18T00:57:00Z",
       "status": "completed",
       "files_modified": [
@@ -101,7 +122,86 @@
         ".planning/phases/08-test-coverage/08-03-SUMMARY.md"
       ],
       "completion_timestamp": "2026-01-18T01:02:42Z",
-      "task_commits": ["a495ef0", "eab1001", "fb42327"],
+      "task_commits": [
+        "a495ef0",
+        "eab1001",
+        "fb42327"
+      ],
+      "deviations": []
+    },
+    {
+      "agent_id": "a56bb29",
+      "task_description": "Execute 11-01-PLAN.md (AnimatedMapContainer)",
+      "phase": "11",
+      "plan": "01",
+      "parallel_group": "pg-20260120-phase11",
+      "wave": 1,
+      "depends_on": [],
+      "timestamp": "2026-01-20T12:00:00Z",
+      "status": "completed",
+      "files_modified": [
+        "src/components/Map/AnimatedMapContainer.tsx",
+        "src/hooks/useReducedMotion.ts",
+        "src/app/globals.css"
+      ],
+      "completion_timestamp": "2026-01-21T04:56:48Z",
+      "task_commits": [
+        "395abe7",
+        "95f1ce4",
+        "312f95e"
+      ],
+      "metadata_commit": "12bbd52",
+      "deviations": []
+    },
+    {
+      "agent_id": "ae531b7",
+      "task_description": "Execute 11-02-PLAN.md (AnimatedUSMap)",
+      "phase": "11",
+      "plan": "02",
+      "parallel_group": "pg-20260120-phase11",
+      "wave": 2,
+      "depends_on": ["11-01"],
+      "timestamp": "2026-01-21T05:15:00Z",
+      "status": "completed",
+      "files_modified": [
+        "src/components/Landing/AnimatedUSMap.tsx",
+        "src/components/Landing/USMap.tsx",
+        "src/app/page.tsx"
+      ],
+      "completion_timestamp": "2026-01-21T05:29:16Z",
+      "task_commits": [
+        "506d653",
+        "0e3842d",
+        "334a756"
+      ],
+      "metadata_commit": "8e8ecac",
+      "deviations": [
+        "Implemented Task 2 before Task 1 due to dependency (Task 1 imports from Task 2)"
+      ]
+    },
+    {
+      "agent_id": "a238f17",
+      "task_description": "Execute 11-03-PLAN.md (MiniMapPreview)",
+      "phase": "11",
+      "plan": "03",
+      "parallel_group": "pg-20260120-phase11",
+      "wave": 2,
+      "depends_on": ["11-01"],
+      "timestamp": "2026-01-21T05:15:00Z",
+      "status": "completed",
+      "files_modified": [
+        "src/components/VoterGuide/MiniMapPreview.tsx",
+        "src/components/VoterGuide/index.ts",
+        "src/app/globals.css",
+        "src/app/voter-guide/page.tsx"
+      ],
+      "completion_timestamp": "2026-01-21T05:27:00Z",
+      "task_commits": [
+        "a39bb76",
+        "bd37560",
+        "bb34346"
+      ],
+      "metadata_commit": "ec9e802",
       "deviations": []
     }
   ]
