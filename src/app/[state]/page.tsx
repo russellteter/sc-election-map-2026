@@ -476,7 +476,7 @@ export default function StateDashboard() {
                   <span>Opportunities</span>
                 </Link>
                 <Link
-                  href={stateUrl('/voter-guide')}
+                  href="/voter-guide"
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all hover:opacity-70 focus-ring"
                   style={{
                     background: 'linear-gradient(135deg, var(--class-purple-bg) 0%, #E0E7FF 100%)',
