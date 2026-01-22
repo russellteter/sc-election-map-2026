@@ -1,0 +1,26 @@
+# SC Ethics Monitor Dependencies
+
+# Google Sheets integration
+gspread>=5.12.0
+google-auth>=2.25.0
+gspread-formatting>=1.1.0
+
+# Email notifications
+resend>=0.8.0
+
+# Web scraping (for party detection)
+firecrawl-py>=0.0.9
+
+# HTTP requests
+requests>=2.31.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Development
+python-dotenv>=1.0.0
+
+# Candidate Discovery
+python-Levenshtein>=0.25.0  # Fast fuzzy string matching
+tenacity>=8.2.0             # Retry logic for API calls
