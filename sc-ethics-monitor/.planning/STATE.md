@@ -2,17 +2,38 @@
 
 ## Sprint Status
 
-**Phase:** 4 - Candidate Discovery
-**Progress:** 100% (4/4 phases complete)
+**Phase:** 6 - Data Pipeline Integration
+**Progress:** 40% (2/5 plans complete)
 **Last Updated:** 2026-01-22
 
 ## Current Position
 
 | Item | Value |
 |------|-------|
-| Current Phase | COMPLETE |
-| Current Plan | All plans executed |
-| Completion | 4/4 phases |
+| Current Phase | Phase 6: Data Pipeline Integration |
+| Current Plan | 06-02: Improve party detection - COMPLETE |
+| Next Plan | 06-03: Create export script |
+| Next Phase | N/A (Phase 6 is latest) |
+| Completion | 5/6 phases (Phases 1-5 complete) |
+
+## Critical Issues Identified
+
+Deep reflection on 2026-01-22 revealed critical gaps:
+
+| Issue | Severity | Status |
+|-------|----------|--------|
+| Race Analysis shows ALL ZEROS | CRITICAL | Pending (06-01) |
+| 75% candidates have UNKNOWN party | HIGH | Pending (06-02) |
+| Google Sheet disconnected from web app | HIGH | Pending (06-03) |
+| No automation | MEDIUM | Pending (06-04, 06-05) |
+
+## Accumulated Context
+
+### Roadmap Evolution
+
+- Phase 6 added: Data Pipeline Integration - Connect Google Sheets to Web App
+- Problem-Solving Diagnosis: Complexity spiraling + Assumption lock identified
+- Root cause: final_party formula never applied to Candidates tab
 
 ## Google Sheet Status
 
@@ -155,28 +176,50 @@
 
 ## Next Actions
 
-1. **Run Candidate Discovery** (Ready to use)
-   ```bash
-   cd sc-ethics-monitor
-   FORCE_DISCOVERY=1 python src/monitor.py --force-discovery
-   ```
+**Phase 6: Data Pipeline Integration**
 
-2. **Verify Discovery Pipeline**
-   ```bash
-   python scripts/verify_discovery.py --dry-run
-   ```
+1. **Plan 06-01: Fix final_party formula and Race Analysis** (CRITICAL)
+   - Apply `=IF(K<>"",K,G)` formula to Candidates tab column L
+   - Fix Race Analysis aggregation to read detected_party as fallback
+   - Verify counts match between tabs
 
-3. **Import Excel to Google Sheets** (USER ACTION - Optional)
-   - Open Google Sheet
-   - File > Import > Upload Excel file
-   - Choose "Replace spreadsheet" or "Insert new sheet(s)"
-   - Verify all 3 tabs imported correctly
+2. **Plan 06-02: Improve party detection** (HIGH)
+   - Research 21 unknown candidates, add to party-data.json
+   - Add Firecrawl web search fallback
+   - Target: Reduce unknown from 75% to <25%
+
+3. **Plan 06-03: Create export script** (HIGH)
+   - New script: `scripts/export_to_webapp.py`
+   - Read from Google Sheet, transform to candidates.json format
+   - Write to `public/data/candidates.json`
+
+4. **Plan 06-04: Monitor integration** (MEDIUM)
+   - Add `--export-webapp` flag to monitor.py
+   - After sync, automatically export to candidates.json
+
+5. **Plan 06-05: GitHub Action** (MEDIUM)
+   - Create `.github/workflows/ethics-monitor.yml`
+   - Schedule: Daily at 6am ET
 
 ## Blockers
 
-*None*
+| Blocker | Impact | Resolution |
+|---------|--------|------------|
+| final_party column empty | Race Analysis broken | Plan 06-01 |
+| External sources lack 2026 data | Discovery returns 0 candidates | Plan 06-02 (web search fallback) |
 
 ## Session Notes
+
+### 2026-01-22 - Phase 6 Added (Data Pipeline Integration)
+- Deep reflection revealed critical gaps in "completed" phases
+- Race Analysis shows ALL ZEROS (final_party column empty)
+- Party detection only 25% successful (75% UNKNOWN)
+- Google Sheet disconnected from web app
+- Added Phase 6 with 5 plans to remediate issues
+- Applied "When Stuck - Problem-Solving Dispatch" framework:
+  - Diagnosed: Complexity spiraling + Assumption lock
+  - Technique: Simplification Cascades (ONE source of truth)
+  - Technique: Meta-Pattern Recognition (verify claims with data)
 
 ### 2026-01-22 - Phase 4 Complete
 - Executed all 5 Phase 4 plans with expert agents
