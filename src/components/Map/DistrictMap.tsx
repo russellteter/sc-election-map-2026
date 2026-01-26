@@ -31,6 +31,16 @@ interface DistrictMapProps {
   opportunityData?: Record<string, OpportunityData>;
 }
 
+/**
+ * Calculate staggered transition delay for ripple effect (v3.3)
+ * Uses estimated distance to create outward ripple from center
+ */
+function calculateRippleDelay(estimatedDistance: number, maxDelay: number = 400): number {
+  // Normalize distance to max 300 units, then map to delay
+  const normalizedDelay = Math.min((estimatedDistance / 300) * maxDelay, maxDelay);
+  return Math.round(normalizedDelay);
+}
+
 export default function DistrictMap({
   chamber,
   candidatesData,
@@ -104,6 +114,14 @@ export default function DistrictMap({
 
     // Process all district paths
     const paths = svg.querySelectorAll('path[id]');
+
+    // First pass: collect district paths and estimate position for ripple effect (v3.3)
+    const districtPaths: Array<{
+      path: Element;
+      districtNum: number;
+      estimatedDistance: number;
+    }> = [];
+
     paths.forEach((path) => {
       const id = path.getAttribute('id');
       if (!id) return;
@@ -112,6 +130,21 @@ export default function DistrictMap({
       if (!match) return;
 
       const districtNum = parseInt(match[1], 10);
+
+      // Estimate distance from center using district number as proxy
+      // SC House: districts roughly numbered NW to SE
+      // This creates an approximate ripple effect
+      const totalDistricts = chamber === 'house' ? 124 : 46;
+      const normalizedPosition = districtNum / totalDistricts;
+      // Map to distance: center districts (around 50%) have low distance
+      const distanceFromCenter = Math.abs(normalizedPosition - 0.5) * 2;
+      const estimatedDistance = distanceFromCenter * 300; // Scale to ~300px max
+
+      districtPaths.push({ path, districtNum, estimatedDistance });
+    });
+
+    // Second pass: apply fills and transition delays
+    districtPaths.forEach(({ path, districtNum, estimatedDistance }) => {
       const districtData = candidatesData[chamber][String(districtNum)];
       const electionHistory = electionsData?.[chamber]?.[String(districtNum)];
       const oppData = opportunityData?.[String(districtNum)];
@@ -131,14 +164,30 @@ export default function DistrictMap({
       if (justSelected === districtNum) {
         classes.push('just-selected');
       }
+      // Priority pulse for HOT opportunity districts (v3.4)
+      if (oppData?.tier === 'HOT' && activeLens === 'opportunity') {
+        classes.push('high-priority');
+      }
+
+      // Calculate ripple delay for lens transition choreography (v3.3)
+      // Districts at center (by district number) transition first, outer districts follow
+      // Always apply delay on lens change to create ripple effect
+      const rippleDelay = calculateRippleDelay(estimatedDistance, 400);
+
+      // Apply transition delay as inline style for ripple effect
+      // This creates the staggered "wave" animation when lens changes
+      const transitionStyle = `transition-delay: ${rippleDelay}ms;`;
+      path.setAttribute('style', transitionStyle);
+
       path.setAttribute('class', classes.join(' '));
 
-      // Apply stroke based on selection
+      // Apply stroke based on selection - luminous style (v3.2)
       if (selectedDistrict === districtNum) {
         path.setAttribute('stroke', 'var(--class-purple, #4739E7)');
-        path.setAttribute('stroke-width', '2.5');
+        path.setAttribute('stroke-width', '2');
       } else {
-        path.setAttribute('stroke', 'var(--map-stroke, #374151)');
+        // Default: subtle white stroke for luminous effect
+        path.setAttribute('stroke', 'rgba(255, 255, 255, 0.25)');
         path.setAttribute('stroke-width', '0.5');
       }
 
@@ -149,14 +198,17 @@ export default function DistrictMap({
       path.setAttribute('aria-pressed', selectedDistrict === districtNum ? 'true' : 'false');
 
       // Apply filtered state (reduce opacity for districts not in filter)
+      // Preserve transition-delay from ripple effect
       if (filteredDistricts && !filteredDistricts.has(districtNum)) {
         path.setAttribute('opacity', '0.2');
-        path.setAttribute('style', 'filter: grayscale(0.7);');
+        const currentStyle = path.getAttribute('style') || '';
+        const filterStyle = 'filter: grayscale(0.7);';
+        path.setAttribute('style', currentStyle ? `${currentStyle} ${filterStyle}` : filterStyle);
       }
     });
 
     return new XMLSerializer().serializeToString(svg);
-  }, [rawSvgContent, chamber, candidatesData, electionsData, selectedDistrict, filteredDistricts, justSelected, showRepublicanData, republicanDataMode, activeLens, opportunityData, stateCode]);
+  }, [rawSvgContent, chamber, candidatesData, electionsData, selectedDistrict, filteredDistricts, justSelected, activeLens, opportunityData, stateCode]);
 
   // Handle click events via event delegation (more efficient than per-path listeners)
   const handleClick = useCallback((e: React.MouseEvent) => {

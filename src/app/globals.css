@@ -63,31 +63,50 @@ body {
   border-radius: 12px;
 }
 
+/* ================================================
+   LUMINOUS HOVER STATES (v3.2)
+   Bloomberg Terminal-quality district interaction
+   ================================================ */
+
 svg path[id^="house-"],
 svg path[id^="senate-"],
 .district-path {
   /* fill is set by JavaScript in DistrictMap.tsx based on candidate data */
-  stroke: #475569; /* slate-600 - slightly enhanced border */
-  stroke-width: 0.7;
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 0.5px;
   cursor: pointer;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
-  transition: transform var(--duration-normal) var(--ease-out-expo),
-              filter var(--duration-normal) var(--ease-out),
-              fill var(--duration-fast) var(--ease-out),
-              stroke-width var(--duration-fast) var(--ease-out),
-              opacity var(--duration-fast) ease-in-out,
-              outline-offset var(--duration-fast) ease-in-out;
+  filter: none;
+  transition: stroke-width 150ms ease-out,
+              stroke 150ms ease-out,
+              filter 200ms ease-out,
+              opacity 200ms ease-out,
+              fill 300ms ease-out,
+              outline-offset 150ms ease-out;
   outline: none;
 }
 
+/* Luminous hover - shadow lift, not border thickening */
 svg path[id^="house-"]:hover,
 svg path[id^="senate-"]:hover,
 .district-path:hover {
-  transform: scale(1.02);
-  stroke-width: 1.2;
-  filter: drop-shadow(0 0 6px rgba(30, 64, 175, 0.3))
-          drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-  opacity: 1; /* Override default opacity */
+  stroke-width: 1px;
+  stroke: rgba(255, 255, 255, 0.6);
+  filter: drop-shadow(0 2px 8px rgba(71, 57, 231, 0.15))
+          drop-shadow(0 4px 16px rgba(0, 0, 0, 0.08));
+  opacity: 1 !important;
+}
+
+/* Contextual dimming - non-hovered districts fade when any is hovered */
+.map-svg-wrapper:hover svg path[id^="house-"]:not(:hover),
+.map-svg-wrapper:hover svg path[id^="senate-"]:not(:hover),
+.map-container:hover .district-path:not(:hover) {
+  opacity: 0.65;
+}
+
+/* Ensure selected district stays prominent during contextual dimming */
+.map-svg-wrapper:hover svg path.selected,
+.map-container:hover .district-path.selected {
+  opacity: 1 !important;
 }
 
 /* Keyboard focus styles for accessibility */
@@ -121,6 +140,42 @@ svg path[id^="senate-"]:hover,
 
 @media (prefers-reduced-motion: reduce) {
   .district-path.just-selected {
+    animation: none;
+  }
+}
+
+/* ================================================
+   PRIORITY PULSE (v3.4)
+   Subtle luminosity pulse for top priority districts
+   Barely perceptible - should wonder if imagining it
+   ================================================ */
+@keyframes district-priority-pulse {
+  0%, 100% {
+    fill-opacity: var(--base-opacity, 1);
+  }
+  50% {
+    fill-opacity: calc(var(--base-opacity, 1) + 0.06);
+  }
+}
+
+.district-path.high-priority {
+  --base-opacity: 0.85;
+  animation: district-priority-pulse 3.5s ease-in-out infinite;
+}
+
+/* Disable pulse on hover - attention already captured */
+.district-path.high-priority:hover {
+  animation: none;
+  fill-opacity: 1;
+}
+
+/* Disable pulse on selected district */
+.district-path.high-priority.selected {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .district-path.high-priority {
     animation: none;
   }
 }
@@ -648,111 +703,186 @@ svg path[id^="senate-"]:hover,
 }
 
 /* ================================================
-   LEGEND OVERLAY - Bottom Left with Table Style
+   INTEGRATED LEGEND (v3.2) - Bottom Edge Instrument Bezel
    ================================================ */
 
-.legend-overlay {
+.map-legend-integrated {
   position: absolute;
-  bottom: 16px;
-  left: 16px;
-  background: var(--glass-gradient);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  z-index: 10;
-  max-width: 360px;
-  animation: legend-in 0.2s var(--ease-out-expo);
-}
-
-@keyframes legend-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.legend-header {
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  width: 100%;
-  padding: 10px 14px;
+  gap: 12px;
+  padding: 8px 16px;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.88) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(71, 57, 231, 0.06);
+  z-index: 10;
+  transform: translateY(100%);
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Show legend on map hover or when pinned */
+.map-container:hover .map-legend-integrated,
+.map-legend-integrated.legend-pinned {
+  transform: translateY(0);
+}
+
+/* Pin button */
+.legend-pin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
   background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--border-subtle-solid);
+  border: 1px solid rgba(71, 57, 231, 0.1);
+  border-radius: 4px;
   cursor: pointer;
-  transition: background var(--transition-fast);
+  color: var(--text-muted);
+  transition: all 150ms ease;
+  flex-shrink: 0;
 }
 
-.legend-header:hover {
-  background: var(--background-alt);
+.legend-pin-btn:hover {
+  background: rgba(71, 57, 231, 0.08);
+  border-color: rgba(71, 57, 231, 0.2);
+  color: var(--class-purple, #4739E7);
 }
 
-.legend-collapsed .legend-header {
-  border-bottom: none;
+.legend-pin-icon {
+  transition: transform 150ms ease, color 150ms ease;
 }
 
-.legend-title {
-  font-size: 11px;
+.legend-pin-active {
+  color: var(--class-purple, #4739E7);
+}
+
+/* Lens label */
+.legend-lens-label {
+  font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  color: var(--class-purple, #4739E7);
+  opacity: 0.8;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.legend-toggle-icon {
-  color: var(--text-disabled);
-  transition: transform var(--transition-normal);
+/* Vertical divider */
+.legend-divider {
+  width: 1px;
+  height: 16px;
+  background: rgba(71, 57, 231, 0.12);
+  flex-shrink: 0;
 }
 
-.legend-toggle-collapsed {
-  transform: rotate(180deg);
-}
-
-.legend-content {
-  padding: 8px 12px 12px;
-}
-
-.legend-list {
+/* Legend items row (horizontal) */
+.legend-items-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
   list-style: none;
   margin: 0;
   padding: 0;
-  width: 100%;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
 }
 
-.legend-item {
+/* Individual legend item (inline) */
+.legend-item-inline {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--border-subtle-solid);
+  gap: 6px;
+  white-space: nowrap;
 }
 
-.legend-item:last-child {
-  border-bottom: none;
-}
-
-.legend-swatch-cell {
-  padding: 6px 8px 6px 0;
-  flex-shrink: 0;
-  width: 28px;
-  display: flex;
-  align-items: center;
-}
-
-.legend-swatch {
+/* Swatch (inline) */
+.legend-swatch-inline {
   display: inline-block;
-  width: 16px;
-  height: 16px;
-  border-radius: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
 }
 
+/* Pattern support for swatches */
+.legend-swatch-inline.legend-pattern-needs {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #DBEAFE,
+      #DBEAFE 2px,
+      #3B82F6 2px,
+      #3B82F6 3px
+    );
+}
+
+/* Label (inline) */
+.legend-label-inline {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary, #475569);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Divider between items */
+.legend-item-divider {
+  width: 1px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 0 10px;
+  flex-shrink: 0;
+}
+
+/* Mobile: Stack vertically on small screens */
+@media (max-width: 640px) {
+  .map-legend-integrated {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 6px 12px;
+  }
+
+  .legend-items-row {
+    gap: 4px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .legend-item-divider {
+    display: none;
+  }
+
+  .legend-item-inline {
+    gap: 4px;
+    margin-right: 12px;
+  }
+
+  .legend-swatch-inline {
+    width: 10px;
+    height: 10px;
+  }
+
+  .legend-label-inline {
+    font-size: 10px;
+  }
+
+  .legend-divider {
+    display: none;
+  }
+}
+
+/* Legacy pattern support (from old legend) */
 .legend-pattern-needs {
   background:
     repeating-linear-gradient(
@@ -764,57 +894,54 @@ svg path[id^="senate-"]:hover,
     );
 }
 
-.legend-label-cell {
-  padding: 6px 8px 6px 0;
-  flex-shrink: 0;
-}
-
-.legend-label {
-  font-size: 12px;
-  font-weight: 500;
-  color: #1E293B;
-  white-space: nowrap;
-}
-
-.legend-desc-cell {
-  padding: 6px 0;
-  flex: 1;
-}
-
-.legend-desc {
-  font-size: 11px;
-  color: #64748B;
-}
-
-/* Mobile: Smaller legend */
-@media (max-width: 640px) {
-  .legend-overlay {
-    bottom: 8px;
-    left: 8px;
-    max-width: 280px;
-  }
-
-  .legend-desc-cell {
-    display: none; /* Hide descriptions on mobile */
-  }
-
-  .legend-swatch {
-    width: 14px;
-    height: 14px;
-  }
-
-  .legend-label {
-    font-size: 11px;
-  }
-}
-
-.legend-footnote {
+/* ================================================
+   DATA FRESHNESS FOOTER (v3.3)
+   Subtle footer text below map - professional data attribution
+   ================================================ */
+.data-freshness-footer {
   font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--text-muted);
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px solid var(--border-subtle);
-  text-align: center;
+  opacity: 0.5;
+  padding: 8px 0;
+  text-align: left;
+  transition: opacity 150ms ease-out, color 150ms ease-out;
+}
+
+.data-freshness-footer:hover {
+  opacity: 0.8;
+}
+
+/* Stale data warning - amber text when >7 days old */
+.data-freshness-footer.stale {
+  color: var(--status-attention);
+  opacity: 0.8;
+}
+
+.data-freshness-footer.stale:hover {
+  opacity: 1;
+}
+
+/* Separator dot styling */
+.data-freshness-footer .separator {
+  display: inline-block;
+  margin: 0 6px;
+  color: var(--text-muted);
+  opacity: 0.3;
+}
+
+/* Source link styling */
+.data-freshness-footer a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 150ms ease-out;
+}
+
+.data-freshness-footer a:hover {
+  text-decoration: underline;
+  opacity: 1;
 }
 
 /* KPI CARD STYLES */
@@ -1628,6 +1755,137 @@ svg path[id^="senate-"]:hover,
 
 @media (prefers-reduced-motion: reduce) {
   .map-tooltip {
+    animation: none;
+  }
+}
+
+/* ================================================
+   DISTRICT WHISPER TOOLTIP (v3.2)
+   Refined, minimal tooltip for professional data display
+   Bloomberg Terminal-quality information whispers
+   ================================================ */
+
+@keyframes whisper-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.district-whisper {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  max-width: 180px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(71, 57, 231, 0.08);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06),
+              0 4px 16px rgba(0, 0, 0, 0.04);
+  animation: whisper-in 150ms ease-out;
+}
+
+/* Primary content - always visible */
+.whisper-primary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.whisper-district {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-color);
+  letter-spacing: -0.01em;
+}
+
+.whisper-category {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--brand-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+  text-align: right;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+/* Expanded content - after 500ms sustained hover */
+.whisper-expanded {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(71, 57, 231, 0.06);
+  animation: whisper-in 150ms ease-out;
+}
+
+.whisper-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 11px;
+}
+
+.whisper-label {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.whisper-dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.party-dot-mini {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.party-dot-mini.dem {
+  background: var(--party-dem, #3B5998);
+}
+
+.party-dot-mini.rep {
+  background: var(--party-rep, #A8444A);
+}
+
+.whisper-status {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-color);
+  font-variant-numeric: tabular-nums;
+}
+
+.whisper-incumbent {
+  margin-top: 4px;
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Expanded state grows smoothly */
+.district-whisper-expanded {
+  max-width: 200px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .district-whisper,
+  .whisper-expanded {
     animation: none;
   }
 }

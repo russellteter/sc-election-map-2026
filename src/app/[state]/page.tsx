@@ -292,6 +292,7 @@ export default function StateDashboard() {
     onNextDistrict: handleNextDistrict,
     onPrevDistrict: handlePrevDistrict,
     onToggleHelp: () => setShowShortcuts((prev) => !prev),
+    onSetLens: setLens,
     enabled: !showShortcuts,
   });
 
@@ -825,6 +826,50 @@ export default function StateDashboard() {
               />
             </div>
             <Legend activeLens={activeLens} />
+
+            {/* Data Freshness Footer (v3.3) - Subtle attribution below map */}
+            {candidatesData?.lastUpdated && (
+              <div
+                className={`data-freshness-footer ${
+                  // Mark as stale if data is >7 days old
+                  (Date.now() - new Date(candidatesData.lastUpdated).getTime()) > 7 * 24 * 60 * 60 * 1000
+                    ? 'stale'
+                    : ''
+                }`}
+              >
+                Data: {stateConfig.urls.ethicsCommission ? (
+                  <a
+                    href={stateConfig.urls.ethicsCommission}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {stateConfig.name} Ethics Commission
+                  </a>
+                ) : stateConfig.urls.electionCommission ? (
+                  <a
+                    href={stateConfig.urls.electionCommission}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {stateConfig.name} Election Commission
+                  </a>
+                ) : (
+                  `${stateConfig.name} Election Data`
+                )}
+                <span className="separator">·</span>
+                Updated {new Date(candidatesData.lastUpdated).toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                })}
+                {isDemo('candidates') && (
+                  <>
+                    <span className="separator">·</span>
+                    Demo Data
+                  </>
+                )}
+              </div>
+            )}
           </div>
 
           {hoveredDistrict && (
