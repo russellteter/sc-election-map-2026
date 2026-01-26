@@ -3,9 +3,16 @@
  *
  * Centralized color scheme for district maps.
  * Used by both SVG DistrictMap and Leaflet GeoJSON layers.
+ *
+ * Supports the 4-lens visualization system:
+ * - incumbents: Traditional R/D incumbent display
+ * - dem-filing: Blue coverage vs amber gaps
+ * - opportunity: Heat map (HOT/WARM/POSSIBLE/LONG_SHOT/DEFENSIVE)
+ * - battleground: Contested vs uncontested races
  */
 
 import type { District, DistrictElectionHistory } from '@/types/schema';
+import type { LensId } from '@/types/lens';
 
 /**
  * District colors based on objective facts.
@@ -55,6 +62,257 @@ export const SC_CONGRESSIONAL_REPS: Record<string, { name: string; party: 'D' | 
 
 // Margin threshold for "close race" classification (percentage points)
 export const CLOSE_RACE_MARGIN = 15;
+
+// =============================================================================
+// Multi-Lens Visualization Colors (Phase 18)
+// =============================================================================
+
+/**
+ * Opportunity tier data structure (from opportunity.json)
+ */
+export interface OpportunityData {
+  tier: 'HOT' | 'WARM' | 'POSSIBLE' | 'LONG_SHOT' | 'DEFENSIVE';
+  opportunityScore: number;
+  margin: number | null;
+  flags: {
+    needsCandidate: boolean;
+    hasDemocrat: boolean;
+    hasRepublican: boolean;
+    isDefensive: boolean;
+    isOpenSeat: boolean;
+  };
+}
+
+/**
+ * Color palettes for each lens visualization
+ *
+ * Design principles:
+ * - Purple (#8B5CF6) for neutral/open seats (replaces amber)
+ * - Blue (#1E40AF) for Democratic
+ * - Red (#DC2626) for Republican
+ * - Purple gradient for opportunity tiers (HOT→POSSIBLE)
+ * - All colors WCAG AA compliant
+ */
+export const LENS_COLORS = {
+  /**
+   * Incumbents Lens (default)
+   * Shows current party control of each district
+   * WCAG AA compliant: Open Seat updated from #8B5CF6 (3.1:1) to #7C3AED (4.6:1)
+   */
+  incumbents: {
+    DEM_INCUMBENT: '#1E40AF',     // Dark blue - Dem holds seat
+    REP_INCUMBENT: '#DC2626',     // Red - Rep holds seat
+    OPEN_SEAT: '#7C3AED',         // Vivid violet - Open seat (WCAG AA: 4.6:1)
+    UNKNOWN: '#D1D5DB',           // Light gray - No data
+  },
+
+  /**
+   * Dem Filing Lens
+   * Shows Democratic candidate coverage vs gaps
+   */
+  'dem-filing': {
+    DEM_FILED: '#1E40AF',         // Dark blue - Dem candidate filed
+    DEM_INCUMBENT: '#3B82F6',     // Medium blue - Dem incumbent (may not have filed)
+    PRIORITY_GAP: '#9333EA',      // Vivid purple - No Dem, margin ≤15pts (urgent)
+    OPPORTUNITY: '#A78BFA',       // Light purple - No Dem, margin ≤10pts
+    SAFE_R: '#E5E7EB',            // Light gray - No Dem, margin >15pts
+  },
+
+  /**
+   * Opportunity Lens
+   * Heat map showing strategic opportunity tiers
+   * Uses purple gradient with improved WCAG contrast differentiation
+   * HOT→WARM→POSSIBLE clearly distinguishable
+   */
+  opportunity: {
+    HOT: '#6D28D9',               // Deep violet - Top priority (≤5pt margin) - WCAG AA
+    WARM: '#8B5CF6',              // Medium purple - Strong opportunity (6-10pt)
+    POSSIBLE: '#C4B5FD',          // Light lavender - Worth watching (11-15pt)
+    LONG_SHOT: '#9CA3AF',         // Gray - Unlikely flip (>15pt)
+    DEFENSIVE: '#1E40AF',         // Blue - Dem-held seat to protect
+  },
+
+  /**
+   * Battleground Lens
+   * Shows contested vs uncontested races
+   * WCAG AA compliant colors
+   */
+  battleground: {
+    CONTESTED: '#7C3AED',         // Vivid violet - Both D and R filed (WCAG AA)
+    DEM_ONLY: '#3B82F6',          // Blue - Only Dem filed
+    REP_ONLY: '#EF4444',          // Red - Only Rep filed
+    NONE_FILED: '#E5E7EB',        // Gray - No candidates filed
+  },
+} as const;
+
+/**
+ * Category types for each lens
+ */
+export type IncumbentCategory = 'DEM_INCUMBENT' | 'REP_INCUMBENT' | 'OPEN_SEAT' | 'UNKNOWN';
+export type DemFilingCategory = 'DEM_FILED' | 'DEM_INCUMBENT' | 'PRIORITY_GAP' | 'OPPORTUNITY' | 'SAFE_R';
+export type OpportunityCategory = 'HOT' | 'WARM' | 'POSSIBLE' | 'LONG_SHOT' | 'DEFENSIVE';
+export type BattlegroundCategory = 'CONTESTED' | 'DEM_ONLY' | 'REP_ONLY' | 'NONE_FILED';
+
+/**
+ * Union type for all category types
+ */
+export type DistrictCategory = IncumbentCategory | DemFilingCategory | OpportunityCategory | BattlegroundCategory;
+
+/**
+ * Get district category based on the active lens
+ *
+ * @param district - District data from candidates.json
+ * @param electionHistory - Election history from elections.json
+ * @param opportunityData - Opportunity data from opportunity.json (optional)
+ * @param lensId - Active lens ID
+ */
+export function getDistrictCategory(
+  district: District | undefined,
+  electionHistory: DistrictElectionHistory | undefined,
+  opportunityData: OpportunityData | undefined,
+  lensId: LensId
+): DistrictCategory {
+  // No district data
+  if (!district) {
+    switch (lensId) {
+      case 'incumbents':
+        return 'UNKNOWN';
+      case 'dem-filing':
+        return 'SAFE_R';
+      case 'opportunity':
+        return 'LONG_SHOT';
+      case 'battleground':
+        return 'NONE_FILED';
+    }
+  }
+
+  const incumbentParty = district.incumbent?.party;
+  const isDemIncumbent = incumbentParty === 'Democratic';
+  const isRepIncumbent = incumbentParty === 'Republican';
+  const hasIncumbent = !!district.incumbent?.name;
+
+  const hasDemCandidate = district.candidates.some(
+    (c) => c.party?.toLowerCase() === 'democratic'
+  );
+  const hasRepCandidate = district.candidates.some(
+    (c) => c.party?.toLowerCase() === 'republican'
+  );
+
+  // Get margin from election history
+  const lastElection = electionHistory?.elections?.['2024']
+    || electionHistory?.elections?.['2022']
+    || electionHistory?.elections?.['2020'];
+  const margin = lastElection?.margin ?? 100;
+
+  switch (lensId) {
+    case 'incumbents':
+      if (isDemIncumbent) return 'DEM_INCUMBENT';
+      if (isRepIncumbent) return 'REP_INCUMBENT';
+      if (!hasIncumbent) return 'OPEN_SEAT';
+      return 'UNKNOWN';
+
+    case 'dem-filing':
+      if (hasDemCandidate) return 'DEM_FILED';
+      if (isDemIncumbent) return 'DEM_INCUMBENT';
+      if (margin <= 10) return 'OPPORTUNITY';
+      if (margin <= 15) return 'PRIORITY_GAP';
+      return 'SAFE_R';
+
+    case 'opportunity':
+      // Use opportunity.json data if available
+      if (opportunityData) {
+        return opportunityData.tier;
+      }
+      // Fallback calculation
+      if (isDemIncumbent) return 'DEFENSIVE';
+      if (margin <= 5) return 'HOT';
+      if (margin <= 10) return 'WARM';
+      if (margin <= 15) return 'POSSIBLE';
+      return 'LONG_SHOT';
+
+    case 'battleground':
+      if (hasDemCandidate && hasRepCandidate) return 'CONTESTED';
+      if (hasDemCandidate) return 'DEM_ONLY';
+      if (hasRepCandidate) return 'REP_ONLY';
+      return 'NONE_FILED';
+  }
+}
+
+/**
+ * Get fill color for a district based on the active lens
+ *
+ * This is the primary function for lens-aware coloring.
+ *
+ * @param district - District data from candidates.json
+ * @param electionHistory - Election history from elections.json
+ * @param opportunityData - Opportunity data from opportunity.json (optional)
+ * @param lensId - Active lens ID (defaults to 'incumbents')
+ * @param useSolidColors - Use solid colors for Leaflet (no patterns)
+ */
+export function getDistrictFillColorWithLens(
+  district: District | undefined,
+  electionHistory: DistrictElectionHistory | undefined,
+  opportunityData: OpportunityData | undefined,
+  lensId: LensId = 'incumbents',
+  useSolidColors = false
+): string {
+  const category = getDistrictCategory(district, electionHistory, opportunityData, lensId);
+
+  // Get color from the appropriate lens palette
+  switch (lensId) {
+    case 'incumbents':
+      return LENS_COLORS.incumbents[category as IncumbentCategory] ?? LENS_COLORS.incumbents.UNKNOWN;
+
+    case 'dem-filing':
+      // Use pattern for OPPORTUNITY unless solid colors requested
+      if (category === 'OPPORTUNITY' && !useSolidColors) {
+        return 'url(#opportunity-pattern)';
+      }
+      return LENS_COLORS['dem-filing'][category as DemFilingCategory] ?? LENS_COLORS['dem-filing'].SAFE_R;
+
+    case 'opportunity':
+      return LENS_COLORS.opportunity[category as OpportunityCategory] ?? LENS_COLORS.opportunity.LONG_SHOT;
+
+    case 'battleground':
+      return LENS_COLORS.battleground[category as BattlegroundCategory] ?? LENS_COLORS.battleground.NONE_FILED;
+  }
+}
+
+/**
+ * Get category label for accessibility/tooltips
+ */
+export function getCategoryLabel(category: DistrictCategory, lensId: LensId): string {
+  const labels: Record<LensId, Record<string, string>> = {
+    incumbents: {
+      DEM_INCUMBENT: 'Democratic incumbent',
+      REP_INCUMBENT: 'Republican incumbent',
+      OPEN_SEAT: 'Open seat',
+      UNKNOWN: 'Unknown',
+    },
+    'dem-filing': {
+      DEM_FILED: 'Democratic candidate filed',
+      DEM_INCUMBENT: 'Democratic incumbent',
+      PRIORITY_GAP: 'Priority gap (no Dem, ≤15pt margin)',
+      OPPORTUNITY: 'Opportunity (no Dem, ≤10pt margin)',
+      SAFE_R: 'Safe Republican',
+    },
+    opportunity: {
+      HOT: 'Hot zone (≤5pt margin)',
+      WARM: 'Warm zone (6-10pt margin)',
+      POSSIBLE: 'Possible (11-15pt margin)',
+      LONG_SHOT: 'Long shot (>15pt margin)',
+      DEFENSIVE: 'Defensive (Dem-held)',
+    },
+    battleground: {
+      CONTESTED: 'Contested (D & R filed)',
+      DEM_ONLY: 'Democrat only',
+      REP_ONLY: 'Republican only',
+      NONE_FILED: 'No candidates filed',
+    },
+  };
+
+  return labels[lensId][category] ?? category;
+}
 
 /**
  * Get fill color for a state legislative district (House/Senate)
@@ -338,15 +596,16 @@ export type ResourceIntensity = 'hot' | 'warm' | 'cool' | 'none';
 /**
  * Colors for resource allocation heatmap overlay
  * Three-tier intensity system for investment prioritization
+ * Purple-based palette for consistency
  */
 export const RESOURCE_HEATMAP_COLORS = {
   // Hot - Invest heavily (high ROI opportunities)
-  HOT: 'rgba(220, 38, 38, 0.65)',        // Semi-transparent red
-  HOT_BORDER: '#DC2626',
+  HOT: 'rgba(124, 58, 237, 0.65)',       // Semi-transparent vivid violet
+  HOT_BORDER: '#7C3AED',
 
   // Warm - Maintain current investment
-  WARM: 'rgba(245, 158, 11, 0.55)',      // Semi-transparent amber
-  WARM_BORDER: '#F59E0B',
+  WARM: 'rgba(147, 51, 234, 0.55)',      // Semi-transparent purple
+  WARM_BORDER: '#9333EA',
 
   // Cool - Deprioritize (low ROI)
   COOL: 'rgba(59, 130, 246, 0.35)',      // Semi-transparent blue

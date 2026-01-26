@@ -4,18 +4,14 @@ import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import MapTooltip from './MapTooltip';
 import { injectPatterns } from './patterns';
 import type { CandidatesData, District, ElectionsData, DistrictElectionHistory } from '@/types/schema';
-
-// Objective fact-based colors (no made-up scores)
-const DISTRICT_COLORS = {
-  DEM_INCUMBENT: '#1E40AF',     // Solid blue - current rep is Democrat
-  DEM_CHALLENGER: '#3B82F6',    // Medium blue - Dem filed (not incumbent)
-  CLOSE_NO_DEM: 'url(#needs-candidate)', // Blue crosshatch - margin ≤15pts, no Dem
-  SAFE_R: '#E5E7EB',            // Light gray - margin >15pts, no Dem
-  NO_DATA: '#F3F4F6',           // Very light gray - no candidates/data
-} as const;
-
-// Margin threshold for "close race" classification (percentage points)
-const CLOSE_RACE_MARGIN = 15;
+import type { LensId } from '@/types/lens';
+import { DEFAULT_LENS } from '@/types/lens';
+import {
+  getDistrictFillColorWithLens,
+  getCategoryLabel,
+  getDistrictCategory,
+  type OpportunityData,
+} from '@/lib/districtColors';
 
 interface DistrictMapProps {
   chamber: 'house' | 'senate';
@@ -29,6 +25,10 @@ interface DistrictMapProps {
   republicanDataMode?: 'none' | 'incumbents' | 'challengers' | 'all';
   /** State code for multi-state support (default: 'sc') */
   stateCode?: string;
+  /** Active lens for multi-lens visualization (default: 'incumbents') */
+  activeLens?: LensId;
+  /** Opportunity data for opportunity lens */
+  opportunityData?: Record<string, OpportunityData>;
 }
 
 export default function DistrictMap({
@@ -42,6 +42,8 @@ export default function DistrictMap({
   showRepublicanData = false,
   republicanDataMode = 'none',
   stateCode = 'sc',
+  activeLens = DEFAULT_LENS,
+  opportunityData,
 }: DistrictMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [rawSvgContent, setRawSvgContent] = useState<string>('');
@@ -112,8 +114,10 @@ export default function DistrictMap({
       const districtNum = parseInt(match[1], 10);
       const districtData = candidatesData[chamber][String(districtNum)];
       const electionHistory = electionsData?.[chamber]?.[String(districtNum)];
-      const color = getDistrictColor(districtData, electionHistory);
-      const statusLabel = getDistrictStatusLabel(districtData, electionHistory);
+      const oppData = opportunityData?.[String(districtNum)];
+      const color = getDistrictFillColorWithLens(districtData, electionHistory, oppData, activeLens, false);
+      const category = getDistrictCategory(districtData, electionHistory, oppData, activeLens);
+      const statusLabel = getCategoryLabel(category, activeLens);
 
       // Apply fill color directly to SVG string
       path.setAttribute('fill', color);
@@ -152,7 +156,7 @@ export default function DistrictMap({
     });
 
     return new XMLSerializer().serializeToString(svg);
-  }, [rawSvgContent, chamber, candidatesData, electionsData, selectedDistrict, filteredDistricts, justSelected, showRepublicanData, republicanDataMode]);
+  }, [rawSvgContent, chamber, candidatesData, electionsData, selectedDistrict, filteredDistricts, justSelected, showRepublicanData, republicanDataMode, activeLens, opportunityData, stateCode]);
 
   // Handle click events via event delegation (more efficient than per-path listeners)
   const handleClick = useCallback((e: React.MouseEvent) => {
@@ -225,6 +229,16 @@ export default function DistrictMap({
     ? candidatesData[chamber][String(hoveredDistrict)]
     : null;
 
+  // Get election history for hovered district
+  const hoveredElectionHistory = hoveredDistrict && electionsData
+    ? electionsData[chamber]?.[String(hoveredDistrict)]
+    : null;
+
+  // Get opportunity data for hovered district
+  const hoveredOpportunityData = hoveredDistrict && opportunityData
+    ? opportunityData[String(hoveredDistrict)]
+    : null;
+
   return (
     <>
       <div
@@ -242,113 +256,11 @@ export default function DistrictMap({
         district={hoveredDistrictData}
         chamber={chamber}
         mousePosition={mousePosition}
+        activeLens={activeLens}
+        electionHistory={hoveredElectionHistory}
+        opportunityData={hoveredOpportunityData}
       />
     </>
   );
 }
 
-/**
- * Get the fill color for a district based on OBJECTIVE FACTS only.
- * No made-up scores or arbitrary tiers.
- *
- * Color scheme (Dem-focused):
- * - Solid Blue (#1E40AF) - Dem Incumbent (current rep is Democrat)
- * - Medium Blue (#3B82F6) - Dem Challenger (Dem filed, not incumbent)
- * - Blue Crosshatch - Close race (margin ≤15pts), no Dem filed yet
- * - Light Gray (#E5E7EB) - Safe R seat (margin >15pts), no Dem filed
- * - Very Light Gray (#F3F4F6) - No data
- */
-function getDistrictColor(
-  district: District | undefined,
-  electionHistory: DistrictElectionHistory | undefined
-): string {
-  // No district data
-  if (!district) {
-    return DISTRICT_COLORS.NO_DATA;
-  }
-
-  const isDemIncumbent = district.incumbent?.party === 'Democratic';
-  const hasDemCandidate = district.candidates.some(
-    (c) => c.party?.toLowerCase() === 'democratic'
-  );
-
-  // 1. Dem Incumbent - Solid blue (highest priority)
-  if (isDemIncumbent) {
-    return DISTRICT_COLORS.DEM_INCUMBENT;
-  }
-
-  // 2. Dem Challenger Filed (not incumbent)
-  if (hasDemCandidate) {
-    return DISTRICT_COLORS.DEM_CHALLENGER;
-  }
-
-  // 3. No Dem - check last election margin
-  // Get most recent election (2024, fall back to 2022, then 2020)
-  const lastElection = electionHistory?.elections?.['2024']
-    || electionHistory?.elections?.['2022']
-    || electionHistory?.elections?.['2020'];
-
-  const margin = lastElection?.margin ?? 100; // Default to high margin if no data
-
-  if (margin <= CLOSE_RACE_MARGIN) {
-    // Close race - use crosshatch pattern to indicate opportunity
-    return DISTRICT_COLORS.CLOSE_NO_DEM;
-  }
-
-  // 4. Safe R seat - light gray
-  return DISTRICT_COLORS.SAFE_R;
-}
-
-/**
- * Get an accessible status label for a district.
- * Uses objective facts only - no scores.
- */
-function getDistrictStatusLabel(
-  district: District | undefined,
-  electionHistory: DistrictElectionHistory | undefined
-): string {
-  if (!district) {
-    return 'No data available';
-  }
-
-  const isDemIncumbent = district.incumbent?.party === 'Democratic';
-  const isRepIncumbent = district.incumbent?.party === 'Republican';
-  const hasDemCandidate = district.candidates.some(
-    (c) => c.party?.toLowerCase() === 'democratic'
-  );
-  const candidateCount = district.candidates.length;
-
-  // Dem incumbent
-  if (isDemIncumbent) {
-    if (candidateCount === 0) {
-      return 'Dem incumbent, no candidates filed yet';
-    }
-    const candidateText = candidateCount === 1 ? '1 candidate' : `${candidateCount} candidates`;
-    return `Dem incumbent, ${candidateText} filed`;
-  }
-
-  // Has Dem candidate filed (not incumbent)
-  if (hasDemCandidate) {
-    const candidateText = candidateCount === 1 ? '1 candidate' : `${candidateCount} candidates`;
-    return `${candidateText}, Dem challenger filed`;
-  }
-
-  // No Dem - show margin info if available
-  const lastElection = electionHistory?.elections?.['2024']
-    || electionHistory?.elections?.['2022']
-    || electionHistory?.elections?.['2020'];
-
-  if (candidateCount === 0) {
-    if (lastElection && lastElection.margin <= CLOSE_RACE_MARGIN) {
-      return `No candidates filed, close race (${lastElection.margin.toFixed(0)}pt margin)`;
-    }
-    return 'No candidates filed';
-  }
-
-  // Has candidates but no Dem
-  const candidateText = candidateCount === 1 ? '1 candidate' : `${candidateCount} candidates`;
-  if (lastElection && lastElection.margin <= CLOSE_RACE_MARGIN) {
-    return `${candidateText}, no Dem yet (${lastElection.margin.toFixed(0)}pt margin)`;
-  }
-  return `${candidateText}, no Dem filed`;
-}

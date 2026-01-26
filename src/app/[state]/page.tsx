@@ -9,16 +9,22 @@ import ShareButton from '@/components/Map/ShareButton';
 import ZoomLevelContent, { useZoomLevel, ZOOM_THRESHOLDS } from '@/components/Map/ZoomLevelContent';
 import SidePanel from '@/components/Dashboard/SidePanel';
 import SearchBar from '@/components/Search/SearchBar';
+import AddressSearch from '@/components/Search/AddressSearch';
 import FilterPanel, { FilterState, defaultFilters } from '@/components/Search/FilterPanel';
 import KeyboardShortcutsHelp from '@/components/Search/KeyboardShortcutsHelp';
+import MobileDistrictSheet from '@/components/Map/MobileDistrictSheet';
+import ScreenshotButton from '@/components/Export/ScreenshotButton';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 import { useToast } from '@/components/Toast';
 import { KPICardSkeleton, MapSkeleton, CandidateCardSkeleton } from '@/components/Skeleton';
 import { useStateContext } from '@/context/StateContext';
 import { useMapState } from '@/hooks/useMapState';
+import { useLens } from '@/hooks/useLens';
+import { LensToggleBar, getLensKpis } from '@/components/Lens';
 // Note: BASE_PATH not needed - data fetching uses window.location detection, navigation uses Next.js auto basePath
 import { getDistrictCenter } from '@/lib/districtLookup';
 import type { CandidatesData, ElectionsData, SearchResult } from '@/types/schema';
+import type { OpportunityData } from '@/lib/districtColors';
 
 export default function StateDashboard() {
   const { stateConfig, stateCode, isDemo } = useStateContext();
@@ -28,10 +34,17 @@ export default function StateDashboard() {
   const [hoveredDistrict, setHoveredDistrict] = useState<number | null>(null);
   const [candidatesData, setCandidatesData] = useState<CandidatesData | null>(null);
   const [electionsData, setElectionsData] = useState<ElectionsData | null>(null);
+  const [opportunityData, setOpportunityData] = useState<Record<string, OpportunityData> | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState<FilterState>(defaultFilters);
   const [showShortcuts, setShowShortcuts] = useState(false);
+  const [showMobileSheet, setShowMobileSheet] = useState(false);
+  const [showAddressSearch, setShowAddressSearch] = useState(false);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
   const { showToast } = useToast();
+
+  // Lens state with URL sync
+  const { activeLens, setLens, isTransitioning } = useLens();
 
   // Map state with URL sync for deep-linking
   const { mapState, setMapState } = useMapState({ debounceMs: 300 });
@@ -45,7 +58,7 @@ export default function StateDashboard() {
   const senateCount = stateConfig.chambers.senate.count;
   const districtCount = chamber === 'house' ? houseCount : senateCount;
 
-  // Load candidates and elections data
+  // Load candidates, elections, and opportunity data
   useEffect(() => {
     const basePath = window.location.pathname.includes('/sc-election-map-2026')
       ? '/sc-election-map-2026'
@@ -62,13 +75,20 @@ export default function StateDashboard() {
       ? `${basePath}/data/elections.json`
       : `${basePath}/data/states/${stateCode.toLowerCase()}/elections.json`;
 
+    const opportunityPath = stateCode === 'SC'
+      ? `${basePath}/data/opportunity.json`
+      : `${basePath}/data/states/${stateCode.toLowerCase()}/opportunity.json`;
+
     Promise.all([
       fetch(`${candidatesPath}?${cacheBuster}`).then((res) => res.json()),
       fetch(`${electionsPath}?${cacheBuster}`).then((res) => res.json()),
+      fetch(`${opportunityPath}?${cacheBuster}`).then((res) => res.json()).catch(() => ({})),
     ])
-      .then(([candidates, elections]) => {
+      .then(([candidates, elections, opportunity]) => {
         setCandidatesData(candidates);
         setElectionsData(elections);
+        // Opportunity data may have nested chamber structure
+        setOpportunityData(opportunity);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -213,6 +233,51 @@ export default function StateDashboard() {
     }
   }, [chamber, stateCode, setMapState]);
 
+  // Handle address search district selection
+  const handleAddressDistrictFound = useCallback(async (districtNumber: number, foundChamber: 'house' | 'senate') => {
+    // Change chamber if needed
+    if (foundChamber !== chamber) {
+      setChamber(foundChamber);
+    }
+
+    // Set selected district
+    setSelectedDistrict(districtNumber);
+
+    // Show success toast
+    showToast(`Found ${foundChamber === 'house' ? 'House' : 'Senate'} District ${districtNumber}`, 'success');
+
+    // Zoom to district center (only for SC for now)
+    if (stateCode === 'SC') {
+      try {
+        const center = await getDistrictCenter(foundChamber, districtNumber);
+        if (center.success && center.lat && center.lng) {
+          setMapState({
+            lat: center.lat,
+            lng: center.lng,
+            zoom: 10,
+            district: districtNumber,
+          });
+        }
+      } catch {
+        console.debug('Could not zoom to district center');
+      }
+    }
+  }, [chamber, stateCode, setMapState, showToast]);
+
+  // Mobile sheet handlers
+  const handleMobileDistrictSelect = useCallback((districtNumber: number) => {
+    setSelectedDistrict(districtNumber);
+    // On mobile, show the bottom sheet instead of relying on side panel
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      setShowMobileSheet(true);
+    }
+  }, []);
+
+  const handleMobileSheetViewDetails = useCallback(() => {
+    setShowMobileSheet(false);
+    // Scroll to side panel on mobile, or let it be visible
+  }, []);
+
   useKeyboardShortcuts({
     onToggleChamber: () => setChamber((c) => (c === 'house' ? 'senate' : 'house')),
     onFocusSearch: () => {
@@ -301,6 +366,24 @@ export default function StateDashboard() {
   const selectedDistrictElections = selectedDistrict && electionsData
     ? electionsData[chamber][String(selectedDistrict)]
     : null;
+
+  // Get chamber-specific opportunity data
+  const chamberOpportunityData = useMemo((): Record<string, OpportunityData> | undefined => {
+    if (!opportunityData) return undefined;
+    // Opportunity data may be nested by chamber or flat
+    const chamberData = (opportunityData as Record<string, unknown>)[chamber];
+    if (chamberData && typeof chamberData === 'object' && !('score' in chamberData)) {
+      return chamberData as unknown as Record<string, OpportunityData>;
+    }
+    return opportunityData as unknown as Record<string, OpportunityData>;
+  }, [opportunityData, chamber]);
+
+  // Calculate lens-aware KPIs
+  const lensKpis = useMemo(() => {
+    if (!candidatesData) return [];
+    const districts = Object.values(candidatesData[chamber]);
+    return getLensKpis(activeLens, districts, chamberOpportunityData);
+  }, [candidatesData, chamber, activeLens, chamberOpportunityData]);
 
   // Calculate objective stats
   const objectiveStats = useMemo(() => {
@@ -572,53 +655,57 @@ export default function StateDashboard() {
         </div>
       </div>
 
+      {/* Lens Toggle Bar */}
+      <div className="border-b animate-entrance stagger-2" style={{ background: '#FAFAFA', borderColor: '#E2E8F0' }}>
+        <div className="max-w-7xl mx-auto px-4 py-2">
+          <LensToggleBar activeLens={activeLens} onLensChange={setLens} />
+        </div>
+      </div>
+
       {/* Main content */}
       <div className="flex-1 flex flex-col lg:flex-row">
         <div className="flex-1 flex flex-col p-4">
-          {objectiveStats && (
+          {lensKpis.length > 0 && (
             <ZoomLevelContent
               currentZoom={currentZoom}
               className="mb-4 animate-entrance stagger-2"
               stateViewContent={
-                /* State level (zoom <= 8): Full 4-column KPI grid */
+                /* State level (zoom <= 8): Full 4-column KPI grid - lens-aware */
                 <div className="kpi-grid">
-                  <div className="kpi-card animate-entrance" style={{ animationDelay: '0ms' }}>
-                    <div className="label" style={{ color: '#3B82F6' }}>Dem Filed</div>
-                    <div className="value font-display" style={{ color: '#3B82F6' }}>{objectiveStats.demFiled}</div>
-                    <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>of {objectiveStats.totalDistricts} districts</div>
-                  </div>
-                  <div className="kpi-card animate-entrance" style={{ animationDelay: '50ms' }}>
-                    <div className="label" style={{ color: '#059669' }}>Contested</div>
-                    <div className="value font-display" style={{ color: '#059669' }}>{objectiveStats.contested}</div>
-                    <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Both D &amp; R filed</div>
-                  </div>
-                  <div className="kpi-card animate-entrance" style={{ animationDelay: '100ms' }}>
-                    <div className="label" style={{ color: '#1E40AF' }}>Dem Incumbents</div>
-                    <div className="value font-display" style={{ color: '#1E40AF' }}>{objectiveStats.demIncumbents}</div>
-                    <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Current Dem seats</div>
-                  </div>
-                  <div className="kpi-card animate-entrance" style={{ animationDelay: '150ms' }}>
-                    <div className="label" style={{ color: '#F59E0B' }}>Close Races</div>
-                    <div className="value font-display" style={{ color: '#F59E0B' }}>{objectiveStats.closeOpportunities}</div>
-                    <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>No Dem, margin ≤15pts</div>
-                  </div>
+                  {lensKpis.map((kpi, index) => (
+                    <div
+                      key={kpi.label}
+                      className="kpi-card animate-entrance"
+                      style={{ animationDelay: `${index * 50}ms` }}
+                    >
+                      <div className="label" style={{ color: kpi.color || 'var(--text-muted)' }}>
+                        {kpi.label}
+                      </div>
+                      <div className="value font-display" style={{ color: kpi.color || 'var(--text-color)' }}>
+                        {kpi.value}
+                      </div>
+                      {kpi.description && (
+                        <div className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>
+                          {kpi.description}
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
               }
               regionViewContent={
-                /* Region level (8 < zoom <= 10): Simplified 2-column KPI */
+                /* Region level (8 < zoom <= 10): Simplified 2-column KPI - first 2 lens KPIs */
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="kpi-card">
-                    <div className="label" style={{ color: '#3B82F6' }}>Dem Filed</div>
-                    <div className="value font-display text-lg" style={{ color: '#3B82F6' }}>
-                      {objectiveStats.demFiled}/{objectiveStats.totalDistricts}
+                  {lensKpis.slice(0, 2).map((kpi) => (
+                    <div key={kpi.label} className="kpi-card">
+                      <div className="label" style={{ color: kpi.color || 'var(--text-muted)' }}>
+                        {kpi.label}
+                      </div>
+                      <div className="value font-display text-lg" style={{ color: kpi.color || 'var(--text-color)' }}>
+                        {kpi.value}
+                      </div>
                     </div>
-                  </div>
-                  <div className="kpi-card">
-                    <div className="label" style={{ color: '#F59E0B' }}>Close Races</div>
-                    <div className="value font-display text-lg" style={{ color: '#F59E0B' }}>
-                      {objectiveStats.closeOpportunities}
-                    </div>
-                  </div>
+                  ))}
                 </div>
               }
               districtViewContent={
@@ -659,11 +746,58 @@ export default function StateDashboard() {
           )}
 
           <div
+            ref={mapContainerRef}
             id="map-container"
-            className="flex-1 map-container min-h-[400px] animate-entrance stagger-3 relative"
+            className={`flex-1 map-container min-h-[400px] animate-entrance stagger-3 relative ${isTransitioning ? 'lens-transitioning' : ''}`}
             role="region"
             aria-label="Interactive district map - double-click a district to view details"
           >
+            {/* Map Controls Overlay */}
+            <div className="absolute top-3 right-3 z-10 flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setShowAddressSearch(!showAddressSearch)}
+                className="screenshot-button"
+                aria-label="Find my district"
+                aria-expanded={showAddressSearch}
+                title="Find my district by address"
+              >
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                <span className="screenshot-text">Find District</span>
+              </button>
+              <ScreenshotButton
+                targetRef={mapContainerRef}
+                filename="sc-election-map"
+                chamber={chamber}
+                stateCode={stateCode}
+                showMenu={true}
+              />
+            </div>
+
+            {/* Address Search Panel (collapsible) */}
+            {showAddressSearch && (
+              <div className="absolute top-14 right-3 z-10 w-80 max-w-[calc(100vw-24px)] animate-entrance">
+                <AddressSearch
+                  chamber={chamber}
+                  onDistrictFound={handleAddressDistrictFound}
+                  placeholder={`Enter SC address to find your district`}
+                />
+              </div>
+            )}
+
             <div className="map-svg-wrapper h-full">
               <NavigableDistrictMap
                 stateCode={stateCode}
@@ -671,15 +805,17 @@ export default function StateDashboard() {
                 candidatesData={candidatesData}
                 electionsData={electionsData}
                 selectedDistrict={selectedDistrict}
-                onDistrictSelect={setSelectedDistrict}
+                onDistrictSelect={handleMobileDistrictSelect}
                 onDistrictHover={setHoveredDistrict}
                 filteredDistricts={filteredDistricts}
                 enableNavigation={true}
                 showChamberToggle={false}
                 showModeToggle={true}
+                activeLens={activeLens}
+                opportunityData={chamberOpportunityData}
               />
             </div>
-            <Legend />
+            <Legend activeLens={activeLens} />
           </div>
 
           {hoveredDistrict && (
@@ -709,6 +845,19 @@ export default function StateDashboard() {
           />
         </div>
       </div>
+
+      {/* Mobile Bottom Sheet for district details */}
+      <MobileDistrictSheet
+        isOpen={showMobileSheet}
+        onClose={() => setShowMobileSheet(false)}
+        district={selectedDistrictData}
+        chamber={chamber}
+        chamberName={chamber === 'house' ? stateConfig.chambers.house.name : stateConfig.chambers.senate.name}
+        electionHistory={selectedDistrictElections}
+        opportunityData={selectedDistrict && chamberOpportunityData ? chamberOpportunityData[String(selectedDistrict)] : undefined}
+        activeLens={activeLens}
+        onViewDetails={handleMobileSheetViewDetails}
+      />
 
       {/* Footer */}
       <footer

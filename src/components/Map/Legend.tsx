@@ -1,46 +1,65 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import type { LensId } from '@/types/lens';
+import { LENS_DEFINITIONS, DEFAULT_LENS } from '@/types/lens';
+
+const LEGEND_COLLAPSED_KEY = 'legendCollapsed';
 
 interface LegendProps {
+  /** Active lens - determines which legend items to show */
+  activeLens?: LensId;
   className?: string;
 }
 
 /**
- * Legend component with OBJECTIVE FACT-BASED descriptions only.
- * No made-up scores or arbitrary tiers.
+ * Legend component with dynamic lens-aware content.
+ * Renders legend items from LENS_DEFINITIONS based on active lens.
  * Positioned as bottom-left overlay with table-style layout.
+ *
+ * First-visit behavior: Legend starts expanded and cannot be collapsed until
+ * the user explicitly collapses it (preference saved to localStorage).
  */
-export default function Legend({ className = '' }: LegendProps) {
+export default function Legend({ activeLens = DEFAULT_LENS, className = '' }: LegendProps) {
+  // Start expanded on first visit, use stored preference thereafter
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [hasBeenCollapsed, setHasBeenCollapsed] = useState(false);
 
-  // Objective fact-based legend items - no scores
-  const legendItems = [
-    {
-      color: '#1E40AF',
-      pattern: null,
-      label: 'Dem Incumbent',
-      description: 'Current representative is Democrat',
-    },
-    {
-      color: '#3B82F6',
-      pattern: null,
-      label: 'Dem Challenger',
-      description: 'Democrat filed to run',
-    },
-    {
-      color: null,
-      pattern: 'needs-candidate',
-      label: 'Close Race',
-      description: 'No Dem filed, margin ≤15pts',
-    },
-    {
-      color: '#E5E7EB',
-      pattern: null,
-      label: 'Safe R Seat',
-      description: 'No Dem filed, margin >15pts',
-    },
-  ];
+  // Check localStorage on mount for user's previous preference
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const stored = localStorage.getItem(LEGEND_COLLAPSED_KEY);
+    if (stored === 'true') {
+      setIsCollapsed(true);
+      setHasBeenCollapsed(true);
+    }
+  }, []);
+
+  // Save collapse state to localStorage when user collapses
+  const handleToggle = () => {
+    const newState = !isCollapsed;
+    setIsCollapsed(newState);
+    if (newState) {
+      setHasBeenCollapsed(true);
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(LEGEND_COLLAPSED_KEY, 'true');
+      }
+    } else {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem(LEGEND_COLLAPSED_KEY);
+      }
+    }
+  };
+
+  // Get legend items from the active lens definition
+  const { legendItems, footnote, label: lensLabel } = useMemo(() => {
+    const lens = LENS_DEFINITIONS[activeLens];
+    return {
+      legendItems: lens.legendItems,
+      footnote: lens.footnote,
+      label: lens.label,
+    };
+  }, [activeLens]);
 
   return (
     <div className={`legend-overlay ${isCollapsed ? 'legend-collapsed' : ''} ${className}`}>
@@ -48,11 +67,11 @@ export default function Legend({ className = '' }: LegendProps) {
       <button
         type="button"
         className="legend-header"
-        onClick={() => setIsCollapsed(!isCollapsed)}
+        onClick={handleToggle}
         aria-expanded={!isCollapsed}
         aria-controls="legend-content"
       >
-        <span className="legend-title">Map Legend</span>
+        <span className="legend-title">{lensLabel} Legend</span>
         <svg
           className={`legend-toggle-icon ${isCollapsed ? 'legend-toggle-collapsed' : ''}`}
           fill="none"
@@ -73,12 +92,15 @@ export default function Legend({ className = '' }: LegendProps) {
               {legendItems.map((item) => (
                 <tr key={item.label} role="listitem">
                   <td className="legend-swatch-cell">
-                    {item.pattern === 'needs-candidate' ? (
-                      <span className="legend-swatch legend-pattern-needs" aria-hidden="true" />
+                    {item.pattern ? (
+                      <span
+                        className={`legend-swatch legend-pattern-${item.pattern}`}
+                        aria-hidden="true"
+                      />
                     ) : (
                       <span
                         className="legend-swatch"
-                        style={{ backgroundColor: item.color || '#E5E7EB' }}
+                        style={{ backgroundColor: item.color }}
                         aria-hidden="true"
                       />
                     )}
@@ -93,9 +115,7 @@ export default function Legend({ className = '' }: LegendProps) {
               ))}
             </tbody>
           </table>
-          <p className="legend-footnote">
-            Margin based on most recent election (SC Election Commission)
-          </p>
+          <p className="legend-footnote">{footnote}</p>
         </div>
       )}
     </div>

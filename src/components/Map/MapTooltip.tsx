@@ -1,12 +1,25 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import type { District } from '@/types/schema';
+import type { District, DistrictElectionHistory } from '@/types/schema';
+import type { LensId } from '@/types/lens';
+import { DEFAULT_LENS } from '@/types/lens';
+import {
+  getDistrictCategory,
+  getCategoryLabel,
+  type OpportunityData,
+} from '@/lib/districtColors';
 
 interface MapTooltipProps {
   district: District | null;
   chamber: 'house' | 'senate';
   mousePosition: { x: number; y: number } | null;
+  /** Active lens for category display */
+  activeLens?: LensId;
+  /** Election history for margin calculation */
+  electionHistory?: DistrictElectionHistory | null;
+  /** Opportunity data for opportunity lens */
+  opportunityData?: OpportunityData | null;
 }
 
 /**
@@ -14,13 +27,21 @@ interface MapTooltipProps {
  *
  * Features:
  * - District number + chamber
+ * - Incumbent info
+ * - Filing status
+ * - Lens-aware category label
  * - Candidate count with party dots
- * - "+X more" indicator
  * - Glassmorphic styling with backdrop blur
- * - `pointer-events: none` for performance
  * - Smooth cursor-following with position offset
  */
-export default function MapTooltip({ district, chamber, mousePosition }: MapTooltipProps) {
+export default function MapTooltip({
+  district,
+  chamber,
+  mousePosition,
+  activeLens = DEFAULT_LENS,
+  electionHistory,
+  opportunityData,
+}: MapTooltipProps) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const tooltipRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | undefined>(undefined);
@@ -67,16 +88,26 @@ export default function MapTooltip({ district, chamber, mousePosition }: MapTool
 
   // Count candidates by party
   const hasDem = district.candidates.some((c) => c.party?.toLowerCase() === 'democratic');
+  const hasRep = district.candidates.some((c) => c.party?.toLowerCase() === 'republican');
   const candidateCount = district.candidates.length;
 
-  // Determine display text
-  const candidateText = candidateCount === 0
-    ? 'No candidates'
-    : candidateCount === 1
-    ? '1 candidate'
-    : `${Math.min(candidateCount, 3)} candidate${candidateCount > 1 ? 's' : ''}`;
+  // Get lens-aware category
+  const category = getDistrictCategory(district, electionHistory || undefined, opportunityData || undefined, activeLens);
+  const categoryLabel = getCategoryLabel(category, activeLens);
 
-  const moreText = candidateCount > 3 ? `+${candidateCount - 3} more` : null;
+  // Incumbent info
+  const incumbentText = district.incumbent
+    ? `${district.incumbent.name} (${district.incumbent.party?.charAt(0) || '?'})`
+    : 'Open seat';
+
+  // Filing status
+  const filingStatus = hasDem && hasRep
+    ? 'Contested'
+    : hasDem
+    ? 'Dem filed'
+    : hasRep
+    ? 'Rep only'
+    : 'No candidates';
 
   return (
     <div
@@ -93,15 +124,30 @@ export default function MapTooltip({ district, chamber, mousePosition }: MapTool
       </div>
 
       <div className="tooltip-body">
-        <div className="tooltip-candidates">
-          {candidateCount > 0 && hasDem && (
-            <div className="party-dots">
-              <span className="party-dot democrat" title="Democrat running" />
-            </div>
-          )}
-          <span className="candidate-count">{candidateText}</span>
+        {/* Incumbent row */}
+        <div className="tooltip-row">
+          <span className="tooltip-label">Incumbent:</span>
+          <span className="tooltip-value">{incumbentText}</span>
         </div>
-        {moreText && <span className="more-text">{moreText}</span>}
+
+        {/* Filing status with party dots */}
+        <div className="tooltip-row">
+          <span className="tooltip-label">Status:</span>
+          <div className="tooltip-status">
+            {hasDem && <span className="party-dot democrat" title="Democrat" />}
+            {hasRep && <span className="party-dot republican" title="Republican" />}
+            <span className="tooltip-value">{filingStatus}</span>
+          </div>
+        </div>
+
+        {/* Lens category */}
+        <div className="tooltip-row tooltip-category">
+          <span className="tooltip-category-label">{categoryLabel}</span>
+        </div>
+      </div>
+
+      <div className="tooltip-footer">
+        <span className="tooltip-hint">Click for details</span>
       </div>
     </div>
   );
