@@ -6,11 +6,18 @@ Reads from Google Sheets (Source of Truth) and generates
 public/data/candidates.json for the Blue Intelligence webapp.
 
 Uses simplified 3-tab structure with single 'party' column.
-Fallback: Uses incumbents.json when Sheets data is empty.
+
+Party enrichment fallback chain:
+1. Sheets 'party' column (user-verified)
+2. party-data.json (verified candidate records with fuzzy name matching)
+3. None (unknown party)
+
+Also falls back to incumbents.json when Sheets district data is empty.
 """
 
 import json
 import os
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -24,6 +31,158 @@ from src.config import (
     SC_SENATE_DISTRICTS,
     GOOGLE_SHEETS_CREDENTIALS,
 )
+
+
+def load_party_data() -> dict:
+    """
+    Load verified party data from party-data.json as fallback source.
+
+    Returns:
+        Dict with 'candidates' mapping name variants to party info.
+    """
+    project_root = Path(__file__).parent.parent.parent
+    party_data_path = project_root / "public" / "data" / "party-data.json"
+
+    if not party_data_path.exists():
+        print(f"Warning: Party data fallback file not found: {party_data_path}")
+        return {"candidates": {}}
+
+    with open(party_data_path) as f:
+        data = json.load(f)
+
+    candidate_count = len(data.get("candidates", {}))
+    print(f"Loaded party data fallback: {candidate_count} candidate records")
+    return data
+
+
+def normalize_name_for_matching(name: str) -> str:
+    """
+    Normalize a name for fuzzy matching.
+
+    Handles:
+    - "Last, First" vs "First Last" formats
+    - Common suffixes (Jr., III, etc.)
+    - Whitespace normalization
+    - Case normalization
+
+    Returns:
+        Normalized name string for comparison.
+    """
+    if not name:
+        return ""
+
+    name = name.strip().lower()
+
+    # Remove common suffixes
+    suffixes = [" jr.", " jr", " iii", " ii", " iv", " sr.", " sr"]
+    for suffix in suffixes:
+        if name.endswith(suffix):
+            name = name[:-len(suffix)]
+
+    # Handle "Last, First" format - convert to "first last"
+    if "," in name:
+        parts = name.split(",", 1)
+        if len(parts) == 2:
+            last = parts[0].strip()
+            first = parts[1].strip().split()[0] if parts[1].strip() else ""
+            if first:
+                name = f"{first} {last}"
+            else:
+                name = last
+
+    # Normalize whitespace
+    name = " ".join(name.split())
+
+    return name
+
+
+def extract_last_name(name: str) -> str:
+    """Extract the last name from a normalized name."""
+    parts = name.split()
+    return parts[-1] if parts else ""
+
+
+def fuzzy_name_match(name1: str, name2: str) -> bool:
+    """
+    Check if two names match (fuzzy matching).
+
+    Returns:
+        True if names are considered a match.
+    """
+    norm1 = normalize_name_for_matching(name1)
+    norm2 = normalize_name_for_matching(name2)
+
+    # Exact match after normalization
+    if norm1 == norm2:
+        return True
+
+    # Check if last names match and first 3 chars of first name match
+    parts1 = norm1.split()
+    parts2 = norm2.split()
+
+    if len(parts1) >= 2 and len(parts2) >= 2:
+        # Compare last names
+        if parts1[-1] == parts2[-1]:
+            # Check first names (at least first 3 chars)
+            first1 = parts1[0][:3] if len(parts1[0]) >= 3 else parts1[0]
+            first2 = parts2[0][:3] if len(parts2[0]) >= 3 else parts2[0]
+            if first1 == first2:
+                return True
+
+    return False
+
+
+def get_party_from_fallback(candidate_name: str, party_data: dict) -> str | None:
+    """
+    Look up party from party-data.json by fuzzy name matching.
+
+    Args:
+        candidate_name: The candidate's name from Sheets.
+        party_data: The loaded party-data.json dict.
+
+    Returns:
+        Party code ('D', 'R', 'I', 'O') or None if not found.
+    """
+    candidates = party_data.get("candidates", {})
+
+    # First try exact match on keys (which may be "Last, First" format)
+    if candidate_name in candidates:
+        entry = candidates[candidate_name]
+        return normalize_party_code(entry.get("party"))
+
+    # Try fuzzy matching
+    for name_key, entry in candidates.items():
+        if fuzzy_name_match(candidate_name, name_key):
+            return normalize_party_code(entry.get("party"))
+
+    return None
+
+
+def normalize_party_code(party: str | None) -> str | None:
+    """
+    Normalize party strings to standard codes.
+
+    Args:
+        party: Party string in various formats.
+
+    Returns:
+        Normalized party code ('D', 'R', 'I', 'O') or None.
+    """
+    if not party:
+        return None
+
+    party = party.strip().upper()
+
+    if party in ("D", "DEMOCRAT", "DEMOCRATIC"):
+        return "D"
+    elif party in ("R", "REPUBLICAN"):
+        return "R"
+    elif party in ("I", "INDEPENDENT"):
+        return "I"
+    elif party in ("O", "OTHER"):
+        return "O"
+
+    return party if len(party) == 1 else None
 
 
 def load_incumbents_fallback() -> dict:
@@ -120,6 +279,9 @@ def export_candidates(output_path: str = None, dry_run: bool = False) -> bool:
     # Load incumbent fallback from incumbents.json
     incumbents_fallback = load_incumbents_fallback()
 
+    # Load party data fallback from party-data.json
+    party_data = load_party_data()
+
     # Build output structure
     output = {
         "lastUpdated": datetime.now(timezone.utc).isoformat(),
@@ -186,10 +348,15 @@ def export_candidates(output_path: str = None, dry_run: bool = False) -> bool:
             print(f"Warning: Could not parse district_id: {district_id}")
             continue
 
-        # Get the party directly from the 'party' column
+        # Get the party with fallback chain: Sheets → party-data.json → None
+        candidate_name = candidate.get("candidate_name", "")
         party = candidate.get("party") or None
         if party in ("UNKNOWN", ""):
             party = None
+
+        # Fallback to party-data.json if Sheets party is empty
+        if not party:
+            party = get_party_from_fallback(candidate_name, party_data)
 
         # Normalize party codes to full names
         if party:
@@ -204,7 +371,6 @@ def export_candidates(output_path: str = None, dry_run: bool = False) -> bool:
         # If it's a hyperlink formula, extract the URL
         if ethics_url and ethics_url.startswith("=HYPERLINK"):
             # Extract URL from =HYPERLINK("url", "text")
-            import re
             match = re.search(r'HYPERLINK\("([^"]+)"', ethics_url)
             if match:
                 ethics_url = match.group(1)
