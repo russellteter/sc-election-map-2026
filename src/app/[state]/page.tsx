@@ -519,14 +519,14 @@ export default function StateDashboard() {
       <KeyboardShortcutsHelp isOpen={showShortcuts} onClose={() => setShowShortcuts(false)} />
 
       {/* Header */}
-      <header className="glass-surface border-b animate-entrance stagger-1 sticky top-0 z-40" style={{ borderColor: 'var(--class-purple-light)' }}>
+      <header className="glass-surface border-b animate-entrance stagger-1 sticky top-0 z-40" style={{ borderColor: 'var(--border-subtle-solid)' }}>
         <div className="max-w-7xl mx-auto px-4 py-2">
           <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <Link href="/" className="text-sm hover:underline" style={{ color: 'var(--class-purple)' }}>
+                    <Link href="/" className="text-sm hover:underline" style={{ color: 'var(--brand-primary)' }}>
                       All States
                     </Link>
                     <span style={{ color: 'var(--text-muted)' }}>/</span>
@@ -654,17 +654,20 @@ export default function StateDashboard() {
         </div>
       </header>
 
-      {/* Filter Bar */}
-      <div className="border-b animate-entrance stagger-2" style={{ background: '#FAFAFA', borderColor: '#E2E8F0' }}>
+      {/* Unified Map Controls Bar - Consolidated Filter + Lens */}
+      <div className="border-b animate-entrance stagger-2 map-controls-bar" style={{ background: 'var(--surface)', borderColor: 'var(--border-subtle-solid)' }}>
         <div className="max-w-7xl mx-auto px-4 py-2">
-          <FilterPanel filters={filters} onFilterChange={setFilters} variant="horizontal" />
-        </div>
-      </div>
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+            {/* Lens Pills - Primary Map View Selection */}
+            <div className="flex-1">
+              <LensToggleBar activeLens={activeLens} onLensChange={setLens} />
+            </div>
 
-      {/* Lens Toggle Bar */}
-      <div className="border-b animate-entrance stagger-2" style={{ background: '#FAFAFA', borderColor: '#E2E8F0' }}>
-        <div className="max-w-7xl mx-auto px-4 py-2">
-          <LensToggleBar activeLens={activeLens} onLensChange={setLens} />
+            {/* Filters - Secondary Refinement */}
+            <div className="lg:border-l lg:pl-4" style={{ borderColor: 'var(--border-subtle-solid)' }}>
+              <FilterPanel filters={filters} onFilterChange={setFilters} variant="horizontal" />
+            </div>
+          </div>
         </div>
       </div>
 

@@ -21,28 +21,28 @@ const variantStyles: Record<KPIVariant, {
   accentColor: string;
 }> = {
   democrat: {
-    valueColor: '#1E40AF',
-    accentColor: '#1E40AF',
+    valueColor: 'var(--party-dem)',
+    accentColor: 'var(--party-dem)',
   },
   republican: {
-    valueColor: '#DC2626',
-    accentColor: '#DC2626',
+    valueColor: 'var(--party-rep)',
+    accentColor: 'var(--party-rep)',
   },
   contested: {
-    valueColor: '#059669',
-    accentColor: '#059669',
+    valueColor: 'var(--status-excellent)',
+    accentColor: 'var(--status-excellent)',
   },
   unknown: {
-    valueColor: '#64748B',
-    accentColor: '#D97706',
+    valueColor: 'var(--text-muted)',
+    accentColor: 'var(--status-attention)',
   },
   empty: {
-    valueColor: '#94A3B8',
-    accentColor: '#CBD5E1',
+    valueColor: 'var(--text-disabled)',
+    accentColor: 'var(--border-default-solid)',
   },
   default: {
-    valueColor: '#0F172A',
-    accentColor: '#1E40AF',
+    valueColor: 'var(--text-primary)',
+    accentColor: 'var(--brand-primary)',
   },
 };
 
@@ -82,7 +82,7 @@ export function KPICard({
       } : undefined}
     >
       {/* Label */}
-      <div className="text-xs uppercase tracking-wide mb-1" style={{ color: '#64748B' }}>
+      <div className="text-xs uppercase tracking-wide mb-1" style={{ color: 'var(--text-muted)' }}>
         {label}
       </div>
 
@@ -101,7 +101,7 @@ export function KPICard({
 
       {/* Optional subtext */}
       {subtext && (
-        <p className="text-xs mt-2 pt-2 border-t" style={{ color: '#64748B', borderColor: '#E2E8F0' }}>
+        <p className="text-xs mt-2 pt-2 border-t" style={{ color: 'var(--text-muted)', borderColor: 'var(--border-subtle-solid)' }}>
           {subtext}
         </p>
       )}

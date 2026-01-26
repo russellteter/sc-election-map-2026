@@ -54,11 +54,11 @@ export default function SidePanel({
         <div className="text-center animate-entrance">
           <div
             className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
-            style={{ background: 'var(--class-purple-bg)' }}
+            style={{ background: 'var(--background-alt)' }}
           >
             <svg
               className="w-8 h-8"
-              style={{ color: 'var(--class-purple-light)' }}
+              style={{ color: 'var(--brand-primary-light)' }}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -99,8 +99,8 @@ export default function SidePanel({
         className="border-b side-panel-header"
         style={{
           padding: 'var(--space-4)', /* Compact: 12px (was p-4 = 16px) */
-          background: 'linear-gradient(135deg, rgba(255,255,255,0.98) 0%, var(--class-purple-bg) 100%)',
-          borderColor: 'var(--class-purple-light)',
+          background: 'var(--glass-gradient)',
+          borderColor: 'var(--border-subtle-solid)',
         }}
       >
         <div className="flex items-center justify-between">
@@ -170,7 +170,7 @@ export default function SidePanel({
           href={raceProfileUrl}
           className="mt-3 w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-medium text-sm transition-all hover:opacity-90 focus-ring"
           style={{
-            background: 'var(--class-purple)',
+            background: 'var(--brand-primary)',
             color: 'white',
             textDecoration: 'none',
           }}
@@ -192,8 +192,8 @@ export default function SidePanel({
         <div
           className="px-3 py-2 border-b flex items-center gap-3"
           style={{
-            background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(246,246,254,0.9) 100%)',
-            borderColor: 'var(--class-purple-light)',
+            background: 'var(--glass-gradient)',
+            borderColor: 'var(--border-subtle-solid)',
           }}
         >
           {/* Section Label */}
@@ -216,19 +216,19 @@ export default function SidePanel({
 
               const partyLetter = isDem ? 'D' : isRep ? 'R' : '?';
               const pillBg = isDem
-                ? 'rgba(71, 57, 231, 0.12)'
+                ? 'var(--party-dem-bg)'
                 : isRep
-                ? 'rgba(220, 38, 38, 0.12)'
+                ? 'var(--party-rep-bg)'
                 : 'rgba(107, 114, 128, 0.12)';
               const pillBorder = isDem
-                ? 'rgba(71, 57, 231, 0.3)'
+                ? 'var(--party-dem-border)'
                 : isRep
-                ? 'rgba(220, 38, 38, 0.3)'
+                ? 'var(--party-rep-border)'
                 : 'rgba(107, 114, 128, 0.3)';
               const textColor = isDem
-                ? 'var(--class-purple)'
+                ? 'var(--party-dem)'
                 : isRep
-                ? 'var(--color-at-risk)'
+                ? 'var(--party-rep)'
                 : 'var(--text-muted)';
 
               return (
@@ -335,11 +335,11 @@ export default function SidePanel({
           <div className="text-center py-8 animate-entrance" style={{ color: 'var(--text-muted)' }}>
             <div
               className="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center"
-              style={{ background: 'var(--class-purple-light)' }}
+              style={{ background: 'var(--brand-primary-light)' }}
             >
               <svg
                 className="w-6 h-6"
-                style={{ color: 'var(--class-purple)' }}
+                style={{ color: 'var(--brand-primary)' }}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -362,15 +362,15 @@ export default function SidePanel({
               <div>
                 <div
                   className="flex items-center gap-2 mb-2 pb-2 border-b"
-                  style={{ borderColor: 'var(--class-purple-light)' }}
+                  style={{ borderColor: 'var(--party-dem-border)' }}
                 >
                   <span
                     className="w-3 h-3 rounded-full"
-                    style={{ background: 'var(--class-purple)' }}
+                    style={{ background: 'var(--party-dem)' }}
                   />
                   <span
                     className="text-xs font-semibold uppercase tracking-wider"
-                    style={{ color: 'var(--class-purple)' }}
+                    style={{ color: 'var(--party-dem)' }}
                   >
                     Democrats ({candidateGroups.democrats.length})
                   </span>
@@ -392,15 +392,15 @@ export default function SidePanel({
               <div>
                 <div
                   className="flex items-center gap-2 mb-2 pb-2 border-b"
-                  style={{ borderColor: 'rgba(220, 38, 38, 0.3)' }}
+                  style={{ borderColor: 'var(--party-rep-border)' }}
                 >
                   <span
                     className="w-3 h-3 rounded-full"
-                    style={{ background: '#DC2626' }}
+                    style={{ background: 'var(--party-rep)' }}
                   />
                   <span
                     className="text-xs font-semibold uppercase tracking-wider"
-                    style={{ color: '#DC2626' }}
+                    style={{ color: 'var(--party-rep)' }}
                   >
                     Republicans ({candidateGroups.republicans.length})
                   </span>
@@ -422,15 +422,15 @@ export default function SidePanel({
               <div>
                 <div
                   className="flex items-center gap-2 mb-2 pb-2 border-b"
-                  style={{ borderColor: 'var(--class-purple-light)' }}
+                  style={{ borderColor: 'var(--border-subtle-solid)' }}
                 >
                   <span
                     className="w-3 h-3 rounded-full"
-                    style={{ background: 'var(--color-attention)' }}
+                    style={{ background: 'var(--status-attention)' }}
                   />
                   <span
                     className="text-xs font-semibold uppercase tracking-wider"
-                    style={{ color: 'var(--color-attention)' }}
+                    style={{ color: 'var(--status-attention)' }}
                   >
                     Other ({candidateGroups.others.length})
                   </span>

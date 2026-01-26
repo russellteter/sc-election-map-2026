@@ -62,10 +62,10 @@ function getScoreColor(score: number): string {
  * Get margin display color based on party advantage
  */
 function getMarginColor(marginDisplay: string): string {
-  if (marginDisplay === 'N/A') return '#64748B';
+  if (marginDisplay === 'N/A') return 'var(--text-muted)';
   // + means Republican advantage (red), - means Democrat (blue)
-  if (marginDisplay.startsWith('+')) return '#DC2626';
-  return '#1E40AF';
+  if (marginDisplay.startsWith('+')) return 'var(--party-rep)';
+  return 'var(--party-dem)';
 }
 
 export default function TableRow({ row, index, onClick }: TableRowProps) {
@@ -128,10 +128,10 @@ export default function TableRow({ row, index, onClick }: TableRowProps) {
             style={{
               color:
                 row.incumbentParty === 'Republican'
-                  ? '#DC2626'
+                  ? 'var(--party-rep)'
                   : row.incumbentParty === 'Democratic'
-                  ? '#1E40AF'
-                  : '#64748B',
+                  ? 'var(--party-dem)'
+                  : 'var(--text-muted)',
             }}
           >
             {row.incumbentParty}
@@ -151,10 +151,10 @@ export default function TableRow({ row, index, onClick }: TableRowProps) {
               style={{
                 color:
                   row.challengerParty === 'Democratic'
-                    ? '#1E40AF'
+                    ? 'var(--party-dem)'
                     : row.challengerParty === 'Republican'
-                    ? '#DC2626'
-                    : '#64748B',
+                    ? 'var(--party-rep)'
+                    : 'var(--text-muted)',
               }}
             >
               {row.challengerParty}

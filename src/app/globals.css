@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
+/* ================================================
+   DESIGN SYSTEM TOKENS
+   SC Election Map 2026 v2.0
+   Unified token system for consistent styling
+   ================================================ */
+@import "../styles/tokens/colors.css";
+@import "../styles/tokens/effects.css";
+@import "../styles/tokens/spacing.css";
+@import "../styles/tokens/components.css";
+
+/* Legacy overrides - maintained for backwards compatibility */
 :root {
-  --background: #F8FAFC;
-  --foreground: #0F172A;
+  --background: #EDECFD;           /* Updated: pale purple background */
+  --foreground: #0A1849;           /* Updated: darker text for contrast */
 }
 
 @theme inline {
@@ -81,13 +92,13 @@ svg path[id^="senate-"]:hover,
 
 /* Keyboard focus styles for accessibility */
 .district-path:focus {
-  outline: 3px solid #1e3a8a; /* blue-900 - high contrast focus ring */
+  outline: 3px solid var(--brand-primary);
   outline-offset: 2px;
   opacity: 0.9;
 }
 
 .district-path:focus-visible {
-  outline: 3px solid #1e3a8a;
+  outline: 3px solid var(--brand-primary);
   outline-offset: 2px;
   opacity: 0.9;
 }
@@ -297,127 +308,26 @@ svg path[id^="senate-"]:hover,
 }
 
 /* ================================================
-   GLASSMORPHIC DESIGN SYSTEM TOKENS
-   SC Election Map 2026
-   Design System: /glassmorphic-dashboard + /frontend-design
+   GLASSMORPHIC DESIGN SYSTEM - LEGACY OVERRIDES
+   SC Election Map 2026 v2.0
+   Note: Primary tokens now come from /styles/tokens/*.css
+   This section contains only font family definitions and
+   any necessary legacy overrides for backward compatibility
    ================================================ */
 
 :root {
-  /* PRIMARY COLORS - Class Dashboard Style */
-  --class-purple: #1E40AF;         /* Now blue (keeping var name for compatibility) */
-  --class-purple-light: #DBEAFE;   /* Light blue */
-  --class-purple-bg: #F8FAFC;      /* Off-white */
-  --glass-background: #FFFFFF;     /* Pure white */
-  --text-color: #0F172A;
-  --text-muted: #64748B;
-  --yellow-accent: #D97706;
-  --card-bg: #FFFFFF;
+  /* TYPOGRAPHY FONT FAMILIES */
+  --font-display: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* NEW CLASS DASHBOARD TOKENS */
-  --class-blue: #1E40AF;
-  --class-blue-hover: #1D4ED8;
-  --class-blue-dark: #1E3A8A;
-  --border-subtle: #E2E8F0;
-  --border-default: #CBD5E1;
-  --link-blue: #2563EB;
+  /* SIMPLIFIED GRADIENTS - Now using solid brand primary */
+  --gradient-primary: var(--brand-primary);
+  --gradient-bg: var(--background);
+  --gradient-glass: var(--surface);
+  --gradient-card-hover: rgba(71, 57, 231, 0.02);
 
-  /* ACCENT COLORS */
-  --accent-cyan: #0891B2;
-  --accent-emerald: #059669;
-  --accent-amber: #D97706;
-  --accent-rose: #DC2626;
-
-  /* STATUS COLORS (SEMANTIC) */
-  --color-excellent: #059669;
-  --color-healthy: #1E40AF;        /* Blue */
-  --color-attention: #D97706;
-  --color-at-risk: #DC2626;
-  --color-empty: #E2E8F0;
-
-  /* STATUS BACKGROUNDS - Solid, no gradients */
-  --color-excellent-bg: #ECFDF5;
-  --color-healthy-bg: #DBEAFE;
-  --color-attention-bg: #FEF3C7;
-  --color-at-risk-bg: #FEE2E2;
-
-  /* ELECTION MAP COLORS */
-  --map-democrat: #1E40AF;
-  --map-republican: #DC2626;
-  --map-both-parties: #059669;
-  --map-unknown: #94A3B8;
-  --map-empty: #F1F5F9;
-  --map-stroke: #CBD5E1;
-
-  /* SIMPLIFIED - No gradients */
-  --gradient-primary: #1E40AF;
-  --gradient-bg: #F8FAFC;
-  --gradient-glass: #FFFFFF;
-  --gradient-card-hover: rgba(30, 64, 175, 0.02);
-
-  /* TYPOGRAPHY */
-  --font-display: var(--font-display), 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: var(--font-body), 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
-
-  /* SPACING */
-  --space-1: 2px;
-  --space-2: 4px;
-  --space-3: 8px;
-  --space-4: 12px;
-  --space-5: 16px;
-  --space-6: 20px;
-  --space-7: 24px;
-  --space-8: 32px;
-
-  /* TYPOGRAPHY - LETTER SPACING */
-  --letter-spacing-tight: -0.02em;
-  --letter-spacing-normal: 0;
-  --letter-spacing-wide: 0.05em;
-  --letter-spacing-caps: 0.12em;    /* For uppercase labels */
-
-  /* TYPOGRAPHY - LINE HEIGHT */
-  --line-height-tight: 1.1;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
-
-  /* BORDER RADIUS */
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
-  --radius-pill: 9999px;
-
-  /* SHADOWS - Simplified for clean look */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
-
-  /* ANIMATION TIMING TOKENS */
-  --duration-fast: 150ms;
-  --duration-normal: 250ms;
-  --duration-slow: 400ms;
-  --ease-out: ease-out;
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-
-  /* TRANSITION SHORTHAND TOKENS */
-  --transition-fast: var(--duration-fast) var(--ease-out);
-  --transition-normal: var(--duration-normal) var(--ease-out);
-  --transition-slow: var(--duration-slow) var(--ease-out);
-  --transition-standard: var(--duration-normal) var(--ease-out-expo);
-
-  /* MAP ZOOM ANIMATION TOKENS */
-  --map-zoom-duration: 400ms;
-  --map-zoom-easing: cubic-bezier(0.16, 1, 0.3, 1); /* ease-out-expo */
-  --map-zoom-scale-max: 3;
+  /* HIGHLIGHT PURPLE - For ghost button hover */
+  --highlight-purple: rgba(71, 57, 231, 0.08);
 }
 
 /* CLEAN SURFACES - Class Dashboard Style */
@@ -440,6 +350,16 @@ svg path[id^="senate-"]:hover,
 }
 
 /* ================================================
+   MAP CONTROLS BAR - Unified Filter + Lens Section
+   ================================================ */
+
+.map-controls-bar {
+  background: var(--glass-gradient);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ================================================
    HORIZONTAL FILTER BAR - Class Dashboard Style
    ================================================ */
 
@@ -458,13 +378,13 @@ svg path[id^="senate-"]:hover,
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #64748B;
+  color: var(--text-muted);
 }
 
 .filter-bar-divider {
   width: 1px;
   height: 24px;
-  background: #E2E8F0;
+  background: var(--border-subtle-solid);
 }
 
 .filter-group {
@@ -475,7 +395,7 @@ svg path[id^="senate-"]:hover,
 
 .filter-group-label {
   font-size: 11px;
-  color: #64748B;
+  color: var(--text-muted);
   text-transform: uppercase;
   font-weight: 500;
   letter-spacing: 0.03em;
@@ -486,25 +406,25 @@ svg path[id^="senate-"]:hover,
   align-items: center;
   gap: 6px;
   padding: 6px 10px;
-  border: 1px solid #E2E8F0;
-  border-radius: 6px;
+  border: 1px solid var(--border-subtle-solid);
+  border-radius: var(--radius-md);
   font-size: 13px;
-  background: white;
+  background: var(--surface);
   min-width: 120px;
   cursor: pointer;
-  transition: all 0.15s ease;
-  color: #1E293B;
+  transition: all var(--transition-fast);
+  color: var(--text-primary);
 }
 
 .filter-select:hover {
-  border-color: #CBD5E1;
-  background: #F8FAFC;
+  border-color: var(--border-default-solid);
+  background: var(--background-alt);
 }
 
 .filter-select-active {
-  border-color: var(--class-blue, #1E40AF);
-  background: #EFF6FF;
-  color: var(--class-blue, #1E40AF);
+  border-color: var(--brand-primary);
+  background: var(--brand-primary-bg);
+  color: var(--brand-primary);
 }
 
 .filter-reset {
@@ -512,11 +432,11 @@ svg path[id^="senate-"]:hover,
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  background: white;
-  border: 1px solid #E2E8F0;
-  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle-solid);
+  border-radius: var(--radius-md);
   font-size: 12px;
-  color: #64748B;
+  color: var(--text-muted);
   cursor: pointer;
   transition: all 0.15s ease;
 }
@@ -573,8 +493,8 @@ svg path[id^="senate-"]:hover,
 }
 
 .filter-dropdown-item-selected {
-  background: #EFF6FF;
-  color: var(--class-blue, #1E40AF);
+  background: var(--brand-primary-bg);
+  color: var(--brand-primary);
 }
 
 .filter-checkbox {
@@ -590,8 +510,8 @@ svg path[id^="senate-"]:hover,
 }
 
 .filter-checkbox-checked {
-  background: var(--class-blue, #1E40AF);
-  border-color: var(--class-blue, #1E40AF);
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
   color: white;
 }
 
@@ -615,9 +535,9 @@ svg path[id^="senate-"]:hover,
 }
 
 .filter-more-active {
-  background: #EFF6FF;
-  border-color: var(--class-blue, #1E40AF);
-  color: var(--class-blue, #1E40AF);
+  background: var(--brand-primary-bg);
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
 }
 
 .filter-more-panel {
@@ -668,14 +588,14 @@ svg path[id^="senate-"]:hover,
 }
 
 .filter-chip-selected {
-  background: var(--class-blue, #1E40AF);
-  border-color: var(--class-blue, #1E40AF);
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
   color: white;
 }
 
 .filter-chip-selected-red {
-  background: #DC2626;
-  border-color: #DC2626;
+  background: var(--party-rep);
+  border-color: var(--party-rep);
   color: white;
 }
 
@@ -735,15 +655,15 @@ svg path[id^="senate-"]:hover,
   position: absolute;
   bottom: 16px;
   left: 16px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid #E2E8F0;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: var(--glass-gradient);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
   z-index: 10;
   max-width: 360px;
-  animation: legend-in 0.2s ease-out;
+  animation: legend-in 0.2s var(--ease-out-expo);
 }
 
 @keyframes legend-in {
@@ -766,13 +686,13 @@ svg path[id^="senate-"]:hover,
   padding: 10px 14px;
   background: transparent;
   border: none;
-  border-bottom: 1px solid #E2E8F0;
+  border-bottom: 1px solid var(--border-subtle-solid);
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: background var(--transition-fast);
 }
 
 .legend-header:hover {
-  background: #F8FAFC;
+  background: var(--background-alt);
 }
 
 .legend-collapsed .legend-header {
@@ -784,11 +704,11 @@ svg path[id^="senate-"]:hover,
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #64748B;
+  color: var(--text-muted);
 }
 
 .legend-toggle-icon {
-  color: #94A3B8;
+  color: var(--text-disabled);
   transition: transform var(--transition-normal);
 }
 
@@ -810,7 +730,7 @@ svg path[id^="senate-"]:hover,
 .legend-item {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #F1F5F9;
+  border-bottom: 1px solid var(--border-subtle-solid);
 }
 
 .legend-item:last-child {
@@ -939,9 +859,9 @@ svg path[id^="senate-"]:hover,
 }
 
 /* KPI Card Variants */
-.kpi-card.democrat .value { color: var(--class-purple); }
-.kpi-card.unknown .value { color: #9ca3af; }
-.kpi-card.empty .value { color: #d1d5db; }
+.kpi-card.democrat .value { color: var(--party-dem); }
+.kpi-card.unknown .value { color: var(--text-muted); }
+.kpi-card.empty .value { color: var(--text-disabled); }
 
 /* STATUS BADGES */
 .badge {
@@ -955,15 +875,15 @@ svg path[id^="senate-"]:hover,
 }
 
 .badge-democrat {
-  background: #DBEAFE;
-  color: var(--class-blue);
-  border: 1px solid #BFDBFE;
+  background: var(--party-dem-bg);
+  color: var(--party-dem-dark);
+  border: 1px solid var(--party-dem-border);
 }
 
 .badge-republican {
-  background: #FEE2E2;
-  color: #DC2626;
-  border: 1px solid #FECACA;
+  background: var(--party-rep-bg);
+  color: var(--party-rep-dark);
+  border: 1px solid var(--party-rep-border);
 }
 
 .badge-unknown {
@@ -1012,8 +932,8 @@ svg path[id^="senate-"]:hover,
 }
 
 .chamber-toggle-btn.active {
-  background: var(--card-bg);
-  color: var(--class-blue);
+  background: var(--surface);
+  color: var(--brand-primary);
   box-shadow: var(--shadow-sm);
   font-weight: 600;
 }
@@ -1168,25 +1088,25 @@ svg path[id^="senate-"]:hover,
 
 /* Enhanced KPI card hover */
 .kpi-card:hover {
-  border-color: var(--class-blue);
+  border-color: var(--brand-primary);
   box-shadow: var(--shadow-md);
 }
 
-/* KPI card value colors - solid, no gradients */
+/* KPI card value colors - solid, using design tokens */
 .kpi-card.democrat .kpi-value {
-  color: var(--class-blue);
+  color: var(--party-dem);
 }
 
 .kpi-card.contested .kpi-value {
-  color: #059669;
+  color: var(--status-excellent);
 }
 
 .kpi-card.unknown .kpi-value {
-  color: #64748B;
+  color: var(--text-muted);
 }
 
 .kpi-card.empty .kpi-value {
-  color: #94A3B8;
+  color: var(--text-disabled);
 }
 
 /* ================================================
@@ -1237,19 +1157,19 @@ svg path[id^="senate-"]:hover,
   will-change: transform, filter;
 }
 
-/* Enhanced hover state - clean blue */
+/* Enhanced hover state - softer steel blue */
 .district-path:hover {
   transform: scale(1.02);
-  filter: drop-shadow(0 0 4px rgba(30, 64, 175, 0.3));
+  filter: drop-shadow(0 0 4px rgba(59, 89, 152, 0.3));
   stroke-width: 1.2;
-  stroke: rgba(30, 64, 175, 0.6);
+  stroke: rgba(59, 89, 152, 0.6);
   z-index: 10;
 }
 
 /* Selected state */
 .district-path.selected {
-  filter: drop-shadow(0 0 6px rgba(30, 64, 175, 0.4));
-  stroke: var(--class-blue);
+  filter: drop-shadow(0 0 6px rgba(71, 57, 231, 0.4));
+  stroke: var(--brand-primary);
   stroke-width: 2;
   z-index: 20;
 }
@@ -1333,10 +1253,10 @@ svg path[id^="senate-"]:hover,
   opacity: 0;
 }
 
-.toast-success { border-left: 3px solid var(--color-excellent); }
-.toast-info { border-left: 3px solid var(--class-purple); }
-.toast-warning { border-left: 3px solid var(--color-attention); }
-.toast-error { border-left: 3px solid var(--color-at-risk); }
+.toast-success { border-left: 3px solid var(--status-excellent); }
+.toast-info { border-left: 3px solid var(--brand-primary); }
+.toast-warning { border-left: 3px solid var(--status-attention); }
+.toast-error { border-left: 3px solid var(--status-at-risk); }
 
 /* Toast progress bar countdown */
 @keyframes toast-countdown {
@@ -1390,7 +1310,7 @@ svg path[id^="senate-"]:hover,
 
 /* Focus ring for accessibility */
 .focus-ring:focus-visible {
-  outline: 2px solid var(--class-purple);
+  outline: 2px solid var(--brand-primary);
   outline-offset: 2px;
 }
 
@@ -1569,16 +1489,13 @@ svg path[id^="senate-"]:hover,
 }
 
 .map-tooltip {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(246, 246, 254, 0.95) 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--class-purple-light);
+  background: var(--glass-gradient);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
   padding: var(--space-3);
-  box-shadow:
-    0 8px 16px -4px rgba(71, 57, 231, 0.12),
-    0 4px 8px -2px rgba(71, 57, 231, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  box-shadow: var(--glass-shadow);
   min-width: 160px;
 }
 
@@ -1588,7 +1505,7 @@ svg path[id^="senate-"]:hover,
   gap: var(--space-2);
   margin-bottom: var(--space-2);
   padding-bottom: var(--space-2);
-  border-bottom: 1px solid var(--class-purple-light);
+  border-bottom: 1px solid var(--border-subtle-solid);
 }
 
 .tooltip-chamber {
@@ -1596,7 +1513,7 @@ svg path[id^="senate-"]:hover,
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--class-purple);
+  color: var(--brand-primary);
   opacity: 0.8;
 }
 
@@ -1633,8 +1550,8 @@ svg path[id^="senate-"]:hover,
 }
 
 .party-dot.democrat {
-  background: var(--class-purple);
-  box-shadow: 0 0 4px rgba(71, 57, 231, 0.4);
+  background: var(--party-dem);
+  box-shadow: 0 0 4px var(--party-dem-glow);
 }
 
 .candidate-count {
@@ -1676,21 +1593,21 @@ svg path[id^="senate-"]:hover,
 }
 
 .party-dot.republican {
-  background: #DC2626;
-  box-shadow: 0 0 4px rgba(220, 38, 38, 0.4);
+  background: var(--party-rep);
+  box-shadow: 0 0 4px var(--party-rep-glow);
 }
 
 .tooltip-category {
   margin-top: var(--space-1);
   padding-top: var(--space-1);
-  border-top: 1px solid var(--class-purple-light);
+  border-top: 1px solid var(--border-subtle-solid);
   justify-content: center;
 }
 
 .tooltip-category-label {
   font-size: 0.625rem;
   font-weight: 600;
-  color: var(--class-purple);
+  color: var(--brand-primary);
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
@@ -1903,11 +1820,11 @@ svg path[id^="senate-"]:hover,
 }
 
 .bottom-sheet-party-dot.democrat {
-  background: var(--class-purple);
+  background: var(--party-dem);
 }
 
 .bottom-sheet-party-dot.republican {
-  background: #DC2626;
+  background: var(--party-rep);
 }
 
 .bottom-sheet-party-dot.unknown {
