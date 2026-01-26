@@ -793,23 +793,29 @@ svg path[id^="senate-"]:hover,
   padding: 8px 12px 12px;
 }
 
-.legend-table {
-  border-collapse: collapse;
+.legend-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   width: 100%;
 }
 
-.legend-table tr {
+.legend-item {
+  display: flex;
+  align-items: center;
   border-bottom: 1px solid #F1F5F9;
 }
 
-.legend-table tr:last-child {
+.legend-item:last-child {
   border-bottom: none;
 }
 
 .legend-swatch-cell {
   padding: 6px 8px 6px 0;
-  vertical-align: middle;
+  flex-shrink: 0;
   width: 28px;
+  display: flex;
+  align-items: center;
 }
 
 .legend-swatch {
@@ -833,7 +839,7 @@ svg path[id^="senate-"]:hover,
 
 .legend-label-cell {
   padding: 6px 8px 6px 0;
-  vertical-align: middle;
+  flex-shrink: 0;
 }
 
 .legend-label {
@@ -845,7 +851,7 @@ svg path[id^="senate-"]:hover,
 
 .legend-desc-cell {
   padding: 6px 0;
-  vertical-align: middle;
+  flex: 1;
 }
 
 .legend-desc {

@@ -52,6 +52,7 @@ export function ToastProvider({ children }: ToastProviderProps) {
       {/* Toast Container - Fixed position */}
       <div
         className="fixed top-4 right-4 z-50 flex flex-col gap-3 pointer-events-none"
+        role="status"
         aria-live="polite"
         aria-label="Notifications"
       >

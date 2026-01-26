@@ -1,6 +1,6 @@
 # Blue Intelligence - Current State
 
-> Last Updated: 2026-01-17 | Phase A Complete
+> Last Updated: 2026-01-25 | v3.1 Complete
 
 ---
 
@@ -67,6 +67,38 @@
 | Race Detail Pages | Live | `/race/[id]` | Historical data |
 | Table View | Live | `/table` | Sortable, filterable |
 | Strategic Opportunities | Live | `/opportunities` | Tier classification |
+
+### Multi-Lens Visualization (v3.0)
+
+| Lens | Component | Description |
+|------|-----------|-------------|
+| Incumbents | `LensToggleBar.tsx` | Current party control of each district |
+| Dem Filing | `LensToggleBar.tsx` | Democratic candidate filing coverage |
+| Opportunity | `LensToggleBar.tsx` | Strategic opportunity tiers (HOT/WARM/POSSIBLE) |
+| Battleground | `LensToggleBar.tsx` | Contested vs uncontested races |
+
+**Key Components:**
+- `src/types/lens.ts` - Lens type definitions and configurations
+- `src/components/Lens/LensToggleBar.tsx` - Lens switcher UI
+- `src/hooks/useLens.ts` - Lens state management
+- `src/lib/districtColors.ts` - Lens-aware district coloring
+- `src/components/Map/Legend.tsx` - Dynamic lens-aware legend
+
+### UX Overhaul (v3.1)
+
+| Feature | Component | Description |
+|---------|-----------|-------------|
+| Address Search | `AddressSearch.tsx` | Find district by address or GPS location |
+| Mobile District Sheet | `MobileDistrictSheet.tsx` | Touch-friendly bottom sheet for mobile |
+| Screenshot Export | `ScreenshotButton.tsx` | Export map as PNG/JPG for sharing |
+| Dynamic Legend | `Legend.tsx` | Collapsible, lens-aware legend |
+| Glassmorphic KPIs | `lensKpis.ts` | Lens-specific KPI calculations |
+
+**Key Files:**
+- `src/components/Search/AddressSearch.tsx` - Geoapify-powered address lookup
+- `src/components/Map/MobileDistrictSheet.tsx` - Swipe-to-close district details
+- `src/components/Export/ScreenshotButton.tsx` - html-to-image export
+- `src/components/ui/Tooltip.tsx` - Reusable tooltip component
 
 ### Intelligence Features (Phase A)
 
@@ -173,24 +205,41 @@
 
 ### Accessibility
 
-| Feature | Status |
-|---------|--------|
-| Keyboard navigation | Implemented |
-| ARIA labels | Present |
-| Color contrast | WCAG AA |
-| Mobile responsive | Yes |
+| Feature | Status | Test Coverage |
+|---------|--------|---------------|
+| Keyboard navigation | Implemented | E2E tests |
+| Skip link | Implemented | E2E tests |
+| ARIA labels | Present | axe-core audit |
+| Color contrast | WCAG AA | axe-core audit |
+| Focus management | Implemented | E2E tests |
+| Screen reader | Tested | axe-core audit |
+| Mobile responsive | Yes | E2E viewport tests |
+
+**Accessibility Testing:**
+- `tests/e2e/accessibility.spec.ts` - axe-core WCAG 2.1 AA audit
+- Baseline page scans for critical violations
+- Component-specific accessibility tests
+- Keyboard navigation verification
 
 ---
 
-## Upcoming (Phase B/C)
+## Recent Releases
 
-| Feature | Phase | Trigger |
-|---------|-------|---------|
-| Monorepo migration | B | Customer/contributor |
-| BallotReady API | C | SC contract |
-| TargetSmart API | C | SC contract |
-| Real voter data | C | API integration |
-| Additional states | D | Demand |
+| Version | Features | Date |
+|---------|----------|------|
+| v3.1 | UX Overhaul (AddressSearch, MobileSheet, Screenshot) | 2026-01-25 |
+| v3.0 | Multi-Lens System (4 visualization modes) | 2026-01-24 |
+| v2.0 | Multi-State (5 states, 876 districts) | 2026-01-17 |
+
+## Upcoming
+
+| Feature | Priority | Trigger |
+|---------|----------|---------|
+| Data Pipeline Fix | P2 | Enable scraper for 100+ candidates |
+| BallotReady API | Future | SC contract |
+| TargetSmart API | Future | SC contract |
+| Real voter data | Future | API integration |
+| Additional states | Future | Demand |
 
 ---
 
