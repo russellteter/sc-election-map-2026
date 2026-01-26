@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-22",
+  "lastUpdated": "2026-01-23",
   "source": "Cross-referenced from scstatehouse.gov, scdp.org, Ballotpedia, Firecrawl web search, Charleston Elections 2026 doc, and kjatwood SCHouseMap7.0",
   "candidates": {
     "Duncan, Adam L": { "party": "Republican", "verified": true, "district": "House 2", "note": "Incumbent" },
@@ -133,7 +133,10 @@
     "Asbill, Steven": { "party": "Democratic", "verified": true, "district": "House 85", "note": "2026 challenger, source: SCDP/Young Democrats connection" },
     "Steven Asbill": { "party": "Democratic", "verified": true, "district": "House 85", "note": "Alternate form" },
     "Redwine, Kathy": { "party": "Democratic", "verified": true, "district": "House 108", "note": "2026 challenger, endorsed by Dem John Vincent" },
-    "Kathy Redwine": { "party": "Democratic", "verified": true, "district": "House 108", "note": "Alternate form" }
+    "Kathy Redwine": { "party": "Democratic", "verified": true, "district": "House 108", "note": "Alternate form" },
+
+    "Burgett, Joseph M": { "party": "Independent", "verified": true, "district": "House 3", "note": "Forward Party/Independent - 'People Over Politics' campaign" },
+    "Joe Burgett": { "party": "Independent", "verified": true, "district": "House 3", "note": "Alternate form - Clemson professor, Forward movement" }
   },
   "incumbents": {
     "house": {
