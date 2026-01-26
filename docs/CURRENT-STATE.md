@@ -1,6 +1,6 @@
 # Blue Intelligence - Current State
 
-> Last Updated: 2026-01-25 | v3.1 Complete
+> Last Updated: 2026-01-26 | v3.1 Complete (E2E Verified)
 
 ---
 
@@ -215,11 +215,11 @@
 | Screen reader | Tested | axe-core audit |
 | Mobile responsive | Yes | E2E viewport tests |
 
-**Accessibility Testing:**
+**E2E Test Coverage (2026-01-26):**
 - `tests/e2e/accessibility.spec.ts` - axe-core WCAG 2.1 AA audit
-- Baseline page scans for critical violations
-- Component-specific accessibility tests
-- Keyboard navigation verification
+- `tests/e2e/v31-components.spec.ts` - v3.1 UX component tests
+- `tests/e2e/map.spec.ts` - Core map functionality
+- **Results:** 99 passed, 7 skipped across 4 browsers (Chrome, Firefox, Safari, Mobile Chrome)
 
 ---
 
