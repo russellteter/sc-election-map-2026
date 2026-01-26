@@ -9,13 +9,13 @@ See: .planning/PROJECT.md (updated 2026-01-18)
 
 ## Current Position
 
-Phase: v3.1 UX Overhaul — In Progress
+Phase: v3.1 UX Overhaul — Nearing Completion
 Milestone: v3.1 Comprehensive UX Improvements
-Plan: Tier 1 (Quick Wins) + Tier 2 (High-Value Features)
-Status: Phase B nearly complete (B1-B4 done), fixing styling issue
-Last activity: 2026-01-25 — Lens intro overlay styling fix
+Plan: Tier 1 (Quick Wins) + Tier 2 (High-Value Features) + Tier 3 (Integration)
+Status: Phase A complete, Phase B complete, Phase C 2/5 complete (C3-C5 pending)
+Last activity: 2026-01-26 — Project cleanup and organization
 
-Progress: ████████░░ 80% (v3.1 UX overhaul)
+Progress: █████████░ 95% (v3.1 UX overhaul)
 
 ## Shipped Milestones
 
@@ -192,21 +192,29 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-25
-Stopped at: v3.1 UX Overhaul - Fixed lens intro overlay styling
+Last session: 2026-01-26
+Stopped at: Project cleanup and organization complete
 Resume file: None
+
+### Session Summary (2026-01-26)
+**Completed:**
+- Deleted 9 duplicate/archived files from root
+- Moved DEPLOYMENT-SUMMARY.txt to docs/archive/
+- Moved 2 Excel files to sc-ethics-monitor/data/
+- Updated .gitignore (playwright-report/, test-results/, *.xlsx)
+- Updated STATE.md progress to 95%
+
+**Remaining Tasks:**
+1. Mobile testing with Playwright (C3)
+2. Accessibility audit with axe-core (C4)
+3. Documentation update (C5)
+4. Tag v3.1.0 after completion
 
 ### Session Summary (2026-01-25)
 **Completed:**
 - Fixed lens intro overlay styling (moved from styled-jsx to globals.css)
 - All Phase B components integrated into state page
 - Build verified: 197 static pages generated successfully
-
-**Remaining Tasks:**
-1. Mobile testing with Playwright
-2. Accessibility audit with axe-core
-3. Documentation update
-4. Test all features in browser (Find District, Screenshot Export, Mobile Sheet)
 
 **Technical Notes:**
 - styled-jsx scoping issue: Styles inside a div don't apply to sibling elements
