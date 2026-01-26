@@ -24,6 +24,11 @@
 .DS_Store
 *.pem
 
+# Credentials (NEVER commit these)
+*service-account*.json
+*credentials*.json
+*.key
+
 # debug
 npm-debug.log*
 yarn-debug.log*

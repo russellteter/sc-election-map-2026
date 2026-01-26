@@ -2,12 +2,15 @@ name: SC Ethics Monitor Daily
 
 on:
   schedule:
-    # Run at 9 AM Eastern time
-    # - 14:00 UTC (Nov-Mar when EST = UTC-5)
-    # - 13:00 UTC (Mar-Nov when EDT = UTC-4)
-    # Using 14:00 UTC as primary (more of the year is Standard Time)
-    - cron: '0 14 * * *'
+    # Run at 6 AM Eastern time
+    # - 11:00 UTC (Nov-Mar when EST = UTC-5)
+    # - 10:00 UTC (Mar-Nov when EDT = UTC-4)
+    # Using 11:00 UTC as primary (more of the year is Standard Time)
+    - cron: '0 11 * * *'
   workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: write
 
 jobs:
   monitor:
@@ -30,7 +33,7 @@ jobs:
         run: |
           echo '${{ secrets.GOOGLE_SHEETS_CREDENTIALS_JSON }}' > /tmp/creds.json
 
-      - name: Run SC Ethics Monitor
+      - name: Run SC Ethics Monitor with export
         env:
           GOOGLE_SHEETS_CREDENTIALS: /tmp/creds.json
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
@@ -39,11 +42,36 @@ jobs:
         working-directory: sc-ethics-monitor
         run: |
           echo "Running SC Ethics Monitor..."
-          python -m src.monitor --skip-scrape --scrape-data data/ethics-state.json
+          python -m src.monitor --skip-scrape --export-webapp
+
+      - name: Calculate opportunity tiers
+        run: |
+          echo "Calculating opportunity tiers..."
+          python scripts/calculate_opportunity.py
 
       - name: Clean up credentials
         if: always()
         run: rm -f /tmp/creds.json
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet public/data/candidates.json public/data/opportunity.json 2>/dev/null || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/candidates.json public/data/opportunity.json
+          git commit -m "chore: update candidates and opportunity data
+
+          Automated daily sync from SC Ethics Commission data.
+          - candidates.json: Current candidate filings
+          - opportunity.json: Calculated opportunity tiers
+
+          Co-Authored-By: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          git push
 
       - name: Notify on failure
         if: failure()
