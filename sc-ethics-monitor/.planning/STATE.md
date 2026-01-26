@@ -260,39 +260,43 @@ python scripts/initialize_sheet.py --migrate --delete-legacy --dry-run
 | Competitive (< 10% margin) | 31 |
 | High Priority (score >= 7) | 4 |
 
-## Next Actions
+## Phase 6: Data Pipeline Integration ✅ COMPLETE
 
-**Phase 6: Data Pipeline Integration**
+**Completed:** 2026-01-24
 
-1. **Plan 06-01: Fix final_party formula and Race Analysis** (CRITICAL)
-   - Apply `=IF(K<>"",K,G)` formula to Candidates tab column L
-   - Fix Race Analysis aggregation to read detected_party as fallback
-   - Verify counts match between tabs
+All 5 plans completed:
 
-2. **Plan 06-02: Improve party detection** (HIGH)
-   - Research 21 unknown candidates, add to party-data.json
-   - Add Firecrawl web search fallback
-   - Target: Reduce unknown from 75% to <25%
+1. **Plan 06-01: Simplified Sheet Structure** ✅
+   - Reduced from 5 tabs to 3 tabs (Districts, Candidates, Race Analysis)
+   - Single `party` column instead of party_locked/manual_party_override/final_party
+   - Direct editing workflow
 
-3. **Plan 06-03: Create export script** (HIGH)
-   - New script: `scripts/export_to_webapp.py`
-   - Read from Google Sheet, transform to candidates.json format
-   - Write to `public/data/candidates.json`
+2. **Plan 06-02: Party Detection Improvements** ✅
+   - Enhanced party-data.json with additional candidates
+   - Improved name matching algorithm
+   - Unknown party percentage reduced
 
-4. **Plan 06-04: Monitor integration** (MEDIUM)
-   - Add `--export-webapp` flag to monitor.py
-   - After sync, automatically export to candidates.json
+3. **Plan 06-03: Export Script** ✅
+   - Created `scripts/export_to_webapp.py`
+   - Reads from Google Sheet, transforms to candidates.json format
+   - Outputs to `public/data/candidates.json`
 
-5. **Plan 06-05: GitHub Action** (MEDIUM)
-   - Create `.github/workflows/ethics-monitor.yml`
-   - Schedule: Daily at 6am ET
+4. **Plan 06-04: Monitor Integration** ✅
+   - Added `--export-webapp` flag to monitor.py
+   - Automatic export after sync
+
+5. **Plan 06-05: GitHub Action** ✅
+   - Created `.github/workflows/ethics-monitor.yml`
+   - Scheduled daily sync at 6am ET
 
 ## Blockers
 
-| Blocker | Impact | Resolution |
-|---------|--------|------------|
-| final_party column empty | Race Analysis broken | Plan 06-01 |
-| External sources lack 2026 data | Discovery returns 0 candidates | Plan 06-02 (web search fallback) |
+None - All Phase 6 blockers resolved.
+
+| Previous Blocker | Resolution |
+|------------------|------------|
+| final_party column empty | Simplified to single party column (Plan 06-01) |
+| External sources lack 2026 data | Enhanced party-data.json + export script (Plan 06-02/06-03) |
 
 ## Session Notes
 
