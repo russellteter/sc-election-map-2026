@@ -15,14 +15,17 @@ CACHE_DIR = PROJECT_ROOT / "cache"
 # Google Sheets configuration
 SPREADSHEET_ID = "17j_KFZFUw-ESBQlKlIccUMpGCFq_XdeL6WYph7zkxQo"
 
-# Tab names - Simplified 3-tab structure
-TAB_DISTRICTS = "Districts"
+# Tab names - Primary tabs (Candidates + Source of Truth)
 TAB_CANDIDATES = "Candidates"
-TAB_RACE_ANALYSIS = "Race Analysis"
 
-# Legacy tab names (kept for backup/migration scripts)
-TAB_RESEARCH_QUEUE = "Research Queue"  # DEPRECATED - removed in simplified version
-TAB_SYNC_LOG = "Sync Log"  # DEPRECATED - removed in simplified version
+# DEPRECATED - These tabs have been removed in favor of Source of Truth
+# Kept for migration/reference only - do not use in new code
+TAB_DISTRICTS = "Districts"  # DEPRECATED: Use Source of Truth static columns A-L
+TAB_RACE_ANALYSIS = "Race Analysis"  # DEPRECATED: Use Source of Truth dynamic columns N-AF
+
+# Legacy tab names (kept for migration scripts only)
+TAB_RESEARCH_QUEUE = "Research Queue"  # DEPRECATED - removed
+TAB_SYNC_LOG = "Sync Log"  # DEPRECATED - removed
 
 # =============================================================================
 # SOURCE OF TRUTH TAB - District-Centric View (170 rows)
@@ -90,12 +93,41 @@ SOURCE_OF_TRUTH_COLUMNS = {
     "last_updated": 31,        # AF - Auto timestamp
 }
 
-# Columns with data validation (dropdowns)
+# Columns with data validation (dropdowns) - DYNAMIC columns (automation-managed)
 DROPDOWN_COLUMNS = {
     "dem_filed": ["Y", "N"],
     "cand1_party": ["D", "R", "I", "O", "?"],
     "cand2_party": ["D", "R", "I", "O", "?"],
     "cand3_party": ["D", "R", "I", "O", "?"],
+}
+
+# =============================================================================
+# SOURCE OF TRUTH STATIC COLUMN DROPDOWNS (User-managed columns A-L)
+# =============================================================================
+# These dropdowns are for user-managed columns that were lost when the
+# "Lists" tab was deleted. They use inline values (no external reference).
+#
+# Column letters and indices:
+#   C (2): Incumbent Party - D/R
+#   G (6): Tenure - Open/First-term/Veteran/Long-serving
+#   J (9): Region - Upstate/Midlands/Lowcountry/Pee Dee
+#
+SOT_STATIC_DROPDOWNS = {
+    "C": {
+        "name": "incumbent_party",
+        "values": ["D", "R"],
+        "col_index": 2,
+    },
+    "G": {
+        "name": "tenure",
+        "values": ["Open", "First-term", "Veteran", "Long-serving"],
+        "col_index": 6,
+    },
+    "J": {
+        "name": "region",
+        "values": ["Upstate", "Midlands", "Lowcountry", "Pee Dee"],
+        "col_index": 9,
+    },
 }
 
 # Columns that automation should NEVER write to
@@ -146,6 +178,104 @@ SOURCE_OF_TRUTH_COL_LETTERS = {
 
 # Number of days for "NEW" candidate highlighting
 NEW_CANDIDATE_DAYS = 7
+
+# =============================================================================
+# VISUAL FORMATTING CONSTANTS
+# =============================================================================
+
+# Priority tier definitions for Race Analysis
+PRIORITY_TIERS = {
+    "A": {
+        "label": "A - Flip Target",
+        "description": "R incumbent, no D filed - high priority flip opportunity",
+    },
+    "B": {
+        "label": "B - Defend",
+        "description": "D incumbent, needs monitoring or challenger defense",
+    },
+    "C": {
+        "label": "C - Competitive",
+        "description": "Multiple candidates filed, competitive race",
+    },
+    "D": {
+        "label": "D - Covered",
+        "description": "Democrat filed, race covered",
+    },
+}
+
+# Colors for formatting (RGB values 0-1 for Google Sheets API)
+FORMATTING_COLORS = {
+    # Priority row colors (full row highlighting)
+    "priority_high_red": {"red": 0.992, "green": 0.851, "blue": 0.851},      # #FDD9D9 - Light red for flip targets
+    "priority_medium_yellow": {"red": 1.0, "green": 0.973, "blue": 0.812},   # #FFF8CF - Light yellow for defend
+    "priority_covered_green": {"red": 0.851, "green": 0.969, "blue": 0.878}, # #D9F7E0 - Light green for covered
+
+    # Zebra striping
+    "zebra_stripe": {"red": 0.965, "green": 0.965, "blue": 0.965},           # #F6F6F6 - Very light gray
+
+    # Challenger count gradient
+    "challenger_0_red": {"red": 0.992, "green": 0.851, "blue": 0.851},       # #FDD9D9 - Red (uncontested)
+    "challenger_1_2_yellow": {"red": 1.0, "green": 0.949, "blue": 0.8},      # #FFF2CC - Yellow (some competition)
+    "challenger_3_plus_green": {"red": 0.835, "green": 0.929, "blue": 0.827},# #D5EDD3 - Green (competitive)
+
+    # Filing recency colors
+    "recent_7_days_green": {"red": 0.835, "green": 0.929, "blue": 0.827},    # #D5EDD3 - Fresh filing
+    "recent_30_days_yellow": {"red": 1.0, "green": 0.949, "blue": 0.8},      # #FFF2CC - Recent filing
+
+    # Header color
+    "header_dark": {"red": 0.267, "green": 0.267, "blue": 0.267},            # #444444 - Dark gray
+    "header_text_white": {"red": 1.0, "green": 1.0, "blue": 1.0},            # White text
+}
+
+# Filter view definitions
+FILTER_VIEWS = {
+    "priority_a_flip_targets": {
+        "name": "Priority A - Flip Targets",
+        "description": "R incumbent + no D filed",
+        "criteria": {"incumbent_party": "R", "dem_filed": "N"},
+    },
+    "priority_b_defend": {
+        "name": "Priority B - Defend",
+        "description": "D incumbent + needs attention",
+        "criteria": {"incumbent_party": "D"},
+    },
+    "house_only": {
+        "name": "House Only",
+        "description": "Filter to House districts",
+        "criteria": {"chamber": "House"},
+    },
+    "senate_only": {
+        "name": "Senate Only",
+        "description": "Filter to Senate districts",
+        "criteria": {"chamber": "Senate"},
+    },
+    "recent_filings_7_days": {
+        "name": "Recent Filings (7 days)",
+        "description": "Candidates filed in last 7 days",
+        "criteria": {"recent": 7},
+    },
+    "democrats": {
+        "name": "Democrats",
+        "description": "Only Democratic candidates",
+        "criteria": {"party": "D"},
+    },
+}
+
+# Column width settings (in pixels)
+COLUMN_WIDTHS = {
+    "district_id": 120,
+    "candidate_name": 200,
+    "party": 60,
+    "filed_date": 100,
+    "report_id": 100,
+    "ethics_url": 120,
+    "incumbent_name": 200,
+    "incumbent_party": 60,
+    "challenger_count": 80,
+    "dem_filed": 70,
+    "needs_dem_candidate": 100,
+    "priority_tier": 120,
+}
 
 # =============================================================================
 # SIMPLIFIED CANDIDATES TAB - 9 columns (A-I)
@@ -261,9 +391,9 @@ DISTRICTS_HEADERS_LEGACY = [
 ]
 
 # =============================================================================
-# RACE ANALYSIS TAB - 6 columns (simplified from 11)
+# RACE ANALYSIS TAB - 7 columns (6 + priority_tier)
 # =============================================================================
-# Simple boolean flags instead of complex priority scoring
+# Simple boolean flags plus priority tier for quick visual scanning
 RACE_ANALYSIS_COLUMNS = {
     "district_id": 0,               # A - e.g., "SC-House-042"
     "incumbent_name": 1,            # B - Current officeholder
@@ -271,6 +401,7 @@ RACE_ANALYSIS_COLUMNS = {
     "challenger_count": 3,          # D - Total filed candidates (excluding incumbent)
     "dem_filed": 4,                 # E - Y/N - Has a Democrat filed?
     "needs_dem_candidate": 5,       # F - Y/N - Unopposed R, needs D candidate
+    "priority_tier": 6,             # G - A/B/C/D priority tier
 }
 
 RACE_ANALYSIS_HEADERS = [
@@ -280,6 +411,7 @@ RACE_ANALYSIS_HEADERS = [
     "challenger_count",
     "dem_filed",
     "needs_dem_candidate",
+    "priority_tier",
 ]
 
 # Legacy Race Analysis columns (for migration/reference)
