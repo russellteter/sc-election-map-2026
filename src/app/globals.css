@@ -141,6 +141,122 @@ svg path[id^="senate-"]:hover,
 }
 
 /* ================================================
+   LENS TRANSITION ANIMATION SYSTEM
+   Smooth animations when switching between visualization lenses
+   ================================================ */
+
+/* Map container lens transition - subtle pulse effect */
+.lens-transitioning {
+  animation: lens-pulse 0.3s ease-out;
+}
+
+@keyframes lens-pulse {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.05);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+/* KPI card value transitions */
+.kpi-value {
+  transition: transform 0.2s var(--ease-out-expo),
+              opacity 0.2s ease,
+              color 0.15s ease;
+}
+
+.kpi-value.updating {
+  animation: kpi-update 0.3s ease-out;
+}
+
+@keyframes kpi-update {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  30% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Legend items fade transition */
+.legend-item {
+  transition: opacity 0.2s ease,
+              transform 0.2s ease;
+}
+
+.legend-item.entering {
+  animation: legend-enter 0.25s ease-out forwards;
+}
+
+@keyframes legend-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Color swatch transitions in legend */
+.legend-swatch {
+  transition: background-color 0.2s ease,
+              transform 0.15s ease;
+}
+
+.legend-swatch:hover {
+  transform: scale(1.1);
+}
+
+/* Lens toggle bar active state transition */
+.lens-toggle-button {
+  transition: all 0.2s var(--ease-out-expo);
+}
+
+.lens-toggle-active {
+  animation: lens-activate 0.25s ease-out;
+}
+
+@keyframes lens-activate {
+  0% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lens-transitioning,
+  .kpi-value.updating,
+  .legend-item.entering,
+  .lens-toggle-active {
+    animation: none;
+  }
+
+  .kpi-value,
+  .legend-item,
+  .legend-swatch,
+  .lens-toggle-button {
+    transition: none;
+  }
+}
+
+/* ================================================
    MINI MAP PREVIEW
    Compact, non-interactive map thumbnail for Voter Guide
    ================================================ */
@@ -1521,6 +1637,65 @@ svg path[id^="senate-"]:hover,
   margin-left: 18px;
 }
 
+/* Enhanced tooltip row layout */
+.tooltip-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-size: 0.6875rem;
+}
+
+.tooltip-label {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.tooltip-value {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.tooltip-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.party-dot.republican {
+  background: #DC2626;
+  box-shadow: 0 0 4px rgba(220, 38, 38, 0.4);
+}
+
+.tooltip-category {
+  margin-top: var(--space-1);
+  padding-top: var(--space-1);
+  border-top: 1px solid var(--class-purple-light);
+  justify-content: center;
+}
+
+.tooltip-category-label {
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: var(--class-purple);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.tooltip-footer {
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px dashed var(--border-subtle);
+  text-align: center;
+}
+
+.tooltip-hint {
+  font-size: 0.5625rem;
+  color: var(--text-muted);
+  font-style: italic;
+  opacity: 0.8;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .map-tooltip {
     animation: none;
@@ -1577,14 +1752,61 @@ svg path[id^="senate-"]:hover,
   transform: translateY(0);
 }
 
-/* Drag handle indicator */
+/* Drag handle wrapper */
 .bottom-sheet-handle {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0 8px;
+  flex-shrink: 0;
+  cursor: grab;
+}
+
+.bottom-sheet-handle-bar {
   width: 36px;
   height: 4px;
   background: var(--class-purple-light);
   border-radius: 2px;
-  margin: 12px auto 8px;
+}
+
+/* Bottom sheet header */
+.bottom-sheet-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 var(--space-5) var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
   flex-shrink: 0;
+}
+
+.bottom-sheet-chamber {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--class-purple);
+}
+
+.bottom-sheet-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-color);
+  font-family: var(--font-display);
+}
+
+.bottom-sheet-close {
+  padding: var(--space-2);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.bottom-sheet-close:hover {
+  background: var(--color-empty);
+  color: var(--text-color);
 }
 
 /* Bottom sheet content wrapper */
@@ -1593,6 +1815,633 @@ svg path[id^="senate-"]:hover,
   overflow-y: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+  padding: var(--space-5);
+}
+
+/* Info grid */
+.bottom-sheet-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.bottom-sheet-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bottom-sheet-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+}
+
+.bottom-sheet-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.bottom-sheet-category {
+  color: var(--class-purple);
+}
+
+/* Candidates section */
+.bottom-sheet-candidates {
+  margin-bottom: var(--space-5);
+}
+
+.bottom-sheet-section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+  margin: 0 0 var(--space-3) 0;
+}
+
+.bottom-sheet-candidate-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.bottom-sheet-candidate {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-empty);
+  border-radius: var(--radius-md);
+}
+
+.bottom-sheet-party-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.bottom-sheet-party-dot.democrat {
+  background: var(--class-purple);
+}
+
+.bottom-sheet-party-dot.republican {
+  background: #DC2626;
+}
+
+.bottom-sheet-party-dot.unknown {
+  background: var(--text-muted);
+}
+
+.bottom-sheet-candidate-name {
+  flex: 1;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.bottom-sheet-candidate-party {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.bottom-sheet-more {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-style: italic;
+  padding-left: var(--space-3);
+}
+
+/* Action button */
+.bottom-sheet-action {
+  width: 100%;
+  padding: var(--space-4);
+  background: linear-gradient(135deg, var(--class-purple) 0%, #3B82F6 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bottom-sheet-action:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+}
+
+.bottom-sheet-action:active {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bottom-sheet,
+  .bottom-sheet-overlay {
+    transition: none;
+  }
+}
+
+/* ================================================
+   ADDRESS SEARCH - Find My District
+   ================================================ */
+
+.address-search {
+  background: var(--glass-bg, rgba(255, 255, 255, 0.8));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.08));
+  border-radius: var(--radius-md, 8px);
+  padding: var(--space-4, 16px);
+}
+
+.address-search-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+}
+
+.address-search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.address-search-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--text-muted, #6b7280);
+  pointer-events: none;
+}
+
+.address-search-input {
+  width: 100%;
+  padding: 10px 36px 10px 40px;
+  background: var(--input-bg, rgba(255, 255, 255, 0.9));
+  border: 1px solid var(--border-subtle, #e5e7eb);
+  border-radius: var(--radius-sm, 6px);
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--text-primary, #1f2937);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.address-search-input:focus {
+  outline: none;
+  border-color: var(--class-purple, #4739E7);
+  box-shadow: 0 0 0 3px rgba(71, 57, 231, 0.15);
+}
+
+.address-search-input::placeholder {
+  color: var(--text-muted, #9ca3af);
+}
+
+.address-search-input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.address-search-clear {
+  position: absolute;
+  right: 8px;
+  padding: 4px;
+  color: var(--text-muted, #6b7280);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm, 4px);
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.address-search-clear:hover {
+  color: var(--text-primary, #1f2937);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.address-search-actions {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+
+.address-search-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: 500;
+  border-radius: var(--radius-sm, 6px);
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.address-search-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.address-search-btn-primary {
+  flex: 1;
+  background: var(--class-purple, #4739E7);
+  color: white;
+}
+
+.address-search-btn-primary:hover:not(:disabled) {
+  background: #3b2fd4;
+  transform: translateY(-1px);
+}
+
+.address-search-btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.address-search-btn-secondary {
+  background: var(--glass-bg, rgba(255, 255, 255, 0.7));
+  border: 1px solid var(--border-subtle, #e5e7eb);
+  color: var(--text-primary, #374151);
+}
+
+.address-search-btn-secondary:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: var(--border-default, #d1d5db);
+}
+
+.address-search-btn-text {
+  display: none;
+}
+
+@media (min-width: 480px) {
+  .address-search-btn-text {
+    display: inline;
+  }
+}
+
+.address-search-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: address-search-spin 0.7s linear infinite;
+}
+
+@keyframes address-search-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.address-search-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-sm, 6px);
+  color: #b91c1c;
+  font-size: var(--font-size-sm, 0.875rem);
+}
+
+.address-search-error svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.address-search-result {
+  margin-top: var(--space-3, 12px);
+  padding-top: var(--space-3, 12px);
+  border-top: 1px solid var(--border-subtle, #e5e7eb);
+}
+
+.address-search-address {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--text-muted, #6b7280);
+  margin-bottom: var(--space-3, 12px);
+  line-height: 1.4;
+}
+
+.address-search-address svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #059669;
+}
+
+.address-search-districts {
+  display: flex;
+  gap: var(--space-2, 8px);
+}
+
+.address-search-district-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  background: var(--glass-bg, rgba(255, 255, 255, 0.7));
+  border: 1px solid var(--border-subtle, #e5e7eb);
+  border-radius: var(--radius-sm, 6px);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.address-search-district-btn:hover {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: var(--border-default, #d1d5db);
+}
+
+.address-search-district-btn.active {
+  background: rgba(71, 57, 231, 0.08);
+  border-color: var(--class-purple, #4739E7);
+}
+
+.address-search-district-label {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--text-muted, #6b7280);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.address-search-district-number {
+  font-size: var(--font-size-base, 1rem);
+  font-weight: 600;
+  color: var(--text-primary, #1f2937);
+}
+
+.address-search-district-btn.active .address-search-district-number {
+  color: var(--class-purple, #4739E7);
+}
+
+/* ================================================
+   LENS TOGGLE BAR - Intro Overlay
+   ================================================ */
+
+.lens-intro-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.lens-intro-card {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  max-width: 24rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: lens-intro-enter 0.25s ease-out;
+}
+
+@keyframes lens-intro-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.lens-intro-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.lens-intro-badge {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  color: white;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.lens-intro-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+}
+
+.lens-intro-desc {
+  font-size: 0.875rem;
+  color: #64748B;
+  margin: 0 0 0.75rem 0;
+}
+
+.lens-intro-list {
+  margin: 0 0 1rem 0;
+  padding-left: 1rem;
+  font-size: 0.8125rem;
+  color: #334155;
+}
+
+.lens-intro-list li {
+  margin-bottom: 0.375rem;
+}
+
+.lens-intro-list li strong {
+  color: #1E40AF;
+}
+
+.lens-intro-button {
+  width: 100%;
+  padding: 0.625rem 1rem;
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.lens-intro-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.lens-intro-button:focus-visible {
+  outline: 2px solid #6366F1;
+  outline-offset: 2px;
+}
+
+/* ================================================
+   SCREENSHOT BUTTON - Export Map
+   ================================================ */
+
+.screenshot-button-container {
+  position: relative;
+  display: inline-flex;
+}
+
+.screenshot-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--glass-bg, rgba(255, 255, 255, 0.8));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle, #e5e7eb);
+  border-radius: var(--radius-sm, 6px);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: 500;
+  color: var(--text-primary, #374151);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.screenshot-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: var(--border-default, #d1d5db);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.screenshot-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.screenshot-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.screenshot-button.success {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #059669;
+}
+
+.screenshot-button.error {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #dc2626;
+}
+
+.screenshot-text {
+  display: none;
+}
+
+@media (min-width: 480px) {
+  .screenshot-text {
+    display: inline;
+  }
+}
+
+.screenshot-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: screenshot-spin 0.7s linear infinite;
+}
+
+@keyframes screenshot-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.screenshot-chevron {
+  transition: transform 0.15s ease;
+}
+
+.screenshot-chevron.open {
+  transform: rotate(180deg);
+}
+
+.screenshot-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  min-width: 180px;
+  background: var(--glass-bg, rgba(255, 255, 255, 0.95));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle, #e5e7eb);
+  border-radius: var(--radius-md, 8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  z-index: 100;
+  animation: screenshot-dropdown-enter 0.15s ease;
+}
+
+@keyframes screenshot-dropdown-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.screenshot-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--text-primary, #374151);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.screenshot-dropdown-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.screenshot-dropdown-item:first-child {
+  border-radius: var(--radius-md, 8px) var(--radius-md, 8px) 0 0;
+}
+
+.screenshot-dropdown-item:last-child {
+  border-radius: 0 0 var(--radius-md, 8px) var(--radius-md, 8px);
+}
+
+.screenshot-dropdown-item + .screenshot-dropdown-item {
+  border-top: 1px solid var(--border-subtle, #e5e7eb);
+}
+
+.screenshot-format-hint {
+  margin-left: auto;
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--text-muted, #6b7280);
 }
 
 /* ================================================

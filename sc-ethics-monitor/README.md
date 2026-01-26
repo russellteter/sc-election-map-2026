@@ -1,20 +1,19 @@
 # SC Ethics Monitor - Google Sheets Source of Truth
 
-A bidirectional sync system for tracking South Carolina legislative candidates from SC Ethics Commission filings to a Google Sheets dashboard.
+A simplified sync system for tracking South Carolina legislative candidates from SC Ethics Commission filings to a Google Sheets dashboard.
 
 ## Overview
 
-This system transforms Google Sheets from a write-only log into a true **Source of Truth** for SC election data:
+This system provides a **single source of truth** for SC election data:
 
 - **170 Districts**: All SC House (124) and Senate (46) districts tracked
 - **Bidirectional Sync**: Reads AND writes, respecting manual edits
-- **Party Detection**: Auto-detect with manual override support
-- **Research Queue**: Tracks candidates needing party verification
-- **Race Analysis**: Recruitment priorities using final_party
+- **Party Detection**: Auto-detect with direct editing support
+- **Race Analysis**: Simple Y/N flags for district status
 
 ## Key Principle
 
-**Manual overrides take precedence.** If a user sets `manual_party_override` or `party_locked=Yes`, the system respects those values.
+**Simple is better.** Single `party` column that system writes and users can edit directly. No complex formulas or lock mechanisms.
 
 ## Quick Start
 
@@ -26,7 +25,7 @@ pip install -r requirements.txt
 # Set up credentials (Google Service Account JSON)
 export GOOGLE_SHEETS_CREDENTIALS=path/to/credentials.json
 
-# Initialize the sheet
+# Initialize the sheet (3-tab structure)
 python scripts/initialize_sheet.py
 
 # Run daily monitor (dry run first)
@@ -38,70 +37,83 @@ python -m src.monitor --skip-scrape --scrape-data ../scripts/data/ethics-state.j
 
 ## Sheet Structure
 
-### Tabs
+### Tabs (Simplified)
 
-| Tab | Purpose |
-|-----|---------|
-| Districts | All 170 SC legislative districts with incumbent info |
-| Candidates | Filed candidates with party detection |
-| Race Analysis | Computed race status and recruitment priorities |
-| Research Queue | Candidates needing manual party verification |
-| Sync Log | Audit trail of all operations |
+| Tab | Purpose | Columns |
+|-----|---------|---------|
+| Districts | All 170 SC legislative districts | 6 |
+| Candidates | Filed candidates with party | 9 |
+| Race Analysis | District status (Y/N flags) | 6 |
 
-### Candidates Tab Columns
+### Candidates Tab
 
-| Column | Field | Auto/Manual |
+| Column | Field | Description |
 |--------|-------|-------------|
-| A | report_id | Auto |
-| B | candidate_name | Auto |
-| C | district_id | Auto |
-| D | filed_date | Auto |
-| E | ethics_report_url | Auto |
-| F | is_incumbent | Auto |
-| G | detected_party | Auto |
-| H | detection_confidence | Auto |
-| I | detection_source | Auto |
-| J | detection_evidence_url | Auto |
-| **K** | **manual_party_override** | **Manual** |
-| **L** | **final_party** | **Formula** |
-| **M** | **party_locked** | **Manual** |
-| N | detection_timestamp | Auto |
-| **O** | **notes** | **Manual** |
-| P | last_synced | Auto |
+| A | district_id | e.g., "SC-House-042" |
+| B | candidate_name | Full name |
+| C | party | D/R/I/O (auto-detected, editable) |
+| D | filed_date | Date filed with Ethics |
+| E | report_id | Ethics filing ID |
+| F | ethics_url | Clickable HYPERLINK |
+| G | is_incumbent | Yes/No |
+| H | notes | Free-form notes |
+| I | last_synced | Timestamp |
 
-### Key Manual Columns
+**Key:** The `party` column is the only party column. System writes auto-detected value, you edit directly if wrong.
 
-- **manual_party_override** (K): Set to D/R/I/O to override auto-detection
-- **party_locked** (M): Set to "Yes" to skip all re-detection for this candidate
-- **final_party** (L): Formula that shows manual override if set, else detected party
-- **notes** (O): Free-form notes, preserved across syncs
+### Race Analysis Tab
+
+| Column | Field | Description |
+|--------|-------|-------------|
+| A | district_id | e.g., "SC-House-042" |
+| B | incumbent_name | Current officeholder |
+| C | incumbent_party | D/R |
+| D | challenger_count | Number filed (excluding incumbent) |
+| E | dem_filed | Y/N |
+| F | needs_dem_candidate | Y/N |
+
+Simple Y/N flags instead of complex priority scoring.
+
+### Districts Tab
+
+| Column | Field | Description |
+|--------|-------|-------------|
+| A | district_id | e.g., "SC-House-042" |
+| B | district_name | Human-readable name |
+| C | chamber | House/Senate |
+| D | district_number | Number |
+| E | incumbent_name | Current officeholder |
+| F | incumbent_party | D/R |
 
 ## Data Flow
 
 ```
-┌─────────────────────┐
-│  Ethics Website     │
-│  (Daily Scan)       │
-└─────────┬───────────┘
-          │ New filings
-          ▼
-┌─────────────────────┐
-│  Party Detection    │◄──── Skip if party_locked=Yes
-└─────────┬───────────┘
-          │
-          ▼
-┌─────────────────────────────────────────────┐
-│           GOOGLE SHEETS (Source of Truth)    │
-│  • manual_party_override (user input)        │
-│  • final_party = IF(manual, manual, detect)  │
-│  • party_locked (skip re-detection)          │
-└─────────────────────────────────────────────┘
-          │
-    ┌─────┴─────┐
-    ▼           ▼
-  Email      Race Analysis
-  Reports    (uses final_party)
+Ethics Website (Daily)
+        │
+        ▼
+  Party Detection
+        │
+        ▼
+┌─────────────────────────────────────────┐
+│    GOOGLE SHEETS (Source of Truth)      │
+│                                         │
+│  Candidates tab: party column           │
+│  (auto-detected, user can edit)         │
+└─────────────────────────────────────────┘
+        │
+        ▼
+  Export to Web App
+  (candidates.json)
 ```
+
+## User Workflow
+
+1. **Daily**: GitHub Action syncs new filings automatically
+2. **Check**: Open Google Sheet, view Candidates or Race Analysis tab
+3. **Fix errors**: Edit `party` column directly if auto-detection was wrong
+4. **Web app**: Updates automatically via export
+
+No research queue. No locking. No confidence scores.
 
 ## Usage
 
@@ -118,98 +130,48 @@ python -m src.monitor --dry-run
 python -m src.monitor --skip-scrape --scrape-data data/ethics.json
 ```
 
-### Candidate Discovery
-
-Multi-source candidate discovery from Ballotpedia, SCDP, and SCGOP.
+### Export to Web App
 
 ```bash
-# Run discovery during daily monitor (scheduled weekly by default)
-python -m src.monitor
+# Export Google Sheets data to candidates.json
+python scripts/export_to_webapp.py
 
-# Force discovery to run regardless of schedule
-python -m src.monitor --force-discovery
+# Dry run (preview without writing)
+python scripts/export_to_webapp.py --dry-run
 
-# Force discovery via environment variable
-FORCE_DISCOVERY=1 python -m src.monitor
-
-# Dry run with discovery (test without changes)
-python -m src.monitor --dry-run --force-discovery
+# Custom output path
+python scripts/export_to_webapp.py --output path/to/candidates.json
 ```
 
-**Discovery Sources:**
-- **Ballotpedia** (priority 2): Comprehensive candidate listings
-- **SCDP** (priority 3): South Carolina Democratic Party website
-- **SCGOP** (priority 3): South Carolina GOP website
-
-**Configuration (Environment Variables):**
-
+Or integrated with monitor:
 ```bash
-# Enable/disable discovery (default: true)
-DISCOVERY_ENABLED=true
-
-# Discovery frequency: daily, weekly, manual (default: weekly)
-DISCOVERY_FREQUENCY=weekly
-
-# Sources to use (comma-separated, default: all three)
-DISCOVERY_SOURCES=ballotpedia,scdp,scgop
-
-# Name matching threshold (default: 0.85)
-NAME_SIMILARITY_THRESHOLD=0.85
-
-# Firecrawl rate limit (default: 30 requests/minute)
-FIRECRAWL_RPM=30
+python -m src.monitor --skip-scrape --export-webapp
 ```
 
-**Discovery Pipeline:**
-
-1. Sources scrape candidate data from external websites
-2. Candidates are deduplicated using fuzzy name matching
-3. Conflicts between sources are detected and logged
-4. New candidates are added to Google Sheets as placeholders
-5. Coverage report is generated and included in email notifications
-
-### Verification Script
-
-Verify the discovery pipeline is working correctly:
+### Initialize/Migrate Sheet
 
 ```bash
-# Run all verification tests
-python scripts/verify_discovery.py
+# Dry run - see what would happen
+python scripts/initialize_sheet.py --dry-run
 
-# Dry run (no API calls)
-python scripts/verify_discovery.py --dry-run
+# Initialize new 3-tab structure
+python scripts/initialize_sheet.py
 
-# Test specific source
-python scripts/verify_discovery.py --source ballotpedia
+# Migrate from old 5-tab structure
+python scripts/initialize_sheet.py --migrate
 
-# Limit districts tested
-python scripts/verify_discovery.py --districts 3
-
-# Verbose output
-python scripts/verify_discovery.py --verbose
-
-# Output results to JSON
-python scripts/verify_discovery.py --output results.json
+# Delete deprecated tabs (Research Queue, Sync Log)
+python scripts/initialize_sheet.py --delete-legacy
 ```
 
-### Validation Tests
+### Backup Current Data
 
 ```bash
-# Run validation tests
-python -m src.test_validation
+# Backup before migration
+python scripts/backup_sheet.py
 
-# Verify specific behaviors
-python -m src.test_validation --credentials creds.json
-```
-
-### Run Pipeline Tests
-
-```bash
-# Run end-to-end discovery pipeline tests
-pytest tests/test_discovery_pipeline.py -v
-
-# Run all tests
-pytest tests/ -v
+# Dry run
+python scripts/backup_sheet.py --dry-run
 ```
 
 ### Python API
@@ -221,41 +183,46 @@ from src.sheets_sync import SheetsSync
 sync = SheetsSync("credentials.json")
 sync.connect()
 
-# Read current state (respects manual edits)
-state = sync.read_sheet_state()
+# Read candidates (keyed by report_id)
+candidates = sync.read_candidates()
 
-# Check if candidate is locked
-if sync.is_party_locked("12345", state):
-    print("Skipping party detection - locked")
-
-# Add/update candidate (preserves manual columns)
+# Add/update candidate
 sync.add_candidate(
-    report_id="12345",
-    candidate_name="John Smith",
     district_id="SC-House-042",
+    candidate_name="John Smith",
+    party="D",  # Optional - preserves existing if not provided
     filed_date="2026-01-15",
-    ethics_report_url="https://...",
+    report_id="12345",
+    ethics_url="https://...",
     is_incumbent=False,
-    detected_party="D",
-    detection_confidence="HIGH",
-    sheet_state=state,
 )
 
 # Update race analysis
 sync.update_race_analysis()
-
-# Get high-priority recruitment districts
-priorities = sync.get_high_priority_districts()
 ```
 
-## Formatting
+## Automation
 
-The sheet includes:
+### Daily Sync (GitHub Action)
 
-- **Frozen headers** on all tabs
-- **Party colors**: D=Blue, R=Red, I/O=Gray
-- **Confidence colors**: HIGH=Green, MEDIUM=Yellow, LOW=Orange, UNKNOWN=Red
-- **Dropdowns**: manual_party_override (D/R/I/O), party_locked (Yes), status
+The SC Ethics Monitor runs automatically every day at 9am ET via GitHub Actions.
+
+**Workflow:** `.github/workflows/ethics-monitor.yml`
+
+**What it does:**
+1. Connects to Google Sheets Source of Truth
+2. Syncs latest candidate data from Ethics Commission
+3. Exports to `public/data/candidates.json`
+4. Commits changes if data updated
+
+**Manual Trigger:**
+Go to Actions > "SC Ethics Monitor Daily" > "Run workflow"
+
+**Required Secrets:**
+- `GOOGLE_SHEETS_CREDENTIALS_JSON`: Service account JSON
+- `FIRECRAWL_API_KEY`: (Optional) For party detection
+- `RESEND_API_KEY`: (Optional) For email notifications
+- `EMAIL_TO`: (Optional) Email recipients
 
 ## Environment Variables
 
@@ -268,16 +235,8 @@ RESEND_API_KEY=your_resend_key
 EMAIL_FROM=alerts@example.com
 EMAIL_TO=team@example.com
 
-# Optional (for party detection and discovery)
+# Optional (for party detection)
 FIRECRAWL_API_KEY=your_firecrawl_key
-
-# Candidate Discovery Configuration
-DISCOVERY_ENABLED=true              # Enable/disable discovery
-DISCOVERY_FREQUENCY=weekly          # daily, weekly, or manual
-DISCOVERY_SOURCES=ballotpedia,scdp,scgop  # Sources to use
-FORCE_DISCOVERY=1                   # Force discovery this run (one-time)
-NAME_SIMILARITY_THRESHOLD=0.85      # Fuzzy matching threshold
-FIRECRAWL_RPM=30                    # Rate limit for Firecrawl API
 ```
 
 ## Google Sheets URL
@@ -292,44 +251,27 @@ sc-ethics-monitor/
 │   ├── __init__.py               # Package exports
 │   ├── config.py                 # Column definitions, constants
 │   ├── sheets_sync.py            # Bidirectional Google Sheets sync
-│   ├── sheet_formatting.py       # Formatting utilities
-│   ├── monitor.py                # Daily monitoring workflow
-│   ├── party_detector.py         # Party detection logic
-│   ├── test_validation.py        # Validation tests
-│   └── candidate_discovery/      # Multi-source discovery pipeline
-│       ├── __init__.py
-│       ├── aggregator.py         # Source aggregation and deduplication
-│       ├── deduplicator.py       # Fuzzy name matching
-│       ├── rate_limiter.py       # API rate limiting
-│       ├── reporter.py           # Coverage reports
-│       ├── sheets_integration.py # Sheets sync for discovered candidates
-│       └── sources/              # Source adapters
-│           ├── __init__.py
-│           ├── base.py           # Base classes and data structures
-│           ├── ballotpedia.py    # Ballotpedia scraper
-│           ├── scdp.py           # SCDP scraper
-│           └── scgop.py          # SCGOP scraper
+│   ├── monitor.py                # Daily monitoring workflow (6 steps)
+│   └── party_detector.py         # Party detection logic
 ├── scripts/
-│   ├── initialize_sheet.py       # One-time sheet setup
-│   └── verify_discovery.py       # Pipeline verification script
+│   ├── initialize_sheet.py       # Sheet setup and migration
+│   ├── backup_sheet.py           # Backup before migration
+│   └── export_to_webapp.py       # Export to candidates.json
 ├── tests/
-│   ├── test_aggregator.py        # Aggregator tests
-│   ├── test_ballotpedia_source.py
-│   ├── test_deduplicator.py
-│   ├── test_discovery_pipeline.py # End-to-end pipeline tests
-│   ├── test_party_sources.py
-│   └── test_sheets_integration.py
+│   └── ...                       # Unit tests
 ├── requirements.txt              # Python dependencies
 └── README.md                     # This file
 ```
 
-## Verification Checklist
+## Simplified from Previous Version
 
-After implementation, verify:
+The previous structure had:
+- 5 tabs (now 3)
+- 16 Candidates columns (now 9)
+- Complex party workflow: `party_locked`, `manual_party_override`, `final_party` formula
+- Research Queue and Sync Log tabs
 
-- [ ] Manual overrides preserved after sync
-- [ ] Party_locked candidates skip re-detection
-- [ ] Race Analysis uses final_party (not detected_party)
-- [ ] Formatting applied (colors, dropdowns, frozen headers)
-- [ ] Research Queue populated for LOW/UNKNOWN candidates
-- [ ] Email notifications include party badges
+Now it's just:
+- 3 tabs
+- Single `party` column (edit directly)
+- Simple Y/N flags for race analysis
