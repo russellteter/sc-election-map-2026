@@ -29,6 +29,18 @@ jobs:
       - name: Install dependencies
         run: pip install -r sc-ethics-monitor/requirements.txt
 
+      - name: Install Playwright
+        run: |
+          pip install playwright
+          python -m playwright install chromium
+
+      - name: Scrape Ethics Commission
+        run: |
+          echo "Scraping SC Ethics Commission..."
+          python scripts/scrape-ethics.py --max-pages 20 --full --year 2026 --output /tmp/ethics-scrape.json
+          echo "Scrape complete"
+          cat /tmp/ethics-scrape.json | python -c "import json,sys; d=json.load(sys.stdin); print(f'Reports found: {len(d.get(\"reports_with_metadata\", {}))}')"
+
       - name: Write Google credentials
         run: |
           echo '${{ secrets.GOOGLE_SHEETS_CREDENTIALS_JSON }}' > /tmp/creds.json
@@ -42,7 +54,7 @@ jobs:
         working-directory: sc-ethics-monitor
         run: |
           echo "Running SC Ethics Monitor..."
-          python -m src.monitor --skip-scrape --export-webapp
+          python -m src.monitor --skip-scrape --scrape-data /tmp/ethics-scrape.json --export-webapp
 
       - name: Calculate opportunity tiers
         run: |
