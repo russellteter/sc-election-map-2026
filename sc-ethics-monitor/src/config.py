@@ -307,7 +307,16 @@ CANDIDATES_HEADERS = [
     "last_synced",
 ]
 
-# Legacy column mapping (for migration scripts)
+# =============================================================================
+# DEPRECATED: Legacy column mapping (16 columns)
+# =============================================================================
+# This format has been replaced by the simplified 9-column format above.
+# Kept only for reference by migration script: scripts/migrate_candidates_to_simplified.py
+# DO NOT USE IN NEW CODE - use CANDIDATES_COLUMNS instead.
+#
+# Migration completed: [DATE]
+# To restore from backup: See scripts/data/candidates_backup_*.json
+#
 CANDIDATES_COLUMNS_LEGACY = {
     "report_id": 0,
     "candidate_name": 1,

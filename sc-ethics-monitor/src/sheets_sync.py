@@ -154,7 +154,10 @@ class SheetsSync:
         """
         Read existing candidates from sheet, indexed by report_id.
 
-        Automatically detects column format (legacy vs simplified) based on header.
+        Expects simplified 9-column format:
+        A: district_id, B: candidate_name, C: party, D: filed_date,
+        E: report_id, F: ethics_url, G: is_incumbent, H: notes, I: last_synced
+
         Includes retry logic for transient API failures.
 
         Returns:
@@ -176,35 +179,13 @@ class SheetsSync:
         if len(all_values) <= 1:
             return {}  # Only header or empty
 
-        # Detect column format from header row
-        header = all_values[0]
-        is_legacy = header[0] == "report_id"  # Legacy has report_id first
-
-        # Build column index map based on detected format
-        if is_legacy:
-            # Legacy format: report_id, candidate_name, district_id, filed_date, ethics_report_url, is_incumbent, detected_party, ...
-            col_map = {
-                "report_id": 0,
-                "candidate_name": 1,
-                "district_id": 2,
-                "filed_date": 3,
-                "ethics_url": 4,
-                "is_incumbent": 5,
-                "party": 6,  # detected_party in legacy, or final_party at 11
-                "notes": 14,
-                "last_synced": 15,
-            }
-            # Check for final_party column (user-overridden party)
-            final_party_idx = 11 if len(header) > 11 and header[11] == "final_party" else None
-        else:
-            # Simplified format: district_id, candidate_name, party, filed_date, report_id, ethics_url, is_incumbent, notes, last_synced
-            col_map = CANDIDATES_COLUMNS
-            final_party_idx = None
+        # Use simplified column indices
+        col_map = CANDIDATES_COLUMNS
 
         candidates = {}
 
         for row_idx, row in enumerate(all_values[1:], start=2):
-            report_id_idx = col_map.get("report_id", 0)
+            report_id_idx = col_map["report_id"]
             if len(row) <= report_id_idx or not row[report_id_idx]:
                 continue  # Skip empty rows
 
@@ -216,17 +197,10 @@ class SheetsSync:
                     return row[idx] if row[idx] else None
                 return None
 
-            # Get party - prefer final_party over detected_party in legacy format
-            party = safe_get("party")
-            if is_legacy and final_party_idx is not None and final_party_idx < len(row):
-                final_party = row[final_party_idx]
-                if final_party:
-                    party = final_party
-
             candidates[report_id] = {
                 "district_id": safe_get("district_id"),
                 "candidate_name": safe_get("candidate_name"),
-                "party": party,
+                "party": safe_get("party"),
                 "filed_date": safe_get("filed_date"),
                 "ethics_url": safe_get("ethics_url"),
                 "is_incumbent": safe_get("is_incumbent") in ("Yes", "TRUE", "true", True),
@@ -279,6 +253,10 @@ class SheetsSync:
         a new party is explicitly provided. Includes retry logic for
         transient API failures.
 
+        Uses simplified 9-column format:
+        A: district_id, B: candidate_name, C: party, D: filed_date,
+        E: report_id, F: ethics_url, G: is_incumbent, H: notes, I: last_synced
+
         Args:
             district_id: District identifier (e.g., "SC-House-042").
             candidate_name: Full candidate name.
@@ -318,7 +296,7 @@ class SheetsSync:
             # Preserve existing notes if new notes not provided
             final_notes = notes if notes is not None else existing.get("notes", "")
 
-            # Build update row
+            # Simplified format: district_id, candidate_name, party, filed_date, report_id, ethics_url, is_incumbent, notes, last_synced
             row_data = [
                 district_id,
                 candidate_name,
@@ -330,7 +308,6 @@ class SheetsSync:
                 final_notes or "",
                 now,
             ]
-
             worksheet.update(f"A{row_num}:I{row_num}", [row_data], value_input_option="USER_ENTERED")
 
             return {
@@ -339,7 +316,7 @@ class SheetsSync:
             }
 
         else:
-            # New candidate - add row
+            # New candidate - add row (simplified format)
             row_data = [
                 district_id,
                 candidate_name,
@@ -603,6 +580,17 @@ class SheetsSync:
                 needs_dem = "Y"
                 needs_dem_count += 1
 
+            # Calculate priority tier
+            # A - Flip Target: R incumbent, no D filed
+            # B - Defend: D incumbent, no D filed (needs replacement/protection)
+            # C - Competitive: Multiple candidates, some competition
+            # D - Covered: D filed
+            priority_tier = self._calculate_priority_tier(
+                incumbent_party=incumbent_party,
+                dem_count=stats["dem_count"],
+                challenger_count=challenger_count,
+            )
+
             rows.append([
                 district_id,
                 incumbent_name,
@@ -610,6 +598,7 @@ class SheetsSync:
                 challenger_count,
                 dem_filed,
                 needs_dem,
+                priority_tier,
             ])
 
         # Batch append all rows
@@ -765,6 +754,48 @@ class SheetsSync:
         elif party in ("O", "OTHER"):
             return "O"
         return "?"
+
+    def _calculate_priority_tier(
+        self,
+        incumbent_party: str,
+        dem_count: int,
+        challenger_count: int,
+    ) -> str:
+        """
+        Calculate priority tier for a district.
+
+        Priority tiers:
+        - A - Flip Target: R incumbent, no D filed (highest priority)
+        - B - Defend: D incumbent, no D filed (needs protection/replacement)
+        - C - Competitive: Multiple candidates, some competition
+        - D - Covered: D filed (race is covered)
+
+        Args:
+            incumbent_party: Party of incumbent (D/R or empty)
+            dem_count: Number of Democratic candidates filed
+            challenger_count: Total number of challengers
+
+        Returns:
+            Priority tier string (A/B/C/D)
+        """
+        # D - Covered: Democrat filed, race is covered
+        if dem_count > 0:
+            return "D - Covered"
+
+        # A - Flip Target: R incumbent, no D filed
+        if incumbent_party == "R" and dem_count == 0:
+            return "A - Flip Target"
+
+        # B - Defend: D incumbent, no D filed yet (may need replacement)
+        if incumbent_party == "D" and dem_count == 0:
+            return "B - Defend"
+
+        # C - Competitive: Multiple challengers but no clear picture
+        if challenger_count >= 2:
+            return "C - Competitive"
+
+        # Default - Open seat or unclear
+        return "C - Competitive"
 
     def _sort_candidates(self, candidates: list) -> list:
         """

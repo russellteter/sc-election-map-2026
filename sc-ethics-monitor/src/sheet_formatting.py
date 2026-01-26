@@ -36,7 +36,7 @@ from .config import (
     TAB_SYNC_LOG,
     TAB_SOURCE_OF_TRUTH,
     CANDIDATES_COLUMNS,
-    CANDIDATES_COLUMNS_LEGACY,  # For 16-column format (actual sheet structure)
+    CANDIDATES_HEADERS,
     RACE_ANALYSIS_COLUMNS,
     RESEARCH_QUEUE_COLUMNS,
     DISTRICTS_COLUMNS,
@@ -185,22 +185,19 @@ class SheetFormatter:
 
     def format_candidates_tab(self, worksheet: gspread.Worksheet) -> None:
         """
-        Apply formatting to Candidates tab (16-column LEGACY structure).
+        Apply formatting to Candidates tab (9-column SIMPLIFIED structure).
 
-        Legacy columns (A-P):
-        A: report_id, B: candidate_name, C: district_id, D: filed_date,
-        E: ethics_report_url, F: is_incumbent, G: detected_party,
-        H: detection_confidence, I: detection_source, J: detection_evidence_url,
-        K: manual_party_override, L: final_party, M: party_locked,
-        N: detection_timestamp, O: notes, P: last_synced
+        Simplified columns (A-I):
+        A: district_id, B: candidate_name, C: party, D: filed_date,
+        E: report_id, F: ethics_url, G: is_incumbent, H: notes, I: last_synced
 
         Includes:
         - Freeze header row
         - Dark header styling
-        - Party color conditional formatting (columns G and L)
+        - Party color conditional formatting (column C)
+        - Party dropdown validation (column C)
         - Filing recency colors (column D)
-        - Zebra striping for all 16 columns
-        - Data validation dropdowns for party columns
+        - Zebra striping for all 9 columns
         - Optimized column widths
         """
         # 1. Clear existing conditional formatting to avoid duplicates
@@ -216,24 +213,17 @@ class SheetFormatter:
         )
         format_cell_range(worksheet, "1:1", header_format)
 
-        # 4. Add conditional formatting for party colors on BOTH party columns
-        # detected_party = G (index 6), final_party = L (index 11)
-        detected_party_col = CANDIDATES_COLUMNS_LEGACY["detected_party"] + 1  # 7 (1-based)
-        final_party_col = CANDIDATES_COLUMNS_LEGACY["final_party"] + 1        # 12 (1-based)
+        # 4. Add conditional formatting for party colors (column C, index 2)
+        party_col = CANDIDATES_COLUMNS["party"] + 1  # 3 (1-based)
 
         self._add_party_conditional_formatting(
             worksheet,
-            col_index=detected_party_col,
-            start_row=2,
-        )
-        self._add_party_conditional_formatting(
-            worksheet,
-            col_index=final_party_col,
+            col_index=party_col,
             start_row=2,
         )
 
         # 5. Add filing recency colors on filed_date column (D, index 3)
-        filed_date_col = CANDIDATES_COLUMNS_LEGACY["filed_date"] + 1  # 4 (1-based)
+        filed_date_col = CANDIDATES_COLUMNS["filed_date"] + 1  # 4 (1-based)
 
         self._add_filing_recency_formatting(
             worksheet,
@@ -241,43 +231,31 @@ class SheetFormatter:
             start_row=2,
         )
 
-        # 6. Apply zebra striping for all 16 columns (A-P)
+        # 6. Apply zebra striping for all 9 columns (A-I)
         self.apply_zebra_striping(
             worksheet,
             start_row=2,
-            end_col="P",  # 16 columns A-P
+            end_col="I",  # 9 columns A-I
         )
 
-        # 7. Add data validation dropdowns for BOTH party columns (G and L)
+        # 7. Add data validation dropdown for party column (C)
         self._add_dropdown_validation(
             worksheet,
-            range_notation="G2:G1000",
-            values=["", "D", "R", "I", "O"],
-        )
-        self._add_dropdown_validation(
-            worksheet,
-            range_notation="L2:L1000",
-            values=["", "D", "R", "I", "O"],
+            range_notation="C2:C1000",
+            values=["", "D", "R", "I", "O", "?"],
         )
 
-        # 8. Set optimized column widths for all 16 columns
+        # 8. Set optimized column widths for all 9 columns
         self.set_column_widths(worksheet, {
-            0: 100,   # A - report_id
+            0: 120,   # A - district_id
             1: 200,   # B - candidate_name
-            2: 120,   # C - district_id
+            2: 60,    # C - party
             3: 100,   # D - filed_date
-            4: 120,   # E - ethics_report_url
-            5: 80,    # F - is_incumbent
-            6: 60,    # G - detected_party
-            7: 80,    # H - detection_confidence
-            8: 150,   # I - detection_source
-            9: 120,   # J - detection_evidence_url
-            10: 60,   # K - manual_party_override
-            11: 60,   # L - final_party
-            12: 80,   # M - party_locked
-            13: 120,  # N - detection_timestamp
-            14: 150,  # O - notes
-            15: 120,  # P - last_synced
+            4: 100,   # E - report_id
+            5: 120,   # F - ethics_url
+            6: 80,    # G - is_incumbent
+            7: 150,   # H - notes
+            8: 120,   # I - last_synced
         })
 
     def format_districts_tab(self, worksheet: gspread.Worksheet) -> None:
@@ -1071,14 +1049,14 @@ class SheetFormatter:
 
         # Define filter views for Candidates tab only
         # Race Analysis filters are deprecated - use Source of Truth instead
-        # Using LEGACY format: final_party is column L (index 11)
+        # Simplified format: party is column C (index 2)
         filter_configs = {
             TAB_CANDIDATES: [
                 {
                     "title": "Democrats",
                     "criteria": {
-                        # Column L (final_party) = D (0-indexed = 11)
-                        CANDIDATES_COLUMNS_LEGACY["final_party"]: {
+                        # Column C (party) = D (0-indexed = 2)
+                        CANDIDATES_COLUMNS["party"]: {
                             "condition": {"type": "TEXT_EQ", "values": [{"userEnteredValue": "D"}]}
                         },
                     },
@@ -1086,8 +1064,8 @@ class SheetFormatter:
                 {
                     "title": "Republicans",
                     "criteria": {
-                        # Column L (final_party) = R (0-indexed = 11)
-                        CANDIDATES_COLUMNS_LEGACY["final_party"]: {
+                        # Column C (party) = R (0-indexed = 2)
+                        CANDIDATES_COLUMNS["party"]: {
                             "condition": {"type": "TEXT_EQ", "values": [{"userEnteredValue": "R"}]}
                         },
                     },
@@ -1166,17 +1144,17 @@ class SheetFormatter:
         }
 
         # Race Analysis protection removed - tab is deprecated
-        # Using LEGACY column format (16 columns A-P)
+        # Simplified column format (9 columns A-I)
         protection_configs = [
             {
                 "tab": TAB_CANDIDATES,
                 "description": "System-managed columns (read-only)",
                 "columns": [
-                    CANDIDATES_COLUMNS_LEGACY["report_id"],         # A (0)
-                    CANDIDATES_COLUMNS_LEGACY["district_id"],       # C (2)
-                    CANDIDATES_COLUMNS_LEGACY["filed_date"],        # D (3)
-                    CANDIDATES_COLUMNS_LEGACY["ethics_report_url"], # E (4)
-                    CANDIDATES_COLUMNS_LEGACY["last_synced"],       # P (15)
+                    CANDIDATES_COLUMNS["district_id"],   # A (0)
+                    CANDIDATES_COLUMNS["filed_date"],    # D (3)
+                    CANDIDATES_COLUMNS["report_id"],     # E (4)
+                    CANDIDATES_COLUMNS["ethics_url"],    # F (5)
+                    CANDIDATES_COLUMNS["last_synced"],   # I (8)
                 ],
                 "warning_only": True,  # Show warning but allow edit
             },
