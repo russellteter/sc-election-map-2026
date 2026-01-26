@@ -5,6 +5,9 @@ import type { Map as LeafletMapType } from 'leaflet';
 import DistrictMap from './DistrictMap';
 import type { CandidatesData, ElectionsData } from '@/types/schema';
 import type { ChamberType } from '@/lib/leafletLoader';
+import type { LensId } from '@/types/lens';
+import { DEFAULT_LENS } from '@/types/lens';
+import type { OpportunityData } from '@/lib/districtColors';
 
 // Lazy load Leaflet components for zero initial bundle impact
 const LeafletMap = lazy(() => import('./LeafletMap'));
@@ -37,6 +40,10 @@ export interface HybridMapContainerProps {
   showModeToggle?: boolean;
   /** Additional className */
   className?: string;
+  /** Active lens for multi-lens visualization (default: 'incumbents') */
+  activeLens?: LensId;
+  /** Opportunity data for opportunity lens */
+  opportunityData?: Record<string, OpportunityData>;
 }
 
 /**
@@ -77,6 +84,8 @@ export default function HybridMapContainer({
   showChamberToggle = true,
   showModeToggle = true,
   className,
+  activeLens = DEFAULT_LENS,
+  opportunityData,
 }: HybridMapContainerProps) {
   const [mode, setMode] = useState<MapMode>('svg');
   const [chamber, setChamber] = useState<LegislativeChamber | 'congressional'>(initialChamber);
@@ -121,6 +130,8 @@ export default function HybridMapContainer({
         onDistrictHover={onDistrictHover}
         filteredDistricts={filteredDistricts}
         stateCode={stateCode}
+        activeLens={activeLens}
+        opportunityData={opportunityData}
       />
     );
   };
@@ -154,6 +165,8 @@ export default function HybridMapContainer({
           onDistrictClick={onDistrictClick}
           onDistrictHover={onDistrictHover}
           filteredDistricts={filteredDistricts}
+          activeLens={activeLens}
+          opportunityData={opportunityData}
         />
       </LeafletMap>
     </Suspense>

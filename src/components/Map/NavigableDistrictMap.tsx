@@ -5,6 +5,9 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import HybridMapContainer, { type HybridMapContainerProps } from './HybridMapContainer';
 import ShareButton from './ShareButton';
 import type { CandidatesData, ElectionsData } from '@/types/schema';
+import type { LensId } from '@/types/lens';
+import { DEFAULT_LENS } from '@/types/lens';
+import type { OpportunityData } from '@/lib/districtColors';
 
 type LegislativeChamber = 'house' | 'senate';
 
@@ -35,6 +38,10 @@ export interface NavigableDistrictMapProps {
   showModeToggle?: boolean;
   /** Additional className */
   className?: string;
+  /** Active lens for multi-lens visualization (default: 'incumbents') */
+  activeLens?: LensId;
+  /** Opportunity data for opportunity lens */
+  opportunityData?: Record<string, OpportunityData>;
 }
 
 /**
@@ -60,6 +67,8 @@ export default function NavigableDistrictMap({
   showChamberToggle = true,
   showModeToggle = true,
   className,
+  activeLens = DEFAULT_LENS,
+  opportunityData,
 }: NavigableDistrictMapProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -142,6 +151,8 @@ export default function NavigableDistrictMap({
         showChamberToggle={showChamberToggle}
         showModeToggle={showModeToggle}
         className="h-full cursor-pointer"
+        activeLens={activeLens}
+        opportunityData={opportunityData}
       />
 
       {/* Share button - top right corner */}
