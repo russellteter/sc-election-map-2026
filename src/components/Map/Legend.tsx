@@ -87,34 +87,32 @@ export default function Legend({ activeLens = DEFAULT_LENS, className = '' }: Le
       {/* Legend content */}
       {!isCollapsed && (
         <div id="legend-content" className="legend-content">
-          <table className="legend-table" role="list" aria-label="District status legend">
-            <tbody>
-              {legendItems.map((item) => (
-                <tr key={item.label} role="listitem">
-                  <td className="legend-swatch-cell">
-                    {item.pattern ? (
-                      <span
-                        className={`legend-swatch legend-pattern-${item.pattern}`}
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <span
-                        className="legend-swatch"
-                        style={{ backgroundColor: item.color }}
-                        aria-hidden="true"
-                      />
-                    )}
-                  </td>
-                  <td className="legend-label-cell">
-                    <span className="legend-label">{item.label}</span>
-                  </td>
-                  <td className="legend-desc-cell">
-                    <span className="legend-desc">{item.description}</span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <ul className="legend-list" aria-label="District status legend">
+            {legendItems.map((item) => (
+              <li key={item.label} className="legend-item">
+                <span className="legend-swatch-cell">
+                  {item.pattern ? (
+                    <span
+                      className={`legend-swatch legend-pattern-${item.pattern}`}
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <span
+                      className="legend-swatch"
+                      style={{ backgroundColor: item.color }}
+                      aria-hidden="true"
+                    />
+                  )}
+                </span>
+                <span className="legend-label-cell">
+                  <span className="legend-label">{item.label}</span>
+                </span>
+                <span className="legend-desc-cell">
+                  <span className="legend-desc">{item.description}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
           <p className="legend-footnote">{footnote}</p>
         </div>
       )}
