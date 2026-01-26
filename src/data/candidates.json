@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-25T15:17:39.151138Z",
+  "lastUpdated": "2026-01-26T15:26:05.274305Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -43,7 +43,7 @@
         },
         {
           "name": "Burgett, Joseph M",
-          "party": null,
+          "party": "Independent",
           "status": "filed",
           "filedDate": "2026-01-02",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55051&seiId=57653&officeId=77981&reportId=416460",
@@ -72,7 +72,7 @@
       "candidates": [
         {
           "name": "Counts, Clay",
-          "party": null,
+          "party": "Republican",
           "status": "filed",
           "filedDate": "2024-11-14",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=53135&seiId=56769&officeId=76714&reportId=392099",
@@ -115,7 +115,7 @@
       "candidates": [
         {
           "name": "Orr, Patrick S",
-          "party": null,
+          "party": "Republican",
           "status": "filed",
           "filedDate": "2025-12-22",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56047&seiId=57893&officeId=78711&reportId=415979",
@@ -474,7 +474,7 @@
       "candidates": [
         {
           "name": "Ammons, Johnathan P Jr.",
-          "party": null,
+          "party": "Republican",
           "status": "filed",
           "filedDate": "2025-10-01",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55093&seiId=53114&officeId=78005&reportId=410471",
@@ -550,7 +550,7 @@
         },
         {
           "name": "Crosby, Katie W",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-11-13",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55867&seiId=53465&officeId=78594&reportId=414617",
@@ -872,7 +872,7 @@
       "candidates": [
         {
           "name": "Davey, Lisa",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-10-10",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55344&seiId=52337&officeId=78163&reportId=411604",
@@ -907,7 +907,7 @@
       "candidates": [
         {
           "name": "Carlin, Evelyn A",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-12-15",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55865&seiId=51696&officeId=78592&reportId=415389",
@@ -1178,7 +1178,7 @@
       "candidates": [
         {
           "name": "Asbill, Steven",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-11-16",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55871&seiId=57842&officeId=78595&reportId=414638",
@@ -1291,7 +1291,7 @@
         },
         {
           "name": "Alexander, Daniel R",
-          "party": "Democratic",
+          "party": "Republican",
           "status": "filed",
           "filedDate": "2025-07-02",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=53922&seiId=38403&officeId=77281&reportId=405685",
@@ -1403,7 +1403,7 @@
       "candidates": [
         {
           "name": "Ford, Gregory S",
-          "party": null,
+          "party": "Republican",
           "status": "filed",
           "filedDate": "2025-11-26",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55901&seiId=53356&officeId=78618&reportId=414873",
@@ -1413,7 +1413,7 @@
         },
         {
           "name": "Ogletree Satani, Sonja R",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-11-18",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=50862&seiId=55858&officeId=75061&reportId=414668",
@@ -1439,7 +1439,7 @@
       "candidates": [
         {
           "name": "Gore, Kristy",
-          "party": null,
+          "party": "Republican",
           "status": "filed",
           "filedDate": "2025-07-29",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=54475&seiId=57422&officeId=77657&reportId=407426",
@@ -1486,7 +1486,7 @@
       "candidates": [
         {
           "name": "McCravy, Katie L",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-10-14",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=54840&seiId=57570&officeId=77862&reportId=412019",
@@ -1525,7 +1525,7 @@
       "candidates": [
         {
           "name": "Blumenthal, George M",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-08-14",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=54722&seiId=57523&officeId=77795&reportId=408253",
@@ -1568,7 +1568,7 @@
       "candidates": [
         {
           "name": "Redwine, Kathy",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-09-11",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55187&seiId=57695&officeId=78066&reportId=409532",
@@ -1634,7 +1634,7 @@
       "candidates": [
         {
           "name": "Arsenault, Jenna P",
-          "party": null,
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-09-09",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55159&seiId=57627&officeId=78044&reportId=409443",
@@ -1690,7 +1690,7 @@
         },
         {
           "name": "Walker, Carlton",
-          "party": null,
+          "party": "Republican",
           "status": "filed",
           "filedDate": "2025-10-10",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=54516&seiId=55477&officeId=77682&reportId=411813",
@@ -1700,7 +1700,7 @@
         },
         {
           "name": "garmon, johnnie b",
-          "party": null,
+          "party": "Republican",
           "status": "filed",
           "filedDate": "2025-10-03",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=54256&seiId=57306&officeId=77515&reportId=406037",
@@ -1970,7 +1970,7 @@
       "candidates": [
         {
           "name": "Burns, James R",
-          "party": null,
+          "party": "Republican",
           "status": "filed",
           "filedDate": "2025-09-16",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55246&seiId=52012&officeId=78100&reportId=409765",
