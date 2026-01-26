@@ -9,13 +9,13 @@ See: .planning/PROJECT.md (updated 2026-01-18)
 
 ## Current Position
 
-Phase: v3.1 UX Overhaul — Nearing Completion
+Phase: v3.1 UX Overhaul — COMPLETE
 Milestone: v3.1 Comprehensive UX Improvements
 Plan: Tier 1 (Quick Wins) + Tier 2 (High-Value Features) + Tier 3 (Integration)
-Status: Phase A complete, Phase B complete, Phase C 2/5 complete (C3-C5 pending)
-Last activity: 2026-01-26 — Project cleanup and organization
+Status: Phase A complete, Phase B complete, Phase C complete — Ready for v3.1.0 tag
+Last activity: 2026-01-26 — E2E tests passed (99/99), project cleanup complete
 
-Progress: █████████░ 95% (v3.1 UX overhaul)
+Progress: ██████████ 100% (v3.1 UX overhaul)
 
 ## Shipped Milestones
 
@@ -48,14 +48,14 @@ Progress: █████████░ 95% (v3.1 UX overhaul)
 | B3. Find My District | `AddressSearch.tsx` created | ✅ Complete |
 | B4. Screenshot export | `ScreenshotButton.tsx` created | ✅ Complete |
 
-### Phase C: Integration & Polish — IN PROGRESS
+### Phase C: Integration & Polish — COMPLETE
 | Task | Files | Status |
 |------|-------|--------|
 | C1. Wire all new components | `[state]/page.tsx` | ✅ Complete |
 | C2. Styling fix | `globals.css` (lens intro overlay) | ✅ Complete |
-| C3. Mobile testing | Playwright tests | 🔜 Pending |
-| C4. Accessibility audit | axe-core validation | 🔜 Pending |
-| C5. Documentation update | `docs/CURRENT-STATE.md` | 🔜 Pending |
+| C3. Mobile testing | Playwright tests | ✅ Complete (99 passed) |
+| C4. Accessibility audit | axe-core validation | ✅ Complete (no critical violations) |
+| C5. Documentation update | `docs/CURRENT-STATE.md` | ✅ Complete |
 
 **New Files Created:**
 - `src/components/Search/AddressSearch.tsx` - Find My District by address/GPS
@@ -202,13 +202,16 @@ Resume file: None
 - Moved DEPLOYMENT-SUMMARY.txt to docs/archive/
 - Moved 2 Excel files to sc-ethics-monitor/data/
 - Updated .gitignore (playwright-report/, test-results/, *.xlsx)
-- Updated STATE.md progress to 95%
+- Archived recovery directory to .planning/archive/recovery-2026-01/
+- Ran full E2E test suite: 99 passed, 7 skipped, 0 failed
+- Updated docs/CURRENT-STATE.md with test results
+- v3.1 UX Overhaul marked COMPLETE
 
-**Remaining Tasks:**
-1. Mobile testing with Playwright (C3)
-2. Accessibility audit with axe-core (C4)
-3. Documentation update (C5)
-4. Tag v3.1.0 after completion
+**v3.1 Final Status:**
+- All Phase A (Quick Wins) tasks complete
+- All Phase B (High-Value Features) tasks complete
+- All Phase C (Integration & Polish) tasks complete
+- E2E tests passing across Chrome, Firefox, Safari, Mobile Chrome
 
 ### Session Summary (2026-01-25)
 **Completed:**

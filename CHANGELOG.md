@@ -7,6 +7,96 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.1.0] - 2026-01-26
+
+### UX Overhaul Release
+
+Comprehensive UX improvements elevating Blue Intelligence from "functional demo" to "campaign-ready tool".
+
+### Added
+
+#### User Experience Features
+- **Address Search** (`AddressSearch.tsx`) - Find your district by address or GPS location
+  - Geoapify-powered geocoding
+  - Browser geolocation support with permission prompts
+  - Error handling for invalid addresses
+- **Mobile District Sheet** (`MobileDistrictSheet.tsx`) - Touch-friendly bottom sheet on mobile
+  - Swipe-to-close gesture support
+  - Escape key dismissal
+  - Smooth slide-up animation
+- **Screenshot Export** (`ScreenshotButton.tsx`) - Export maps for sharing
+  - PNG and JPG format options
+  - 2x pixel ratio for retina displays
+  - html-to-image library integration
+- **Reusable Tooltip** (`Tooltip.tsx`) - Consistent tooltip component
+
+#### Quality Improvements
+- **E2E Test Suite** - 99 tests passing across 4 browsers
+  - `tests/e2e/v31-components.spec.ts` - v3.1 component tests
+  - `tests/e2e/accessibility.spec.ts` - axe-core WCAG 2.1 AA audit
+  - Chrome, Firefox, Safari, Mobile Chrome coverage
+
+### Changed
+- **Legend** - First-visit expanded state, keyboard accessible toggle
+- **LensToggleBar** - Onboarding intro overlay on first lens switch
+- **District Colors** - WCAG AA contrast compliance
+
+### Fixed
+- Lens intro overlay styling (moved from styled-jsx to globals.css)
+
+---
+
+## [3.0.0] - 2026-01-24
+
+### Multi-Lens Visualization System
+
+Strategic intelligence platform with 4 switchable visualization modes.
+
+### Added
+- **4-Lens System** - Multiple perspectives for strategic decision-making
+  - Incumbents: Current party control (R/D/Open)
+  - Dem Filing: Democratic coverage vs gaps
+  - Opportunity: Heat map (HOT/WARM/POSSIBLE/LONG_SHOT/DEFENSIVE)
+  - Battleground: Contested vs uncontested races
+- **LensToggleBar** - Horizontal pill-button lens switcher
+- **Lens-aware Legend** - Dynamic legend updates per lens
+- **Lens KPIs** - Per-lens statistics display
+- **URL Sync** - Shareable lens views via `?lens=opportunity`
+- **SyncDataButton** - GitHub Actions trigger for data refresh
+
+---
+
+## [2.1.0] - 2026-01-21
+
+### Strategic Visualization Release
+
+Advanced map-driven features for campaign intelligence.
+
+### Added
+- **Scenario Simulator** - What-if district flipping analysis
+- **Historical Comparison** - Margin changes between election cycles
+- **Recruitment Radar** - Districts needing Democratic candidates
+- **Resource Heatmap** - Investment prioritization with CSV export
+
+---
+
+## [2.0.0] - 2026-01-17
+
+### Multi-State Release
+
+Expansion from SC-only to national 5-state demo platform.
+
+### Added
+- **5 States** - SC, NC, GA, FL, VA (876 total districts)
+- **National Landing Page** - US map with state selection
+- **Dynamic State Routing** - `/[state]/` URL pattern
+- **Demo Data Generation** - Algorithmic data per state
+- **DemoBadge Component** - Labels demo vs real data
+- **Map Navigation System** - Leaflet + SVG hybrid maps
+- **NavigableUSMap** - Deep-linking + keyboard navigation
+
+---
+
 ## [1.0.0] - 2026-01-13
 
 ### 🎉 Initial Release
@@ -220,11 +310,28 @@ Comprehensive interactive election map showing SC House (124 districts) and Sena
 
 ## Version History
 
+### [3.1.0] - 2026-01-26 - UX Overhaul
+- AddressSearch, MobileDistrictSheet, ScreenshotButton
+- 99 E2E tests passing across 4 browsers
+- WCAG AA accessibility compliance
+
+### [3.0.0] - 2026-01-24 - Multi-Lens Visualization
+- 4-lens system (Incumbents, Dem Filing, Opportunity, Battleground)
+- URL-synced lens state
+- Lens-aware KPIs and legend
+
+### [2.1.0] - 2026-01-21 - Strategic Visualization
+- Scenario Simulator, Historical Comparison
+- Recruitment Radar, Resource Heatmap
+
+### [2.0.0] - 2026-01-17 - Multi-State
+- 5 states, 876 districts
+- Demo data generation
+- Map navigation system
+
 ### [1.0.0] - 2026-01-13 - Initial Release
-- First production-ready version
-- All core features implemented and tested
-- 40 Democratic House candidates from kjatwood integration
-- Comprehensive documentation
+- SC-only with 170 districts
+- Core map and candidate display
 - 80% test coverage with Playwright E2E tests
 
 ---
