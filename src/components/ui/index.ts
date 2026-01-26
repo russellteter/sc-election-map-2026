@@ -27,3 +27,9 @@ export {
 
 // Demo Data badge for indicating demo/placeholder data
 export { default as DemoBadge, type DemoBadgeProps } from './DemoBadge';
+
+// Data Freshness badge for indicating data update recency
+export {
+  DataFreshnessBadge,
+  type DataFreshnessBadgeProps,
+} from './DataFreshnessBadge';

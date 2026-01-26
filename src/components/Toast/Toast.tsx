@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type ReactElement } from 'react';
 import type { ToastType } from './ToastContext';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 interface ToastProps {
   id: string;
@@ -62,6 +63,7 @@ const typeStyles: Record<ToastType, {
 export default function Toast({ message, type, duration, onDismiss }: ToastProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
   const styles = typeStyles[type];
 
   // Entrance animation
@@ -73,7 +75,8 @@ export default function Toast({ message, type, duration, onDismiss }: ToastProps
 
   const handleDismiss = () => {
     setIsExiting(true);
-    setTimeout(onDismiss, 200);
+    // Use faster timeout when motion is reduced
+    setTimeout(onDismiss, prefersReducedMotion ? 0 : 200);
   };
 
   return (
@@ -84,7 +87,9 @@ export default function Toast({ message, type, duration, onDismiss }: ToastProps
       style={{
         transform: isVisible && !isExiting ? 'translateX(0)' : 'translateX(120%)',
         opacity: isVisible && !isExiting ? 1 : 0,
-        transition: 'transform 0.3s var(--ease-out-expo), opacity 0.2s ease',
+        transition: prefersReducedMotion
+          ? 'none'
+          : 'transform var(--duration-normal) var(--ease-out-expo), opacity var(--duration-fast) var(--ease-out)',
       }}
     >
       <div
