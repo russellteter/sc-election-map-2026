@@ -49,5 +49,8 @@ next-env.d.ts
 data/shapefiles/
 .playwright-mcp/
 
+# Scratchpad (temporary working files)
+scratchpad/
+
 # Data pipeline intermediate files
 scripts/data/*.json
