@@ -54,9 +54,9 @@ export default function CandidateCard({ candidate, index = 0 }: CandidateCardPro
               <span
                 className="badge inline-flex items-center gap-1"
                 style={{
-                  background: 'linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%)',
-                  color: 'var(--class-purple)',
-                  border: '1px solid rgba(71, 57, 231, 0.3)',
+                  background: 'var(--status-healthy-bg)',
+                  color: 'var(--brand-primary)',
+                  border: '1px solid var(--brand-primary-border)',
                 }}
               >
                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
@@ -74,7 +74,7 @@ export default function CandidateCard({ candidate, index = 0 }: CandidateCardPro
           <div className="flex items-center gap-2">
             <svg
               className="w-4 h-4 flex-shrink-0"
-              style={{ color: 'var(--class-purple-light)' }}
+              style={{ color: 'var(--brand-primary-light)' }}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -87,7 +87,7 @@ export default function CandidateCard({ candidate, index = 0 }: CandidateCardPro
         <div className="flex items-center gap-2">
           <svg
             className="w-4 h-4 flex-shrink-0"
-            style={{ color: 'var(--class-purple-light)' }}
+            style={{ color: 'var(--brand-primary-light)' }}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -101,9 +101,9 @@ export default function CandidateCard({ candidate, index = 0 }: CandidateCardPro
             <span
               className="badge inline-flex items-center gap-1 text-[10px]"
               style={{
-                background: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)',
-                color: '#059669',
-                border: '1px solid rgba(5, 150, 105, 0.3)',
+                background: 'var(--status-excellent-bg)',
+                color: 'var(--status-excellent)',
+                border: '1px solid var(--status-excellent-border)',
               }}
             >
               <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
@@ -121,7 +121,7 @@ export default function CandidateCard({ candidate, index = 0 }: CandidateCardPro
           target="_blank"
           rel="noopener noreferrer"
           className="mt-3 inline-flex items-center gap-1 text-sm font-medium transition-colors hover:opacity-80"
-          style={{ color: 'var(--class-purple)' }}
+          style={{ color: 'var(--brand-primary)' }}
         >
           View Ethics Filing
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

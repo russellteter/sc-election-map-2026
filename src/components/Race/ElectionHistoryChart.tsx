@@ -47,14 +47,14 @@ export default function ElectionHistoryChart({ history }: ElectionHistoryChartPr
           <div className="flex items-center gap-1.5">
             <div
               className="w-3 h-3 rounded"
-              style={{ background: 'var(--class-purple)' }}
+              style={{ background: 'var(--party-dem)' }}
             />
             <span style={{ color: 'var(--text-muted)' }}>Democrat</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div
               className="w-3 h-3 rounded"
-              style={{ background: '#DC2626' }}
+              style={{ background: 'var(--party-rep)' }}
             />
             <span style={{ color: 'var(--text-muted)' }}>Republican</span>
           </div>
@@ -121,7 +121,7 @@ function ElectionBar({ election, maxVotes, index }: ElectionBarProps) {
       {/* Stacked bar */}
       <div
         className="relative h-8 rounded-md overflow-hidden"
-        style={{ background: 'var(--class-purple-bg)' }}
+        style={{ background: 'var(--party-dem-bg)' }}
       >
         {election.uncontested ? (
           // Uncontested race - single full bar
@@ -129,7 +129,7 @@ function ElectionBar({ election, maxVotes, index }: ElectionBarProps) {
             className="absolute inset-y-0 left-0 flex items-center justify-end px-2 text-xs font-medium text-white transition-all duration-500"
             style={{
               width: `${winnerWidth}%`,
-              background: winnerIsDem ? 'var(--class-purple)' : '#DC2626',
+              background: winnerIsDem ? 'var(--party-dem)' : 'var(--party-rep)',
             }}
           >
             <span className="truncate">
@@ -144,7 +144,7 @@ function ElectionBar({ election, maxVotes, index }: ElectionBarProps) {
               className="absolute inset-y-0 left-0 flex items-center px-2 text-xs font-medium text-white transition-all duration-500"
               style={{
                 width: `${winnerWidth}%`,
-                background: winnerIsDem ? 'var(--class-purple)' : '#DC2626',
+                background: winnerIsDem ? 'var(--party-dem)' : 'var(--party-rep)',
               }}
             >
               <span className="truncate">
@@ -159,7 +159,7 @@ function ElectionBar({ election, maxVotes, index }: ElectionBarProps) {
                 style={{
                   left: `${winnerWidth}%`,
                   width: `${runnerUpWidth}%`,
-                  background: runnerUpIsDem ? 'var(--class-purple)' : '#DC2626',
+                  background: runnerUpIsDem ? 'var(--party-dem)' : 'var(--party-rep)',
                   opacity: 0.8,
                 }}
               >
@@ -178,7 +178,7 @@ function ElectionBar({ election, maxVotes, index }: ElectionBarProps) {
           <span
             className="text-xs"
             style={{
-              color: winnerIsDem ? 'var(--class-purple)' : '#DC2626',
+              color: winnerIsDem ? 'var(--party-dem)' : 'var(--party-rep)',
             }}
           >
             {winnerIsDem ? 'D' : 'R'}+{election.margin.toFixed(1)}%
@@ -228,7 +228,7 @@ function TrendSummary({ elections, competitiveness }: TrendSummaryProps) {
   return (
     <div
       className="mt-4 pt-4 border-t"
-      style={{ borderColor: 'var(--class-purple-light)' }}
+      style={{ borderColor: 'var(--border-default)' }}
     >
       <div className="grid grid-cols-2 gap-4">
         {/* Competitiveness Score */}
@@ -241,9 +241,9 @@ function TrendSummary({ elections, competitiveness }: TrendSummaryProps) {
               className="text-lg font-bold"
               style={{
                 color: competitiveness.score >= 70
-                  ? '#059669'
+                  ? 'var(--status-excellent)'
                   : competitiveness.score >= 40
-                  ? '#D97706'
+                  ? 'var(--status-attention)'
                   : 'var(--text-muted)',
               }}
             >
@@ -264,7 +264,7 @@ function TrendSummary({ elections, competitiveness }: TrendSummaryProps) {
             <span
               className="text-lg"
               style={{
-                color: isTrendingDem ? '#059669' : '#DC2626',
+                color: isTrendingDem ? 'var(--status-excellent)' : 'var(--party-rep)',
               }}
             >
               {isTrendingDem ? '+' : ''}{demTrend.toFixed(1)}%
@@ -275,7 +275,7 @@ function TrendSummary({ elections, competitiveness }: TrendSummaryProps) {
               stroke="currentColor"
               viewBox="0 0 24 24"
               style={{
-                color: isTrendingDem ? '#059669' : '#DC2626',
+                color: isTrendingDem ? 'var(--status-excellent)' : 'var(--party-rep)',
               }}
             >
               {isTrendingDem ? (

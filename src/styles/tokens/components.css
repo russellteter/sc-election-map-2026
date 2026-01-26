@@ -1,0 +1,431 @@
+/**
+ * SC Election Map 2026 - Reusable Component Classes
+ *
+ * Pre-built component styles that use design tokens
+ * Import after token files
+ */
+
+/* ================================================
+   GLASSMORPHIC CARD SYSTEM
+   Three variants: glass, solid, outlined
+   ================================================ */
+
+.card--glass {
+  background: var(--glass-gradient);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal),
+    border-color var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.card--glass:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--glass-border-hover);
+}
+
+.card--glass.card--interactive:hover {
+  transform: translateY(-4px);
+}
+
+/* Top accent line for glass cards */
+.card--glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.card--glass:hover::before {
+  opacity: 1;
+}
+
+/* Noise texture overlay for glass cards */
+.card--glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--noise-pattern);
+  opacity: var(--noise-opacity);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.card--solid {
+  background: var(--surface);
+  border: 1px solid var(--border-subtle-solid);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.card--solid:hover {
+  border-color: var(--border-default-solid);
+  box-shadow: var(--shadow-sm);
+}
+
+.card--outlined {
+  background: transparent;
+  border: 1px solid var(--border-default-solid);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition-fast);
+}
+
+.card--outlined:hover {
+  border-color: var(--brand-primary);
+}
+
+/* Card padding utilities */
+.card-padding--none { padding: 0; }
+.card-padding--sm { padding: var(--card-padding-sm); }
+.card-padding--md { padding: var(--card-padding-md); }
+.card-padding--lg { padding: var(--card-padding-lg); }
+
+/* ================================================
+   BADGE SYSTEM
+   Status badges with optional pulse indicator
+   ================================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  white-space: nowrap;
+}
+
+/* Badge variants */
+.badge--democrat {
+  background: var(--party-dem-bg);
+  color: var(--party-dem-dark);
+  border: 1px solid var(--party-dem-border);
+}
+
+.badge--republican {
+  background: var(--party-rep-bg);
+  color: var(--party-rep-dark);
+  border: 1px solid var(--party-rep-border);
+}
+
+.badge--open {
+  background: var(--party-open-bg);
+  color: var(--party-open-dark);
+  border: 1px solid var(--party-open-border);
+}
+
+.badge--excellent {
+  background: var(--status-excellent-bg);
+  color: var(--status-excellent);
+  border: 1px solid var(--status-excellent-border);
+}
+
+.badge--healthy {
+  background: var(--status-healthy-bg);
+  color: var(--brand-primary);
+  border: 1px solid var(--status-healthy-border);
+}
+
+.badge--attention {
+  background: var(--status-attention-bg);
+  color: var(--status-attention-dark);
+  border: 1px solid var(--status-attention-border);
+}
+
+.badge--at-risk {
+  background: var(--status-at-risk-bg);
+  color: var(--status-at-risk);
+  border: 1px solid var(--status-at-risk-border);
+}
+
+.badge--neutral {
+  background: var(--status-neutral-bg);
+  color: var(--status-neutral);
+  border: 1px solid var(--status-neutral-border);
+}
+
+.badge--info {
+  background: var(--status-info-bg);
+  color: var(--status-info-dark);
+  border: 1px solid var(--status-info-border);
+}
+
+/* Badge sizes */
+.badge--sm {
+  padding: 2px var(--space-2);
+  font-size: 10px;
+  gap: var(--space-1);
+}
+
+.badge--lg {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+  gap: var(--space-2);
+}
+
+/* Pulse indicator for badges */
+.badge__pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: currentColor;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.badge__pulse::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: var(--radius-full);
+  background: currentColor;
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+
+/* ================================================
+   KPI CARD STYLES
+   Data-rich metric cards
+   ================================================ */
+
+.kpi-card {
+  background: var(--glass-gradient);
+  backdrop-filter: blur(var(--glass-blur-sm));
+  -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+  padding: var(--card-padding-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  text-align: center;
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+.kpi-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.kpi-card[data-clickable="true"]:hover {
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.kpi-card__label {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.kpi-card__value {
+  font-size: 1.75rem;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--brand-primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.kpi-card__subtext {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-subtle-solid);
+}
+
+/* KPI variants with accent borders */
+.kpi-card--democrat {
+  border-top: 3px solid var(--party-dem);
+}
+.kpi-card--democrat .kpi-card__value {
+  color: var(--party-dem);
+  -webkit-text-fill-color: var(--party-dem);
+  background: none;
+}
+
+.kpi-card--republican {
+  border-top: 3px solid var(--party-rep);
+}
+.kpi-card--republican .kpi-card__value {
+  color: var(--party-rep);
+  -webkit-text-fill-color: var(--party-rep);
+  background: none;
+}
+
+.kpi-card--contested {
+  border-top: 3px solid var(--status-excellent);
+}
+.kpi-card--contested .kpi-card__value {
+  color: var(--status-excellent);
+  -webkit-text-fill-color: var(--status-excellent);
+  background: none;
+}
+
+.kpi-card--unknown {
+  border-top: 3px solid var(--status-attention);
+}
+.kpi-card--unknown .kpi-card__value {
+  color: var(--text-muted);
+  -webkit-text-fill-color: var(--text-muted);
+  background: none;
+}
+
+/* ================================================
+   BUTTON SYSTEM
+   Primary, secondary, ghost, danger variants
+   ================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+  min-height: var(--touch-target-md);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--brand-primary);
+  color: var(--text-on-primary);
+  border-color: var(--brand-primary);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--brand-primary-hover);
+  border-color: var(--brand-primary-hover);
+  box-shadow: var(--shadow-primary);
+}
+
+.btn--primary:active:not(:disabled) {
+  background: var(--brand-primary-active);
+}
+
+.btn--secondary {
+  background: var(--surface);
+  color: var(--text-primary);
+  border-color: var(--border-default-solid);
+}
+
+.btn--secondary:hover:not(:disabled) {
+  background: var(--background-alt);
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: transparent;
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--brand-primary-bg);
+  color: var(--brand-primary);
+}
+
+.btn--danger {
+  background: var(--status-at-risk);
+  color: var(--text-on-primary);
+  border-color: var(--status-at-risk);
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: var(--status-at-risk-dark);
+  border-color: var(--status-at-risk-dark);
+  box-shadow: var(--shadow-danger);
+}
+
+/* Button sizes */
+.btn--sm {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-xs);
+  min-height: var(--touch-target-sm);
+}
+
+.btn--lg {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--font-size-base);
+  min-height: var(--touch-target-lg);
+}
+
+/* ================================================
+   TOOLTIP STYLES
+   Glassmorphic hover tooltips
+   ================================================ */
+
+.tooltip--glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-3);
+}
+
+/* ================================================
+   FOCUS STATES
+   Accessible focus indicators
+   ================================================ */
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+.focus-ring-inset:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: -2px;
+}

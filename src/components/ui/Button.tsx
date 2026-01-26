@@ -24,23 +24,23 @@ const variantStyles: Record<ButtonVariant, {
   active: string;
 }> = {
   primary: {
-    base: 'bg-[var(--class-purple)] text-white border-[var(--class-purple)]',
-    hover: 'hover:bg-[#3a2dd0] hover:border-[#3a2dd0] hover:shadow-[var(--shadow-md)]',
-    active: 'active:bg-[#2f24a8]',
+    base: 'bg-[var(--brand-primary)] text-white border-[var(--brand-primary)]',
+    hover: 'hover:bg-[var(--brand-primary-hover)] hover:border-[var(--brand-primary-hover)] hover:shadow-[var(--shadow-primary)]',
+    active: 'active:bg-[var(--brand-primary-active)]',
   },
   secondary: {
-    base: 'bg-[var(--card-bg)] text-[var(--text-color)] border-[var(--class-purple-light)]',
-    hover: 'hover:bg-[var(--class-purple-bg)] hover:border-[var(--class-purple)] hover:text-[var(--class-purple)]',
-    active: 'active:bg-[var(--class-purple-light)]',
+    base: 'bg-[var(--surface)] text-[var(--text-primary)] border-[var(--border-default-solid)]',
+    hover: 'hover:bg-[var(--background-alt)] hover:border-[var(--brand-primary)] hover:text-[var(--brand-primary)]',
+    active: 'active:bg-[var(--brand-primary-light)]',
   },
   ghost: {
-    base: 'bg-transparent text-[var(--text-color)] border-transparent',
-    hover: 'hover:bg-[var(--highlight-purple)] hover:text-[var(--class-purple)]',
-    active: 'active:bg-[var(--class-purple-light)]',
+    base: 'bg-transparent text-[var(--text-secondary)] border-transparent',
+    hover: 'hover:bg-[var(--highlight-purple)] hover:text-[var(--brand-primary)]',
+    active: 'active:bg-[var(--brand-primary-light)]',
   },
   danger: {
-    base: 'bg-[var(--color-at-risk)] text-white border-[var(--color-at-risk)]',
-    hover: 'hover:bg-[#b91c1c] hover:border-[#b91c1c] hover:shadow-[var(--shadow-md)]',
+    base: 'bg-[var(--status-at-risk)] text-white border-[var(--status-at-risk)]',
+    hover: 'hover:bg-[var(--status-at-risk-dark)] hover:border-[var(--status-at-risk-dark)] hover:shadow-[var(--shadow-danger)]',
     active: 'active:bg-[#991b1b]',
   },
 };
@@ -123,7 +123,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           rounded-[var(--radius-md)]
           border
           transition-all duration-[var(--transition-fast)]
-          focus-visible:outline-2 focus-visible:outline-[var(--class-purple)] focus-visible:outline-offset-2
+          focus-visible:outline-2 focus-visible:outline-[var(--brand-primary)] focus-visible:outline-offset-2
           ${variantClasses.base}
           ${!isDisabled ? variantClasses.hover : ''}
           ${!isDisabled ? variantClasses.active : ''}

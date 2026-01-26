@@ -22,18 +22,18 @@ const variantStyles: Record<CardVariant, {
   backdrop: boolean;
 }> = {
   glass: {
-    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(246, 246, 254, 0.9) 100%)',
-    border: 'rgba(71, 57, 231, 0.08)',
+    background: 'var(--glass-gradient)',
+    border: 'var(--glass-border)',
     backdrop: true,
   },
   solid: {
-    background: 'var(--card-bg)',
-    border: 'var(--class-purple-light)',
+    background: 'var(--surface)',
+    border: 'var(--border-subtle-solid)',
     backdrop: false,
   },
   outlined: {
     background: 'transparent',
-    border: 'var(--class-purple-light)',
+    border: 'var(--border-default-solid)',
     backdrop: false,
   },
 };
@@ -62,7 +62,7 @@ const paddingStyles = {
 export function Card({
   variant = 'glass',
   showAccent = true,
-  accentColor = 'var(--class-purple)',
+  accentColor = 'var(--brand-primary)',
   interactive = false,
   padding = 'md',
   className = '',
@@ -84,7 +84,7 @@ export function Card({
         ${styles.backdrop ? 'backdrop-blur-[12px]' : ''}
         ${interactive || isClickable ? 'cursor-pointer' : ''}
         ${interactive || isClickable ? 'hover:-translate-y-0.5 hover:shadow-[var(--shadow-lg)]' : ''}
-        focus-visible:outline-2 focus-visible:outline-[var(--class-purple)] focus-visible:outline-offset-2
+        focus-visible:outline-2 focus-visible:outline-[var(--brand-primary)] focus-visible:outline-offset-2
         ${className}
       `}
       style={{
@@ -157,7 +157,7 @@ export function CardHeader({
     <div
       className={`
         pb-3 mb-3
-        border-b border-[var(--class-purple-light)]
+        border-b border-[var(--border-subtle-solid)]
         ${className}
       `}
       {...props}
@@ -223,7 +223,7 @@ export function CardFooter({
     <div
       className={`
         pt-3 mt-3
-        border-t border-[var(--class-purple-light)]
+        border-t border-[var(--border-subtle-solid)]
         ${className}
       `}
       {...props}

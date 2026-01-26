@@ -1,0 +1,220 @@
+/**
+ * SC Election Map 2026 - Color Design Tokens
+ *
+ * Unified color palette with:
+ * - Softer party colors (less aggressive)
+ * - Brand primary (purple accent)
+ * - Status colors for data visualization
+ * - UI surface and border colors
+ *
+ * WCAG AA compliant color combinations
+ */
+
+:root {
+  /* ================================================
+     PARTY COLORS - Softer, Sophisticated
+     These replace the harsh #1E40AF/#DC2626 colors
+     ================================================ */
+
+  /* Democrat - Steel Blue (softer than navy) */
+  --party-dem: #3B5998;
+  --party-dem-dark: #2C4373;
+  --party-dem-light: #6B8BC3;
+  --party-dem-bg: #E8EDF5;
+  --party-dem-border: rgba(59, 89, 152, 0.3);
+  --party-dem-glow: rgba(59, 89, 152, 0.4);
+
+  /* Republican - Brick Rose (softer than bright red) */
+  --party-rep: #A8444A;
+  --party-rep-dark: #7D3338;
+  --party-rep-light: #C77B7F;
+  --party-rep-bg: #F5E8E9;
+  --party-rep-border: rgba(168, 68, 74, 0.3);
+  --party-rep-glow: rgba(168, 68, 74, 0.4);
+
+  /* Open Seat / Contested - Warm Violet */
+  --party-open: #7E5BAE;
+  --party-open-dark: #5E4382;
+  --party-open-light: #A78BCA;
+  --party-open-bg: #F0EBFA;
+  --party-open-border: rgba(126, 91, 174, 0.3);
+
+  /* Unknown / No Data */
+  --party-unknown: #94A3B8;
+  --party-unknown-dark: #64748B;
+  --party-unknown-light: #CBD5E1;
+  --party-unknown-bg: #F1F5F9;
+
+  /* ================================================
+     BRAND PRIMARY - Purple Accent
+     The signature color for the design system
+     ================================================ */
+  --brand-primary: #4739E7;
+  --brand-primary-hover: #3a2dd0;
+  --brand-primary-active: #2f24a8;
+  --brand-primary-light: #DAD7FA;
+  --brand-primary-bg: #F6F6FE;
+  --brand-primary-border: rgba(71, 57, 231, 0.15);
+
+  /* ================================================
+     STATUS COLORS - Data Visualization
+     Semantic colors for KPIs and badges
+     ================================================ */
+
+  /* Excellent / Success */
+  --status-excellent: #059669;
+  --status-excellent-dark: #047857;
+  --status-excellent-bg: #ECFDF5;
+  --status-excellent-border: #D1FAE5;
+
+  /* Healthy / Normal */
+  --status-healthy: #4739E7;
+  --status-healthy-dark: #3a2dd0;
+  --status-healthy-bg: #F6F6FE;
+  --status-healthy-border: #DAD7FA;
+
+  /* Attention / Warning */
+  --status-attention: #D97706;
+  --status-attention-dark: #B45309;
+  --status-attention-bg: #FEF3C7;
+  --status-attention-border: #FDE68A;
+
+  /* At Risk / Critical */
+  --status-at-risk: #DC2626;
+  --status-at-risk-dark: #B91C1C;
+  --status-at-risk-bg: #FEE2E2;
+  --status-at-risk-border: #FECACA;
+
+  /* Neutral / Inactive */
+  --status-neutral: #64748B;
+  --status-neutral-bg: #F1F5F9;
+  --status-neutral-border: #E2E8F0;
+
+  /* Info / Informational */
+  --status-info: #3B82F6;
+  --status-info-dark: #2563EB;
+  --status-info-bg: #DBEAFE;
+  --status-info-border: #BFDBFE;
+
+  /* ================================================
+     MAP COLORS - District Visualization
+     Used by districtColors.ts
+     ================================================ */
+  --map-dem-incumbent: var(--party-dem);
+  --map-dem-challenger: var(--party-dem-light);
+  --map-rep-incumbent: var(--party-rep);
+  --map-rep-only: #EF4444;
+  --map-open-seat: var(--party-open);
+  --map-contested: var(--party-open);
+  --map-no-data: #F3F4F6;
+  --map-empty: #E5E7EB;
+  --map-stroke: #374151;
+  --map-stroke-selected: var(--brand-primary);
+
+  /* Opportunity Lens Colors (purple gradient) */
+  --map-opp-hot: #6D28D9;
+  --map-opp-warm: #8B5CF6;
+  --map-opp-possible: #C4B5FD;
+  --map-opp-longshot: #9CA3AF;
+  --map-opp-defensive: var(--party-dem);
+
+  /* Dem Filing Lens Colors */
+  --map-dem-filed: var(--party-dem);
+  --map-priority-gap: #9333EA;
+  --map-opportunity: #A78BFA;
+  --map-safe-r: #E5E7EB;
+
+  /* ================================================
+     UI SURFACE COLORS
+     Background, card, and surface colors
+     ================================================ */
+  --background: #EDECFD;
+  --background-alt: #F6F6FE;
+  --surface: #FFFFFF;
+  --surface-secondary: #F8FAFC;
+  --surface-elevated: #FFFFFF;
+
+  /* ================================================
+     TEXT COLORS
+     Typography hierarchy
+     ================================================ */
+  --text-primary: #0A1849;
+  --text-secondary: #4A5568;
+  --text-muted: #64748B;
+  --text-disabled: #94A3B8;
+  --text-on-dark: #FFFFFF;
+  --text-on-primary: #FFFFFF;
+
+  /* ================================================
+     BORDER COLORS
+     Consistent border styling
+     ================================================ */
+  --border-subtle: rgba(71, 57, 231, 0.08);
+  --border-default: rgba(71, 57, 231, 0.15);
+  --border-strong: rgba(71, 57, 231, 0.25);
+  --border-focus: var(--brand-primary);
+
+  /* Legacy naming compatibility */
+  --border-subtle-solid: #E2E8F0;
+  --border-default-solid: #CBD5E1;
+
+  /* ================================================
+     ACCENT COLORS
+     Secondary accent palette
+     ================================================ */
+  --accent-cyan: #0891B2;
+  --accent-emerald: #059669;
+  --accent-amber: #D97706;
+  --accent-rose: #DC2626;
+
+  /* ================================================
+     LEGACY COMPATIBILITY ALIASES
+     Mapped to new tokens for backwards compatibility
+     TODO: Gradually migrate components to new tokens
+     ================================================ */
+
+  /* --class-purple was actually blue - now maps to brand-primary */
+  --class-purple: var(--brand-primary);
+  --class-purple-light: var(--brand-primary-light);
+  --class-purple-bg: var(--background-alt);
+
+  /* Class Dashboard aliases */
+  --class-blue: var(--party-dem);
+  --class-blue-hover: var(--party-dem-dark);
+  --class-blue-dark: var(--party-dem-dark);
+
+  /* Map colors */
+  --map-democrat: var(--party-dem);
+  --map-republican: var(--party-rep);
+  --map-both-parties: var(--status-excellent);
+  --map-unknown: var(--party-unknown);
+
+  /* Status colors (semantic) */
+  --color-excellent: var(--status-excellent);
+  --color-excellent-bg: var(--status-excellent-bg);
+  --color-healthy: var(--brand-primary);
+  --color-healthy-bg: var(--brand-primary-bg);
+  --color-attention: var(--status-attention);
+  --color-attention-bg: var(--status-attention-bg);
+  --color-at-risk: var(--status-at-risk);
+  --color-at-risk-bg: var(--status-at-risk-bg);
+  --color-empty: #E2E8F0;
+
+  /* Link colors */
+  --link-blue: #2563EB;
+  --link-blue-hover: #1D4ED8;
+
+  /* Card/surface */
+  --card-bg: var(--surface);
+  --glass-background: var(--surface);
+  --text-color: var(--text-primary);
+  --yellow-accent: var(--status-attention);
+}
+
+/* Dark mode overrides (future) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode tokens would go here */
+    /* Currently not implemented but structure is ready */
+  }
+}

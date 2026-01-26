@@ -17,10 +17,15 @@ import type { LensId } from '@/types/lens';
 /**
  * District colors based on objective facts.
  * Dem-focused color scheme for Democratic campaign tool.
+ *
+ * v2.0 - Softer, sophisticated palette:
+ * - Democrat: Steel Blue (#3B5998) - softer than harsh navy
+ * - Republican: Brick Rose (#A8444A) - softer than bright red
+ * - Open Seat: Warm Violet (#7E5BAE) - for contested/open races
  */
 export const DISTRICT_COLORS = {
-  DEM_INCUMBENT: '#1E40AF',     // Solid blue - current rep is Democrat
-  DEM_CHALLENGER: '#3B82F6',    // Medium blue - Dem filed (not incumbent)
+  DEM_INCUMBENT: '#3B5998',     // Steel blue - current rep is Democrat
+  DEM_CHALLENGER: '#6B8BC3',    // Lighter steel blue - Dem filed (not incumbent)
   CLOSE_NO_DEM: 'url(#needs-candidate)', // Blue crosshatch - margin ≤15pts, no Dem
   SAFE_R: '#E5E7EB',            // Light gray - margin >15pts, no Dem
   NO_DATA: '#F3F4F6',           // Very light gray - no candidates/data
@@ -30,9 +35,9 @@ export const DISTRICT_COLORS = {
  * Solid colors for GeoJSON (patterns not supported in Leaflet)
  */
 export const DISTRICT_COLORS_SOLID = {
-  DEM_INCUMBENT: '#1E40AF',     // Solid blue
-  DEM_CHALLENGER: '#3B82F6',    // Medium blue
-  CLOSE_NO_DEM: '#93C5FD',      // Light blue (substitute for crosshatch)
+  DEM_INCUMBENT: '#3B5998',     // Steel blue
+  DEM_CHALLENGER: '#6B8BC3',    // Lighter steel blue
+  CLOSE_NO_DEM: '#A3BFE0',      // Light steel blue (substitute for crosshatch)
   SAFE_R: '#E5E7EB',            // Light gray
   NO_DATA: '#F3F4F6',           // Very light gray
 } as const;
@@ -41,8 +46,8 @@ export const DISTRICT_COLORS_SOLID = {
  * Congressional district colors based on party control
  */
 export const CONGRESSIONAL_COLORS = {
-  DEM: '#1E40AF',     // Blue - Democrat held
-  REP: '#DC2626',     // Red - Republican held
+  DEM: '#3B5998',     // Steel blue - Democrat held
+  REP: '#A8444A',     // Brick rose - Republican held
   VACANT: '#9CA3AF',  // Gray - vacant/unknown
 } as const;
 
@@ -86,10 +91,11 @@ export interface OpportunityData {
 /**
  * Color palettes for each lens visualization
  *
- * Design principles:
- * - Purple (#8B5CF6) for neutral/open seats (replaces amber)
- * - Blue (#1E40AF) for Democratic
- * - Red (#DC2626) for Republican
+ * v2.0 Design principles:
+ * - Softer, sophisticated party colors
+ * - Steel Blue (#3B5998) for Democratic
+ * - Brick Rose (#A8444A) for Republican
+ * - Warm Violet (#7E5BAE) for open/contested seats
  * - Purple gradient for opportunity tiers (HOT→POSSIBLE)
  * - All colors WCAG AA compliant
  */
@@ -97,12 +103,12 @@ export const LENS_COLORS = {
   /**
    * Incumbents Lens (default)
    * Shows current party control of each district
-   * WCAG AA compliant: Open Seat updated from #8B5CF6 (3.1:1) to #7C3AED (4.6:1)
+   * Softer palette for visual harmony
    */
   incumbents: {
-    DEM_INCUMBENT: '#1E40AF',     // Dark blue - Dem holds seat
-    REP_INCUMBENT: '#DC2626',     // Red - Rep holds seat
-    OPEN_SEAT: '#7C3AED',         // Vivid violet - Open seat (WCAG AA: 4.6:1)
+    DEM_INCUMBENT: '#3B5998',     // Steel blue - Dem holds seat
+    REP_INCUMBENT: '#A8444A',     // Brick rose - Rep holds seat
+    OPEN_SEAT: '#7E5BAE',         // Warm violet - Open seat (WCAG AA)
     UNKNOWN: '#D1D5DB',           // Light gray - No data
   },
 
@@ -111,8 +117,8 @@ export const LENS_COLORS = {
    * Shows Democratic candidate coverage vs gaps
    */
   'dem-filing': {
-    DEM_FILED: '#1E40AF',         // Dark blue - Dem candidate filed
-    DEM_INCUMBENT: '#3B82F6',     // Medium blue - Dem incumbent (may not have filed)
+    DEM_FILED: '#3B5998',         // Steel blue - Dem candidate filed
+    DEM_INCUMBENT: '#6B8BC3',     // Lighter steel blue - Dem incumbent
     PRIORITY_GAP: '#9333EA',      // Vivid purple - No Dem, margin ≤15pts (urgent)
     OPPORTUNITY: '#A78BFA',       // Light purple - No Dem, margin ≤10pts
     SAFE_R: '#E5E7EB',            // Light gray - No Dem, margin >15pts
@@ -125,11 +131,11 @@ export const LENS_COLORS = {
    * HOT→WARM→POSSIBLE clearly distinguishable
    */
   opportunity: {
-    HOT: '#6D28D9',               // Deep violet - Top priority (≤5pt margin) - WCAG AA
+    HOT: '#6D28D9',               // Deep violet - Top priority (≤5pt margin)
     WARM: '#8B5CF6',              // Medium purple - Strong opportunity (6-10pt)
     POSSIBLE: '#C4B5FD',          // Light lavender - Worth watching (11-15pt)
     LONG_SHOT: '#9CA3AF',         // Gray - Unlikely flip (>15pt)
-    DEFENSIVE: '#1E40AF',         // Blue - Dem-held seat to protect
+    DEFENSIVE: '#3B5998',         // Steel blue - Dem-held seat to protect
   },
 
   /**
@@ -138,9 +144,9 @@ export const LENS_COLORS = {
    * WCAG AA compliant colors
    */
   battleground: {
-    CONTESTED: '#7C3AED',         // Vivid violet - Both D and R filed (WCAG AA)
-    DEM_ONLY: '#3B82F6',          // Blue - Only Dem filed
-    REP_ONLY: '#EF4444',          // Red - Only Rep filed
+    CONTESTED: '#7E5BAE',         // Warm violet - Both D and R filed (WCAG AA)
+    DEM_ONLY: '#6B8BC3',          // Light steel blue - Only Dem filed
+    REP_ONLY: '#C77B7F',          // Light brick rose - Only Rep filed
     NONE_FILED: '#E5E7EB',        // Gray - No candidates filed
   },
 } as const;
@@ -442,23 +448,24 @@ export type ScenarioStatus = 'baseline' | 'flipped-dem' | 'flipped-rep' | 'tossu
 /**
  * Colors for scenario simulator mode
  * These overlay/replace base colors when scenario mode is active
+ * v2.0 - Uses softer palette for visual harmony
  */
 export const SCENARIO_COLORS = {
   // Flipped to Democrat (was R, now D in scenario)
-  FLIPPED_DEM: '#2563EB',           // Bright blue
+  FLIPPED_DEM: '#4A7AC7',           // Brighter steel blue
   FLIPPED_DEM_PATTERN: 'url(#flipped-dem-pattern)',
 
   // Flipped to Republican (was D, now R in scenario)
-  FLIPPED_REP: '#DC2626',           // Bright red
+  FLIPPED_REP: '#B5585D',           // Brighter brick rose
   FLIPPED_REP_PATTERN: 'url(#flipped-rep-pattern)',
 
   // Toss-up (competitive, uncertain)
-  TOSSUP: '#8B5CF6',                // Purple
+  TOSSUP: '#9370C4',                // Medium warm violet
   TOSSUP_PATTERN: 'url(#tossup-pattern)',
 
   // Current control colors for scenario baseline
-  DEM_HELD: '#1E40AF',              // Solid blue (current D)
-  REP_HELD: '#B91C1C',              // Solid red (current R)
+  DEM_HELD: '#3B5998',              // Steel blue (current D)
+  REP_HELD: '#A8444A',              // Brick rose (current R)
 } as const;
 
 /**
@@ -541,22 +548,23 @@ export function getScenarioStatusLabel(
 /**
  * Colors for historical margin comparison (diverging scale)
  * Blue = improving for Democrats, Red = worsening for Democrats
+ * v2.0 - Uses softer steel blue and brick rose palette
  */
 export const HISTORICAL_DELTA_COLORS = {
   // Strong Dem improvement (+10pts or more)
-  DEM_STRONG: '#1E40AF',
+  DEM_STRONG: '#2C4373',
   // Moderate Dem improvement (+5 to +10pts)
-  DEM_MODERATE: '#3B82F6',
+  DEM_MODERATE: '#3B5998',
   // Slight Dem improvement (+2 to +5pts)
-  DEM_SLIGHT: '#93C5FD',
+  DEM_SLIGHT: '#A3BFE0',
   // Stable (-2 to +2pts)
   STABLE: '#9CA3AF',
   // Slight Rep improvement (-2 to -5pts)
-  REP_SLIGHT: '#FCA5A5',
+  REP_SLIGHT: '#D9A5A8',
   // Moderate Rep improvement (-5 to -10pts)
-  REP_MODERATE: '#EF4444',
+  REP_MODERATE: '#A8444A',
   // Strong Rep improvement (-10pts or more)
-  REP_STRONG: '#B91C1C',
+  REP_STRONG: '#7D3338',
 } as const;
 
 /**

@@ -1,0 +1,137 @@
+/**
+ * SC Election Map 2026 - Effects Design Tokens
+ *
+ * Visual effects including:
+ * - Glassmorphic surfaces
+ * - Shadow hierarchy (5 levels)
+ * - Transitions and animations
+ * - Blur and overlay effects
+ */
+
+:root {
+  /* ================================================
+     GLASSMORPHIC EFFECTS
+     Frosted glass surfaces with backdrop blur
+     ================================================ */
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-bg-secondary: rgba(246, 246, 254, 0.9);
+  --glass-bg-elevated: rgba(255, 255, 255, 0.98);
+  --glass-blur: 12px;
+  --glass-blur-sm: 8px;
+  --glass-blur-lg: 16px;
+  --glass-border: rgba(71, 57, 231, 0.08);
+  --glass-border-hover: rgba(71, 57, 231, 0.15);
+
+  /* Glassmorphic shadow - purple-tinted for cohesion */
+  --glass-shadow:
+    0 4px 6px -1px rgba(71, 57, 231, 0.06),
+    0 2px 4px -1px rgba(71, 57, 231, 0.04);
+  --glass-shadow-hover:
+    0 10px 15px -3px rgba(71, 57, 231, 0.08),
+    0 4px 6px -2px rgba(71, 57, 231, 0.05);
+
+  /* Glass gradient backgrounds */
+  --glass-gradient: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(246, 246, 254, 0.9) 100%
+  );
+  --glass-gradient-hover: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(246, 246, 254, 0.95) 100%
+  );
+
+  /* ================================================
+     SHADOW HIERARCHY (5 levels)
+     Consistent elevation system
+     ================================================ */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06),
+               0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+               0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08),
+               0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.10),
+               0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Colored shadows for interactive elements */
+  --shadow-primary: 0 4px 14px -2px rgba(71, 57, 231, 0.25);
+  --shadow-dem: 0 4px 14px -2px rgba(59, 89, 152, 0.25);
+  --shadow-rep: 0 4px 14px -2px rgba(168, 68, 74, 0.25);
+  --shadow-success: 0 4px 14px -2px rgba(5, 150, 105, 0.25);
+  --shadow-danger: 0 4px 14px -2px rgba(220, 38, 38, 0.25);
+
+  /* Focus ring shadow */
+  --shadow-focus: 0 0 0 3px rgba(71, 57, 231, 0.2);
+
+  /* ================================================
+     ANIMATION TIMING TOKENS
+     Duration values for consistent motion
+     ================================================ */
+  --duration-instant: 0ms;
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-slower: 600ms;
+
+  /* ================================================
+     EASING FUNCTIONS
+     Motion curves for natural animation
+     ================================================ */
+  --ease-out: ease-out;
+  --ease-in: ease-in;
+  --ease-in-out: ease-in-out;
+  --ease-linear: linear;
+
+  /* Custom bezier curves */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-expo: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* ================================================
+     TRANSITION SHORTHAND TOKENS
+     Pre-composed transitions for common uses
+     ================================================ */
+  --transition-fast: var(--duration-fast) var(--ease-out);
+  --transition-normal: var(--duration-normal) var(--ease-out);
+  --transition-slow: var(--duration-slow) var(--ease-out);
+  --transition-standard: var(--duration-normal) var(--ease-out-expo);
+  --transition-spring: var(--duration-slow) var(--ease-out-back);
+
+  /* ================================================
+     MAP ANIMATION TOKENS
+     Specific to map interactions
+     ================================================ */
+  --map-zoom-duration: 400ms;
+  --map-zoom-easing: var(--ease-out-expo);
+  --map-zoom-scale-max: 3;
+  --map-hover-scale: 1.02;
+
+  /* ================================================
+     OVERLAY EFFECTS
+     Modal and dropdown overlays
+     ================================================ */
+  --overlay-bg: rgba(15, 23, 42, 0.5);
+  --overlay-blur: 4px;
+
+  /* ================================================
+     NOISE TEXTURE
+     Subtle texture for premium glass effect
+     ================================================ */
+  --noise-opacity: 0.03;
+  --noise-pattern: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-slow: 0ms;
+    --duration-slower: 0ms;
+    --map-zoom-duration: 0ms;
+  }
+}

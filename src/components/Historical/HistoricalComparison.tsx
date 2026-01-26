@@ -227,26 +227,26 @@ export default function HistoricalComparison({
           <StatCard
             label="Dem Improved"
             value={summary.demImproved}
-            color="#1E40AF"
+            color="var(--party-dem)"
             subtext={`up to ${summary.maxDemSwing.toFixed(0)}pts`}
           />
           <StatCard
             label="Rep Improved"
             value={summary.repImproved}
-            color="#B91C1C"
+            color="var(--party-rep)"
             subtext={`up to ${summary.maxRepSwing.toFixed(0)}pts`}
           />
           <StatCard
             label="Stable"
             value={summary.stable}
-            color="#6B7280"
+            color="var(--text-muted)"
             subtext="within 2pts"
           />
           {!compact && (
             <StatCard
               label="Avg Shift"
               value={`${summary.avgShift > 0 ? '+' : ''}${summary.avgShift.toFixed(1)}`}
-              color={summary.avgShift < 0 ? '#1E40AF' : summary.avgShift > 0 ? '#B91C1C' : '#6B7280'}
+              color={summary.avgShift < 0 ? 'var(--party-dem)' : summary.avgShift > 0 ? 'var(--party-rep)' : 'var(--text-muted)'}
               subtext={summary.avgShift < 0 ? 'toward Dem' : summary.avgShift > 0 ? 'toward Rep' : 'neutral'}
             />
           )}
@@ -282,7 +282,7 @@ export default function HistoricalComparison({
           <div className="grid grid-cols-2 gap-4">
             {/* Dem Movers */}
             <div>
-              <h3 className="text-sm font-medium mb-2" style={{ color: '#1E40AF' }}>
+              <h3 className="text-sm font-medium mb-2" style={{ color: 'var(--party-dem)' }}>
                 Biggest Dem Gains
               </h3>
               {topMovers.dem.length > 0 ? (
@@ -291,12 +291,12 @@ export default function HistoricalComparison({
                     <li
                       key={d.districtNumber}
                       className="flex items-center justify-between text-sm p-1.5 rounded"
-                      style={{ background: 'rgba(30, 64, 175, 0.05)' }}
+                      style={{ background: 'var(--party-dem-bg)' }}
                     >
                       <span style={{ color: 'var(--text-color)' }}>
                         District {d.districtNumber}
                       </span>
-                      <span className="font-medium" style={{ color: '#1E40AF' }}>
+                      <span className="font-medium" style={{ color: 'var(--party-dem)' }}>
                         {getHistoricalDeltaLabel(d.delta ?? 0)}
                       </span>
                     </li>
@@ -311,7 +311,7 @@ export default function HistoricalComparison({
 
             {/* Rep Movers */}
             <div>
-              <h3 className="text-sm font-medium mb-2" style={{ color: '#B91C1C' }}>
+              <h3 className="text-sm font-medium mb-2" style={{ color: 'var(--party-rep)' }}>
                 Biggest Rep Gains
               </h3>
               {topMovers.rep.length > 0 ? (
@@ -320,12 +320,12 @@ export default function HistoricalComparison({
                     <li
                       key={d.districtNumber}
                       className="flex items-center justify-between text-sm p-1.5 rounded"
-                      style={{ background: 'rgba(185, 28, 28, 0.05)' }}
+                      style={{ background: 'var(--party-rep-bg)' }}
                     >
                       <span style={{ color: 'var(--text-color)' }}>
                         District {d.districtNumber}
                       </span>
-                      <span className="font-medium" style={{ color: '#B91C1C' }}>
+                      <span className="font-medium" style={{ color: 'var(--party-rep)' }}>
                         {getHistoricalDeltaLabel(d.delta ?? 0)}
                       </span>
                     </li>

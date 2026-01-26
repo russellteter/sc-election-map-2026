@@ -36,9 +36,9 @@ function getIncumbentKpis(districts: District[]): KpiItem[] {
   }
 
   return [
-    { label: 'Dem Seats', value: demSeats, color: '#1E40AF' },
-    { label: 'Rep Seats', value: repSeats, color: '#DC2626' },
-    { label: 'Open Seats', value: openSeats, color: '#F59E0B' },
+    { label: 'Dem Seats', value: demSeats, color: 'var(--party-dem)' },
+    { label: 'Rep Seats', value: repSeats, color: 'var(--party-rep)' },
+    { label: 'Open Seats', value: openSeats, color: 'var(--status-attention)' },
     { label: 'Total', value: districts.length },
   ];
 }
@@ -66,8 +66,8 @@ function getDemFilingKpis(districts: District[]): KpiItem[] {
     : 0;
 
   return [
-    { label: 'Dem Filed', value: demFiled, color: '#1E40AF' },
-    { label: 'Needs Candidate', value: needsCandidate, color: '#F59E0B' },
+    { label: 'Dem Filed', value: demFiled, color: 'var(--party-dem)' },
+    { label: 'Needs Candidate', value: needsCandidate, color: 'var(--status-attention)' },
     { label: 'Coverage', value: `${coverage}%` },
     { label: 'Total', value: districts.length },
   ];
@@ -100,10 +100,10 @@ function getOpportunityKpis(
   }
 
   return [
-    { label: 'Hot Zones', value: hot, color: '#DC2626', description: '≤5pt margin' },
-    { label: 'Warm Zones', value: warm, color: '#F59E0B', description: '6-10pt' },
-    { label: 'Possible', value: possible, color: '#FBBF24', description: '11-15pt' },
-    { label: 'Defensive', value: defensive, color: '#1E40AF', description: 'Dem-held' },
+    { label: 'Hot Zones', value: hot, color: 'var(--status-at-risk)', description: '≤5pt margin' },
+    { label: 'Warm Zones', value: warm, color: 'var(--status-attention)', description: '6-10pt' },
+    { label: 'Possible', value: possible, color: 'var(--status-attention-light)', description: '11-15pt' },
+    { label: 'Defensive', value: defensive, color: 'var(--party-dem)', description: 'Dem-held' },
   ];
 }
 
@@ -132,10 +132,10 @@ function getBattlegroundKpis(districts: District[]): KpiItem[] {
   }
 
   return [
-    { label: 'Contested', value: contested, color: '#8B5CF6' },
-    { label: 'Dem Only', value: demOnly, color: '#3B82F6' },
-    { label: 'Rep Only', value: repOnly, color: '#EF4444' },
-    { label: 'None Filed', value: noneFiled, color: '#9CA3AF' },
+    { label: 'Contested', value: contested, color: 'var(--party-open)' },
+    { label: 'Dem Only', value: demOnly, color: 'var(--party-dem)' },
+    { label: 'Rep Only', value: repOnly, color: 'var(--party-rep)' },
+    { label: 'None Filed', value: noneFiled, color: 'var(--text-disabled)' },
   ];
 }
 
