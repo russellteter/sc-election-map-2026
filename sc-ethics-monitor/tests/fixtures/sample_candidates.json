@@ -1,0 +1,151 @@
+{
+  "candidates": [
+    {
+      "report_id": "TEST-001",
+      "candidate_name": "Jane Democrat",
+      "district_id": "SC-House-001",
+      "filed_date": "2026-01-15",
+      "ethics_url": "https://ethicsfiling.sc.gov/public/reports/TEST-001",
+      "party": "D",
+      "is_incumbent": false,
+      "notes": "Test candidate - Democrat"
+    },
+    {
+      "report_id": "TEST-002",
+      "candidate_name": "John Republican",
+      "district_id": "SC-House-001",
+      "filed_date": "2026-01-10",
+      "ethics_url": "https://ethicsfiling.sc.gov/public/reports/TEST-002",
+      "party": "R",
+      "is_incumbent": false,
+      "notes": "Test candidate - Republican"
+    },
+    {
+      "report_id": "TEST-003",
+      "candidate_name": "Sam Independent",
+      "district_id": "SC-House-002",
+      "filed_date": "2026-01-12",
+      "ethics_url": "https://ethicsfiling.sc.gov/public/reports/TEST-003",
+      "party": "I",
+      "is_incumbent": false,
+      "notes": "Test candidate - Independent"
+    },
+    {
+      "report_id": "TEST-004",
+      "candidate_name": "Alice Incumbent",
+      "district_id": "SC-House-003",
+      "filed_date": "2026-01-05",
+      "ethics_url": "https://ethicsfiling.sc.gov/public/reports/TEST-004",
+      "party": "D",
+      "is_incumbent": true,
+      "notes": "Incumbent Democrat"
+    },
+    {
+      "report_id": "TEST-005",
+      "candidate_name": "Bob Challenger",
+      "district_id": "SC-House-003",
+      "filed_date": "2026-01-20",
+      "ethics_url": "https://ethicsfiling.sc.gov/public/reports/TEST-005",
+      "party": "R",
+      "is_incumbent": false,
+      "notes": "Challenging incumbent"
+    },
+    {
+      "report_id": "TEST-006",
+      "candidate_name": "Charlie Unknown",
+      "district_id": "SC-House-004",
+      "filed_date": "2026-01-18",
+      "ethics_url": "https://ethicsfiling.sc.gov/public/reports/TEST-006",
+      "party": "",
+      "is_incumbent": false,
+      "notes": "Unknown party"
+    },
+    {
+      "report_id": "TEST-007",
+      "candidate_name": "Diana O'Connor-Smith Jr.",
+      "district_id": "SC-Senate-001",
+      "filed_date": "2026-01-08",
+      "ethics_url": "https://ethicsfiling.sc.gov/public/reports/TEST-007",
+      "party": "D",
+      "is_incumbent": false,
+      "notes": "Name with special characters"
+    },
+    {
+      "report_id": "TEST-008",
+      "candidate_name": "Edward First",
+      "district_id": "SC-House-005",
+      "filed_date": "2026-01-01",
+      "ethics_url": "https://ethicsfiling.sc.gov/public/reports/TEST-008",
+      "party": "D",
+      "is_incumbent": false,
+      "notes": "First challenger"
+    },
+    {
+      "report_id": "TEST-009",
+      "candidate_name": "Frank Second",
+      "district_id": "SC-House-005",
+      "filed_date": "2026-01-02",
+      "ethics_url": "https://ethicsfiling.sc.gov/public/reports/TEST-009",
+      "party": "R",
+      "is_incumbent": false,
+      "notes": "Second challenger"
+    },
+    {
+      "report_id": "TEST-010",
+      "candidate_name": "Grace Third",
+      "district_id": "SC-House-005",
+      "filed_date": "2026-01-03",
+      "ethics_url": "https://ethicsfiling.sc.gov/public/reports/TEST-010",
+      "party": "I",
+      "is_incumbent": false,
+      "notes": "Third challenger"
+    },
+    {
+      "report_id": "TEST-011",
+      "candidate_name": "Henry Fourth",
+      "district_id": "SC-House-005",
+      "filed_date": "2026-01-04",
+      "ethics_url": "https://ethicsfiling.sc.gov/public/reports/TEST-011",
+      "party": "O",
+      "is_incumbent": false,
+      "notes": "Fourth challenger - tests overflow"
+    }
+  ],
+  "districts": {
+    "SC-House-001": {
+      "incumbent_name": "Robert Incumbent",
+      "incumbent_party": "R"
+    },
+    "SC-House-002": {
+      "incumbent_name": "Sarah Incumbent",
+      "incumbent_party": "D"
+    },
+    "SC-House-003": {
+      "incumbent_name": "Alice Incumbent",
+      "incumbent_party": "D"
+    },
+    "SC-House-004": {
+      "incumbent_name": "Thomas Incumbent",
+      "incumbent_party": "R"
+    },
+    "SC-House-005": {
+      "incumbent_name": "Nancy Incumbent",
+      "incumbent_party": "R"
+    },
+    "SC-Senate-001": {
+      "incumbent_name": "William Senator",
+      "incumbent_party": "R"
+    }
+  },
+  "expected_results": {
+    "total_candidates": 11,
+    "dem_candidates": 4,
+    "rep_candidates": 3,
+    "ind_candidates": 2,
+    "other_candidates": 1,
+    "unknown_party": 1,
+    "districts_with_dems": 5,
+    "districts_needing_dems": 1,
+    "max_challengers_per_district": 4
+  }
+}
