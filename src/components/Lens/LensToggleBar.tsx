@@ -3,7 +3,6 @@
 import { useCallback, useState, useEffect } from 'react';
 import type { LensId } from '@/types/lens';
 import { LENS_DEFINITIONS, ALL_LENS_IDS } from '@/types/lens';
-import Tooltip from '@/components/ui/Tooltip';
 
 const LENS_INTRO_KEY = 'hasSeenLensIntro';
 
@@ -114,22 +113,21 @@ export default function LensToggleBar({
           const isActive = lensId === activeLens;
 
           return (
-            <Tooltip key={lensId} content={lens.description} position="bottom">
-              <button
-                role="tab"
-                type="button"
-                id={`lens-tab-${lensId}`}
-                aria-selected={isActive}
-                aria-controls={`lens-panel-${lensId}`}
-                tabIndex={isActive ? 0 : -1}
-                className={`lens-toggle-button ${isActive ? 'lens-toggle-active' : ''}`}
-                onClick={() => onLensChange(lensId)}
-              >
-                <span className="lens-toggle-label">
-                  {compact ? lens.shortLabel : lens.label}
-                </span>
-              </button>
-            </Tooltip>
+            <button
+              key={lensId}
+              role="tab"
+              type="button"
+              id={`lens-tab-${lensId}`}
+              aria-selected={isActive}
+              tabIndex={isActive ? 0 : -1}
+              className={`lens-toggle-button ${isActive ? 'lens-toggle-active' : ''}`}
+              onClick={() => onLensChange(lensId)}
+              title={lens.description}
+            >
+              <span className="lens-toggle-label">
+                {compact ? lens.shortLabel : lens.label}
+              </span>
+            </button>
           );
         })}
 
