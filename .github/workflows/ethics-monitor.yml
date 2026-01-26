@@ -61,6 +61,62 @@ jobs:
           echo "Calculating opportunity tiers..."
           python scripts/calculate_opportunity.py
 
+      - name: Validate JSON outputs
+        run: |
+          echo "Validating JSON outputs..."
+          python -c "
+          import json
+          import sys
+
+          # Validate candidates.json
+          print('Validating candidates.json...')
+          with open('public/data/candidates.json') as f:
+              data = json.load(f)
+
+          # Check required top-level keys
+          assert 'lastUpdated' in data, 'Missing lastUpdated'
+          assert 'house' in data, 'Missing house districts'
+          assert 'senate' in data, 'Missing senate districts'
+
+          # Check district counts (124 House + 46 Senate = 170 total)
+          house_count = len(data['house'])
+          senate_count = len(data['senate'])
+          print(f'  House districts: {house_count}')
+          print(f'  Senate districts: {senate_count}')
+          assert house_count == 124, f'Expected 124 House districts, got {house_count}'
+          assert senate_count == 46, f'Expected 46 Senate districts, got {senate_count}'
+
+          # Count candidates and party coverage
+          total_candidates = 0
+          candidates_with_party = 0
+          for d in data['house'].values():
+              for c in d.get('candidates', []):
+                  total_candidates += 1
+                  if c.get('party'):
+                      candidates_with_party += 1
+          for d in data['senate'].values():
+              for c in d.get('candidates', []):
+                  total_candidates += 1
+                  if c.get('party'):
+                      candidates_with_party += 1
+
+          party_rate = (candidates_with_party / total_candidates * 100) if total_candidates > 0 else 0
+          print(f'  Total candidates: {total_candidates}')
+          print(f'  Candidates with party: {candidates_with_party} ({party_rate:.0f}%)')
+
+          # Validate opportunity.json
+          print('Validating opportunity.json...')
+          with open('public/data/opportunity.json') as f:
+              opp_data = json.load(f)
+
+          assert 'house' in opp_data, 'Missing house in opportunity.json'
+          assert 'senate' in opp_data, 'Missing senate in opportunity.json'
+          print(f'  House opportunities: {len(opp_data[\"house\"])}')
+          print(f'  Senate opportunities: {len(opp_data[\"senate\"])}')
+
+          print('JSON validation PASSED')
+          "
+
       - name: Clean up credentials
         if: always()
         run: rm -f /tmp/creds.json

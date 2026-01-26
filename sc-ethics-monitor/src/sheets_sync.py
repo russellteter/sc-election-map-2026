@@ -17,9 +17,27 @@ from typing import Optional
 try:
     import gspread
     from google.oauth2.service_account import Credentials
+    from tenacity import (
+        retry,
+        stop_after_attempt,
+        wait_exponential,
+        retry_if_exception_type,
+    )
 except ImportError:
-    print("Required packages not installed. Run: pip install gspread google-auth")
+    print("Required packages not installed. Run: pip install gspread google-auth tenacity")
     raise
+
+
+# Retry decorator for Google Sheets API calls
+# Retries 3 times with exponential backoff (2s, 4s, 8s)
+def sheets_retry():
+    """Create a retry decorator for Google Sheets API operations."""
+    return retry(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=2, min=2, max=10),
+        retry=retry_if_exception_type((gspread.exceptions.APIError, ConnectionError)),
+        reraise=True,
+    )
 
 from .config import (
     SPREADSHEET_ID,
@@ -131,11 +149,13 @@ class SheetsSync:
     # Read Sheet State
     # =========================================================================
 
+    @sheets_retry()
     def read_candidates(self) -> dict:
         """
         Read existing candidates from sheet, indexed by report_id.
 
         Automatically detects column format (legacy vs simplified) based on header.
+        Includes retry logic for transient API failures.
 
         Returns:
             Dict keyed by report_id with candidate data:
@@ -239,6 +259,7 @@ class SheetsSync:
     # Add/Update Candidates
     # =========================================================================
 
+    @sheets_retry()
     def add_candidate(
         self,
         district_id: str,
@@ -255,7 +276,8 @@ class SheetsSync:
         Add or update a candidate in the sheet.
 
         If candidate exists and has a party value, preserve it unless
-        a new party is explicitly provided.
+        a new party is explicitly provided. Includes retry logic for
+        transient API failures.
 
         Args:
             district_id: District identifier (e.g., "SC-House-042").
@@ -441,9 +463,12 @@ class SheetsSync:
 
         return len(rows)
 
+    @sheets_retry()
     def get_districts(self) -> dict:
         """
         Get all districts indexed by district_id.
+
+        Includes retry logic for transient API failures.
 
         Returns:
             Dict mapping district_id to district data.
@@ -477,6 +502,7 @@ class SheetsSync:
     # Race Analysis Tab
     # =========================================================================
 
+    @sheets_retry()
     def update_race_analysis(self, districts_data: dict = None) -> dict:
         """
         Update the Race Analysis tab with simplified structure.
@@ -485,6 +511,8 @@ class SheetsSync:
         - challenger_count: Total filed candidates (excluding incumbent)
         - dem_filed: Y/N - Has a Democrat filed?
         - needs_dem_candidate: Y/N - Unopposed R, needs D candidate
+
+        Includes retry logic for transient API failures.
 
         Args:
             districts_data: Optional dict with district/incumbent info.
@@ -806,9 +834,12 @@ class SheetsSync:
             last_updated,    # AF (31) - Last Updated
         ]
 
+    @sheets_retry()
     def sync_to_source_of_truth(self, candidates: dict = None) -> dict:
         """
         Sync Candidates tab data to Source of Truth dynamic columns.
+
+        Includes retry logic for transient API failures.
 
         Uses new slot-based structure where each candidate gets their own cells:
         - Challenger 1: P (name), Q (party), R (date), S (URL)
