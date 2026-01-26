@@ -168,31 +168,22 @@ class TestCandidateFlow:
     @pytest.fixture
     def mock_sheets_sync(self, sample_data):
         """Create a mock SheetsSync with test data."""
-        # Create mock worksheets with test data
+        # Create mock worksheets with test data (simplified 9-column format)
+        # Columns: district_id, candidate_name, party, filed_date, report_id, ethics_url, is_incumbent, notes, last_synced
         candidates_data = [
-            ["report_id", "candidate_name", "district_id", "filed_date",
-             "ethics_report_url", "is_incumbent", "detected_party",
-             "detection_confidence", "detection_source", "detection_evidence_url",
-             "manual_party_override", "final_party", "party_locked",
-             "detection_timestamp", "notes", "last_synced"]
+            ["district_id", "candidate_name", "party", "filed_date",
+             "report_id", "ethics_url", "is_incumbent", "notes", "last_synced"]
         ]
 
         for cand in sample_data["candidates"]:
             candidates_data.append([
-                cand["report_id"],
-                cand["candidate_name"],
                 cand["district_id"],
+                cand["candidate_name"],
+                cand.get("party", ""),
                 cand["filed_date"],
+                cand["report_id"],
                 cand.get("ethics_url", ""),
                 "Yes" if cand.get("is_incumbent") else "No",
-                cand.get("party", ""),
-                "HIGH",
-                "TEST",
-                "",
-                "",
-                cand.get("party", ""),
-                "",
-                datetime.now().isoformat(),
                 cand.get("notes", ""),
                 datetime.now().isoformat(),
             ])
