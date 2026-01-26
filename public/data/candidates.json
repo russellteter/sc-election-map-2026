@@ -1,17 +1,28 @@
 {
-  "lastUpdated": "2026-01-23T21:01:20.839811+00:00",
+  "lastUpdated": "2026-01-25T15:17:39.151138Z",
   "house": {
     "1": {
       "districtNumber": 1,
       "candidates": [],
       "incumbent": {
-        "name": "William R. &quot;Bill&quot; Whitmire",
+        "name": "Bill Whitmire",
         "party": "Republican"
       }
     },
     "2": {
       "districtNumber": 2,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Duncan, Adam L",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-07-24",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=51353&seiId=56206&officeId=75313&reportId=407262",
+          "reportId": "407262",
+          "source": "ethics",
+          "isIncumbent": true
+        }
+      ],
       "incumbent": {
         "name": "Adam L. Duncan",
         "party": "Republican"
@@ -39,6 +50,16 @@
           "reportId": "416460",
           "source": "ethics",
           "isIncumbent": false
+        },
+        {
+          "name": "Lehmacher, Eunice",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-04-04",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=51448&seiId=51337&officeId=75378&reportId=401947",
+          "reportId": "401947",
+          "source": "ethics",
+          "isIncumbent": false
         }
       ],
       "incumbent": {
@@ -51,7 +72,7 @@
       "candidates": [
         {
           "name": "Counts, Clay",
-          "party": "Republican",
+          "party": null,
           "status": "filed",
           "filedDate": "2024-11-14",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=53135&seiId=56769&officeId=76714&reportId=392099",
@@ -94,7 +115,7 @@
       "candidates": [
         {
           "name": "Orr, Patrick S",
-          "party": "Republican",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-12-22",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56047&seiId=57893&officeId=78711&reportId=415979",
@@ -104,7 +125,7 @@
         }
       ],
       "incumbent": {
-        "name": "Donald G. &quot;Don&quot; Chapman",
+        "name": "Don Chapman",
         "party": "Republican"
       }
     },
@@ -150,7 +171,18 @@
     },
     "14": {
       "districtNumber": 14,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Rankin, Luke",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-10-04",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=50394&seiId=51214&officeId=74850&reportId=410801",
+          "reportId": "410801",
+          "source": "ethics",
+          "isIncumbent": true
+        }
+      ],
       "incumbent": {
         "name": "Luke S. Rankin",
         "party": "Republican"
@@ -158,7 +190,19 @@
     },
     "15": {
       "districtNumber": 15,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "JA Moore",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "JA Moore",
         "party": "Democratic"
@@ -176,7 +220,7 @@
       "districtNumber": 17,
       "candidates": [],
       "incumbent": {
-        "name": "James Mikell &quot;Mike&quot; Burns",
+        "name": "Mike Burns",
         "party": "Republican"
       }
     },
@@ -184,7 +228,7 @@
       "districtNumber": 18,
       "candidates": [],
       "incumbent": {
-        "name": "T. Alan Morgan, Jr.",
+        "name": "T. Alan Morgan Jr.",
         "party": "Republican"
       }
     },
@@ -198,7 +242,18 @@
     },
     "20": {
       "districtNumber": 20,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Curran, Sarah B",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-10-01",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=50079&seiId=55604&officeId=74680&reportId=410321",
+          "reportId": "410321",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Stephen Frank",
         "party": "Republican"
@@ -206,7 +261,18 @@
     },
     "21": {
       "districtNumber": 21,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Mitchell, Dianne K",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-12-05",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55899&seiId=57596&officeId=78616&reportId=414869",
+          "reportId": "414869",
+          "source": "ethics",
+          "isIncumbent": true
+        }
+      ],
       "incumbent": {
         "name": "Dianne Mitchell",
         "party": "Republican"
@@ -222,7 +288,19 @@
     },
     "23": {
       "districtNumber": 23,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Chandra Dillard",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Chandra E. Dillard",
         "party": "Democratic"
@@ -238,7 +316,19 @@
     },
     "25": {
       "districtNumber": 25,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Wendell Jones",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Wendell K. Jones",
         "party": "Democratic"
@@ -264,7 +354,7 @@
       "districtNumber": 28,
       "candidates": [],
       "incumbent": {
-        "name": "William C. &quot;Chris&quot; Huff",
+        "name": "Chris Huff",
         "party": "Republican"
       }
     },
@@ -286,9 +376,21 @@
     },
     "31": {
       "districtNumber": 31,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Rosalyn Henderson-Myers",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
-        "name": "Rosalyn D. Henderson-Myers, Ph.D.",
+        "name": "Rosalyn Henderson-Myers",
         "party": "Democratic"
       }
     },
@@ -302,7 +404,18 @@
     },
     "33": {
       "districtNumber": 33,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Turregano, Clemson G",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-03-21",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=50286&seiId=55696&officeId=74795&reportId=400127",
+          "reportId": "400127",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Travis A. Moore",
         "party": "Republican"
@@ -320,7 +433,7 @@
       "districtNumber": 35,
       "candidates": [],
       "incumbent": {
-        "name": "William M. &quot;Bill&quot; Chumley",
+        "name": "Bill Chumley",
         "party": "Republican"
       }
     },
@@ -328,7 +441,7 @@
       "districtNumber": 36,
       "candidates": [],
       "incumbent": {
-        "name": "Robert J. &quot;Rob&quot; Harris",
+        "name": "Rob Harris",
         "party": "Republican"
       }
     },
@@ -352,7 +465,7 @@
       "districtNumber": 39,
       "candidates": [],
       "incumbent": {
-        "name": "Cally R. &quot;Cal&quot; Forrest, Jr.",
+        "name": "Cal Forrest Jr.",
         "party": "Republican"
       }
     },
@@ -361,7 +474,7 @@
       "candidates": [
         {
           "name": "Ammons, Johnathan P Jr.",
-          "party": "Republican",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-10-01",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55093&seiId=53114&officeId=78005&reportId=410471",
@@ -371,13 +484,25 @@
         }
       ],
       "incumbent": {
-        "name": "Joseph S. &quot;Joe&quot; White",
+        "name": "Joe White",
         "party": "Republican"
       }
     },
     "41": {
       "districtNumber": 41,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Annie McDaniel",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Annie E. McDaniel",
         "party": "Democratic"
@@ -387,15 +512,26 @@
       "districtNumber": 42,
       "candidates": [],
       "incumbent": {
-        "name": "Leon D. &quot;Doug&quot; Gilliam",
+        "name": "Doug Gilliam",
         "party": "Republican"
       }
     },
     "43": {
       "districtNumber": 43,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Irizarry, Elias C",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-02-09",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=51244&seiId=56073&officeId=75260&reportId=397771",
+          "reportId": "397771",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
-        "name": "Thomas R. &quot;Randy&quot; Ligon",
+        "name": "Randy Ligon",
         "party": "Republican"
       }
     },
@@ -403,8 +539,18 @@
       "districtNumber": 44,
       "candidates": [
         {
+          "name": "McCoy, Robert B III",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-01-09",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56105&seiId=55449&officeId=78742&reportId=417649",
+          "reportId": "417649",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "Crosby, Katie W",
-          "party": "Democratic",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-11-13",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55867&seiId=53465&officeId=78594&reportId=414617",
@@ -414,13 +560,24 @@
         }
       ],
       "incumbent": {
-        "name": "James M. &quot;Mike&quot; Neese",
+        "name": "Mike Neese",
         "party": "Republican"
       }
     },
     "45": {
       "districtNumber": 45,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Ventour, Nicole",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-03-11",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=51767&seiId=55829&officeId=75652&reportId=399230",
+          "reportId": "399230",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Brandon Newton",
         "party": "Republican"
@@ -438,7 +595,7 @@
       "districtNumber": 47,
       "candidates": [],
       "incumbent": {
-        "name": "Thomas E. &quot;Tommy&quot; Pope",
+        "name": "Tommy Pope",
         "party": "Republican"
       }
     },
@@ -452,7 +609,19 @@
     },
     "49": {
       "districtNumber": 49,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "John King",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "John Richard C. King",
         "party": "Democratic"
@@ -479,7 +648,19 @@
     },
     "51": {
       "districtNumber": 51,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "David Weeks",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "J. David Weeks",
         "party": "Democratic"
@@ -496,11 +677,11 @@
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=54015&seiId=39097&officeId=77359&reportId=402648",
           "reportId": "402648",
           "source": "ethics",
-          "isIncumbent": true
+          "isIncumbent": false
         }
       ],
       "incumbent": {
-        "name": "Jermaine L. Johnson, Sr.",
+        "name": "Jermaine L. Johnson Sr.",
         "party": "Democratic"
       }
     },
@@ -508,13 +689,35 @@
       "districtNumber": 53,
       "candidates": [],
       "incumbent": {
-        "name": "Richard L. &quot;Richie&quot; Yow",
+        "name": "Richie Yow",
         "party": "Republican"
       }
     },
     "54": {
       "districtNumber": 54,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Quick, Betty J",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-04-10",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=51430&seiId=51705&officeId=75369&reportId=402696",
+          "reportId": "402696",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
+          "name": "Jason Luck",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": false,
+          "note": ""
+        }
+      ],
       "incumbent": {
         "name": "Jason S. Luck",
         "party": "Democratic"
@@ -522,9 +725,21 @@
     },
     "55": {
       "districtNumber": 55,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Jackie Hayes",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
-        "name": "Jackie E. &quot;Coach&quot; Hayes",
+        "name": "Jackie Hayes",
         "party": "Democratic"
       }
     },
@@ -532,13 +747,25 @@
       "districtNumber": 56,
       "candidates": [],
       "incumbent": {
-        "name": "Timothy A. &quot;Tim&quot; McGinnis",
+        "name": "Tim McGinnis",
         "party": "Republican"
       }
     },
     "57": {
       "districtNumber": 57,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Lucas Atkinson",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Lucas Atkinson",
         "party": "Democratic"
@@ -548,13 +775,25 @@
       "districtNumber": 58,
       "candidates": [],
       "incumbent": {
-        "name": "Jeffrey E. &quot;Jeff&quot; Johnson",
+        "name": "Jeff Johnson",
         "party": "Republican"
       }
     },
     "59": {
       "districtNumber": 59,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Terry Alexander",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Terry Alexander",
         "party": "Democratic"
@@ -578,7 +817,19 @@
     },
     "62": {
       "districtNumber": 62,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Robert Williams",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Robert Q. Williams",
         "party": "Democratic"
@@ -588,7 +839,7 @@
       "districtNumber": 63,
       "candidates": [],
       "incumbent": {
-        "name": "Wallace H. &quot;Jay&quot; Jordan, Jr.",
+        "name": "Jay Jordan Jr.",
         "party": "Republican"
       }
     },
@@ -621,7 +872,7 @@
       "candidates": [
         {
           "name": "Davey, Lisa",
-          "party": "Democratic",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-10-10",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55344&seiId=52337&officeId=78163&reportId=411604",
@@ -631,7 +882,7 @@
         }
       ],
       "incumbent": {
-        "name": "G. Murrell Smith, Jr.",
+        "name": "Murrell Smith Jr.",
         "party": "Republican"
       }
     },
@@ -656,7 +907,7 @@
       "candidates": [
         {
           "name": "Carlin, Evelyn A",
-          "party": "Democratic",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-12-15",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55865&seiId=51696&officeId=78592&reportId=415389",
@@ -673,6 +924,17 @@
           "reportId": "405717",
           "source": "ethics",
           "isIncumbent": false
+        },
+        {
+          "name": "Robert Reese",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": false,
+          "note": "Multiple candidates: Robert Reese and Noah Barker"
         }
       ],
       "incumbent": {
@@ -701,7 +963,19 @@
     },
     "72": {
       "districtNumber": 72,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Seth Rose",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Seth Rose",
         "party": "Democratic"
@@ -709,23 +983,59 @@
     },
     "73": {
       "districtNumber": 73,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Chris Hart",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
-        "name": "Christopher R. &quot;Chris&quot; Hart",
+        "name": "Chris Hart",
         "party": "Democratic"
       }
     },
     "74": {
       "districtNumber": 74,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Todd Rutherford",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
-        "name": "J. Todd Rutherford",
+        "name": "Todd Rutherford",
         "party": "Democratic"
       }
     },
     "75": {
       "districtNumber": 75,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Heather Bauer",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Heather Bauer",
         "party": "Democratic"
@@ -733,7 +1043,19 @@
     },
     "76": {
       "districtNumber": 76,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Leon Howard",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Leon Howard",
         "party": "Democratic"
@@ -741,7 +1063,19 @@
     },
     "77": {
       "districtNumber": 77,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Kambrell Garvin",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Kambrell H. Garvin",
         "party": "Democratic"
@@ -749,7 +1083,19 @@
     },
     "78": {
       "districtNumber": 78,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Beth Bernstein",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Beth E. Bernstein",
         "party": "Democratic"
@@ -757,7 +1103,19 @@
     },
     "79": {
       "districtNumber": 79,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Hamilton Grant",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": false,
+          "note": ""
+        }
+      ],
       "incumbent": {
         "name": "Hamilton R. Grant",
         "party": "Democratic"
@@ -781,9 +1139,21 @@
     },
     "82": {
       "districtNumber": 82,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Bill Clyburn",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
-        "name": "William &quot;Bill&quot; Clyburn",
+        "name": "Bill Clyburn",
         "party": "Democratic"
       }
     },
@@ -791,7 +1161,7 @@
       "districtNumber": 83,
       "candidates": [],
       "incumbent": {
-        "name": "William M. &quot;Bill&quot; Hixon",
+        "name": "Bill Hixon",
         "party": "Republican"
       }
     },
@@ -808,7 +1178,7 @@
       "candidates": [
         {
           "name": "Asbill, Steven",
-          "party": "Democratic",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-11-16",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55871&seiId=57842&officeId=78595&reportId=414638",
@@ -818,7 +1188,7 @@
         }
       ],
       "incumbent": {
-        "name": "John Gregory &quot;Jay&quot; Kilmartin",
+        "name": "Jay Kilmartin",
         "party": "Republican"
       }
     },
@@ -856,11 +1226,21 @@
           "name": "Lastinger, John",
           "party": "Republican",
           "status": "filed",
-          "filedDate": "2026-01-02",
-          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56072&seiId=51266&officeId=78726&reportId=416341",
-          "reportId": "416341",
+          "filedDate": "2025-12-01",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55872&seiId=51266&officeId=78596&reportId=414884",
+          "reportId": "414884",
           "source": "ethics",
           "isIncumbent": true
+        },
+        {
+          "name": "Hightower, Joseph C",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-10-15",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55568&seiId=51968&officeId=78347&reportId=412240",
+          "reportId": "412240",
+          "source": "ethics",
+          "isIncumbent": false
         }
       ],
       "incumbent": {
@@ -872,13 +1252,25 @@
       "districtNumber": 89,
       "candidates": [],
       "incumbent": {
-        "name": "Micajah P. &quot;Micah&quot; Caskey IV",
+        "name": "Micah Caskey IV",
         "party": "Republican"
       }
     },
     "90": {
       "districtNumber": 90,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Justin Bamberg",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Justin T. Bamberg",
         "party": "Democratic"
@@ -892,20 +1284,31 @@
           "party": "Democratic",
           "status": "filed",
           "filedDate": "2026-01-06",
-          "ethicsUrl": "https://ethicsfiling.sc.gov/...",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55826&seiId=57496&officeId=78561&reportId=417093",
           "reportId": "417093",
           "source": "ethics",
           "isIncumbent": false
         },
         {
           "name": "Alexander, Daniel R",
-          "party": "Republican",
+          "party": "Democratic",
           "status": "filed",
           "filedDate": "2025-07-02",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=53922&seiId=38403&officeId=77281&reportId=405685",
           "reportId": "405685",
           "source": "ethics",
           "isIncumbent": false
+        },
+        {
+          "name": "Lonnie Hosey",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
         }
       ],
       "incumbent": {
@@ -923,9 +1326,31 @@
     },
     "93": {
       "districtNumber": 93,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Felder, John G Jr.",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-01-14",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=50756&seiId=55859&officeId=75013&reportId=396629",
+          "reportId": "396629",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
+          "name": "Jerry Govan",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
-        "name": "Jerry N. Govan, Jr.",
+        "name": "Jerry N. Govan Jr.",
         "party": "Democratic"
       }
     },
@@ -939,7 +1364,19 @@
     },
     "95": {
       "districtNumber": 95,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Gilda Cobb-Hunter",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Gilda Cobb-Hunter",
         "party": "Democratic"
@@ -949,7 +1386,7 @@
       "districtNumber": 96,
       "candidates": [],
       "incumbent": {
-        "name": "Donald Ryan McCabe, Jr.",
+        "name": "Ryan McCabe Jr.",
         "party": "Republican"
       }
     },
@@ -966,7 +1403,7 @@
       "candidates": [
         {
           "name": "Ford, Gregory S",
-          "party": "Republican",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-11-26",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55901&seiId=53356&officeId=78618&reportId=414873",
@@ -976,26 +1413,33 @@
         },
         {
           "name": "Ogletree Satani, Sonja R",
-          "party": "Democratic",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-11-18",
-          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55881&seiId=55858&officeId=78603&reportId=414733",
-          "reportId": "414733",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=50862&seiId=55858&officeId=75061&reportId=414668",
+          "reportId": "414668",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
+          "name": "Johnston, David C",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-09-19",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55107&seiId=57676&officeId=78012&reportId=409802",
+          "reportId": "409802",
           "source": "ethics",
           "isIncumbent": false
         }
       ],
-      "incumbent": {
-        "name": "",
-        "party": ""
-      }
+      "incumbent": null
     },
     "99": {
       "districtNumber": 99,
       "candidates": [
         {
           "name": "Gore, Kristy",
-          "party": "Republican",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-07-29",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=54475&seiId=57422&officeId=77657&reportId=407426",
@@ -1005,7 +1449,7 @@
         }
       ],
       "incumbent": {
-        "name": "Marvin &quot;Mark&quot; Smith",
+        "name": "Mark Smith",
         "party": "Republican"
       }
     },
@@ -1019,7 +1463,19 @@
     },
     "101": {
       "districtNumber": 101,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Roger Kirby",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Roger K. Kirby",
         "party": "Democratic"
@@ -1030,7 +1486,7 @@
       "candidates": [
         {
           "name": "McCravy, Katie L",
-          "party": "Democratic",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-10-14",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=54840&seiId=57570&officeId=77862&reportId=412019",
@@ -1046,7 +1502,19 @@
     },
     "103": {
       "districtNumber": 103,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Carl Anderson",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Carl L. Anderson",
         "party": "Democratic"
@@ -1057,7 +1525,7 @@
       "candidates": [
         {
           "name": "Blumenthal, George M",
-          "party": "Democratic",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-08-14",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=54722&seiId=57523&officeId=77795&reportId=408253",
@@ -1083,7 +1551,7 @@
       "districtNumber": 106,
       "candidates": [],
       "incumbent": {
-        "name": "Thomas Duval &quot;Val&quot; Guest, Jr.",
+        "name": "Val Guest Jr.",
         "party": "Republican"
       }
     },
@@ -1091,7 +1559,7 @@
       "districtNumber": 107,
       "candidates": [],
       "incumbent": {
-        "name": "Thomas C. &quot;Case&quot; Brittain, Jr.",
+        "name": "Case Brittain Jr.",
         "party": "Republican"
       }
     },
@@ -1100,7 +1568,7 @@
       "candidates": [
         {
           "name": "Redwine, Kathy",
-          "party": "Democratic",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-09-11",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55187&seiId=57695&officeId=78066&reportId=409532",
@@ -1116,7 +1584,18 @@
     },
     "109": {
       "districtNumber": 109,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Spann-Wilder, Tiffany",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-03-11",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=50999&seiId=55622&officeId=75142&reportId=398474",
+          "reportId": "398474",
+          "source": "ethics",
+          "isIncumbent": true
+        }
+      ],
       "incumbent": {
         "name": "Tiffany Spann-Wilder",
         "party": "Democratic"
@@ -1126,13 +1605,25 @@
       "districtNumber": 110,
       "candidates": [],
       "incumbent": {
-        "name": "Thomas F. &quot;Tom&quot; Hartnett, Jr.",
+        "name": "Tom Hartnett Jr.",
         "party": "Republican"
       }
     },
     "111": {
       "districtNumber": 111,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Wendell Gilliard",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
         "name": "Wendell G. Gilliard",
         "party": "Democratic"
@@ -1143,7 +1634,7 @@
       "candidates": [
         {
           "name": "Arsenault, Jenna P",
-          "party": "Democratic",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-09-09",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55159&seiId=57627&officeId=78044&reportId=409443",
@@ -1153,7 +1644,7 @@
         }
       ],
       "incumbent": {
-        "name": "Joseph M. &quot;Joe&quot; Bustos",
+        "name": "Joe Bustos",
         "party": "Republican"
       }
     },
@@ -1180,7 +1671,7 @@
       "districtNumber": 114,
       "candidates": [],
       "incumbent": {
-        "name": "Gary S. Brewer, Jr.",
+        "name": "Gary S. Brewer Jr.",
         "party": "Republican"
       }
     },
@@ -1188,8 +1679,18 @@
       "districtNumber": 115,
       "candidates": [
         {
+          "name": "Uricchio, Nick",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-01-15",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56131&seiId=57947&officeId=78752&reportId=418253",
+          "reportId": "418253",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "Walker, Carlton",
-          "party": "Republican",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-10-10",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=54516&seiId=55477&officeId=77682&reportId=411813",
@@ -1199,7 +1700,7 @@
         },
         {
           "name": "garmon, johnnie b",
-          "party": "Republican",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-10-03",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=54256&seiId=57306&officeId=77515&reportId=406037",
@@ -1209,7 +1710,7 @@
         }
       ],
       "incumbent": {
-        "name": "Elizabeth &quot;Spencer&quot; Wetmore",
+        "name": "Spencer Wetmore",
         "party": "Democratic"
       }
     },
@@ -1233,15 +1734,37 @@
       "districtNumber": 118,
       "candidates": [],
       "incumbent": {
-        "name": "William G. &quot;Bill&quot; Herbkersman",
+        "name": "Bill Herbkersman",
         "party": "Republican"
       }
     },
     "119": {
       "districtNumber": 119,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Magee, Brendan R",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-04-08",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=51725&seiId=55910&officeId=75619&reportId=402364",
+          "reportId": "402364",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
+          "name": "Leon Stavrinakis",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
-        "name": "Leonidas E. &quot;Leon&quot; Stavrinakis",
+        "name": "Leon Stavrinakis",
         "party": "Democratic"
       }
     },
@@ -1249,15 +1772,27 @@
       "districtNumber": 120,
       "candidates": [],
       "incumbent": {
-        "name": "Wm. Weston J. Newton",
+        "name": "Weston Newton",
         "party": "Republican"
       }
     },
     "121": {
       "districtNumber": 121,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Michael Rivers",
+          "party": "Democratic",
+          "status": "known",
+          "filedDate": null,
+          "ethicsUrl": null,
+          "reportId": null,
+          "source": "kjatwood",
+          "isIncumbent": true,
+          "note": "Incumbent"
+        }
+      ],
       "incumbent": {
-        "name": "Michael F. Rivers, Sr.",
+        "name": "Michael F. Rivers Sr.",
         "party": "Democratic"
       }
     },
@@ -1265,7 +1800,7 @@
       "districtNumber": 122,
       "candidates": [],
       "incumbent": {
-        "name": "William &quot;Bill&quot; Hager",
+        "name": "Bill Hager",
         "party": "Republican"
       }
     },
@@ -1273,7 +1808,7 @@
       "districtNumber": 123,
       "candidates": [],
       "incumbent": {
-        "name": "Jeffrey A. &quot;Jeff&quot; Bradley",
+        "name": "Jeff Bradley",
         "party": "Republican"
       }
     },
@@ -1323,7 +1858,7 @@
       "districtNumber": 5,
       "candidates": [],
       "incumbent": {
-        "name": "Thomas D. &quot;Tom&quot; Corbin",
+        "name": "Thomas D. Corbin",
         "party": "Republican"
       }
     },
@@ -1355,7 +1890,7 @@
       "districtNumber": 9,
       "candidates": [],
       "incumbent": {
-        "name": "Daniel B. &quot;Danny&quot; Verdin III",
+        "name": "Daniel B. Verdin III",
         "party": "Republican"
       }
     },
@@ -1377,7 +1912,38 @@
     },
     "12": {
       "districtNumber": 12,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Cox, Bobby J",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-10-15",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=54880&seiId=38023&officeId=77881&reportId=412224",
+          "reportId": "412224",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
+          "name": "Amaechi, Octavia",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-10-14",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=50772&seiId=55943&officeId=75019&reportId=412023",
+          "reportId": "412023",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
+          "name": "Blackley, Hope",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-08-27",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=50381&seiId=9747&officeId=74844&reportId=409074",
+          "reportId": "409074",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Lee Bright",
         "party": "Republican"
@@ -1395,7 +1961,7 @@
       "districtNumber": 14,
       "candidates": [],
       "incumbent": {
-        "name": "Harvey S. Peeler, Jr.",
+        "name": "Harvey S. Peeler Jr.",
         "party": "Republican"
       }
     },
@@ -1404,7 +1970,7 @@
       "candidates": [
         {
           "name": "Burns, James R",
-          "party": "Republican",
+          "party": null,
           "status": "filed",
           "filedDate": "2025-09-16",
           "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55246&seiId=52012&officeId=78100&reportId=409765",
@@ -1452,7 +2018,18 @@
     },
     "20": {
       "districtNumber": 20,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Sutton, Edward C II",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2025-07-07",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=50034&seiId=49527&officeId=74658&reportId=406244",
+          "reportId": "406244",
+          "source": "ethics",
+          "isIncumbent": true
+        }
+      ],
       "incumbent": {
         "name": "Ed Sutton",
         "party": "Democratic"
@@ -1476,7 +2053,18 @@
     },
     "23": {
       "districtNumber": 23,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Kennedy, Carlisle E",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-10-10",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=51288&seiId=56172&officeId=75280&reportId=411711",
+          "reportId": "411711",
+          "source": "ethics",
+          "isIncumbent": true
+        }
+      ],
       "incumbent": {
         "name": "Carlisle Kennedy",
         "party": "Republican"
@@ -1486,7 +2074,7 @@
       "districtNumber": 24,
       "candidates": [],
       "incumbent": {
-        "name": "Tom Young, Jr.",
+        "name": "Tom Young Jr.",
         "party": "Republican"
       }
     },
@@ -1524,7 +2112,18 @@
     },
     "29": {
       "districtNumber": 29,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Chaplin, James D",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2025-02-14",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=51157&seiId=26357&officeId=76546&reportId=398103",
+          "reportId": "398103",
+          "source": "ethics",
+          "isIncumbent": true
+        }
+      ],
       "incumbent": {
         "name": "JD Chaplin",
         "party": "Republican"
@@ -1540,7 +2139,18 @@
     },
     "31": {
       "districtNumber": 31,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Timmons, Belinda B",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2025-01-12",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=51621&seiId=56059&officeId=75537&reportId=396331",
+          "reportId": "396331",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Mike Reichenbach",
         "party": "Republican"
@@ -1590,7 +2200,7 @@
       "districtNumber": 37,
       "candidates": [],
       "incumbent": {
-        "name": "Lawrence K. &quot;Larry&quot; Grooms",
+        "name": "Lawrence K. Grooms",
         "party": "Republican"
       }
     },
@@ -1622,7 +2232,7 @@
       "districtNumber": 41,
       "candidates": [],
       "incumbent": {
-        "name": "Matthew W. &quot;Matt&quot; Leber",
+        "name": "Matthew W. Leber",
         "party": "Republican"
       }
     },
@@ -1638,7 +2248,7 @@
       "districtNumber": 43,
       "candidates": [],
       "incumbent": {
-        "name": "George E. &quot;Chip&quot; Campsen III",
+        "name": "George E. Campsen III",
         "party": "Republican"
       }
     },
