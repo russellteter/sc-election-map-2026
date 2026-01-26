@@ -14,6 +14,7 @@ import FilterPanel, { FilterState, defaultFilters } from '@/components/Search/Fi
 import KeyboardShortcutsHelp from '@/components/Search/KeyboardShortcutsHelp';
 import MobileDistrictSheet from '@/components/Map/MobileDistrictSheet';
 import ScreenshotButton from '@/components/Export/ScreenshotButton';
+import { DataFreshnessBadge } from '@/components/ui';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 import { useToast } from '@/components/Toast';
 import { KPICardSkeleton, MapSkeleton, CandidateCardSkeleton } from '@/components/Skeleton';
@@ -529,9 +530,14 @@ export default function StateDashboard() {
                       All States
                     </Link>
                     <span style={{ color: 'var(--text-muted)' }}>/</span>
-                    <h1 className="text-xl font-bold font-display" style={{ color: 'var(--text-color)' }}>
-                      {stateConfig.name} 2026
-                    </h1>
+                    <div className="flex items-center gap-2">
+                      <h1 className="text-xl font-bold font-display" style={{ color: 'var(--text-color)' }}>
+                        {stateConfig.name} 2026
+                      </h1>
+                      {candidatesData?.lastUpdated && (
+                        <DataFreshnessBadge lastUpdated={candidatesData.lastUpdated} />
+                      )}
+                    </div>
                   </div>
                   <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
                     Tracking {chamber === 'house' ? `${houseCount} ${stateConfig.chambers.house.name}` : `${senateCount} ${stateConfig.chambers.senate.name}`} districts

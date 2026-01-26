@@ -60,12 +60,12 @@ svg path[id^="senate-"],
   stroke-width: 0.7;
   cursor: pointer;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
-  transition: transform 0.2s var(--ease-out-expo),
-              filter 0.2s ease,
-              fill 0.15s ease,
-              stroke-width 0.15s ease,
-              opacity 0.15s ease-in-out,
-              outline-offset 0.15s ease-in-out;
+  transition: transform var(--duration-normal) var(--ease-out-expo),
+              filter var(--duration-normal) var(--ease-out),
+              fill var(--duration-fast) var(--ease-out),
+              stroke-width var(--duration-fast) var(--ease-out),
+              opacity var(--duration-fast) ease-in-out,
+              outline-offset var(--duration-fast) ease-in-out;
   outline: none;
 }
 
@@ -105,7 +105,7 @@ svg path[id^="senate-"]:hover,
 }
 
 .district-path.just-selected {
-  animation: selection-burst 0.5s ease-out forwards;
+  animation: selection-burst var(--duration-slow) var(--ease-out) forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -147,7 +147,7 @@ svg path[id^="senate-"]:hover,
 
 /* Map container lens transition - subtle pulse effect */
 .lens-transitioning {
-  animation: lens-pulse 0.3s ease-out;
+  animation: lens-pulse var(--duration-normal) var(--ease-out);
 }
 
 @keyframes lens-pulse {
@@ -164,13 +164,13 @@ svg path[id^="senate-"]:hover,
 
 /* KPI card value transitions */
 .kpi-value {
-  transition: transform 0.2s var(--ease-out-expo),
-              opacity 0.2s ease,
-              color 0.15s ease;
+  transition: transform var(--duration-normal) var(--ease-out-expo),
+              opacity var(--duration-normal) var(--ease-out),
+              color var(--duration-fast) var(--ease-out);
 }
 
 .kpi-value.updating {
-  animation: kpi-update 0.3s ease-out;
+  animation: kpi-update var(--duration-normal) var(--ease-out);
 }
 
 @keyframes kpi-update {
@@ -190,12 +190,12 @@ svg path[id^="senate-"]:hover,
 
 /* Legend items fade transition */
 .legend-item {
-  transition: opacity 0.2s ease,
-              transform 0.2s ease;
+  transition: opacity var(--transition-normal),
+              transform var(--transition-normal);
 }
 
 .legend-item.entering {
-  animation: legend-enter 0.25s ease-out forwards;
+  animation: legend-enter var(--duration-normal) var(--ease-out) forwards;
 }
 
 @keyframes legend-enter {
@@ -211,8 +211,8 @@ svg path[id^="senate-"]:hover,
 
 /* Color swatch transitions in legend */
 .legend-swatch {
-  transition: background-color 0.2s ease,
-              transform 0.15s ease;
+  transition: background-color var(--transition-normal),
+              transform var(--transition-fast);
 }
 
 .legend-swatch:hover {
@@ -221,11 +221,11 @@ svg path[id^="senate-"]:hover,
 
 /* Lens toggle bar active state transition */
 .lens-toggle-button {
-  transition: all 0.2s var(--ease-out-expo);
+  transition: all var(--transition-standard);
 }
 
 .lens-toggle-active {
-  animation: lens-activate 0.25s ease-out;
+  animation: lens-activate var(--duration-normal) var(--ease-out);
 }
 
 @keyframes lens-activate {
@@ -401,11 +401,18 @@ svg path[id^="senate-"]:hover,
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
 
-  /* TRANSITIONS */
-  --transition-fast: 0.15s ease;
-  --transition-normal: 0.25s ease;
-  --transition-slow: 0.4s ease;
+  /* ANIMATION TIMING TOKENS */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --ease-out: ease-out;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* TRANSITION SHORTHAND TOKENS */
+  --transition-fast: var(--duration-fast) var(--ease-out);
+  --transition-normal: var(--duration-normal) var(--ease-out);
+  --transition-slow: var(--duration-slow) var(--ease-out);
+  --transition-standard: var(--duration-normal) var(--ease-out-expo);
 
   /* MAP ZOOM ANIMATION TOKENS */
   --map-zoom-duration: 400ms;
@@ -782,7 +789,7 @@ svg path[id^="senate-"]:hover,
 
 .legend-toggle-icon {
   color: #94A3B8;
-  transition: transform 0.2s ease;
+  transition: transform var(--transition-normal);
 }
 
 .legend-toggle-collapsed {
@@ -1111,11 +1118,11 @@ svg path[id^="senate-"]:hover,
 }
 
 .animate-entrance {
-  animation: fade-in-up 0.5s var(--ease-out-expo) backwards;
+  animation: fade-in-up var(--duration-slow) var(--ease-out-expo) backwards;
 }
 
 .animate-entrance-scale {
-  animation: fade-in-scale 0.4s var(--ease-out-expo) backwards;
+  animation: fade-in-scale var(--duration-slow) var(--ease-out-expo) backwards;
 }
 
 /* Stagger delay classes */
@@ -1446,17 +1453,17 @@ svg path[id^="senate-"]:hover,
 
 /* Apply animations with staggered delays */
 .side-panel-header {
-  animation: slide-down 0.35s var(--ease-out-expo) forwards;
+  animation: slide-down var(--duration-slow) var(--ease-out-expo) forwards;
 }
 
 .side-panel .badge {
-  animation: pop-in 0.3s var(--ease-out-expo) forwards;
+  animation: pop-in var(--duration-normal) var(--ease-out-expo) forwards;
   animation-delay: 0.1s;
   opacity: 0;
 }
 
 .election-history-pill {
-  animation: slide-in-right 0.25s var(--ease-out-expo) forwards;
+  animation: slide-in-right var(--duration-normal) var(--ease-out-expo) forwards;
   opacity: 0;
 }
 

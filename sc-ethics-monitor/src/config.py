@@ -30,7 +30,7 @@ TAB_SYNC_LOG = "Sync Log"  # DEPRECATED - removed in simplified version
 # The "Desired Source of Truth" tab has static district info (A-L) and dynamic
 # candidate tracking columns (M onwards). User created this tab manually with
 # district info; automation populates candidate columns.
-TAB_SOURCE_OF_TRUTH = "Desired Source of Truth"
+TAB_SOURCE_OF_TRUTH = "Source of Truth"
 
 # Source of Truth dynamic column indices (0-indexed)
 # Static columns A-L (0-11) are pre-populated and never touched by automation
