@@ -1,14 +1,16 @@
 """
-Google Sheets Sync - Bidirectional sync for SC Ethics Monitor.
+Google Sheets Sync - Simplified sync for SC Ethics Monitor.
 
-This module handles reading from AND writing to Google Sheets,
-respecting manual user overrides and party_locked flags.
+This module handles reading from AND writing to Google Sheets
+with a simplified 3-tab structure.
 
-Key Principle: Manual overrides take precedence.
+Key Principle: Single 'party' column - system writes, user can edit.
 """
 
 import json
-from datetime import datetime, timezone
+import re
+from collections import defaultdict
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Optional
 
@@ -24,18 +26,16 @@ from .config import (
     TAB_CANDIDATES,
     TAB_DISTRICTS,
     TAB_RACE_ANALYSIS,
-    TAB_RESEARCH_QUEUE,
-    TAB_SYNC_LOG,
+    TAB_SOURCE_OF_TRUTH,
     CANDIDATES_COLUMNS,
     CANDIDATES_HEADERS,
     DISTRICTS_COLUMNS,
     DISTRICTS_HEADERS,
     RACE_ANALYSIS_COLUMNS,
     RACE_ANALYSIS_HEADERS,
-    RESEARCH_QUEUE_COLUMNS,
-    RESEARCH_QUEUE_HEADERS,
-    SYNC_LOG_COLUMNS,
-    SYNC_LOG_HEADERS,
+    SOURCE_OF_TRUTH_COLUMNS,
+    PROTECTED_COLUMNS,
+    NEW_CANDIDATE_DAYS,
     GOOGLE_SHEETS_CREDENTIALS,
     SC_HOUSE_DISTRICTS,
     SC_SENATE_DISTRICTS,
@@ -44,14 +44,13 @@ from .config import (
 
 class SheetsSync:
     """
-    Bidirectional sync manager for Google Sheets.
+    Simplified sync manager for Google Sheets.
 
     Handles:
-    - Reading existing sheet state (manual overrides, party_locked)
-    - Writing new candidates while preserving manual edits
-    - Updating race analysis using final_party
-    - Managing research queue
-    - Audit logging
+    - Reading existing candidates (to check for existing party values)
+    - Writing new/updated candidates
+    - Updating race analysis
+    - 3-tab structure only (Districts, Candidates, Race Analysis)
     """
 
     def __init__(self, credentials_path: str = None):
@@ -124,333 +123,258 @@ class SheetsSync:
         self._sheet_cache[tab_name] = worksheet
         return worksheet
 
+    def _col_letter(self, col_index: int) -> str:
+        """Convert 0-based column index to letter (0 -> A, 1 -> B, etc)."""
+        return chr(ord('A') + col_index)
+
     # =========================================================================
-    # PHASE 1: Read Sheet State (Bidirectional Sync)
+    # Read Sheet State
     # =========================================================================
 
-    def read_sheet_state(self) -> dict:
+    def read_candidates(self) -> dict:
         """
-        Read existing candidates from sheet, extracting manual columns.
+        Read existing candidates from sheet, indexed by report_id.
 
-        This is the key method for bidirectional sync - it reads what's
-        already in the sheet so we can preserve manual edits.
+        Automatically detects column format (legacy vs simplified) based on header.
 
         Returns:
-            Dict keyed by report_id with values:
+            Dict keyed by report_id with candidate data:
             {
-                "manual_party_override": str or None,
-                "party_locked": bool,
-                "final_party": str or None,
+                "district_id": str,
+                "candidate_name": str,
+                "party": str or None,
+                "filed_date": str,
+                "is_incumbent": bool,
                 "notes": str or None,
-                "detected_party": str or None,
-                "detection_confidence": str or None,
-                "row_number": int,  # For updates
+                "row_number": int,
             }
         """
         worksheet = self._get_or_create_worksheet(TAB_CANDIDATES, CANDIDATES_HEADERS)
 
-        # Get all values (includes header)
         all_values = worksheet.get_all_values()
 
         if len(all_values) <= 1:
             return {}  # Only header or empty
 
-        state = {}
+        # Detect column format from header row
+        header = all_values[0]
+        is_legacy = header[0] == "report_id"  # Legacy has report_id first
 
-        for row_idx, row in enumerate(all_values[1:], start=2):  # Start at row 2 (after header)
-            if len(row) < 1 or not row[0]:
+        # Build column index map based on detected format
+        if is_legacy:
+            # Legacy format: report_id, candidate_name, district_id, filed_date, ethics_report_url, is_incumbent, detected_party, ...
+            col_map = {
+                "report_id": 0,
+                "candidate_name": 1,
+                "district_id": 2,
+                "filed_date": 3,
+                "ethics_url": 4,
+                "is_incumbent": 5,
+                "party": 6,  # detected_party in legacy, or final_party at 11
+                "notes": 14,
+                "last_synced": 15,
+            }
+            # Check for final_party column (user-overridden party)
+            final_party_idx = 11 if len(header) > 11 and header[11] == "final_party" else None
+        else:
+            # Simplified format: district_id, candidate_name, party, filed_date, report_id, ethics_url, is_incumbent, notes, last_synced
+            col_map = CANDIDATES_COLUMNS
+            final_party_idx = None
+
+        candidates = {}
+
+        for row_idx, row in enumerate(all_values[1:], start=2):
+            report_id_idx = col_map.get("report_id", 0)
+            if len(row) <= report_id_idx or not row[report_id_idx]:
                 continue  # Skip empty rows
 
-            report_id = row[CANDIDATES_COLUMNS["report_id"]]
+            report_id = row[report_id_idx]
 
-            # Extract manual columns with safe indexing
             def safe_get(col_name):
-                idx = CANDIDATES_COLUMNS.get(col_name, -1)
+                idx = col_map.get(col_name, -1)
                 if idx >= 0 and idx < len(row):
                     return row[idx] if row[idx] else None
                 return None
 
-            state[report_id] = {
-                "manual_party_override": safe_get("manual_party_override"),
-                "party_locked": safe_get("party_locked") == "Yes",
-                "final_party": safe_get("final_party"),
+            # Get party - prefer final_party over detected_party in legacy format
+            party = safe_get("party")
+            if is_legacy and final_party_idx is not None and final_party_idx < len(row):
+                final_party = row[final_party_idx]
+                if final_party:
+                    party = final_party
+
+            candidates[report_id] = {
+                "district_id": safe_get("district_id"),
+                "candidate_name": safe_get("candidate_name"),
+                "party": party,
+                "filed_date": safe_get("filed_date"),
+                "ethics_url": safe_get("ethics_url"),
+                "is_incumbent": safe_get("is_incumbent") in ("Yes", "TRUE", "true", True),
                 "notes": safe_get("notes"),
-                "detected_party": safe_get("detected_party"),
-                "detection_confidence": safe_get("detection_confidence"),
+                "last_synced": safe_get("last_synced"),
                 "row_number": row_idx,
             }
 
-        return state
+        return candidates
 
-    def is_party_locked(self, report_id: str, sheet_state: dict = None) -> bool:
+    def get_existing_party(self, report_id: str, candidates: dict = None) -> Optional[str]:
         """
-        Check if a candidate's party is locked (no re-detection).
+        Get existing party value for a candidate.
+
+        If user has manually edited the party, this preserves their edit.
 
         Args:
             report_id: The candidate's report ID.
-            sheet_state: Optional pre-loaded sheet state dict.
+            candidates: Optional pre-loaded candidates dict.
 
         Returns:
-            True if party_locked=Yes for this candidate.
+            Existing party value or None.
         """
-        if sheet_state is None:
-            sheet_state = self.read_sheet_state()
+        if candidates is None:
+            candidates = self.read_candidates()
 
-        return sheet_state.get(report_id, {}).get("party_locked", False)
-
-    def get_manual_override(self, report_id: str, sheet_state: dict = None) -> Optional[str]:
-        """
-        Get manual party override for a candidate.
-
-        Args:
-            report_id: The candidate's report ID.
-            sheet_state: Optional pre-loaded sheet state dict.
-
-        Returns:
-            Manual party override (D/R/I/O) or None if not set.
-        """
-        if sheet_state is None:
-            sheet_state = self.read_sheet_state()
-
-        return sheet_state.get(report_id, {}).get("manual_party_override")
+        return candidates.get(report_id, {}).get("party")
 
     # =========================================================================
-    # PHASE 1: Add/Update Candidates (Respecting Overrides)
+    # Add/Update Candidates
     # =========================================================================
 
     def add_candidate(
         self,
-        report_id: str,
-        candidate_name: str,
         district_id: str,
-        filed_date: str,
-        ethics_report_url: str,
-        is_incumbent: bool,
-        detected_party: str = None,
-        detection_confidence: str = "UNKNOWN",
-        detection_source: str = None,
-        detection_evidence_url: str = None,
-        sheet_state: dict = None,
+        candidate_name: str,
+        party: str = None,
+        filed_date: str = None,
+        report_id: str = None,
+        ethics_url: str = None,
+        is_incumbent: bool = False,
+        notes: str = None,
+        existing_candidates: dict = None,
     ) -> dict:
         """
-        Add or update a candidate in the sheet, respecting manual overrides.
+        Add or update a candidate in the sheet.
 
-        This method:
-        1. Checks if candidate already exists
-        2. If party_locked=Yes: preserves ALL detection fields, only updates metadata
-        3. If manual_party_override set: preserves it
-        4. Only updates auto-detected fields for unlocked candidates
+        If candidate exists and has a party value, preserve it unless
+        a new party is explicitly provided.
 
         Args:
-            report_id: Unique report ID from Ethics Commission.
-            candidate_name: Full candidate name.
             district_id: District identifier (e.g., "SC-House-042").
+            candidate_name: Full candidate name.
+            party: Party code (D/R/I/O) or None.
             filed_date: Date filed with Ethics.
-            ethics_report_url: URL to Ethics filing.
+            report_id: Unique report ID from Ethics Commission.
+            ethics_url: URL to Ethics filing.
             is_incumbent: Whether candidate is the incumbent.
-            detected_party: Auto-detected party (D/R/I/O).
-            detection_confidence: HIGH/MEDIUM/LOW/UNKNOWN.
-            detection_source: Source of party detection.
-            detection_evidence_url: URL supporting detection.
-            sheet_state: Optional pre-loaded sheet state dict.
+            notes: Optional notes.
+            existing_candidates: Optional pre-loaded candidates dict.
 
         Returns:
-            Dict with {"action": "added"|"updated"|"skipped", "details": str}
+            Dict with {"action": "added"|"updated", "details": str}
         """
         worksheet = self._get_or_create_worksheet(TAB_CANDIDATES, CANDIDATES_HEADERS)
 
-        if sheet_state is None:
-            sheet_state = self.read_sheet_state()
+        if existing_candidates is None:
+            existing_candidates = self.read_candidates()
 
         now = datetime.now(timezone.utc).isoformat()
 
-        existing = sheet_state.get(report_id)
+        existing = existing_candidates.get(report_id)
+
+        # Build hyperlink formula for ethics_url
+        ethics_url_value = ""
+        if ethics_url:
+            # Create clickable hyperlink
+            ethics_url_value = f'=HYPERLINK("{ethics_url}", "View Filing")'
 
         if existing:
-            # Candidate exists - check if we should update
-            if existing.get("party_locked"):
-                # Party locked - only update non-detection fields
-                row_num = existing["row_number"]
+            # Candidate exists - update row
+            row_num = existing["row_number"]
 
-                # Update only: filed_date, last_synced (if changed)
-                updates = []
+            # Preserve existing party if new party not provided
+            final_party = party if party else existing.get("party", "")
 
-                # Update filed_date if different
-                updates.append({
-                    "range": f"{self._col_letter(CANDIDATES_COLUMNS['filed_date'])}{row_num}",
-                    "values": [[filed_date]]
-                })
+            # Preserve existing notes if new notes not provided
+            final_notes = notes if notes is not None else existing.get("notes", "")
 
-                # Update last_synced
-                updates.append({
-                    "range": f"{self._col_letter(CANDIDATES_COLUMNS['last_synced'])}{row_num}",
-                    "values": [[now]]
-                })
+            # Build update row
+            row_data = [
+                district_id,
+                candidate_name,
+                final_party or "",
+                filed_date or "",
+                report_id or "",
+                ethics_url_value,
+                "Yes" if is_incumbent else "No",
+                final_notes or "",
+                now,
+            ]
 
-                worksheet.batch_update(updates)
+            worksheet.update(f"A{row_num}:I{row_num}", [row_data], value_input_option="USER_ENTERED")
 
-                return {
-                    "action": "skipped",
-                    "details": f"Party locked for {candidate_name} - preserved manual data"
-                }
-
-            else:
-                # Not locked - update detection fields but preserve manual override
-                row_num = existing["row_number"]
-
-                # Preserve manual override if set
-                manual_override = existing.get("manual_party_override")
-                notes = existing.get("notes")
-
-                # Build row data (keeping manual columns)
-                row_data = self._build_candidate_row(
-                    report_id=report_id,
-                    candidate_name=candidate_name,
-                    district_id=district_id,
-                    filed_date=filed_date,
-                    ethics_report_url=ethics_report_url,
-                    is_incumbent=is_incumbent,
-                    detected_party=detected_party,
-                    detection_confidence=detection_confidence,
-                    detection_source=detection_source,
-                    detection_evidence_url=detection_evidence_url,
-                    manual_party_override=manual_override,
-                    notes=notes,
-                    detection_timestamp=now,
-                    last_synced=now,
-                )
-
-                # Update the entire row
-                worksheet.update(f"A{row_num}:P{row_num}", [row_data])
-
-                return {
-                    "action": "updated",
-                    "details": f"Updated {candidate_name}, preserved manual_party_override={manual_override}"
-                }
+            return {
+                "action": "updated",
+                "details": f"Updated {candidate_name}, party={final_party}"
+            }
 
         else:
-            # New candidate - add new row
-            row_data = self._build_candidate_row(
-                report_id=report_id,
-                candidate_name=candidate_name,
-                district_id=district_id,
-                filed_date=filed_date,
-                ethics_report_url=ethics_report_url,
-                is_incumbent=is_incumbent,
-                detected_party=detected_party,
-                detection_confidence=detection_confidence,
-                detection_source=detection_source,
-                detection_evidence_url=detection_evidence_url,
-                detection_timestamp=now,
-                last_synced=now,
-            )
+            # New candidate - add row
+            row_data = [
+                district_id,
+                candidate_name,
+                party or "",
+                filed_date or "",
+                report_id or "",
+                ethics_url_value,
+                "Yes" if is_incumbent else "No",
+                notes or "",
+                now,
+            ]
 
-            worksheet.append_row(row_data)
+            worksheet.append_row(row_data, value_input_option="USER_ENTERED")
 
             return {
                 "action": "added",
                 "details": f"Added new candidate {candidate_name}"
             }
 
-    def _build_candidate_row(
-        self,
-        report_id: str,
-        candidate_name: str,
-        district_id: str,
-        filed_date: str,
-        ethics_report_url: str,
-        is_incumbent: bool,
-        detected_party: str = None,
-        detection_confidence: str = "UNKNOWN",
-        detection_source: str = None,
-        detection_evidence_url: str = None,
-        manual_party_override: str = None,
-        party_locked: str = None,
-        notes: str = None,
-        detection_timestamp: str = None,
-        last_synced: str = None,
-    ) -> list:
-        """Build a candidate row list matching column order."""
-        # Column L (final_party) uses a formula
-        final_party_formula = f'=IF(K{{row}}<>"",K{{row}},G{{row}})'
-
-        return [
-            report_id,                              # A
-            candidate_name,                         # B
-            district_id,                            # C
-            filed_date,                             # D
-            ethics_report_url,                      # E
-            "Yes" if is_incumbent else "No",        # F
-            detected_party or "",                   # G
-            detection_confidence or "UNKNOWN",      # H
-            detection_source or "",                 # I
-            detection_evidence_url or "",           # J
-            manual_party_override or "",            # K
-            "",  # L - final_party (formula added separately)
-            party_locked or "",                     # M
-            detection_timestamp or "",              # N
-            notes or "",                            # O
-            last_synced or "",                      # P
-        ]
-
-    def _col_letter(self, col_index: int) -> str:
-        """Convert 0-based column index to letter (0 -> A, 1 -> B, etc)."""
-        return chr(ord('A') + col_index)
-
     def sync_candidates(
         self,
         candidates: list[dict],
-        sheet_state: dict = None,
-        skip_locked: bool = True,
+        existing_candidates: dict = None,
     ) -> dict:
         """
         Sync multiple candidates to the sheet.
 
         Args:
             candidates: List of candidate dicts with required fields.
-            sheet_state: Optional pre-loaded sheet state.
-            skip_locked: If True, skip party detection for locked candidates.
+            existing_candidates: Optional pre-loaded existing candidates.
 
         Returns:
-            Summary dict with counts: added, updated, skipped, errors.
+            Summary dict with counts: added, updated, errors.
         """
-        if sheet_state is None:
-            sheet_state = self.read_sheet_state()
+        if existing_candidates is None:
+            existing_candidates = self.read_candidates()
 
-        results = {"added": 0, "updated": 0, "skipped": 0, "errors": 0}
+        results = {"added": 0, "updated": 0, "errors": 0}
 
         for candidate in candidates:
             try:
-                report_id = candidate.get("report_id")
+                result = self.add_candidate(
+                    district_id=candidate.get("district_id", ""),
+                    candidate_name=candidate.get("candidate_name", ""),
+                    party=candidate.get("party") or candidate.get("detected_party"),
+                    filed_date=candidate.get("filed_date", ""),
+                    report_id=candidate.get("report_id", ""),
+                    ethics_url=candidate.get("ethics_url") or candidate.get("ethics_report_url", ""),
+                    is_incumbent=candidate.get("is_incumbent", False),
+                    notes=candidate.get("notes"),
+                    existing_candidates=existing_candidates,
+                )
 
-                # Check if we should skip party detection
-                if skip_locked and self.is_party_locked(report_id, sheet_state):
-                    result = self.add_candidate(
-                        report_id=report_id,
-                        candidate_name=candidate.get("candidate_name", ""),
-                        district_id=candidate.get("district_id", ""),
-                        filed_date=candidate.get("filed_date", ""),
-                        ethics_report_url=candidate.get("ethics_report_url", ""),
-                        is_incumbent=candidate.get("is_incumbent", False),
-                        # Don't pass detection fields - preserve existing
-                        sheet_state=sheet_state,
-                    )
-                else:
-                    result = self.add_candidate(
-                        report_id=report_id,
-                        candidate_name=candidate.get("candidate_name", ""),
-                        district_id=candidate.get("district_id", ""),
-                        filed_date=candidate.get("filed_date", ""),
-                        ethics_report_url=candidate.get("ethics_report_url", ""),
-                        is_incumbent=candidate.get("is_incumbent", False),
-                        detected_party=candidate.get("detected_party"),
-                        detection_confidence=candidate.get("detection_confidence", "UNKNOWN"),
-                        detection_source=candidate.get("detection_source"),
-                        detection_evidence_url=candidate.get("detection_evidence_url"),
-                        sheet_state=sheet_state,
-                    )
-
-                results[result["action"]] = results.get(result["action"], 0) + 1
+                if result["action"] == "added":
+                    results["added"] += 1
+                elif result["action"] == "updated":
+                    results["updated"] += 1
 
             except Exception as e:
                 print(f"Error syncing candidate {candidate.get('report_id')}: {e}")
@@ -459,7 +383,7 @@ class SheetsSync:
         return results
 
     # =========================================================================
-    # Districts Tab Management
+    # Districts Tab
     # =========================================================================
 
     def initialize_districts(self, incumbents_data: dict = None) -> int:
@@ -494,8 +418,6 @@ class SheetsSync:
                 i,
                 incumbent.get("name", "") if incumbent else "",
                 incumbent.get("party", "") if incumbent else "",
-                incumbent.get("since", "") if incumbent else "",
-                "2026",
             ])
 
         # Senate districts (1-46)
@@ -512,8 +434,6 @@ class SheetsSync:
                 i,
                 incumbent.get("name", "") if incumbent else "",
                 incumbent.get("party", "") if incumbent else "",
-                incumbent.get("since", "") if incumbent else "",
-                "2026",
             ])
 
         # Batch append all rows
@@ -521,43 +441,212 @@ class SheetsSync:
 
         return len(rows)
 
+    def get_districts(self) -> dict:
+        """
+        Get all districts indexed by district_id.
+
+        Returns:
+            Dict mapping district_id to district data.
+        """
+        worksheet = self._get_or_create_worksheet(TAB_DISTRICTS, DISTRICTS_HEADERS)
+
+        all_values = worksheet.get_all_values()
+
+        if len(all_values) <= 1:
+            return {}
+
+        districts = {}
+        headers = all_values[0]
+
+        for row in all_values[1:]:
+            if not row or not row[0]:
+                continue
+
+            record = {}
+            for i, header in enumerate(headers):
+                if i < len(row):
+                    record[header] = row[i]
+
+            district_id = record.get("district_id", "")
+            if district_id:
+                districts[district_id] = record
+
+        return districts
+
     # =========================================================================
-    # Sync Log
+    # Race Analysis Tab
     # =========================================================================
 
-    def log_sync(
-        self,
-        event_type: str,
-        details: str,
-        candidates_added: int = 0,
-        candidates_updated: int = 0,
-        party_detections: int = 0,
-        errors: int = 0,
-    ) -> None:
+    def update_race_analysis(self, districts_data: dict = None) -> dict:
         """
-        Add an entry to the Sync Log tab.
+        Update the Race Analysis tab with simplified structure.
+
+        Computes:
+        - challenger_count: Total filed candidates (excluding incumbent)
+        - dem_filed: Y/N - Has a Democrat filed?
+        - needs_dem_candidate: Y/N - Unopposed R, needs D candidate
 
         Args:
-            event_type: SYNC, SCAN, PARTY_DETECT, ERROR, etc.
-            details: Description of what happened.
-            candidates_added: Count of new candidates.
-            candidates_updated: Count of updated candidates.
-            party_detections: Count of party detections run.
-            errors: Count of errors.
+            districts_data: Optional dict with district/incumbent info.
+
+        Returns:
+            Summary dict with districts updated.
         """
-        worksheet = self._get_or_create_worksheet(TAB_SYNC_LOG, SYNC_LOG_HEADERS)
+        worksheet = self._get_or_create_worksheet(TAB_RACE_ANALYSIS, RACE_ANALYSIS_HEADERS)
 
-        now = datetime.now(timezone.utc).isoformat()
+        # Get all candidates
+        candidates = self.read_candidates()
 
-        worksheet.append_row([
-            now,
-            event_type,
-            details,
-            candidates_added,
-            candidates_updated,
-            party_detections,
-            errors,
-        ])
+        # Get districts if not provided
+        if districts_data is None:
+            districts_data = self.get_districts()
+
+        # Build candidate counts by district
+        district_stats = {}
+
+        for report_id, candidate in candidates.items():
+            district_id = candidate.get("district_id", "")
+            if not district_id:
+                continue
+
+            if district_id not in district_stats:
+                district_stats[district_id] = {
+                    "total_count": 0,
+                    "dem_count": 0,
+                    "rep_count": 0,
+                    "incumbent_filed": False,
+                }
+
+            party = candidate.get("party", "")
+            is_incumbent = candidate.get("is_incumbent", False)
+
+            district_stats[district_id]["total_count"] += 1
+
+            if party == "D":
+                district_stats[district_id]["dem_count"] += 1
+            elif party == "R":
+                district_stats[district_id]["rep_count"] += 1
+
+            if is_incumbent:
+                district_stats[district_id]["incumbent_filed"] = True
+
+        # Clear existing data (except header)
+        worksheet.clear()
+        worksheet.append_row(RACE_ANALYSIS_HEADERS)
+
+        # Build analysis rows for all districts
+        rows = []
+
+        # All districts
+        all_district_ids = []
+        for i in range(1, SC_HOUSE_DISTRICTS + 1):
+            all_district_ids.append(f"SC-House-{i:03d}")
+        for i in range(1, SC_SENATE_DISTRICTS + 1):
+            all_district_ids.append(f"SC-Senate-{i:03d}")
+
+        needs_dem_count = 0
+
+        for district_id in all_district_ids:
+            # Get district info
+            district_info = districts_data.get(district_id, {})
+            incumbent_name = district_info.get("incumbent_name", "")
+            incumbent_party = district_info.get("incumbent_party", "")
+
+            # Get stats
+            stats = district_stats.get(district_id, {
+                "total_count": 0,
+                "dem_count": 0,
+                "rep_count": 0,
+                "incumbent_filed": False,
+            })
+
+            # Calculate challenger count (excludes incumbent)
+            challenger_count = stats["total_count"]
+            if stats["incumbent_filed"]:
+                challenger_count -= 1
+
+            # Dem filed?
+            dem_filed = "Y" if stats["dem_count"] > 0 else "N"
+
+            # Needs Dem candidate?
+            # Y if: incumbent is R, no D filed, and (incumbent filed OR no one filed)
+            needs_dem = "N"
+            if incumbent_party == "R" and stats["dem_count"] == 0:
+                needs_dem = "Y"
+                needs_dem_count += 1
+
+            rows.append([
+                district_id,
+                incumbent_name,
+                incumbent_party,
+                challenger_count,
+                dem_filed,
+                needs_dem,
+            ])
+
+        # Batch append all rows
+        if rows:
+            worksheet.append_rows(rows)
+
+        return {
+            "districts_analyzed": len(rows),
+            "needs_dem_candidates": needs_dem_count,
+        }
+
+    def get_race_summary(self) -> dict:
+        """
+        Get summary of race analysis.
+
+        Returns:
+            Dict with counts.
+        """
+        worksheet = self._get_or_create_worksheet(TAB_RACE_ANALYSIS, RACE_ANALYSIS_HEADERS)
+
+        all_values = worksheet.get_all_values()
+
+        if len(all_values) <= 1:
+            return {"total": 0, "needs_dem": 0, "dem_filed": 0}
+
+        total = len(all_values) - 1
+        needs_dem = sum(1 for row in all_values[1:] if len(row) > 5 and row[5] == "Y")
+        dem_filed = sum(1 for row in all_values[1:] if len(row) > 4 and row[4] == "Y")
+
+        return {
+            "total": total,
+            "needs_dem": needs_dem,
+            "dem_filed": dem_filed,
+        }
+
+    def get_districts_needing_dem(self) -> list[dict]:
+        """
+        Get districts where needs_dem_candidate = Y.
+
+        Returns:
+            List of district dicts needing Democratic candidates.
+        """
+        worksheet = self._get_or_create_worksheet(TAB_RACE_ANALYSIS, RACE_ANALYSIS_HEADERS)
+
+        all_values = worksheet.get_all_values()
+
+        if len(all_values) <= 1:
+            return []
+
+        headers = all_values[0]
+        results = []
+
+        for row in all_values[1:]:
+            if len(row) < len(headers):
+                continue
+
+            needs_dem = row[RACE_ANALYSIS_COLUMNS["needs_dem_candidate"]]
+            if needs_dem == "Y":
+                district = {}
+                for i, header in enumerate(headers):
+                    if i < len(row):
+                        district[header] = row[i]
+                results.append(district)
+
+        return results
 
     # =========================================================================
     # Utility Methods
@@ -570,524 +659,425 @@ class SheetsSync:
         Returns:
             List of candidate dicts with all columns.
         """
-        worksheet = self._get_or_create_worksheet(TAB_CANDIDATES, CANDIDATES_HEADERS)
+        candidates = self.read_candidates()
+        return list(candidates.values())
 
-        all_values = worksheet.get_all_values()
+    # =========================================================================
+    # Source of Truth Tab Sync
+    # =========================================================================
 
-        if len(all_values) <= 1:
-            return []
-
-        candidates = []
-        headers = all_values[0]
-
-        for row in all_values[1:]:
-            if not row or not row[0]:
-                continue
-
-            candidate = {}
-            for i, header in enumerate(headers):
-                if i < len(row):
-                    candidate[header] = row[i]
-                else:
-                    candidate[header] = ""
-
-            candidates.append(candidate)
-
-        return candidates
-
-    def get_candidates_by_district(self, district_id: str) -> list[dict]:
+    def _parse_district_id(self, district_id: str) -> tuple:
         """
-        Get all candidates for a specific district.
-
-        Args:
-            district_id: e.g., "SC-House-042"
+        Parse district_id like 'SC-House-042' into (chamber, number).
 
         Returns:
-            List of candidate dicts for that district.
+            Tuple of (chamber, district_number).
         """
-        all_candidates = self.get_all_candidates()
-        return [c for c in all_candidates if c.get("district_id") == district_id]
+        if not district_id or not district_id.startswith("SC-"):
+            return None, None
 
-    def get_candidates_needing_research(self) -> list[dict]:
+        parts = district_id.split("-")
+        if len(parts) != 3:
+            return None, None
+
+        chamber = parts[1]  # House or Senate
+        try:
+            district_num = int(parts[2])
+        except ValueError:
+            return None, None
+
+        return chamber, district_num
+
+    def _extract_url_from_hyperlink(self, formula: str) -> str:
+        """Extract URL from a HYPERLINK formula."""
+        if not formula:
+            return ""
+        if formula.startswith("=HYPERLINK"):
+            match = re.search(r'HYPERLINK\("([^"]+)"', formula)
+            if match:
+                return match.group(1)
+        return formula
+
+    def _is_recent_filing(self, filed_date: str, days: int = None) -> bool:
+        """Check if a filing date is within the recent window."""
+        if days is None:
+            days = NEW_CANDIDATE_DAYS
+
+        if not filed_date:
+            return False
+
+        try:
+            # Try various date formats
+            for fmt in ["%Y-%m-%d", "%m/%d/%Y", "%m-%d-%Y"]:
+                try:
+                    filing_dt = datetime.strptime(filed_date, fmt)
+                    break
+                except ValueError:
+                    continue
+            else:
+                return False
+
+            cutoff = datetime.now() - timedelta(days=days)
+            return filing_dt >= cutoff
+
+        except Exception:
+            return False
+
+    def _normalize_party(self, party: str) -> str:
+        """Normalize party code to single character."""
+        if not party:
+            return "?"
+        party = party.strip().upper()
+        if party in ("D", "DEMOCRAT", "DEMOCRATIC"):
+            return "D"
+        elif party in ("R", "REPUBLICAN"):
+            return "R"
+        elif party in ("I", "INDEPENDENT"):
+            return "I"
+        elif party in ("O", "OTHER"):
+            return "O"
+        return "?"
+
+    def _sort_candidates(self, candidates: list) -> list:
         """
-        Get candidates with LOW/UNKNOWN confidence that aren't party_locked.
+        Sort candidates: D first, then R, then others, then by filed date.
 
-        Returns:
-            List of candidate dicts needing party research.
+        This ensures Democrats are in slot 1 when present for easy scanning.
         """
-        all_candidates = self.get_all_candidates()
+        def sort_key(c):
+            party = c.get("party", "?")
+            # Priority: D=0, R=1, others=2
+            party_order = 0 if party == "D" else 1 if party == "R" else 2
+            # Secondary sort by filed date (earliest first)
+            filed_date = c.get("filed_date", "9999-99-99")
+            return (party_order, filed_date)
 
+        return sorted(candidates, key=sort_key)
+
+    def _build_sot_row_data(
+        self,
+        dem_filed: str,
+        cand1: dict,
+        cand2: dict,
+        cand3: dict,
+        last_updated: str
+    ) -> list:
+        """
+        Build row data for columns N through AF.
+
+        Returns a list of values for columns N through AF (indices 13-31),
+        with spacer columns as empty strings.
+        """
+        def cand_values(c):
+            if c is None:
+                return ["", "", "", ""]
+            return [
+                c.get("name", ""),
+                c.get("party", "?"),
+                c.get("filed_date", ""),
+                c.get("ethics_url", ""),
+            ]
+
+        c1 = cand_values(cand1)
+        c2 = cand_values(cand2)
+        c3 = cand_values(cand3)
+
+        # Build row: N through AF
+        # N=dem_filed, O=spacer, P-S=cand1, T=spacer, U-X=cand2, Y=spacer, Z-AC=cand3, AD=spacer, AE=skip(protected), AF=last_updated
         return [
-            c for c in all_candidates
-            if c.get("detection_confidence") in ("LOW", "UNKNOWN")
-            and c.get("party_locked") != "Yes"
+            dem_filed,       # N (13) - Dem Filed
+            "",              # O (14) - spacer
+            c1[0],           # P (15) - Challenger 1 name
+            c1[1],           # Q (16) - Party
+            c1[2],           # R (17) - Filed Date
+            c1[3],           # S (18) - Ethics URL
+            "",              # T (19) - spacer
+            c2[0],           # U (20) - Challenger 2 name
+            c2[1],           # V (21) - Party
+            c2[2],           # W (22) - Filed Date
+            c2[3],           # X (23) - Ethics URL
+            "",              # Y (24) - spacer
+            c3[0],           # Z (25) - Challenger 3 name
+            c3[1],           # AA (26) - Party
+            c3[2],           # AB (27) - Filed Date
+            c3[3],           # AC (28) - Ethics URL
+            "",              # AD (29) - spacer
+            "",              # AE (30) - Bench/Potential (SKIP - protected)
+            last_updated,    # AF (31) - Last Updated
         ]
 
-    def apply_final_party_formula(self) -> int:
+    def sync_to_source_of_truth(self, candidates: dict = None) -> dict:
         """
-        Populate final_party column with manual override or detected party.
+        Sync Candidates tab data to Source of Truth dynamic columns.
 
-        For each candidate row:
-        - If manual_party_override (K) is set, use it
-        - Otherwise use detected_party (G)
-        - Write the result to final_party (L)
+        Uses new slot-based structure where each candidate gets their own cells:
+        - Challenger 1: P (name), Q (party), R (date), S (URL)
+        - Challenger 2: U (name), V (party), W (date), X (URL)
+        - Challenger 3: Z (name), AA (party), AB (date), AC (URL)
 
-        Returns:
-            Number of rows updated.
-        """
-        worksheet = self._get_or_create_worksheet(TAB_CANDIDATES, CANDIDATES_HEADERS)
-        all_values = worksheet.get_all_values()
-
-        if len(all_values) <= 1:
-            return 0
-
-        headers = all_values[0]
-        try:
-            detected_idx = headers.index("detected_party")
-            override_idx = headers.index("manual_party_override")
-            final_idx = headers.index("final_party")
-        except ValueError as e:
-            self.logger.error(f"Missing required column: {e}")
-            return 0
-
-        updates = []
-        for row_num, row in enumerate(all_values[1:], start=2):
-            if not row or len(row) <= final_idx:
-                continue
-
-            override = row[override_idx] if override_idx < len(row) else ""
-            detected = row[detected_idx] if detected_idx < len(row) else ""
-            current_final = row[final_idx] if final_idx < len(row) else ""
-
-            # Compute new final_party
-            new_final = override if override else detected
-
-            # Only update if different
-            if new_final != current_final:
-                updates.append({
-                    "range": f"L{row_num}",  # Column L is final_party
-                    "values": [[new_final]]
-                })
-
-        if updates:
-            worksheet.batch_update(updates)
-            self.logger.info(f"Updated {len(updates)} final_party values")
-
-        return len(updates)
-
-    # =========================================================================
-    # PHASE 3: Race Analysis (Using final_party)
-    # =========================================================================
-
-    def update_race_analysis(self, districts_data: dict = None) -> dict:
-        """
-        Update the Race Analysis tab using final_party (not detected_party).
-
-        This is the key improvement from Phase 3 - we use final_party which
-        respects manual overrides, not just detected_party.
+        This method:
+        - Reads candidates (or uses provided dict)
+        - Groups candidates by district
+        - Filters out incumbents (they're in static columns)
+        - Sorts candidates (D first, then R, then others)
+        - Assigns to slots 1, 2, 3 (max 3 candidates per district)
+        - Auto-calculates Dem Filed (Y if any D candidate)
+        - Highlights new candidates (within NEW_CANDIDATE_DAYS)
+        - NEVER touches Bench/Potential column (AE)
 
         Args:
-            districts_data: Optional dict with district/incumbent info.
+            candidates: Optional pre-loaded candidates dict (by report_id).
+                       If None, reads from Candidates tab.
 
         Returns:
-            Summary dict with districts updated, priority counts.
+            Summary dict with sync results.
         """
-        worksheet = self._get_or_create_worksheet(TAB_RACE_ANALYSIS, RACE_ANALYSIS_HEADERS)
-
-        # Get all candidates with their final_party
-        all_candidates = self.get_all_candidates()
-
-        # Build candidate counts by district
-        district_stats = {}
-
-        for candidate in all_candidates:
-            district_id = candidate.get("district_id", "")
-            if not district_id:
-                continue
-
-            if district_id not in district_stats:
-                district_stats[district_id] = {
-                    "dem_count": 0,
-                    "rep_count": 0,
-                    "other_count": 0,
-                    "needs_research": 0,
-                    "candidates": [],
-                }
-
-            # Use final_party, fallback to detected_party if final_party is empty
-            # (final_party may be empty because it's a formula column that wasn't populated)
-            final_party = candidate.get("final_party", "") or candidate.get("detected_party", "")
-
-            if final_party == "D":
-                district_stats[district_id]["dem_count"] += 1
-            elif final_party == "R":
-                district_stats[district_id]["rep_count"] += 1
-            elif final_party:
-                district_stats[district_id]["other_count"] += 1
-
-            # Count needs_research (LOW/UNKNOWN and not locked)
-            confidence = candidate.get("detection_confidence", "")
-            locked = candidate.get("party_locked", "")
-            if confidence in ("LOW", "UNKNOWN") and locked != "Yes":
-                district_stats[district_id]["needs_research"] += 1
-
-            district_stats[district_id]["candidates"].append(candidate)
-
-        # Clear existing data (except header)
-        worksheet.clear()
-        worksheet.append_row(RACE_ANALYSIS_HEADERS)
-
-        # Build analysis rows
-        rows = []
-        now = datetime.now(timezone.utc).isoformat()
-
-        # Get districts info if provided
-        if districts_data:
-            all_districts = []
-            for chamber in ["house", "senate"]:
-                for dist_num in range(1, (SC_HOUSE_DISTRICTS if chamber == "house" else SC_SENATE_DISTRICTS) + 1):
-                    district_id = f"SC-{chamber.capitalize()}-{dist_num:03d}"
-                    all_districts.append({
-                        "district_id": district_id,
-                        "chamber": chamber,
-                        "number": dist_num,
-                    })
-        else:
-            # Generate all district IDs
-            all_districts = []
-            for i in range(1, SC_HOUSE_DISTRICTS + 1):
-                all_districts.append({
-                    "district_id": f"SC-House-{i:03d}",
-                    "chamber": "house",
-                    "number": i,
-                })
-            for i in range(1, SC_SENATE_DISTRICTS + 1):
-                all_districts.append({
-                    "district_id": f"SC-Senate-{i:03d}",
-                    "chamber": "senate",
-                    "number": i,
-                })
-
-        priority_counts = {
-            "High-D-Recruit": 0,
-            "Open-Seat": 0,
-            "Monitor": 0,
-            "Low": 0,
+        results = {
+            "rows_updated": 0,
+            "dem_candidates": 0,
+            "rep_candidates": 0,
+            "other_candidates": 0,
+            "new_candidates_flagged": 0,
+            "districts_with_1_challenger": 0,
+            "districts_with_2_challengers": 0,
+            "districts_with_3_plus_challengers": 0,
+            "errors": [],
         }
 
-        for district in all_districts:
-            district_id = district["district_id"]
-            stats = district_stats.get(district_id, {
-                "dem_count": 0,
-                "rep_count": 0,
-                "other_count": 0,
-                "needs_research": 0,
+        # Get candidates if not provided
+        if candidates is None:
+            candidates = self.read_candidates()
+
+        # Get Source of Truth worksheet
+        try:
+            sot_worksheet = self.spreadsheet.worksheet(TAB_SOURCE_OF_TRUTH)
+        except Exception as e:
+            results["errors"].append(f"Could not find Source of Truth tab: {e}")
+            return results
+
+        # Read existing Source of Truth data to get row numbers
+        sot_data = sot_worksheet.get_all_values()
+
+        # Build mapping of (chamber, district_num) -> row number
+        # Assumes Column A = chamber, Column B = district_number
+        district_row_map = {}
+        for row_idx, row in enumerate(sot_data[1:], start=2):  # Skip header
+            if len(row) >= 2 and row[0] and row[1]:
+                chamber = row[0]
+                try:
+                    district_num = int(row[1])
+                    district_row_map[(chamber, district_num)] = row_idx
+                except ValueError:
+                    continue
+
+        # Group candidates by district
+        candidates_by_district = defaultdict(list)
+
+        for report_id, candidate in candidates.items():
+            district_id = candidate.get("district_id", "")
+            chamber, district_num = self._parse_district_id(district_id)
+
+            if chamber is None or district_num is None:
+                continue
+
+            # Skip incumbents - they're in static columns
+            if candidate.get("is_incumbent", False):
+                continue
+
+            # Normalize party
+            party = self._normalize_party(candidate.get("party", ""))
+            if party == "D":
+                results["dem_candidates"] += 1
+            elif party == "R":
+                results["rep_candidates"] += 1
+            else:
+                results["other_candidates"] += 1
+
+            # Extract URL from hyperlink formula if present
+            ethics_url = self._extract_url_from_hyperlink(candidate.get("ethics_url", ""))
+
+            # Check if recent
+            is_new = self._is_recent_filing(candidate.get("filed_date", ""))
+            if is_new:
+                results["new_candidates_flagged"] += 1
+
+            candidates_by_district[(chamber, district_num)].append({
+                "name": candidate.get("candidate_name", ""),
+                "party": party,
+                "filed_date": candidate.get("filed_date", ""),
+                "ethics_url": ethics_url,
+                "report_id": report_id,
+                "is_new": is_new,
             })
 
-            # Get incumbent info from districts_data if available
-            incumbent_name = ""
-            incumbent_party = ""
-            if districts_data:
-                chamber = district["chamber"]
-                dist_num = str(district["number"])
-                incumbent_info = districts_data.get(chamber, {}).get(dist_num, {})
-                incumbent_name = incumbent_info.get("name", "")
-                incumbent_party = incumbent_info.get("party", "")
+        # Analyze distribution
+        for (chamber, district_num), cands in candidates_by_district.items():
+            count = len(cands)
+            if count == 1:
+                results["districts_with_1_challenger"] += 1
+            elif count == 2:
+                results["districts_with_2_challengers"] += 1
+            elif count >= 3:
+                results["districts_with_3_plus_challengers"] += 1
 
-            # Calculate race status
-            dem_count = stats["dem_count"]
-            rep_count = stats["rep_count"]
-            other_count = stats["other_count"]
-            total = dem_count + rep_count + other_count
+        # Prepare batch updates
+        now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+        rows_to_highlight = []
+        row_data_map = {}
 
-            if total == 0:
-                if incumbent_party == "R":
-                    race_status = "Unopposed-R"
-                elif incumbent_party == "D":
-                    race_status = "Unopposed-D"
+        for (chamber, district_num), row_num in district_row_map.items():
+            district_cands = candidates_by_district.get((chamber, district_num), [])
+
+            # Sort candidates: D first, then R, then others
+            sorted_cands = self._sort_candidates(district_cands)
+
+            # Assign to slots (max 3)
+            cand1 = sorted_cands[0] if len(sorted_cands) > 0 else None
+            cand2 = sorted_cands[1] if len(sorted_cands) > 1 else None
+            cand3 = sorted_cands[2] if len(sorted_cands) > 2 else None
+
+            # Calculate Dem Filed
+            has_dem = any(c["party"] == "D" for c in district_cands)
+            dem_filed = "Y" if has_dem else "N"
+
+            # Check for new candidates
+            has_new = any(c.get("is_new", False) for c in district_cands)
+            if has_new:
+                rows_to_highlight.append(row_num)
+
+            # Only set last_updated if there are candidates
+            last_updated = now if district_cands else ""
+
+            # Build row data for columns N through AF
+            row_values = self._build_sot_row_data(dem_filed, cand1, cand2, cand3, last_updated)
+            row_data_map[row_num] = row_values
+
+        # Use batch_update for efficiency (single API call)
+        sorted_rows = sorted(row_data_map.keys())
+
+        if sorted_rows:
+            min_row = min(sorted_rows)
+            max_row = max(sorted_rows)
+
+            # Build a 2D array for the entire range
+            all_rows = []
+            for row_num in range(min_row, max_row + 1):
+                if row_num in row_data_map:
+                    all_rows.append(row_data_map[row_num])
                 else:
-                    race_status = "Unknown"
-            elif dem_count > 0 and rep_count > 0:
-                race_status = "Contested"
-            elif dem_count > 0:
-                race_status = "Unopposed-D"
-            elif rep_count > 0:
-                race_status = "Unopposed-R"
-            else:
-                race_status = "Other"
+                    # Empty row placeholder (maintains N column default)
+                    all_rows.append(["N"] + [""] * 18)  # N through AF (19 columns)
 
-            # Calculate recruitment priority
-            if race_status == "Unopposed-R" and dem_count == 0:
-                priority = "High-D-Recruit"
-            elif not incumbent_name or incumbent_party == "":
-                priority = "Open-Seat"
-            elif race_status == "Contested":
-                priority = "Monitor"
-            else:
-                priority = "Low"
-
-            priority_counts[priority] = priority_counts.get(priority, 0) + 1
-
-            # Build row
-            rows.append([
-                district_id,
-                f"SC {district['chamber'].capitalize()} District {district['number']}",
-                incumbent_name,
-                incumbent_party,
-                dem_count,
-                rep_count,
-                other_count,
-                race_status,
-                priority,
-                stats["needs_research"],
-                now,
-            ])
-
-        # Batch append all rows
-        if rows:
-            worksheet.append_rows(rows)
-
-        return {
-            "districts_analyzed": len(rows),
-            "priority_counts": priority_counts,
-            "timestamp": now,
-        }
-
-    def get_race_analysis_summary(self) -> dict:
-        """
-        Get summary of race analysis.
-
-        Returns:
-            Dict with counts by status and priority.
-        """
-        worksheet = self._get_or_create_worksheet(TAB_RACE_ANALYSIS, RACE_ANALYSIS_HEADERS)
-
-        all_values = worksheet.get_all_values()
-
-        if len(all_values) <= 1:
-            return {"total": 0}
-
-        summary = {
-            "total": len(all_values) - 1,
-            "by_status": {},
-            "by_priority": {},
-            "needs_research_total": 0,
-        }
-
-        for row in all_values[1:]:
-            if len(row) < 11:
-                continue
-
-            status = row[RACE_ANALYSIS_COLUMNS["race_status"]]
-            priority = row[RACE_ANALYSIS_COLUMNS["recruitment_priority"]]
-            needs_research = row[RACE_ANALYSIS_COLUMNS["needs_research"]]
-
-            summary["by_status"][status] = summary["by_status"].get(status, 0) + 1
-            summary["by_priority"][priority] = summary["by_priority"].get(priority, 0) + 1
-
+            # Single batch update for columns N through AF
+            cell_range = f"N{min_row}:AF{max_row}"
             try:
-                summary["needs_research_total"] += int(needs_research) if needs_research else 0
-            except ValueError:
-                pass
+                sot_worksheet.update(values=all_rows, range_name=cell_range, value_input_option="USER_ENTERED")
+                results["rows_updated"] = len(all_rows)
+            except Exception as e:
+                results["errors"].append(f"Batch update failed: {e}")
 
-        return summary
+        # Apply highlighting to rows with new candidates
+        if rows_to_highlight:
+            self.highlight_new_candidates(sot_worksheet, rows_to_highlight)
 
-    def get_high_priority_districts(self) -> list[dict]:
-        """
-        Get districts with High-D-Recruit priority.
+        return results
 
-        Returns:
-            List of district dicts that are high priority for recruitment.
-        """
-        worksheet = self._get_or_create_worksheet(TAB_RACE_ANALYSIS, RACE_ANALYSIS_HEADERS)
-
-        all_values = worksheet.get_all_values()
-
-        if len(all_values) <= 1:
-            return []
-
-        headers = all_values[0]
-        high_priority = []
-
-        for row in all_values[1:]:
-            if len(row) < len(headers):
-                continue
-
-            priority = row[RACE_ANALYSIS_COLUMNS["recruitment_priority"]]
-            if priority == "High-D-Recruit":
-                district = {}
-                for i, header in enumerate(headers):
-                    if i < len(row):
-                        district[header] = row[i]
-                high_priority.append(district)
-
-        return high_priority
-
-    # =========================================================================
-    # PHASE 5: Research Queue Management
-    # =========================================================================
-
-    def populate_research_queue(self) -> dict:
-        """
-        Populate Research Queue with candidates needing party verification.
-
-        Auto-adds candidates with LOW/UNKNOWN confidence that aren't party_locked.
-        Includes suggested search links.
-
-        Returns:
-            Summary dict with candidates added.
-        """
-        worksheet = self._get_or_create_worksheet(TAB_RESEARCH_QUEUE, RESEARCH_QUEUE_HEADERS)
-
-        # Get candidates needing research
-        candidates = self.get_candidates_needing_research()
-
-        # Get existing queue to avoid duplicates
-        existing = worksheet.get_all_values()
-        existing_ids = set()
-        if len(existing) > 1:
-            for row in existing[1:]:
-                if row and row[0]:
-                    existing_ids.add(row[0])
-
-        now = datetime.now(timezone.utc).isoformat()
-        added = 0
-
-        for candidate in candidates:
-            report_id = candidate.get("report_id", "")
-            if report_id in existing_ids:
-                continue
-
-            name = candidate.get("candidate_name", "")
-            district_id = candidate.get("district_id", "")
-            detected_party = candidate.get("detected_party", "")
-            confidence = candidate.get("detection_confidence", "")
-
-            # Build suggested search URL
-            search_query = f'"{name}" "South Carolina" Democrat OR Republican'
-            suggested_search = f"https://www.google.com/search?q={search_query.replace(' ', '+')}"
-
-            # Party website links
-            scdp_link = f"https://www.scdp.org/search?q={name.replace(' ', '+')}"
-            scgop_link = f"https://www.scgop.com/search?q={name.replace(' ', '+')}"
-
-            worksheet.append_row([
-                report_id,
-                name,
-                district_id,
-                detected_party,
-                confidence,
-                suggested_search,
-                scdp_link,
-                scgop_link,
-                "Pending",          # status
-                "",                 # assigned_to
-                "",                 # resolution_notes
-                "",                 # resolved_date
-                now,                # added_date
-            ])
-
-            added += 1
-
-        return {
-            "candidates_added": added,
-            "total_needing_research": len(candidates),
-            "already_in_queue": len(candidates) - added,
-        }
-
-    def get_pending_research(self) -> list[dict]:
-        """
-        Get research queue items with Pending status.
-
-        Returns:
-            List of research items needing attention.
-        """
-        worksheet = self._get_or_create_worksheet(TAB_RESEARCH_QUEUE, RESEARCH_QUEUE_HEADERS)
-
-        all_values = worksheet.get_all_values()
-
-        if len(all_values) <= 1:
-            return []
-
-        headers = all_values[0]
-        pending = []
-
-        for row in all_values[1:]:
-            if len(row) < len(headers):
-                continue
-
-            status = row[RESEARCH_QUEUE_COLUMNS["status"]]
-            if status == "Pending":
-                item = {}
-                for i, header in enumerate(headers):
-                    if i < len(row):
-                        item[header] = row[i]
-                pending.append(item)
-
-        return pending
-
-    def update_research_status(
+    def highlight_new_candidates(
         self,
-        report_id: str,
-        status: str,
-        resolution_notes: str = None,
-        assigned_to: str = None,
-    ) -> bool:
+        worksheet,
+        row_numbers: list,
+        color: dict = None,
+    ) -> None:
         """
-        Update status of a research queue item.
+        Apply yellow background to rows with newly added candidates.
 
         Args:
-            report_id: Candidate report ID.
-            status: New status (Pending, In-Progress, Resolved).
-            resolution_notes: Optional notes on resolution.
-            assigned_to: Optional researcher name.
-
-        Returns:
-            True if updated successfully.
+            worksheet: gspread.Worksheet object
+            row_numbers: List of row numbers to highlight
+            color: Optional RGB color dict (default: light yellow)
         """
-        worksheet = self._get_or_create_worksheet(TAB_RESEARCH_QUEUE, RESEARCH_QUEUE_HEADERS)
+        if not row_numbers:
+            return
 
+        if color is None:
+            # Light yellow background
+            color = {"red": 1.0, "green": 1.0, "blue": 0.8}
+
+        # Build batch update requests for formatting
+        requests = []
+
+        for row_num in row_numbers:
+            # Highlight columns N through AF (indices 13-31)
+            requests.append({
+                "repeatCell": {
+                    "range": {
+                        "sheetId": worksheet.id,
+                        "startRowIndex": row_num - 1,  # 0-indexed
+                        "endRowIndex": row_num,
+                        "startColumnIndex": 13,  # N
+                        "endColumnIndex": 32,    # AF (exclusive, so 32)
+                    },
+                    "cell": {
+                        "userEnteredFormat": {
+                            "backgroundColor": color
+                        }
+                    },
+                    "fields": "userEnteredFormat.backgroundColor"
+                }
+            })
+
+        # Execute batch update
+        if requests:
+            try:
+                self.spreadsheet.batch_update({"requests": requests})
+            except Exception as e:
+                print(f"Warning: Could not apply highlighting: {e}")
+
+    def clear_new_candidate_highlights(
+        self,
+        worksheet = None,
+    ) -> None:
+        """
+        Clear all yellow highlights from Source of Truth tab.
+
+        Call this before sync to reset highlights, then apply fresh ones.
+        """
+        if worksheet is None:
+            try:
+                worksheet = self.spreadsheet.worksheet(TAB_SOURCE_OF_TRUTH)
+            except Exception:
+                return
+
+        # Get total rows
         all_values = worksheet.get_all_values()
+        total_rows = len(all_values)
 
-        for row_idx, row in enumerate(all_values[1:], start=2):
-            if row and row[0] == report_id:
-                updates = []
+        if total_rows <= 1:
+            return
 
-                # Update status
-                status_col = self._col_letter(RESEARCH_QUEUE_COLUMNS["status"])
-                updates.append({
-                    "range": f"{status_col}{row_idx}",
-                    "values": [[status]]
-                })
+        # Clear formatting for all data rows, columns N-AF
+        requests = [{
+            "repeatCell": {
+                "range": {
+                    "sheetId": worksheet.id,
+                    "startRowIndex": 1,  # Skip header
+                    "endRowIndex": total_rows,
+                    "startColumnIndex": 13,  # N
+                    "endColumnIndex": 32,    # AF (exclusive)
+                },
+                "cell": {
+                    "userEnteredFormat": {
+                        "backgroundColor": {"red": 1.0, "green": 1.0, "blue": 1.0}
+                    }
+                },
+                "fields": "userEnteredFormat.backgroundColor"
+            }
+        }]
 
-                # Update assigned_to if provided
-                if assigned_to is not None:
-                    assigned_col = self._col_letter(RESEARCH_QUEUE_COLUMNS["assigned_to"])
-                    updates.append({
-                        "range": f"{assigned_col}{row_idx}",
-                        "values": [[assigned_to]]
-                    })
-
-                # Update resolution_notes if provided
-                if resolution_notes is not None:
-                    notes_col = self._col_letter(RESEARCH_QUEUE_COLUMNS["resolution_notes"])
-                    updates.append({
-                        "range": f"{notes_col}{row_idx}",
-                        "values": [[resolution_notes]]
-                    })
-
-                # If status is Resolved, set resolved_date
-                if status == "Resolved":
-                    resolved_col = self._col_letter(RESEARCH_QUEUE_COLUMNS["resolved_date"])
-                    updates.append({
-                        "range": f"{resolved_col}{row_idx}",
-                        "values": [[datetime.now(timezone.utc).isoformat()]]
-                    })
-
-                worksheet.batch_update(updates)
-                return True
-
-        return False
+        try:
+            self.spreadsheet.batch_update({"requests": requests})
+        except Exception as e:
+            print(f"Warning: Could not clear highlights: {e}")
 
 
 # Convenience function for quick operations

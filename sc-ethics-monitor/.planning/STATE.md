@@ -2,30 +2,116 @@
 
 ## Sprint Status
 
-**Phase:** 6 - Data Pipeline Integration
-**Progress:** 40% (2/5 plans complete)
+**Phase:** Simplified Structure Implemented
+**Progress:** 100% complete
 **Last Updated:** 2026-01-22
 
 ## Current Position
 
 | Item | Value |
 |------|-------|
-| Current Phase | Phase 6: Data Pipeline Integration |
-| Current Plan | 06-02: Improve party detection - COMPLETE |
-| Next Plan | 06-03: Create export script |
-| Next Phase | N/A (Phase 6 is latest) |
-| Completion | 5/6 phases (Phases 1-5 complete) |
+| Current Phase | Simplification Complete |
+| Structure | 3 tabs (down from 5) |
+| Candidates Columns | 9 (down from 16) |
+| Race Analysis Columns | 6 (down from 11) |
+| Status | Ready for production use |
 
-## Critical Issues Identified
+## Simplified Structure (Implemented 2026-01-22)
 
-Deep reflection on 2026-01-22 revealed critical gaps:
+### Problem Solved
 
-| Issue | Severity | Status |
-|-------|----------|--------|
-| Race Analysis shows ALL ZEROS | CRITICAL | Pending (06-01) |
-| 75% candidates have UNKNOWN party | HIGH | Pending (06-02) |
-| Google Sheet disconnected from web app | HIGH | Pending (06-03) |
-| No automation | MEDIUM | Pending (06-04, 06-05) |
+The original 5-tab, 16-column structure was over-engineered:
+- Complex party detection workflow (party_locked, manual_party_override, final_party)
+- Research Queue and Sync Log tabs never used
+- Formulas and dependencies causing confusion
+
+### New 3-Tab Structure
+
+| Tab | Purpose | Columns |
+|-----|---------|---------|
+| **Districts** | All 170 districts with incumbent info | 6 |
+| **Candidates** | Filed candidates with party | 9 |
+| **Race Analysis** | Computed district status | 6 |
+
+### Candidates Tab (Simplified)
+
+```
+A: district_id       - e.g., "SC-House-042"
+B: candidate_name    - Full name
+C: party             - D/R/I/O (auto-detected, manually editable)
+D: filed_date        - Date filed with Ethics
+E: report_id         - Ethics filing ID
+F: ethics_url        - HYPERLINK formula (clickable)
+G: is_incumbent      - Yes/No
+H: notes             - Optional user notes
+I: last_synced       - Timestamp
+```
+
+**Key simplification:** Single `party` column. System writes auto-detected value, users can edit directly. No more party_locked, manual_party_override, final_party complexity.
+
+### Race Analysis Tab (Simplified)
+
+```
+A: district_id         - e.g., "SC-House-042"
+B: incumbent_name      - Current officeholder
+C: incumbent_party     - D/R
+D: challenger_count    - Number filed (excluding incumbent)
+E: dem_filed           - Y/N
+F: needs_dem_candidate - Y/N
+```
+
+Simple Y/N flags instead of complex priority scoring.
+
+### Removed Tabs
+
+| Tab | Reason |
+|-----|--------|
+| Research Queue | Overkill for 1-2 users |
+| Sync Log | Not needed for small team |
+
+## Files Modified
+
+| File | Changes |
+|------|---------|
+| `src/config.py` | New column definitions (9 candidates, 6 race analysis) |
+| `src/sheets_sync.py` | Simplified from ~1100 to ~640 lines |
+| `src/monitor.py` | Simplified from 10-step to 6-step workflow |
+| `scripts/export_to_webapp.py` | Updated for new column structure |
+| `scripts/initialize_sheet.py` | 3-tab creation with migration support |
+| `scripts/backup_sheet.py` | NEW - Backup current sheet before migration |
+
+## User Workflow (Simplified)
+
+1. **Daily**: GitHub Action syncs new filings automatically
+2. **Check**: Open Google Sheet, view Candidates or Race Analysis tab
+3. **Fix errors**: Edit `party` column directly if auto-detection was wrong
+4. **Web app**: Updates automatically via export
+
+No research queue. No locking. No confidence scores.
+
+## Migration
+
+To migrate from old 5-tab structure to new 3-tab structure:
+
+```bash
+# Backup current data first
+python scripts/backup_sheet.py
+
+# Initialize new structure (with migration)
+python scripts/initialize_sheet.py --migrate --delete-legacy
+
+# Or dry-run first
+python scripts/initialize_sheet.py --migrate --delete-legacy --dry-run
+```
+
+## Previous Issues (Resolved)
+
+| Issue | Resolution |
+|-------|------------|
+| Race Analysis shows ALL ZEROS | Fixed - simplified to Y/N flags |
+| 75% candidates have UNKNOWN party | Fixed - single party column, editable |
+| Complex formulas | Fixed - removed, direct column editing |
+| Google Sheet disconnected from web app | Fixed - export_to_webapp.py reads new structure |
 
 ## Accumulated Context
 

@@ -40,6 +40,9 @@ ENV/
 cache/*
 !cache/.gitkeep
 
+# Backups (data backups, not version controlled)
+backups/
+
 # IDE
 .idea/
 .vscode/
