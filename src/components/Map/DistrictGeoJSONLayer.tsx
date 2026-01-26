@@ -4,11 +4,12 @@ import { useEffect, useState, useCallback, useMemo } from 'react';
 import { importLeaflet, getGeoJsonPath, getDistrictPropertyKey, getBasePath, type ChamberType } from '@/lib/leafletLoader';
 import { getGeoJsonFromCache, setGeoJsonInCache } from '@/lib/cacheUtils';
 import {
-  getDistrictFillColor,
+  getDistrictFillColorWithLens,
   getCongressionalFillColor,
-  DISTRICT_COLORS_SOLID,
-  CONGRESSIONAL_COLORS,
+  type OpportunityData,
 } from '@/lib/districtColors';
+import type { LensId } from '@/types/lens';
+import { DEFAULT_LENS } from '@/types/lens';
 import type { Feature, FeatureCollection, Polygon, MultiPolygon, GeoJsonProperties } from 'geojson';
 import type { CandidatesData, ElectionsData } from '@/types/schema';
 import type { PathOptions, Layer, LeafletMouseEvent } from 'leaflet';
@@ -32,6 +33,10 @@ export interface DistrictGeoJSONLayerProps {
   onDistrictHover?: (districtNumber: number | null) => void;
   /** Filter to specific districts (numbers) */
   filteredDistricts?: Set<number>;
+  /** Active lens for multi-lens visualization (default: 'incumbents') */
+  activeLens?: LensId;
+  /** Opportunity data for opportunity lens */
+  opportunityData?: Record<string, OpportunityData>;
 }
 
 /**
@@ -49,6 +54,8 @@ export default function DistrictGeoJSONLayer({
   onDistrictClick,
   onDistrictHover,
   filteredDistricts,
+  activeLens = DEFAULT_LENS,
+  opportunityData,
 }: DistrictGeoJSONLayerProps) {
   const [geoJsonData, setGeoJsonData] = useState<FeatureCollection | null>(null);
   const [leafletComponents, setLeafletComponents] = useState<Awaited<ReturnType<typeof importLeaflet>>>(null);
@@ -147,10 +154,11 @@ export default function DistrictGeoJSONLayer({
       const districtId = feature.properties?.CD118FP || String(districtNum).padStart(2, '0');
       fillColor = getCongressionalFillColor(districtId);
     } else {
-      // House/Senate uses candidate data
+      // House/Senate uses lens-aware coloring
       const districtData = candidatesData?.[chamber]?.[String(districtNum)];
       const electionHistory = electionsData?.[chamber]?.[String(districtNum)];
-      fillColor = getDistrictFillColor(districtData, electionHistory, true);
+      const oppData = opportunityData?.[String(districtNum)];
+      fillColor = getDistrictFillColorWithLens(districtData, electionHistory, oppData, activeLens, true);
     }
 
     return {
@@ -160,7 +168,7 @@ export default function DistrictGeoJSONLayer({
       weight: isSelected ? 3 : 1,
       opacity: isFiltered ? 0.3 : 1,
     };
-  }, [chamber, candidatesData, electionsData, selectedDistrict, filteredDistricts, getDistrictNumber]);
+  }, [chamber, candidatesData, electionsData, selectedDistrict, filteredDistricts, getDistrictNumber, activeLens, opportunityData]);
 
   // Highlight style on hover
   const highlightStyle: PathOptions = {
@@ -201,8 +209,8 @@ export default function DistrictGeoJSONLayer({
 
   // Generate unique key for GeoJSON layer (forces re-render on data changes)
   const layerKey = useMemo(() => {
-    return `${chamber}-${selectedDistrict}-${JSON.stringify(Array.from(filteredDistricts || []))}`;
-  }, [chamber, selectedDistrict, filteredDistricts]);
+    return `${chamber}-${selectedDistrict}-${activeLens}-${JSON.stringify(Array.from(filteredDistricts || []))}`;
+  }, [chamber, selectedDistrict, filteredDistricts, activeLens]);
 
   // Render nothing during loading or error states
   if (isLoading || error || !geoJsonData || !leafletComponents) {

@@ -1,0 +1,38 @@
+{
+  "project": "sc-ethics-monitor-sot-sprint",
+  "version": "1.0.0",
+  "description": "Source of Truth Google Sheet improvements",
+  "mode": {
+    "approval": "manual",
+    "reason": "Sheet changes require manual execution in Google Sheets UI"
+  },
+  "depth": {
+    "level": "comprehensive"
+  },
+  "parallelization": {
+    "enabled": false,
+    "reason": "Phases are sequential - each builds on previous"
+  },
+  "phases": {
+    "structure": "sequential",
+    "total": 3,
+    "plans_per_phase": {
+      "01-data-enrichment": 1,
+      "02-usability-improvements": 1,
+      "03-design-polish": 1
+    }
+  },
+  "verification": {
+    "method": "manual-uat",
+    "sync_test_required": true
+  },
+  "google_sheet": {
+    "spreadsheet_id": "17j_KFZFUw-ESBQlKlIccUMpGCFq_XdeL6WYph7zkxQo",
+    "url": "https://docs.google.com/spreadsheets/d/17j_KFZFUw-ESBQlKlIccUMpGCFq_XdeL6WYph7zkxQo/edit"
+  },
+  "constraints": {
+    "no_column_reorder": "Candidates A-P must stay in place for Python sync",
+    "no_tab_rename": "Tab names referenced in Python config.py",
+    "preserve_formulas": "Column L (final_party) is formula-based"
+  }
+}

@@ -5,17 +5,17 @@
 See: .planning/PROJECT.md (updated 2026-01-18)
 
 **Core value:** Build a national election intelligence platform that helps Democratic campaigns win
-**Current focus:** v2.1 Strategic Visualization complete — ready for integration
+**Current focus:** v3.0 Multi-Lens Visualization System — transforming to strategic intelligence platform
 
 ## Current Position
 
-Phase: 15 of 15 (Strategic Visualization) ✅ COMPLETE
-Milestone: v2.1 Strategic Visualization ✅ SHIPPED
-Plan: All 4 plans complete
-Status: Ready for integration into dashboards
-Last activity: 2026-01-21 — Phase 15 Strategic Visualization complete
+Phase: v3.1 UX Overhaul — In Progress
+Milestone: v3.1 Comprehensive UX Improvements
+Plan: Tier 1 (Quick Wins) + Tier 2 (High-Value Features)
+Status: Phase B nearly complete (B1-B4 done), fixing styling issue
+Last activity: 2026-01-25 — Lens intro overlay styling fix
 
-Progress: ██████████ 100% (v2.0 + v2.1 complete)
+Progress: ████████░░ 80% (v3.1 UX overhaul)
 
 ## Shipped Milestones
 
@@ -25,6 +25,93 @@ Progress: ██████████ 100% (v2.0 + v2.1 complete)
 | v1.1 SC Voter Guide Enhancement | 2026-01-18 | Real county data, 155 tests, caching, Ethics scraper |
 | v2.0 Map Navigation System | 2026-01-21 | NavigableUSMap, useMapState, ZoomLevelContent, HybridMapContainer |
 | v2.1 Strategic Visualization | 2026-01-21 | ScenarioSimulator, HistoricalComparison, RecruitmentRadar, ResourceHeatmap |
+| v3.0 Multi-Lens Visualization | 2026-01-23 | 4-lens system, opportunity tiers, LensToggleBar, URL sync |
+
+## v3.1 Comprehensive UX Improvements — IN PROGRESS
+
+**Goal:** Elevate from "functional demo" to "campaign-ready tool"
+
+### Phase A: Quick Wins ✅ COMPLETE
+| Task | Files | Status |
+|------|-------|--------|
+| A1. Lens onboarding tooltip | `LensToggleBar.tsx` | ✅ Complete |
+| A2. WCAG contrast fixes | `districtColors.ts`, `lens.ts` | ✅ Complete |
+| A3. Non-collapsible legend first visit | `Legend.tsx` | ✅ Complete |
+| A4. Data freshness badge | Deferred | 🔜 Pending |
+| A5. Standardize transitions | Deferred | 🔜 Pending |
+
+### Phase B: High-Value Features ✅ COMPLETE
+| Task | Files | Status |
+|------|-------|--------|
+| B1. District hover tooltips | `MapTooltip.tsx` enhanced | ✅ Complete |
+| B2. Mobile bottom sheet | `MobileDistrictSheet.tsx` created | ✅ Complete |
+| B3. Find My District | `AddressSearch.tsx` created | ✅ Complete |
+| B4. Screenshot export | `ScreenshotButton.tsx` created | ✅ Complete |
+
+### Phase C: Integration & Polish — IN PROGRESS
+| Task | Files | Status |
+|------|-------|--------|
+| C1. Wire all new components | `[state]/page.tsx` | ✅ Complete |
+| C2. Styling fix | `globals.css` (lens intro overlay) | ✅ Complete |
+| C3. Mobile testing | Playwright tests | 🔜 Pending |
+| C4. Accessibility audit | axe-core validation | 🔜 Pending |
+| C5. Documentation update | `docs/CURRENT-STATE.md` | 🔜 Pending |
+
+**New Files Created:**
+- `src/components/Search/AddressSearch.tsx` - Find My District by address/GPS
+- `src/components/Export/ScreenshotButton.tsx` - PNG/JPG map export
+- `src/components/Map/MobileDistrictSheet.tsx` - Touch-friendly bottom sheet
+- `src/components/ui/Tooltip.tsx` - Reusable tooltip component
+
+**Modified Files:**
+- `src/app/[state]/page.tsx` - Integrated all new components
+- `src/app/globals.css` - Added styles for AddressSearch, ScreenshotButton, MobileDistrictSheet, lens intro overlay
+- `src/components/Lens/LensToggleBar.tsx` - Onboarding intro (styling moved to globals.css)
+- `src/components/Map/Legend.tsx` - First-visit expanded state
+
+**Key Fix This Session:**
+- Lens intro overlay was displaying as plain text due to styled-jsx scoping issue
+- Moved lens intro styles from scoped `<style jsx>` to `globals.css`
+
+---
+
+## v3.0 Multi-Lens Visualization System ✅ SHIPPED
+
+**6 phases, 15 plans, zero initial bundle impact**
+
+Goal: Transform SC Election Map into strategic intelligence platform with 4 switchable lenses
+
+| Phase | Plans | Goal | Status |
+|-------|-------|------|--------|
+| 16. Data Pipeline | 4 | Opportunity tier calculator, GitHub Actions | ✅ Complete |
+| 17. Lens Type System | 2 | Type definitions + useLens hook | ✅ Complete |
+| 18. Color System | 3 | Lens-aware color palettes | ✅ Complete |
+| 19. UI Components | 3 | LensToggleBar, dynamic Legend, lens KPIs | ✅ Complete |
+| 20. Integration | 3 | Wire into state page + all map components | ✅ Complete |
+| 21. Polish | 2 | SyncDataButton, opportunity.json refresh | ✅ Complete |
+
+**The 4 Lenses:**
+1. **Incumbents** (default) - Traditional R/D incumbent display
+2. **Dem Filing** - Blue coverage vs amber gaps
+3. **Opportunity** - Heat map (HOT/WARM/POSSIBLE/LONG_SHOT/DEFENSIVE)
+4. **Battleground** - Contested vs uncontested races
+
+**New Files Created:**
+- `src/types/lens.ts` - Lens type definitions and LENS_DEFINITIONS
+- `src/hooks/useLens.ts` - URL-synced lens state management
+- `src/components/Lens/LensToggleBar.tsx` - Horizontal pill-button toggle
+- `src/components/Lens/lensKpis.ts` - Lens-aware KPI calculations
+- `src/components/Admin/SyncDataButton.tsx` - GitHub Actions trigger
+- `scripts/calculate_opportunity.py` - 5-tier opportunity classifier
+
+**Modified Files:**
+- `src/lib/districtColors.ts` - Added LENS_COLORS, getDistrictFillColorWithLens
+- `src/components/Map/Legend.tsx` - Dynamic lens-aware legend
+- `src/components/Map/DistrictMap.tsx` - activeLens prop support
+- `src/components/Map/DistrictGeoJSONLayer.tsx` - activeLens for Leaflet mode
+- `src/components/Map/HybridMapContainer.tsx` - Lens passthrough
+- `src/components/Map/NavigableDistrictMap.tsx` - Lens passthrough
+- `src/app/[state]/page.tsx` - Full lens integration with URL sync
 
 ## v2.0 Map Navigation System ✅ SHIPPED
 
@@ -78,6 +165,12 @@ Goal: Advanced map-driven features for strategic decision-making
 | 2026-01-20 | Hybrid SVG/Leaflet | Best of both: fast SVG default, rich Leaflet on demand |
 | 2026-01-21 | Scenario URL sync | Shareable what-if scenarios via `?scenario=d23,r45` |
 | 2026-01-21 | Three-tier resource intensity | Hot/Warm/Cool for investment prioritization |
+| 2026-01-23 | 4-lens visualization system | Multiple perspectives for strategic decision-making |
+| 2026-01-23 | 5-tier opportunity scoring | HOT/WARM/POSSIBLE/LONG_SHOT/DEFENSIVE based on margins |
+| 2026-01-23 | Lens URL sync | Shareable lens views via `?lens=opportunity` |
+| 2026-01-25 | Mobile bottom sheet pattern | Touch-friendly district details with swipe-to-close |
+| 2026-01-25 | html-to-image for screenshots | PNG/JPG export with 2x pixel ratio for retina |
+| 2026-01-25 | Global CSS for overlays | Avoid styled-jsx scoping issues with fixed-position elements |
 
 ## Accumulated Context
 
@@ -99,9 +192,26 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-21
-Stopped at: Phase 15 Strategic Visualization complete
+Last session: 2026-01-25
+Stopped at: v3.1 UX Overhaul - Fixed lens intro overlay styling
 Resume file: None
+
+### Session Summary (2026-01-25)
+**Completed:**
+- Fixed lens intro overlay styling (moved from styled-jsx to globals.css)
+- All Phase B components integrated into state page
+- Build verified: 197 static pages generated successfully
+
+**Remaining Tasks:**
+1. Mobile testing with Playwright
+2. Accessibility audit with axe-core
+3. Documentation update
+4. Test all features in browser (Find District, Screenshot Export, Mobile Sheet)
+
+**Technical Notes:**
+- styled-jsx scoping issue: Styles inside a div don't apply to sibling elements
+- Solution: Global CSS for overlay components that render outside their parent container
+- html-to-image library installed for screenshot export functionality
 
 ## Phase 14 Accomplishments
 
@@ -137,3 +247,29 @@ Resume file: None
 - `SCENARIO_COLORS` - Flipped district patterns
 - `HISTORICAL_DELTA_COLORS` - Diverging blue↔red scale
 - `RESOURCE_HEATMAP_COLORS` - Hot/Warm/Cool intensity
+
+## Phase 16-21 Accomplishments (v3.0)
+
+**6 phases, 15 plans completed:**
+
+| Phase | Key Deliverables |
+|-------|------------------|
+| 16 | calculate_opportunity.py, ethics-monitor.yml update, opportunity.json |
+| 17 | src/types/lens.ts, src/hooks/useLens.ts, URL sync with ?lens param |
+| 18 | LENS_COLORS, getDistrictCategory, getDistrictFillColorWithLens, getCategoryLabel |
+| 19 | LensToggleBar.tsx, lens-aware Legend.tsx, lensKpis.ts |
+| 20 | DistrictMap lens support, NavigableDistrictMap passthrough, state page integration |
+| 21 | SyncDataButton.tsx, opportunity.json regeneration, build verification |
+
+**New Color Palettes:**
+- Incumbents: Blue/Red for D/R incumbents, Amber for open seats
+- Dem Filing: Blue coverage, Amber/Orange gaps
+- Opportunity: Red HOT → Orange WARM → Yellow POSSIBLE → Gray LONG_SHOT → Blue DEFENSIVE
+- Battleground: Purple contested, Blue D-only, Red R-only, Gray none
+
+**Lens-Aware KPIs:**
+- Each lens shows 4 relevant KPIs that update when lens changes
+- Incumbents: Dem/Rep/Open Seats + Total
+- Dem Filing: Filed/Needs Candidate/Coverage % + Total
+- Opportunity: Hot/Warm/Possible/Defensive counts
+- Battleground: Contested/D-only/R-only/None counts

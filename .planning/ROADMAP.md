@@ -21,9 +21,11 @@ Political data visualization, campaign intelligence, React/Next.js development
 - ✅ **v1.1 SC Voter Guide Enhancement** - Phases 1-10 (COMPLETE, shipped 2026-01-18) → [Archive](milestones/v1.1-ROADMAP.md)
 - ✅ **v2.0 Map Navigation System** - Phases 11-14 (COMPLETE, shipped 2026-01-21)
 - ✅ **v2.1 Strategic Visualization** - Phase 15 (COMPLETE, shipped 2026-01-21)
-- 📋 **v3.0 Monorepo Architecture** - Phase B (PLANNED)
-- 📋 **v4.0 SC Production** - Phase C (PLANNED)
-- 📋 **v5.0 National Platform** - Phase D (PLANNED)
+- ✅ **v3.0 Multi-Lens Visualization** - Phases 16-21 (COMPLETE, shipped 2026-01-23)
+- 🚧 **v3.1 UX Overhaul** - Mobile sheet, address search, tooltips (IN PROGRESS)
+- 📋 **v4.0 Monorepo Architecture** - Phase B (PLANNED)
+- 📋 **v5.0 SC Production** - Phase C (PLANNED)
+- 📋 **v6.0 National Platform** - Phase D (PLANNED)
 
 ---
 
@@ -240,6 +242,151 @@ Four strategic visualization components inspired by industry leaders:
 
 ---
 
+## v3.0 Multi-Lens Visualization System ✅ COMPLETE
+
+> **Status:** COMPLETE
+> **Shipped:** 2026-01-23
+> **Goal:** Transform SC Election Map from single-view to strategic intelligence platform with 4 switchable lenses
+
+### Overview
+
+Multi-Lens Visualization transforms the map from a single static view into an interactive intelligence platform:
+- **4 Switchable Lenses**: Incumbents, Dem Filing, Opportunity, Battleground
+- **Google Sheets Integration**: Challenge Sheet as source of truth
+- **Nightly Sync**: Automatic data updates via GitHub Actions
+- **URL-Shareable**: Lens state persists in URL parameters
+
+### Architecture Decisions
+
+| Decision | Choice | Rationale |
+|----------|--------|-----------|
+| Data Source | Google Sheets | Easy campaign staff updates, familiar interface |
+| Sync Pattern | Nightly + Manual | Balance freshness with API rate limits |
+| Lens State | URL Parameters | Shareable views, deep-linking support |
+| Color System | Lens-aware palettes | Each lens has distinct visual identity |
+
+### Phases
+
+- [x] **Phase 16: Data Pipeline** - Google Sheets integration scripts ✅
+- [x] **Phase 17: Lens Type System** - Type definitions and useLens hook ✅
+- [x] **Phase 18: Color System** - Lens-aware color palettes ✅
+- [x] **Phase 19: UI Components** - LensToggleBar and dynamic Legend ✅
+- [x] **Phase 20: Integration** - Wire into state page and map components ✅
+- [x] **Phase 21: Polish** - SyncDataButton and E2E verification ✅
+
+### Phase 16: Data Pipeline ✅ COMPLETE
+**Goal**: Establish Google Sheets as the source of truth for candidate data
+**Completed**: 2026-01-23
+**Plans**: 4/4 complete
+
+| Plan | Script | Purpose |
+|------|--------|---------|
+| 16-01 | sheets_loader.py | Fetch from Challenge Sheet |
+| 16-02 | merge_data.py | Merge Sheet + Ethics data |
+| 16-03 | calculate_opportunity.py | Calculate 5-tier opportunity system |
+| 16-04 | sync-challenge-sheet.yml | GitHub Actions nightly sync |
+
+### Phase 17: Lens Type System ✅ COMPLETE
+**Goal**: Create type foundation and URL-synced state management
+**Completed**: 2026-01-23
+**Plans**: 2/2 complete
+
+| Plan | File | Purpose |
+|------|------|---------|
+| 17-01 | src/types/lens.ts | Lens type definitions, LENS_DEFINITIONS |
+| 17-02 | src/hooks/useLens.ts | URL-synced lens state hook |
+
+### Phase 18: Color System ✅ COMPLETE
+**Goal**: Extend districtColors.ts with lens parameter support
+**Completed**: 2026-01-23
+**Plans**: 3/3 complete
+
+| Plan | Function | Purpose |
+|------|----------|---------|
+| 18-01 | LENS_COLORS | Color palette constants per lens |
+| 18-02 | getDistrictCategory() | Determine district category for any lens |
+| 18-03 | getDistrictFillColorWithLens() | Lens-aware fill color function |
+
+### Phase 19: UI Components ✅ COMPLETE
+**Goal**: Build lens toggle and dynamic legend
+**Completed**: 2026-01-23
+**Plans**: 3/3 complete
+
+| Plan | Component | Purpose |
+|------|-----------|---------|
+| 19-01 | LensToggleBar | Horizontal pill-button toggle |
+| 19-02 | Legend (update) | Dynamic legend from LENS_DEFINITIONS |
+| 19-03 | KPI helpers | Lens-aware KPI arrays |
+
+### Phase 20: Integration ✅ COMPLETE
+**Goal**: Wire lens system into existing components
+**Completed**: 2026-01-23
+**Plans**: 3/3 complete
+
+| Plan | Component | Purpose |
+|------|-----------|---------|
+| 20-01 | DistrictMap | Add activeLens prop |
+| 20-02 | NavigableDistrictMap | Passthrough activeLens |
+| 20-03 | State Page | Full integration |
+
+### Phase 21: Polish ✅ COMPLETE
+**Goal**: Final polish and verification
+**Completed**: 2026-01-23
+**Plans**: 2/2 complete
+
+| Plan | Deliverable | Purpose |
+|------|-------------|---------|
+| 21-01 | SyncDataButton | Manual sync trigger component |
+| 21-02 | E2E Verification | Complete system testing |
+
+### Dependencies
+
+```
+Phase 16 ──────────────────────────────────┐
+                                           │
+Phase 17 ──┬─────────────────────────────→ │
+           │                               │
+Phase 18 ──┤ (depends on 17)               │
+           │                               │
+Phase 19 ──┘ (depends on 17, 18)           │
+                                           ↓
+Phase 20 ←─────────────────────────────────┤
+        (depends on 16, 17, 18, 19)        │
+                                           ↓
+Phase 21 ←─────────────────────────────────┘
+        (depends on all)
+```
+
+### New Files
+
+| File | Phase |
+|------|-------|
+| scripts/sheets_loader.py | 16-01 |
+| scripts/merge_data.py | 16-02 |
+| scripts/calculate_opportunity.py | 16-03 |
+| .github/workflows/sync-challenge-sheet.yml | 16-04 |
+| src/types/lens.ts | 17-01 |
+| src/hooks/useLens.ts | 17-02 |
+| src/components/Lens/LensToggleBar.tsx | 19-01 |
+| src/components/Admin/SyncDataButton.tsx | 21-01 |
+
+### Success Criteria
+
+| Criterion | Verification |
+|-----------|--------------|
+| Accurate Default View | Map shows R/D incumbents from Sheet |
+| All 4 Lenses Working | Colors and legend update per lens |
+| Data Sync | Nightly sync updates website |
+| Manual Refresh | Frontend button triggers sync |
+| Filters Preserved | Existing filters work with lenses |
+| Both Chambers | House and Senate work with all lenses |
+| Mobile Responsive | Toggle and legend work on mobile |
+| URL Shareable | Lens state persists in URL |
+| KPIs Update | KPI cards show relevant stats |
+| Performance | No delay when switching lenses |
+
+---
+
 ## Phase B: Monorepo Migration (PLANNED)
 
 > **Status:** PLANNED
@@ -355,9 +502,11 @@ Expand to all 50 states with:
 | v1.1 SC Voter Guide | Phases 1-10 | 13 | COMPLETE | 2026-01-18 |
 | v2.0 Map Navigation System | Phases 11-14 | 14 | COMPLETE | 2026-01-21 |
 | v2.1 Strategic Visualization | Phase 15 | 4 | COMPLETE | 2026-01-21 |
-| v3.0 Monorepo Architecture | Phase B | TBD | PLANNED | - |
-| v4.0 SC Production | Phase C | TBD | PLANNED | - |
-| v5.0 National Platform | Phase D | TBD | PLANNED | - |
+| v3.0 Multi-Lens Visualization | Phases 16-21 | 17 | COMPLETE | 2026-01-23 |
+| v3.1 UX Overhaul | - | TBD | IN PROGRESS | - |
+| v4.0 Monorepo Architecture | Phase B | TBD | PLANNED | - |
+| v5.0 SC Production | Phase C | TBD | PLANNED | - |
+| v6.0 National Platform | Phase D | TBD | PLANNED | - |
 
 ---
 

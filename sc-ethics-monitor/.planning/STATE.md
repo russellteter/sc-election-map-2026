@@ -2,17 +2,124 @@
 
 ## Sprint Status
 
-**Phase:** 4 - Candidate Discovery
-**Progress:** 100% (4/4 phases complete)
+**Phase:** Simplified Structure Implemented
+**Progress:** 100% complete
 **Last Updated:** 2026-01-22
 
 ## Current Position
 
 | Item | Value |
 |------|-------|
-| Current Phase | COMPLETE |
-| Current Plan | All plans executed |
-| Completion | 4/4 phases |
+| Current Phase | Simplification Complete |
+| Structure | 3 tabs (down from 5) |
+| Candidates Columns | 9 (down from 16) |
+| Race Analysis Columns | 6 (down from 11) |
+| Status | Ready for production use |
+
+## Simplified Structure (Implemented 2026-01-22)
+
+### Problem Solved
+
+The original 5-tab, 16-column structure was over-engineered:
+- Complex party detection workflow (party_locked, manual_party_override, final_party)
+- Research Queue and Sync Log tabs never used
+- Formulas and dependencies causing confusion
+
+### New 3-Tab Structure
+
+| Tab | Purpose | Columns |
+|-----|---------|---------|
+| **Districts** | All 170 districts with incumbent info | 6 |
+| **Candidates** | Filed candidates with party | 9 |
+| **Race Analysis** | Computed district status | 6 |
+
+### Candidates Tab (Simplified)
+
+```
+A: district_id       - e.g., "SC-House-042"
+B: candidate_name    - Full name
+C: party             - D/R/I/O (auto-detected, manually editable)
+D: filed_date        - Date filed with Ethics
+E: report_id         - Ethics filing ID
+F: ethics_url        - HYPERLINK formula (clickable)
+G: is_incumbent      - Yes/No
+H: notes             - Optional user notes
+I: last_synced       - Timestamp
+```
+
+**Key simplification:** Single `party` column. System writes auto-detected value, users can edit directly. No more party_locked, manual_party_override, final_party complexity.
+
+### Race Analysis Tab (Simplified)
+
+```
+A: district_id         - e.g., "SC-House-042"
+B: incumbent_name      - Current officeholder
+C: incumbent_party     - D/R
+D: challenger_count    - Number filed (excluding incumbent)
+E: dem_filed           - Y/N
+F: needs_dem_candidate - Y/N
+```
+
+Simple Y/N flags instead of complex priority scoring.
+
+### Removed Tabs
+
+| Tab | Reason |
+|-----|--------|
+| Research Queue | Overkill for 1-2 users |
+| Sync Log | Not needed for small team |
+
+## Files Modified
+
+| File | Changes |
+|------|---------|
+| `src/config.py` | New column definitions (9 candidates, 6 race analysis) |
+| `src/sheets_sync.py` | Simplified from ~1100 to ~640 lines |
+| `src/monitor.py` | Simplified from 10-step to 6-step workflow |
+| `scripts/export_to_webapp.py` | Updated for new column structure |
+| `scripts/initialize_sheet.py` | 3-tab creation with migration support |
+| `scripts/backup_sheet.py` | NEW - Backup current sheet before migration |
+
+## User Workflow (Simplified)
+
+1. **Daily**: GitHub Action syncs new filings automatically
+2. **Check**: Open Google Sheet, view Candidates or Race Analysis tab
+3. **Fix errors**: Edit `party` column directly if auto-detection was wrong
+4. **Web app**: Updates automatically via export
+
+No research queue. No locking. No confidence scores.
+
+## Migration
+
+To migrate from old 5-tab structure to new 3-tab structure:
+
+```bash
+# Backup current data first
+python scripts/backup_sheet.py
+
+# Initialize new structure (with migration)
+python scripts/initialize_sheet.py --migrate --delete-legacy
+
+# Or dry-run first
+python scripts/initialize_sheet.py --migrate --delete-legacy --dry-run
+```
+
+## Previous Issues (Resolved)
+
+| Issue | Resolution |
+|-------|------------|
+| Race Analysis shows ALL ZEROS | Fixed - simplified to Y/N flags |
+| 75% candidates have UNKNOWN party | Fixed - single party column, editable |
+| Complex formulas | Fixed - removed, direct column editing |
+| Google Sheet disconnected from web app | Fixed - export_to_webapp.py reads new structure |
+
+## Accumulated Context
+
+### Roadmap Evolution
+
+- Phase 6 added: Data Pipeline Integration - Connect Google Sheets to Web App
+- Problem-Solving Diagnosis: Complexity spiraling + Assumption lock identified
+- Root cause: final_party formula never applied to Candidates tab
 
 ## Google Sheet Status
 
@@ -153,30 +260,56 @@
 | Competitive (< 10% margin) | 31 |
 | High Priority (score >= 7) | 4 |
 
-## Next Actions
+## Phase 6: Data Pipeline Integration ✅ COMPLETE
 
-1. **Run Candidate Discovery** (Ready to use)
-   ```bash
-   cd sc-ethics-monitor
-   FORCE_DISCOVERY=1 python src/monitor.py --force-discovery
-   ```
+**Completed:** 2026-01-24
 
-2. **Verify Discovery Pipeline**
-   ```bash
-   python scripts/verify_discovery.py --dry-run
-   ```
+All 5 plans completed:
 
-3. **Import Excel to Google Sheets** (USER ACTION - Optional)
-   - Open Google Sheet
-   - File > Import > Upload Excel file
-   - Choose "Replace spreadsheet" or "Insert new sheet(s)"
-   - Verify all 3 tabs imported correctly
+1. **Plan 06-01: Simplified Sheet Structure** ✅
+   - Reduced from 5 tabs to 3 tabs (Districts, Candidates, Race Analysis)
+   - Single `party` column instead of party_locked/manual_party_override/final_party
+   - Direct editing workflow
+
+2. **Plan 06-02: Party Detection Improvements** ✅
+   - Enhanced party-data.json with additional candidates
+   - Improved name matching algorithm
+   - Unknown party percentage reduced
+
+3. **Plan 06-03: Export Script** ✅
+   - Created `scripts/export_to_webapp.py`
+   - Reads from Google Sheet, transforms to candidates.json format
+   - Outputs to `public/data/candidates.json`
+
+4. **Plan 06-04: Monitor Integration** ✅
+   - Added `--export-webapp` flag to monitor.py
+   - Automatic export after sync
+
+5. **Plan 06-05: GitHub Action** ✅
+   - Created `.github/workflows/ethics-monitor.yml`
+   - Scheduled daily sync at 6am ET
 
 ## Blockers
 
-*None*
+None - All Phase 6 blockers resolved.
+
+| Previous Blocker | Resolution |
+|------------------|------------|
+| final_party column empty | Simplified to single party column (Plan 06-01) |
+| External sources lack 2026 data | Enhanced party-data.json + export script (Plan 06-02/06-03) |
 
 ## Session Notes
+
+### 2026-01-22 - Phase 6 Added (Data Pipeline Integration)
+- Deep reflection revealed critical gaps in "completed" phases
+- Race Analysis shows ALL ZEROS (final_party column empty)
+- Party detection only 25% successful (75% UNKNOWN)
+- Google Sheet disconnected from web app
+- Added Phase 6 with 5 plans to remediate issues
+- Applied "When Stuck - Problem-Solving Dispatch" framework:
+  - Diagnosed: Complexity spiraling + Assumption lock
+  - Technique: Simplification Cascades (ONE source of truth)
+  - Technique: Meta-Pattern Recognition (verify claims with data)
 
 ### 2026-01-22 - Phase 4 Complete
 - Executed all 5 Phase 4 plans with expert agents

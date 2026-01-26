@@ -1,69 +1,109 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import Legend from '@/components/Map/Legend';
+import { LENS_DEFINITIONS, DEFAULT_LENS, ALL_LENS_IDS, type LensId } from '@/types/lens';
 
 describe('Legend Component', () => {
-  it('renders all legend items', () => {
-    render(<Legend />);
+  // Get default lens definition for baseline tests
+  const defaultLensDef = LENS_DEFINITIONS[DEFAULT_LENS];
 
-    expect(screen.getByText('Dem Incumbent')).toBeInTheDocument();
-    expect(screen.getByText('Dem Challenger')).toBeInTheDocument();
-    expect(screen.getByText('Close Race')).toBeInTheDocument();
-    expect(screen.getByText('Safe R Seat')).toBeInTheDocument();
+  describe('Default lens (incumbents)', () => {
+    it('renders all legend items for default lens', () => {
+      render(<Legend />);
+
+      // Verify all legend items from the default lens are rendered
+      defaultLensDef.legendItems.forEach((item) => {
+        expect(screen.getByText(item.label)).toBeInTheDocument();
+      });
+    });
+
+    it('shows descriptions for each legend item', () => {
+      render(<Legend />);
+
+      defaultLensDef.legendItems.forEach((item) => {
+        expect(screen.getByText(item.description)).toBeInTheDocument();
+      });
+    });
+
+    it('shows correct footnote', () => {
+      render(<Legend />);
+
+      expect(screen.getByText(defaultLensDef.footnote)).toBeInTheDocument();
+    });
   });
 
-  it('has proper ARIA structure', () => {
-    render(<Legend />);
+  describe('ARIA and accessibility', () => {
+    it('has proper ARIA structure', () => {
+      render(<Legend />);
 
-    const list = screen.getByRole('list', { name: 'District status legend' });
-    expect(list).toBeInTheDocument();
+      const list = screen.getByRole('list', { name: 'District status legend' });
+      expect(list).toBeInTheDocument();
 
-    const items = screen.getAllByRole('listitem');
-    expect(items).toHaveLength(4);
+      const items = screen.getAllByRole('listitem');
+      expect(items).toHaveLength(defaultLensDef.legendItems.length);
+    });
+
+    it('hides color indicators from screen readers', () => {
+      const { container } = render(<Legend />);
+
+      // Color swatches should have aria-hidden
+      const hiddenSpans = container.querySelectorAll('[aria-hidden="true"]');
+      expect(hiddenSpans.length).toBe(defaultLensDef.legendItems.length);
+    });
   });
 
-  it('applies custom className', () => {
-    const { container } = render(<Legend className="custom-class" />);
+  describe('Interactions', () => {
+    it('can be collapsed and expanded', () => {
+      render(<Legend />);
 
-    const legendContainer = container.querySelector('.custom-class');
-    expect(legendContainer).toBeInTheDocument();
+      // Button text includes lens label
+      const header = screen.getByRole('button', { name: new RegExp(`${defaultLensDef.label} Legend`, 'i') });
+      expect(header).toHaveAttribute('aria-expanded', 'true');
+
+      // Collapse it
+      fireEvent.click(header);
+      expect(header).toHaveAttribute('aria-expanded', 'false');
+
+      // Expand it again
+      fireEvent.click(header);
+      expect(header).toHaveAttribute('aria-expanded', 'true');
+    });
+
+    it('applies custom className', () => {
+      const { container } = render(<Legend className="custom-class" />);
+
+      const legendContainer = container.querySelector('.custom-class');
+      expect(legendContainer).toBeInTheDocument();
+    });
   });
 
-  it('shows descriptions for each legend item', () => {
-    render(<Legend />);
+  describe('All lenses', () => {
+    it.each(ALL_LENS_IDS)('renders correct items for %s lens', (lensId: LensId) => {
+      const lensDef = LENS_DEFINITIONS[lensId];
+      render(<Legend activeLens={lensId} />);
 
-    expect(screen.getByText('Current representative is Democrat')).toBeInTheDocument();
-    expect(screen.getByText('Democrat filed to run')).toBeInTheDocument();
-    expect(screen.getByText('No Dem filed, margin ≤15pts')).toBeInTheDocument();
-    expect(screen.getByText('No Dem filed, margin >15pts')).toBeInTheDocument();
-  });
+      // Verify all legend items render
+      lensDef.legendItems.forEach((item) => {
+        expect(screen.getByText(item.label)).toBeInTheDocument();
+      });
 
-  it('can be collapsed and expanded', () => {
-    render(<Legend />);
+      // Verify footnote
+      expect(screen.getByText(lensDef.footnote)).toBeInTheDocument();
+    });
 
-    // Initially expanded
-    const header = screen.getByRole('button', { name: /map legend/i });
-    expect(header).toHaveAttribute('aria-expanded', 'true');
+    it.each(ALL_LENS_IDS)('shows correct header for %s lens', (lensId: LensId) => {
+      const lensDef = LENS_DEFINITIONS[lensId];
+      render(<Legend activeLens={lensId} />);
 
-    // Collapse it
-    fireEvent.click(header);
-    expect(header).toHaveAttribute('aria-expanded', 'false');
+      const header = screen.getByRole('button', { name: new RegExp(`${lensDef.label} Legend`, 'i') });
+      expect(header).toBeInTheDocument();
+    });
 
-    // Expand it again
-    fireEvent.click(header);
-    expect(header).toHaveAttribute('aria-expanded', 'true');
-  });
+    it.each(ALL_LENS_IDS)('has correct number of list items for %s lens', (lensId: LensId) => {
+      const lensDef = LENS_DEFINITIONS[lensId];
+      render(<Legend activeLens={lensId} />);
 
-  it('hides color indicators from screen readers', () => {
-    const { container } = render(<Legend />);
-
-    // Color spans should have aria-hidden
-    const hiddenSpans = container.querySelectorAll('[aria-hidden="true"]');
-    expect(hiddenSpans.length).toBe(4); // One per legend item
-  });
-
-  it('shows footnote about data source', () => {
-    render(<Legend />);
-
-    expect(screen.getByText(/SC Election Commission/)).toBeInTheDocument();
+      const items = screen.getAllByRole('listitem');
+      expect(items).toHaveLength(lensDef.legendItems.length);
+    });
   });
 });
