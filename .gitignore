@@ -54,3 +54,10 @@ scratchpad/
 
 # Data pipeline intermediate files
 scripts/data/*.json
+
+# Test output
+playwright-report/
+test-results/
+
+# Excel spreadsheets (keep in sc-ethics-monitor/data/)
+*.xlsx
