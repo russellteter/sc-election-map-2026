@@ -9,11 +9,17 @@ export default function KeyboardShortcutsHelp({ isOpen, onClose }: KeyboardShort
   if (!isOpen) return null;
 
   const shortcuts = [
+    { category: 'Lens', items: [
+      { key: '1', description: 'Incumbents lens' },
+      { key: '2', description: 'Dem Filing lens' },
+      { key: '3', description: 'Opportunity lens' },
+      { key: '4', description: 'Battleground lens' },
+    ]},
     { category: 'Navigation', items: [
       { key: 'H', description: 'Switch to House' },
       { key: 'S', description: 'Switch to Senate' },
-      { key: 'J / ↓', description: 'Select next district' },
-      { key: 'K / ↑', description: 'Select previous district' },
+      { key: 'J / ↓ / ←', description: 'Previous district' },
+      { key: 'K / ↑ / →', description: 'Next district' },
     ]},
     { category: 'Search', items: [
       { key: '/', description: 'Focus search bar' },

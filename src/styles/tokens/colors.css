@@ -1,49 +1,65 @@
 /**
  * SC Election Map 2026 - Color Design Tokens
  *
- * Unified color palette with:
- * - Softer party colors (less aggressive)
- * - Brand primary (purple accent)
- * - Status colors for data visualization
- * - UI surface and border colors
+ * Professional desaturated color palette (v3.2)
+ * Inspired by NYT, Bloomberg Terminal, FiveThirtyEight
  *
- * WCAG AA compliant color combinations
+ * Key principles:
+ * - 40-65% saturation (not harsh primary colors)
+ * - Max 5 key colors per visualization
+ * - Accessibility: WCAG AA compliant combinations
  */
 
 :root {
   /* ================================================
-     PARTY COLORS - Softer, Sophisticated
-     These replace the harsh #1E40AF/#DC2626 colors
+     PROFESSIONAL PARTY COLORS - Desaturated
+     NYT/Bloomberg Terminal quality
      ================================================ */
 
-  /* Democrat - Steel Blue (softer than navy) */
-  --party-dem: #3B5998;
-  --party-dem-dark: #2C4373;
-  --party-dem-light: #6B8BC3;
-  --party-dem-bg: #E8EDF5;
-  --party-dem-border: rgba(59, 89, 152, 0.3);
-  --party-dem-glow: rgba(59, 89, 152, 0.4);
+  /* Democrat - Desaturated Blue Spectrum */
+  --dem-strong: #1E5A8A;           /* Deep - strong lean */
+  --dem-lean: #4A7FA8;             /* Medium - lean */
+  --dem-light: #7BA3C4;            /* Light - tilt */
 
-  /* Republican - Brick Rose (softer than bright red) */
-  --party-rep: #A8444A;
-  --party-rep-dark: #7D3338;
-  --party-rep-light: #C77B7F;
-  --party-rep-bg: #F5E8E9;
-  --party-rep-border: rgba(168, 68, 74, 0.3);
-  --party-rep-glow: rgba(168, 68, 74, 0.4);
+  --party-dem: var(--dem-strong);
+  --party-dem-dark: #164664;
+  --party-dem-light: var(--dem-light);
+  --party-dem-bg: #E8F1F8;
+  --party-dem-border: rgba(30, 90, 138, 0.3);
+  --party-dem-glow: rgba(30, 90, 138, 0.4);
 
-  /* Open Seat / Contested - Warm Violet */
-  --party-open: #7E5BAE;
-  --party-open-dark: #5E4382;
-  --party-open-light: #A78BCA;
-  --party-open-bg: #F0EBFA;
-  --party-open-border: rgba(126, 91, 174, 0.3);
+  /* Republican - Desaturated Red Spectrum */
+  --rep-strong: #A04444;           /* Deep - strong lean */
+  --rep-lean: #B86B6B;             /* Medium - lean */
+  --rep-light: #CF9999;            /* Light - tilt */
 
-  /* Unknown / No Data */
-  --party-unknown: #94A3B8;
-  --party-unknown-dark: #64748B;
-  --party-unknown-light: #CBD5E1;
-  --party-unknown-bg: #F1F5F9;
+  --party-rep: var(--rep-strong);
+  --party-rep-dark: #7D3333;
+  --party-rep-light: var(--rep-light);
+  --party-rep-bg: #F5E8E8;
+  --party-rep-border: rgba(160, 68, 68, 0.3);
+  --party-rep-glow: rgba(160, 68, 68, 0.4);
+
+  /* Opportunity - Warm Amber Spectrum */
+  --opportunity-hot: #B45309;      /* Hot - top priority */
+  --opportunity-warm: #D97706;     /* Warm - high priority */
+  --opportunity-possible: #FBBF24; /* Possible - moderate */
+
+  /* Open Seat / Contested - Amber (matches opportunity) */
+  --party-open: var(--opportunity-hot);
+  --party-open-dark: #92400E;
+  --party-open-light: var(--opportunity-possible);
+  --party-open-bg: #FEF3E2;
+  --party-open-border: rgba(180, 83, 9, 0.3);
+
+  /* Neutral / No Data */
+  --neutral-medium: #6B7280;
+  --no-data: #E5E5E5;
+
+  --party-unknown: var(--neutral-medium);
+  --party-unknown-dark: #4B5563;
+  --party-unknown-light: #9CA3AF;
+  --party-unknown-bg: #F3F4F6;
 
   /* ================================================
      BRAND PRIMARY - Purple Accent
@@ -97,32 +113,34 @@
   --status-info-border: #BFDBFE;
 
   /* ================================================
-     MAP COLORS - District Visualization
-     Used by districtColors.ts
+     MAP COLORS - District Visualization (v3.2)
+     Professional desaturated palette matching districtColors.ts
      ================================================ */
-  --map-dem-incumbent: var(--party-dem);
-  --map-dem-challenger: var(--party-dem-light);
-  --map-rep-incumbent: var(--party-rep);
-  --map-rep-only: #EF4444;
-  --map-open-seat: var(--party-open);
-  --map-contested: var(--party-open);
-  --map-no-data: #F3F4F6;
-  --map-empty: #E5E7EB;
+  --map-dem-incumbent: var(--dem-strong);
+  --map-dem-challenger: var(--dem-lean);
+  --map-dem-tilt: var(--dem-light);
+  --map-rep-incumbent: var(--rep-strong);
+  --map-rep-challenger: var(--rep-lean);
+  --map-rep-tilt: var(--rep-light);
+  --map-open-seat: var(--opportunity-hot);
+  --map-contested: var(--opportunity-warm);
+  --map-no-data: var(--no-data);
+  --map-empty: var(--no-data);
   --map-stroke: #374151;
   --map-stroke-selected: var(--brand-primary);
 
-  /* Opportunity Lens Colors (purple gradient) */
-  --map-opp-hot: #6D28D9;
-  --map-opp-warm: #8B5CF6;
-  --map-opp-possible: #C4B5FD;
+  /* Opportunity Lens Colors (warm amber spectrum) */
+  --map-opp-hot: var(--opportunity-hot);
+  --map-opp-warm: var(--opportunity-warm);
+  --map-opp-possible: var(--opportunity-possible);
   --map-opp-longshot: #9CA3AF;
-  --map-opp-defensive: var(--party-dem);
+  --map-opp-defensive: var(--dem-lean);
 
   /* Dem Filing Lens Colors */
-  --map-dem-filed: var(--party-dem);
-  --map-priority-gap: #9333EA;
-  --map-opportunity: #A78BFA;
-  --map-safe-r: #E5E7EB;
+  --map-dem-filed: var(--dem-strong);
+  --map-priority-gap: var(--opportunity-hot);
+  --map-opportunity: var(--opportunity-warm);
+  --map-safe-r: var(--no-data);
 
   /* ================================================
      UI SURFACE COLORS
@@ -184,10 +202,10 @@
   --class-blue-dark: var(--party-dem-dark);
 
   /* Map colors */
-  --map-democrat: var(--party-dem);
-  --map-republican: var(--party-rep);
-  --map-both-parties: var(--status-excellent);
-  --map-unknown: var(--party-unknown);
+  --map-democrat: var(--dem-strong);
+  --map-republican: var(--rep-strong);
+  --map-both-parties: var(--opportunity-warm);
+  --map-unknown: var(--neutral-medium);
 
   /* Status colors (semantic) */
   --color-excellent: var(--status-excellent);

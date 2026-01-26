@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useCallback, useRef } from 'react';
+import type { LensId } from '@/types/lens';
 
 interface KeyboardShortcutsOptions {
   onToggleChamber?: () => void;
@@ -9,8 +10,13 @@ interface KeyboardShortcutsOptions {
   onNextDistrict?: () => void;
   onPrevDistrict?: () => void;
   onToggleHelp?: () => void;
+  /** Callback for direct lens switching (1-4 keys) */
+  onSetLens?: (lens: LensId) => void;
   enabled?: boolean;
 }
+
+// Lens order for number key mapping (1-4)
+const LENS_ORDER: LensId[] = ['incumbents', 'dem-filing', 'opportunity', 'battleground'];
 
 export function useKeyboardShortcuts({
   onToggleChamber,
@@ -19,6 +25,7 @@ export function useKeyboardShortcuts({
   onNextDistrict,
   onPrevDistrict,
   onToggleHelp,
+  onSetLens,
   enabled = true,
 }: KeyboardShortcutsOptions) {
   const helpVisibleRef = useRef(false);
@@ -94,6 +101,29 @@ export function useKeyboardShortcuts({
             onToggleHelp?.();
           }
           break;
+        case 'arrowleft':
+          // Left arrow: Previous district (alternate)
+          e.preventDefault();
+          onPrevDistrict?.();
+          break;
+        case 'arrowright':
+          // Right arrow: Next district (alternate)
+          e.preventDefault();
+          onNextDistrict?.();
+          break;
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+          // 1-4: Direct lens switching
+          if (onSetLens) {
+            const lensIndex = parseInt(e.key, 10) - 1;
+            if (lensIndex >= 0 && lensIndex < LENS_ORDER.length) {
+              e.preventDefault();
+              onSetLens(LENS_ORDER[lensIndex]);
+            }
+          }
+          break;
       }
     },
     [
@@ -104,6 +134,7 @@ export function useKeyboardShortcuts({
       onNextDistrict,
       onPrevDistrict,
       onToggleHelp,
+      onSetLens,
     ]
   );
 
@@ -121,8 +152,12 @@ export function useKeyboardShortcuts({
       { key: 'H', description: 'Switch to House' },
       { key: 'S', description: 'Switch to Senate' },
       { key: 'Escape', description: 'Clear selection' },
-      { key: 'J / ↓', description: 'Next district' },
-      { key: 'K / ↑', description: 'Previous district' },
+      { key: 'J / ↓ / ←', description: 'Previous district' },
+      { key: 'K / ↑ / →', description: 'Next district' },
+      { key: '1', description: 'Incumbents lens' },
+      { key: '2', description: 'Dem Filing lens' },
+      { key: '3', description: 'Opportunity lens' },
+      { key: '4', description: 'Battleground lens' },
       { key: '?', description: 'Show shortcuts' },
     ],
   };

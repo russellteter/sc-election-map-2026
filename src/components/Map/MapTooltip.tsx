@@ -23,16 +23,14 @@ interface MapTooltipProps {
 }
 
 /**
- * MapTooltip component - Rich cursor-following glassmorphic tooltip for map districts
+ * MapTooltip - Refined "whisper" tooltip (v3.2)
  *
- * Features:
- * - District number + chamber
- * - Incumbent info
- * - Filing status
- * - Lens-aware category label
- * - Candidate count with party dots
- * - Glassmorphic styling with backdrop blur
- * - Smooth cursor-following with position offset
+ * Design principles (Bloomberg Terminal quality):
+ * - Max 180px width for minimal footprint
+ * - Lighter glassmorphic panel
+ * - Two-tier disclosure: initial (instant) + expanded (500ms hover)
+ * - Fade + translateY entrance, no arrows
+ * - Adjacent positioning, never overlapping district
  */
 export default function MapTooltip({
   district,
@@ -43,8 +41,44 @@ export default function MapTooltip({
   opportunityData,
 }: MapTooltipProps) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isExpanded, setIsExpanded] = useState(false);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | undefined>(undefined);
+  const hoverTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const lastDistrictRef = useRef<number | null>(null);
+
+  // Track sustained hover for two-tier disclosure
+  useEffect(() => {
+    if (!district) {
+      setIsExpanded(false);
+      lastDistrictRef.current = null;
+      if (hoverTimerRef.current) {
+        clearTimeout(hoverTimerRef.current);
+        hoverTimerRef.current = null;
+      }
+      return;
+    }
+
+    // Reset expansion when district changes
+    if (district.districtNumber !== lastDistrictRef.current) {
+      setIsExpanded(false);
+      lastDistrictRef.current = district.districtNumber;
+
+      // Start timer for sustained hover (500ms)
+      if (hoverTimerRef.current) {
+        clearTimeout(hoverTimerRef.current);
+      }
+      hoverTimerRef.current = setTimeout(() => {
+        setIsExpanded(true);
+      }, 500);
+    }
+
+    return () => {
+      if (hoverTimerRef.current) {
+        clearTimeout(hoverTimerRef.current);
+      }
+    };
+  }, [district]);
 
   useEffect(() => {
     if (!mousePosition || !district) {
@@ -53,19 +87,23 @@ export default function MapTooltip({
 
     // Use requestAnimationFrame for smooth position updates
     const updatePosition = () => {
-      const offset = 16; // Offset from cursor
-      const tooltipWidth = tooltipRef.current?.offsetWidth || 0;
-      const tooltipHeight = tooltipRef.current?.offsetHeight || 0;
+      const offset = 12; // Slightly closer for whisper feel
+      const tooltipWidth = tooltipRef.current?.offsetWidth || 180;
+      const tooltipHeight = tooltipRef.current?.offsetHeight || 80;
 
       let x = mousePosition.x + offset;
-      let y = mousePosition.y + offset;
+      let y = mousePosition.y - (tooltipHeight / 2); // Center vertically relative to cursor
 
-      // Keep tooltip within viewport bounds
-      if (x + tooltipWidth > window.innerWidth) {
+      // Keep tooltip within viewport bounds with padding
+      const padding = 8;
+      if (x + tooltipWidth > window.innerWidth - padding) {
         x = mousePosition.x - tooltipWidth - offset;
       }
-      if (y + tooltipHeight > window.innerHeight) {
-        y = mousePosition.y - tooltipHeight - offset;
+      if (y < padding) {
+        y = padding;
+      }
+      if (y + tooltipHeight > window.innerHeight - padding) {
+        y = window.innerHeight - tooltipHeight - padding;
       }
 
       setPosition({ x, y });
@@ -84,71 +122,63 @@ export default function MapTooltip({
     return null;
   }
 
-  const chamberLabel = chamber === 'house' ? 'House' : 'Senate';
+  const chamberLabel = chamber === 'house' ? 'HD' : 'SD'; // Compact labels
 
   // Count candidates by party
   const hasDem = district.candidates.some((c) => c.party?.toLowerCase() === 'democratic');
   const hasRep = district.candidates.some((c) => c.party?.toLowerCase() === 'republican');
-  const candidateCount = district.candidates.length;
 
   // Get lens-aware category
   const category = getDistrictCategory(district, electionHistory || undefined, opportunityData || undefined, activeLens);
   const categoryLabel = getCategoryLabel(category, activeLens);
 
-  // Incumbent info
-  const incumbentText = district.incumbent
-    ? `${district.incumbent.name} (${district.incumbent.party?.charAt(0) || '?'})`
-    : 'Open seat';
-
-  // Filing status
+  // Filing status - compact
   const filingStatus = hasDem && hasRep
     ? 'Contested'
     : hasDem
-    ? 'Dem filed'
+    ? 'D filed'
     : hasRep
-    ? 'Rep only'
-    : 'No candidates';
+    ? 'R only'
+    : 'Open';
+
+  // Incumbent info - compact
+  const incumbentShort = district.incumbent
+    ? `${district.incumbent.party?.charAt(0) || '?'} incumbent`
+    : 'Open seat';
 
   return (
     <div
       ref={tooltipRef}
-      className="map-tooltip"
+      className={`district-whisper ${isExpanded ? 'district-whisper-expanded' : ''}`}
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
       }}
     >
-      <div className="tooltip-header">
-        <span className="tooltip-chamber">{chamberLabel}</span>
-        <span className="tooltip-district">District {district.districtNumber}</span>
+      {/* Initial tier - always visible */}
+      <div className="whisper-primary">
+        <span className="whisper-district">
+          {chamberLabel}-{district.districtNumber}
+        </span>
+        <span className="whisper-category">{categoryLabel}</span>
       </div>
 
-      <div className="tooltip-body">
-        {/* Incumbent row */}
-        <div className="tooltip-row">
-          <span className="tooltip-label">Incumbent:</span>
-          <span className="tooltip-value">{incumbentText}</span>
-        </div>
-
-        {/* Filing status with party dots */}
-        <div className="tooltip-row">
-          <span className="tooltip-label">Status:</span>
-          <div className="tooltip-status">
-            {hasDem && <span className="party-dot democrat" title="Democrat" />}
-            {hasRep && <span className="party-dot republican" title="Republican" />}
-            <span className="tooltip-value">{filingStatus}</span>
+      {/* Expanded tier - after 500ms sustained hover */}
+      {isExpanded && (
+        <div className="whisper-expanded">
+          <div className="whisper-row">
+            <span className="whisper-label">{incumbentShort}</span>
+            <div className="whisper-dots">
+              {hasDem && <span className="party-dot-mini dem" />}
+              {hasRep && <span className="party-dot-mini rep" />}
+              <span className="whisper-status">{filingStatus}</span>
+            </div>
           </div>
+          {district.incumbent?.name && (
+            <div className="whisper-incumbent">{district.incumbent.name}</div>
+          )}
         </div>
-
-        {/* Lens category */}
-        <div className="tooltip-row tooltip-category">
-          <span className="tooltip-category-label">{categoryLabel}</span>
-        </div>
-      </div>
-
-      <div className="tooltip-footer">
-        <span className="tooltip-hint">Click for details</span>
-      </div>
+      )}
     </div>
   );
 }

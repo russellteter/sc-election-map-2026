@@ -9,13 +9,13 @@ See: .planning/PROJECT.md (updated 2026-01-18)
 
 ## Current Position
 
-Phase: v3.1 UX Overhaul — COMPLETE
-Milestone: v3.1 Comprehensive UX Improvements
-Plan: Tier 1 (Quick Wins) + Tier 2 (High-Value Features) + Tier 3 (Integration)
-Status: Phase A complete, Phase B complete, Phase C complete — Ready for v3.1.0 tag
-Last activity: 2026-01-26 — E2E tests passed (99/99), project cleanup complete
+Phase: v3.2 Map Sophistication — IN PROGRESS
+Milestone: v3.2 Visual Foundation + v3.3 Interaction Polish + v3.4 Subtle Refinements
+Plan: 8 enhancements across 3 phases (22-24)
+Status: Phase 22 (Visual Foundation) in progress
+Last activity: 2026-01-26 — Starting map sophistication implementation
 
-Progress: ██████████ 100% (v3.1 UX overhaul)
+Progress: ░░░░░░░░░░ 0% (v3.2-3.4 map sophistication)
 
 ## Shipped Milestones
 
