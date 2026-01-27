@@ -76,7 +76,7 @@ export default function OpportunitiesPage() {
           comparison = a.opportunityScore - b.opportunityScore;
           break;
         case 'trend':
-          comparison = a.metrics.trendChange - b.metrics.trendChange;
+          comparison = (a.metrics?.trendChange ?? 0) - (b.metrics?.trendChange ?? 0);
           break;
         case 'district':
           comparison = a.districtNumber - b.districtNumber;
@@ -134,7 +134,7 @@ export default function OpportunitiesPage() {
           <div className="flex items-center justify-between">
             <div>
               <Link
-                href="/"
+                href="/sc"
                 className="text-sm hover:underline mb-1 inline-block"
                 style={{ color: 'var(--class-purple)' }}
               >
@@ -352,12 +352,12 @@ export default function OpportunitiesPage() {
                         <span
                           className="font-medium"
                           style={{
-                            color: district.metrics.trendChange > 0 ? '#059669' : district.metrics.trendChange < 0 ? '#DC2626' : 'var(--text-muted)',
+                            color: (district.metrics?.trendChange ?? 0) > 0 ? '#059669' : (district.metrics?.trendChange ?? 0) < 0 ? '#DC2626' : 'var(--text-muted)',
                           }}
                         >
-                          {district.metrics.trendChange > 0 ? '↑' : district.metrics.trendChange < 0 ? '↓' : '→'}
+                          {(district.metrics?.trendChange ?? 0) > 0 ? '↑' : (district.metrics?.trendChange ?? 0) < 0 ? '↓' : '→'}
                           {' '}
-                          {Math.abs(district.metrics.trendChange).toFixed(1)}%
+                          {Math.abs(district.metrics?.trendChange ?? 0).toFixed(1)}%
                         </span>
                       </td>
                       <td className="px-4 py-3">

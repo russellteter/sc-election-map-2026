@@ -485,14 +485,14 @@ export default function StateDashboard() {
             {isDemo('candidates') ? 'Check back soon!' : 'Please refresh the page to try again.'}
           </p>
           <Link
-            href="/"
+            href="/sc"
             className="inline-block mt-4 px-4 py-2 rounded-lg text-sm font-medium"
             style={{
               background: 'var(--class-purple)',
               color: 'white',
             }}
           >
-            Back to State Selection
+            Back to SC Dashboard
           </Link>
         </div>
       </div>
@@ -527,18 +527,12 @@ export default function StateDashboard() {
               <div className="flex items-center gap-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <Link href="/" className="text-sm hover:underline" style={{ color: 'var(--brand-primary)' }}>
-                      All States
-                    </Link>
-                    <span style={{ color: 'var(--text-muted)' }}>/</span>
-                    <div className="flex items-center gap-2">
-                      <h1 className="text-xl font-bold font-display" style={{ color: 'var(--text-color)' }}>
-                        {stateConfig.name} 2026
-                      </h1>
-                      {candidatesData?.lastUpdated && (
-                        <DataFreshnessBadge lastUpdated={candidatesData.lastUpdated} />
-                      )}
-                    </div>
+                    <h1 className="text-xl font-bold font-display" style={{ color: 'var(--text-color)' }}>
+                      {stateConfig.name} 2026
+                    </h1>
+                    {candidatesData?.lastUpdated && (
+                      <DataFreshnessBadge lastUpdated={candidatesData.lastUpdated} />
+                    )}
                   </div>
                   <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
                     Tracking {chamber === 'house' ? `${houseCount} ${stateConfig.chambers.house.name}` : `${senateCount} ${stateConfig.chambers.senate.name}`} districts

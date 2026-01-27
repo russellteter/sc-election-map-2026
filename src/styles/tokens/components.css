@@ -302,6 +302,15 @@
   background: none;
 }
 
+.kpi-card--empty {
+  border-top: 3px solid var(--border-default-solid);
+}
+.kpi-card--empty .kpi-card__value {
+  color: var(--text-disabled);
+  -webkit-text-fill-color: var(--text-disabled);
+  background: none;
+}
+
 /* ================================================
    BUTTON SYSTEM
    Primary, secondary, ghost, danger variants

@@ -106,7 +106,7 @@ export default function StrategicRecommendations({
       </div>
 
       {/* Context-specific insights */}
-      {(opportunity.flags.openSeat || opportunity.flags.trendingDem || opportunity.metrics.avgMargin < 15) && (
+      {(opportunity.flags.openSeat || opportunity.flags.trendingDem || (opportunity.metrics?.avgMargin ?? 100) < 15) && (
         <div
           className="pt-4 border-t"
           style={{ borderColor: 'var(--class-purple-light)' }}
@@ -132,16 +132,16 @@ export default function StrategicRecommendations({
               <InsightCard
                 icon="trending"
                 title="Positive Momentum"
-                description={`Democratic margins have improved by ${Math.abs(opportunity.metrics.trendChange).toFixed(1)}% over recent cycles.`}
+                description={`Democratic margins have improved by ${Math.abs(opportunity.metrics?.trendChange ?? 0).toFixed(1)}% over recent cycles.`}
                 variant="success"
               />
             )}
 
-            {opportunity.metrics.avgMargin < 15 && !opportunity.flags.defensive && (
+            {(opportunity.metrics?.avgMargin ?? 100) < 15 && !opportunity.flags.defensive && (
               <InsightCard
                 icon="target"
                 title="Competitive District"
-                description={`Average margin of only ${opportunity.metrics.avgMargin.toFixed(1)}% makes this district winnable with proper investment.`}
+                description={`Average margin of only ${(opportunity.metrics?.avgMargin ?? 0).toFixed(1)}% makes this district winnable with proper investment.`}
                 variant="info"
               />
             )}
@@ -221,16 +221,16 @@ function generateRecommendations(
     recs.push({
       priority: 'medium',
       action: 'Invest in voter registration and turnout operations',
-      rationale: `${Math.abs(opportunity.metrics.trendChange).toFixed(1)}% improvement trend suggests growing Democratic base`,
+      rationale: `${Math.abs(opportunity.metrics?.trendChange ?? 0).toFixed(1)}% improvement trend suggests growing Democratic base`,
     });
   }
 
   // Competitive districts
-  if (opportunity.metrics.avgMargin < 20 && hasDemocrat) {
+  if ((opportunity.metrics?.avgMargin ?? 100) < 20 && hasDemocrat) {
     recs.push({
       priority: 'medium',
       action: 'Focus on persuasion messaging for swing voters',
-      rationale: `Narrow ${opportunity.metrics.avgMargin.toFixed(1)}% average margin indicates persuadable voters`,
+      rationale: `Narrow ${(opportunity.metrics?.avgMargin ?? 0).toFixed(1)}% average margin indicates persuadable voters`,
     });
   }
 

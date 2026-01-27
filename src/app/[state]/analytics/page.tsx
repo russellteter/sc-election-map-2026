@@ -156,16 +156,6 @@ export default function AnalyticsPage() {
             >
               Back to Dashboard
             </Link>
-            <Link
-              href="/"
-              className="px-4 py-2 rounded-lg text-sm font-medium border"
-              style={{
-                borderColor: 'var(--class-purple-light)',
-                color: 'var(--text-color)',
-              }}
-            >
-              State Selection
-            </Link>
           </div>
         </div>
       </div>

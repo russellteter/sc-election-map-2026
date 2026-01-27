@@ -180,16 +180,16 @@ export default function StrategicInsights({
               <p
                 className="text-sm font-medium mt-0.5"
                 style={{
-                  color: opportunity.metrics.trendChange > 0 ? '#059669' : '#DC2626',
+                  color: (opportunity.metrics?.trendChange ?? 0) > 0 ? '#059669' : '#DC2626',
                 }}
               >
-                {opportunity.metrics.trendChange > 0 ? '+' : ''}
-                {opportunity.metrics.trendChange.toFixed(1)}% since 2020
+                {(opportunity.metrics?.trendChange ?? 0) > 0 ? '+' : ''}
+                {(opportunity.metrics?.trendChange ?? 0).toFixed(1)}% since 2020
               </p>
             </div>
             <Sparkline
               values={sparklineValues}
-              trendPercent={opportunity.metrics.trendChange}
+              trendPercent={opportunity.metrics?.trendChange ?? 0}
               width={80}
               height={32}
             />
