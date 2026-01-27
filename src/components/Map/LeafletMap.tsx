@@ -6,6 +6,7 @@ import {
   importLeaflet,
   TILE_LAYERS,
   SC_BOUNDS,
+  SC_BOUNDS_RAW,
   SC_CENTER,
   DEFAULT_ZOOM,
   MIN_ZOOM,
@@ -107,6 +108,14 @@ function LeafletMapClient({
   const { MapContainer, TileLayer, ZoomControl, AttributionControl } = leafletComponents;
   const tileConfig = TILE_LAYERS[tileLayer];
 
+  // Calculate expanded maxBounds with padding for smooth UX
+  // SC_BOUNDS_RAW is [[32.0346, -83.3533], [35.2155, -78.5410]]
+  // Add ~0.5 degree padding to allow some panning beyond state edges
+  const maxBounds: LatLngBoundsExpression = [
+    [SC_BOUNDS_RAW[0][0] - 0.5, SC_BOUNDS_RAW[0][1] - 0.5], // SW corner with padding
+    [SC_BOUNDS_RAW[1][0] + 0.5, SC_BOUNDS_RAW[1][1] + 0.5], // NE corner with padding
+  ];
+
   return (
     <MapContainer
       bounds={bounds}
@@ -114,6 +123,8 @@ function LeafletMapClient({
       zoom={zoom}
       minZoom={minZoom}
       maxZoom={maxZoom}
+      maxBounds={maxBounds}
+      maxBoundsViscosity={1.0}
       className={`leaflet-map-container ${className || ''}`}
       zoomControl={false}
       attributionControl={false}
