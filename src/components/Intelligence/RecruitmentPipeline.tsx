@@ -290,7 +290,7 @@ function RecruitmentCard({ opportunity }: { opportunity: RecruitmentOpportunity 
 
         {/* Right Side - Action */}
         <Link
-          href={`/?chamber=${opportunity.chamber}&district=${opportunity.district}`}
+          href={`/sc?chamber=${opportunity.chamber}&district=${opportunity.district}`}
           className="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium transition-all hover:scale-105"
           style={{
             background: 'var(--class-purple)',

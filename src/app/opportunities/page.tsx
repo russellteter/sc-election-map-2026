@@ -397,7 +397,7 @@ export default function OpportunitiesPage() {
                       </td>
                       <td className="px-4 py-3 text-right">
                         <Link
-                          href={`/?chamber=${chamber}&district=${district.districtNumber}`}
+                          href={`/sc?chamber=${chamber}&district=${district.districtNumber}`}
                           className="text-xs font-medium px-2 py-1 rounded hover:opacity-70 transition-opacity"
                           style={{
                             background: 'var(--class-purple)',

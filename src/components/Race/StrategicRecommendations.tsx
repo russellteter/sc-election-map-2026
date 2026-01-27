@@ -160,7 +160,7 @@ export default function StrategicRecommendations({
 
       {/* CTA */}
       <div className="flex flex-col sm:flex-row gap-3 pt-2">
-        <Link href={`/?chamber=${chamber}&district=${districtNumber}`} className="flex-1">
+        <Link href={`/sc?chamber=${chamber}&district=${districtNumber}`} className="flex-1">
           <Button variant="primary" fullWidth>
             View on Map
           </Button>
