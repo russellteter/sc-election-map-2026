@@ -23,24 +23,24 @@ interface FreshnessConfig {
 const freshnessConfigs: Record<FreshnessVariant, FreshnessConfig> = {
   fresh: {
     variant: 'fresh',
-    bg: '#ECFDF5',
-    text: '#059669',
-    border: '#D1FAE5',
-    dot: '#059669',
+    bg: 'var(--success-50)',
+    text: 'var(--accent-emerald)',
+    border: 'var(--success-100)',
+    dot: 'var(--accent-emerald)',
   },
   recent: {
     variant: 'recent',
-    bg: '#F1F5F9',
-    text: '#64748B',
-    border: '#E2E8F0',
-    dot: '#94A3B8',
+    bg: 'var(--slate-100)',
+    text: 'var(--slate-500)',
+    border: 'var(--slate-200)',
+    dot: 'var(--slate-400)',
   },
   stale: {
     variant: 'stale',
-    bg: '#FEF3C7',
-    text: '#B45309',
-    border: '#FDE68A',
-    dot: '#D97706',
+    bg: 'var(--warning-100)',
+    text: 'var(--warning-700)',
+    border: 'var(--warning-100)',
+    dot: 'var(--accent-amber)',
   },
 };
 

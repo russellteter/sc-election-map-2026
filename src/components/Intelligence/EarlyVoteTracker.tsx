@@ -84,9 +84,9 @@ export default function EarlyVoteTracker({
         <div className="flex items-center gap-3">
           <div
             className="w-10 h-10 rounded-full flex items-center justify-center"
-            style={{ background: '#F3F4F6' }}
+            style={{ background: 'var(--slate-100)' }}
           >
-            <svg className="w-5 h-5" style={{ color: '#9CA3AF' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5" style={{ color: 'var(--slate-400)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
@@ -111,9 +111,9 @@ export default function EarlyVoteTracker({
   }
 
   const getAdvantageColor = (adv: number) => {
-    if (adv > 100) return { bg: '#DBEAFE', color: '#1D4ED8', label: 'Dem Advantage' };
-    if (adv < -100) return { bg: '#FEE2E2', color: '#DC2626', label: 'Rep Advantage' };
-    return { bg: '#F3F4F6', color: '#6B7280', label: 'Even' };
+    if (adv > 100) return { bg: 'var(--dem-tint)', color: 'var(--party-dem)', label: 'Dem Advantage' };
+    if (adv < -100) return { bg: 'var(--rep-tint)', color: 'var(--status-at-risk)', label: 'Rep Advantage' };
+    return { bg: 'var(--slate-100)', color: 'var(--slate-500)', label: 'Even' };
   };
 
   const advStyle = getAdvantageColor(stats?.demAdvantage || 0);
@@ -170,11 +170,11 @@ export default function EarlyVoteTracker({
           <div
             className="w-10 h-10 rounded-full flex items-center justify-center"
             style={{
-              background: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)',
-              border: '1px solid #6EE7B7',
+              background: 'linear-gradient(135deg, var(--success-50) 0%, var(--success-100) 100%)',
+              border: '1px solid var(--success-100)',
             }}
           >
-            <svg className="w-5 h-5" style={{ color: '#059669' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5" style={{ color: 'var(--accent-emerald)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
             </svg>
           </div>
@@ -292,10 +292,10 @@ export default function EarlyVoteTracker({
                   <span className="text-xs w-16 flex-shrink-0" style={{ color: 'var(--text-muted)' }}>
                     {new Date(day.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                   </span>
-                  <div className="flex-1 h-4 rounded overflow-hidden" style={{ background: '#E5E7EB' }}>
+                  <div className="flex-1 h-4 rounded overflow-hidden" style={{ background: 'var(--slate-200)' }}>
                     <div
                       className="h-full rounded transition-all"
-                      style={{ width: `${pct}%`, background: '#059669' }}
+                      style={{ width: `${pct}%`, background: 'var(--accent-emerald)' }}
                     />
                   </div>
                   <span className="text-xs font-medium w-12 text-right" style={{ color: 'var(--text-color)' }}>

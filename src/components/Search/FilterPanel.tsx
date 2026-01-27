@@ -382,7 +382,7 @@ export default function FilterPanel({
         style={{
           background: isExpanded ? 'var(--class-purple, #4739E7)' : 'var(--card-bg, #FFFFFF)',
           borderColor: 'var(--class-purple-light, #DAD7FA)',
-          color: isExpanded ? 'white' : 'var(--text-color, #0A1849)',
+          color: isExpanded ? 'white' : 'var(--text-primary)',
         }}
         aria-expanded={isExpanded}
         aria-controls="filter-panel"

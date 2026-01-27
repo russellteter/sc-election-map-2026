@@ -186,7 +186,7 @@ export default function RaceProfileClient({ chamber: chamberParam, district: dis
               style={{
                 background: 'var(--card-bg, #FFFFFF)',
                 border: '1px solid var(--class-purple-light, #DAD7FA)',
-                color: 'var(--text-color, #0A1849)',
+                color: 'var(--text-primary)',
               }}
             >
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

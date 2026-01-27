@@ -191,7 +191,7 @@ export default function SearchBar({
           style={{
             background: 'var(--card-bg, #FFFFFF)',
             borderColor: isOpen ? 'var(--class-purple, #4739E7)' : 'var(--class-purple-light, #DAD7FA)',
-            color: 'var(--text-color, #0A1849)',
+            color: 'var(--text-primary)',
             outline: 'none',
           }}
           role="combobox"
@@ -290,7 +290,7 @@ export default function SearchBar({
                 <div className="flex-1 min-w-0">
                   <div
                     className="font-medium text-sm truncate"
-                    style={{ color: 'var(--text-color, #0A1849)' }}
+                    style={{ color: 'var(--text-primary)' }}
                   >
                     {result.label}
                   </div>

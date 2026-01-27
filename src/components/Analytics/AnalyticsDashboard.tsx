@@ -409,7 +409,7 @@ export default function AnalyticsDashboard({
             }`}
             style={{
               background: !showMobilePanel
-                ? 'linear-gradient(135deg, var(--class-purple-bg) 0%, #E0E7FF 100%)'
+                ? 'linear-gradient(135deg, var(--class-purple-bg) 0%, var(--dem-tint) 100%)'
                 : 'transparent',
               color: !showMobilePanel ? 'var(--class-purple)' : 'var(--text-muted)',
               border: `1px solid ${!showMobilePanel ? 'var(--class-purple-light)' : 'transparent'}`,
@@ -424,7 +424,7 @@ export default function AnalyticsDashboard({
             }`}
             style={{
               background: showMobilePanel
-                ? 'linear-gradient(135deg, var(--class-purple-bg) 0%, #E0E7FF 100%)'
+                ? 'linear-gradient(135deg, var(--class-purple-bg) 0%, var(--dem-tint) 100%)'
                 : 'transparent',
               color: showMobilePanel ? 'var(--class-purple)' : 'var(--text-muted)',
               border: `1px solid ${showMobilePanel ? 'var(--class-purple-light)' : 'transparent'}`,

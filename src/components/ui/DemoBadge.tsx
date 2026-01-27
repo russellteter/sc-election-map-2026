@@ -20,9 +20,9 @@ export default function DemoBadge({ size = 'sm', className = '' }: DemoBadgeProp
     <span
       className={`inline-flex items-center gap-1 rounded font-medium ${sizeClasses} ${className}`}
       style={{
-        background: '#FEF3C7',
-        color: '#92400E',
-        border: '1px solid #FDE68A',
+        background: 'var(--warning-100)',
+        color: 'var(--warning-700)',
+        border: '1px solid var(--warning-100)',
       }}
       title="This data is simulated for demonstration purposes"
     >

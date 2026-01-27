@@ -37,10 +37,10 @@ interface ResourceHeatmapProps {
  */
 function IntensityBadge({ intensity }: { intensity: ResourceIntensity }) {
   const config = {
-    hot: { bg: '#FEE2E2', color: '#B91C1C', label: 'HOT' },
-    warm: { bg: '#FEF3C7', color: '#92400E', label: 'WARM' },
-    cool: { bg: '#DBEAFE', color: '#1E40AF', label: 'COOL' },
-    none: { bg: '#F3F4F6', color: '#6B7280', label: 'N/A' },
+    hot: { bg: 'var(--rep-tint)', color: 'var(--error-700)', label: 'HOT' },
+    warm: { bg: 'var(--warning-100)', color: 'var(--warning-700)', label: 'WARM' },
+    cool: { bg: 'var(--dem-tint)', color: 'var(--party-dem)', label: 'COOL' },
+    none: { bg: 'var(--slate-100)', color: 'var(--slate-500)', label: 'N/A' },
   }[intensity];
 
   return (
@@ -107,7 +107,7 @@ function FactorBreakdown({ allocation }: { allocation: ResourceAllocation }) {
           <div
             className="text-sm font-medium"
             style={{
-              color: value >= 70 ? '#059669' : value >= 45 ? '#F59E0B' : 'var(--text-muted)',
+              color: value >= 70 ? 'var(--accent-emerald)' : value >= 45 ? 'var(--status-attention)' : 'var(--text-muted)',
             }}
           >
             {value.toFixed(0)}
@@ -131,8 +131,8 @@ function AllocationCard({
   showDetails?: boolean;
 }) {
   const intensityColors = {
-    hot: { bg: 'linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%)', border: '#FECACA' },
-    warm: { bg: 'linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%)', border: '#FDE68A' },
+    hot: { bg: 'linear-gradient(135deg, var(--error-50) 0%, var(--rep-tint) 100%)', border: 'var(--rep-light)' },
+    warm: { bg: 'linear-gradient(135deg, var(--warning-50) 0%, var(--warning-100) 100%)', border: 'var(--warning-100)' },
     cool: { bg: 'var(--card-bg)', border: 'var(--class-purple-light)' },
     none: { bg: 'var(--card-bg)', border: 'var(--border-subtle)' },
   }[allocation.intensity];
@@ -182,10 +182,10 @@ function AllocationCard({
             className="text-lg font-bold font-display"
             style={{
               color: allocation.intensity === 'hot'
-                ? '#DC2626'
+                ? 'var(--status-at-risk)'
                 : allocation.intensity === 'warm'
-                ? '#F59E0B'
-                : '#6B7280',
+                ? 'var(--status-attention)'
+                : 'var(--slate-500)',
             }}
           >
             {allocation.compositeScore.toFixed(0)}
@@ -339,7 +339,7 @@ export default function ResourceHeatmap({
             <div className="text-xs font-medium mb-1" style={{ color: 'var(--text-muted)' }}>
               Hot
             </div>
-            <div className="text-xl font-bold font-display" style={{ color: '#DC2626' }}>
+            <div className="text-xl font-bold font-display" style={{ color: 'var(--status-at-risk)' }}>
               {summary.hotDistricts}
             </div>
           </div>
@@ -347,7 +347,7 @@ export default function ResourceHeatmap({
             <div className="text-xs font-medium mb-1" style={{ color: 'var(--text-muted)' }}>
               Warm
             </div>
-            <div className="text-xl font-bold font-display" style={{ color: '#F59E0B' }}>
+            <div className="text-xl font-bold font-display" style={{ color: 'var(--status-attention)' }}>
               {summary.warmDistricts}
             </div>
           </div>
@@ -355,7 +355,7 @@ export default function ResourceHeatmap({
             <div className="text-xs font-medium mb-1" style={{ color: 'var(--text-muted)' }}>
               Cool
             </div>
-            <div className="text-xl font-bold font-display" style={{ color: '#3B82F6' }}>
+            <div className="text-xl font-bold font-display" style={{ color: 'var(--dem-lean)' }}>
               {summary.coolDistricts}
             </div>
           </div>
@@ -365,7 +365,7 @@ export default function ResourceHeatmap({
                 <div className="text-xs font-medium mb-1" style={{ color: 'var(--text-muted)' }}>
                   Dem in Hot
                 </div>
-                <div className="text-xl font-bold font-display" style={{ color: '#059669' }}>
+                <div className="text-xl font-bold font-display" style={{ color: 'var(--accent-emerald)' }}>
                   {summary.demCandidatesInHotZones}
                 </div>
               </div>
@@ -373,7 +373,7 @@ export default function ResourceHeatmap({
                 <div className="text-xs font-medium mb-1" style={{ color: 'var(--text-muted)' }}>
                   Open in Hot
                 </div>
-                <div className="text-xl font-bold font-display" style={{ color: '#8B5CF6' }}>
+                <div className="text-xl font-bold font-display" style={{ color: 'var(--competitive)' }}>
                   {summary.openSeatsInHotZones}
                 </div>
               </div>
@@ -429,9 +429,9 @@ export default function ResourceHeatmap({
           <div className="text-center py-8">
             <div
               className="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center"
-              style={{ background: '#F3F4F6' }}
+              style={{ background: 'var(--slate-100)' }}
             >
-              <svg className="w-6 h-6" fill="none" stroke="#6B7280" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="var(--slate-500)" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"

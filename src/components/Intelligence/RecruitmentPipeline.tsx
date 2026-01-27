@@ -102,13 +102,13 @@ export default function RecruitmentPipeline({
           <div
             className="w-12 h-12 rounded-full flex items-center justify-center"
             style={{
-              background: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)',
-              border: '1px solid #FCD34D',
+              background: 'linear-gradient(135deg, var(--warning-100) 0%, var(--warning-100) 100%)',
+              border: '1px solid var(--status-attention)',
             }}
           >
             <svg
               className="w-6 h-6"
-              style={{ color: '#B45309' }}
+              style={{ color: 'var(--warning-700)' }}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -134,7 +134,7 @@ export default function RecruitmentPipeline({
           {urgentCount > 0 && (
             <span
               className="text-xs font-bold px-2 py-1 rounded-full animate-pulse"
-              style={{ background: '#FEF2F2', color: '#DC2626' }}
+              style={{ background: 'var(--rep-tint)', color: 'var(--status-at-risk)' }}
             >
               {urgentCount} filing soon
             </span>
@@ -210,9 +210,9 @@ function RecruitmentCard({ opportunity }: { opportunity: RecruitmentOpportunity 
       className={`rounded-lg p-4 ${isUrgent ? 'ring-2 ring-amber-400' : ''}`}
       style={{
         background: isUrgent
-          ? 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 50%)'
+          ? 'linear-gradient(135deg, var(--warning-100) 0%, var(--warning-100) 50%)'
           : 'var(--card-bg-elevated)',
-        border: `1px solid ${isUrgent ? '#FCD34D' : 'var(--border-subtle)'}`,
+        border: `1px solid ${isUrgent ? 'var(--status-attention)' : 'var(--border-subtle)'}`,
       }}
     >
       <div className="flex items-start justify-between gap-4">
@@ -312,7 +312,7 @@ function RecruitmentCard({ opportunity }: { opportunity: RecruitmentOpportunity 
               <span
                 key={idx}
                 className="text-xs px-2 py-1 rounded-full"
-                style={{ background: '#DBEAFE', color: '#1D4ED8' }}
+                style={{ background: 'var(--dem-tint)', color: 'var(--party-dem)' }}
               >
                 {recruit.name} ({recruit.position.name})
               </span>
@@ -327,15 +327,15 @@ function RecruitmentCard({ opportunity }: { opportunity: RecruitmentOpportunity 
 function getTierColor(tier: string): string {
   switch (tier) {
     case 'HIGH_OPPORTUNITY':
-      return '#059669';
+      return 'var(--accent-emerald)';
     case 'EMERGING':
-      return '#0891B2';
+      return 'var(--accent-cyan)';
     case 'BUILD':
-      return '#D97706';
+      return 'var(--accent-amber)';
     case 'DEFENSIVE':
-      return '#3676eb';
+      return 'var(--dem-lean)';
     default:
-      return '#9CA3AF';
+      return 'var(--slate-400)';
   }
 }
 
