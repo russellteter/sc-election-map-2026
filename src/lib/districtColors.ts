@@ -1,5 +1,5 @@
 /**
- * District Color Utilities
+ * District Color Utilities v4.0
  *
  * Centralized color scheme for district maps.
  * Used by both SVG DistrictMap and Leaflet GeoJSON layers.
@@ -9,6 +9,12 @@
  * - dem-filing: Blue coverage vs amber gaps
  * - opportunity: Heat map (HOT/WARM/POSSIBLE/LONG_SHOT/DEFENSIVE)
  * - battleground: Contested vs uncontested races
+ *
+ * v4.0 Color Palette (Slate Professional):
+ * - Democrat: Navy blue spectrum (#1E40AF → #93C5FD)
+ * - Republican: Crimson red spectrum (#991B1B → #FCA5A5)
+ * - Opportunity: Amber/orange heat map (#EA580C → #FB923C)
+ * - Competitive: Violet (#A855F7)
  */
 
 import type { District, DistrictElectionHistory } from '@/types/schema';
@@ -18,38 +24,37 @@ import type { LensId } from '@/types/lens';
  * District colors based on objective facts.
  * Dem-focused color scheme for Democratic campaign tool.
  *
- * v3.2 - Professional desaturated palette (NYT/Bloomberg style):
- * - Democrat: Desaturated blue spectrum (#1E5A8A → #7BA3C4)
- * - Republican: Desaturated red spectrum (#A04444 → #CF9999)
- * - Open Seat: Amber/neutral (#B45309)
- * - 40-65% saturation for professional appearance
+ * v4.0 - Slate Professional palette (NYT/538 cartographic style):
+ * - Democrat: Navy blue spectrum (#1E40AF → #93C5FD)
+ * - Republican: Crimson red spectrum (#991B1B → #FCA5A5)
+ * - Neutral: Slate gray (#E2E8F0)
  */
 export const DISTRICT_COLORS = {
-  DEM_INCUMBENT: '#1E5A8A',     // Deep desaturated blue - current rep is Democrat
-  DEM_CHALLENGER: '#4A7FA8',    // Medium desaturated blue - Dem filed (not incumbent)
+  DEM_INCUMBENT: '#1E40AF',     // Deep navy blue - current rep is Democrat
+  DEM_CHALLENGER: '#3B82F6',    // Vibrant blue - Dem filed (not incumbent)
   CLOSE_NO_DEM: 'url(#needs-candidate)', // Blue crosshatch - margin ≤15pts, no Dem
-  SAFE_R: '#E5E5E5',            // Light neutral gray - margin >15pts, no Dem
-  NO_DATA: '#F0F0F0',           // Very light gray - no candidates/data
+  SAFE_R: '#E2E8F0',            // Slate-200 - margin >15pts, no Dem
+  NO_DATA: '#F1F5F9',           // Slate-100 - no candidates/data
 } as const;
 
 /**
  * Solid colors for GeoJSON (patterns not supported in Leaflet)
  */
 export const DISTRICT_COLORS_SOLID = {
-  DEM_INCUMBENT: '#1E5A8A',     // Deep desaturated blue
-  DEM_CHALLENGER: '#4A7FA8',    // Medium desaturated blue
-  CLOSE_NO_DEM: '#7BA3C4',      // Light desaturated blue (substitute for crosshatch)
-  SAFE_R: '#E5E5E5',            // Light neutral gray
-  NO_DATA: '#F0F0F0',           // Very light gray
+  DEM_INCUMBENT: '#1E40AF',     // Deep navy blue
+  DEM_CHALLENGER: '#3B82F6',    // Vibrant blue
+  CLOSE_NO_DEM: '#93C5FD',      // Sky blue (substitute for crosshatch)
+  SAFE_R: '#E2E8F0',            // Slate-200
+  NO_DATA: '#F1F5F9',           // Slate-100
 } as const;
 
 /**
  * Congressional district colors based on party control
  */
 export const CONGRESSIONAL_COLORS = {
-  DEM: '#1E5A8A',     // Desaturated blue - Democrat held
-  REP: '#A04444',     // Desaturated red - Republican held
-  VACANT: '#6B7280',  // Neutral medium gray - vacant/unknown
+  DEM: '#1E40AF',     // Deep navy blue - Democrat held
+  REP: '#991B1B',     // Deep crimson - Republican held
+  VACANT: '#64748B',  // Slate-500 - vacant/unknown
 } as const;
 
 /**
@@ -92,25 +97,22 @@ export interface OpportunityData {
 /**
  * Color palettes for each lens visualization
  *
- * v3.2 Design principles (NYT/Bloomberg professional quality):
- * - Desaturated colors (40-65% saturation)
- * - Democrat: Desaturated blue spectrum (#1E5A8A → #7BA3C4)
- * - Republican: Desaturated red spectrum (#A04444 → #CF9999)
- * - Opportunity: Warm amber/orange spectrum (#B45309 → #FBBF24)
- * - Maximum 5 distinct hues per lens
- * - All colors WCAG AA compliant
+ * v4.0 Slate Professional palette:
+ * - Democrat: Navy blue spectrum (#1E40AF → #93C5FD)
+ * - Republican: Crimson red spectrum (#991B1B → #FCA5A5)
+ * - Opportunity: Amber/orange heat map (#EA580C → #FB923C)
+ * - Competitive: Violet (#A855F7)
  */
 export const LENS_COLORS = {
   /**
    * Incumbents Lens (default)
    * Shows current party control of each district
-   * Professional desaturated palette
    */
   incumbents: {
-    DEM_INCUMBENT: '#1E5A8A',     // Deep desaturated blue - Dem holds seat
-    REP_INCUMBENT: '#A04444',     // Desaturated red - Rep holds seat
-    OPEN_SEAT: '#B45309',         // Amber/burnt orange - Open seat
-    UNKNOWN: '#E5E5E5',           // Light neutral gray - No data
+    DEM_INCUMBENT: '#1E40AF',     // Deep navy blue - Dem holds seat
+    REP_INCUMBENT: '#991B1B',     // Deep crimson - Rep holds seat
+    OPEN_SEAT: '#EA580C',         // Amber/burnt orange - Open seat
+    UNKNOWN: '#E2E8F0',           // Slate-200 - No data
   },
 
   /**
@@ -118,37 +120,35 @@ export const LENS_COLORS = {
    * Shows Democratic candidate coverage vs gaps
    */
   'dem-filing': {
-    DEM_FILED: '#1E5A8A',         // Deep desaturated blue - Dem candidate filed
-    DEM_INCUMBENT: '#4A7FA8',     // Medium desaturated blue - Dem incumbent
-    PRIORITY_GAP: '#B45309',      // Amber/burnt orange - No Dem, margin ≤15pts (urgent)
-    OPPORTUNITY: '#D97706',       // Warm orange - No Dem, margin ≤10pts
-    SAFE_R: '#E5E5E5',            // Light neutral gray - No Dem, margin >15pts
+    DEM_FILED: '#1E40AF',         // Deep navy blue - Dem candidate filed
+    DEM_INCUMBENT: '#3B82F6',     // Vibrant blue - Dem incumbent
+    PRIORITY_GAP: '#EA580C',      // Amber/burnt orange - No Dem, margin ≤15pts (urgent)
+    OPPORTUNITY: '#F97316',       // Orange - No Dem, margin ≤10pts
+    SAFE_R: '#E2E8F0',            // Slate-200 - No Dem, margin >15pts
   },
 
   /**
    * Opportunity Lens
    * Heat map showing strategic opportunity tiers
-   * Uses warm amber/orange spectrum (NYT-style heat map)
-   * HOT→WARM→POSSIBLE clearly distinguishable
+   * Uses warm amber/orange spectrum
    */
   opportunity: {
-    HOT: '#B45309',               // Burnt orange - Top priority (≤5pt margin)
-    WARM: '#D97706',              // Amber/orange - Strong opportunity (6-10pt)
-    POSSIBLE: '#FBBF24',          // Yellow/gold - Worth watching (11-15pt)
-    LONG_SHOT: '#6B7280',         // Neutral medium gray - Unlikely flip (>15pt)
-    DEFENSIVE: '#1E5A8A',         // Desaturated blue - Dem-held seat to protect
+    HOT: '#EA580C',               // Burnt orange - Top priority (≤5pt margin)
+    WARM: '#F97316',              // Orange - Strong opportunity (6-10pt)
+    POSSIBLE: '#FB923C',          // Light orange - Worth watching (11-15pt)
+    LONG_SHOT: '#94A3B8',         // Slate-400 - Unlikely flip (>15pt)
+    DEFENSIVE: '#3B82F6',         // Vibrant blue - Dem-held seat to protect
   },
 
   /**
    * Battleground Lens
    * Shows contested vs uncontested races
-   * Professional desaturated colors
    */
   battleground: {
-    CONTESTED: '#7C3AED',         // Purple - Both D and R filed (maintains purple for contested)
-    DEM_ONLY: '#4A7FA8',          // Medium desaturated blue - Only Dem filed
-    REP_ONLY: '#B86B6B',          // Medium desaturated red - Only Rep filed
-    NONE_FILED: '#E5E5E5',        // Light neutral gray - No candidates filed
+    CONTESTED: '#A855F7',         // Violet - Both D and R filed
+    DEM_ONLY: '#3B82F6',          // Vibrant blue - Only Dem filed
+    REP_ONLY: '#DC2626',          // Clear red - Only Rep filed
+    NONE_FILED: '#E2E8F0',        // Slate-200 - No candidates filed
   },
 } as const;
 
@@ -427,7 +427,7 @@ export function getDistrictStatusLabel(
  * Get stroke color for districts (selection state)
  */
 export function getDistrictStrokeColor(isSelected: boolean): string {
-  return isSelected ? 'var(--class-purple, #4739E7)' : 'var(--map-stroke, #374151)';
+  return isSelected ? 'var(--brand-500, #6366F1)' : 'var(--map-stroke, #475569)';
 }
 
 /**
@@ -449,24 +449,24 @@ export type ScenarioStatus = 'baseline' | 'flipped-dem' | 'flipped-rep' | 'tossu
 /**
  * Colors for scenario simulator mode
  * These overlay/replace base colors when scenario mode is active
- * v3.2 - Professional desaturated palette
+ * v4.0 - Slate Professional palette
  */
 export const SCENARIO_COLORS = {
   // Flipped to Democrat (was R, now D in scenario)
-  FLIPPED_DEM: '#4A7FA8',           // Medium desaturated blue
+  FLIPPED_DEM: '#3B82F6',           // Vibrant blue
   FLIPPED_DEM_PATTERN: 'url(#flipped-dem-pattern)',
 
   // Flipped to Republican (was D, now R in scenario)
-  FLIPPED_REP: '#B86B6B',           // Medium desaturated red
+  FLIPPED_REP: '#DC2626',           // Clear red
   FLIPPED_REP_PATTERN: 'url(#flipped-rep-pattern)',
 
   // Toss-up (competitive, uncertain)
-  TOSSUP: '#D97706',                // Amber/orange for uncertainty
+  TOSSUP: '#F97316',                // Orange for uncertainty
   TOSSUP_PATTERN: 'url(#tossup-pattern)',
 
   // Current control colors for scenario baseline
-  DEM_HELD: '#1E5A8A',              // Deep desaturated blue (current D)
-  REP_HELD: '#A04444',              // Desaturated red (current R)
+  DEM_HELD: '#1E40AF',              // Deep navy blue (current D)
+  REP_HELD: '#991B1B',              // Deep crimson (current R)
 } as const;
 
 /**
@@ -549,23 +549,23 @@ export function getScenarioStatusLabel(
 /**
  * Colors for historical margin comparison (diverging scale)
  * Blue = improving for Democrats, Red = worsening for Democrats
- * v3.2 - Professional desaturated diverging scale
+ * v4.0 - Slate Professional diverging scale
  */
 export const HISTORICAL_DELTA_COLORS = {
   // Strong Dem improvement (+10pts or more)
-  DEM_STRONG: '#1E5A8A',          // Deep desaturated blue
+  DEM_STRONG: '#1E40AF',          // Deep navy blue
   // Moderate Dem improvement (+5 to +10pts)
-  DEM_MODERATE: '#4A7FA8',        // Medium desaturated blue
+  DEM_MODERATE: '#3B82F6',        // Vibrant blue
   // Slight Dem improvement (+2 to +5pts)
-  DEM_SLIGHT: '#7BA3C4',          // Light desaturated blue
+  DEM_SLIGHT: '#93C5FD',          // Sky blue
   // Stable (-2 to +2pts)
-  STABLE: '#6B7280',              // Neutral medium gray
+  STABLE: '#64748B',              // Slate-500
   // Slight Rep improvement (-2 to -5pts)
-  REP_SLIGHT: '#CF9999',          // Light desaturated red
+  REP_SLIGHT: '#FCA5A5',          // Coral pink
   // Moderate Rep improvement (-5 to -10pts)
-  REP_MODERATE: '#B86B6B',        // Medium desaturated red
+  REP_MODERATE: '#DC2626',        // Clear red
   // Strong Rep improvement (-10pts or more)
-  REP_STRONG: '#A04444',          // Deep desaturated red
+  REP_STRONG: '#991B1B',          // Deep crimson
 } as const;
 
 /**
@@ -605,16 +605,16 @@ export type ResourceIntensity = 'hot' | 'warm' | 'cool' | 'none';
 /**
  * Colors for resource allocation heatmap overlay
  * Three-tier intensity system for investment prioritization
- * Purple-based palette for consistency
+ * v4.0 - Uses brand indigo for consistency
  */
 export const RESOURCE_HEATMAP_COLORS = {
   // Hot - Invest heavily (high ROI opportunities)
-  HOT: 'rgba(124, 58, 237, 0.65)',       // Semi-transparent vivid violet
-  HOT_BORDER: '#7C3AED',
+  HOT: 'rgba(99, 102, 241, 0.65)',       // Semi-transparent brand indigo
+  HOT_BORDER: '#6366F1',
 
   // Warm - Maintain current investment
-  WARM: 'rgba(147, 51, 234, 0.55)',      // Semi-transparent purple
-  WARM_BORDER: '#9333EA',
+  WARM: 'rgba(139, 92, 246, 0.55)',      // Semi-transparent violet
+  WARM_BORDER: '#8B5CF6',
 
   // Cool - Deprioritize (low ROI)
   COOL: 'rgba(59, 130, 246, 0.35)',      // Semi-transparent blue

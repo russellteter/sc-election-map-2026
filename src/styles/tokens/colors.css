@@ -1,120 +1,185 @@
 /**
- * SC Election Map 2026 - Color Design Tokens
+ * Blue Intelligence Design System - Color Tokens v4.0
+ * Slate Professional Palette
  *
- * Professional desaturated color palette (v3.2)
- * Inspired by NYT, Bloomberg Terminal, FiveThirtyEight
+ * Design philosophy:
+ * - Neutral-first foundation (no purple tint on backgrounds)
+ * - Professional data visualization colors
+ * - Political cartographic clarity (NYT/FiveThirtyEight quality)
+ * - WCAG AA accessible combinations
  *
- * Key principles:
- * - 40-65% saturation (not harsh primary colors)
- * - Max 5 key colors per visualization
- * - Accessibility: WCAG AA compliant combinations
+ * Inspired by: Linear, Vercel Geist, Radix Colors, Bloomberg Terminal
  */
 
 :root {
   /* ================================================
-     PROFESSIONAL PARTY COLORS - Desaturated
-     NYT/Bloomberg Terminal quality
+     NEUTRAL FOUNDATION - 12-Step Slate Gray Scale
+     Perceptually uniform, no purple tint
+     ================================================ */
+  --slate-50: #F8FAFC;   /* Page background - NEUTRAL */
+  --slate-100: #F1F5F9;  /* Card backgrounds, subtle areas */
+  --slate-200: #E2E8F0;  /* Borders, dividers */
+  --slate-300: #CBD5E1;  /* Disabled states, inactive */
+  --slate-400: #94A3B8;  /* Placeholder text */
+  --slate-500: #64748B;  /* Secondary text */
+  --slate-600: #475569;  /* Body text */
+  --slate-700: #334155;  /* Headings */
+  --slate-800: #1E293B;  /* Primary text */
+  --slate-900: #0F172A;  /* High contrast text */
+  --slate-950: #020617;  /* Darkest (rarely used) */
+
+  /* ================================================
+     BRAND ACCENT - Refined Indigo (not saturated purple)
+     Shifted from #4739E7 to more sophisticated indigo
+     ================================================ */
+  --brand-50: #EEF2FF;
+  --brand-100: #E0E7FF;
+  --brand-200: #C7D2FE;
+  --brand-300: #A5B4FC;
+  --brand-400: #818CF8;
+  --brand-500: #6366F1;   /* PRIMARY - replaces #4739E7 */
+  --brand-600: #4F46E5;   /* Interactive hover */
+  --brand-700: #4338CA;   /* Active/pressed */
+  --brand-800: #3730A3;
+  --brand-900: #312E81;
+
+  /* Brand semantic mappings */
+  --brand-primary: var(--brand-500);
+  --brand-primary-hover: var(--brand-600);
+  --brand-primary-active: var(--brand-700);
+  --brand-primary-light: var(--brand-200);
+  --brand-primary-bg: var(--brand-50);
+  --brand-primary-border: rgba(99, 102, 241, 0.15);
+
+  /* ================================================
+     POLITICAL COLORS - Cartographic Standard
+     Clear Dem/Rep distinction (NYT, 538, AP style)
      ================================================ */
 
-  /* Democrat - Desaturated Blue Spectrum */
-  --dem-strong: #1E5A8A;           /* Deep - strong lean */
-  --dem-lean: #4A7FA8;             /* Medium - lean */
-  --dem-light: #7BA3C4;            /* Light - tilt */
+  /* Democratic Blue - Rich navy spectrum */
+  --dem-strong: #1E40AF;    /* Safe Dem - deep navy blue */
+  --dem-lean: #3B82F6;      /* Lean Dem - vibrant blue */
+  --dem-light: #93C5FD;     /* Tilt Dem - sky blue */
+  --dem-tint: #DBEAFE;      /* Background tint */
 
+  /* Party semantic aliases */
   --party-dem: var(--dem-strong);
-  --party-dem-dark: #164664;
+  --party-dem-dark: #1E3A8A;
   --party-dem-light: var(--dem-light);
-  --party-dem-bg: #E8F1F8;
-  --party-dem-border: rgba(30, 90, 138, 0.3);
-  --party-dem-glow: rgba(30, 90, 138, 0.4);
+  --party-dem-bg: var(--dem-tint);
+  --party-dem-border: rgba(30, 64, 175, 0.3);
+  --party-dem-glow: rgba(30, 64, 175, 0.4);
 
-  /* Republican - Desaturated Red Spectrum */
-  --rep-strong: #A04444;           /* Deep - strong lean */
-  --rep-lean: #B86B6B;             /* Medium - lean */
-  --rep-light: #CF9999;            /* Light - tilt */
+  /* Republican Red - True crimson spectrum */
+  --rep-strong: #991B1B;    /* Safe Rep - deep crimson */
+  --rep-lean: #DC2626;      /* Lean Rep - clear red */
+  --rep-light: #FCA5A5;     /* Tilt Rep - coral pink */
+  --rep-tint: #FEE2E2;      /* Background tint */
 
+  /* Party semantic aliases */
   --party-rep: var(--rep-strong);
-  --party-rep-dark: #7D3333;
+  --party-rep-dark: #7F1D1D;
   --party-rep-light: var(--rep-light);
-  --party-rep-bg: #F5E8E8;
-  --party-rep-border: rgba(160, 68, 68, 0.3);
-  --party-rep-glow: rgba(160, 68, 68, 0.4);
+  --party-rep-bg: var(--rep-tint);
+  --party-rep-border: rgba(153, 27, 27, 0.3);
+  --party-rep-glow: rgba(153, 27, 27, 0.4);
 
-  /* Opportunity - Warm Amber Spectrum */
-  --opportunity-hot: #B45309;      /* Hot - top priority */
-  --opportunity-warm: #D97706;     /* Warm - high priority */
-  --opportunity-possible: #FBBF24; /* Possible - moderate */
+  /* Competitive / Toss-up - Violet (distinct from brand indigo) */
+  --competitive: #A855F7;
+  --competitive-light: #E9D5FF;
 
-  /* Open Seat / Contested - Amber (matches opportunity) */
-  --party-open: var(--opportunity-hot);
-  --party-open-dark: #92400E;
-  --party-open-light: var(--opportunity-possible);
-  --party-open-bg: #FEF3E2;
-  --party-open-border: rgba(180, 83, 9, 0.3);
+  /* Open Seat / Contested */
+  --party-open: #EA580C;
+  --party-open-dark: #C2410C;
+  --party-open-light: #FDBA74;
+  --party-open-bg: #FFF7ED;
+  --party-open-border: rgba(234, 88, 12, 0.3);
 
-  /* Neutral / No Data */
-  --neutral-medium: #6B7280;
-  --no-data: #E5E5E5;
+  /* Unknown / No Data */
+  --neutral-medium: var(--slate-500);
+  --no-data: var(--slate-200);
 
-  --party-unknown: var(--neutral-medium);
-  --party-unknown-dark: #4B5563;
-  --party-unknown-light: #9CA3AF;
-  --party-unknown-bg: #F3F4F6;
-
-  /* ================================================
-     BRAND PRIMARY - Purple Accent
-     The signature color for the design system
-     ================================================ */
-  --brand-primary: #4739E7;
-  --brand-primary-hover: #3a2dd0;
-  --brand-primary-active: #2f24a8;
-  --brand-primary-light: #DAD7FA;
-  --brand-primary-bg: #F6F6FE;
-  --brand-primary-border: rgba(71, 57, 231, 0.15);
+  --party-unknown: var(--slate-500);
+  --party-unknown-dark: var(--slate-600);
+  --party-unknown-light: var(--slate-400);
+  --party-unknown-bg: var(--slate-100);
 
   /* ================================================
-     STATUS COLORS - Data Visualization
-     Semantic colors for KPIs and badges
+     OPPORTUNITY HEAT MAP - Amber/Orange Gradient
+     For strategic opportunity visualization
+     ================================================ */
+  --heat-hot: #EA580C;      /* HOT - Highest priority */
+  --heat-warm: #F97316;     /* WARM - High priority */
+  --heat-possible: #FB923C; /* POSSIBLE - Medium */
+  --heat-cool: #FDBA74;     /* COOL - Lower */
+  --heat-cold: #FED7AA;     /* Background tint */
+
+  /* Legacy opportunity aliases */
+  --opportunity-hot: var(--heat-hot);
+  --opportunity-warm: var(--heat-warm);
+  --opportunity-possible: var(--heat-possible);
+
+  /* ================================================
+     STATUS COLORS - Semantic Data Visualization
      ================================================ */
 
-  /* Excellent / Success */
-  --status-excellent: #059669;
-  --status-excellent-dark: #047857;
-  --status-excellent-bg: #ECFDF5;
-  --status-excellent-border: #D1FAE5;
+  /* Success / Filed / Ready */
+  --success-50: #F0FDF4;
+  --success-100: #DCFCE7;
+  --success-500: #22C55E;
+  --success-700: #15803D;
 
-  /* Healthy / Normal */
-  --status-healthy: #4739E7;
-  --status-healthy-dark: #3a2dd0;
-  --status-healthy-bg: #F6F6FE;
-  --status-healthy-border: #DAD7FA;
+  --status-excellent: var(--success-500);
+  --status-excellent-dark: var(--success-700);
+  --status-excellent-bg: var(--success-50);
+  --status-excellent-border: var(--success-100);
 
-  /* Attention / Warning */
-  --status-attention: #D97706;
-  --status-attention-dark: #B45309;
-  --status-attention-bg: #FEF3C7;
-  --status-attention-border: #FDE68A;
+  /* Warning / Attention Needed */
+  --warning-50: #FFFBEB;
+  --warning-100: #FEF3C7;
+  --warning-500: #F59E0B;
+  --warning-700: #B45309;
 
-  /* At Risk / Critical */
-  --status-at-risk: #DC2626;
-  --status-at-risk-dark: #B91C1C;
-  --status-at-risk-bg: #FEE2E2;
-  --status-at-risk-border: #FECACA;
+  --status-attention: var(--warning-500);
+  --status-attention-dark: var(--warning-700);
+  --status-attention-bg: var(--warning-50);
+  --status-attention-border: var(--warning-100);
+
+  /* Error / At Risk / Critical */
+  --error-50: #FEF2F2;
+  --error-100: #FEE2E2;
+  --error-500: #EF4444;
+  --error-700: #B91C1C;
+
+  --status-at-risk: var(--error-500);
+  --status-at-risk-dark: var(--error-700);
+  --status-at-risk-bg: var(--error-50);
+  --status-at-risk-border: var(--error-100);
+
+  /* Info / Neutral Highlight */
+  --info-50: #EFF6FF;
+  --info-100: #DBEAFE;
+  --info-500: #3B82F6;
+  --info-700: #1D4ED8;
+
+  --status-info: var(--info-500);
+  --status-info-dark: var(--info-700);
+  --status-info-bg: var(--info-50);
+  --status-info-border: var(--info-100);
 
   /* Neutral / Inactive */
-  --status-neutral: #64748B;
-  --status-neutral-bg: #F1F5F9;
-  --status-neutral-border: #E2E8F0;
+  --status-neutral: var(--slate-500);
+  --status-neutral-bg: var(--slate-100);
+  --status-neutral-border: var(--slate-200);
 
-  /* Info / Informational */
-  --status-info: #3B82F6;
-  --status-info-dark: #2563EB;
-  --status-info-bg: #DBEAFE;
-  --status-info-border: #BFDBFE;
+  /* Healthy - uses brand color */
+  --status-healthy: var(--brand-500);
+  --status-healthy-dark: var(--brand-600);
+  --status-healthy-bg: var(--brand-50);
+  --status-healthy-border: var(--brand-100);
 
   /* ================================================
-     MAP COLORS - District Visualization (v3.2)
-     Professional desaturated palette matching districtColors.ts
+     MAP COLORS - District Visualization
      ================================================ */
   --map-dem-incumbent: var(--dem-strong);
   --map-dem-challenger: var(--dem-lean);
@@ -122,111 +187,134 @@
   --map-rep-incumbent: var(--rep-strong);
   --map-rep-challenger: var(--rep-lean);
   --map-rep-tilt: var(--rep-light);
-  --map-open-seat: var(--opportunity-hot);
-  --map-contested: var(--opportunity-warm);
-  --map-no-data: var(--no-data);
-  --map-empty: var(--no-data);
-  --map-stroke: #374151;
-  --map-stroke-selected: var(--brand-primary);
+  --map-open-seat: var(--heat-hot);
+  --map-contested: var(--competitive);
+  --map-no-data: var(--slate-200);
+  --map-empty: var(--slate-200);
+  --map-stroke: var(--slate-600);
+  --map-stroke-selected: var(--brand-500);
 
-  /* Opportunity Lens Colors (warm amber spectrum) */
-  --map-opp-hot: var(--opportunity-hot);
-  --map-opp-warm: var(--opportunity-warm);
-  --map-opp-possible: var(--opportunity-possible);
-  --map-opp-longshot: #9CA3AF;
+  /* Opportunity Lens Colors */
+  --map-opp-hot: var(--heat-hot);
+  --map-opp-warm: var(--heat-warm);
+  --map-opp-possible: var(--heat-possible);
+  --map-opp-longshot: var(--slate-400);
   --map-opp-defensive: var(--dem-lean);
 
   /* Dem Filing Lens Colors */
   --map-dem-filed: var(--dem-strong);
-  --map-priority-gap: var(--opportunity-hot);
-  --map-opportunity: var(--opportunity-warm);
-  --map-safe-r: var(--no-data);
+  --map-priority-gap: var(--heat-hot);
+  --map-opportunity: var(--heat-warm);
+  --map-safe-r: var(--slate-200);
 
   /* ================================================
      UI SURFACE COLORS
-     Background, card, and surface colors
+     Clean, neutral backgrounds
      ================================================ */
-  --background: #EDECFD;
-  --background-alt: #F6F6FE;
-  --surface: #FFFFFF;
-  --surface-secondary: #F8FAFC;
+  --background: var(--slate-50);      /* Page background - NEUTRAL */
+  --background-alt: var(--slate-100); /* Alternate sections */
+  --surface: #FFFFFF;                 /* Card/panel surfaces */
+  --surface-secondary: var(--slate-50);
   --surface-elevated: #FFFFFF;
+
+  /* Glassmorphic surfaces */
+  --surface-base: #FFFFFF;
+  --surface-raised: rgba(255, 255, 255, 0.9);
+  --surface-overlay: rgba(255, 255, 255, 0.95);
+  --surface-glass: rgba(255, 255, 255, 0.7);
+
+  /* Background layers */
+  --bg-base: var(--slate-50);
+  --bg-subtle: var(--slate-100);
+  --bg-muted: var(--slate-200);
 
   /* ================================================
      TEXT COLORS
-     Typography hierarchy
+     Typography hierarchy using slate scale
      ================================================ */
-  --text-primary: #0A1849;
-  --text-secondary: #4A5568;
-  --text-muted: #64748B;
-  --text-disabled: #94A3B8;
+  --text-primary: var(--slate-800);
+  --text-secondary: var(--slate-600);
+  --text-muted: var(--slate-500);
+  --text-disabled: var(--slate-400);
   --text-on-dark: #FFFFFF;
   --text-on-primary: #FFFFFF;
+  --foreground: var(--slate-800);
 
   /* ================================================
      BORDER COLORS
-     Consistent border styling
+     Neutral borders without purple tint
      ================================================ */
-  --border-subtle: rgba(71, 57, 231, 0.08);
-  --border-default: rgba(71, 57, 231, 0.15);
-  --border-strong: rgba(71, 57, 231, 0.25);
-  --border-focus: var(--brand-primary);
+  --border-subtle: rgba(15, 23, 42, 0.06);
+  --border-default: rgba(15, 23, 42, 0.12);
+  --border-strong: rgba(15, 23, 42, 0.20);
+  --border-focus: var(--brand-500);
 
-  /* Legacy naming compatibility */
-  --border-subtle-solid: #E2E8F0;
-  --border-default-solid: #CBD5E1;
+  /* Solid border variants */
+  --border-subtle-solid: var(--slate-200);
+  --border-default-solid: var(--slate-300);
 
   /* ================================================
      ACCENT COLORS
-     Secondary accent palette
+     Secondary palette for highlights
      ================================================ */
   --accent-cyan: #0891B2;
   --accent-emerald: #059669;
   --accent-amber: #D97706;
-  --accent-rose: #DC2626;
+  --accent-rose: #F43F5E;
+
+  /* ================================================
+     LINK COLORS
+     ================================================ */
+  --link-blue: var(--info-500);
+  --link-blue-hover: var(--info-700);
+
+  /* ================================================
+     SHADOWS WITH BRAND TINT
+     Subtle indigo shadow for brand cohesion
+     ================================================ */
+  --shadow-brand: 0 4px 14px rgba(99, 102, 241, 0.15);
 
   /* ================================================
      LEGACY COMPATIBILITY ALIASES
-     Mapped to new tokens for backwards compatibility
+     Maps old token names to new system
      TODO: Gradually migrate components to new tokens
      ================================================ */
 
-  /* --class-purple was actually blue - now maps to brand-primary */
-  --class-purple: var(--brand-primary);
-  --class-purple-light: var(--brand-primary-light);
-  --class-purple-bg: var(--background-alt);
+  /* Legacy class-* tokens (used extensively in components) */
+  --class-purple: var(--brand-500);
+  --class-purple-light: var(--brand-200);
+  --class-purple-bg: var(--brand-50);
 
-  /* Class Dashboard aliases */
-  --class-blue: var(--party-dem);
-  --class-blue-hover: var(--party-dem-dark);
+  /* Legacy class-blue (map to dem colors) */
+  --class-blue: var(--dem-strong);
+  --class-blue-hover: var(--dem-lean);
   --class-blue-dark: var(--party-dem-dark);
 
-  /* Map colors */
+  /* Legacy map colors */
   --map-democrat: var(--dem-strong);
   --map-republican: var(--rep-strong);
-  --map-both-parties: var(--opportunity-warm);
-  --map-unknown: var(--neutral-medium);
+  --map-both-parties: var(--competitive);
+  --map-unknown: var(--slate-500);
 
-  /* Status colors (semantic) */
+  /* Legacy status color aliases */
   --color-excellent: var(--status-excellent);
   --color-excellent-bg: var(--status-excellent-bg);
-  --color-healthy: var(--brand-primary);
-  --color-healthy-bg: var(--brand-primary-bg);
+  --color-healthy: var(--brand-500);
+  --color-healthy-bg: var(--brand-50);
   --color-attention: var(--status-attention);
   --color-attention-bg: var(--status-attention-bg);
   --color-at-risk: var(--status-at-risk);
   --color-at-risk-bg: var(--status-at-risk-bg);
-  --color-empty: #E2E8F0;
+  --color-empty: var(--slate-200);
 
-  /* Link colors */
-  --link-blue: #2563EB;
-  --link-blue-hover: #1D4ED8;
-
-  /* Card/surface */
+  /* Legacy card/surface */
   --card-bg: var(--surface);
   --glass-background: var(--surface);
   --text-color: var(--text-primary);
-  --yellow-accent: var(--status-attention);
+  --yellow-accent: var(--warning-500);
+
+  /* Highlight for ghost button hover */
+  --highlight-purple: rgba(99, 102, 241, 0.08);
 }
 
 /* Dark mode overrides (future) */
