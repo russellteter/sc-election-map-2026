@@ -46,12 +46,13 @@ export interface LensDefinition {
 
 /**
  * All lens definitions with their configurations
+ * v4.0 Slate Professional palette - aligned with districtColors.ts
  */
 export const LENS_DEFINITIONS: Record<LensId, LensDefinition> = {
   /**
    * Incumbents Lens (Default)
    * Traditional R/D incumbent display - shows current party control
-   * WCAG AA compliant colors
+   * v4.0: Cartographic standard political colors (NYT/538 style)
    */
   incumbents: {
     id: 'incumbents',
@@ -66,17 +67,17 @@ export const LENS_DEFINITIONS: Record<LensId, LensDefinition> = {
         description: 'Current representative is Democrat',
       },
       {
-        color: '#DC2626',
+        color: '#991B1B',
         label: 'Rep Incumbent',
         description: 'Current representative is Republican',
       },
       {
-        color: '#7C3AED',
+        color: '#EA580C',
         label: 'Open Seat',
         description: 'No incumbent running',
       },
       {
-        color: '#D1D5DB',
+        color: '#E2E8F0',
         label: 'Unknown',
         description: 'Incumbent data unavailable',
       },
@@ -87,6 +88,7 @@ export const LENS_DEFINITIONS: Record<LensId, LensDefinition> = {
   /**
    * Dem Filing Lens
    * Shows Democratic coverage vs gaps in candidate filing
+   * v4.0: Heat map colors for priority/opportunity gaps
    */
   'dem-filing': {
     id: 'dem-filing',
@@ -106,18 +108,18 @@ export const LENS_DEFINITIONS: Record<LensId, LensDefinition> = {
         description: 'Dem incumbent district (may not have filed yet)',
       },
       {
-        color: '#9333EA',
+        color: '#EA580C',
         label: 'Priority Gap',
         description: 'No Dem filed, margin ≤15pts (urgent)',
       },
       {
-        color: '#A78BFA',
+        color: '#F97316',
         pattern: 'priority-gap',
         label: 'Opportunity',
         description: 'No Dem filed, margin ≤10pts',
       },
       {
-        color: '#E5E7EB',
+        color: '#E2E8F0',
         label: 'Safe R',
         description: 'No Dem filed, margin >15pts',
       },
@@ -128,7 +130,7 @@ export const LENS_DEFINITIONS: Record<LensId, LensDefinition> = {
   /**
    * Opportunity Lens
    * Heat map showing strategic opportunity tiers
-   * WCAG AA compliant purple gradient with clear tier differentiation
+   * v4.0: Amber/orange heat gradient for clear tier differentiation
    */
   opportunity: {
     id: 'opportunity',
@@ -138,27 +140,27 @@ export const LENS_DEFINITIONS: Record<LensId, LensDefinition> = {
     icon: 'target',
     legendItems: [
       {
-        color: '#6D28D9',
+        color: '#EA580C',
         label: 'HOT',
         description: 'Top priority (≤5pt margin)',
       },
       {
-        color: '#8B5CF6',
+        color: '#F97316',
         label: 'WARM',
         description: 'Strong opportunity (6-10pt margin)',
       },
       {
-        color: '#C4B5FD',
+        color: '#FB923C',
         label: 'POSSIBLE',
         description: 'Worth watching (11-15pt margin)',
       },
       {
-        color: '#9CA3AF',
+        color: '#94A3B8',
         label: 'LONG_SHOT',
         description: 'Unlikely flip (>15pt margin)',
       },
       {
-        color: '#1E40AF',
+        color: '#3B82F6',
         label: 'DEFENSIVE',
         description: 'Dem-held seat to protect',
       },
@@ -169,7 +171,7 @@ export const LENS_DEFINITIONS: Record<LensId, LensDefinition> = {
   /**
    * Battleground Lens
    * Shows contested vs uncontested races
-   * WCAG AA compliant colors
+   * v4.0: Violet for contested, cartographic political colors
    */
   battleground: {
     id: 'battleground',
@@ -179,7 +181,7 @@ export const LENS_DEFINITIONS: Record<LensId, LensDefinition> = {
     icon: 'swords',
     legendItems: [
       {
-        color: '#7C3AED',
+        color: '#A855F7',
         label: 'Contested',
         description: 'Both D and R candidates filed',
       },
@@ -189,12 +191,12 @@ export const LENS_DEFINITIONS: Record<LensId, LensDefinition> = {
         description: 'Only Democratic candidate filed',
       },
       {
-        color: '#EF4444',
+        color: '#DC2626',
         label: 'Rep Only',
         description: 'Only Republican candidate filed',
       },
       {
-        color: '#E5E7EB',
+        color: '#E2E8F0',
         label: 'None Filed',
         description: 'No candidates have filed',
       },

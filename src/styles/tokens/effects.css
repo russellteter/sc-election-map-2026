@@ -1,8 +1,8 @@
 /**
- * SC Election Map 2026 - Effects Design Tokens
+ * Blue Intelligence Design System - Effects Tokens v4.0
  *
  * Visual effects including:
- * - Glassmorphic surfaces
+ * - Glassmorphic surfaces (neutral, no purple tint)
  * - Shadow hierarchy (5 levels)
  * - Transitions and animations
  * - Blur and overlay effects
@@ -12,59 +12,60 @@
   /* ================================================
      GLASSMORPHIC EFFECTS
      Frosted glass surfaces with backdrop blur
+     Now using neutral slate tints instead of purple
      ================================================ */
   --glass-bg: rgba(255, 255, 255, 0.95);
-  --glass-bg-secondary: rgba(246, 246, 254, 0.9);
+  --glass-bg-secondary: rgba(248, 250, 252, 0.9);  /* Slate-50 based */
   --glass-bg-elevated: rgba(255, 255, 255, 0.98);
   --glass-blur: 12px;
   --glass-blur-sm: 8px;
   --glass-blur-lg: 16px;
-  --glass-border: rgba(71, 57, 231, 0.08);
-  --glass-border-hover: rgba(71, 57, 231, 0.15);
+  --glass-border: rgba(15, 23, 42, 0.06);      /* Slate-900 based, subtle */
+  --glass-border-hover: rgba(15, 23, 42, 0.12);
 
-  /* Glassmorphic shadow - purple-tinted for cohesion */
+  /* Glassmorphic shadow - neutral slate tint */
   --glass-shadow:
-    0 4px 6px -1px rgba(71, 57, 231, 0.06),
-    0 2px 4px -1px rgba(71, 57, 231, 0.04);
+    0 4px 6px -1px rgba(15, 23, 42, 0.05),
+    0 2px 4px -1px rgba(15, 23, 42, 0.03);
   --glass-shadow-hover:
-    0 10px 15px -3px rgba(71, 57, 231, 0.08),
-    0 4px 6px -2px rgba(71, 57, 231, 0.05);
+    0 10px 15px -3px rgba(15, 23, 42, 0.07),
+    0 4px 6px -2px rgba(15, 23, 42, 0.04);
 
-  /* Glass gradient backgrounds */
+  /* Glass gradient backgrounds - clean neutral */
   --glass-gradient: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.95) 0%,
-    rgba(246, 246, 254, 0.9) 100%
+    rgba(248, 250, 252, 0.9) 100%
   );
   --glass-gradient-hover: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.98) 0%,
-    rgba(246, 246, 254, 0.95) 100%
+    rgba(248, 250, 252, 0.95) 100%
   );
 
   /* ================================================
      SHADOW HIERARCHY (5 levels)
-     Consistent elevation system
+     Consistent elevation system with neutral tint
      ================================================ */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06),
-               0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
-               0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08),
-               0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.10),
-               0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06),
+               0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.05),
+               0 2px 4px -1px rgba(15, 23, 42, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08),
+               0 4px 6px -2px rgba(15, 23, 42, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.10),
+               0 10px 10px -5px rgba(15, 23, 42, 0.04);
 
   /* Colored shadows for interactive elements */
-  --shadow-primary: 0 4px 14px -2px rgba(71, 57, 231, 0.25);
-  --shadow-dem: 0 4px 14px -2px rgba(59, 89, 152, 0.25);
-  --shadow-rep: 0 4px 14px -2px rgba(168, 68, 74, 0.25);
-  --shadow-success: 0 4px 14px -2px rgba(5, 150, 105, 0.25);
-  --shadow-danger: 0 4px 14px -2px rgba(220, 38, 38, 0.25);
+  --shadow-primary: 0 4px 14px -2px rgba(99, 102, 241, 0.25);  /* Brand indigo */
+  --shadow-dem: 0 4px 14px -2px rgba(30, 64, 175, 0.25);       /* Dem blue */
+  --shadow-rep: 0 4px 14px -2px rgba(153, 27, 27, 0.25);       /* Rep red */
+  --shadow-success: 0 4px 14px -2px rgba(34, 197, 94, 0.25);
+  --shadow-danger: 0 4px 14px -2px rgba(239, 68, 68, 0.25);
 
-  /* Focus ring shadow */
-  --shadow-focus: 0 0 0 3px rgba(71, 57, 231, 0.2);
+  /* Focus ring shadow - brand indigo */
+  --shadow-focus: 0 0 0 3px rgba(99, 102, 241, 0.2);
 
   /* ================================================
      ANIMATION TIMING TOKENS
