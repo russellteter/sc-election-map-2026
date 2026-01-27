@@ -98,13 +98,13 @@ export default function EndorsementDashboard({
           <div
             className="w-12 h-12 rounded-full flex items-center justify-center"
             style={{
-              background: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)',
-              border: '1px solid #6EE7B7',
+              background: 'linear-gradient(135deg, var(--success-50) 0%, var(--success-100) 100%)',
+              border: '1px solid var(--success-100)',
             }}
           >
             <svg
               className="w-6 h-6"
-              style={{ color: '#059669' }}
+              style={{ color: 'var(--accent-emerald)' }}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -130,13 +130,13 @@ export default function EndorsementDashboard({
           <div className="flex items-center gap-2">
             <span
               className="text-xs font-medium px-2 py-0.5 rounded-full"
-              style={{ background: '#DBEAFE', color: '#1D4ED8' }}
+              style={{ background: 'var(--dem-tint)', color: 'var(--info-700)' }}
             >
               D: {demWithEndorsements}
             </span>
             <span
               className="text-xs font-medium px-2 py-0.5 rounded-full"
-              style={{ background: '#FEF2F2', color: '#DC2626' }}
+              style={{ background: 'var(--error-50)', color: 'var(--status-at-risk)' }}
             >
               R: {repWithEndorsements}
             </span>
@@ -172,9 +172,9 @@ export default function EndorsementDashboard({
                   background:
                     filterParty === filter
                       ? filter === 'democratic'
-                        ? '#1D4ED8'
+                        ? 'var(--info-700)'
                         : filter === 'republican'
-                          ? '#DC2626'
+                          ? 'var(--status-at-risk)'
                           : 'var(--class-purple)'
                       : 'var(--card-bg-elevated)',
                   color: filterParty === filter ? 'white' : 'var(--text-muted)',
@@ -199,12 +199,12 @@ export default function EndorsementDashboard({
           {/* Candidates Without Endorsements */}
           <div
             className="rounded-lg p-3"
-            style={{ background: '#FEF3C7', border: '1px solid #FCD34D' }}
+            style={{ background: 'var(--warning-100)', border: '1px solid var(--warning-100)' }}
           >
             <div className="flex items-start gap-2">
               <svg
                 className="w-4 h-4 mt-0.5 flex-shrink-0"
-                style={{ color: '#B45309' }}
+                style={{ color: 'var(--warning-700)' }}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -217,10 +217,10 @@ export default function EndorsementDashboard({
                 />
               </svg>
               <div>
-                <p className="text-sm font-medium" style={{ color: '#B45309' }}>
+                <p className="text-sm font-medium" style={{ color: 'var(--warning-700)' }}>
                   Endorsement Gaps
                 </p>
-                <p className="text-xs" style={{ color: '#92400E' }}>
+                <p className="text-xs" style={{ color: 'var(--warning-700)' }}>
                   {endorsements.filter(
                     (e) =>
                       e.party.toLowerCase().includes('democrat') && e.endorsementCount === 0
@@ -259,8 +259,8 @@ function EndorsementRow({
           <span
             className="text-xs px-1.5 py-0.5 rounded"
             style={{
-              background: isDem ? '#DBEAFE' : '#FEF2F2',
-              color: isDem ? '#1D4ED8' : '#DC2626',
+              background: isDem ? 'var(--dem-tint)' : 'var(--error-50)',
+              color: isDem ? 'var(--info-700)' : 'var(--status-at-risk)',
             }}
           >
             {chamber === 'house' ? 'HD' : 'SD'}-{endorsement.district}
@@ -271,7 +271,7 @@ function EndorsementRow({
             <span
               key={idx}
               className="text-xs px-1.5 py-0.5 rounded"
-              style={{ background: '#ECFDF5', color: '#059669' }}
+              style={{ background: 'var(--success-50)', color: 'var(--accent-emerald)' }}
             >
               {endorser}
             </span>
@@ -285,7 +285,7 @@ function EndorsementRow({
       </div>
       <span
         className="text-lg font-display font-bold flex-shrink-0"
-        style={{ color: '#059669' }}
+        style={{ color: 'var(--accent-emerald)' }}
       >
         {endorsement.endorsementCount}
       </span>

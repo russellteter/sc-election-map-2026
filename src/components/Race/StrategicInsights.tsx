@@ -14,11 +14,11 @@ interface StrategicInsightsProps {
 
 // Tier colors for visual consistency
 const TIER_COLORS = {
-  HIGH_OPPORTUNITY: '#059669',
-  EMERGING: '#0891B2',
-  BUILD: '#D97706',
-  DEFENSIVE: '#3676eb',
-  NON_COMPETITIVE: '#9CA3AF',
+  HIGH_OPPORTUNITY: 'var(--accent-emerald)',
+  EMERGING: 'var(--accent-cyan)',
+  BUILD: 'var(--accent-amber)',
+  DEFENSIVE: 'var(--dem-lean)',
+  NON_COMPETITIVE: 'var(--slate-400)',
 } as const;
 
 /**
@@ -180,7 +180,7 @@ export default function StrategicInsights({
               <p
                 className="text-sm font-medium mt-0.5"
                 style={{
-                  color: (opportunity.metrics?.trendChange ?? 0) > 0 ? '#059669' : '#DC2626',
+                  color: (opportunity.metrics?.trendChange ?? 0) > 0 ? 'var(--accent-emerald)' : 'var(--status-at-risk)',
                 }}
               >
                 {(opportunity.metrics?.trendChange ?? 0) > 0 ? '+' : ''}
@@ -278,12 +278,12 @@ function FactorCard({ label, value, maxValue, description, isBinary }: FactorCar
           style={{
             color: isBinary
               ? value > 0
-                ? '#059669'
-                : '#DC2626'
+                ? 'var(--accent-emerald)'
+                : 'var(--status-at-risk)'
               : percentage >= 70
-              ? '#059669'
+              ? 'var(--accent-emerald)'
               : percentage >= 40
-              ? '#D97706'
+              ? 'var(--accent-amber)'
               : 'var(--text-muted)',
           }}
         >
@@ -300,7 +300,7 @@ function FactorCard({ label, value, maxValue, description, isBinary }: FactorCar
             className="h-full rounded-full"
             style={{
               width: `${percentage}%`,
-              background: percentage >= 70 ? '#059669' : percentage >= 40 ? '#D97706' : '#9CA3AF',
+              background: percentage >= 70 ? 'var(--accent-emerald)' : percentage >= 40 ? 'var(--accent-amber)' : 'var(--slate-400)',
             }}
           />
         </div>

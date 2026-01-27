@@ -16,34 +16,34 @@ function getTierStyles(tier: string): { bg: string; color: string; border: strin
   switch (tier) {
     case 'HIGH_OPPORTUNITY':
       return {
-        bg: 'rgba(5, 150, 105, 0.1)',
-        color: '#059669',
-        border: 'rgba(5, 150, 105, 0.3)',
+        bg: 'var(--success-50)',
+        color: 'var(--accent-emerald)',
+        border: 'var(--success-100)',
       };
     case 'EMERGING':
       return {
-        bg: 'rgba(8, 145, 178, 0.1)',
-        color: '#0891B2',
-        border: 'rgba(8, 145, 178, 0.3)',
+        bg: 'var(--info-50)',
+        color: 'var(--accent-cyan)',
+        border: 'var(--info-100)',
       };
     case 'BUILD':
       return {
-        bg: 'rgba(245, 158, 11, 0.1)',
-        color: '#D97706',
-        border: 'rgba(245, 158, 11, 0.3)',
+        bg: 'var(--warning-100)',
+        color: 'var(--accent-amber)',
+        border: 'var(--warning-100)',
       };
     case 'DEFENSIVE':
       return {
-        bg: 'rgba(54, 118, 235, 0.1)',
-        color: '#3676eb',
-        border: 'rgba(54, 118, 235, 0.3)',
+        bg: 'var(--dem-tint)',
+        color: 'var(--dem-lean)',
+        border: 'var(--info-100)',
       };
     case 'NON_COMPETITIVE':
     default:
       return {
-        bg: 'rgba(156, 163, 175, 0.1)',
-        color: '#6B7280',
-        border: 'rgba(156, 163, 175, 0.3)',
+        bg: 'var(--slate-100)',
+        color: 'var(--slate-500)',
+        border: 'var(--slate-200)',
       };
   }
 }
@@ -52,10 +52,10 @@ function getTierStyles(tier: string): { bg: string; color: string; border: strin
  * Get score color based on opportunity score value
  */
 function getScoreColor(score: number): string {
-  if (score >= 70) return '#059669'; // High opportunity - green
-  if (score >= 50) return '#0891B2'; // Emerging - cyan
-  if (score >= 30) return '#D97706'; // Build - amber
-  return '#6B7280'; // Non-competitive - gray
+  if (score >= 70) return 'var(--accent-emerald)'; // High opportunity - green
+  if (score >= 50) return 'var(--accent-cyan)'; // Emerging - cyan
+  if (score >= 30) return 'var(--accent-amber)'; // Build - amber
+  return 'var(--slate-500)'; // Non-competitive - gray
 }
 
 /**
@@ -87,15 +87,15 @@ export default function TableRow({ row, index, onClick }: TableRowProps) {
       {/* District */}
       <td className="strategic-table-td text-left">
         <div className="flex items-center gap-2">
-          <span className="font-medium hover:underline" style={{ color: '#2563EB' }}>
+          <span className="font-medium hover:underline" style={{ color: 'var(--party-dem)' }}>
             {row.districtId}
           </span>
           {row.needsCandidate && (
             <span
               className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase"
               style={{
-                background: 'rgba(245, 158, 11, 0.15)',
-                color: '#D97706',
+                background: 'var(--warning-100)',
+                color: 'var(--accent-amber)',
               }}
               title="Needs Democratic candidate"
             >
@@ -106,8 +106,8 @@ export default function TableRow({ row, index, onClick }: TableRowProps) {
             <span
               className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium"
               style={{
-                background: 'rgba(168, 85, 247, 0.1)',
-                color: '#7C3AED',
+                background: 'var(--class-purple-bg)',
+                color: 'var(--class-purple)',
               }}
               title="Open seat"
             >

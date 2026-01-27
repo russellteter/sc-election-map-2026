@@ -61,7 +61,7 @@ export default function KeyboardShortcutsHelp({ isOpen, onClose }: KeyboardShort
           <h2
             id="shortcuts-title"
             className="text-lg font-semibold"
-            style={{ color: 'var(--text-color, #0A1849)' }}
+            style={{ color: 'var(--text-primary)' }}
           >
             Keyboard Shortcuts
           </h2>
@@ -93,7 +93,7 @@ export default function KeyboardShortcutsHelp({ isOpen, onClose }: KeyboardShort
                   <div key={shortcut.key} className="flex items-center justify-between">
                     <span
                       className="text-sm"
-                      style={{ color: 'var(--text-color, #0A1849)' }}
+                      style={{ color: 'var(--text-primary)' }}
                     >
                       {shortcut.description}
                     </span>

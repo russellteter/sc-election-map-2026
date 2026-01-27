@@ -42,8 +42,9 @@ export default function EnrichedCandidateCard({
 
   const isDemocrat = candidate.party?.toLowerCase() === 'democratic';
   const isRepublican = candidate.party?.toLowerCase() === 'republican';
-  const partyColor = isDemocrat ? '#1D4ED8' : isRepublican ? '#DC2626' : '#6B7280';
-  const partyBg = isDemocrat ? '#DBEAFE' : isRepublican ? '#FEF2F2' : '#F3F4F6';
+  // Note: We use computed CSS variable values at runtime for party styling
+  const partyColor = isDemocrat ? 'var(--info-700)' : isRepublican ? 'var(--status-at-risk)' : 'var(--slate-500)';
+  const partyBg = isDemocrat ? 'var(--dem-tint)' : isRepublican ? 'var(--error-50)' : 'var(--slate-100)';
 
   // Format name (handle "Last, First" format)
   const formatName = (name: string) => {
@@ -122,7 +123,7 @@ export default function EnrichedCandidateCard({
                   {candidate.isIncumbent && (
                     <span
                       className="text-xs px-1.5 py-0.5 rounded"
-                      style={{ background: '#F3F4F6', color: '#6B7280' }}
+                      style={{ background: 'var(--slate-100)', color: 'var(--slate-500)' }}
                     >
                       Incumbent
                     </span>
@@ -166,7 +167,7 @@ export default function EnrichedCandidateCard({
                 {enrichedData.endorsements && enrichedData.endorsements.length > 0 && (
                   <span
                     className="text-xs px-2 py-0.5 rounded-full"
-                    style={{ background: '#ECFDF5', color: '#059669' }}
+                    style={{ background: 'var(--success-50)', color: 'var(--accent-emerald)' }}
                   >
                     {enrichedData.endorsements.length} endorsement
                     {enrichedData.endorsements.length !== 1 ? 's' : ''}
@@ -175,7 +176,7 @@ export default function EnrichedCandidateCard({
                 {enrichedData.campaignWebsite && (
                   <span
                     className="text-xs px-2 py-0.5 rounded-full"
-                    style={{ background: '#DBEAFE', color: '#1D4ED8' }}
+                    style={{ background: 'var(--dem-tint)', color: 'var(--info-700)' }}
                   >
                     Campaign Site
                   </span>
@@ -261,7 +262,7 @@ export default function EnrichedCandidateCard({
                   <span
                     key={idx}
                     className="text-xs px-2 py-1 rounded-full"
-                    style={{ background: '#ECFDF5', color: '#059669' }}
+                    style={{ background: 'var(--success-50)', color: 'var(--accent-emerald)' }}
                   >
                     {endorsement.endorser_name}
                   </span>

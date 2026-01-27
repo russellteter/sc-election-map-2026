@@ -57,11 +57,11 @@ export default function MobilizationCard({
   const getPotentialColor = (potential: string) => {
     switch (potential) {
       case 'high':
-        return { bg: '#ECFDF5', color: '#059669', border: '#6EE7B7' };
+        return { bg: 'var(--success-50)', color: 'var(--accent-emerald)', border: 'var(--success-100)' };
       case 'medium':
-        return { bg: '#FEF3C7', color: '#B45309', border: '#FCD34D' };
+        return { bg: 'var(--warning-100)', color: 'var(--warning-700)', border: 'var(--status-attention)' };
       default:
-        return { bg: '#F3F4F6', color: '#6B7280', border: '#D1D5DB' };
+        return { bg: 'var(--slate-100)', color: 'var(--slate-500)', border: 'var(--slate-300)' };
     }
   };
 
@@ -180,13 +180,13 @@ export default function MobilizationCard({
             label="Swing Voters"
             value={mobilization.swingVoters.count.toLocaleString()}
             sublabel={`${mobilization.swingVoters.percentage.toFixed(1)}% of district`}
-            color="#6B7280"
+            color="var(--slate-500)"
           />
           <MetricBox
             label="Vote Pickup"
             value={`+${mobilization.estimatedVotePickup.toLocaleString()}`}
             sublabel="at full mobilization"
-            color="#1D4ED8"
+            color="var(--party-dem)"
             highlight
           />
         </div>
@@ -205,13 +205,13 @@ export default function MobilizationCard({
                 <div
                   style={{
                     width: `${(mobilization.persuadable.leanDem / mobilization.persuadable.total) * 100}%`,
-                    background: '#60A5FA',
+                    background: 'var(--dem-lean)',
                   }}
                 />
                 <div
                   style={{
                     width: `${(mobilization.persuadable.leanRep / mobilization.persuadable.total) * 100}%`,
-                    background: '#F87171',
+                    background: 'var(--rep-light)',
                   }}
                 />
               </div>
@@ -233,7 +233,7 @@ export default function MobilizationCard({
         <div
           className="rounded-lg p-3"
           style={{
-            background: mobilization.lowTurnoutDems.potential === 'high' ? '#ECFDF5' : '#F9FAFB',
+            background: mobilization.lowTurnoutDems.potential === 'high' ? 'var(--success-50)' : 'var(--slate-50)',
             border: '1px solid var(--border-subtle)',
           }}
         >

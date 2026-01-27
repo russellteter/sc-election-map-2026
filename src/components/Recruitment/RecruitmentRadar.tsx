@@ -38,10 +38,10 @@ interface RecruitmentRadarProps {
  */
 function UrgencyBadge({ urgency }: { urgency: RecruitmentTarget['urgency'] }) {
   const config = {
-    critical: { bg: '#FEE2E2', color: '#B91C1C', label: 'CRITICAL' },
-    high: { bg: '#FEF3C7', color: '#92400E', label: 'HIGH' },
-    medium: { bg: '#DBEAFE', color: '#1E40AF', label: 'MEDIUM' },
-    low: { bg: '#F3F4F6', color: '#6B7280', label: 'LOW' },
+    critical: { bg: 'var(--rep-tint)', color: 'var(--error-700)', label: 'CRITICAL' },
+    high: { bg: 'var(--warning-100)', color: 'var(--warning-700)', label: 'HIGH' },
+    medium: { bg: 'var(--dem-tint)', color: 'var(--party-dem)', label: 'MEDIUM' },
+    low: { bg: 'var(--slate-100)', color: 'var(--slate-500)', label: 'LOW' },
   }[urgency];
 
   return (
@@ -73,9 +73,9 @@ function TargetCard({
       } ${target.urgency === 'critical' ? 'recruitment-pulse' : ''}`}
       style={{
         background: target.urgency === 'critical'
-          ? 'linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%)'
+          ? 'linear-gradient(135deg, var(--error-50) 0%, var(--rep-tint) 100%)'
           : 'var(--card-bg)',
-        borderColor: target.urgency === 'critical' ? '#FECACA' : 'var(--class-purple-light)',
+        borderColor: target.urgency === 'critical' ? 'var(--rep-light)' : 'var(--class-purple-light)',
       }}
       onClick={onClick}
       role={onClick ? 'button' : undefined}
@@ -88,7 +88,7 @@ function TargetCard({
             <span
               className="text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center"
               style={{
-                background: target.rank <= 3 ? '#1E40AF' : 'var(--class-purple-light)',
+                background: target.rank <= 3 ? 'var(--party-dem)' : 'var(--class-purple-light)',
                 color: target.rank <= 3 ? 'white' : 'var(--text-color)',
               }}
             >
@@ -124,7 +124,7 @@ function TargetCard({
           <div
             className="text-lg font-bold font-display"
             style={{
-              color: target.opportunityScore >= 70 ? '#059669' : target.opportunityScore >= 60 ? '#1E40AF' : '#6B7280',
+              color: target.opportunityScore >= 70 ? 'var(--accent-emerald)' : target.opportunityScore >= 60 ? 'var(--party-dem)' : 'var(--slate-500)',
             }}
           >
             {target.opportunityScore.toFixed(0)}
@@ -231,7 +231,7 @@ export default function RecruitmentRadar({
           {summary.criticalTargets > 0 && (
             <div
               className="px-3 py-1.5 rounded-lg text-sm font-semibold recruitment-pulse"
-              style={{ background: '#FEE2E2', color: '#B91C1C' }}
+              style={{ background: 'var(--rep-tint)', color: 'var(--error-700)' }}
             >
               {summary.criticalTargets} Critical
             </div>
@@ -254,7 +254,7 @@ export default function RecruitmentRadar({
             <div className="text-xs font-medium mb-1" style={{ color: 'var(--text-muted)' }}>
               Open Seats
             </div>
-            <div className="text-xl font-bold font-display" style={{ color: '#059669' }}>
+            <div className="text-xl font-bold font-display" style={{ color: 'var(--accent-emerald)' }}>
               {summary.openSeats}
             </div>
           </div>
@@ -262,7 +262,7 @@ export default function RecruitmentRadar({
             <div className="text-xs font-medium mb-1" style={{ color: 'var(--text-muted)' }}>
               Trending Dem
             </div>
-            <div className="text-xl font-bold font-display" style={{ color: '#1E40AF' }}>
+            <div className="text-xl font-bold font-display" style={{ color: 'var(--party-dem)' }}>
               {summary.trendingDemTargets}
             </div>
           </div>
@@ -284,9 +284,9 @@ export default function RecruitmentRadar({
         <div
           className="glass-surface px-4 py-2 border-b text-center text-sm"
           style={{
-            background: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)',
-            borderColor: '#F59E0B',
-            color: '#92400E',
+            background: 'linear-gradient(135deg, var(--warning-100) 0%, var(--warning-100) 100%)',
+            borderColor: 'var(--status-attention)',
+            color: 'var(--warning-700)',
           }}
         >
           Filing Deadline: <strong>{filingDeadline}</strong>
@@ -299,13 +299,13 @@ export default function RecruitmentRadar({
           <div className="text-center py-8">
             <div
               className="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center"
-              style={{ background: '#ECFDF5' }}
+              style={{ background: 'var(--success-50)' }}
             >
-              <svg className="w-6 h-6" fill="none" stroke="#059669" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="var(--accent-emerald)" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <p className="font-medium" style={{ color: '#059669' }}>
+            <p className="font-medium" style={{ color: 'var(--accent-emerald)' }}>
               All high-opportunity districts have candidates!
             </p>
             <p className="text-sm mt-1" style={{ color: 'var(--text-muted)' }}>

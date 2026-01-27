@@ -187,10 +187,10 @@ export default function RaceHero({
               className="text-lg font-bold font-display"
               style={{
                 color: (opportunity.metrics?.avgMargin ?? 100) < 10
-                  ? '#059669'
+                  ? 'var(--accent-emerald)'
                   : (opportunity.metrics?.avgMargin ?? 100) < 25
-                  ? '#D97706'
-                  : '#DC2626',
+                  ? 'var(--accent-amber)'
+                  : 'var(--status-at-risk)',
               }}
             >
               {(opportunity.metrics?.avgMargin ?? 100) < 100
@@ -231,13 +231,13 @@ function CandidateHeroCard({
   const borderColor = isDemocrat
     ? 'var(--class-purple)'
     : isRepublican
-    ? '#DC2626'
+    ? 'var(--status-at-risk)'
     : 'var(--class-purple-light)';
 
   const accentColor = isDemocrat
     ? 'var(--class-purple)'
     : isRepublican
-    ? '#DC2626'
+    ? 'var(--status-at-risk)'
     : 'var(--text-muted)';
 
   return (
