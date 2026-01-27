@@ -11,14 +11,20 @@ interface RaceHeroProps {
   opportunity: DistrictOpportunity | undefined;
 }
 
-// Tier badge variants
-const TIER_BADGE_VARIANTS = {
+// Tier badge variants - must match all possible tier values from opportunity.json
+const TIER_BADGE_VARIANTS: Record<string, 'excellent' | 'info' | 'attention' | 'neutral'> = {
+  // New tier naming from opportunity.json
+  HOT: 'excellent',
+  WARM: 'info',
+  POSSIBLE: 'attention',
+  LONG_SHOT: 'neutral',
+  DEFENSIVE: 'info',
+  // Legacy tier naming (for backwards compatibility)
   HIGH_OPPORTUNITY: 'excellent',
   EMERGING: 'info',
   BUILD: 'attention',
-  DEFENSIVE: 'info',
   NON_COMPETITIVE: 'neutral',
-} as const;
+};
 
 /**
  * RaceHero - Head-to-head display of incumbent vs challenger
@@ -169,7 +175,7 @@ export default function RaceHero({
 
           {/* Tier */}
           <Badge
-            variant={TIER_BADGE_VARIANTS[opportunity.tier] as 'excellent' | 'info' | 'attention' | 'neutral'}
+            variant={TIER_BADGE_VARIANTS[opportunity.tier] ?? 'neutral'}
             size="lg"
           >
             {opportunity.tierLabel}

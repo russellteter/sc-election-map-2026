@@ -12,14 +12,20 @@ interface StrategicInsightsProps {
   districtNumber?: number;
 }
 
-// Tier colors for visual consistency
-const TIER_COLORS = {
+// Tier colors for visual consistency - must match all possible tier values from opportunity.json
+const TIER_COLORS: Record<string, string> = {
+  // New tier naming from opportunity.json
+  HOT: 'var(--accent-emerald)',
+  WARM: 'var(--accent-cyan)',
+  POSSIBLE: 'var(--accent-amber)',
+  LONG_SHOT: 'var(--slate-400)',
+  DEFENSIVE: 'var(--dem-lean)',
+  // Legacy tier naming (for backwards compatibility)
   HIGH_OPPORTUNITY: 'var(--accent-emerald)',
   EMERGING: 'var(--accent-cyan)',
   BUILD: 'var(--accent-amber)',
-  DEFENSIVE: 'var(--dem-lean)',
   NON_COMPETITIVE: 'var(--slate-400)',
-} as const;
+};
 
 /**
  * StrategicInsights - Tier, flippability score, and key strategic facts
@@ -124,47 +130,49 @@ export default function StrategicInsights({
         </div>
       </div>
 
-      {/* Factor Breakdown */}
-      <div className="space-y-3">
-        <h4 className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>
-          Contributing Factors
-        </h4>
+      {/* Factor Breakdown - only show if factors data is available */}
+      {opportunity.factors && (
+        <div className="space-y-3">
+          <h4 className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>
+            Contributing Factors
+          </h4>
 
-        <div className="grid grid-cols-2 gap-3">
-          {/* Competitiveness Factor */}
-          <FactorCard
-            label="Competitiveness"
-            value={Math.round(opportunity.factors.competitiveness * 100)}
-            maxValue={100}
-            description="Historical race closeness"
-          />
+          <div className="grid grid-cols-2 gap-3">
+            {/* Competitiveness Factor */}
+            <FactorCard
+              label="Competitiveness"
+              value={Math.round((opportunity.factors.competitiveness ?? 0) * 100)}
+              maxValue={100}
+              description="Historical race closeness"
+            />
 
-          {/* Margin Trend Factor */}
-          <FactorCard
-            label="Margin Trend"
-            value={Math.round(opportunity.factors.marginTrend * 100)}
-            maxValue={100}
-            description="Dem margin improvement"
-          />
+            {/* Margin Trend Factor */}
+            <FactorCard
+              label="Margin Trend"
+              value={Math.round((opportunity.factors.marginTrend ?? 0) * 100)}
+              maxValue={100}
+              description="Dem margin improvement"
+            />
 
-          {/* Incumbency Factor */}
-          <FactorCard
-            label="Incumbency"
-            value={Math.round(opportunity.factors.incumbency * 100)}
-            maxValue={100}
-            description={opportunity.factors.openSeatBonus ? 'Open seat bonus' : 'Incumbent factor'}
-          />
+            {/* Incumbency Factor */}
+            <FactorCard
+              label="Incumbency"
+              value={Math.round((opportunity.factors.incumbency ?? 0) * 100)}
+              maxValue={100}
+              description={opportunity.factors.openSeatBonus ? 'Open seat bonus' : 'Incumbent factor'}
+            />
 
-          {/* Candidate Presence */}
-          <FactorCard
-            label="Dem Candidate"
-            value={opportunity.factors.candidatePresence > 0 ? 100 : 0}
-            maxValue={100}
-            description={opportunity.flags.hasDemocrat ? 'Candidate filed' : 'No candidate yet'}
-            isBinary
-          />
+            {/* Candidate Presence */}
+            <FactorCard
+              label="Dem Candidate"
+              value={(opportunity.factors.candidatePresence ?? 0) > 0 ? 100 : 0}
+              maxValue={100}
+              description={opportunity.flags.hasDemocrat ? 'Candidate filed' : 'No candidate yet'}
+              isBinary
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Trend Sparkline */}
       {sparklineValues.length >= 2 && (
@@ -205,35 +213,7 @@ export default function StrategicInsights({
         <h4 className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--text-muted)' }}>
           Key Indicators
         </h4>
-        <div className="flex flex-wrap gap-2">
-          {opportunity.flags.openSeat && (
-            <FlagBadge label="Open Seat" variant="success" icon="star" />
-          )}
-          {opportunity.flags.needsCandidate && (
-            <FlagBadge label="Needs Candidate" variant="warning" icon="alert" />
-          )}
-          {opportunity.flags.trendingDem && (
-            <FlagBadge label="Trending Democratic" variant="success" icon="trending" />
-          )}
-          {opportunity.flags.defensive && (
-            <FlagBadge label="Defensive Seat" variant="info" icon="shield" />
-          )}
-          {opportunity.flags.hasDemocrat && (
-            <FlagBadge label="Democrat Filed" variant="success" icon="check" />
-          )}
-          {!opportunity.flags.openSeat &&
-            !opportunity.flags.needsCandidate &&
-            !opportunity.flags.trendingDem &&
-            !opportunity.flags.defensive &&
-            !opportunity.flags.hasDemocrat && (
-              <span
-                className="text-sm"
-                style={{ color: 'var(--text-muted)' }}
-              >
-                No special indicators
-              </span>
-            )}
-        </div>
+        <StrategicFlagsList flags={opportunity.flags} />
       </div>
 
       {/* Voter Intelligence - Mobilization Card (Phase 2) */}
@@ -361,5 +341,51 @@ function FlagBadge({ label, variant, icon }: FlagBadgeProps) {
       {icons[icon]}
       {label}
     </span>
+  );
+}
+
+// Extended flags interface to handle both naming conventions from JSON
+interface ExtendedFlags {
+  needsCandidate?: boolean;
+  hasDemocrat?: boolean;
+  hasRepublican?: boolean;
+  openSeat?: boolean;
+  isOpenSeat?: boolean;
+  defensive?: boolean;
+  isDefensive?: boolean;
+  trendingDem?: boolean;
+}
+
+function StrategicFlagsList({ flags }: { flags: ExtendedFlags }) {
+  const isOpenSeat = flags.openSeat || flags.isOpenSeat;
+  const isDefensive = flags.defensive || flags.isDefensive;
+  const hasAnyFlag = isOpenSeat || flags.needsCandidate || flags.trendingDem || isDefensive || flags.hasDemocrat;
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      {isOpenSeat && (
+        <FlagBadge label="Open Seat" variant="success" icon="star" />
+      )}
+      {flags.needsCandidate && (
+        <FlagBadge label="Needs Candidate" variant="warning" icon="alert" />
+      )}
+      {flags.trendingDem && (
+        <FlagBadge label="Trending Democratic" variant="success" icon="trending" />
+      )}
+      {isDefensive && (
+        <FlagBadge label="Defensive Seat" variant="info" icon="shield" />
+      )}
+      {flags.hasDemocrat && (
+        <FlagBadge label="Democrat Filed" variant="success" icon="check" />
+      )}
+      {!hasAnyFlag && (
+        <span
+          className="text-sm"
+          style={{ color: 'var(--text-muted)' }}
+        >
+          No special indicators
+        </span>
+      )}
+    </div>
   );
 }
