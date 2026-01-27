@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-26T08:21:44.725356+00:00",
+  "lastUpdated": "2026-01-27T11:28:42.612208+00:00",
   "thresholds": {
     "HOT": 5,
     "WARM": 10,
@@ -20,7 +20,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Bill Whitmire",
+        "name": "William R. &quot;Bill&quot; Whitmire",
         "party": "Republican"
       }
     },
@@ -51,7 +51,7 @@
       "flags": {
         "needsCandidate": false,
         "hasDemocrat": false,
-        "hasRepublican": false,
+        "hasRepublican": true,
         "isDefensive": false,
         "isOpenSeat": false
       },
@@ -146,7 +146,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Don Chapman",
+        "name": "Donald G. &quot;Don&quot; Chapman",
         "party": "Republican"
       }
     },
@@ -308,7 +308,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Mike Burns",
+        "name": "James Mikell &quot;Mike&quot; Burns",
         "party": "Republican"
       }
     },
@@ -326,7 +326,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "T. Alan Morgan Jr.",
+        "name": "T. Alan Morgan, Jr.",
         "party": "Republican"
       }
     },
@@ -506,7 +506,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Chris Huff",
+        "name": "William C. &quot;Chris&quot; Huff",
         "party": "Republican"
       }
     },
@@ -560,7 +560,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Rosalyn Henderson-Myers",
+        "name": "Rosalyn D. Henderson-Myers, Ph.D.",
         "party": "Democratic"
       }
     },
@@ -632,7 +632,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Bill Chumley",
+        "name": "William M. &quot;Bill&quot; Chumley",
         "party": "Republican"
       }
     },
@@ -650,7 +650,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Rob Harris",
+        "name": "Robert J. &quot;Rob&quot; Harris",
         "party": "Republican"
       }
     },
@@ -704,7 +704,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Cal Forrest Jr.",
+        "name": "Cally R. &quot;Cal&quot; Forrest, Jr.",
         "party": "Republican"
       }
     },
@@ -722,7 +722,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Joe White",
+        "name": "Joseph S. &quot;Joe&quot; White",
         "party": "Republican"
       }
     },
@@ -758,7 +758,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Doug Gilliam",
+        "name": "Leon D. &quot;Doug&quot; Gilliam",
         "party": "Republican"
       }
     },
@@ -776,7 +776,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Randy Ligon",
+        "name": "Thomas R. &quot;Randy&quot; Ligon",
         "party": "Republican"
       }
     },
@@ -794,7 +794,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Mike Neese",
+        "name": "James M. &quot;Mike&quot; Neese",
         "party": "Republican"
       }
     },
@@ -848,7 +848,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Tommy Pope",
+        "name": "Thomas E. &quot;Tommy&quot; Pope",
         "party": "Republican"
       }
     },
@@ -938,7 +938,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Jermaine L. Johnson Sr.",
+        "name": "Jermaine L. Johnson, Sr.",
         "party": "Democratic"
       }
     },
@@ -956,7 +956,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Richie Yow",
+        "name": "Richard L. &quot;Richie&quot; Yow",
         "party": "Republican"
       }
     },
@@ -992,7 +992,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Jackie Hayes",
+        "name": "Jackie E. &quot;Coach&quot; Hayes",
         "party": "Democratic"
       }
     },
@@ -1010,7 +1010,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Tim McGinnis",
+        "name": "Timothy A. &quot;Tim&quot; McGinnis",
         "party": "Republican"
       }
     },
@@ -1046,7 +1046,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Jeff Johnson",
+        "name": "Jeffrey E. &quot;Jeff&quot; Johnson",
         "party": "Republican"
       }
     },
@@ -1136,7 +1136,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Jay Jordan Jr.",
+        "name": "Wallace H. &quot;Jay&quot; Jordan, Jr.",
         "party": "Republican"
       }
     },
@@ -1208,7 +1208,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Murrell Smith Jr.",
+        "name": "G. Murrell Smith, Jr.",
         "party": "Republican"
       }
     },
@@ -1316,7 +1316,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Chris Hart",
+        "name": "Christopher R. &quot;Chris&quot; Hart",
         "party": "Democratic"
       }
     },
@@ -1334,7 +1334,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Todd Rutherford",
+        "name": "J. Todd Rutherford",
         "party": "Democratic"
       }
     },
@@ -1478,7 +1478,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Bill Clyburn",
+        "name": "William &quot;Bill&quot; Clyburn",
         "party": "Democratic"
       }
     },
@@ -1496,7 +1496,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Bill Hixon",
+        "name": "William M. &quot;Bill&quot; Hixon",
         "party": "Republican"
       }
     },
@@ -1532,7 +1532,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Jay Kilmartin",
+        "name": "John Gregory &quot;Jay&quot; Kilmartin",
         "party": "Republican"
       }
     },
@@ -1581,7 +1581,7 @@
       "flags": {
         "needsCandidate": false,
         "hasDemocrat": false,
-        "hasRepublican": false,
+        "hasRepublican": true,
         "isDefensive": false,
         "isOpenSeat": false
       },
@@ -1604,7 +1604,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Micah Caskey IV",
+        "name": "Micajah P. &quot;Micah&quot; Caskey IV",
         "party": "Republican"
       }
     },
@@ -1634,7 +1634,7 @@
       "margin": 3.2,
       "flags": {
         "needsCandidate": false,
-        "hasDemocrat": false,
+        "hasDemocrat": true,
         "hasRepublican": true,
         "isDefensive": true,
         "isOpenSeat": false
@@ -1676,7 +1676,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Jerry N. Govan Jr.",
+        "name": "Jerry N. Govan, Jr.",
         "party": "Democratic"
       }
     },
@@ -1730,7 +1730,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Ryan McCabe Jr.",
+        "name": "Donald Ryan McCabe, Jr.",
         "party": "Republican"
       }
     },
@@ -1763,11 +1763,11 @@
         "hasDemocrat": true,
         "hasRepublican": true,
         "isDefensive": false,
-        "isOpenSeat": false
+        "isOpenSeat": true
       },
       "incumbent": {
-        "name": "Gregory Ford",
-        "party": "Republican"
+        "name": "",
+        "party": ""
       }
     },
     "99": {
@@ -1784,7 +1784,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Mark Smith",
+        "name": "Marvin &quot;Mark&quot; Smith",
         "party": "Republican"
       }
     },
@@ -1910,7 +1910,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Val Guest Jr.",
+        "name": "Thomas Duval &quot;Val&quot; Guest, Jr.",
         "party": "Republican"
       }
     },
@@ -1928,7 +1928,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Case Brittain Jr.",
+        "name": "Thomas C. &quot;Case&quot; Brittain, Jr.",
         "party": "Republican"
       }
     },
@@ -1982,7 +1982,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Tom Hartnett Jr.",
+        "name": "Thomas F. &quot;Tom&quot; Hartnett, Jr.",
         "party": "Republican"
       }
     },
@@ -2018,7 +2018,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Joe Bustos",
+        "name": "Joseph M. &quot;Joe&quot; Bustos",
         "party": "Republican"
       }
     },
@@ -2054,7 +2054,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Gary S. Brewer Jr.",
+        "name": "Gary S. Brewer, Jr.",
         "party": "Republican"
       }
     },
@@ -2072,7 +2072,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Spencer Wetmore",
+        "name": "Elizabeth &quot;Spencer&quot; Wetmore",
         "party": "Democratic"
       }
     },
@@ -2126,7 +2126,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Bill Herbkersman",
+        "name": "William G. &quot;Bill&quot; Herbkersman",
         "party": "Republican"
       }
     },
@@ -2144,7 +2144,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Leon Stavrinakis",
+        "name": "Leonidas E. &quot;Leon&quot; Stavrinakis",
         "party": "Democratic"
       }
     },
@@ -2162,7 +2162,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Weston Newton",
+        "name": "Wm. Weston J. Newton",
         "party": "Republican"
       }
     },
@@ -2180,7 +2180,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Michael F. Rivers Sr.",
+        "name": "Michael F. Rivers, Sr.",
         "party": "Democratic"
       }
     },
@@ -2198,7 +2198,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Bill Hager",
+        "name": "William &quot;Bill&quot; Hager",
         "party": "Republican"
       }
     },
@@ -2216,7 +2216,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Jeff Bradley",
+        "name": "Jeffrey A. &quot;Jeff&quot; Bradley",
         "party": "Republican"
       }
     },
@@ -2326,7 +2326,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Thomas D. Corbin",
+        "name": "Thomas D. &quot;Tom&quot; Corbin",
         "party": "Republican"
       }
     },
@@ -2398,7 +2398,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Daniel B. Verdin III",
+        "name": "Daniel B. &quot;Danny&quot; Verdin III",
         "party": "Republican"
       }
     },
@@ -2488,7 +2488,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Harvey S. Peeler Jr.",
+        "name": "Harvey S. Peeler, Jr.",
         "party": "Republican"
       }
     },
@@ -2668,7 +2668,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Tom Young Jr.",
+        "name": "Tom Young, Jr.",
         "party": "Republican"
       }
     },
@@ -2902,7 +2902,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Lawrence K. Grooms",
+        "name": "Lawrence K. &quot;Larry&quot; Grooms",
         "party": "Republican"
       }
     },
@@ -2974,7 +2974,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "Matthew W. Leber",
+        "name": "Matthew W. &quot;Matt&quot; Leber",
         "party": "Republican"
       }
     },
@@ -3010,7 +3010,7 @@
         "isOpenSeat": false
       },
       "incumbent": {
-        "name": "George E. Campsen III",
+        "name": "George E. &quot;Chip&quot; Campsen III",
         "party": "Republican"
       }
     },
