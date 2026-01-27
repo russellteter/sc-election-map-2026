@@ -4,13 +4,13 @@ import Link from 'next/link';
 import type { DistrictOpportunity } from '@/types/schema';
 import { Badge } from '@/components/ui';
 
-// Tier colors matching the map
+// Tier colors matching the map - using CSS variables
 const TIER_COLORS = {
-  HIGH_OPPORTUNITY: '#059669',
-  EMERGING: '#0891B2',
-  BUILD: '#D97706',
-  DEFENSIVE: '#3676eb',
-  NON_COMPETITIVE: '#9CA3AF',
+  HIGH_OPPORTUNITY: 'var(--accent-emerald)',
+  EMERGING: 'var(--accent-cyan)',
+  BUILD: 'var(--accent-amber)',
+  DEFENSIVE: 'var(--dem-lean)',
+  NON_COMPETITIVE: 'var(--slate-400)',
 } as const;
 
 // Badge variant mapping
@@ -104,9 +104,9 @@ export default function OpportunityCard({
             style={{
               color:
                 trendDirection === 'up'
-                  ? '#059669'
+                  ? 'var(--accent-emerald)'
                   : trendDirection === 'down'
-                  ? '#DC2626'
+                  ? 'var(--status-at-risk)'
                   : 'var(--text-muted)',
             }}
           >
@@ -180,7 +180,7 @@ export default function OpportunityCard({
           )}
         </div>
         <Link
-          href={`/?chamber=${chamber}&district=${district.districtNumber}`}
+          href={`/sc?chamber=${chamber}&district=${district.districtNumber}`}
           className="flex-shrink-0 ml-3 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:opacity-90 active:scale-95"
           style={{
             background: 'var(--class-purple)',

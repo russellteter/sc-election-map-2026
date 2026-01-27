@@ -267,7 +267,7 @@ function DistrictCard({ chamber, districtNumber, candidates, incumbent }: Distri
       {/* View on Map Link */}
       <div className="mt-4 pt-4" style={{ borderTop: '1px solid var(--border-subtle)' }}>
         <Link
-          href={`/?chamber=${chamber}&district=${districtNumber}`}
+          href={`/sc?chamber=${chamber}&district=${districtNumber}`}
           className="inline-flex items-center gap-2 text-sm font-medium transition-colors hover:opacity-80"
           style={{ color: linkColor }}
         >

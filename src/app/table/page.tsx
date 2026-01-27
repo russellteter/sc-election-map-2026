@@ -159,7 +159,7 @@ export default function TablePage() {
   // Handle row click - navigate to map with district selected
   const handleRowClick = useCallback(
     (row: StrategicTableRow) => {
-      router.push(`/?chamber=${row.chamber}&district=${row.districtNumber}`);
+      router.push(`/sc?chamber=${row.chamber}&district=${row.districtNumber}`);
     },
     [router]
   );

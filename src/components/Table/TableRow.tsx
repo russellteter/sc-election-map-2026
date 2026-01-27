@@ -205,7 +205,7 @@ export default function TableRow({ row, index, onClick }: TableRowProps) {
         <div className="flex items-center justify-center gap-2">
           {/* View on Map button */}
           <Link
-            href={`/?chamber=${row.chamber}&district=${row.districtNumber}`}
+            href={`/sc?chamber=${row.chamber}&district=${row.districtNumber}`}
             className="p-1.5 rounded-lg transition-all hover:bg-blue-50 focus-ring"
             style={{
               border: '1px solid var(--class-purple-light, #DAD7FA)',
