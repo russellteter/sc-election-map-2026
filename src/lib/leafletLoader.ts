@@ -74,6 +74,9 @@ export function getStateMapConfig(stateCode: string): StateMapConfig {
 export const SC_BOUNDS: LatLngBoundsExpression = STATE_MAP_CONFIGS.sc.bounds;
 export const SC_CENTER: LatLngExpression = STATE_MAP_CONFIGS.sc.center;
 
+// Type-safe raw bounds as tuple for calculations (e.g., maxBounds padding)
+export const SC_BOUNDS_RAW: [[number, number], [number, number]] = [[32.0346, -83.3533], [35.2155, -78.5410]];
+
 // Default zoom levels
 export const DEFAULT_ZOOM = 7;
 export const MIN_ZOOM = 6;
