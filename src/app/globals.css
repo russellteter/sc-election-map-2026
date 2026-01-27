@@ -14,6 +14,7 @@
 :root {
   --background: #F8FAFC;           /* v4.0: Neutral slate background */
   --foreground: #1E293B;           /* v4.0: Slate-800 text */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 @theme inline {
@@ -5991,4 +5992,259 @@ textarea:focus-visible,
     font-size: 0.625rem;
     padding: 3px 6px;
   }
+}
+
+/* ================================================
+   PHASE 25: RESIZABLE PANEL & ENHANCED SIDE PANEL
+   ================================================ */
+
+/* Resize Handle */
+.resize-handle {
+  width: 12px;
+  cursor: col-resize;
+  position: relative;
+  flex-shrink: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-secondary);
+  border-right: 1px solid var(--class-purple-light);
+  transition: background 150ms ease, width 150ms ease;
+}
+
+.resize-handle:hover {
+  background: var(--class-purple-bg);
+  width: 14px;
+}
+
+.resize-handle:active,
+.resize-handle[data-resizing="true"] {
+  background: color-mix(in srgb, var(--brand-primary) 10%, var(--class-purple-bg));
+  width: 14px;
+}
+
+/* Grip dots pattern: 2 columns x 3 rows */
+.resize-grip {
+  display: grid;
+  grid-template-columns: repeat(2, 3px);
+  grid-template-rows: repeat(3, 3px);
+  gap: 3px;
+  opacity: 0.35;
+  transition: opacity 150ms ease;
+}
+
+.resize-handle:hover .resize-grip {
+  opacity: 0.7;
+}
+
+.resize-handle:active .resize-grip,
+.resize-handle[data-resizing="true"] .resize-grip {
+  opacity: 1;
+}
+
+.resize-grip-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--brand-primary);
+  transition: background 150ms ease;
+}
+
+.resize-handle:active .resize-grip-dot,
+.resize-handle[data-resizing="true"] .resize-grip-dot {
+  background: var(--brand-primary);
+  box-shadow: 0 0 4px var(--brand-primary);
+}
+
+/* Collapsible Section */
+.collapsible-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms var(--ease-out-quart);
+}
+
+.collapsible-content[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.collapsible-content > div {
+  overflow: hidden;
+}
+
+.collapsible-inner {
+  opacity: 0;
+  transition: opacity 200ms ease 0ms;
+}
+
+.collapsible-content[data-open="true"] .collapsible-inner {
+  opacity: 1;
+  transition: opacity 200ms ease 100ms;
+}
+
+.collapsible-chevron {
+  transition: transform 300ms var(--ease-out-quart);
+}
+
+.collapsible-chevron[data-open="true"] {
+  transform: rotate(180deg);
+}
+
+/* Side Panel Custom Scrollbar */
+.side-panel-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.side-panel-scroll::-webkit-scrollbar-track {
+  background: var(--class-purple-light);
+}
+
+.side-panel-scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--brand-primary) 30%, transparent);
+  border-radius: 2px;
+}
+
+/* Scroll Fade Indicators */
+.side-panel-scroll-wrapper {
+  position: relative;
+}
+
+.side-panel-scroll-wrapper::before,
+.side-panel-scroll-wrapper::after {
+  content: '';
+  position: sticky;
+  display: block;
+  height: 32px;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.side-panel-scroll-wrapper::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--glass-bg, rgba(255,255,255,0.95)), transparent);
+}
+
+.side-panel-scroll-wrapper::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--glass-bg, rgba(255,255,255,0.95)), transparent);
+  margin-top: -32px;
+}
+
+.side-panel-scroll-wrapper[data-scroll-top="true"]::before {
+  opacity: 1;
+}
+
+.side-panel-scroll-wrapper[data-scroll-bottom="true"]::after {
+  opacity: 1;
+}
+
+/* Panel Staggered Entrance Animation */
+.panel-entrance > * {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: panel-slide-in 250ms var(--ease-out-quart) forwards;
+}
+
+.panel-entrance > *:nth-child(1) { animation-delay: 0ms; }
+.panel-entrance > *:nth-child(2) { animation-delay: 40ms; }
+.panel-entrance > *:nth-child(3) { animation-delay: 80ms; }
+.panel-entrance > *:nth-child(4) { animation-delay: 120ms; }
+
+@keyframes panel-slide-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Election History Bar Animation */
+.election-bar {
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: bar-grow 400ms var(--ease-out-quart) forwards;
+}
+
+.election-bar:nth-child(1) { animation-delay: 0ms; }
+.election-bar:nth-child(2) { animation-delay: 60ms; }
+.election-bar:nth-child(3) { animation-delay: 120ms; }
+
+@keyframes bar-grow {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.election-bar-label {
+  opacity: 0;
+  animation: fade-in 120ms ease forwards;
+  animation-delay: 280ms;
+}
+
+@keyframes fade-in {
+  to { opacity: 1; }
+}
+
+/* Pulse animation for "Needs Candidate" flag */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* Side Panel Footer Ghost Link */
+.side-panel-footer-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.side-panel-footer-link:hover {
+  color: var(--text-color);
+}
+
+.side-panel-footer-link .arrow {
+  display: inline-block;
+  transition: transform 200ms ease;
+}
+
+.side-panel-footer-link:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Container Queries for Side Panel Content */
+.side-panel-body {
+  container-type: inline-size;
+}
+
+/* Tier 1: Ultra-narrow (240-280px) */
+@container (max-width: 280px) {
+  .election-bar-label { display: none; }
+  .factor-grid { grid-template-columns: 1fr; }
+  .flag-label { display: none; }
+  .election-year-label { width: 24px; font-size: 9px; }
+}
+
+/* Tier 2: Narrow (281-340px) */
+@container (max-width: 340px) {
+  .election-bar-name { display: none; }
+  .factor-card-desc { display: none; }
+  .flag-label { font-size: 9px; }
+}
+
+/* Tier 4: Wide (481px+) */
+@container (min-width: 481px) {
+  .election-bar-expanded { display: flex; }
+  .factor-card-desc { display: block; }
 }

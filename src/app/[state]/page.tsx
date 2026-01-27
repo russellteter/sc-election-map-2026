@@ -8,6 +8,7 @@ import ChamberToggle from '@/components/Map/ChamberToggle';
 import ShareButton from '@/components/Map/ShareButton';
 import ZoomLevelContent, { useZoomLevel, ZOOM_THRESHOLDS } from '@/components/Map/ZoomLevelContent';
 import SidePanel from '@/components/Dashboard/SidePanel';
+import { useResizablePanel } from '@/hooks/useResizablePanel';
 import SearchBar from '@/components/Search/SearchBar';
 import AddressSearch from '@/components/Search/AddressSearch';
 import FilterPanel, { FilterState, defaultFilters } from '@/components/Search/FilterPanel';
@@ -46,6 +47,9 @@ export default function StateDashboard() {
 
   // Lens state with URL sync
   const { activeLens, setLens, isTransitioning } = useLens();
+
+  // Resizable side panel (desktop only)
+  const { width: panelWidth, isResizing, handleMouseDown: handleResizeMouseDown, handleTouchStart: handleResizeTouchStart } = useResizablePanel();
 
   // Map state with URL sync for deep-linking
   const { mapState, setMapState } = useMapState({ debounceMs: 300 });
@@ -879,7 +883,43 @@ export default function StateDashboard() {
         </div>
 
         <div
-          className="w-full lg:w-96 glass-surface border-l animate-entrance stagger-5"
+          className={`hidden lg:flex animate-entrance stagger-5 ${isResizing ? 'pointer-events-none-children' : ''}`}
+          style={{ width: panelWidth, flexShrink: 0 }}
+        >
+          <div
+            className="resize-handle"
+            data-resizing={isResizing}
+            onMouseDown={handleResizeMouseDown}
+            onTouchStart={handleResizeTouchStart}
+            title="Drag to resize panel"
+          >
+            <div className="resize-grip">
+              <span className="resize-grip-dot" />
+              <span className="resize-grip-dot" />
+              <span className="resize-grip-dot" />
+              <span className="resize-grip-dot" />
+              <span className="resize-grip-dot" />
+              <span className="resize-grip-dot" />
+            </div>
+          </div>
+          <div
+            className="flex-1 min-w-0 glass-surface border-l overflow-hidden"
+            style={{ borderColor: 'var(--class-purple-light)' }}
+          >
+            <SidePanel
+              chamber={chamber}
+              district={selectedDistrictData}
+              electionHistory={selectedDistrictElections}
+              onClose={() => setSelectedDistrict(null)}
+              showRepublicanData={filters.showRepublicanData}
+              republicanDataMode={filters.republicanDataMode}
+              filters={filters}
+              opportunityData={selectedDistrict && chamberOpportunityData ? chamberOpportunityData[String(selectedDistrict)] : undefined}
+            />
+          </div>
+        </div>
+        {/* Mobile: full-width panel (no resize) */}
+        <div className="w-full lg:hidden glass-surface border-l animate-entrance stagger-5"
           style={{ borderColor: 'var(--class-purple-light)' }}
         >
           <SidePanel
@@ -890,6 +930,7 @@ export default function StateDashboard() {
             showRepublicanData={filters.showRepublicanData}
             republicanDataMode={filters.republicanDataMode}
             filters={filters}
+            opportunityData={selectedDistrict && chamberOpportunityData ? chamberOpportunityData[String(selectedDistrict)] : undefined}
           />
         </div>
       </div>
