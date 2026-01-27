@@ -137,7 +137,7 @@ export default function NavigableDistrictMap({
     : false;
 
   return (
-    <div className={`navigable-district-map relative ${className || ''}`}>
+    <div className={`navigable-district-map relative h-full ${className || ''}`}>
       {/* Wrap HybridMapContainer */}
       <HybridMapContainer
         initialChamber={chamber}
