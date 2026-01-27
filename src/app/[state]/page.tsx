@@ -667,8 +667,8 @@ export default function StateDashboard() {
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col lg:flex-row">
-        <div className="flex-1 flex flex-col p-4">
+      <div className="flex-1 flex flex-col lg:flex-row h-0">
+        <div className="flex-1 flex flex-col p-4 h-0 min-h-0">
           {lensKpis.length > 0 && (
             <ZoomLevelContent
               currentZoom={currentZoom}
@@ -752,7 +752,7 @@ export default function StateDashboard() {
           <div
             ref={mapContainerRef}
             id="map-container"
-            className={`flex-1 map-container min-h-[400px] animate-entrance stagger-3 relative ${isTransitioning ? 'lens-transitioning' : ''}`}
+            className={`flex-1 h-0 min-h-0 map-container animate-entrance stagger-3 relative ${isTransitioning ? 'lens-transitioning' : ''}`}
             role="region"
             aria-label="Interactive district map - double-click a district to view details"
           >
