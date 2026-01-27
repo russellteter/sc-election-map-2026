@@ -186,15 +186,15 @@ export default function RaceHero({
             <span
               className="text-lg font-bold font-display"
               style={{
-                color: opportunity.metrics.avgMargin < 10
+                color: (opportunity.metrics?.avgMargin ?? 100) < 10
                   ? '#059669'
-                  : opportunity.metrics.avgMargin < 25
+                  : (opportunity.metrics?.avgMargin ?? 100) < 25
                   ? '#D97706'
                   : '#DC2626',
               }}
             >
-              {opportunity.metrics.avgMargin < 100
-                ? `${opportunity.metrics.avgMargin.toFixed(1)}%`
+              {(opportunity.metrics?.avgMargin ?? 100) < 100
+                ? `${(opportunity.metrics?.avgMargin ?? 0).toFixed(1)}%`
                 : 'Uncontested'}
             </span>
           </div>

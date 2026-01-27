@@ -43,10 +43,11 @@ export default function OpportunityCard({
   animationDelay = 0,
 }: OpportunityCardProps) {
   const tierColor = TIER_COLORS[district.tier];
+  const trendChange = district.metrics?.trendChange ?? 0;
   const trendDirection =
-    district.metrics.trendChange > 0
+    trendChange > 0
       ? 'up'
-      : district.metrics.trendChange < 0
+      : trendChange < 0
       ? 'down'
       : 'stable';
 
@@ -112,7 +113,7 @@ export default function OpportunityCard({
             <span className="text-lg">
               {trendDirection === 'up' ? '↑' : trendDirection === 'down' ? '↓' : '→'}
             </span>
-            {Math.abs(district.metrics.trendChange).toFixed(1)}%
+            {Math.abs(trendChange).toFixed(1)}%
           </p>
         </div>
 
@@ -125,7 +126,7 @@ export default function OpportunityCard({
             className="font-medium text-sm"
             style={{ color: 'var(--text-color)' }}
           >
-            {district.metrics.competitivenessScore}%
+            {district.metrics?.competitivenessScore ?? 0}%
           </p>
         </div>
       </div>

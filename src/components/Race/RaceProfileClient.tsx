@@ -445,7 +445,7 @@ function ErrorState({ message }: { message: string }) {
       <p className="mb-6" style={{ color: 'var(--text-muted)' }}>
         {message}
       </p>
-      <Link href="/">
+      <Link href="/sc">
         <Button variant="primary">Return to Map</Button>
       </Link>
     </div>
@@ -493,10 +493,10 @@ function NotFoundState({
           : 'The requested district could not be found.'}
       </p>
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
-        <Link href="/">
+        <Link href="/sc">
           <Button variant="primary">View Map</Button>
         </Link>
-        <Link href="/opportunities">
+        <Link href="/sc/opportunities">
           <Button variant="secondary">Browse Opportunities</Button>
         </Link>
       </div>

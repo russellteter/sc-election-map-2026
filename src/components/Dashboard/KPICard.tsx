@@ -16,38 +16,21 @@ interface KPICardProps {
   animationDelay?: number;
 }
 
-const variantStyles: Record<KPIVariant, {
-  valueColor: string;
-  accentColor: string;
-}> = {
-  democrat: {
-    valueColor: 'var(--party-dem)',
-    accentColor: 'var(--party-dem)',
-  },
-  republican: {
-    valueColor: 'var(--party-rep)',
-    accentColor: 'var(--party-rep)',
-  },
-  contested: {
-    valueColor: 'var(--status-excellent)',
-    accentColor: 'var(--status-excellent)',
-  },
-  unknown: {
-    valueColor: 'var(--text-muted)',
-    accentColor: 'var(--status-attention)',
-  },
-  empty: {
-    valueColor: 'var(--text-disabled)',
-    accentColor: 'var(--border-default-solid)',
-  },
-  default: {
-    valueColor: 'var(--text-primary)',
-    accentColor: 'var(--brand-primary)',
-  },
+/**
+ * Map variant to CSS class modifier
+ */
+const variantClasses: Record<KPIVariant, string> = {
+  democrat: 'kpi-card--democrat',
+  republican: 'kpi-card--republican',
+  contested: 'kpi-card--contested',
+  unknown: 'kpi-card--unknown',
+  empty: 'kpi-card--empty',
+  default: '',
 };
 
 /**
  * Clean KPI Card with animated counter - Class Dashboard Style
+ * v4.0 - Uses CSS classes from components.css
  */
 export function KPICard({
   label,
@@ -60,17 +43,14 @@ export function KPICard({
   className = '',
   animationDelay = 0,
 }: KPICardProps) {
-  const styles = variantStyles[variant];
+  const variantClass = variantClasses[variant];
   const isClickable = !!onClick;
 
   return (
     <div
-      className={`kpi-card animate-entrance ${className}`}
-      style={{
-        animationDelay: `${animationDelay}ms`,
-        cursor: isClickable ? 'pointer' : 'default',
-        borderTop: `3px solid ${styles.accentColor}`,
-      }}
+      className={`kpi-card animate-entrance ${variantClass} ${className}`.trim()}
+      style={animationDelay > 0 ? { animationDelay: `${animationDelay}ms` } : undefined}
+      data-clickable={isClickable}
       onClick={onClick}
       role={isClickable ? 'button' : undefined}
       tabIndex={isClickable ? 0 : undefined}
@@ -82,7 +62,7 @@ export function KPICard({
       } : undefined}
     >
       {/* Label */}
-      <div className="text-xs uppercase tracking-wide mb-1" style={{ color: 'var(--text-muted)' }}>
+      <div className="kpi-card__label">
         {label}
       </div>
 
@@ -92,8 +72,7 @@ export function KPICard({
           value={value}
           prefix={prefix}
           suffix={suffix}
-          className="text-2xl font-bold tracking-tight"
-          style={{ color: styles.valueColor }}
+          className="kpi-card__value"
           duration={1500}
           formatNumber={(num) => Math.round(num).toLocaleString()}
         />
@@ -101,7 +80,7 @@ export function KPICard({
 
       {/* Optional subtext */}
       {subtext && (
-        <p className="text-xs mt-2 pt-2 border-t" style={{ color: 'var(--text-muted)', borderColor: 'var(--border-subtle-solid)' }}>
+        <p className="kpi-card__subtext">
           {subtext}
         </p>
       )}
