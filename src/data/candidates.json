@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-27T15:28:22.939771Z",
+  "lastUpdated": "2026-01-28T15:29:21.052751Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -696,16 +696,6 @@
     "54": {
       "districtNumber": 54,
       "candidates": [
-        {
-          "name": "Quick, Betty J",
-          "party": "Democratic",
-          "status": "filed",
-          "filedDate": "2025-04-10",
-          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=51430&seiId=51705&officeId=75369&reportId=402696",
-          "reportId": "402696",
-          "source": "ethics",
-          "isIncumbent": false
-        },
         {
           "name": "Jason Luck",
           "party": "Democratic",
