@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-28T15:29:21.052751Z",
+  "lastUpdated": "2026-01-29T15:32:46.236268Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -172,6 +172,16 @@
     "14": {
       "districtNumber": 14,
       "candidates": [
+        {
+          "name": "Shealy, Richard L",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-01-28",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56222&seiId=58000&officeId=78791&reportId=418782",
+          "reportId": "418782",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Rankin, Luke",
           "party": "Republican",
