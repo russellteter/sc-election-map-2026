@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-29T15:32:46.236268Z",
+  "lastUpdated": "2026-01-30T15:30:48.003431Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -415,6 +415,16 @@
     "33": {
       "districtNumber": 33,
       "candidates": [
+        {
+          "name": "Harris, Abraham L",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-01-29",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56169&seiId=57970&officeId=78768&reportId=418509",
+          "reportId": "418509",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Turregano, Clemson G",
           "party": null,
