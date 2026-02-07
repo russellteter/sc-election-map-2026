@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-06T15:37:07.019766Z",
+  "lastUpdated": "2026-02-07T15:21:09.925629Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1430,16 +1430,6 @@
           "reportId": "414668",
           "source": "ethics",
           "isIncumbent": false
-        },
-        {
-          "name": "Johnston, David C",
-          "party": null,
-          "status": "filed",
-          "filedDate": "2025-09-19",
-          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=55107&seiId=57676&officeId=78012&reportId=409802",
-          "reportId": "409802",
-          "source": "ethics",
-          "isIncumbent": false
         }
       ],
       "incumbent": null
@@ -1726,7 +1716,18 @@
     },
     "116": {
       "districtNumber": 116,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Bell, David W",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-02-06",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56279&seiId=49221&officeId=78818&reportId=419213",
+          "reportId": "419213",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "James E. Teeple",
         "party": "Republican"
