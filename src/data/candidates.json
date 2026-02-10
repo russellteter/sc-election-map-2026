@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-09T15:52:45.992724Z",
+  "lastUpdated": "2026-02-10T16:04:12.974736Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1177,7 +1177,18 @@
     },
     "84": {
       "districtNumber": 84,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Holston, Otis D",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-02-09",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56292&seiId=58036&officeId=78826&reportId=419328",
+          "reportId": "419328",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Melissa Lackey Oremus",
         "party": "Republican"
