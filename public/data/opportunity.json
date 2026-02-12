@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-11T11:50:35.464646+00:00",
+  "lastUpdated": "2026-02-12T11:44:50.452628+00:00",
   "thresholds": {
     "HOT": 5,
     "WARM": 10,
@@ -2083,8 +2083,8 @@
       "opportunityScore": 95,
       "margin": 2.4,
       "flags": {
-        "needsCandidate": true,
-        "hasDemocrat": false,
+        "needsCandidate": false,
+        "hasDemocrat": true,
         "hasRepublican": false,
         "isDefensive": false,
         "isOpenSeat": false
@@ -3076,7 +3076,7 @@
       "POSSIBLE": 3,
       "LONG_SHOT": 81,
       "DEFENSIVE": 36,
-      "needsCandidate": 5
+      "needsCandidate": 4
     },
     "senate": {
       "HOT": 4,
@@ -3092,7 +3092,7 @@
       "POSSIBLE": 4,
       "LONG_SHOT": 110,
       "DEFENSIVE": 48,
-      "needsCandidate": 10
+      "needsCandidate": 9
     }
   }
 }
