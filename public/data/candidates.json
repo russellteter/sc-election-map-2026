@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-18T15:49:04.734593Z",
+  "lastUpdated": "2026-02-19T15:44:08.829898Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -689,6 +689,16 @@
     "52": {
       "districtNumber": 52,
       "candidates": [
+        {
+          "name": "Taylor, Malcolm",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-02-18",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56322&seiId=58043&officeId=78845&reportId=419647",
+          "reportId": "419647",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Johnson, Jermaine L",
           "party": "Democratic",
