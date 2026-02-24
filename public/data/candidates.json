@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-23T15:42:06.545893Z",
+  "lastUpdated": "2026-02-24T15:53:40.794892Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1764,7 +1764,18 @@
     },
     "118": {
       "districtNumber": 118,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Scolaro, Bernie",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-02-23",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56366&seiId=57291&officeId=78874&reportId=419690",
+          "reportId": "419690",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Bill Herbkersman",
         "party": "Republican"
