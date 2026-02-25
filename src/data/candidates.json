@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-24T15:53:40.794892Z",
+  "lastUpdated": "2026-02-25T15:59:34.583231Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1690,7 +1690,18 @@
     },
     "114": {
       "districtNumber": 114,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Hough, Kelly",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-02-24",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56420&seiId=58065&officeId=78907&reportId=419940",
+          "reportId": "419940",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Gary S. Brewer Jr.",
         "party": "Republican"
