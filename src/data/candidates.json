@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-26T15:51:16.371920Z",
+  "lastUpdated": "2026-02-27T15:35:14.366496Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1653,6 +1653,16 @@
     "112": {
       "districtNumber": 112,
       "candidates": [
+        {
+          "name": "Sprouse, Woody",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-02-26",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56137&seiId=57951&officeId=78754&reportId=418605",
+          "reportId": "418605",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Arsenault, Jenna P",
           "party": "Democratic",
