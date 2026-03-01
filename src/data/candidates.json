@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-28T15:19:14.279677Z",
+  "lastUpdated": "2026-03-01T15:19:52.068318Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -12,6 +12,16 @@
     "2": {
       "districtNumber": 2,
       "candidates": [
+        {
+          "name": "Schutt, Candace",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-02-28",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56443&seiId=58095&officeId=78922&reportId=420129",
+          "reportId": "420129",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Duncan, Adam L",
           "party": "Republican",
