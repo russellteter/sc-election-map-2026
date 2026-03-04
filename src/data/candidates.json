@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-03T15:43:27.273181Z",
+  "lastUpdated": "2026-03-04T15:37:18.384815Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1787,7 +1787,18 @@
     },
     "117": {
       "districtNumber": 117,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Painter, Ashley",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-03",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56512&seiId=58008&officeId=78954&reportId=420262",
+          "reportId": "420262",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Jordan S. Pace",
         "party": "Republican"
