@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-07T15:19:45.397402Z",
+  "lastUpdated": "2026-03-08T15:20:28.057946Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1153,7 +1153,18 @@
     },
     "80": {
       "districtNumber": 80,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Brown, Benjamin E",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-07",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56283&seiId=58033&officeId=78820&reportId=420489",
+          "reportId": "420489",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Kathy Landing",
         "party": "Republican"
