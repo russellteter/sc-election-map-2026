@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-11T15:44:02.798623Z",
+  "lastUpdated": "2026-03-12T15:56:20.873234Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1875,6 +1875,16 @@
     "121": {
       "districtNumber": 121,
       "candidates": [
+        {
+          "name": "DeLoach , Shannon  N",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-11",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56499&seiId=58124&officeId=78948&reportId=420640",
+          "reportId": "420640",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Michael Rivers",
           "party": "Democratic",
