@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-17T16:02:42.496315Z",
+  "lastUpdated": "2026-03-18T16:06:09.923929Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -328,7 +328,18 @@
     },
     "24": {
       "districtNumber": 24,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Avinger, Caroline B",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-18",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56743&seiId=0&officeId=79066&reportId=421089",
+          "reportId": "421089",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Bruce W. Bannister",
         "party": "Republican"
@@ -485,7 +496,18 @@
     },
     "38": {
       "districtNumber": 38,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Hahn, Tammy",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-17",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56738&seiId=58243&officeId=79065&reportId=421082",
+          "reportId": "421082",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Josiah Magnuson",
         "party": "Republican"
