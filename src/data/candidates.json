@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-20T15:39:43.881428Z",
+  "lastUpdated": "2026-03-21T15:22:13.696448Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1406,7 +1406,18 @@
     },
     "96": {
       "districtNumber": 96,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Hackett, Hunter N",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-20",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56808&seiId=52760&officeId=79095&reportId=421285",
+          "reportId": "421285",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Ryan McCabe Jr.",
         "party": "Republican"
@@ -1814,7 +1825,18 @@
     },
     "120": {
       "districtNumber": 120,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "WEINFELD MD, ROBERT  H",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-20",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56826&seiId=58254&officeId=79106&reportId=421308",
+          "reportId": "421308",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Weston Newton",
         "party": "Republican"
