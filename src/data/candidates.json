@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-21T15:22:13.696448Z",
+  "lastUpdated": "2026-03-22T15:22:46.127228Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -182,6 +182,16 @@
     "14": {
       "districtNumber": 14,
       "candidates": [
+        {
+          "name": "Tate, Michanna",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-21",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56851&seiId=58295&officeId=79124&reportId=421355",
+          "reportId": "421355",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Rankin, Luke",
           "party": "Republican",
