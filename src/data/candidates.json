@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-22T15:22:46.127228Z",
+  "lastUpdated": "2026-03-23T15:57:22.079764Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1282,7 +1282,18 @@
     },
     "89": {
       "districtNumber": 89,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Madge, Joseph",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-22",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56855&seiId=58297&officeId=79125&reportId=421367",
+          "reportId": "421367",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Micah Caskey IV",
         "party": "Republican"
