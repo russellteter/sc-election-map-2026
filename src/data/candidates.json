@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-23T15:57:22.079764Z",
+  "lastUpdated": "2026-03-24T16:04:03.034580Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -882,7 +882,18 @@
     },
     "66": {
       "districtNumber": 66,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Hart, Heather",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-03-23",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56873&seiId=58301&officeId=79134&reportId=421415",
+          "reportId": "421415",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Jackie R. Terribile",
         "party": "Republican"
@@ -1226,7 +1237,18 @@
     },
     "86": {
       "districtNumber": 86,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Paradise, Thomas L",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-23",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56845&seiId=58293&officeId=79120&reportId=421341",
+          "reportId": "421341",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Bill Taylor",
         "party": "Republican"
