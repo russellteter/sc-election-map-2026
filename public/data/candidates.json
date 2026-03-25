@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-24T16:04:03.034580Z",
+  "lastUpdated": "2026-03-25T16:07:30.775325Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -532,6 +532,16 @@
     "41": {
       "districtNumber": 41,
       "candidates": [
+        {
+          "name": "Czentye, Tiberiu",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-24",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56224&seiId=55044&officeId=78792&reportId=421584",
+          "reportId": "421584",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Annie McDaniel",
           "party": "Democratic",
