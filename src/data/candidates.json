@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-25T16:07:30.775325Z",
+  "lastUpdated": "2026-03-26T16:09:16.640642Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -634,7 +634,18 @@
     },
     "47": {
       "districtNumber": 47,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Martinez, Peter A III",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-25",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56965&seiId=58220&officeId=79188&reportId=421713",
+          "reportId": "421713",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Tommy Pope",
         "party": "Republican"
@@ -1813,7 +1824,18 @@
     },
     "116": {
       "districtNumber": 116,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Middleton, Clay N",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-25",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56440&seiId=1679&officeId=78919&reportId=421703",
+          "reportId": "421703",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "James E. Teeple",
         "party": "Republican"
