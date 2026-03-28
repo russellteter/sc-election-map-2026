@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-27T15:49:54.693740Z",
+  "lastUpdated": "2026-03-28T15:27:59.828922Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -608,6 +608,16 @@
     "45": {
       "districtNumber": 45,
       "candidates": [
+        {
+          "name": "Brazell, Russell B",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-27",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57035&seiId=51427&officeId=79226&reportId=421864",
+          "reportId": "421864",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Ventour, Nicole",
           "party": null,
