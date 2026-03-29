@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-28T15:27:59.828922Z",
+  "lastUpdated": "2026-03-29T15:28:06.083450Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -230,7 +230,18 @@
     },
     "16": {
       "districtNumber": 16,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Ramirez, Lynn",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-28",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57078&seiId=58306&officeId=79246&reportId=421936",
+          "reportId": "421936",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Mark N. Willis",
         "party": "Republican"
