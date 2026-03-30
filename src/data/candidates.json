@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-29T15:28:06.083450Z",
+  "lastUpdated": "2026-03-30T16:03:38.927091Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -41,6 +41,16 @@
     "3": {
       "districtNumber": 3,
       "candidates": [
+        {
+          "name": "Mackins, Dr. Ernest E",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-29",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57116&seiId=38865&officeId=79266&reportId=421995",
+          "reportId": "421995",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Linvill, Claiborne",
           "party": "Republican",
@@ -1435,6 +1445,16 @@
       "districtNumber": 93,
       "candidates": [
         {
+          "name": "Morris, Alex",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-29",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56302&seiId=58041&officeId=78832&reportId=421379",
+          "reportId": "421379",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "Felder, John G Jr.",
           "party": null,
           "status": "filed",
@@ -1970,7 +1990,18 @@
     },
     "122": {
       "districtNumber": 122,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Williams, Korey",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-03-29",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57109&seiId=58394&officeId=79263&reportId=421994",
+          "reportId": "421994",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Bill Hager",
         "party": "Republican"
