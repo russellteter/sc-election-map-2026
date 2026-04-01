@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-31T16:03:22.182482Z",
+  "lastUpdated": "2026-04-01T16:04:33.584092Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -124,7 +124,18 @@
     },
     "7": {
       "districtNumber": 7,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "COOLEY, ELIZABETH W",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-30",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57087&seiId=58361&officeId=79250&reportId=422066",
+          "reportId": "422066",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Thomas Lee Gilreath",
         "party": "Republican"
@@ -151,7 +162,18 @@
     },
     "9": {
       "districtNumber": 9,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Estrich, Johnny",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-30",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57172&seiId=58433&officeId=79289&reportId=422111",
+          "reportId": "422111",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Richard Blake Sanders",
         "party": "Republican"
@@ -167,7 +189,18 @@
     },
     "11": {
       "districtNumber": 11,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Beasley, Jessica",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-30",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57176&seiId=57412&officeId=79291&reportId=422104",
+          "reportId": "422104",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Craig A. Gagnon",
         "party": "Republican"
@@ -203,7 +236,7 @@
           "isIncumbent": false
         },
         {
-          "name": "Rankin, Luke",
+          "name": "Rankin, Luke S",
           "party": "Republican",
           "status": "filed",
           "filedDate": "2025-10-04",
@@ -534,6 +567,16 @@
     "40": {
       "districtNumber": 40,
       "candidates": [
+        {
+          "name": "Thompson, Engle",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-31",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57250&seiId=58377&officeId=79339&reportId=422305",
+          "reportId": "422305",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Ammons, Johnathan P Jr.",
           "party": "Republican",
@@ -918,7 +961,18 @@
     },
     "64": {
       "districtNumber": 64,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Epperson, David W",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-31",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57268&seiId=8639&officeId=79351&reportId=422337",
+          "reportId": "422337",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Fawn M. Pedalino",
         "party": "Republican"
@@ -980,7 +1034,18 @@
     },
     "69": {
       "districtNumber": 69,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Allen, John A",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-31",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57265&seiId=58469&officeId=79349&reportId=422334",
+          "reportId": "422334",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Chris Wooten",
         "party": "Republican"
@@ -1048,6 +1113,16 @@
     "72": {
       "districtNumber": 72,
       "candidates": [
+        {
+          "name": "Kvatek, Dixie",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-31",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57229&seiId=58458&officeId=79323&reportId=422229",
+          "reportId": "422229",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Seth Rose",
           "party": "Democratic",
@@ -1867,6 +1942,16 @@
       "districtNumber": 116,
       "candidates": [
         {
+          "name": "Baxter, Radia",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-30",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57151&seiId=58360&officeId=79279&reportId=422058",
+          "reportId": "422058",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "Middleton, Clay N",
           "party": null,
           "status": "filed",
@@ -2017,7 +2102,18 @@
     },
     "124": {
       "districtNumber": 124,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Bishop, Shauna",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-03-31",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56938&seiId=58328&officeId=79176&reportId=422252",
+          "reportId": "422252",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Shannon S. Erickson",
         "party": "Republican"
