@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-01T16:04:33.584092Z",
+  "lastUpdated": "2026-04-02T15:57:58.985702Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -300,7 +300,18 @@
     },
     "18": {
       "districtNumber": 18,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Maclure, Virginia B",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-01",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57272&seiId=58258&officeId=79352&reportId=422395",
+          "reportId": "422395",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "T. Alan Morgan Jr.",
         "party": "Republican"
@@ -1640,6 +1651,16 @@
     "99": {
       "districtNumber": 99,
       "candidates": [
+        {
+          "name": "Pinkston, Shawn",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-01",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57277&seiId=15413&officeId=79355&reportId=422427",
+          "reportId": "422427",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Gore, Kristy",
           "party": "Republican",
