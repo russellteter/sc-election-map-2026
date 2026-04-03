@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-02T15:57:58.985702Z",
+  "lastUpdated": "2026-04-03T15:37:09.383336Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -190,6 +190,16 @@
     "11": {
       "districtNumber": 11,
       "candidates": [
+        {
+          "name": "Turner, Jesse",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-02",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56835&seiId=57948&officeId=79115&reportId=423124",
+          "reportId": "423124",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Beasley, Jessica",
           "party": null,
@@ -1275,6 +1285,16 @@
       "districtNumber": 79,
       "candidates": [
         {
+          "name": "Stovall, Anthony M",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-02",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57207&seiId=58314&officeId=79310&reportId=422323",
+          "reportId": "422323",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "Hamilton Grant",
           "party": "Democratic",
           "status": "known",
@@ -1569,7 +1589,18 @@
     },
     "94": {
       "districtNumber": 94,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Hebert, Sally",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-02",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57320&seiId=58323&officeId=79391&reportId=423135",
+          "reportId": "423135",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Gil Gatch",
         "party": "Republican"
