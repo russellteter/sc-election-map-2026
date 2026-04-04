@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-03T15:37:09.383336Z",
+  "lastUpdated": "2026-04-04T15:28:05.737147Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -244,16 +244,6 @@
           "reportId": "421355",
           "source": "ethics",
           "isIncumbent": false
-        },
-        {
-          "name": "Rankin, Luke S",
-          "party": "Republican",
-          "status": "filed",
-          "filedDate": "2025-10-04",
-          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=50394&seiId=51214&officeId=74850&reportId=410801",
-          "reportId": "410801",
-          "source": "ethics",
-          "isIncumbent": true
         }
       ],
       "incumbent": {
@@ -431,7 +421,18 @@
     },
     "26": {
       "districtNumber": 26,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Desch, Jenny E",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-03",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57331&seiId=58252&officeId=79398&reportId=423261",
+          "reportId": "423261",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "David Martin",
         "party": "Republican"
