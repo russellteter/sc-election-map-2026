@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-04T15:28:05.737147Z",
+  "lastUpdated": "2026-04-05T15:28:56.819538Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -254,6 +254,16 @@
     "15": {
       "districtNumber": 15,
       "candidates": [
+        {
+          "name": "Hickman, Heather B",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-04",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57135&seiId=58419&officeId=79273&reportId=423432",
+          "reportId": "423432",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "JA Moore",
           "party": "Democratic",
