@@ -1,9 +1,19 @@
 {
-  "lastUpdated": "2026-04-09T16:15:26.740470Z",
+  "lastUpdated": "2026-04-10T15:50:32.739536Z",
   "house": {
     "1": {
       "districtNumber": 1,
       "candidates": [
+        {
+          "name": "Diem, Craig A",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-09",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57237&seiId=58421&officeId=79328&reportId=423504",
+          "reportId": "423504",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Lynch, Juni",
           "party": null,
@@ -268,6 +278,16 @@
       "districtNumber": 14,
       "candidates": [
         {
+          "name": "Shealy, Richard L",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-09",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56222&seiId=58000&officeId=78791&reportId=424222",
+          "reportId": "424222",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "Tate, Michanna",
           "party": null,
           "status": "filed",
@@ -417,7 +437,18 @@
     },
     "22": {
       "districtNumber": 22,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Kendrick, Joshua S",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-09",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57478&seiId=58422&officeId=79529&reportId=424359",
+          "reportId": "424359",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Paul B. Wickensimer",
         "party": "Republican"
@@ -823,7 +854,18 @@
     },
     "48": {
       "districtNumber": 48,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Terry, Rustin",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-09",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57461&seiId=58372&officeId=79517&reportId=424276",
+          "reportId": "424276",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Brandon Guffey",
         "party": "Republican"
@@ -2282,7 +2324,18 @@
     },
     "123": {
       "districtNumber": 123,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Shippy, Ann C",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-09",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57458&seiId=58392&officeId=79513&reportId=424244",
+          "reportId": "424244",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Jeff Bradley",
         "party": "Republican"
