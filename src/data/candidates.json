@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-10T15:50:32.739536Z",
+  "lastUpdated": "2026-04-11T15:30:02.626118Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -478,6 +478,16 @@
       "districtNumber": 24,
       "candidates": [
         {
+          "name": "Sanders, Justin",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-10",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57170&seiId=58439&officeId=79287&reportId=424566",
+          "reportId": "424566",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "Avinger, Caroline B",
           "party": null,
           "status": "filed",
@@ -623,7 +633,18 @@
     },
     "34": {
       "districtNumber": 34,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Williams, Saville",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-04-10",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57074&seiId=58374&officeId=79244&reportId=424606",
+          "reportId": "424606",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Sarita L. Edgerton",
         "party": "Republican"
@@ -668,6 +689,16 @@
       "districtNumber": 38,
       "candidates": [
         {
+          "name": "Nestlen, Charlianne W",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-10",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57462&seiId=58382&officeId=79518&reportId=424560",
+          "reportId": "424560",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "Hahn, Tammy",
           "party": null,
           "status": "filed",
@@ -685,7 +716,18 @@
     },
     "39": {
       "districtNumber": 39,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Hall, Katie M",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-10",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56788&seiId=52991&officeId=79085&reportId=424649",
+          "reportId": "424649",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Cal Forrest Jr.",
         "party": "Republican"
@@ -1055,7 +1097,18 @@
     },
     "60": {
       "districtNumber": 60,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Carter, Adrian P",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-10",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57459&seiId=58384&officeId=79515&reportId=424316",
+          "reportId": "424316",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Phillip D. Lowe",
         "party": "Republican"
@@ -1091,7 +1144,18 @@
     },
     "63": {
       "districtNumber": 63,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Hilton, Sloan E",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-09",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57083&seiId=58262&officeId=79248&reportId=424449",
+          "reportId": "424449",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Jay Jordan Jr.",
         "party": "Republican"
@@ -1506,7 +1570,18 @@
     },
     "84": {
       "districtNumber": 84,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Holston, Otis D",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-10",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56292&seiId=58036&officeId=78826&reportId=424749",
+          "reportId": "424749",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Melissa Lackey Oremus",
         "party": "Republican"
@@ -1858,7 +1933,18 @@
     },
     "100": {
       "districtNumber": 100,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Campbell, Crystal Y",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-10",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57307&seiId=58464&officeId=79380&reportId=424704",
+          "reportId": "424704",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Sylleste H. Davis",
         "party": "Republican"
@@ -2006,7 +2092,18 @@
     },
     "110": {
       "districtNumber": 110,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Atwood, Kenneth J",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-10",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56545&seiId=58146&officeId=78969&reportId=424462",
+          "reportId": "424462",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Tom Hartnett Jr.",
         "party": "Republican"
