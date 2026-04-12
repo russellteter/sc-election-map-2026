@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-11T15:30:02.626118Z",
+  "lastUpdated": "2026-04-12T15:33:19.700082Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -33,6 +33,16 @@
     "2": {
       "districtNumber": 2,
       "candidates": [
+        {
+          "name": "El-Khalifa, Zyon",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-11",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56560&seiId=58152&officeId=78976&reportId=424622",
+          "reportId": "424622",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Schutt, Candace",
           "party": null,
@@ -1853,6 +1863,16 @@
       "districtNumber": 96,
       "candidates": [
         {
+          "name": "whetstone, scotty",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-10",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57451&seiId=14788&officeId=79506&reportId=424784",
+          "reportId": "424784",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "Hackett, Hunter N",
           "party": null,
           "status": "filed",
@@ -1905,6 +1925,16 @@
     "99": {
       "districtNumber": 99,
       "candidates": [
+        {
+          "name": "Brooks, Jarrod k",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-10",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56424&seiId=37929&officeId=78908&reportId=420095",
+          "reportId": "420095",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Pinkston, Shawn",
           "party": null,
