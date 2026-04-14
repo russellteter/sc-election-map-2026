@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-13T16:09:20.304458Z",
+  "lastUpdated": "2026-04-14T16:04:40.775808Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -927,6 +927,16 @@
       "districtNumber": 49,
       "candidates": [
         {
+          "name": "Sutton, Perry L",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-04-13",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57137&seiId=53007&officeId=79274&reportId=424873",
+          "reportId": "424873",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "John King",
           "party": "Democratic",
           "status": "known",
@@ -986,6 +996,16 @@
       "districtNumber": 52,
       "candidates": [
         {
+          "name": "Moore, Lawrence",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-04-13",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57353&seiId=10690&officeId=79411&reportId=424949",
+          "reportId": "424949",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "Johnson, Jermaine L",
           "party": "Democratic",
           "status": "filed",
@@ -1012,6 +1032,16 @@
     "54": {
       "districtNumber": 54,
       "candidates": [
+        {
+          "name": "Quick, Betty J",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-04-13",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57530&seiId=51705&officeId=79569&reportId=424718",
+          "reportId": "424718",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Jason Luck",
           "party": "Democratic",
