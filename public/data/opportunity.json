@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-13T12:11:17.548805+00:00",
+  "lastUpdated": "2026-04-15T12:04:01.586879+00:00",
   "thresholds": {
     "HOT": 5,
     "WARM": 10,
@@ -968,7 +968,7 @@
       "margin": 4.2,
       "flags": {
         "needsCandidate": false,
-        "hasDemocrat": false,
+        "hasDemocrat": true,
         "hasRepublican": false,
         "isDefensive": true,
         "isOpenSeat": false
