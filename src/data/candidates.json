@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-14T16:04:40.775808Z",
+  "lastUpdated": "2026-04-15T16:02:12.319116Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -391,7 +391,18 @@
     },
     "19": {
       "districtNumber": 19,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Smith, Rachel",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2026-04-14",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57574&seiId=58284&officeId=79602&reportId=425013",
+          "reportId": "425013",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Patrick B. Haddon",
         "party": "Republican"
@@ -448,6 +459,16 @@
     "22": {
       "districtNumber": 22,
       "candidates": [
+        {
+          "name": "RHODE, RANDOLPH C Jr.",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-14",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57539&seiId=58380&officeId=79580&reportId=424820",
+          "reportId": "424820",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Kendrick, Joshua S",
           "party": null,
@@ -1205,6 +1226,16 @@
       "districtNumber": 64,
       "candidates": [
         {
+          "name": "SPANN, JACKIE K",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-14",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57578&seiId=12882&officeId=79605&reportId=425025",
+          "reportId": "425025",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "Epperson, David W",
           "party": null,
           "status": "filed",
@@ -1279,7 +1310,18 @@
     },
     "68": {
       "districtNumber": 68,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Davies, Judith S",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-14",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57450&seiId=58441&officeId=79505&reportId=425047",
+          "reportId": "425047",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Heather Ammons Crawford",
         "party": "Republican"
@@ -2034,6 +2076,16 @@
       "districtNumber": 102,
       "candidates": [
         {
+          "name": "Aiken, Montez",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-14",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56952&seiId=58292&officeId=79182&reportId=424956",
+          "reportId": "424956",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "McCravy, Katie L",
           "party": "Democratic",
           "status": "filed",
@@ -2364,6 +2416,16 @@
     "119": {
       "districtNumber": 119,
       "candidates": [
+        {
+          "name": "Edwards, Donald L Jr",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-14",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57527&seiId=597&officeId=79567&reportId=424965",
+          "reportId": "424965",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Magee, Brendan R",
           "party": null,
