@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-15T16:02:12.319116Z",
+  "lastUpdated": "2026-04-16T16:20:13.981316Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -364,7 +364,18 @@
     },
     "17": {
       "districtNumber": 17,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Nicoloff, Richard L",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-15",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57590&seiId=58431&officeId=79617&reportId=425080",
+          "reportId": "425080",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Mike Burns",
         "party": "Republican"
@@ -583,7 +594,18 @@
     },
     "28": {
       "districtNumber": 28,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Buckalew, Alan G",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-15",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57561&seiId=58367&officeId=79594&reportId=425120",
+          "reportId": "425120",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Chris Huff",
         "party": "Republican"
@@ -900,7 +922,18 @@
     },
     "46": {
       "districtNumber": 46,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "McCrorey, Omar L",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-15",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57449&seiId=58312&officeId=79504&reportId=424174",
+          "reportId": "424174",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Heath Sessions",
         "party": "Republican"
@@ -996,6 +1029,16 @@
     "51": {
       "districtNumber": 51,
       "candidates": [
+        {
+          "name": "Weeks-Richardson, Melissa J",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-15",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57587&seiId=56169&officeId=79614&reportId=425071",
+          "reportId": "425071",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "David Weeks",
           "party": "Democratic",
@@ -1102,7 +1145,18 @@
     },
     "56": {
       "districtNumber": 56,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Meadow, Jacqualyn",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-15",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57599&seiId=58349&officeId=79626&reportId=425136",
+          "reportId": "425136",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Tim McGinnis",
         "party": "Republican"
@@ -1740,6 +1794,16 @@
       "districtNumber": 88,
       "candidates": [
         {
+          "name": "Jones, Jeremy  A",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-04-15",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57095&seiId=56036&officeId=79257&reportId=425121",
+          "reportId": "425121",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "Lastinger, John",
           "party": "Republican",
           "status": "filed",
@@ -1935,6 +1999,16 @@
       "districtNumber": 96,
       "candidates": [
         {
+          "name": "Finch, Perry S",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-15",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57064&seiId=12700&officeId=79240&reportId=425097",
+          "reportId": "425097",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "whetstone, scotty",
           "party": null,
           "status": "filed",
@@ -1997,6 +2071,16 @@
     "99": {
       "districtNumber": 99,
       "candidates": [
+        {
+          "name": "Herndon, David",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-15",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57596&seiId=3031&officeId=79623&reportId=425128",
+          "reportId": "425128",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Brooks, Jarrod k",
           "party": null,
