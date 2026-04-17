@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-16T16:20:13.981316Z",
+  "lastUpdated": "2026-04-17T15:57:19.331845Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -771,6 +771,16 @@
       "districtNumber": 39,
       "candidates": [
         {
+          "name": "Lott, Sherman T",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-16",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57598&seiId=58477&officeId=79625&reportId=425159",
+          "reportId": "425159",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "Hall, Katie M",
           "party": null,
           "status": "filed",
@@ -847,7 +857,18 @@
     },
     "42": {
       "districtNumber": 42,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Williams, Robert L",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-04-16",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57559&seiId=58417&officeId=79592&reportId=424973",
+          "reportId": "424973",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Doug Gilliam",
         "party": "Republican"
@@ -1910,7 +1931,18 @@
     },
     "92": {
       "districtNumber": 92,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Walters, Byron D III",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-16",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57609&seiId=58486&officeId=79632&reportId=425195",
+          "reportId": "425195",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Brandon L. Cox",
         "party": "Republican"
@@ -2140,6 +2172,16 @@
       "districtNumber": 101,
       "candidates": [
         {
+          "name": "Borowsky, Arnie   Jr.",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-16",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57583&seiId=58413&officeId=79610&reportId=425152",
+          "reportId": "425152",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "Roger Kirby",
           "party": "Democratic",
           "status": "known",
@@ -2226,7 +2268,18 @@
     },
     "105": {
       "districtNumber": 105,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Wilson, David E",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-16",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57334&seiId=58338&officeId=79400&reportId=425241",
+          "reportId": "425241",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Kevin Hardee",
         "party": "Republican"
