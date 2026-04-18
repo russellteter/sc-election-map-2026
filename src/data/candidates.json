@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-17T15:57:19.331845Z",
+  "lastUpdated": "2026-04-18T15:34:33.865886Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -630,6 +630,16 @@
     "31": {
       "districtNumber": 31,
       "candidates": [
+        {
+          "name": "Abusaft, Monier",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-17",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57200&seiId=37638&officeId=79304&reportId=425285",
+          "reportId": "425285",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Rosalyn Henderson-Myers",
           "party": "Democratic",
