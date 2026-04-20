@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-19T15:34:42.339985Z",
+  "lastUpdated": "2026-04-20T16:05:47.766246Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -2672,6 +2672,16 @@
     "122": {
       "districtNumber": 122,
       "candidates": [
+        {
+          "name": "Moore, Maja",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-04-19",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57558&seiId=58466&officeId=79591&reportId=425045",
+          "reportId": "425045",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Williams, Korey",
           "party": "Democratic",
