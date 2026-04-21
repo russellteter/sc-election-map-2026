@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-20T16:05:47.766246Z",
+  "lastUpdated": "2026-04-21T16:08:14.639843Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -278,7 +278,18 @@
     },
     "13": {
       "districtNumber": 13,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Wise, Clarence R",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-20",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57615&seiId=58532&officeId=79636&reportId=425272",
+          "reportId": "425272",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "John R. McCravy III",
         "party": "Republican"
