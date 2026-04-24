@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-23T16:27:00.859619Z",
+  "lastUpdated": "2026-04-24T16:02:01.208103Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1787,6 +1787,16 @@
     "86": {
       "districtNumber": 86,
       "candidates": [
+        {
+          "name": "epting, stuart l",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-23",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57653&seiId=58237&officeId=79661&reportId=425427",
+          "reportId": "425427",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Ray, Kimberlie E",
           "party": null,
