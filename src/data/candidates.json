@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-24T16:02:01.208103Z",
+  "lastUpdated": "2026-04-25T15:36:56.164726Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -2412,6 +2412,16 @@
     "112": {
       "districtNumber": 112,
       "candidates": [
+        {
+          "name": "Zuckerberg, Brian",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-24",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57360&seiId=58370&officeId=79416&reportId=425493",
+          "reportId": "425493",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Sprouse, Woody",
           "party": null,
