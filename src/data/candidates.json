@@ -1,9 +1,19 @@
 {
-  "lastUpdated": "2026-04-26T15:38:47.021112Z",
+  "lastUpdated": "2026-04-27T16:23:44.926422Z",
   "house": {
     "1": {
       "districtNumber": 1,
       "candidates": [
+        {
+          "name": "Williams, Jasmine R",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-04-26",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57582&seiId=58482&officeId=79609&reportId=425520",
+          "reportId": "425520",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Diem, Craig A",
           "party": null,
@@ -2099,7 +2109,18 @@
     },
     "97": {
       "districtNumber": 97,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Jaggars, Cathy A",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-26",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57383&seiId=58356&officeId=79441&reportId=425511",
+          "reportId": "425511",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Robby Robbins",
         "party": "Republican"
