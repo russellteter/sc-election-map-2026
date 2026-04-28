@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T16:23:44.926422Z",
+  "lastUpdated": "2026-04-28T16:48:42.670024Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -746,6 +746,16 @@
       "districtNumber": 36,
       "candidates": [
         {
+          "name": "Crisp, Adam",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-27",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57555&seiId=52210&officeId=79589&reportId=425384",
+          "reportId": "425384",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "McLean, Virginia L",
           "party": null,
           "status": "filed",
@@ -763,7 +773,18 @@
     },
     "37": {
       "districtNumber": 37,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Sauer-Hart, Seth P",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-27",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57537&seiId=58298&officeId=79579&reportId=425577",
+          "reportId": "425577",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Steven Wayne Long",
         "party": "Republican"
