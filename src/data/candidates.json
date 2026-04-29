@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T16:48:42.670024Z",
+  "lastUpdated": "2026-04-29T16:25:34.719113Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -2360,7 +2360,18 @@
     },
     "106": {
       "districtNumber": 106,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "McCann, Marisa",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-28",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57680&seiId=58398&officeId=79688&reportId=425644",
+          "reportId": "425644",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Val Guest Jr.",
         "party": "Republican"
