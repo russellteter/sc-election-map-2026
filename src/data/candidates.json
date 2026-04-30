@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-29T16:25:34.719113Z",
+  "lastUpdated": "2026-04-30T16:16:13.685095Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -634,7 +634,18 @@
     },
     "29": {
       "districtNumber": 29,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Franco, Marina",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-04-29",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57690&seiId=58489&officeId=79703&reportId=425682",
+          "reportId": "425682",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "Dennis C. Moss",
         "party": "Republican"
