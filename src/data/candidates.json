@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-01T15:54:43.852785Z",
+  "lastUpdated": "2026-05-02T15:41:57.076968Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -2104,6 +2104,16 @@
       "districtNumber": 96,
       "candidates": [
         {
+          "name": "Elston, Vivian",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-05-01",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57464&seiId=58365&officeId=79520&reportId=425724",
+          "reportId": "425724",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
           "name": "Finch, Perry S",
           "party": null,
           "status": "filed",
@@ -2187,6 +2197,16 @@
     "99": {
       "districtNumber": 99,
       "candidates": [
+        {
+          "name": "Price, Samuel E",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-05-01",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57698&seiId=58383&officeId=79710&reportId=425741",
+          "reportId": "425741",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Herndon, David",
           "party": null,
