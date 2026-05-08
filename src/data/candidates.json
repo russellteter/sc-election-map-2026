@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-07T16:46:48.554141Z",
+  "lastUpdated": "2026-05-08T16:10:53.906484Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -131,6 +131,16 @@
     "4": {
       "districtNumber": 4,
       "candidates": [
+        {
+          "name": "Kruse, Derrick",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-05-07",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57710&seiId=58478&officeId=79718&reportId=425943",
+          "reportId": "425943",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Counts, Clay",
           "party": "Republican",
