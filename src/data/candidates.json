@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-08T16:10:53.906484Z",
+  "lastUpdated": "2026-05-09T15:48:55.447167Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -579,6 +579,16 @@
     "25": {
       "districtNumber": 25,
       "candidates": [
+        {
+          "name": "Quarles, Derrick L",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-05-08",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57584&seiId=52497&officeId=79611&reportId=425951",
+          "reportId": "425951",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Wendell Jones",
           "party": "Democratic",
