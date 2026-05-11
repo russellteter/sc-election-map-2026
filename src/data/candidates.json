@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-10T15:50:32.386139Z",
+  "lastUpdated": "2026-05-11T17:21:58.383235Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1317,6 +1317,16 @@
     "60": {
       "districtNumber": 60,
       "candidates": [
+        {
+          "name": "OShea , Melissa B",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-05-10",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57471&seiId=58443&officeId=79524&reportId=425721",
+          "reportId": "425721",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Carter, Adrian P",
           "party": null,
