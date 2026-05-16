@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-15T16:48:37.748023Z",
+  "lastUpdated": "2026-05-16T15:55:16.441479Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1393,6 +1393,16 @@
     "64": {
       "districtNumber": 64,
       "candidates": [
+        {
+          "name": "Demery, Michele J",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-05-15",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57581&seiId=58006&officeId=79608&reportId=426065",
+          "reportId": "426065",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "SPANN, JACKIE K",
           "party": null,
