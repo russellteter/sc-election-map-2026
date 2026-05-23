@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-22T17:06:41.677227Z",
+  "lastUpdated": "2026-05-23T15:59:36.743891Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -299,6 +299,16 @@
     "13": {
       "districtNumber": 13,
       "candidates": [
+        {
+          "name": "JEFFERSON, John",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-05-22",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57531&seiId=51817&officeId=79571&reportId=426304",
+          "reportId": "426304",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Wise, Clarence R",
           "party": null,
