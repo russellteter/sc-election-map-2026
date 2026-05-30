@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-29T18:10:42.216152Z",
+  "lastUpdated": "2026-05-30T16:02:19.038854Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1173,6 +1173,16 @@
     "52": {
       "districtNumber": 52,
       "candidates": [
+        {
+          "name": "Tate, Patrick",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-05-29",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57773&seiId=57991&officeId=79760&reportId=426757",
+          "reportId": "426757",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Moore, Lawrence",
           "party": "Democratic",
