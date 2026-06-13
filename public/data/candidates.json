@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-12T17:35:01.432757Z",
+  "lastUpdated": "2026-06-13T16:11:52.377008Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -243,6 +243,16 @@
     "10": {
       "districtNumber": 10,
       "candidates": [
+        {
+          "name": "Stewart, Camron T",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-06-12",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56526&seiId=58096&officeId=78961&reportId=427305",
+          "reportId": "427305",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Watson, Thomas S",
           "party": null,
