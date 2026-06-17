@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-16T18:53:23.260315Z",
+  "lastUpdated": "2026-06-17T17:47:36.619328Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -248,7 +248,7 @@
           "party": null,
           "status": "filed",
           "filedDate": "2026-06-12",
-          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56526&seiId=58096&officeId=78961&reportId=427305",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=56526&seiId=58096&officeId=79814&reportId=427305",
           "reportId": "427305",
           "source": "ethics",
           "isIncumbent": false
