@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-02T16:46:46.884290Z",
+  "lastUpdated": "2026-07-03T16:22:02.661907Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -703,7 +703,18 @@
     },
     "30": {
       "districtNumber": 30,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Holstein, Stephanie",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-07-02",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57882&seiId=58386&officeId=79857&reportId=428450",
+          "reportId": "428450",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "M. Brian Lawson",
         "party": "Republican"
