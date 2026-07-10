@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-09T17:20:01.381173Z",
+  "lastUpdated": "2026-07-10T16:52:38.225301Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -752,7 +752,18 @@
     },
     "32": {
       "districtNumber": 32,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Benson, Irene",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-07-09",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57724&seiId=58502&officeId=79728&reportId=429436",
+          "reportId": "429436",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "W. Scott Montgomery IV",
         "party": "Republican"
