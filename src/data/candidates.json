@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-11T15:51:52.367646Z",
+  "lastUpdated": "2026-07-12T15:55:55.859772Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -43,6 +43,16 @@
     "2": {
       "districtNumber": 2,
       "candidates": [
+        {
+          "name": "Des Marais, Christopher D",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-07-10",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57931&seiId=58402&officeId=79928&reportId=429478",
+          "reportId": "429478",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "El-Khalifa, Zyon",
           "party": null,
@@ -167,7 +177,18 @@
     },
     "6": {
       "districtNumber": 6,
-      "candidates": [],
+      "candidates": [
+        {
+          "name": "Bachner, Jennifer",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-07-10",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57345&seiId=58320&officeId=79407&reportId=429572",
+          "reportId": "429572",
+          "source": "ethics",
+          "isIncumbent": false
+        }
+      ],
       "incumbent": {
         "name": "April Cromer",
         "party": "Republican"
