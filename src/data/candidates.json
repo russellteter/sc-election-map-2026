@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-14T16:10:19.982017Z",
+  "lastUpdated": "2026-07-15T16:17:30.422915Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -523,6 +523,16 @@
     "21": {
       "districtNumber": 21,
       "candidates": [
+        {
+          "name": "Reaves, Dexter L",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-07-14",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57591&seiId=7295&officeId=79618&reportId=430089",
+          "reportId": "430089",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Mitchell, Dianne K",
           "party": "Republican",
