@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-15T16:17:30.422915Z",
+  "lastUpdated": "2026-07-16T16:14:21.906645Z",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1601,6 +1601,16 @@
     "69": {
       "districtNumber": 69,
       "candidates": [
+        {
+          "name": "Chaplin, Emery K",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-07-15",
+          "ethicsUrl": "https://ethicsfiling.sc.gov/public/candidates-public-officials/person/campaign-disclosure-reports/report-detail?personId=57938&seiId=58434&officeId=79937&reportId=429719",
+          "reportId": "429719",
+          "source": "ethics",
+          "isIncumbent": false
+        },
         {
           "name": "Allen, John A",
           "party": null,
