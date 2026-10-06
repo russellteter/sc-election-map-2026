@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-01T17:21:30.229418+00:00",
+  "lastUpdated": "2026-10-06T17:06:41.512717+00:00",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -168,6 +168,16 @@
           "filedDate": "2026-05-07",
           "ethicsUrl": "View Filing",
           "reportId": "425943",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
+          "name": "Kruse, Derrick",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-10-03",
+          "ethicsUrl": "View Filing",
+          "reportId": "432915",
           "source": "ethics",
           "isIncumbent": false
         }
@@ -3286,6 +3296,16 @@
           "filedDate": "2026-08-31",
           "ethicsUrl": "View Filing",
           "reportId": "431732",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
+          "name": "White, Monika L",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-10-03",
+          "ethicsUrl": "View Filing",
+          "reportId": "432935",
           "source": "ethics",
           "isIncumbent": false
         }
