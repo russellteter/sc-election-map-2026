@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-06T17:06:41.512717+00:00",
+  "lastUpdated": "2026-10-08T17:49:27.593186+00:00",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -2432,6 +2432,16 @@
           "reportId": "425741",
           "source": "ethics",
           "isIncumbent": false
+        },
+        {
+          "name": "Herndon, David",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-10-07",
+          "ethicsUrl": "View Filing",
+          "reportId": "432911",
+          "source": "ethics",
+          "isIncumbent": false
         }
       ],
       "incumbent": {
@@ -2526,6 +2536,16 @@
           "filedDate": "2026-05-30",
           "ethicsUrl": "View Filing",
           "reportId": "425417",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
+          "name": "Padgett, Wendell",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-10-07",
+          "ethicsUrl": "View Filing",
+          "reportId": "433379",
           "source": "ethics",
           "isIncumbent": false
         }
