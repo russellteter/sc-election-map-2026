@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-15T15:34:34.384351+00:00",
+  "lastUpdated": "2026-10-16T15:19:07.899958+00:00",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1189,6 +1189,16 @@
           "filedDate": "2026-04-15",
           "ethicsUrl": "View Filing",
           "reportId": "424174",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
+          "name": "McCrorey, Omar L",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-10-15",
+          "ethicsUrl": "View Filing",
+          "reportId": "433878",
           "source": "ethics",
           "isIncumbent": false
         }
