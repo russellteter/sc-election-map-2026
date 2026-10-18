@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-17T14:08:26.537483+00:00",
+  "lastUpdated": "2026-10-18T14:23:30.241294+00:00",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1595,6 +1595,16 @@
           "reportId": "422989",
           "source": "ethics",
           "isIncumbent": false
+        },
+        {
+          "name": "Baskin, Tanisha",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-10-18",
+          "ethicsUrl": "View Filing",
+          "reportId": "434878",
+          "source": "ethics",
+          "isIncumbent": false
         }
       ],
       "incumbent": {
@@ -2948,6 +2958,16 @@
           "filedDate": "2026-02-23",
           "ethicsUrl": "View Filing",
           "reportId": "419690",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
+          "name": "Scolaro, Bernie",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-10-17",
+          "ethicsUrl": "View Filing",
+          "reportId": "434843",
           "source": "ethics",
           "isIncumbent": false
         }
