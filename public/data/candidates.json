@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-18T14:23:30.241294+00:00",
+  "lastUpdated": "2026-10-19T17:24:50.399092+00:00",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -1116,6 +1116,16 @@
           "reportId": "424973",
           "source": "ethics",
           "isIncumbent": false
+        },
+        {
+          "name": "Williams, Robert L",
+          "party": "Democratic",
+          "status": "filed",
+          "filedDate": "2026-10-18",
+          "ethicsUrl": "View Filing",
+          "reportId": "433672",
+          "source": "ethics",
+          "isIncumbent": false
         }
       ],
       "incumbent": {
@@ -1603,6 +1613,16 @@
           "filedDate": "2026-10-18",
           "ethicsUrl": "View Filing",
           "reportId": "434878",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
+          "name": "Baskin, Tanisha",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-10-19",
+          "ethicsUrl": "View Filing",
+          "reportId": "435098",
           "source": "ethics",
           "isIncumbent": false
         }
@@ -2831,6 +2851,16 @@
           "filedDate": "2026-04-03",
           "ethicsUrl": "View Filing",
           "reportId": "423354",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
+          "name": "Garmon, Johnnie",
+          "party": "Republican",
+          "status": "filed",
+          "filedDate": "2026-10-19",
+          "ethicsUrl": "View Filing",
+          "reportId": "434676",
           "source": "ethics",
           "isIncumbent": false
         }
