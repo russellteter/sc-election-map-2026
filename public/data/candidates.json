@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-19T17:24:50.399092+00:00",
+  "lastUpdated": "2026-10-20T15:39:17.984686+00:00",
   "house": {
     "1": {
       "districtNumber": 1,
@@ -397,6 +397,16 @@
           "filedDate": "2026-05-22",
           "ethicsUrl": "View Filing",
           "reportId": "426304",
+          "source": "ethics",
+          "isIncumbent": false
+        },
+        {
+          "name": "Wise, Clarence R",
+          "party": null,
+          "status": "filed",
+          "filedDate": "2026-10-19",
+          "ethicsUrl": "View Filing",
+          "reportId": "435150",
           "source": "ethics",
           "isIncumbent": false
         }
