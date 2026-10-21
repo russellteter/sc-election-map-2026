@@ -25,6 +25,13 @@ Blue Intelligence transforms election data into strategic campaign intelligence.
 
 ---
 
+## Scheduled data jobs
+
+- **Retired 2026-10-21: "Update Election Data".** This nightly job failed 28 nights in a row and duplicated "SC Ethics Monitor Daily", which writes the only data file the app reads (pull request 7). The workflow file was deleted rather than paused, so it needs no token and cannot run. To bring it back, restore `.github/workflows/update-data.yml` from the git history before that pull request.
+- **Still running: "SC Ethics Monitor Daily".** It is the only scheduled data job in this repository.
+
+---
+
 ## Features
 
 ### Interactive District Maps
